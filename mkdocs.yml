@@ -15,6 +15,9 @@ nav:
   - ZJU: 
     - zju/index.md
     - 大学物理实验: zju/phy_exp.md
+  - 大学生生活常识:
+    - common_sense/index.md
+    - 医保: common_sense/medical_insurance.md
 
 # 主题设置
 theme:
@@ -33,6 +36,7 @@ theme:
   favicon: ./img/logo.png
   icon:
     repo: fontawesome/brands/github
+    annotation: material/plus-circle
   features:
     - announce.dismiss
     - content.action.edit
@@ -101,3 +105,12 @@ markdown_extensions:
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tilde
+  - pymdownx.betterem
+
+extra_javascript:
+  - javascripts/katex.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+
+extra_css:
+  - https://unpkg.com/katex@0/dist/katex.min.css
