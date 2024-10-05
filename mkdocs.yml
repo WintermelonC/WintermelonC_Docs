@@ -1,10 +1,22 @@
+# 网站简介
 site_name: WintermelonC Docs
 site_url: https://mydomain.org/mysite
+site_author: WintermelonC
+site_description: WinteremelonC 的网页
+
+# github 仓库
+repo_url: https://github.com/WintermelonC/WintermelonC_Docs
+repo_name: WintermelonC_Docs
+edit_uri: edit/main/docs/
+
+# 页面布局
 nav:
   - 首页: index.md
   - ZJU: 
-    - zju/zju.md
+    - zju/index.md
     - 大学物理实验: zju/phy_exp.md
+
+# 主题设置
 theme:
   name: material
   palette:
@@ -33,7 +45,7 @@ theme:
     - content.tooltips
     # - header.autohide
     # - navigation.expand
-    - navigation.footer
+    # - navigation.footer
     - navigation.indexes
     # - navigation.instant
     # - navigation.instant.prefetch
@@ -49,6 +61,42 @@ theme:
     - search.suggest
     - toc.follow
     # - toc.integrate
-repo_url: https://github.com/WintermelonC/WintermelonC_Docs
-repo_name: WintermelonC_Docs
-edit_uri: edit/main/docs/
+
+# 额外设置
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/WintermelonC
+
+# 扩展
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
