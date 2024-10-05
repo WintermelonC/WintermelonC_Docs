@@ -1,16 +1,54 @@
 site_name: WintermelonC Docs
 site_url: https://mydomain.org/mysite
+nav:
+  - 首页: index.md
+  - ZJU: 
+    - zju/zju.md
+    - 大学物理实验: zju/phy_exp.md
 theme:
   name: material
   palette:
     - scheme: default
       toggle:
         icon: material/brightness-7
-        name: switch to dark mode
+        name: 切换至黑夜模式
     - scheme: slate
       toggle:
         icon: material/brightness-4
-        name: switch to light mode
+        name: 切换至白天模式
   language: zh
   logo: ./img/logo.png
   favicon: ./img/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - announce.dismiss
+    - content.action.edit
+    - content.action.view
+    - content.code.annotate
+    - content.code.copy
+    # - content.code.select
+    # - content.footnote.tooltips
+    # - content.tabs.link
+    - content.tooltips
+    # - header.autohide
+    # - navigation.expand
+    - navigation.footer
+    - navigation.indexes
+    # - navigation.instant
+    # - navigation.instant.prefetch
+    # - navigation.instant.progress
+    # - navigation.prune
+    - navigation.sections
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+    # - toc.integrate
+repo_url: https://github.com/WintermelonC/WintermelonC_Docs
+repo_name: WintermelonC_Docs
+edit_uri: edit/main/docs/
