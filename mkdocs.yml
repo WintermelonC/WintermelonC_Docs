@@ -45,12 +45,13 @@ theme:
     - content.code.copy
     # - content.code.select
     # - content.footnote.tooltips
-    # - content.tabs.link
+    - content.tabs.link
     - content.tooltips
     # - header.autohide
     # - navigation.expand
-    # - navigation.footer
+    - navigation.footer
     - navigation.indexes
+    - navigation.path
     # - navigation.instant
     # - navigation.instant.prefetch
     # - navigation.instant.progress
@@ -71,6 +72,10 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/WintermelonC
+
+# 插件
+# plugins:
+#   - typeset
 
 # 扩展
 markdown_extensions:
