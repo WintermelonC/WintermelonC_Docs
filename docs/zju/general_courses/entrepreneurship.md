@@ -12,7 +12,7 @@
 
 #### 线上学习部分（40分）
 
-线上学习空间：[学堂在线、浙大雨课堂](https://zju.yuketang.cn/)
+线上学习空间：[学堂在线、浙大雨课堂](https://zju.yuketang.cn/){:target="_blank"}
 
 ##### 线上观看视频（30%）
 
