@@ -14,7 +14,10 @@ nav:
   - 首页: index.md
   - ZJU: 
     - zju/index.md
-    - 大学物理实验: zju/phy_exp.md
+    - 通识课程:
+      - zju/general_courses/index.md
+      - 大学物理实验: zju/general_courses/phy_exp.md
+      - 创业启程: zju/general_courses/entrepreneurship.md
   - 大学生生活常识:
     - common_sense/index.md
     - 医保: common_sense/medical_insurance.md
@@ -111,6 +114,15 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
   - pymdownx.betterem
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.snippets:
+      check_paths: true
+      url_download: true
+      url_max_size: 33554432
+      url_timeout: 10
 
 extra_javascript:
   - javascripts/katex.js
