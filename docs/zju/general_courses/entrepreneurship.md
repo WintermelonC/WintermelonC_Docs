@@ -28,7 +28,7 @@
 
 测试题答案：
 
-<embed src="../../../file/document2.pdf" type="application/pdf" width="100%" height="500" />
+<embed src="../../../file/entrepreneurship/entre_ship_document2.pdf" type="application/pdf" width="100%" height="500" />
 
 ##### 讨论（20%）
 
@@ -92,4 +92,4 @@
     1. 创业类型：创新型创业，自主型创业什么的（这个我记得在哪看到过，但是整理的时候翻书死活找不到，就忽略了，但是考试考到了）
     2. 企业在四个阶段的各种特征没有整理完全，比如企业第一次遇到巨大挑战是什么阶段，遇到创新阻碍之类的是什么阶段
     
-<embed src="../../../file/document1.pdf" type="application/pdf" width="100%" height="1000" />
+<embed src="../../../file/entrepreneurship/entre_ship_document1.pdf" type="application/pdf" width="100%" height="1000" />
