@@ -77,7 +77,11 @@
     
     不过我感觉我在这门课里什么都没学到，就背了一堆考试要考的东西而已……
 
-## 个人笔记
+## 笔记
+
+### 个人笔记
+
+> 个人笔记的帖子 [2023-2024夏 创业启程 期末复习整理（绪论+1-7章）](https://www.cc98.org/topic/5924175){:target="_blank"}
 
 有些内容读一读，有印象就行，有些内容要背（还好没有填空题）
 
@@ -93,3 +97,33 @@
     2. 企业在四个阶段的各种特征没有整理完全，比如企业第一次遇到巨大挑战是什么阶段，遇到创新阻碍之类的是什么阶段
     
 <embed src="../../../file/entrepreneurship/entre_ship_document1.pdf" type="application/pdf" width="100%" height="1000" />
+
+### 其它
+
+[浙江大学课程攻略共享计划 - 创业启程](https://qsctech.github.io/zju-icicles/%E5%88%9B%E4%B8%9A%E5%90%AF%E7%A8%8B/){:target="_blank"}
+
+## 历年题整理
+
+!!! info "注意"
+
+    历年题整理资料均来自于 [浙江大学cc98论坛](https://www.cc98.org/){:target="_blank"}
+
+### 2022-2023 夏
+
+[2022—2023夏学期创业启程回忆卷](https://www.cc98.org/topic/5644733){:target="_blank"}
+
+### 2022-2023 冬
+
+<embed src="../../../file/entrepreneurship/entre_ship_document3.pdf" type="application/pdf" width="100%" height="500" />
+
+### 2021-2022 夏
+
+[创业启程回忆卷](https://www.cc98.org/topic/5114350){:target="_blank"}
+
+### 2019-2020 夏
+
+<embed src="../../../file/entrepreneurship/entre_ship_document5.pdf" type="application/pdf" width="100%" height="500" />
+
+### 2019-2020 秋
+
+<embed src="../../../file/entrepreneurship/entre_ship_document4.pdf" type="application/pdf" width="100%" height="500" />
