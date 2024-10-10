@@ -19,6 +19,11 @@ nav:
       - 无线电测向（初级）: zju/general_courses/radio_direction_finding.md
       - 大学物理实验: zju/general_courses/phy_exp.md
       - 创业启程: zju/general_courses/entrepreneurship.md
+    - 专业基础课程:
+      - zju/basic_courses/index.md
+      - 概率论与数理统计: 
+        - zju/basic_courses/prob_theo_and_math_stat/index.md
+        - 2 随机变量及其概率分布: zju/basic_courses/prob_theo_and_math_stat/chapter_2.md
   - 大学生生活常识:
     - common_sense/index.md
     - 医保: common_sense/medical_insurance.md
