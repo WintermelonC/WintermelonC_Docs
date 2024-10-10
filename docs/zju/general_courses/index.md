@@ -11,3 +11,7 @@
 ## 创新创业类
 
 [创业启程](./entrepreneurship.md)
+
+## 通识选修课程
+
+[茶文化与茶健康](./tea_culture.md)

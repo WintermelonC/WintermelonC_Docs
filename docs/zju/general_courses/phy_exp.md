@@ -14,13 +14,9 @@ xt老师
 
 ### 课程须知
 
-<embed src="../../../file/phy_exp/phy_exp_doc1.pdf" type="application/pdf" width="100%" height="1000">
+<embed src="../../../file/phy_exp/phy_exp_doc1.pdf" type="application/pdf" width="100%" height="500">
 
 ## 我的课表
-
-!!! info "注意"
-
-    此为 2024-2025 秋冬学期课程安排，仅供参考
 
 | 实验名称 | 指导教师 | 操作难易程度 | 说明 | 得分 |
 | :-----: | :-----: | :-----: | ----- | :-----: |
