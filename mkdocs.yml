@@ -99,6 +99,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
+      slugify: !!python/name:pymdownx.slugs.uslugify
   # Python Markdown Extensions
   - pymdownx.arithmatex:
       generic: true
