@@ -28,7 +28,9 @@ nav:
         - 2 随机变量及其概率分布: zju/basic_courses/prob_theo_and_math_stat/chapter_2.md
   - 大学生生活常识:
     - common_sense/index.md
+    - 医院看病流程: common_sense/hospital.md
     - 医保: common_sense/medical_insurance.md
+    - 乘坐交通工具: common_sense/transportation.md
 
 # 主题设置
 theme:
