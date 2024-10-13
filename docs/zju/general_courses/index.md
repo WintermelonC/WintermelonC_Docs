@@ -14,5 +14,5 @@
 
 ## 通识选修课程
 
-[茶文化与茶健康](./tea_culture.md)
+[茶文化与茶健康](./tea_culture.md)<br/>
 [生命科学导论](./life_science.md)
