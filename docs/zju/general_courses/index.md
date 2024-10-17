@@ -14,5 +14,18 @@
 
 ## 通识选修课程
 
-[茶文化与茶健康](./tea_culture.md)<br/>
+### 通识核心课程
+
+[茶文化与茶健康](./tea_culture.md)
+
+### 中华传统
+
+[茶文化与茶健康](./tea_culture.md)
+
+### 当代社会
+
+[经济法理论与实务](./economic_law.md)
+
+### 生命探索
+
 [生命科学导论](./life_science.md)
