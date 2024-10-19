@@ -19,4 +19,5 @@
 
 [医院看病流程](./hospital.md)<br/>
 [医保](./medical_insurance.md)<br/>
-[乘坐交通工具](./transportation.md)
+[如何乘坐交通工具](./transportation.md)<br/>
+[租房流程及注意事项](./rent.md)
