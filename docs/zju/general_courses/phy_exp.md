@@ -73,8 +73,8 @@ xt老师
     <tr>
       <td style="text-align: center; vertical-align: middle;">密立根油滴实验</td>
       <td style="text-align: center; vertical-align: middle;">pbl老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时少</td>
+      <td>数据先会用一个软件进行处理，软件实验室的电脑上有</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
@@ -185,6 +185,10 @@ xt老师
 4. 二次成像法测虚光源间距，要让虚光源能二次成像的前提条件是什么？两次成像的物距，像距有什么关系？请证明
 
 ### 密立根油滴实验
+
+思考题：
+
+1. 课本上任选一题
 
 ### 棱镜偏向角特性
 

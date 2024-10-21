@@ -226,7 +226,7 @@ graph LR
 ### 值机
 
 <figure markdown="span">
-    ![Img 11](../img/transportation/transportation_img11.png){ width="200" }
+    ![Img 11](../img/transportation/transportation_img11.png){ width="300" }
 </figure>
 
 值机，可理解为签到，并选好座位。国内航班一般起飞前40分钟停止值机（不是登机）
