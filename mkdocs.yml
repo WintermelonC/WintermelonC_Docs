@@ -17,11 +17,13 @@ nav:
     - 通识课程:
       - zju/general_courses/index.md
       - 无线电测向（初级）: zju/general_courses/radio_direction_finding.md
+      - 羽毛球（初级）: zju/general_courses/badminton.md
       - 大学物理实验: zju/general_courses/phy_exp.md
       - 创业启程: zju/general_courses/entrepreneurship.md
       - 茶文化与茶健康: zju/general_courses/tea_culture.md
       - 经济法理论与实务: zju/general_courses/economic_law.md
       - 生命科学导论: zju/general_courses/life_science.md
+      - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 概率论与数理统计: 

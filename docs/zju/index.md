@@ -6,7 +6,8 @@
 
 ### 军体类
 
-[无线电测向（初级）](./general_courses/radio_direction_finding.md)
+[无线电测向（初级）](./general_courses/radio_direction_finding.md)<br/>
+[羽毛球（初级）](./general_courses/badminton.md)
 
 ### 自然科学通识类
 
@@ -33,6 +34,10 @@
 #### 生命探索
 
 [生命科学导论](./general_courses/life_science.md)
+
+#### 博雅技艺
+
+[生命科学导论实验](./general_courses/life_science_exp.md)
 
 ## [专业基础课程](./basic_courses/index.md)
 
