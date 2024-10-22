@@ -2,7 +2,8 @@
 
 ## 军体类
 
-[无线电测向（初级）](./radio_direction_finding.md)
+[无线电测向（初级）](./radio_direction_finding.md)<br/>
+[羽毛球（初级）](./badminton.md)
 
 ## 自然科学通识类
 
@@ -29,3 +30,7 @@
 ### 生命探索
 
 [生命科学导论](./life_science.md)
+
+### 博雅技艺
+
+[生命科学导论实验](./life_science_exp.md)
