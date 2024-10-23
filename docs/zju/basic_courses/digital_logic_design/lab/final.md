@@ -30,7 +30,7 @@ module clk_gen(
 endmodule
 ```
 
-### 2.2 vga_ctrl模块
+### 1.2 vga_ctrl模块
 
 此模块助教已提供。接收像素点的色彩信息（$Din$），输出当前像素点的坐标（$row,col$）和 $VGA$ 有关的变量（$R,G,B,HS,VS$）
 
@@ -91,11 +91,11 @@ end
 endmodule
 ```
 
-### 2.3 vga_screen_pic模块
+### 1.3 vga_screen_pic模块
 
 核心模块，输出当前像素点的色彩信息并提供给 $vga\_ctrl$ 模块
 
-#### 2.3.1 IP核的生成
+#### 1.3.1 IP核的生成
 
 ##### 图片制作
 
@@ -179,6 +179,8 @@ endmodule
 
 
 ??? tip "PS 导出为 .bmp 文件" 
+
+    > PS 下载：[浙江大学校园正版化软件平台](https://software.zju.edu.cn/index.html){:target="_blank"}
 
     PS打开目标图片，选择 ^^文件 -> 存储副本^^
 
