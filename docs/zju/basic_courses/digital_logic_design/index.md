@@ -12,7 +12,7 @@ cm老师
 
 #### 实验部分（30%）
 
-详见[实验部分](./lab/index.md){:target="_blank"}
+详见[实验部分](./lab/index.md)
 
 #### final project（10%）
 
