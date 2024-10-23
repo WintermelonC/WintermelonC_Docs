@@ -6,7 +6,8 @@
 
 !!! warning "注意"
 
-    同学们一定要先自行搜索资料完成项目，本文档仅作参考作用
+    具体的 verilog 代码同学们一定要先尝试自己完成，本文档仅作提示和参考作用
+    > VGA 可能需要显示图片，图片的像素信息需要存储在 ROM 当中并生成 IP 核，具体如何操作？关于这种类型的问题，当然可以直接参考学习本文档的相关内容
 
 我们组做的是“贪吃蛇”
 
@@ -16,7 +17,7 @@
 
 此模块助教已提供，产生 $25MHz$ 的 $clk$ 信号，用于 $VGA$ 的运作
 
-``` verilog
+``` verilog linenums="1"
 module clk_gen(
     input clk, // 100 MHz
     output vga_clk // 25 MHz
@@ -34,7 +35,7 @@ endmodule
 
 此模块助教已提供。接收像素点的色彩信息（$Din$），输出当前像素点的坐标（$row,col$）和 $VGA$ 有关的变量（$R,G,B,HS,VS$）
 
-```verilog
+```verilog linenums="1"
 module vga_ctrl(
 	input clk,                   // vga clk = 25 MHz
 	input rst,
@@ -202,7 +203,7 @@ endmodule
 
 转换函数如下：
 
-``` matlab
+``` matlab linenums="1"
 function img2coe(path,name)
     % 利用imread函数把图片转化为一个三维矩阵
     image_array = imread(path);
@@ -271,3 +272,50 @@ end
     <figure markdown="span">
         ![Img 5](../../../../img/digital_logic_design/lab/final/lab_final_img5.png){width="600"}
     </figure>
+
+生成的 $.coe$ 文件格式如下（拿 $food\_l.coe$ 举例）：
+
+``` coe linenums="1" hl_lines="12"
+memory_initialization_radix=16;  // 表示以下数据用16进制表示
+memory_initialization_vector =  // 具体数据
+0,  // 从左到右，从上到下，各个像素点的颜色信息
+0,  // 共 256 个数据，因为此图片分辨率为 16 x 16，共 256 个像素点
+0,
+0,
+0,
+0,
+-- snip --  // 这里省略展示部分数据
+420,
+c71,
+f92,
+f92,
+c71,
+420,
+-- snip --
+0,
+0;
+```
+
+打开 PS，选择 ^^颜色取样工具^^ ，在图中左键单击可添加标记点，左键单击右侧 ^^信息^^ 栏中标记点的下三角图标，选择 ^^Web颜色^^ ，即可对数据进行检验。例如标记如图 6 个点，数据信息和 .coe 文件数据相同。PS 中 R、G、B 三个通道的数值均为 8 bit，.coe 文件中为 4 bit，取 PS 中各通道显示数据的最高一位，即和 .coe 文件中的数据相同。例如标记点3，PS 中 R、G、B 分别为 F4、9D、21，各取最高一位即为 .coe 文件中的数据 f92 （上方代码块第 12 行）
+
+<figure markdown="span">
+    ![Img 6](../../../../img/digital_logic_design/lab/final/lab_final_img6.png){width="500"}
+</figure>
+
+##### 生成IP核
+
+利用 $vivado$ 生成IP核，导入 $.coe$ 文件，选择生成 $ROM$
+
+???+ tip "vivado 生成 ROM"
+
+    打开项目工程文件，点击左侧的 ^^IP Catalog^^，搜索 ROM，双击 ^^Distributed Memory Generator^^
+
+    > ^^Distributed Memory Generator^^ 会生成不包含时钟信号的存储器，^^Block Memory Generator^^ 会生成包含时钟信号的存储器，我们组的实现方案不需要时钟信号，因此选择生成 ^^Distributed Memory Generator^^
+
+    <figure markdown="span">
+        ![Img 7](../../../../img/digital_logic_design/lab/final/lab_final_img7.png)
+    </figure>
+
+    > 图中的工程文件是我随便找的，用来截图做示范的，所以图中的源文件不需要关注
+
+    
