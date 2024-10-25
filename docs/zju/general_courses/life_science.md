@@ -46,6 +46,8 @@ BIO0603G（0716N007）
 
 测试题及答案整理：
 
+> 有很多重复的题，懒得删除整理了
+
 <embed src="../../../file/life_science/life_science_doc2.pdf" width="100%" height="500">
 
 #### 线下学习（30%）

@@ -520,17 +520,23 @@ end
 
 ## 3 蜂鸣器设计思路
 
-### 3.1 蜂鸣器原理
-
 > 参考：<br/>
 > 1. [无源蜂鸣器驱动实验](https://doc.embedfire.com/fpga/altera/ep4ce10_pro/zh/latest/code/beep.html){:target="_blank"}
+
+整体结构图如下：
+
+<figure markdown="span">
+    ![Img 26](../../../../img/digital_logic_design/lab/final/lab_final_img20.png){width=600"}
+</figure>
+
+### 3.1 蜂鸣器原理
 
 我们板子 (1) 的蜂鸣器是无源蜂鸣器，因其内部不带震荡源，所以需要PWM方波才能驱动其发声
 {.annotate}
 
 1. 型号：xc7k160tffg676-2L
 
-PWM方波的频率决定声音的音调，PWM方波的占空比决定声音的响度。所以只需产生不同频率和占空比的PWM方波去驱动无源蜂鸣器，就能让无源蜂鸣器发出想要的声音序列了
+PWM方波的 **频率** 决定声音的音调，PWM方波的 **占空比** 决定声音的响度。所以只需产生不同频率和占空比的PWM方波去驱动无源蜂鸣器，就能让无源蜂鸣器发出想要的声音序列了
 
 ### 3.2 实现步骤
 
@@ -538,10 +544,295 @@ PWM方波的频率决定声音的音调，PWM方波的占空比决定声音的�
 
 选择合适的音乐，扒谱：
 
-> 这部分你只需要知道歌曲的每个音是什么，持续多长时间。所以不想扒谱也可以找有简谱或五线谱的歌曲，扒谱可以浏览器搜素扒谱网站
+> 这部分你只需要知道歌曲的 bpm 是多少，每个音是什么，每个音持续多长时间。所以不想扒谱也可以找有简谱或五线谱的歌曲，扒谱可以浏览器搜素扒谱网站
 
 <figure markdown="span">
-    ![Img 17](../../../../img/digital_logic_design/lab/final/lab_final_img17.png){width="500"}
+    ![Img 17](../../../../img/digital_logic_design/lab/final/lab_final_img17.png){width=800"}
 </figure>
 
-> 图中使用的软件是 FL Studio，可以下载[免费试用版](https://www.image-line.com/fl-studio-download/){:target="_blank"}，使用时间不受限制，功能受限制。FL Studio 是一个编曲软件，想下载下来玩的话建议去 **英文官网** 上下载
+> 图中使用的软件是 FL Studio，可以下载[免费试用版](https://www.image-line.com/fl-studio-download/){:target="_blank"}，使用时间不受限制，但功能受限制。FL Studio 是一个编曲软件，想下载下来玩的话建议去 **英文官网** 上下载
+
+实现原理波形图如下：
+
+<figure markdown="span">
+    ![Img 18](../../../../img/digital_logic_design/lab/final/lab_final_img18.png){width=800"}
+</figure>
+
+我们的 $clk$ 频率为 $100MHz$ ，周期为 $10ns$ ，该音乐的 bpm 为 120 (1) ，$\frac{4}{4}$ 拍 (2) 。每过两拍（即每过 8 个 16 分音符），时间过去1s。以 1 个 16 分音符的长度为 **单位时间** ，即 $\frac{1}{8}=0.125s=125ms$ ，包括了 $\frac{0.125}{10\times10^{-9}}=12500000$ 个 $clk$ 周期。以 $A4$ 音为例，该音调的频率为 $440Hz$ ，其音波周期为 $\frac{1}{440} = 2272727ns$ ，包括了 $\frac{2272727}{10}=2272723$ 个 $clk$ 周期。其他音同理。
+{.annotate}
+
+1. 120 bpm：每分钟 120 拍，即每秒 2 拍
+2. 以 4 分音符为 1 拍，每小节有 4 拍
+
+接下来将结合实现原理波形图和代码进行详细解释。
+
+模块接口和变量的定义和初始化：
+
+```verilog linenums="1"
+module beep_gamestart(
+    input clk,
+    input [1:0] game_state, // 游戏状态变量
+    output reg beep
+    );
+
+    reg rst;
+    reg [23:0] cnt; // 用于计数的信号
+    reg [19:0] freq_cnt; // 音调频率计数
+    reg [5:0] cnt_125ms; // 125ms个数计数
+    reg [19:0] freq_data; // 音调频率
+
+    wire [19:0] duty_data; // 占空比
+    
+    initial begin // 初始化所有 reg 信号
+        rst = 1'b0;
+        beep = 1'b0;
+        cnt = 24'b0;
+        freq_cnt = 20'b0;
+        cnt_125ms = 6'b0;
+        freq_data = 20'b0;
+    end
+    
+    parameter TIME_125ms = 24'd12499999, // 125 ms
+                A4 = 19'd227272, // 440 Hz
+                D5 = 19'd170357, // 587
+                C5 = 19'd191204, // 523
+                B4 = 19'd202428, // 494
+                FS_4 = 19'd270269, // 370
+                G4 = 19'd255101, // 392
+                D4 = 19'd378787, // 264
+                E4 = 19'd303030, // 330
+                F4 = 19'd286532, // 349
+                C4 = 19'd381678; // 262
+```
+
+我们选择占空比为 $50\%$ 的PWM方波：
+
+```verilog linenums="1"
+assign duty_data = freq_data >> 1'b1;
+```
+
+根据游戏状态信号调整 $rst$ 信号：
+
+```verilog linenums="1"
+always @(game_state) begin
+    if (game_state == 2'b00) begin // 游戏开始页面
+        rst = 1'b0; // rst 为 0 时，声波正常产生
+    end else begin
+        rst = 1'b1; // rst 为 1 时，声波不产生
+    end
+end
+```
+
+$cnt$ 的调整：
+
+```verilog linenums="1" hl_lines="4"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        cnt <= 24'd0;
+    end else if (cnt == TIME_125ms) begin // 每当 cnt 达到 TIME_125ms 即每过 1 个单位时间，该变量重置为 0 重新开始计数
+        cnt <= 24'd0;
+    end else begin
+        cnt <= cnt + 1'b1;
+    end
+end
+```
+
+!!! tip "代码解释"
+
+    上面有提到过，以 1 个 16 分音符的长度作为单位时间
+
+<figure markdown="span">
+    ![Img 19](../../../../img/digital_logic_design/lab/final/pic2.png){width=800"}
+</figure>
+
+> 注：testbench 文件中修改了某些参数的值，以此来减少仿真时间。例如 TIME_125ms 在 testbench 文件中改为 1249
+
+$cnt\_125ms$ 的调整：
+
+```verilog linenums="1" hl_lines="4"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        cnt_125ms <= 6'd0;
+    end else if (cnt == TIME_125ms && cnt_125ms == 7'd64) begin // 音乐播放结束时，重置为 0 ，实现循环播放音乐
+        cnt_125ms <= 6'd0;
+    end else if (cnt == TIME_125ms) begin // 每过 1 个时间单位，变量值加 1
+        cnt_125ms <= cnt_125ms + 1'b1;
+    end
+end
+```
+
+!!! tip "代码解释"
+
+    该歌曲时长为 64 个 16 分音符，所以 `cnt_125ms == 7'd64`
+
+<figure markdown="span">
+    ![Img 20](../../../../img/digital_logic_design/lab/final/pic3.png){width=800"}
+</figure>
+
+$freq\_cnt$ 的调整：
+
+```verilog linenums="1" hl_lines="4"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        freq_cnt <= 19'd0;
+    end else if (freq_cnt >= freq_data || cnt == TIME_125ms) begin // 当频率计数信号大于此时的声音频率，或每当过 1 个时间单位时，该值重置为 0 
+        freq_cnt <= 19'd0;
+    end else begin
+        freq_cnt <= freq_cnt + 1'b1;
+    end
+end
+```
+
+!!! tip "代码解释"
+
+    $freq\_cnt$ 与下面的代码块一起理解
+
+<figure markdown="span">
+    ![Img 21](../../../../img/digital_logic_design/lab/final/pic4.png){width=800"}
+</figure>
+
+$beep$ 的调整：
+
+```verilog linenums="1" hl_lines="4"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        beep <= 1'b0;
+    end else if (freq_cnt > duty_data) begin // 当频率计数信号大于占空比时，使 PWM 为 1，实现 50% 的占空比
+        beep <= 1'b1;
+    end else begin
+        beep <= 1'b0;
+    end
+end
+```
+
+<figure markdown="span">
+    ![Img 22](../../../../img/digital_logic_design/lab/final/pic5.png){width=800"}
+</figure>
+
+$freq\_data$ 的调整：
+
+```verilog linenums="1"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        freq_data <= 19'd0;
+    end else begin
+        case (cnt_125ms) // 根据不同的时间段，为该变量赋值不同的频率值
+            7'd0: freq_data <= A4;  // 第 1 个单位时间为 A4 音
+            7'd1: freq_data <= A4;
+            7'd2: freq_data <= A4;
+            7'd3: freq_data <= A4;
+            7'd4: freq_data <= D5;  // 第 5 个单位时间为 D5 音
+            7'd5: freq_data <= D5;
+            7'd6: freq_data <= A4;
+            7'd7: freq_data <= A4;
+            7'd8: freq_data <= C5;  // 第 9 个单位时间为 C5 音
+            7'd9: freq_data <= C5;
+            -- snip --
+            7'd62: freq_data <= D4;
+            7'd63: freq_data <= D4;
+            default: freq_data <= 19'd0;
+        endcase
+    end
+end
+```
+
+<figure markdown="span">
+    ![Img 23](../../../../img/digital_logic_design/lab/final/pic6.png){width=800"}
+</figure>
+
+#### 3.2.2 游戏结束音乐
+
+<figure markdown="span">
+    ![Img 24](../../../../img/digital_logic_design/lab/final/lab_final_img19.png){width=800"}
+</figure>
+
+和游戏开始音乐的实现相同，不同的点在于游戏结束音乐只需要播放一次。可以调整 $cnt\_125ms$ 实现播放一次。
+
+```verilog linenums="1"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        cnt_125ms <= 6'd0;
+    end else if (cnt == TIME_125ms && cnt_125ms <= 6'd33) begin
+        cnt_125ms <= cnt_125ms + 1'b1;
+    end // 当音乐播放结束后，不再重置为 0，实现只播放一次
+end
+```
+
+```verilog linenums="1"
+always @(posedge clk or posedge rst) begin
+    if (rst) begin
+        freq_data <= 18'd0;
+    end else begin
+        case (cnt_125ms)
+            5'd0: freq_data <= 18'd0;
+            5'd1: freq_data <= 18'd0;
+            5'd2: freq_data <= 18'd0;
+            5'd3: freq_data <= 18'd0;
+            5'd4: freq_data <= AS_4;
+            5'd5: freq_data <= AS_4;
+            5'd6: freq_data <= AS_4;
+            5'd7: freq_data <= AS_4;
+            5'd10: freq_data <= A4;
+            5'd11: freq_data <= A4;
+            5'd12: freq_data <= A4;
+            5'd13: freq_data <= A4;
+            5'd16: freq_data <= GS_4;
+            5'd17: freq_data <= GS_4;
+            5'd18: freq_data <= GS_4;
+            5'd22: freq_data <= G4;
+            5'd23: freq_data <= G4;
+            5'd24: freq_data <= G4;
+            5'd25: freq_data <= G4;
+            5'd26: freq_data <= G4;
+            5'd27: freq_data <= G4;
+            5'd28: freq_data <= G4;
+            5'd29: freq_data <= G4;
+            5'd30: freq_data <= G4;
+            5'd31: freq_data <= G4;
+            5'd32: freq_data <= G4;
+            5'd33: freq_data <= G4;
+            default: freq_data <= 18'd0;
+        endcase
+    end
+end
+```
+
+<figure markdown="span">
+    ![Img 25](../../../../img/digital_logic_design/lab/final/pic7.png){width=800"}
+</figure>
+
+!!! tip "提示"
+
+    如果没有看太明白，可以多看几遍，注意观察两张仿真波形图的整体截图，有助于理解
+
+    或者可以看看我当时参考的文档：[无源蜂鸣器驱动实验](https://doc.embedfire.com/fpga/altera/ep4ce10_pro/zh/latest/code/beep.html){:target="_blank"}
+
+#### 3.2.3 top_beep 模块
+
+```verilog linenums="1"
+module top_beep(
+    input clk,
+    input [1:0] game_state,
+    output reg beep
+    );
+
+    wire beep_start;
+    wire beep_over;
+
+    initial begin
+        beep = 1'b0;
+    end
+
+    beep_gamestart bp_gs(.clk(clk), .game_state(game_state), .beep(beep_start)); // 调用两个模块
+    beep_gameover bp_go(.clk(clk), .game_state(game_state), .beep(beep_over));
+
+    always @(posedge clk) begin
+        if (game_state == 2'b00) begin
+            beep = beep_start; // 游戏待开始状态，beep 为 game_start 
+        end else if (game_state == 2'b10) begin
+            beep = beep_over; // 游戏结束状态，beep 为 game_over
+        end
+    end
+endmodule
+```
+
