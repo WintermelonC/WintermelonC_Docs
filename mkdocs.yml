@@ -34,6 +34,13 @@ nav:
       - 概率论与数理统计: 
         - zju/basic_courses/prob_theo_and_math_stat/index.md
         - 2 随机变量及其概率分布: zju/basic_courses/prob_theo_and_math_stat/chapter_2.md
+    - 专业必修课程:
+      - zju/compulsory_courses/index.md
+      - 计算机组成:
+        - zju/compulsory_courses/computer_organization/index.md
+        - 理论部分:
+          - 1 Computer Abstractions and Technology: zju/compulsory_courses/computer_organization/theory/ch1.md
+          - 3 Arithmetic for Computers: zju/compulsory_courses/computer_organization/theory/ch3.md
   - 大学生生活常识:
     - common_sense/index.md
     - 医院看病流程: common_sense/hospital.md
