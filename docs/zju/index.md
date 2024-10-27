@@ -43,3 +43,9 @@
 
 [数字逻辑设计](./basic_courses/digital_logic_design/index.md)<br/>
 [概率论与数理统计](./basic_courses/prob_theo_and_math_stat/index.md)
+
+## 专业课程
+
+### [专业必修课程](./compulsory_courses/index.md)
+
+[计算机组成](./compulsory_courses/computer_organization/index.md)
