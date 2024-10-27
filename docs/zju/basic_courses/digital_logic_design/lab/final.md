@@ -523,7 +523,7 @@ end
 > 参考：<br/>
 > 1. [无源蜂鸣器驱动实验](https://doc.embedfire.com/fpga/altera/ep4ce10_pro/zh/latest/code/beep.html){:target="_blank"}
 
-整体结构图如下：
+整体结构图（top_beep）如下：
 
 <figure markdown="span">
     ![Img 26](../../../../img/digital_logic_design/lab/final/lab_final_img20.png){width=600"}
@@ -842,3 +842,157 @@ module top_beep(
 endmodule
 ```
 
+## 4 PS2 设计思路
+
+整体结果图（ps2_dlc）如下：
+
+<figure markdown="span">
+    ![Img 26](../../../../img/digital_logic_design/lab/final/lab_final_img21.png){width=600"}
+</figure>
+
+### 4.1 运行原理
+
+PS/2 通信协议是一种双向同步串行通信协议。通信的两端通过 CLOCK(时钟脚)同步，并通过国 DATA(数据脚)交换数据。一般两设备间传输数据的最大时钟频率是 33kHz，大多数 PS/2 设备工作在 10--20kHz。推荐值在 15kHz 左右，也就是说，CLOCK 高、低电平的持续时间都为 40us。每一数据帧包含 11—12 位，具体含义如下图示
+
+| 数据           | 含义                     |
+| -------------- | ------------------------ |
+| 1个起始位      | 总是逻辑 0               |
+| 8个数据位      | (LSB)地位在前            |
+| 1 个奇偶校验位 | 奇校验                   |
+| 1 个停止位     | 总是逻辑 1               |
+| 1 个应答位     | 仅用在主机对设备的通信中 |
+
+PS/2 到主机的通信时序如下图所示。数据在 PS/2 时钟的下降沿读取，PS/2 的时钟频率为 10—16.7kHz。对于 PS/2 设备，一般来说从时钟脉冲的上升沿到一个数据转变的时间至少要有 5us；数据变化到下降沿的时间至少要有 5us，并且不大于 25us，这个时序非常重要应该严格遵循。主机可以再第 11 个时钟脉冲停止位之前把时钟线拉低，使设备放弃发送当前字节，当然这种情况比较少见。在停止位发送后设备在发送下个包前应该至少等待 50us，给主机时间做相应的处理。不主机处理接收到的字节时一般会抑制发送(主机在收到每个包时通常自动做这个)。在主机释放抑制后，设备至少应该在发送任何数据前等 50us
+
+<figure markdown="span">
+    ![ps2-1](../../../../img/digital_logic_design/lab/final/ps2-1.png){width=700"}
+</figure>
+
+该程序中我们需要用到上下左右四个按键，对应ps2键盘的通码表进行代码编写
+
+<figure markdown="span">
+    ![R](../../../../img/digital_logic_design/lab/final/R.jpg){width=700"}
+</figure>
+
+### 4.2 代码思路
+
+#### 4.2.1 输入输出信号
+
+```verilog linenums="1"
+module ps2(
+    input clk,
+    input rst,
+    input ps2_clk,
+    input ps2_data,
+    output reg [8:0] data
+    );
+
+    reg [1:0] clk_state;
+    reg [3:0] r_state;// 计时
+    reg [7:0] r_data; // 存储临时数据
+    reg f,e; //是否特殊数据
+
+    wire neg; // 探测ps2_clk的负边沿
+    assign neg = ~clk_state[0] & clk_state[1];
+
+    always @(posedge clk or negedge rst) //初始化clk_state
+        if(!rst)
+            clk_state <= 2'b00;
+        else
+            clk_state <= {clk_state[0], ps2_clk};
+
+    always @(posedge clk or negedge rst) begin //初始化数据
+        if(!rst) begin
+            r_state <= 4'b0000;
+            r_data <= 8'b00000000;
+            f <= 1'b0;
+            e <= 1'b0;
+            data <= 9'b000000000;
+        end
+        else if(neg) begin  
+            if(r_state > 4'b1001) //读取完一整串数据后重置计时信号
+                r_state <=4'b0000; 
+            else begin
+                if(r_state < 4'b1001&&r_state>4'b0)
+                    r_data[r_state-1]<= ps2_data;  //存入ps2_data
+                r_state <= r_state + 1'b1;
+            end
+        end
+        else if(r_state==4'b1010&&|r_data)begin
+            if(r_data ==8'hf0) 
+                f <=1'b1;
+            else if(r_data ==8'he0)
+                e <=1'b1;
+            else
+                if(f)begin  //代表断码，重置信号
+                    data<=9'b0;
+                    f<=1'b0;
+                    e<=1'b0;
+                end
+                else if(e)begin //在data头部输入1代表已经接受e信号
+                    e<=1'b0;
+                    data <={1'b1,r_data};
+                end
+                else
+                    data <= {1'b0,r_data};
+            r_data <= 8'b00000000;
+        end
+    end
+endmodule
+```
+
+#### 4.2.2 转化为方向信息以及实现键盘防抖动
+
+```verilog linenums="1"
+//防抖动以及输出上下左右
+module ps2_dlc(
+    input clk,
+    input rst,
+    input ps2_clk,
+    input ps2_data,
+    output reg [1:0]dir //direction:00up;01down;10left;11right
+    );
+
+    wire [8:0]data;
+    reg [7:0]all; //[1:0]all 为11代表是up [3:2]代表down.....
+
+    ps2 ps2(
+        .clk(clk),
+        .rst(rst),
+        .ps2_clk(ps2_clk),
+        .ps2_data(ps2_data),
+        .data(data)
+    );
+
+    initial begin
+        all<=8'b00000000;
+        dir<=2'b11;
+    end
+
+    always @(posedge clk or negedge rst)begin
+        if(!rst) begin
+            all<=8'b00000000;
+        end
+        else begin
+            all[1:0]<={all[0],data==9'h175}; //防抖动，连续输入两次才可以读入信号
+            all[3:2]<={all[2],data==9'h172};
+            all[5:4]<={all[4],data==9'h16b};
+            all[7:6]<={all[6],data==9'h174};
+        end
+    end
+
+    always @(posedge clk or negedge rst)begin
+        if(!rst)
+            dir <=2'b11;
+        else begin
+            case(all)//根据all数值输出方向信息
+            8'b00000011:dir<=2'b00;
+            8'b00001100:dir<=2'b01;
+            8'b00110000:dir<=2'b10;
+            8'b11000000:dir<=2'b11;
+        default:;
+        endcase
+        end
+    end
+endmodule
+```
