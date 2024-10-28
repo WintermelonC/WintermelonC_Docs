@@ -62,7 +62,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">yjm老师</td>
       <td style="text-align: center; vertical-align: middle;">中等<br/>费时较长</td>
       <td style="vertical-align: middle;"><strong>必做</strong> 实验</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">93</td>
       <td></td>
     </tr>
     <tr>
@@ -70,7 +70,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">ylm老师</td>
       <td style="text-align: center; vertical-align: middle;">困难<br/>费时长</td>
       <td style="vertical-align: middle;">1. 老师给出的操作步骤以及记录数据的表格和书上的不一样，要按照老师PPT上的要求来做<br/>2. 老师在操作演示的时候，一定要认真听，不然自己做的时候手足无措的（我眼睛看明白了，脑子忘了）</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">94</td>
       <td></td>
     </tr>
     <tr>
@@ -84,8 +84,8 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">棱镜偏向角特性</td>
       <td style="text-align: center; vertical-align: middle;">ylm老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td style="vertical-align: middle;">须先做“分光计的调整和使用”实验</td>
+      <td style="text-align: center; vertical-align: middle;">中等<br/>费时长</td>
+      <td style="vertical-align: middle;">1. 须先做“分光计的调整和使用”实验<br/>2. 数据处理的要求和表格按照老师的要求来做</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
@@ -194,6 +194,10 @@ xt老师 (1)
 1. 课本上任选一题
 
 ### 棱镜偏向角特性
+
+思考题：
+
+1. 入射光和出射光的夹角 $\delta$ 就是偏向角。入射角 $i$ 和出射角 $i'$，$i = i'$时， $\delta$ 具有最小值，写出证明过程
 
 ### ▲普朗克常数
 
