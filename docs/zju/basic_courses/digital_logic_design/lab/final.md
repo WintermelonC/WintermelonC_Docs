@@ -13,6 +13,10 @@
 
 ## 1 整体设计思路
 
+> 参考：<br/>
+> 1. [有晶科技FPGA开发板实现贪吃蛇游戏](https://www.cnblogs.com/DoreenLiu/p/17692869.html){:target="_blank"}<br/>
+> 2. [FPGA交作业系列｜纯verilog实现的贪吃蛇游戏，交互效果甚好](https://www.bilibili.com/video/BV1U84y167Xp/){:target="_blank"}
+
 <figure markdown="span">
     ![design](../../../../img/digital_logic_design/lab/final/design.jpg){width="400"}
 </figure>
@@ -844,6 +848,9 @@ endmodule
 
 ## 4 PS2 设计思路
 
+> 参考：<br/>
+> 1. [PS/2协议的verilog HDL实现](https://blog.csdn.net/sunrise_at_dusk/article/details/120801269){:target="_blank"}
+
 整体结果图（ps2_dlc）如下：
 
 <figure markdown="span">
@@ -996,3 +1003,512 @@ module ps2_dlc(
     end
 endmodule
 ```
+
+## 5 状态机设计思路
+
+整体结果图（gaming）如下：
+
+<figure markdown="span">
+    ![Img 27](../../../../img/digital_logic_design/lab/final/lab_final_img22.png){width=500"}
+</figure>
+
+```verilog linenums="1"
+module gaming (
+    input rst,
+    input gameover,
+    input start_button,
+    output reg [1:0] game_state
+);
+initial begin
+    game_state = 2'd0; //初始化为开始界面
+end
+
+
+always @(negedge rst or posedge gameover or posedge start_button) begin
+    if(rst == 1'b0) begin
+        game_state <= 2'd0;
+    end
+    else if(start_button == 2'b1) begin
+        game_state <= 2'd1;
+    end
+    else if(gameover == 2'b1) begin
+        game_state <= 2'd2;
+    end
+    
+end
+endmodule
+```
+
+设定游戏有3个状态分别是：
+
+1. `2'b00`：开始界面状态
+2. `2'b01`：游玩中
+3. `2‘b10`：游戏结束
+
+游戏初始化为 **开始界面** 状态，在游戏开始按钮`start_button`置 1 时，会切换为 **游玩中** 状态；当游戏结束，从运动模块中传入的`gameover`信号置 1，游戏进入 **结束** 状态；当再按下`start_button`时即可恢复游戏状态为 **游玩中** ，继续游戏
+
+## 6 运动模块设计思路
+
+整体结构图（run_module）如下：
+
+<figure markdown="span">
+    ![Img 28](../../../../img/digital_logic_design/lab/final/lab_final_img23.png){width=500"}
+</figure>
+
+### 6.1 IO 信号代码
+
+```verilog linenums="1"
+module run_module(
+    input clk, //100MHZ
+    input [1:0] dir, //按下的运动方向
+    input [1:0] game_state, //游戏状态：0 开始界面， 1 游戏中， 2 结束界面
+    input [9:0] cur_x,// VGA当前X坐标
+    input [8:0] cur_y, //  VGA当且Y坐标
+    output [2:0] one_state,//(X,Y)坐标对应
+    output reg gameover,//传出游戏结束的信息
+    output reg [15:0] score//得分
+);
+```
+
+在划分后的 $40 \times 30$ 的区域上进行蛇的移动
+
+- 通过传入 $dir$ 信号来控制蛇移动的方向
+- $game\_state$ 来判断当前游戏状态
+- $cur\_x,cur\_y,one\_state$ 来输出当前坐标所在单元格的状态信息
+- $gameover$ 传出游戏结束的信息
+- $score$ 传出当前的得分
+
+### 6.2 定义代码
+
+```verilog linenums="1"
+parameter MAX_LENGTH = 100;
+parameter MAX_CNT = 23;
+
+reg [5:0] head_x; 
+reg [4:0] head_y; //蛇头的坐标
+reg [5:0] next_head_x;
+reg [4:0] next_head_y; //下一刻蛇头的坐标
+reg [5:0] fruit_x;
+reg [4:0] fruit_y;//食物坐标
+reg [5:0] body_x [MAX_LENGTH:0];
+reg [4:0] body_y [MAX_LENGTH:0];//存储蛇身坐标的数组
+reg [1:0] current_dir;//当前蛇运动的方向
+reg [2:0] state [0:39][0:29];//所有单元的状态信息
+reg [23:0] cnt;//计数以分频
+reg [1:0] state_pos;//存储上一刻和当前的游戏状态
+
+wire game_clk;//游戏频率（速度）
+
+integer length;
+integer i, j;
+
+assign game_clk=cnt[MAX_CNT];
+assign one_state = state[state_x_addr(cur_x)][state_y_addr(cur_y)];
+
+always @(posedge clk) begin
+    cnt = cnt + 24'b1;
+end
+
+//计算转换后的对应单元格坐标
+function [5:0] state_x_addr; 
+    input [9:0] pix_x;
+    begin
+        state_x_addr  = pix_x >> 4; // x
+    end
+endfunction
+
+function [5:0] state_y_addr; 
+    input [8:0] pix_y;
+    begin
+        state_y_addr = pix_y >> 4; // y
+    end
+endfunction
+```
+
+### 6.3 初始化
+
+```verilog linenums="1"
+initial begin
+    cnt = 24'b0;
+    state_pos = 2'b00;
+    head_x = 6'd20;
+    head_y = 5'd15;
+    next_head_x = 6'd20;
+    next_head_y = 5'd15;
+    //fruit_flag = 2'd0;
+    length = 1'd1;
+    fruit_x = 6'd25;
+    fruit_y = 5'd15;
+    body_x[0] = 6'd19;
+    body_y[0] = 6'd15;
+    body_x[1] = 6'd18;
+    body_y[1] = 6'd15;
+    current_dir = 2'd3;
+    score = 16'd0;
+    gameover = 1'b0;
+    
+    for (i=0;i<40;i=i+1)begin
+        for (j=0;j<30;j=j+1)begin
+            state[i][j]=3'b000;
+        end
+    end
+    i=0;
+    for (j=0;j<30;j=j+1)begin
+        state[i][j]=3'b110; //state = 6为死亡格
+    end
+    i=39;
+    for (j=0;j<30;j=j+1)begin
+        state[i][j]=3'b110; //state = 6为死亡格
+    end
+    j=0;
+    for (i=0;i<40;i=i+1)begin
+        state[i][j]=3'b110; //state = 6为死亡格
+    end
+    j=29;
+    for (i=0;i<40;i=i+1)begin
+        state[i][j]=3'b110; //state = 6为死亡格
+    end
+
+    for (i=2;i<100;i=i+1)begin
+        body_x[i] = 6'd0;
+        body_y[i] = 5'd0;
+    end 
+    // 增加场内障碍物
+    i = 3;
+    for (j = 34; j <= 36; j = j + 1) begin
+        state[j][i] = 3'b110;
+    end
+    state[36][4] = 3'b110;
+    state[36][5] = 3'b110;
+
+    i = 4;
+    for (j = 4; j <= 11; j = j + 1) begin
+        state[j][i] = 3'b110;
+    end
+
+    j = 4;
+    for (i = 5; i <= 11; i = i + 1) begin
+        state[j][i] = 3'b110; 
+    end
+
+    i = 20;
+    for (j = 3; j <= 5; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+
+    j = 10;
+    for (i = 20; i <= 28; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+
+    i = 10;
+    for (j = 15; j <= 18; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+    for (j = 21; j <= 24; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+    for (j = 30; j <= 38; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+    
+    i = 19;
+    for (j = 15; j <= 18; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+    for (j = 21; j <= 24; j = j + 1) begin
+        state[j][i] = 3'b110; 
+    end
+    for (j = 30; j <= 35; j = j + 1) begin
+        state[j][i] = 3'b110;
+    end
+
+    i = 25;
+    for (j = 15; j <= 35; j = j + 1) begin
+        state[j][i] = 3'b110;
+    end
+
+    j = 15;
+    for (i = 11; i <= 13; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+    for (i = 16; i <= 25; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+    
+    j = 24;
+    for (i = 11; i <= 13; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+    for (i = 16; i <= 18; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+
+    j = 35;
+    for (i = 19; i <= 24; i = i + 1) begin
+        state[j][i] = 3'b110;
+    end
+    // 设置蛇的位置
+    state[20][6] = 3'b001;
+    state[19][6] = 3'b010;
+    state[18][6] = 3'b010;
+    state[fruit_x][fruit_y] = 3'b011;
+end
+```
+
+1. 初始设定蛇头坐标(20,6)
+2. 拥有两个身子，坐标分别为(19,6)(18,6)
+3. 默认移动方向为右
+4. 形成好所有障碍物位置（屏幕边缘一圈以及场内部分位置）
+
+### 6.4 重置游戏
+
+```verilog linenums="1"
+always @(posedge game_clk) begin
+    if (game_state[0] == 1'b1 || game_clk == 1'b1) begin
+        state_pos <= {state_pos[0], game_state[0]};
+        if(state_pos == 2'b01)begin
+            head_x <= 6'd20;
+            head_y <= 5'd6;
+            length <= 1'd1;
+            fruit_x <= 6'd29;
+            fruit_y <= 5'd6;
+            body_x[0] <= 6'd19;
+            body_y[0] <= 6'd6;
+            body_x[1] <= 6'd18;
+            body_y[1] <= 6'd6;
+            current_dir <= 2'd3;
+            score <= 16'd0;
+            // cnt <= 0;
+            gameover <= 1'b0;
+            
+            for (i = 0; i < 40; i = i + 1)begin
+                for (j = 0; j < 30; j = j + 1) begin
+                    state[i][j] <=  3'b000;
+                end
+            end
+            i = 0;
+            for (j = 0; j < 30; j = j + 1)begin
+                state[i][j] <=  3'b110; //state  =  6为死
+            end
+            i = 39;
+            for (j = 0; j < 30; j = j + 1)begin
+                state[i][j] <=  3'b110; //state  =  6为死
+            end
+            j = 0;
+            for (i = 0; i < 40; i = i + 1)begin
+                state[i][j] <=  3'b110; //state  =  6为死
+            end
+            j = 29;
+            for (i = 0; i < 40; i = i + 1)begin
+                state[i][j] <=  3'b110; //state  =  6为死
+            end
+
+            for (i = 2; i < 100; i = i + 1)begin
+                body_x[i] <= 6'd0;
+                body_y[i] <= 5'd0;
+            end
+
+            // 增加地图
+            i = 3;
+            for (j = 34; j <= 36; j = j + 1) begin
+                state[j][i] <= 3'b110;
+            end
+            state[36][4] <= 3'b110;
+            state[36][5] <= 3'b110;
+
+            i = 4;
+            for (j = 4; j <= 11; j = j + 1) begin
+                state[j][i] <= 3'b110;
+            end
+
+            j = 4;
+            for (i = 5; i <= 11; i = i + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+
+            i = 20;
+            for (j = 3; j <= 5; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+
+            j = 10;
+            for (i = 20; i <= 28; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+
+            i = 10;
+            for (j = 15; j <= 18; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+            for (j = 21; j <= 24; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+            for (j = 30; j <= 38; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+            
+            i = 19;
+            for (j = 15; j <= 18; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+            for (j = 21; j <= 24; j = j + 1) begin
+                state[j][i] <= 3'b110; 
+            end
+            for (j = 30; j <= 35; j = j + 1) begin
+                state[j][i] <= 3'b110;
+            end
+
+            i = 25;
+            for (j = 15; j <= 35; j = j + 1) begin
+                state[j][i] <= 3'b110;
+            end
+
+            j = 15;
+            for (i = 11; i <= 13; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+            for (i = 16; i <= 25; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+            
+            j = 24;
+            for (i = 11; i <= 13; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+            for (i = 16; i <= 18; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+
+            j = 35;
+            for (i = 19; i <= 24; i = i + 1) begin
+                state[j][i] <= 3'b110;
+            end
+            // 设置蛇的位置
+            state[20][6] = 3'b001;
+            state[19][6] = 3'b010;
+            state[18][6] = 3'b010;
+            state[fruit_x][fruit_y] = 3'b011;
+
+```
+
+`state_pos <= {state_pos[0], game_state[0]};`，当game_state维持在 1 时，state_pos 稳定为 2'b11；每当game_state从 0 变化为 1 时，所有游戏数据会被重置，回到初始设置
+
+### 6.5 蛇的运动
+
+通过蛇头控制蛇的运动，而蛇的运动类型主要分为三类，分别是移动到空白格、触碰到身体或障碍物、吃到食物；三种运动类型分别有对应的代码处理
+
+#### 6.5.1 方向控制
+
+```verilog linenums="1"
+else if (game_clk) begin
+    if (game_state[0]) begin
+        case(current_dir)
+            2'd0:begin
+                next_head_x = head_x;
+                next_head_y = head_y - 1; //0 向上移动
+            end
+            2'd1:begin
+                next_head_x = head_x;
+                next_head_y = head_y + 1;//1 向下移动
+            end
+            2'd2:begin
+                next_head_x = head_x - 1;
+                next_head_y = head_y;//2 向左移动
+            end
+            2'd3:begin
+                next_head_x = head_x + 1;
+                next_head_y = head_y;//3 向右移动
+            end
+        endcase
+
+case(dir)
+    2'd0: if (current_dir != 2'd1) current_dir <= 2'd0;
+    2'd1: if (current_dir != 2'd0) current_dir <= 2'd1;
+    2'd2: if (current_dir != 2'd3) current_dir <= 2'd2;
+    2'd3: if (current_dir != 2'd2) current_dir <= 2'd3;
+endcase
+```
+
+- 处理`current_dir`信号，然后0-3分别映射上下左右控制下一刻蛇头位置；
+- 处理传入的`dir`信号，来改变`current_dir`，同时 **防止按运动反方向瞬死情况**
+
+#### 6.5.2 触碰障碍或身体
+
+```verilog linenums="1"
+if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
+    gameover <= 1'b1;
+end
+```
+
+判断下一时刻头所处位置的状态，`3'b110`和`3'b010`分别对应障碍格以及蛇身，再更改`gameover`信号为1，`gameover`传出到状态机模块后使得游戏状态进入 **结束态** 。
+
+#### 6.5.3 移动到空白格
+
+```verilog linenums="1"
+else if (state[next_head_x][next_head_y] == 3'b000) begin
+    state[next_head_x][next_head_y] = 3'b001; //下一格变为蛇头
+    state[head_x][head_y] = 3'b010;//原蛇头处变为蛇身
+    state[body_x[length]][body_y[length]] = 3'b000;//
+    for (i = MAX_LENGTH; i > 0; i = i - 1) begin
+        body_x[i] = body_x[i - 1];
+        body_y[i] = body_y[i - 1];
+    end //挪动身体数组
+    body_x[0] = head_x;
+    body_y[0] = head_y;
+    head_x = next_head_x;
+    head_y = next_head_y;
+end 
+```
+
+1. 首先判断蛇头下一刻移动到空白格(`3'b000`)
+2. 将对应格状态设置成 **蛇头(`3'b001`)**
+3. 原来蛇头的位置会变成 **蛇身(`3'b010`)**
+4. 挪动存储蛇身的数组元素，以更改索引和相对位置间的关系
+
+#### 6.5.4 吃到食物
+
+```verilog linenums="1"
+else begin
+    case (state[next_head_x][next_head_y])
+        3'b011: score = score + 16'd1;
+        3'b100: score = score + 16'd2;
+        3'b101: score = score + 16'd3;
+    endcase
+    length = length + 1'd1;
+    state[next_head_x][next_head_y] = 3'b001;
+    state[head_x][head_y] = 3'b010;
+    for(i = MAX_LENGTH; i > 0; i = i - 1)begin
+        body_x[i] = body_x[i - 1];
+        body_y[i] = body_y[i - 1];
+    end
+    body_x[0] = head_x;
+    body_y[0] = head_y;
+    head_x = next_head_x;
+    head_y = next_head_y;
+    
+    for (i = 0; i <= 40 && state[fruit_x][fruit_y] != 3'b000; i = i + 1) begin
+        fruit_x = (fruit_x + 5 + i) % 40;
+        fruit_y = (fruit_y + 5 + j) % 30;
+        if (j <= 30) begin
+            j = j + 1;
+        end else begin
+            j = 0;
+        end
+    end
+    //通过在原食物位置周围线性搜索空白格的方法以生成新食物
+    case ((i + j) % 6)
+        3'd0: state[fruit_x][fruit_y] = 3'b011; //state  =  3为果
+        3'd1: state[fruit_x][fruit_y] = 3'b011; 
+        3'd2: state[fruit_x][fruit_y] = 3'b011; //生成Small_Food的相对概率为1/2
+        3'd3: state[fruit_x][fruit_y] = 3'b100; //state  =  5为果
+        3'd4: state[fruit_x][fruit_y] = 3'b100; //生成Medium_Food的相对概率为1/3
+        3'd5: state[fruit_x][fruit_y] = 3'b101; //state  =  5为果,生成Large_Food的相对概率为1/6
+    endcase
+
+```
+
+1. 判断下一时刻蛇头移动到的位置的状态，以获得不同的得分(`3'b011`为小果实，1分；`3'b100`为中果实，2分；`3'b101`为大果实，3分)
+2. 通过和移动到空白格时类似的方法来增长长度
+3. 通过在原食物位置周围线性搜索空白格的方法以生成新食物
+4. 最后随机确定果实的种类，并改变对应位置单元格状态
