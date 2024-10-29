@@ -27,6 +27,12 @@
 
 我们将每个单元格给予一个state状态值，分为 0: 背景格，1: 蛇头，2: 蛇身，3: Small_Food，4: Medium_Food，5: Large_Food，6: 死亡格
 
+整体结构图（top）如下：
+
+<figure markdown="span">
+    ![Img 29](../../../../img/digital_logic_design/lab/final/lab_final_img24.png){width="800"}
+</figure>
+
 ## 2 VGA设计思路
 
 > 参考：<br/>

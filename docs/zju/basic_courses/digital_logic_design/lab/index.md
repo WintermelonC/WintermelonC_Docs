@@ -8,6 +8,9 @@
     ![Img 1](../../../../img/digital_logic_design/lab/lab_img1.png){ width="600" }
 </figure>
 
+1. 开发板型号：xc7k160tffg676-2L
+2. [xdc 引脚约束文件](../../../../file/digital_logic_design/lab/xc7k160tffg676-2L.xdc){:target="_blank"}
+
 ## 实验内容
 
 ### final
