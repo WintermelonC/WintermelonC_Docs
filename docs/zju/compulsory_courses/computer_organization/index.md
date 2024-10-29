@@ -35,3 +35,5 @@ yk老师
 
 [1 Computer Abstractions and Technology](./theory/ch1.md)<br/>
 [3 Arithmetic for Computers](./theory/ch3.md)
+
+### [实验部分](./lab/index.md)
