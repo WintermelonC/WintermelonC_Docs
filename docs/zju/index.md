@@ -49,3 +49,7 @@
 ### [专业必修课程](./compulsory_courses/index.md)
 
 [计算机组成](./compulsory_courses/computer_organization/index.md)
+
+### [实践教学环节](./practical_teaching/index.md)
+
+[课程综合实践Ⅰ](./practical_teaching/practical_course_1.md)
