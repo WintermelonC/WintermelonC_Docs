@@ -375,7 +375,7 @@ IEEE 754 在中间计算中，右边总是多保留 2 位，分别称为 $guard$
 
 在这 2 位之后还有 1 位 $sticky\ bit$（粘贴位），当舍入位右边的数非零时将它置 1。粘贴位可以让计算机在舍入时，能够区分 $(0.50···00)_{10}$ 和 $(0.50···01)_{10}$
 
-总之，3 位一起决定舍入，如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 > (100)_2$，$round\ up$（进位）
+总之，3 位一起决定舍入，如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 > (100)_2$，$round\ up$（进位）；如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 < (100)_2$，舍掉；如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 = (100)_2$，偶数不变，奇数变偶数
         
 ???+ example "课本 3.32"
     
@@ -486,8 +486,8 @@ IEEE 754 在中间计算中，右边总是多保留 2 位，分别称为 $guard$
         \ \ \ 1.10111\ 01011
         $$
 
-        $011 \leqslant 100$，不进位
+        $011 < 100$，不进位
 
         结果为 $1.10111\ 01011 \times 2 ^{10} = 110\ 1110\ 1011 = 1771$
 
-        > 目前不是很清楚，guard，round，sticky bit 参不参与计算，计算过程中发不发生变化。比如这道题 B 和 A 小数点左移后，guard，round，sticky bit 均为 011，如果参与计算的话，$011 + 011 = 110$，最后结果应该进位。但是答案上只算了 B 的，最后结果不进位
+        > guard，round，sticky bit 不参与计算，计算过程中不发生变化
