@@ -1504,12 +1504,12 @@ else begin
     end
     //通过在原食物位置周围线性搜索空白格的方法以生成新食物
     case ((i + j) % 6)
-        3'd0: state[fruit_x][fruit_y] = 3'b011; //state  =  3为果
+        3'd0: state[fruit_x][fruit_y] = 3'b011; //state = 3为小食物
         3'd1: state[fruit_x][fruit_y] = 3'b011; 
         3'd2: state[fruit_x][fruit_y] = 3'b011; //生成Small_Food的相对概率为1/2
-        3'd3: state[fruit_x][fruit_y] = 3'b100; //state  =  5为果
+        3'd3: state[fruit_x][fruit_y] = 3'b100; //state = 4为中食物
         3'd4: state[fruit_x][fruit_y] = 3'b100; //生成Medium_Food的相对概率为1/3
-        3'd5: state[fruit_x][fruit_y] = 3'b101; //state  =  5为果,生成Large_Food的相对概率为1/6
+        3'd5: state[fruit_x][fruit_y] = 3'b101; //state = 5为大食物，生成Large_Food的相对概率为1/6
     endcase
 
 ```
