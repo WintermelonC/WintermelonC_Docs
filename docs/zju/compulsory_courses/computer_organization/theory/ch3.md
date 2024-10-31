@@ -1,8 +1,8 @@
 # 3 Arithmetic for Computers
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! tip "说明"
 

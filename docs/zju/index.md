@@ -48,6 +48,7 @@
 
 ### [专业必修课程](./compulsory_courses/index.md)
 
+[高级数据结构与算法分析](./compulsory_courses/ADS/index.md)<br/>
 [计算机组成](./compulsory_courses/computer_organization/index.md)
 
 ### [实践教学环节](./practical_teaching/index.md)
