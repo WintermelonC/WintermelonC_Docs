@@ -55,7 +55,7 @@ $M +/- N$ 无论加减法都适用
 
 > 同学们可以自己取一些值把 4 种运算都算一下，体会一下运算过程，比如 4 bit 下 $6 + 4, -6 + 4, -6 - 4, -6 - (-4)$ 等等
 
-???+ example "课本 3.5"
+???+ example "例题 课本 3.5 - sign-magnitude"
 
     What is 4365 − 3412 when these values represent signed 12-bit octal numbers stored in sign-magnitude format? The result should be written in octal. Show your work.
 
@@ -82,7 +82,7 @@ $M +/- N$ 无论加减法都适用
 
         > 以 $111\_111\_111\_111$ 的形式给出结果，实际上计算机认为它是 $(-2047)_{10} = (-3777)_8$，所以计算机认为的运算是 $-245 - 1802 = -2047$
 
-???+ question "课本 3.7"
+???+ question "课本 3.7 - sign-magnitude"
 
     Assume 185 and 122 are signed 8-bit decimal integers stored in sign-magnitude format. Calculate 185 + 122. Is there overflow, underflow, or
     neither?
@@ -110,7 +110,7 @@ $M +/- N$ 无论加减法都适用
 
         > 实际上计算机认为的运算是 $-57 + 122 = 65$
 
-???+ question "课本 3.9"
+???+ question "课本 3.9 - 2's complement"
 
     Assume 151 and 214 are signed 8-bit decimal integers stored in two’s complement format. Calculate 151 + 214 using saturating arithmetic. The result should be written in decimal. Show your work.
 
@@ -137,7 +137,7 @@ $M +/- N$ 无论加减法都适用
 
         > 实际上因为产生了进位，正确的结果应为 $(1\_0110\_1101)_2 = (-147)_{10}$，实际上计算机认为的运算是 $-105 - 42 = -147$
 
-???+ question "课本 3.10"
+???+ question "课本 3.10 - 2's complement"
 
     Assume 151 and 214 are signed 8-bit decimal integers stored in two’s complement format. Calculate 151 − 214 using saturating arithmetic. The
     result should be written in decimal. Show your work.
@@ -165,7 +165,7 @@ $M +/- N$ 无论加减法都适用
 
         > 实际上计算机认为的运算是 $-105 - (-42) = -63$
 
-???+ question "课本 3.11"
+???+ question "课本 3.11 - 无符号数"
     
     Assume 151 and 214 are unsigned 8-bit integers. Calculate 151+ 214 using saturating arithmetic. The result should be written in decimal.
     Show your work.
@@ -231,7 +231,107 @@ IEEE 754 双精度浮点
 
 小数位 F：实际小数 $f = 1 + F$
 
-???+ example "课本 3.22"
+!!! warning "二进制无限小数取近似"
+
+    **single precision：**
+    
+    尾数共 23 位<br/>
+    1. 24 位为 0 时，舍去 23 位后面的数字<br/>
+    2. 24 位为 1 且 23 位后面不是 1000... 时，23 位加 1 且舍去 23 位后面的数字<br/>
+    3. 当 23 位后面是 1000... 时，若 23 位是 1，则 23 位加 1 并舍去 23 位后面的数字；若 23 位是 0，则舍去 23 位后面的数字
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center; vertical-align: middle;">23</th>
+          <th style="text-align: center; vertical-align: middle;">24</th>
+          <th style="text-align: center; vertical-align: middle;">23 位后面</th>
+          <th style="text-align: center; vertical-align: middle;">结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td rowspan="2" style="text-align: center; vertical-align: middle;">0</td>
+          <td rowspan="2" style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">= 1000...</td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">≠ 1000...</td>
+          <td style="text-align: center; vertical-align: middle;">23 位加 1 且舍去 23 位后面的数字</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">23 位加 1 且舍去 23 位后面的数字</td>
+        </tr>
+      </tbody>
+    </table>
+
+    > 例题见下文
+
+    **double precision：**
+    
+    尾数共 52 位<br/>
+    1. 53 位为 0 时，舍去 52 位后面的数字<br/>
+    2. 53 位为 1 且 52 位后面不是 1000... 时，52 位加 1 且舍去 52 位之后的数字<br/>
+    3. 当 52 位后面是 1000... 时，若 52 位是 1，则 52 位加 1 并舍去 52 位后面的数字；若 52 位是 0，则舍去 52 位后面的数字
+
+    <table>
+      <thead>
+        <tr>
+          <th style="text-align: center; vertical-align: middle;">52</th>
+          <th style="text-align: center; vertical-align: middle;">53</th>
+          <th style="text-align: center; vertical-align: middle;">52 位后面</th>
+          <th style="text-align: center; vertical-align: middle;">结果</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">0</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td rowspan="2" style="text-align: center; vertical-align: middle;">0</td>
+          <td rowspan="2" style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">= 1000...</td>
+          <td style="text-align: center; vertical-align: middle;">舍去</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">≠ 1000...</td>
+          <td style="text-align: center; vertical-align: middle;">52 位加 1 且舍去 52 位后面的数字</td>
+        </tr>
+        <tr>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;">1</td>
+          <td style="text-align: center; vertical-align: middle;"></td>
+          <td style="text-align: center; vertical-align: middle;">52 位加 1 且舍去 52 位后面的数字</td>
+        </tr>
+      </tbody>
+    </table>
+
+???+ example "例题 课本 3.22 - 16 进制转浮点数"
 
     What decimal number does the bit pattern 0 × 0C000000 represent if it is a floating point number? Use the IEEE 754 standard.
 
@@ -245,7 +345,7 @@ IEEE 754 双精度浮点
     
         结果为 $1.0 \times 2^{-103}$
 
-???+ question "课本 3.23"
+???+ question "课本 3.23 - 10 进制转 single 浮点数"
     
     Write down the binary representation of the decimal number 63.25 assuming the IEEE 754 single precision format.
 
@@ -264,7 +364,7 @@ IEEE 754 双精度浮点
 
         结果为 $0\ 1000\ 0100\ 1111\ 1010\ ···$
 
-???+ question "课本 3.24"
+???+ question "课本 3.24 - 10 进制转 double 浮点数"
     
     Write down the binary representation of the decimal number 63.25 assuming the IEEE 754 double precision format.
 
@@ -282,6 +382,39 @@ IEEE 754 双精度浮点
         $F = 1111\ 1010\ ···$
 
         结果为 $0\ 100\ 0000\ 0100\ 1111\ 1010\ ···$
+
+???+ warning "0.3 转浮点数"
+
+    **single precision:**
+
+    $$
+    0.3 = 0.01\ 0011\ 0011\ 0011\ ··· \times 2 ^ 0\\
+    \kern0.9em = 1.0011\ 0011\ 0011\ ··· \times 2^{-2}
+    $$
+
+    $S = 0$
+
+    $E = e + 127 = -2 + 127 = 125 = 0111\ 1101$
+
+    $F = 0011\ 0011\ 0011\ 0011\ 0011\ 001\ 1$
+
+    F 第 24 位为 1 且 23 位后面数字 $1\ 0011\ 0011\ ···$ 不为 1000，则 23 位加 1 且舍去 23 位后面的数字，即
+
+    $F = 0011\ 0011\ 0011\ 0011\ 0011\ 010$
+
+    结果为 $0\ 0111\ 1101\ 0011\ 0011\ 0011\ 0011\ 0011\ 010$
+
+    **double precision:**
+
+    $E = e + 1023 = 1021 = 011\ 1111\ 1101$
+
+    $F = 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0$
+
+    F 第 53 位为 0，舍去 53 位后面的数字，即
+
+    $F = 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011$
+
+    结果为 $0\ 011\ 1111\ 1101\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011\ 0011$
 
 ### 范围和精度
 
@@ -305,7 +438,7 @@ E 最高为 254（因为如果是 255 的话，表示的要么是无穷，要么
 
 !!! tip "范围和精度"
 
-    范围：$\pm 1.0 \times 2^{1 - bias} \sim \pm (2 - 2^{F\#}) \times 2^{bias}$
+    范围：$\pm 1.0 \times 2^{1 - bias} \sim \pm (2 - 2^{-F\#}) \times 2^{bias}$
 
     精度：$2^{-F\#}$
 
@@ -319,7 +452,7 @@ E 最高为 254（因为如果是 255 的话，表示的要么是无穷，要么
 
 精度为 $2 ^ {-52}$
 
-???+ example "课本 3.26"
+???+ example "例题 课本 3.26 - 10 进制转浮点数"
     
     Write down the binary bit pattern to represent $−1.5625 × 10^{−1} $ assuming a format similar to that employed by the DEC PDP-8 (the leftmost 12 bits are the exponent stored as a two’s complement number, and the rightmost 24 bits are the fraction stored as a two’s complement number). No hidden 1 is used. Comment on how the range and accuracy of this 36-bit pattern compares to the single and double precision IEEE 754 standards.
 
@@ -345,7 +478,7 @@ E 最高为 254（因为如果是 255 的话，表示的要么是无穷，要么
 
         精度：$2^{-23}$
 
-???+ question "课本 3.27"
+???+ question "课本 3.27 - 10 进制转浮点数"
     
     IEEE 754-2008 contains a half precision that is only 16 bits wide. The leftmost bit is still the sign bit, the exponent is 5 bits wide and has a bias of 15, and the mantissa is 10 bits long. A hidden 1 is assumed. Write down the bit pattern to represent −1.5625 × 10−1 assuming a version of this format, which uses an excess-16 format to store the exponent. Comment on how the range and accuracy of this 16-bit floating point format compares to the single precision IEEE 754 standard.
 
@@ -377,7 +510,7 @@ IEEE 754 在中间计算中，右边总是多保留 2 位，分别称为 $guard$
 
 总之，3 位一起决定舍入，如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 > (100)_2$，$round\ up$（进位）；如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 < (100)_2$，舍掉；如果 $\lbrace guard,\ round,\ sticky\ bit \rbrace_2 = (100)_2$，偶数不变，奇数变偶数
         
-???+ example "课本 3.32"
+???+ example "例题 课本 3.32 - 浮点数加法"
     
     Calculate $(3.984375 × 10^{−1} + 3.4375 × 10^{−1}) + 1.771 × 10^3$ by hand, assuming each of the values is stored in the 16-bit half precision format described in Exercise 3.27 (and also described in the text). Assume 1 guard, 1 round bit, and 1 sticky bit, and round to the nearest even. Show all the steps, and write your answer in both the 16-bit floating point format and in decimal.
 
@@ -434,7 +567,7 @@ IEEE 754 在中间计算中，右边总是多保留 2 位，分别称为 $guard$
 
         $101 > 100$，进位。结果为 $1.10111\ 01100 \times 2 ^{10} = 110\ 1110\ 1100 = 1772$
 
-???+ question "课本 3.33"
+???+ question "课本 3.33 - 浮点数加法"
     
     Calculate $3.984375 × 10^{−1} + (3.4375 × 10^{−1} + 1.771 × 10^3)$ by hand, assuming each of the values is stored in the 16-bit half precision format described in Exercise 3.27 (and also described in the text). Assume 1 guard, 1 round bit, and 1 sticky bit, and round to the nearest even. Show all the steps, and write your answer in both the 16-bit floating point format and in decimal.
 
