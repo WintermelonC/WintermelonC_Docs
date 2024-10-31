@@ -1,8 +1,8 @@
 # 1 Computer Abstractions and Technology
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! tip "说明"
 
