@@ -11,7 +11,7 @@
 
 ### 自然科学通识类
 
-[大学物理（乙）Ⅱ](./natural_science/phy_2.md)<br/>
+[大学物理（乙）Ⅱ](./natural_science/phy_2/index.md)<br/>
 [大学物理实验](./natural_science/phy_exp.md)
 
 ### 创新创业类
