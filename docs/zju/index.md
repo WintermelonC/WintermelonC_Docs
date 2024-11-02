@@ -2,20 +2,21 @@
 
 你可以找到一些课程的学习笔记、学习资料等有用的内容
 
-## [通识课程](./general_courses/index.md)
+## 通识课程
 
 ### 军体类
 
-[无线电测向（初级）](./general_courses/radio_direction_finding.md)<br/>
-[羽毛球（初级）](./general_courses/badminton.md)
+[无线电测向（初级）](./military_PE/radio_direction_finding.md)<br/>
+[羽毛球（初级）](./military_PE/badminton.md)
 
 ### 自然科学通识类
 
-[大学物理实验](./general_courses/phy_exp.md)
+[大学物理（乙）Ⅱ](./natural_science/phy_2.md)<br/>
+[大学物理实验](./natural_science/phy_exp.md)
 
 ### 创新创业类
 
-[创业启程](./general_courses/entrepreneurship.md)
+[创业启程](./innovation_entrepreneurship/entrepreneurship.md)
 
 ### 通识选修课程
 
@@ -39,18 +40,18 @@
 
 [生命科学导论实验](./general_courses/life_science_exp.md)
 
-## [专业基础课程](./basic_courses/index.md)
+## 专业基础课程
 
 [数字逻辑设计](./basic_courses/digital_logic_design/index.md)<br/>
 [概率论与数理统计](./basic_courses/prob_theo_and_math_stat/index.md)
 
 ## 专业课程
 
-### [专业必修课程](./compulsory_courses/index.md)
+### 专业必修课程
 
 [高级数据结构与算法分析](./compulsory_courses/ADS/index.md)<br/>
 [计算机组成](./compulsory_courses/computer_organization/index.md)
 
-### [实践教学环节](./practical_teaching/index.md)
+### 实践教学环节
 
 [课程综合实践Ⅰ](./practical_teaching/practical_course_1.md)

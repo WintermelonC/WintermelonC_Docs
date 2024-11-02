@@ -12,14 +12,23 @@ edit_uri: edit/main/docs/
 # 页面布局
 nav:
   - 首页: index.md
-  - ZJU: 
+  - ZJU:
     - zju/index.md
-    - 通识课程:
+    - 军体类:
+      - zju/military_PE/index.md
+      - 无线电测向（初级）: zju/military_PE/radio_direction_finding.md
+      - 羽毛球（初级）: zju/military_PE/badminton.md
+    - 自然科学通识类:
+      - zju/natural_science/index.md
+      - 大学物理（乙）Ⅱ: 
+        - zju/natural_science/phy_2/index.md
+        - 整理: zju/natural_science/phy_2/phy_2_doc.md
+      - 大学物理实验: zju/natural_science/phy_exp.md
+    - 创新创业类:
+      - zju/innovation_entrepreneurship/index.md
+      - 创业启程: zju/innovation_entrepreneurship/entrepreneurship.md
+    - 通识选修课程:
       - zju/general_courses/index.md
-      - 无线电测向（初级）: zju/general_courses/radio_direction_finding.md
-      - 羽毛球（初级）: zju/general_courses/badminton.md
-      - 大学物理实验: zju/general_courses/phy_exp.md
-      - 创业启程: zju/general_courses/entrepreneurship.md
       - 茶文化与茶健康: zju/general_courses/tea_culture.md
       - 经济法理论与实务: zju/general_courses/economic_law.md
       - 生命科学导论: zju/general_courses/life_science.md
