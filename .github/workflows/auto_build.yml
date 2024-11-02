@@ -29,9 +29,3 @@ jobs:
             mkdocs-material-
       - run: pip install -r requirements.txt
       - run: mkdocs gh-deploy --force
-      # - uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     personal_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./publish
-      #     publish_branch: gh-pages
-      #     keep_files: true
