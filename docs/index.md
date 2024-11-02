@@ -1,6 +1,3 @@
----
-comments: true
----
 # 欢迎来到 WintermelonC 的网页
 
 ## [ZJU](./zju/index.md)
