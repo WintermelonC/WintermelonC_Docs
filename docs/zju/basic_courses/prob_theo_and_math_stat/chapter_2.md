@@ -4,6 +4,10 @@
 
     此文档正在更新中……
 
+!!! tip "说明"
+
+    有些公式块因为已经有图片了，懒得打 $\KaTeX$ 了，所以就直接用图片替代了
+
 ## 3 随机变量的概率分布函数
 
 ### 3.1 定义
@@ -107,3 +111,64 @@ $$
 
 </div>
 
+由性质 3 可得，连续型随机变量取任一定值的概率为 0，因此，连续型随机变量落在开区间与相应闭区间上的概率相等
+
+由性质 4 可得，在 $f(x)$ 的连续点 $x$ 处，当 $\Delta x$ 充分小时，有
+$$
+P\lbrace x < X \leqslant x + \Delta x \rbrace \approx f(x) \Delta x
+$$
+
+!!! question "思考"
+
+    设 $A,\ B$ 为随机事件
+    
+    1. 若 $P(A) = 1$，则 $A$ 为必然事件吗？
+    2. 若 $P(B) = 0$，则 $B$ 为不可能事件吗？
+    3. 若 $P(AB) = 0$，则 $A$ 与 $B$ 不相容吗？
+
+    ??? success "答案"
+
+        都不一定，例如：
+
+        $X \in [0, 1],\ f(x) = \begin{cases}
+            1& x \in [0, 1]\\
+            0& 其他
+        \end{cases}$
+        
+        $A = \lbrace 0 < X < 1 \rbrace,\ B = \lbrace X = 0.5 \rbrace$
+
+        则 $P(A) = 1$，但 $X$ 也可能为 0 或 1；$P(B) = 0$，但 $X$ 确实可能为 0.5；$P(AB) = 0$，但实际上 $A \cap B \not = \varnothing$
+
+        > 看起来挺奇怪的，但就是因为连续型随机变量取任一定值的概率为 0 导致的
+
+???+ example "例题 4.1 - 密度函数"
+
+    设 $X$ 的密度函数为 $f(x) = \begin{cases}
+        c & 0 < x < 1\\
+        \frac{2}{9} & 3 < x < 6\\
+        0 & 其他
+    \end{cases}$
+
+    (1) 求常数 $c$ 的值<br/>
+    (2) 写出 $X$ 的概率分布函数<br/>
+    (3) 要使 $P\lbrace X < k \rbrace = \frac{2}{3}$，求 $k$ 的值
+
+    ??? success "答案"
+
+        解：(1) 由性质 $\int_{- \infty}^{+ \infty} f(t) dt = 1$
+
+        <figure markdown="span">
+            ![Img 7](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img7.png){ width="300" }
+        </figure>
+
+        ---
+
+        (2) 由公式 $F(x) = P \lbrace X \leqslant x \rbrace = \int_{- \infty}^x f(t)dt$
+
+        <figure markdown="span">
+            ![Img 8](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img8.png){ width="400" }
+        </figure>
+
+        ---
+
+        (3) $P \lbrace X < k \rbrace = F(k) = \frac{2}{3}$，由 (2) 分布函数 $F(x)$ 得，$k = 4.5$
