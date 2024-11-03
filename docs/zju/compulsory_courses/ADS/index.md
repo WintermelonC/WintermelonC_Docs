@@ -18,4 +18,5 @@ dyx老师
 
 ## 个人笔记及 PTA 习题
 
+[1 AVL Trees and Splay Trees](./ch1.md)<br/>
 [7 Divide and Conquer](./ch7.md)

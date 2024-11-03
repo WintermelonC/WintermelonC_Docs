@@ -78,7 +78,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">pbl老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时少</td>
       <td>数据先会用一个软件进行处理，软件实验室的电脑上有</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">92</td>
       <td></td>
     </tr>
     <tr>
