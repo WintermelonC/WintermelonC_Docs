@@ -12,28 +12,28 @@
         <meta name="author" content="WintermelonC">
       
       
-        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/common_sense/hospital/">
+        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/zju/compulsory_courses/ADS/ch1/">
       
       
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../medical_insurance/">
+        <link rel="next" href="../ch7/">
       
       
-      <link rel="icon" href="../../img/logo.png">
+      <link rel="icon" href="../../../../img/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.43">
     
     
       
-        <title>医院看病流程 - WintermelonC Docs</title>
+        <title>1 AVL Trees and Splay Trees - WintermelonC Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -60,9 +60,9 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#医院看病流程" class="md-skip">
+        <a href="#1-avl-trees-and-splay-trees" class="md-skip">
           跳转至
         </a>
       
@@ -102,9 +102,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../.." title="WintermelonC Docs" class="md-header__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
+    <a href="../../../.." title="WintermelonC Docs" class="md-header__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
       
-  <img src="../../img/logo.png" alt="logo">
+  <img src="../../../../img/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              医院看病流程
+              1 AVL Trees and Splay Trees
             
           </span>
         </div>
@@ -235,7 +235,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../../.." class="md-tabs__link">
         
   
     
@@ -250,11 +250,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../zju/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
           
   
     
@@ -270,13 +272,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../../common_sense/" class="md-tabs__link">
           
   
     
@@ -311,9 +311,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="WintermelonC Docs" class="md-nav__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
+    <a href="../../../.." title="WintermelonC Docs" class="md-nav__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
       
-  <img src="../../img/logo.png" alt="logo">
+  <img src="../../../../img/logo.png" alt="logo">
 
     </a>
     WintermelonC Docs
@@ -340,7 +340,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -357,6 +357,8 @@
       
   
   
+    
+  
   
   
     
@@ -383,21 +385,24 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/" class="md-nav__link ">
+            <a href="../../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -408,13 +413,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             ZJU
@@ -445,10 +450,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -457,7 +465,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/military_PE/" class="md-nav__link ">
+            <a href="../../../military_PE/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -468,7 +476,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -490,7 +498,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/military_PE/radio_direction_finding/" class="md-nav__link">
+      <a href="../../../military_PE/radio_direction_finding/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -511,7 +519,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/military_PE/badminton/" class="md-nav__link">
+      <a href="../../../military_PE/badminton/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -555,10 +563,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -567,7 +578,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/natural_science/" class="md-nav__link ">
+            <a href="../../../natural_science/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -578,7 +589,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -625,7 +636,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/natural_science/phy_2/" class="md-nav__link ">
+            <a href="../../../natural_science/phy_2/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -658,7 +669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/natural_science/phy_2/phy_2_doc/" class="md-nav__link">
+      <a href="../../../natural_science/phy_2/phy_2_doc/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -687,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/natural_science/phy_exp/" class="md-nav__link">
+      <a href="../../../natural_science/phy_exp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -729,10 +740,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -741,7 +755,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/innovation_entrepreneurship/" class="md-nav__link ">
+            <a href="../../../innovation_entrepreneurship/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -752,7 +766,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -774,7 +788,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/innovation_entrepreneurship/entrepreneurship/" class="md-nav__link">
+      <a href="../../../innovation_entrepreneurship/entrepreneurship/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -822,10 +836,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -834,7 +851,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/general_courses/" class="md-nav__link ">
+            <a href="../../../general_courses/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -845,7 +862,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -867,7 +884,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/general_courses/tea_culture/" class="md-nav__link">
+      <a href="../../../general_courses/tea_culture/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -888,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/general_courses/economic_law/" class="md-nav__link">
+      <a href="../../../general_courses/economic_law/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -909,7 +926,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/general_courses/life_science/" class="md-nav__link">
+      <a href="../../../general_courses/life_science/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -930,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/general_courses/life_science_exp/" class="md-nav__link">
+      <a href="../../../general_courses/life_science_exp/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -974,10 +991,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -986,7 +1006,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/basic_courses/" class="md-nav__link ">
+            <a href="../../../basic_courses/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -997,7 +1017,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1044,7 +1064,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/basic_courses/digital_logic_design/" class="md-nav__link ">
+            <a href="../../../basic_courses/digital_logic_design/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1102,7 +1122,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/basic_courses/digital_logic_design/lab/" class="md-nav__link ">
+            <a href="../../../basic_courses/digital_logic_design/lab/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1135,7 +1155,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/basic_courses/digital_logic_design/lab/final/" class="md-nav__link">
+      <a href="../../../basic_courses/digital_logic_design/lab/final/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1197,7 +1217,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/basic_courses/prob_theo_and_math_stat/" class="md-nav__link ">
+            <a href="../../../basic_courses/prob_theo_and_math_stat/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1230,7 +1250,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_2/" class="md-nav__link">
+      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1264,6 +1284,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1282,19 +1304,22 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/compulsory_courses/" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1305,13 +1330,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             专业必修课程
@@ -1324,6 +1349,8 @@
                 
   
   
+    
+  
   
   
     
@@ -1345,16 +1372,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7_2" checked>
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/compulsory_courses/ADS/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1371,7 +1398,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_7_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2_7_2">
             <span class="md-nav__icon md-icon"></span>
             高级数据结构与算法分析
@@ -1384,10 +1411,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../zju/compulsory_courses/ADS/ch1/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1 AVL Trees and Splay Trees
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1396,6 +1443,158 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-avl-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 AVL Trees
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 AVL Trees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#插入操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      插入操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插入操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rr-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RR rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ll-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LL rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LR rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RL rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#小结论" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结论
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-splay-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Splay Trees
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Splay Trees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#splay-操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splay 操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Splay 操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zig-zig" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zig-zag" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zag
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1408,7 +1607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/compulsory_courses/ADS/ch7/" class="md-nav__link">
+      <a href="../ch7/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1464,7 +1663,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/compulsory_courses/computer_organization/" class="md-nav__link ">
+            <a href="../../computer_organization/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1543,7 +1742,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/compulsory_courses/computer_organization/theory/ch1/" class="md-nav__link">
+      <a href="../../computer_organization/theory/ch1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1564,7 +1763,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/compulsory_courses/computer_organization/theory/ch3/" class="md-nav__link">
+      <a href="../../computer_organization/theory/ch3/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1616,7 +1815,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/compulsory_courses/computer_organization/lab/" class="md-nav__link ">
+            <a href="../../computer_organization/lab/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1681,10 +1880,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -1693,7 +1895,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../zju/practical_teaching/" class="md-nav__link ">
+            <a href="../../../practical_teaching/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1704,7 +1906,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1726,7 +1928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../zju/practical_teaching/practical_course_1/" class="md-nav__link">
+      <a href="../../../practical_teaching/practical_course_1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1759,8 +1961,6 @@
       
   
   
-    
-  
   
   
     
@@ -1781,24 +1981,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../../../common_sense/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1809,13 +2006,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             大学生生活常识
@@ -1828,30 +2025,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    医院看病流程
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../common_sense/hospital/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1860,152 +2037,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#基本流程" class="md-nav__link">
-    <span class="md-ellipsis">
-      基本流程
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-梳理症状和病史" class="md-nav__link">
-    <span class="md-ellipsis">
-      1 梳理症状和病史
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 挂号
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2 挂号">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-线上挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.1 线上挂号
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-线下挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 线下挂号
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2 线下挂号">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#窗口挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      窗口挂号
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#自助机器挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      自助机器挂号
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#导医台" class="md-nav__link">
-    <span class="md-ellipsis">
-      导医台
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-诊治" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 诊治
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 诊治">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#诊治过程" class="md-nav__link">
-    <span class="md-ellipsis">
-      诊治过程
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-做检查" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 做检查
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-取药" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 取药
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2018,7 +2049,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../medical_insurance/" class="md-nav__link">
+      <a href="../../../../common_sense/medical_insurance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2039,7 +2070,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../transportation/" class="md-nav__link">
+      <a href="../../../../common_sense/transportation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2060,7 +2091,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../rent/" class="md-nav__link">
+      <a href="../../../../common_sense/rent/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2108,74 +2139,122 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#基本流程" class="md-nav__link">
+  <a href="#1-avl-trees" class="md-nav__link">
     <span class="md-ellipsis">
-      基本流程
+      1 AVL Trees
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="1 AVL Trees">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#插入操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      插入操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="插入操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rr-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RR rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ll-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LL rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lr-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      LR rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rl-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      RL rotation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#小结论" class="md-nav__link">
+    <span class="md-ellipsis">
+      小结论
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-梳理症状和病史" class="md-nav__link">
+  <a href="#2-splay-trees" class="md-nav__link">
     <span class="md-ellipsis">
-      1 梳理症状和病史
+      2 Splay Trees
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 挂号
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2 挂号">
+    <nav class="md-nav" aria-label="2 Splay Trees">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-线上挂号" class="md-nav__link">
+  <a href="#splay-操作" class="md-nav__link">
     <span class="md-ellipsis">
-      2.1 线上挂号
+      Splay 操作
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-线下挂号" class="md-nav__link">
-    <span class="md-ellipsis">
-      2.2 线下挂号
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2.2 线下挂号">
+    <nav class="md-nav" aria-label="Splay 操作">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#窗口挂号" class="md-nav__link">
+  <a href="#zig-zig" class="md-nav__link">
     <span class="md-ellipsis">
-      窗口挂号
+      zig-zig
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#自助机器挂号" class="md-nav__link">
+  <a href="#zig-zag" class="md-nav__link">
     <span class="md-ellipsis">
-      自助机器挂号
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#导医台" class="md-nav__link">
-    <span class="md-ellipsis">
-      导医台
+      zig-zag
     </span>
   </a>
   
@@ -2188,48 +2267,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-诊治" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 诊治
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 诊治">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#诊治过程" class="md-nav__link">
-    <span class="md-ellipsis">
-      诊治过程
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-做检查" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 做检查
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-取药" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 取药
-    </span>
-  </a>
   
 </li>
       
@@ -2248,7 +2285,7 @@
                   
 
   
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/common_sense/hospital.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/zju/compulsory_courses/ADS/ch1.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2257,114 +2294,938 @@
     
       
     
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/common_sense/hospital.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/zju/compulsory_courses/ADS/ch1.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="医院看病流程">医院看病流程<a class="headerlink" href="#医院看病流程" title="Permanent link">&para;</a></h1>
-<blockquote>
-<p>原视频：<a href="https://www.bilibili.com/video/BV1eWxneME3Q/" target="_blank">真的有大学开了《成年人社会常识课》【看病&amp;医保篇】</a></p>
-</blockquote>
-<p>来自 <ins>方山厨子</ins> 老师的话：</p>
-<blockquote>
-<p>没错，是我开的这门课<br/>
-不知道大家像不像我一样，从小到大没有人教我们如何去生活，如何去认识这个世界……<br/>
-只是一直被要求好好学习念书做题，然后一毕业就突然要独自面对这个社会这个世界了，但是很多的社会常识生活技能我们是不知道的。学校以为家庭教，家庭以为学校教……结果就是“不是大学生吗？这都不知道？”<br/>
-很多人说出社会就知道了，吃过亏就知道了，但吃亏不是老师，吃亏是伤害<br/>
-我想避免学生受到伤害本身就是老师该做的事情<br/>
-于是我申请开了这门课<br/>
-希望你学会的不仅仅是知识， 而是学会获取知识的方法<br/>
-希望你做知识的管理者 ，而不仅仅是拥有者<br/>
-但我最希望你明白学习、工作等等等等都只是生活的一部分<br/>
-希望你学会用自己的方式生活<br/>
-因为个人的局限性，难免存在错漏，欢迎指正补充</p>
-</blockquote>
-<h2 id="基本流程">基本流程<a class="headerlink" href="#基本流程" title="Permanent link">&para;</a></h2>
-<div class="admonition info">
-<p class="admonition-title">注意</p>
-<p>不同地区不同医院具体规定不同，请以实际情况为准，该流程图仅供参考</p>
-</div>
-<pre class="mermaid"><code>graph LR
-    A[梳理症状] --&gt; B[挂号缴费];
-    B --&gt; C[诊断治疗];
-    C --&gt; D{是否做检查};
-    D --&gt;|是| E[缴费做检查];
-    E --&gt; C;
-    D --&gt;|否| G{是否输液};
-    G --&gt;|是| H[缴费输液];
-    G --&gt;|否| J[缴费取药];
-    J --&gt; K[离院];
-    H --&gt; K;
-    H --&gt; J;</code></pre>
-<h2 id="1-梳理症状和病史">1 梳理症状和病史<a class="headerlink" href="#1-梳理症状和病史" title="Permanent link">&para;</a></h2>
-<ol>
-<li>具体不适的部位、症状表现，包括什么时候开始出现症状</li>
-<li>症状具体的特点，如疼痛的程度、发作的频率、是否有加重或缓解的因素</li>
-<li>整理既往病史、过敏史、家族病史等信息（一般情况下都没问题，但如果有印象不清楚要和家里确认）</li>
-</ol>
-<p>携带身份证或电子医保卡</p>
+<h1 id="1-avl-trees-and-splay-trees">1 AVL Trees and Splay Trees<a class="headerlink" href="#1-avl-trees-and-splay-trees" title="Permanent link">&para;</a></h1>
 <div class="admonition tip">
-<p class="admonition-title">医保</p>
-<p>见 <a href="../medical_insurance/">医保</a></p>
+<p class="admonition-title">说明</p>
+<p>此文档正在更新中……</p>
 </div>
-<h2 id="2-挂号">2 挂号<a class="headerlink" href="#2-挂号" title="Permanent link">&para;</a></h2>
-<h3 id="21-线上挂号">2.1 线上挂号<a class="headerlink" href="#21-线上挂号" title="Permanent link">&para;</a></h3>
-<p>绝大多数医院都可以通过微信搜索“医院名字”直接进行线上挂号</p>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">微信</label></div>
+<div class="admonition info">
+<p class="admonition-title">说明</p>
+<p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
+</div>
+<h2 id="1-avl-trees">1 AVL Trees<a class="headerlink" href="#1-avl-trees" title="Permanent link">&para;</a></h2>
+<p>用 <span class="arithmatex">\(h(node)\)</span> 表示树中一个结点的高度，<mark>定义平衡因子 <span class="arithmatex">\(BF(node) = h_L - h_R\)</span></mark></p>
+<h3 id="定义">定义<a class="headerlink" href="#定义" title="Permanent link">&para;</a></h3>
+<p>AVL Trees 是一个平衡二叉树，且具有以下性质：</p>
+<ol>
+<li><span class="arithmatex">\(BF(any\ node) = -1, 0, 1\)</span></li>
+</ol>
+<h3 id="插入操作">插入操作<a class="headerlink" href="#插入操作" title="Permanent link">&para;</a></h3>
+<ul>
+<li>RR / LL rotation 是 Single rotation</li>
+<li>LR / RL rotation 是 Double rotation</li>
+</ul>
+<h4 id="rr-rotation">RR rotation<a class="headerlink" href="#rr-rotation" title="Permanent link">&para;</a></h4>
+<p>使得某结点 node 的 BF 值不符合要求的结点在 node 右结点的右子树上</p>
+<details class="example">
+<summary>RR rotation 具体示例</summary>
+<p><strong>step 0:</strong></p>
+<pre class="mermaid"><code>graph TD;
+A((5, BF = -1))
+B[NULL]
+C((6, BF = 0))
+A === B
+A === C</code></pre>
+<p>插入新结点 7</p>
+<p><strong>step 1:</strong></p>
+<pre class="mermaid"><code>graph TD;
+A((5, BF = -2))
+B[NULL]
+C((6, BF = -1))
+D[NULL]
+E((7, BF = 0))
+A === B
+A === C
+C === D
+C === E</code></pre>
+<p>结点 5 的 BF 值为 -2，不符合 AVL Trees 性质，RR rotation</p>
+<p><strong>step 2:</strong></p>
+<pre class="mermaid"><code>graph TD;
+A((5, BF = 0))
+C((6, BF = 0))
+E((7, BF = 0))
+C === A
+C === E</code></pre>
+</details>
+<p>普遍情况下：</p>
+<blockquote>
+<p>标红的结点表示 BF 值异常的结点，标蓝的结点表示引起异常的结点</p>
+</blockquote>
+<div class="grid" style="align-items: center;">
+<pre class="mermaid"><code>graph TD;
+A((A))
+C[C]
+B((B))
+D[D]
+E[E]
+A === C
+A === B
+B === D
+B === E
+style A fill: #ff5c6c
+style E fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+A((A))
+C[C]
+B((B))
+D[D]
+E[E]
+B === A
+B === E
+A === C
+A === D
+style A fill: #ff5c6c
+style E fill: #23a7f2</code></pre>
+</div>
+<h4 id="ll-rotation">LL rotation<a class="headerlink" href="#ll-rotation" title="Permanent link">&para;</a></h4>
+<p>使得某结点 node 的 BF 值不符合要求的结点在 node 左结点的左子树上</p>
+<p>普遍情况下：</p>
+<blockquote>
+<p>标红的结点表示 BF 值异常的结点，标蓝的结点表示引起异常的结点</p>
+</blockquote>
+<div class="grid" style="align-items: center;">
+<pre class="mermaid"><code>graph TD;
+A((A))
+B((B))
+C[C]
+D[D]
+E[E]
+A === B
+A === C
+B === D
+B === E
+style A fill: #ff5c6c
+style D fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+D[D]
+A((A))
+C[C]
+B((B))
+E[E]
+B === D
+B === A
+A === E
+A === C
+style A fill: #ff5c6c
+style D fill: #23a7f2</code></pre>
+</div>
+<h4 id="lr-rotation">LR rotation<a class="headerlink" href="#lr-rotation" title="Permanent link">&para;</a></h4>
+<p>使得某结点 node 的 BF 值不符合要求的结点在 node 左结点的右子树上</p>
+<p>普遍情况下：</p>
+<blockquote>
+<p>标红的结点表示 BF 值异常的结点，标蓝的结点表示引起异常的结点</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">情况 1</label><label for="__tabbed_1_2">情况 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p>例如搜索 <ins>浙大一院互联网医院</ins> 小程序：</p>
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+A((A))
+B((B))
+E[E]
+C((C))
+D[D]
+F[F]
+G[G]
+A === B
+A === D
+B === E
+B === C
+C === F
+C === G
+style A fill: #ff5c6c
+style F fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+D[D]
+A((A))
+C((C))
+B((B))
+E[E]
+F[F]
+G[G]
+C === B
+C === A
+B === E
+B === F
+A === G
+A === D
+style A fill: #ff5c6c
+style F fill: #23a7f2</code></pre>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+A((A))
+B((B))
+E[E]
+C((C))
+D[D]
+F[F]
+G[G]
+A === B
+A === D
+B === E
+B === C
+C === F
+C === G
+style A fill: #ff5c6c
+style G fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+D[D]
+A((A))
+C((C))
+B((B))
+E[E]
+F[F]
+G[G]
+C === B
+C === A
+B === E
+B === F
+A === G
+A === D
+style A fill: #ff5c6c
+style G fill: #23a7f2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4 id="rl-rotation">RL rotation<a class="headerlink" href="#rl-rotation" title="Permanent link">&para;</a></h4>
+<p>使得某结点 node 的 BF 值不符合要求的结点在 node 右结点的左子树上</p>
+<p>普遍情况下：</p>
+<blockquote>
+<p>标红的结点表示 BF 值异常的结点，标蓝的结点表示引起异常的结点</p>
+</blockquote>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">情况 1</label><label for="__tabbed_2_2">情况 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+A((A))
+D[D]
+B((B))
+C((C))
+E[E]
+F[F]
+G[G]
+A === D
+A === B
+B === C
+B === E
+C === F
+C === G
+style A fill: #ff5c6c
+style F fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+D[D]
+A((A))
+C((C))
+B((B))
+E[E]
+F[F]
+G[G]
+C === A
+C === B
+B === G
+B === E
+A === D
+A === F
+style A fill: #ff5c6c
+style F fill: #23a7f2</code></pre>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+A((A))
+D[D]
+B((B))
+C((C))
+E[E]
+F[F]
+G[G]
+A === D
+A === B
+B === C
+B === E
+C === F
+C === G
+style A fill: #ff5c6c
+style G fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+D[D]
+A((A))
+C((C))
+B((B))
+E[E]
+F[F]
+G[G]
+C === A
+C === B
+B === G
+B === E
+A === D
+A === F
+style A fill: #ff5c6c
+style G fill: #23a7f2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<details class="question" open="open">
+<summary>PTA 1.2</summary>
+<p>Insert 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree.  Which one of the following statements is FALSE?</p>
+<p>A.4 is the root<br/>
+B.3 and 7 are siblings<br/>
+C.2 and 6 are siblings<br/>
+D.9 is the parent of 7</p>
+<details class="success">
+<summary>答案</summary>
+<p>B</p>
+<hr />
+<blockquote>
+<p><a href="https://algo.hufeifei.cn/AVLtree.html" target="_blank">AVL树|算法数据结构可视化</a></p>
+</blockquote>
 <p><figure markdown="span">
-    <img alt="Img 1" src="../../img/hospital/hospital_img1.png" width="200" />
+    <img alt="Img 1" src="../../../../img/ADS/ADS_ch1_img1.png" width="600" />
 </figure></p>
-</div>
-</div>
-</div>
-<p>线上挂号相比较线下能够更好挂指定医生的号（但你得非常了解自己需要挂哪个科室）</p>
-<figure>
-    <img alt="Img 2" src="../../img/hospital/hospital_img2.png" width="200" />
-</figure>
-<h3 id="22-线下挂号">2.2 线下挂号<a class="headerlink" href="#22-线下挂号" title="Permanent link">&para;</a></h3>
-<p>不清楚挂什么科室，可以在窗口挂号处或导医台说明哪里不适，询问应该挂什么科</p>
-<p>挂号成功已缴挂号费，普通门诊费用在几元至几十元不等，专家门诊相对高一些</p>
-<h4 id="窗口挂号">窗口挂号<a class="headerlink" href="#窗口挂号" title="Permanent link">&para;</a></h4>
-<p>注意区分收费窗口和挂号窗口</p>
-<h4 id="自助机器挂号">自助机器挂号<a class="headerlink" href="#自助机器挂号" title="Permanent link">&para;</a></h4>
-<h4 id="导医台">导医台<a class="headerlink" href="#导医台" title="Permanent link">&para;</a></h4>
-<p>询问导医台工作人员</p>
-<h2 id="3-诊治">3 诊治<a class="headerlink" href="#3-诊治" title="Permanent link">&para;</a></h2>
-<p>挂号结束后前往前往相应科室诊治，一般情况下挂号单上会显示科室位置。在科室门口需 <strong>签到</strong> 排队，等待叫号。</p>
-<ul>
-<li>线上挂号的出示预约挂号二维码、条形码、身份证</li>
-<li>线下挂号可以使用挂号单</li>
-</ul>
-<figure>
-    <img alt="Img 3" src="../../img/hospital/hospital_img3.png" width="200" />
-</figure>
-<h3 id="诊治过程">诊治过程<a class="headerlink" href="#诊治过程" title="Permanent link">&para;</a></h3>
-<div class="annotate">
-<p>和医生详细描述症状，医生诊治（可能会遇到医生正好带着学生的情况，一打开门很多人，不要不好意思 (1) ）</p>
-</div>
+<p><figure markdown="span">
+    <img alt="Img 2" src="../../../../img/ADS/ADS_ch1_img2.png" width="700" />
+</figure></p>
+</details>
+</details>
+<h3 id="小结论">小结论<a class="headerlink" href="#小结论" title="Permanent link">&para;</a></h3>
+<p>在一个 AVL Tree 上，某节点 <span class="arithmatex">\(n\)</span> 的高度为 h，以此结点为根结点的树，此树的结点数量最小值为 <span class="arithmatex">\(n_h\)</span>，<span class="arithmatex">\(n_h\)</span> 满足：
+$$
+n_h = F_{h+3} - 1, h\geqslant 0
+$$
+<span class="arithmatex">\(F_i\)</span> 是斐波那契数列，<span class="arithmatex">\(F_0 = 0,\ F_1 = 1,\ F_i = F_{i-1} + F_{i-2}\)</span></p>
+<p>例如，<span class="arithmatex">\(n_0 = 1,\ n_1 = 2\)</span></p>
+<details class="question" open="open">
+<summary>PTA 1.1</summary>
+<p>If the depth of an AVL tree is 6 (the depth of an empty tree is defined to be -1), then the minimum possible number of nodes in this tree is:</p>
+<p>A.13<br/>
+B.17<br/>
+C.20<br/>
+D.33</p>
+<details class="success">
+<summary>答案</summary>
+<p>D</p>
+<hr />
+<p><span class="arithmatex">\(n_6 = F_9 - 1 = 34 -1 = 33\)</span></p>
+</details>
+</details>
+<h2 id="2-splay-trees">2 Splay Trees<a class="headerlink" href="#2-splay-trees" title="Permanent link">&para;</a></h2>
+<h3 id="splay-操作">Splay 操作<a class="headerlink" href="#splay-操作" title="Permanent link">&para;</a></h3>
+<p>对于任意一个节点 X，记其父节点为 P，其父节点的父节点为 G</p>
+<p>当访问到某点 X 时：</p>
 <ol>
-<li>特别是中医，他什么都知道都知道道道道……</li>
+<li>如果 P 是根节点，则直接进行一次 Single rotation，将 X 转到根节点</li>
+<li>如果 P 不是根节点<ol>
+<li>当情况为 LR / RL 时，进行一次 LR rotation 或 RL rotation，称之为 zig-zag</li>
+<li>当情况为 LL / RR 时，进行两次 Single Rotation，称之为 zig-zig</li>
 </ol>
-<h2 id="4-做检查">4 做检查<a class="headerlink" href="#4-做检查" title="Permanent link">&para;</a></h2>
-<p>诊治后可能需要检查，例如验血、拍片子等</p>
-<p>拿着医生给的单子前往缴费处缴费，缴费可在窗口也可在机器进行。缴费完成后前往检查科室做检查，检查结果出来后拿着检查报告再次前往诊室，将检查结果拿给医生</p>
-<h2 id="5-取药">5 取药<a class="headerlink" href="#5-取药" title="Permanent link">&para;</a></h2>
-<ol>
-<li>医生诊治，开药</li>
-<li>缴费</li>
-<li>取药窗口 <strong>签到</strong> 取药</li>
-<li>如需输液取药后前往输液室</li>
+</li>
+<li>不断对 X 进行 Splay 操作，直到 X 成为根节点</li>
 </ol>
-<div class="admonition info">
-<p class="admonition-title">中医取药</p>
-<p>取药回家自己煎，也可医院代煎，一般需要次日取药</p>
+<h4 id="zig-zig">zig-zig<a class="headerlink" href="#zig-zig" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">情况 1</label><label for="__tabbed_3_2">情况 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+G((G))
+P((P))
+D[D]
+X((X))
+C[C]
+A[A]
+B[B]
+G === P
+G === D
+P === X
+P === C
+X === A
+X === B 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+B[B]
+G((G))
+A[A]
+P((P))
+D[D]
+X((X))
+C[C]
+X === A
+X === P
+P === B
+P === G
+G === C
+G === D
+style X fill: #23a7f2</code></pre>
 </div>
+</div>
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+G((G))
+A[A]
+P((P))
+D[D]
+B[B]
+X((X))
+C[C]
+G === A
+G === P
+P === B
+P === X
+X === C
+X === D 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+B[B]
+G((G))
+A[A]
+P((P))
+D[D]
+X((X))
+C[C]
+X === P
+X === D
+P === G
+P === C
+G === A
+G === B
+style X fill: #23a7f2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4 id="zig-zag">zig-zag<a class="headerlink" href="#zig-zag" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">情况 1</label><label for="__tabbed_4_2">情况 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+G((G))
+P((P))
+D[D]
+A[A]
+X((X))
+B[B]
+C[C]
+G === P
+G === D
+P === A
+P === X
+X === B
+X === C 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+A[A]
+B[B]
+P((P))
+G((G))
+C[C]
+D[D]
+X((X))
+X === P
+X === G
+P === A
+P === B
+G === C
+G === D
+style X fill: #23a7f2</code></pre>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+G((G))
+A[A]
+P((P))
+X((X))
+D[D]
+B[B]
+C[C]
+G === P
+G === A
+P === D
+P === X
+X === B
+X === C 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+A[A]
+B[B]
+G((G))
+P((P))
+C[C]
+D[D]
+X((X))
+X === G
+X === P
+P === C
+P === D
+G === A
+G === B
+style X fill: #23a7f2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<details class="question" open="open">
+<summary>PTA 1.3</summary>
+<p>For the result of accessing the keys 3, 9, 1, 5 in order in the splay tree in the following figure, which one of the following statements is FALSE?</p>
+<p><figure markdown="span">
+    <img alt="Img 3" src="../../../../img/ADS/ADS_ch1_img3.png" width="400" />
+</figure></p>
+<p>A.5 is the root<br/>
+B.1 and 9 are siblings<br/>
+C.6 and 10 are siblings<br/>
+D.3 is the parent of 4</p>
+<details class="success">
+<summary>答案</summary>
+<p>D</p>
+<hr />
+<blockquote>
+<p>为使图呈现二叉树效果，必须画出 NULL 结点，很抱歉影响到观感</p>
+</blockquote>
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+a === b
+a === c
+b === d
+b === e
+d === g
+d === n
+e === o
+e === h
+h === j
+h === k
+k === l
+k === m
+c === p
+c === f
+f === q((NULL))
+f === i
+style b fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+b === d
+b === a
+d === g
+d === n
+a === e
+a === c
+e === o
+e === h
+h === j
+h === k
+k === l
+k === m
+c === p
+c === f
+f === q((NULL))
+f === i
+style b fill: #23a7f2
+style m fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((3)) === b((2))
+a === c((10))
+b === d((1))
+b === e((NULL))
+c === f((4))
+c === g((11))
+f === h((NULL))
+f === i((9))
+i === j((8))
+i === k((NULL))
+j === l((6))
+j === m((NULL))
+l === n((5))
+l === o((7))
+g === p((NULL))
+g === q((12))
+q === r((NULL))
+q === s((13))
+style i fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+b === d
+b === m
+d === g
+d === n
+m === e
+m === a
+e === o
+e === k
+k === h
+k === p
+h === j
+h === l
+a === q((NULL))
+a === c
+c === r((NULL))
+c === f
+f === s((NULL))
+f === i
+style m fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+m === b
+m === a
+b === d
+b === e
+d === g
+d === n
+e === o
+e === k
+k === h
+k === p
+h === j
+h === l
+a === q((NULL))
+a === c
+c === r((NULL))
+c === f
+f === s((NULL))
+f === i
+style m fill: #23a7f2
+style g fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+m === g
+m === a
+g === n
+g === d
+d === o
+d === b
+b === p
+b === e
+e === r
+e === k
+k === h
+k === s
+h === j
+h === l
+a === q
+a === c
+c === t
+c === f
+f === u
+f === i
+style g fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+g === n
+g === m
+m === d
+m === a
+d === o
+d === b
+b === p
+b === e
+e === r
+e === k
+k === h
+k === s
+h === j
+h === l
+a === q
+a === c
+c === t
+c === f
+f === u
+f === i
+style g fill: #23a7f2
+style j fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+g === n
+g === m
+m === d
+m === a
+d === o
+d === b
+b === p
+b === e
+e === r
+e === j
+j === s
+j === h
+h === t
+h === k
+k === l
+k === u
+a === q
+a === c
+c === v((NULL))
+c === f
+f === w((NULL))
+f === i
+style j fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+g === n
+g === m
+m === d
+m === a
+d === o
+d === j
+j === e
+j === h
+e === b
+e === p
+h === q
+h === k
+k === l
+k === r
+a === s
+a === c
+c === t
+c === f
+f === u
+f === i
+style j fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+g === n
+g === j
+j === d
+j === m
+d === o
+d === e
+e === b
+e === p
+h === q
+h === k
+m === h
+m === a
+k === l
+k === r
+a === s
+a === c
+c === t
+c === f
+f === u
+f === i
+style j fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+a((10))
+b((3))
+c((11))
+d((2))
+e((4))
+f((12))
+g((1))
+h((6))
+i((13))
+j((5))
+k((8))
+l((7))
+m((9))
+n((NULL))
+o((NULL))
+p((NULL))
+q((NULL))
+r((NULL))
+s((NULL))
+t((NULL))
+u((NULL))
+j === g
+j === m
+g === n
+g === d
+d === o
+d === e
+e === b
+e === p
+m === h
+m === a
+h === q
+h === k
+k === l
+k === r
+a === s
+a === c
+c === t
+c === f
+f === u
+f === i
+style j fill: #23a7f2</code></pre>
+</div>
+</details>
+</details>
 
 
 
@@ -2387,7 +3248,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年10月19日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月3日</span>
   </span>
 
     
@@ -2397,7 +3258,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年10月13日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月3日</span>
   </span>
 
     
@@ -2495,7 +3356,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 大学生生活常识">
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: 高级数据结构与算法分析">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2505,20 +3366,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                大学生生活常识
+                高级数据结构与算法分析
               </div>
             </div>
           </a>
         
         
           
-          <a href="../medical_insurance/" class="md-footer__link md-footer__link--next" aria-label="下一页: 医保">
+          <a href="../ch7/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 Divide and Conquer">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                医保
+                7 Divide and Conquer
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2567,12 +3428,12 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../../assets/javascripts/katex.js"></script>
+        <script src="../../../../assets/javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
