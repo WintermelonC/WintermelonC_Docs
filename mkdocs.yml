@@ -65,6 +65,18 @@ nav:
     - 医保: common_sense/medical_insurance.md
     - 如何乘坐交通工具: common_sense/transportation.md
     - 租房流程及注意事项: common_sense/rent.md
+  - Adobe:
+    - adobe/index.md
+    - Ps:
+      - adobe/ps/index.md
+    - Pr:
+      - adobe/pr/index.md
+      - 插件: adobe/pr/plugins.md
+    - Ae:
+      - adobe/ae/index.md
+      - 其他:
+        - 物体阴影: adobe/ae/other/shadow.md
+      - 插件: adobe/ae/plugins.md
 
 not_in_nav: |
   /file/*.md
