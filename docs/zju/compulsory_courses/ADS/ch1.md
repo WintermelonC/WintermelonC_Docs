@@ -126,26 +126,26 @@ C[C]
 D[D]
 E[E]
 A === B
-A === C
+A === E
+B === C
 B === D
-B === E
 style A fill: #ff5c6c
-style D fill: #23a7f2
+style C fill: #23a7f2
 ```
 
 ```mermaid
 graph TD;
 D[D]
-A((A))
 C[C]
+A((A))
 B((B))
 E[E]
-B === D
+B === C
 B === A
+A === D
 A === E
-A === C
 style A fill: #ff5c6c
-style D fill: #23a7f2
+style C fill: #23a7f2
 ```
 
 </div>
@@ -167,18 +167,18 @@ style D fill: #23a7f2
     A((A))
     B((B))
     E[E]
-    C((C))
     D[D]
+    C((C))
     F[F]
     G[G]
     A === B
-    A === D
-    B === E
+    A === G
+    B === D
     B === C
+    C === E
     C === F
-    C === G
     style A fill: #ff5c6c
-    style F fill: #23a7f2
+    style E fill: #23a7f2
     ```
     
     ```mermaid
@@ -192,12 +192,12 @@ style D fill: #23a7f2
     G[G]
     C === B
     C === A
+    B === D
     B === E
-    B === F
+    A === F
     A === G
-    A === D
     style A fill: #ff5c6c
-    style F fill: #23a7f2
+    style E fill: #23a7f2
     ```
     
     </div>
@@ -211,18 +211,18 @@ style D fill: #23a7f2
     A((A))
     B((B))
     E[E]
-    C((C))
     D[D]
+    C((C))
     F[F]
     G[G]
     A === B
-    A === D
-    B === E
+    A === G
+    B === D
     B === C
+    C === E
     C === F
-    C === G
     style A fill: #ff5c6c
-    style G fill: #23a7f2
+    style F fill: #23a7f2
     ```
     
     ```mermaid
@@ -236,12 +236,12 @@ style D fill: #23a7f2
     G[G]
     C === B
     C === A
+    B === D
     B === E
-    B === F
+    A === F
     A === G
-    A === D
     style A fill: #ff5c6c
-    style G fill: #23a7f2
+    style F fill: #23a7f2
     ```
     
     </div>
@@ -270,11 +270,11 @@ style D fill: #23a7f2
     A === D
     A === B
     B === C
-    B === E
+    B === G
+    C === E
     C === F
-    C === G
     style A fill: #ff5c6c
-    style F fill: #23a7f2
+    style E fill: #23a7f2
     ```
     
     ```mermaid
@@ -288,12 +288,12 @@ style D fill: #23a7f2
     G[G]
     C === A
     C === B
+    B === F
     B === G
-    B === E
     A === D
-    A === F
+    A === E
     style A fill: #ff5c6c
-    style F fill: #23a7f2
+    style E fill: #23a7f2
     ```
     
     </div>
@@ -314,11 +314,11 @@ style D fill: #23a7f2
     A === D
     A === B
     B === C
-    B === E
+    B === G
+    C === E
     C === F
-    C === G
     style A fill: #ff5c6c
-    style G fill: #23a7f2
+    style F fill: #23a7f2
     ```
     
     ```mermaid
@@ -332,12 +332,12 @@ style D fill: #23a7f2
     G[G]
     C === A
     C === B
+    B === F
     B === G
-    B === E
     A === D
-    A === F
+    A === E
     style A fill: #ff5c6c
-    style G fill: #23a7f2
+    style F fill: #23a7f2
     ```
     
     </div>

@@ -7,3 +7,7 @@
 ## [大学生生活常识](./common_sense/index.md)
 
 ^^方山厨子^^ 老师[大学生生活常识课](https://www.bilibili.com/video/BV1gVsSeyEAv/){:target="_blank"}的课程笔记
+
+## [Adobe](./adobe/index.md)
+
+你可以找到 Adobe 软件的一些使用教程和小技巧

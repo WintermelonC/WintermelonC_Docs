@@ -24,7 +24,7 @@ xt老师 (1)
 <table>
   <thead>
     <tr>
-      <th style="text-align: center; vertical-align: middle;">实验名称</th>
+      <th id="tab-both-mid">实验名称</th>
       <th style="text-align: center; vertical-align: middle;">指导教师</th>
       <th style="text-align: center; vertical-align: middle;">操作难易程度</th>
       <th style="text-align: center; vertical-align: middle;">说明</th>
@@ -36,7 +36,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">万用表的设计</td>
       <td style="text-align: center; vertical-align: middle;">pbl老师</td>
-      <td style="text-align: center; vertical-align: middle;">简单<br/>费时少</td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td></td>
       <td style="text-align: center; vertical-align: middle;">98</td>
       <td></td>
@@ -44,7 +44,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">交流电路功率因数实验<br/>▲弗兰克赫兹实验</td>
       <td style="text-align: center; vertical-align: middle;">lyh老师</td>
-      <td style="text-align: center; vertical-align: middle;">简单<br/>费时少</td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td style="vertical-align: middle;">1. 同时做两个实验<br/>2. 两份实验报告要分开写<br/>3. 交流电路老师已经搭好了，只需要按开关，记录数据即可</td>
       <td style="text-align: center; vertical-align: middle;">91</td>
       <td style="vertical-align: middle;">应该是【数据处理与结果】这部分扣分了</td>
@@ -76,7 +76,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">密立根油滴实验</td>
       <td style="text-align: center; vertical-align: middle;">pbl老师</td>
-      <td style="text-align: center; vertical-align: middle;">简单<br/>费时少</td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td>数据先会用一个软件进行处理，软件实验室的电脑上有</td>
       <td style="text-align: center; vertical-align: middle;">92</td>
       <td></td>
@@ -92,7 +92,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">▲普朗克常数</td>
       <td style="text-align: center; vertical-align: middle;">lyh老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td></td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
