@@ -15,6 +15,8 @@ xt老师 (1)
 
 1. 实际上做不同的实验，授课老师是不同的
 
+实验报告如果要附纸的话，用胶棒之类的把附纸粘在实验报告的相应位置
+
 ### 课程须知
 
 <embed src="../../../file/phy_exp/phy_exp_doc1.pdf" type="application/pdf" width="100%" height="500">
