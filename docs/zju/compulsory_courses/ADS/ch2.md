@@ -38,7 +38,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
     三红变色，二红旋转
 
-==总是将新结点插入到树的底部，且颜色为 red==
+==总是将新结点插入到树的底部，且颜色为 red。若 3 种 case遇到 z 为整棵树的根结点，则将 z 变为黑色==
 
 我们设新结点为 z，z.p 表示 z 的父结点
 
@@ -53,6 +53,8 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 1. 将 z.p 和 y 变为黑色，z.p.p 变为红色
 2. 将 z.p.p 作为新结点 z
 
+进入 case 1 / case 2 / case 3
+
 #### case 2 z 的叔结点 y 是黑色的且 z 处于 zig-zag 状态
 
 #### case 3 z 的叔结点 y 是黑色的且 z 处于 zig-zig 状态 （二红旋转）
@@ -65,6 +67,31 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 1. case 2：可以直接 double rotation
 2. case 3：single rotation
+
+???+ question "PTA 2.1"
+
+    In the red-black tree that results after successively inserting the keys 41; 38; 31; 12; 19; 8 into an initially empty red-black tree, which one of the following statements is FALSE?
+
+    A. 38 is the root<br/>
+    B. 19 and 41 are siblings, and they are both red<br/>
+    C. 12 and 31 are siblings, and they are both black<br/>
+    D. 8 is red
+
+    ??? success "答案"
+
+        B
+
+        ---
+
+        > 具体过程动画模拟：[Red/Black Tree Visualizations](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html){:target="_blank"}
+
+        <figure markdown="span">
+            ![Img 9](../../../img/ADS/ADS_ch2_img9.png){ width="500" }
+        </figure>
+
+        <figure markdown="span">
+            ![Img 10](../../../img/ADS/ADS_ch2_img10.png){ width="500" }
+        </figure>
 
 ### deletion
 
@@ -94,7 +121,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 **双黑处理**
 
-==此时 x 一定为双黑结点，若四种 case 遇到 x 为整棵树的根结点，则直接将 x 褪去一重黑色，变为黒结点即可==
+==此时 x 一定为双黑结点.若 4 种 case 遇到 x 为整棵树的根结点，则直接将 x 褪去一重黑色，变为黒结点即可==
 
 !!! tip "双黑处理口诀"
 
@@ -158,3 +185,146 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 1. w，远子，x.p 均变黑
 2. w 结点旋转
+
+???+ question "PTA 2.2"
+
+    After deleting 15 from the red-black tree given in the figure, which one of the following statements must be FALSE?
+    
+    <figure markdown="span">
+        ![Img 11](../../../img/ADS/ADS_ch2_img11.png){ width="200" }
+    </figure>
+
+    A. 11 is the parent of 17, and 11 is black<br/>
+    B. 17 is the parent of 11, and 11 is red<br/>
+    C. 11 is the parent of 17, and 11 is red<br/>
+    D. 17 is the parent of 11, and 17 is black
+
+    ??? success "答案"
+
+        C
+
+        ---
+
+        这道题就是上文所说的两种找法都考
+
+        按照上文的规则：x degree 为 2
+
+        <div class="grid" style="align-items: center;" markdown>
+
+        <div>
+
+        1.如果找右子树的最小：
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((17))
+        d((5))
+        e((11))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === e
+        c === g[NIL]
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #9f9f9f
+        style c fill: #fe0000
+        style d fill: #fe0000
+        ```
+
+        </div>
+        <div>
+
+        2.如果找左子树的最大：
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((11))
+        d((5))
+        e((17))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === g[NIL]
+        c === e
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #9f9f9f
+        style c fill: #fe0000
+        style d fill: #fe0000
+        ```
+
+        </div>
+
+        </div>
+
+        ---
+
+        但这道题所用的规则是：
+
+        <div class="grid" style="align-items: center;" markdown>
+
+        <div>
+
+        1.如果找右子树的最小：
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((17))
+        d((5))
+        e((11))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === e
+        c === g[NIL]
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #fe0000
+        style c fill: #9f9f9f
+        style d fill: #fe0000
+        ```
+
+        B、D 正确
+
+        </div>
+        <div>
+
+        2.如果找左子树的最大：
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((11))
+        d((5))
+        e((17))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === g[NIL]
+        c === e
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #fe0000
+        style c fill: #9f9f9f
+        style d fill: #fe0000
+        ```
+    
+        A 正确、C 错误
+
+        </div>
+
+        </div>
+
+        > 上文的规则是万能规则，只不过这棵树结构简单，用的规则不一样而已

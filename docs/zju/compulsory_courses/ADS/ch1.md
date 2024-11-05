@@ -357,7 +357,7 @@ style C fill: #23a7f2
 
         ---
         
-        > [AVL树|算法数据结构可视化](https://algo.hufeifei.cn/AVLtree.html){:target="_blank"}
+        > 具体过程动画模拟：[AVL树|算法数据结构可视化](https://algo.hufeifei.cn/AVLtree.html){:target="_blank"}
 
         <figure markdown="span">
             ![Img 1](../../../img/ADS/ADS_ch1_img1.png){ width="600" }
