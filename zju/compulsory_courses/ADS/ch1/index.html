@@ -18,7 +18,7 @@
         <link rel="prev" href="../">
       
       
-        <link rel="next" href="../ch7/">
+        <link rel="next" href="../ch2/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>1 AVL Trees and Splay Trees - WintermelonC Docs</title>
+        <title>1 AVL Trees, Splay Trees and Amortized Analysis - WintermelonC Docs</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#1-avl-trees-and-splay-trees" class="md-skip">
+        <a href="#1-avl-trees-splay-trees-and-amortized-analysis" class="md-skip">
           跳转至
         </a>
       
@@ -121,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              1 AVL Trees and Splay Trees
+              1 AVL Trees, Splay Trees and Amortized Analysis
             
           </span>
         </div>
@@ -1384,6 +1384,8 @@
       
         
       
+        
+      
     
     
       
@@ -1447,7 +1449,7 @@
           
   
   <span class="md-ellipsis">
-    1 AVL Trees and Splay Trees
+    1 AVL Trees, Splay Trees and Amortized Analysis
   </span>
   
 
@@ -1458,7 +1460,7 @@
         
   
   <span class="md-ellipsis">
-    1 AVL Trees and Splay Trees
+    1 AVL Trees, Splay Trees and Amortized Analysis
   </span>
   
 
@@ -1584,6 +1586,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#zig" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#zig-zig" class="md-nav__link">
     <span class="md-ellipsis">
       zig-zig
@@ -1611,10 +1622,115 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-amortized-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Amortized Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Amortized Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-aggregate-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 aggregate method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-accounting-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 accounting method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-potential-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 potential method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#splay-trees-摊还分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splay Trees 摊还分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Splay Trees 摊还分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zig_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zig-zig_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zig-zag_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zag
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Red-Black Trees and B+ Trees
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2640,6 +2756,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#zig" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#zig-zig" class="md-nav__link">
     <span class="md-ellipsis">
       zig-zig
@@ -2650,6 +2775,90 @@
         
           <li class="md-nav__item">
   <a href="#zig-zag" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zag
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-amortized-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Amortized Analysis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Amortized Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-aggregate-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 aggregate method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-accounting-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 accounting method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-potential-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 potential method
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#splay-trees-摊还分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splay Trees 摊还分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Splay Trees 摊还分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#zig_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zig-zig_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      zig-zig
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zig-zag_1" class="md-nav__link">
     <span class="md-ellipsis">
       zig-zag
     </span>
@@ -2698,11 +2907,11 @@
   
 
 
-<h1 id="1-avl-trees-and-splay-trees">1 AVL Trees and Splay Trees<a class="headerlink" href="#1-avl-trees-and-splay-trees" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>此文档正在更新中……</p>
-</div>
+<h1 id="1-avl-trees-splay-trees-and-amortized-analysis">1 AVL Trees, Splay Trees and Amortized Analysis<a class="headerlink" href="#1-avl-trees-splay-trees-and-amortized-analysis" title="Permanent link">&para;</a></h1>
+<!-- !!! tip "说明"
+
+    此文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
@@ -2978,7 +3187,7 @@ style F fill: #23a7f2</code></pre>
 </div>
 </div>
 <details class="question" open="open">
-<summary>PTA 1.2</summary>
+<summary>PTA 1.1</summary>
 <p>Insert 2, 1, 4, 5, 9, 3, 6, 7 into an initially empty AVL tree.  Which one of the following statements is FALSE?</p>
 <p>A.4 is the root<br/>
 B.3 and 7 are siblings<br/>
@@ -3007,7 +3216,7 @@ $$
 <span class="arithmatex">\(F_i\)</span> 是斐波那契数列，<span class="arithmatex">\(F_0 = 0,\ F_1 = 1,\ F_i = F_{i-1} + F_{i-2}\)</span></p>
 <p>例如，<span class="arithmatex">\(n_0 = 1,\ n_1 = 2\)</span></p>
 <details class="question" open="open">
-<summary>PTA 1.1</summary>
+<summary>PTA 1.3</summary>
 <p>If the depth of an AVL tree is 6 (the depth of an empty tree is defined to be -1), then the minimum possible number of nodes in this tree is:</p>
 <p>A.13<br/>
 B.17<br/>
@@ -3033,8 +3242,65 @@ D.33</p>
 </li>
 <li>不断对 X 进行 Splay 操作，直到 X 成为根节点</li>
 </ol>
-<h4 id="zig-zig">zig-zig<a class="headerlink" href="#zig-zig" title="Permanent link">&para;</a></h4>
+<h4 id="zig">zig<a class="headerlink" href="#zig" title="Permanent link">&para;</a></h4>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">情况 1</label><label for="__tabbed_3_2">情况 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+P((P))
+X((X))
+C[C]
+A[A]
+B[B]
+P === X
+P === C
+X === A
+X === B 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+B[B]
+A[A]
+P((P))
+X((X))
+C[C]
+X === A
+X === P
+P === B
+P === C
+style X fill: #23a7f2</code></pre>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="grid" style="align-items: center;" markdown>
+<pre class="mermaid"><code>graph TD;
+P((P))
+B[B]
+C[C]
+A[A]
+X((X))
+P === A
+P === X
+X === B
+X === C
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+A[A]
+B[B]
+P((P))
+X((X))
+C[C]
+X === P
+X === C
+P === A
+P === B
+style X fill: #23a7f2</code></pre>
+</div>
+</div>
+</div>
+</div>
+<h4 id="zig-zig">zig-zig<a class="headerlink" href="#zig-zig" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">情况 1</label><label for="__tabbed_4_2">情况 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="grid" style="align-items: center;" markdown>
@@ -3107,7 +3373,7 @@ style X fill: #23a7f2</code></pre>
 </div>
 </div>
 <h4 id="zig-zag">zig-zag<a class="headerlink" href="#zig-zag" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">情况 1</label><label for="__tabbed_4_2">情况 2</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:2"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">情况 1</label><label for="__tabbed_5_2">情况 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <div class="grid" style="align-items: center;" markdown>
@@ -3180,7 +3446,7 @@ style X fill: #23a7f2</code></pre>
 </div>
 </div>
 <details class="question" open="open">
-<summary>PTA 1.3</summary>
+<summary>PTA 1.2</summary>
 <p>For the result of accessing the keys 3, 9, 1, 5 in order in the splay tree in the following figure, which one of the following statements is FALSE?</p>
 <p><figure markdown="span">
     <img alt="Img 3" src="../../../../img/ADS/ADS_ch1_img3.png" width="400" />
@@ -3623,6 +3889,211 @@ style j fill: #23a7f2</code></pre>
 </div>
 </details>
 </details>
+<h2 id="3-amortized-analysis">3 Amortized Analysis<a class="headerlink" href="#3-amortized-analysis" title="Permanent link">&para;</a></h2>
+<h3 id="31-aggregate-method">3.1 aggregate method<a class="headerlink" href="#31-aggregate-method" title="Permanent link">&para;</a></h3>
+<p>计算总的 worst 时间 <span class="arithmatex">\(T(n)\)</span>，那么摊还时间就是 <span class="arithmatex">\(\frac{T(n)}{n}\)</span></p>
+<h3 id="32-accounting-method">3.2 accounting method<a class="headerlink" href="#32-accounting-method" title="Permanent link">&para;</a></h3>
+<p>某些操作的 <span class="arithmatex">\(\hat{c_i}\)</span> 大于 <span class="arithmatex">\(c_i\)</span>，大于的部分当作 credit，某些操作的 <span class="arithmatex">\(\hat{c_i}\)</span> 小于 <span class="arithmatex">\(c_i\)</span>，小于的部分用于偿还 credit</p>
+<figure>
+    <img alt="Img 4" src="../../../../img/ADS/ADS_ch1_img4.png" width="600" />
+</figure>
+<h3 id="33-potential-method">3.3 potential method<a class="headerlink" href="#33-potential-method" title="Permanent link">&para;</a></h3>
+<p>定义势能函数 <span class="arithmatex">\(\Phi\)</span>，势能函数满足：</p>
+<ol>
+<li>势能函数反映了数据结构的“复杂度” </li>
+<li><span class="arithmatex">\(\Phi_{start} = 0\)</span></li>
+<li><span class="arithmatex">\(\Phi \geqslant 0\)</span></li>
+</ol>
+<div class="arithmatex">\[
+\hat{c_i} = c_i + k · \Delta\Phi
+\]</div>
+<p>其中，<span class="arithmatex">\(\Delta\Phi = \Phi_{after} - \Phi_{before}\)</span></p>
+<p>普遍情况下，一个好的势能函数应该总是在操作序列开始时假设它的最小值</p>
+<div class="arithmatex">\[
+\sum \hat{c_i} = \sum (c_i + k · \Delta\Phi)\\
+\kern3.6em = \sum c_i + k · \sum \Delta\Phi\\
+\kern6.6em = \sum c_i + k · (\Phi_{end} - \Phi_{start})\\
+\kern-1.8em \geqslant \sum c_i
+\]</div>
+<details class="question" open="open">
+<summary>PTA 1.4</summary>
+<p>When doing amortized analysis, which one of the following statements is FALSE?</p>
+<p>A. Aggregate analysis shows that for all n, a sequence of n operations takes worst-case time <span class="arithmatex">\(T(n)\)</span> in total.  Then the amortized cost per operation is therefore <span class="arithmatex">\(\frac{T(n)}{n}\)</span> <br/>
+B. For potential method, a good potential function should always assume its maximum at the start of the sequence<br/>
+C. For accounting method, when an operation's amortized cost exceeds its actual cost, we save the difference as credit to pay for later operations whose amortized cost is less than their actual cost<br/>
+D. The difference between aggregate analysis and accounting method is that the later one assumes that the amortized costs of the operations may differ from each other</p>
+<details class="success">
+<summary>答案</summary>
+<p>B</p>
+<hr />
+<p>这 4 个选项上文均有提到，B 选项 maximum 应为 minimum</p>
+<p>普遍情况下，一个好的势能函数应该总是在操作序列开始时假设它的最小值</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 1.5</summary>
+<p>Consider the following buffer management problem. Initially the buffer size (the number of blocks) is one. Each block can accommodate exactly one item. As soon as a new item arrives, check if there is an available block. If yes, put the item into the block, induced a cost of one. Otherwise, the buffer size is doubled, and then the item is able to put into. Moreover, the old items have to  be moved into the new buffer so it costs k+1 to make this insertion, where k is the number of old items. Clearly, if there are N items, the worst-case cost for one insertion can be <span class="arithmatex">\(Ω(N)\)</span>.  To show that the average cost is <span class="arithmatex">\(O(1)\)</span>, let us turn to the amortized analysis. To simplify the problem, assume that the buffer is full after all the N items are placed. Which of the following potential functions works?</p>
+<p>A. The number of items currently in the buffer<br/>
+B. The opposite number of items currently in the buffer<br/>
+C. The number of available blocks currently in the buffer<br/>
+D. The opposite number of available blocks in the buffer</p>
+<details class="success">
+<summary>答案</summary>
+<p>D</p>
+<hr />
+<p>正常分析时，应考虑两种情况，insert 前 buffer 没满和 buffer 满了，题目说为了简化问题，只考虑 buffer 满了的情况</p>
+<p><strong>A选项：</strong></p>
+<p>设 <span class="arithmatex">\(k\)</span> 是 insert 前 buffer 中 item 的数量</p>
+<p><span class="arithmatex">\(\hat{c_i} = c_i + \Phi_i - \Phi_{i-1} = k + 1 + k + 1 - k = k + 2\)</span></p>
+<p><strong>B选项：</strong></p>
+<p><span class="arithmatex">\(\hat{c_i} = k + 1 - (k + 1) - (-k) = k\)</span></p>
+<p><strong>C选项：</strong></p>
+<p><span class="arithmatex">\(\hat{c_i} = k + 1 + k - 1 - 0 = 2k\)</span></p>
+<p><strong>D选项：</strong></p>
+<p><span class="arithmatex">\(\hat{c_i} = k + 1 -(k - 1) - 0 = 2\)</span></p>
+<hr />
+<p>只有 D 选项最后是 <span class="arithmatex">\(O(1)\)</span></p>
+</details>
+</details>
+<h3 id="splay-trees-摊还分析">Splay Trees 摊还分析<a class="headerlink" href="#splay-trees-摊还分析" title="Permanent link">&para;</a></h3>
+<p>结论：在一个以 T 为根的树上 splay 一个结点 X 的摊还时间为
+$$
+T_{amortized time} \leqslant 3(R(T) - R(X)) + 1 = O(\log N)
+$$
+定义势能函数 <span class="arithmatex">\(\Phi(T) = \sum\limits_{i \in T} Rank(i)\)</span>，其中 <span class="arithmatex">\(Rank(i) = \log S(i)\)</span>，<span class="arithmatex">\(S(i)\)</span> 是 i 结点的 descendants 总个数（包括 i 自己）</p>
+<div class="admonition tip">
+<p class="admonition-title">引理</p>
+<p>若 <span class="arithmatex">\(a + b \leqslant c,\ a &gt; 0,\ b &gt; 0\)</span>，则：</p>
+<div class="arithmatex">\[
+\log a + \log b \leqslant 2\log c - 2
+\]</div>
+</div>
+<h4 id="zig_1">zig<a class="headerlink" href="#zig_1" title="Permanent link">&para;</a></h4>
+<div class="grid" style="align-items: center;">
+<pre class="mermaid"><code>graph TD;
+P((P))
+X((X))
+C[C]
+A[A]
+B[B]
+P === X
+P === C
+X === A
+X === B 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+B[B]
+A[A]
+P((P))
+X((X))
+C[C]
+X === A
+X === P
+P === B
+P === C
+style X fill: #23a7f2</code></pre>
+</div>
+<blockquote>
+<p><span class="arithmatex">\(R_1(i)\)</span> 表示 splay 前的结点 i 的 Rank， <span class="arithmatex">\(R_2(i)\)</span> 表示 splay 后的结点 i 的 Rank</p>
+</blockquote>
+<p><span class="arithmatex">\(\hat{c_i} = 1 + R_2 (X) + R_2 (P) - R_1 (X) - R_1 (P)\)</span></p>
+<p><span class="arithmatex">\(\because R_1 (P)\geqslant R_2 (P)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 1 + R_2 (X) - R_1 (X)\)</span></p>
+<p><span class="arithmatex">\(\because R_2(X) \geqslant R_1(X)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 1 + 3(R_2 (X) - R_1 (X))\)</span></p>
+<h4 id="zig-zig_1">zig-zig<a class="headerlink" href="#zig-zig_1" title="Permanent link">&para;</a></h4>
+<div class="grid" style="align-items: center;">
+<pre class="mermaid"><code>graph TD;
+G((G))
+P((P))
+D[D]
+X((X))
+C[C]
+A[A]
+B[B]
+G === P
+G === D
+P === X
+P === C
+X === A
+X === B 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+B[B]
+G((G))
+A[A]
+P((P))
+D[D]
+X((X))
+C[C]
+X === A
+X === P
+P === B
+P === G
+G === C
+G === D
+style X fill: #23a7f2</code></pre>
+</div>
+<p><span class="arithmatex">\(\hat{c_i} = 2 + R_2(X) + R_2(P) + R_2(G) - R_1(X) - R_1(P) - R_1(G)\)</span></p>
+<p><span class="arithmatex">\(\because R_1(G) = R_2(X)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} = 2 + R_2(P) + R_2(G) - R_1(X) - R_1(P)\)</span></p>
+<p><span class="arithmatex">\(\because R_1(X) \leqslant R_1(P)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 2 + R_2(P) + R_2(G) - 2R_1(X)\)</span></p>
+<p><span class="arithmatex">\(\because R_2(X) \geqslant R_2(P)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 2 + R_2(X) + R_2(G) - 2R_1(X) = 2 + R_2(X) + R_2(G) + R_1(X) - 3R_1(X)\)</span></p>
+<p>根据上面的引理：</p>
+<p><span class="arithmatex">\(\because S_2(G) + S_1(X) \leqslant S_2(X)\)</span></p>
+<p><span class="arithmatex">\(\therefore R_2(G) + R_1(X) \leqslant 2R_2(X) - 2\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 3R_2(X) - 3R_1(X) = 3(R_2(X) - R_1(X)) \leqslant 1 + 3(R_2 (X) - R_1 (X))\)</span></p>
+<h4 id="zig-zag_1">zig-zag<a class="headerlink" href="#zig-zag_1" title="Permanent link">&para;</a></h4>
+<div class="grid" style="align-items: center;">
+<pre class="mermaid"><code>graph TD;
+G((G))
+P((P))
+D[D]
+A[A]
+X((X))
+B[B]
+C[C]
+G === P
+G === D
+P === A
+P === X
+X === B
+X === C 
+style X fill: #23a7f2</code></pre>
+<pre class="mermaid"><code>graph TD;
+A[A]
+B[B]
+P((P))
+G((G))
+C[C]
+D[D]
+X((X))
+X === P
+X === G
+P === A
+P === B
+G === C
+G === D
+style X fill: #23a7f2</code></pre>
+</div>
+<p><span class="arithmatex">\(\hat{c_i} = 2 + R_2(X) + R_2(P) + R_2(G) - R_1(X) - R_1(P) - R_1(G)\)</span></p>
+<p><span class="arithmatex">\(\because R_2(X) = R_1(G)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} = 2 + R_2(P) + R_2(G) - R_1(X) - R_1(P)\)</span></p>
+<p><span class="arithmatex">\(\because R_1(X) \leqslant R_1(P)\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 2 + R_2(P) + R_2(G) - 2R_1(X)\)</span></p>
+<p>根据上面的引理：</p>
+<p><span class="arithmatex">\(\because S_2(P) + S_2(G) \leqslant S_2(X)\)</span></p>
+<p><span class="arithmatex">\(\therefore R_2(P) + R_2(G) \leqslant 2R_2(X) - 2\)</span></p>
+<p><span class="arithmatex">\(\therefore \hat{c_i} \leqslant 2R_2(X) - 2R_1(X) \leqslant 1 + 3(R_2 (X) - R_1 (X))\)</span></p>
+<hr />
+<p>综上所述：</p>
+<p><span class="arithmatex">\(\hat{c_i} \leqslant 1 + 3(R_2 (X) - R_1 (X))\)</span></p>
+<p>因为 splay 后的树的根结点就是 X，所以 <span class="arithmatex">\(R_2 (X) = R_2(T) = R_1(T)\)</span>，则：
+$$
+T_{amortized time} \leqslant 3(R(T) - R(X)) + 1 = O(\log N)
+$$</p>
 
 
 
@@ -3645,7 +4116,7 @@ style j fill: #23a7f2</code></pre>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月5日</span>
   </span>
 
     
@@ -3770,13 +4241,13 @@ style j fill: #23a7f2</code></pre>
         
         
           
-          <a href="../ch7/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 Divide and Conquer">
+          <a href="../ch2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2 Red-Black Trees and B+ Trees">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                7 Divide and Conquer
+                2 Red-Black Trees and B+ Trees
               </div>
             </div>
             <div class="md-footer__button md-icon">
