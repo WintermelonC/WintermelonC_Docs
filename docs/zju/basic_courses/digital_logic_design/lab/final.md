@@ -27,7 +27,7 @@
 
 我们将每个单元格给予一个state状态值，分为 0: 背景格，1: 蛇头，2: 蛇身，3: Small_Food，4: Medium_Food，5: Large_Food，6: 死亡格
 
-整体结构图（top）如下：
+整体结构图（top.v）如下：
 
 <figure markdown="span">
     ![Img 29](../../../../img/digital_logic_design/lab/final/lab_final_img24.png){width="800"}
@@ -48,7 +48,7 @@
 
 此模块助教已提供，产生 $25MHz$ 的 $clk$ 信号，用于 $VGA$ 的运作
 
-``` verilog linenums="1"
+``` verilog linenums="1" title="clk_gen.v"
 module clk_gen(
     input clk, // 100 MHz
     output vga_clk // 25 MHz
@@ -66,7 +66,7 @@ endmodule
 
 此模块助教已提供。接收像素点的色彩信息（$Din$），输出当前像素点的坐标（$row,col$）和 $VGA$ 有关的变量（$R,G,B,HS,VS$）
 
-```verilog linenums="1" hl_lines="49-51"
+```verilog linenums="1" hl_lines="49-51" title="vga_ctrl.v"
 module vga_ctrl(
 	input clk,                   // vga clk = 25 MHz
 	input rst,
@@ -241,7 +241,7 @@ endmodule
 
 转换函数如下：
 
-``` matlab linenums="1"
+``` matlab linenums="1" title="img2coe.m"
 function img2coe(path,name)
     % 利用imread函数把图片转化为一个三维矩阵
     image_array = imread(path);
@@ -313,7 +313,7 @@ end
 
 生成的 $.coe$ 文件格式如下（拿 $food\_l.coe$ 举例）：
 
-``` coe linenums="1" hl_lines="12"
+``` coe linenums="1" hl_lines="12" title="food_l.coe"
 memory_initialization_radix=16;  // 表示以下数据用16进制表示
 memory_initialization_vector =  // 具体数据
 0,  // 从左到右，从上到下，各个像素点的颜色信息
@@ -406,7 +406,7 @@ c71,
 
 需要说明的是，输入变量 $state$ 由 $run\_module$ 模块根据当前像素点坐标得到并提供。
 
-```verilog linenums="1" hl_lines="15-18"
+```verilog linenums="1" hl_lines="15-18" title="vga_screen_pic.v"
 module vga_screen_pic(
     input [9:0] pix_x, // 像素点 x 坐标
     input [8:0] pix_y, // 像素点 y 坐标
@@ -439,7 +439,7 @@ module vga_screen_pic(
 
 定义了两个函数，用于计算当前像素点所在的单元格的左上角坐标，便于计算相应的地址信息从而获得相应的色彩信息。
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_screen_pic.v"
 function [9:0] cell_x; // 计算像素点对应单元格的左上角 x 坐标
     input [9:0] pix_x;
     begin
@@ -457,7 +457,7 @@ endfunction
 
 计算两个 $ROM$ 地址变量的值：
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_screen_pic.v"
 assign pic_romaddr0 = (pix_x - cell_x(pix_x)) + (pix_y - cell_y(pix_y)) * H_PIC;
 assign pic_romaddr1 = pix_x + pix_y * SCREEN_W_PIC; // 大图片的宽度和 VGA 的宽度相同
 ```
@@ -468,7 +468,7 @@ assign pic_romaddr1 = pix_x + pix_y * SCREEN_W_PIC; // 大图片的宽度和 VGA
 
 IP 核的调用：
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_screen_pic.v"
 
 food_l food_l0(
     .a(pic_romaddr0),  // 注意此图片（16 x 16）使用 pic_romaddr0
@@ -506,7 +506,7 @@ game_start game_start0(
 
 计算正确的色彩信息：
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_screen_pic.v"
 always @(posedge clk) begin
     case (game_state) // 判断游戏状态
         2'd0: pix_data_out <= game_start_data; // 0 即游戏待开始，色彩信息为 game_start 图片
@@ -533,7 +533,7 @@ end
 > 参考：<br/>
 > 1. [无源蜂鸣器驱动实验](https://doc.embedfire.com/fpga/altera/ep4ce10_pro/zh/latest/code/beep.html){:target="_blank"}
 
-整体结构图（top_beep）如下：
+整体结构图（top_beep.v）如下：
 
 <figure markdown="span">
     ![Img 26](../../../../img/digital_logic_design/lab/final/lab_final_img20.png){width=600"}
@@ -578,7 +578,7 @@ PWM方波的 **频率** 决定声音的音调，PWM方波的 **占空比** 决�
 
 模块接口和变量的定义和初始化：
 
-```verilog linenums="1" hl_lines="25-34"
+```verilog linenums="1" hl_lines="25-34" title="beep_gamestart.v"
 module beep_gamestart(
     input clk,
     input [1:0] game_state, // 游戏状态变量
@@ -623,13 +623,13 @@ module beep_gamestart(
 
 我们选择占空比为 $50\%$ 的PWM方波：
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_gamestart.v"
 assign duty_data = freq_data >> 1'b1;
 ```
 
 根据游戏状态信号调整 $rst$ 信号：
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_gamestart.v"
 always @(game_state) begin
     if (game_state == 2'b00) begin // 游戏开始页面
         rst = 1'b0; // rst 为 0 时，声波正常产生
@@ -641,7 +641,7 @@ end
 
 $cnt$ 的调整：
 
-```verilog linenums="1" hl_lines="4"
+```verilog linenums="1" hl_lines="4" title="beep_gamestart.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         cnt <= 24'd0;
@@ -665,7 +665,7 @@ end
 
 $cnt\_125ms$ 的调整：
 
-```verilog linenums="1" hl_lines="4"
+```verilog linenums="1" hl_lines="4" title="beep_gamestart.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         cnt_125ms <= 6'd0;
@@ -687,7 +687,7 @@ end
 
 $freq\_cnt$ 的调整：
 
-```verilog linenums="1" hl_lines="4"
+```verilog linenums="1" hl_lines="4" title="beep_gamestart.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         freq_cnt <= 19'd0;
@@ -709,7 +709,7 @@ end
 
 $beep$ 的调整：
 
-```verilog linenums="1" hl_lines="4"
+```verilog linenums="1" hl_lines="4" title="beep_gamestart.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         beep <= 1'b0;
@@ -727,7 +727,7 @@ end
 
 $freq\_data$ 的调整：
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_gamestart.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         freq_data <= 19'd0;
@@ -764,7 +764,7 @@ end
 
 和游戏开始音乐的实现相同，不同的点在于游戏结束音乐只需要播放一次。可以调整 $cnt\_125ms$ 实现播放一次。
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_gameover.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         cnt_125ms <= 6'd0;
@@ -774,7 +774,7 @@ always @(posedge clk or posedge rst) begin
 end
 ```
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_gameover.v"
 always @(posedge clk or posedge rst) begin
     if (rst) begin
         freq_data <= 18'd0;
@@ -825,7 +825,7 @@ end
 
 #### 3.2.3 top_beep 模块
 
-```verilog linenums="1"
+```verilog linenums="1" title="top_beep.v"
 module top_beep(
     input clk,
     input [1:0] game_state,
@@ -857,7 +857,7 @@ endmodule
 > 参考：<br/>
 > 1. [PS/2协议的verilog HDL实现](https://blog.csdn.net/sunrise_at_dusk/article/details/120801269){:target="_blank"}
 
-整体结果图（ps2_dlc）如下：
+整体结果图（ps2_dlc.v）如下：
 
 <figure markdown="span">
     ![Img 26](../../../../img/digital_logic_design/lab/final/lab_final_img21.png){width=600"}
@@ -891,7 +891,7 @@ PS/2 到主机的通信时序如下图所示。数据在 PS/2 时钟的下降沿
 
 #### 4.2.1 输入输出信号
 
-```verilog linenums="1"
+```verilog linenums="1" title="ps2.v"
 module ps2(
     input clk,
     input rst,
@@ -956,7 +956,7 @@ endmodule
 
 #### 4.2.2 转化为方向信息以及实现键盘防抖动
 
-```verilog linenums="1"
+```verilog linenums="1" title="ps2.dlc.v"
 //防抖动以及输出上下左右
 module ps2_dlc(
     input clk,
@@ -1012,13 +1012,13 @@ endmodule
 
 ## 5 状态机设计思路
 
-整体结果图（gaming）如下：
+整体结果图（gaming.v）如下：
 
 <figure markdown="span">
     ![Img 27](../../../../img/digital_logic_design/lab/final/lab_final_img22.png){width=500"}
 </figure>
 
-```verilog linenums="1"
+```verilog linenums="1" title="gaming.v"
 module gaming (
     input rst,
     input gameover,
@@ -1055,7 +1055,7 @@ endmodule
 
 ## 6 运动模块设计思路
 
-整体结构图（run_module）如下：
+整体结构图（run_module.v）如下：
 
 <figure markdown="span">
     ![Img 28](../../../../img/digital_logic_design/lab/final/lab_final_img23.png){width=500"}
@@ -1063,7 +1063,7 @@ endmodule
 
 ### 6.1 IO 信号代码
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 module run_module(
     input clk, //100MHZ
     input [1:0] dir, //按下的运动方向
@@ -1086,7 +1086,7 @@ module run_module(
 
 ### 6.2 定义代码
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 parameter MAX_LENGTH = 100;
 parameter MAX_CNT = 23;
 
@@ -1133,7 +1133,7 @@ endfunction
 
 ### 6.3 初始化
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 initial begin
     cnt = 24'b0;
     state_pos = 2'b00;
@@ -1269,7 +1269,7 @@ end
 
 ### 6.4 重置游戏
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 always @(posedge game_clk) begin
     if (game_state[0] == 1'b1 || game_clk == 1'b1) begin
         state_pos <= {state_pos[0], game_state[0]};
@@ -1406,7 +1406,7 @@ always @(posedge game_clk) begin
 
 #### 6.5.1 方向控制
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 else if (game_clk) begin
     if (game_state[0]) begin
         case(current_dir)
@@ -1441,7 +1441,7 @@ endcase
 
 #### 6.5.2 触碰障碍或身体
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
     gameover <= 1'b1;
 end
@@ -1451,7 +1451,7 @@ end
 
 #### 6.5.3 移动到空白格
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 else if (state[next_head_x][next_head_y] == 3'b000) begin
     state[next_head_x][next_head_y] = 3'b001; //下一格变为蛇头
     state[head_x][head_y] = 3'b010;//原蛇头处变为蛇身
@@ -1474,7 +1474,7 @@ end
 
 #### 6.5.4 吃到食物
 
-```verilog linenums="1"
+```verilog linenums="1" title="run_module.v"
 else begin
     case (state[next_head_x][next_head_y])
         3'b011: score = score + 16'd1;
@@ -1553,7 +1553,7 @@ else begin
 
 由于单独测试该模块，写了一个临时的计算 $state$ 变量的模块用于测试：
 
-```verilog linenums="1"
+```verilog linenums="1" title="target_v.v"
 module target_v(
     input [9:0] cell_x,
     input [8:0] cell_y,
@@ -1590,7 +1590,7 @@ endmodule
 
 临时 $top$ 模块：
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_top.v"
 module vga_top(
     input clk,
     output [3:0] R, G, B,
@@ -1629,7 +1629,7 @@ endmodule
 
 $testbench$ 文件：
 
-```verilog linenums="1"
+```verilog linenums="1" title="vga_tb.v"
 module vga_tb();
     reg clk;
     wire [3:0] R, G, B;
@@ -1669,7 +1669,7 @@ endmodule
 
 $testbench$ 文件：
 
-```verilog linenums="1"
+```verilog linenums="1" title="beep_tb.v"
 module beep_tb();
     reg clk;
     reg [1:0] game_state;
@@ -1721,7 +1721,7 @@ endmodule
 
 $testbench$ 文件：
 
-```verilog linenums="1"
+```verilog linenums="1" title="test_state.v"
 module test_state(
 
     );
@@ -1765,7 +1765,7 @@ endmodule
 
 #### 7.5.1 方向控制仿真测试
 
-```verilog linenums="1"
+```verilog linenums="1" title="test_state.v"
 module test_state(
 
     );
