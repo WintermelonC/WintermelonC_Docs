@@ -121,7 +121,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 **双黑处理**
 
-==此时 x 一定为双黑结点.若 4 种 case 遇到 x 为整棵树的根结点，则直接将 x 褪去一重黑色，变为黑结点即可==
+==此时 x 一定为双黑结点。若 4 种 case 遇到的 x 为整棵树的根结点，则直接将 x 褪去一重黑色，变为黑结点即可==
 
 !!! tip "双黑处理口诀"
 
@@ -155,7 +155,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 1. x 和 w 褪去一重黑色（即双黑结点变黒结点，黒结点变红结点）
 2. x.p 增加一重黑色（即红结点变黒结点，黒结点变双黑结点）
-3. 更新 x 为 x.p
+3. 将 x.p 作为新的 x
 
 进入 case 2 / case 3 / case 4
 
@@ -207,13 +207,12 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
         这道题就是上文所说的两种找法都考
 
-        按照上文的规则：x degree 为 2
-
         <div class="grid" style="align-items: center;" markdown>
-
-        <div>
+        <div class="card">
 
         1.如果找右子树的最小：
+
+        15 的 degree 为 2，交换 15 和 17 的值，将 17（原来 17 结点的位置）标记为新的 x
 
         ```mermaid
         graph TD;
@@ -222,23 +221,76 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         c((17))
         d((5))
         e((11))
+        h((15))
         a === b
         a === c
         b === d
         b === f[NIL]
         c === e
-        c === g[NIL]
+        c === h
         style a fill: #9f9f9f
         style b fill: #9f9f9f
         style e fill: #9f9f9f
         style c fill: #fe0000
         style d fill: #fe0000
+        style h fill: #9f9f9f
         ```
 
+        15 的 degree 为 0，15 为 black，变为双黑色 NIL
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((17))
+        d((5))
+        e((11))
+        h(("NIL(+1)"))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === e
+        c === h
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #9f9f9f
+        style c fill: #fe0000
+        style d fill: #fe0000
+        style h fill: #9f9f9f
+        ```
+        
+        一家三黑要褪色，NIL 结点的兄弟结点 11 及 2 个孩子（2 个 NIL）结点均为黑色
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((17))
+        d((5))
+        e((11))
+        h((NIL))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === e
+        c === h
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #fe0000
+        style c fill: #9f9f9f
+        style d fill: #fe0000
+        style h fill: #9f9f9f
+        ```
+
+        B、D 正确
         </div>
-        <div>
+        <div class="card">
 
         2.如果找左子树的最大：
+
+        15 的 degree 为 2，交换 15 和 11 的值，将 11（原来 11 结点的位置）标记为 新的 x
 
         ```mermaid
         graph TD;
@@ -246,27 +298,77 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         b((7))
         c((11))
         d((5))
+        e((15))
+        h((17))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === e
+        c === h
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #9f9f9f
+        style c fill: #fe0000
+        style d fill: #fe0000
+        style h fill: #9f9f9f
+        ```
+
+        11 的 degree 为 0，11 为 black，变为双黑色 NIL
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((11))
+        d((5))
+        h(("NIL(+1)"))
         e((17))
         a === b
         a === c
         b === d
         b === f[NIL]
-        c === g[NIL]
+        c === h
         c === e
         style a fill: #9f9f9f
         style b fill: #9f9f9f
         style e fill: #9f9f9f
         style c fill: #fe0000
         style d fill: #fe0000
+        style h fill: #9f9f9f
+        ```
+        
+        一家三黑要褪色，NIL 结点的兄弟结点 15 及 2 个孩子（2 个 NIL）结点均为黑色
+
+        ```mermaid
+        graph TD;
+        a((10))
+        b((7))
+        c((11))
+        d((5))
+        h((NIL))
+        e((17))
+        a === b
+        a === c
+        b === d
+        b === f[NIL]
+        c === h
+        c === e
+        style a fill: #9f9f9f
+        style b fill: #9f9f9f
+        style e fill: #fe0000
+        style c fill: #9f9f9f
+        style d fill: #fe0000
+        style h fill: #9f9f9f
         ```
 
+        A 正确、C 错误
         </div>
-
         </div>
 
         ---
 
-        但这道题所用的规则是：
+        当然这道题树的结构简单，可以直接看出来结果：
 
         <div class="grid" style="align-items: center;" markdown>
 
@@ -326,5 +428,3 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         </div>
 
         </div>
-
-        > 上文的规则是万能规则，只不过这棵树结构简单，用的规则不一样而已
