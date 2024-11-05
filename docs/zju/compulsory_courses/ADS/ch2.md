@@ -314,7 +314,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         style h fill: #9f9f9f
         ```
 
-        11 的 degree 为 0，11 为 black，变为双黑色 NIL
+        15 的 degree 为 0，15 为 black，变为双黑色 NIL
 
         ```mermaid
         graph TD;
@@ -338,7 +338,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         style h fill: #9f9f9f
         ```
         
-        一家三黑要褪色，NIL 结点的兄弟结点 15 及 2 个孩子（2 个 NIL）结点均为黑色
+        一家三黑要褪色，NIL 结点的兄弟结点 17 及 2 个孩子（2 个 NIL）结点均为黑色
 
         ```mermaid
         graph TD;
