@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch2/">
       
       
-        <link rel="next" href="../ch7/">
+        <link rel="next" href="../ch4/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -1388,6 +1388,8 @@
       
         
       
+        
+      
     
     
       
@@ -1553,6 +1555,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#accessing-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      accessing terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distributed-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       distributed indexing
@@ -1595,19 +1606,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#搜索性能评估" class="md-nav__link">
+  <a href="#评价搜索引擎" class="md-nav__link">
     <span class="md-ellipsis">
-      搜索性能评估
+      评价搜索引擎
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="搜索性能评估">
+    <nav class="md-nav" aria-label="评价搜索引擎">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#相关性" class="md-nav__link">
+  <a href="#性能评估" class="md-nav__link">
     <span class="md-ellipsis">
-      相关性
+      性能评估
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#答案集相关性" class="md-nav__link">
+    <span class="md-ellipsis">
+      答案集相关性
     </span>
   </a>
   
@@ -1622,6 +1642,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 Leftist Heaps and Skew Heaps
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2570,6 +2611,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#accessing-terms" class="md-nav__link">
+    <span class="md-ellipsis">
+      accessing terms
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#distributed-indexing" class="md-nav__link">
     <span class="md-ellipsis">
       distributed indexing
@@ -2612,19 +2662,28 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#搜索性能评估" class="md-nav__link">
+  <a href="#评价搜索引擎" class="md-nav__link">
     <span class="md-ellipsis">
-      搜索性能评估
+      评价搜索引擎
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="搜索性能评估">
+    <nav class="md-nav" aria-label="评价搜索引擎">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#相关性" class="md-nav__link">
+  <a href="#性能评估" class="md-nav__link">
     <span class="md-ellipsis">
-      相关性
+      性能评估
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#答案集相关性" class="md-nav__link">
+    <span class="md-ellipsis">
+      答案集相关性
     </span>
   </a>
   
@@ -2693,6 +2752,27 @@
 <h2 id="stop-words">stop words<a class="headerlink" href="#stop-words" title="Permanent link">&para;</a></h2>
 <p>停止词</p>
 <p>一些单词非常常见，在搜索的过程中，这些单词对文档的选择作用不大，因此在倒排索引表中，不记录这些单词</p>
+<h2 id="accessing-terms">accessing terms<a class="headerlink" href="#accessing-terms" title="Permanent link">&para;</a></h2>
+<ol>
+<li>使用 search tree</li>
+<li>使用 hash<ol>
+<li>搜索单个单词速度很快</li>
+<li>范围搜索的开销很大</li>
+</ol>
+</li>
+</ol>
+<details class="question" open="open">
+<summary>PTA 3.4</summary>
+<p>While accessing a term by hashing in an inverted file index, range searches are expensive.  </p>
+<p>T<br/>
+F</p>
+<details class="success">
+<summary>答案</summary>
+<p>T</p>
+<hr />
+<p>使用哈希表，范围搜索的开销很大</p>
+</details>
+</details>
 <h2 id="distributed-indexing">distributed indexing<a class="headerlink" href="#distributed-indexing" title="Permanent link">&para;</a></h2>
 <h3 id="1-term-partitioned-index">1 term-partitioned index<a class="headerlink" href="#1-term-partitioned-index" title="Permanent link">&para;</a></h3>
 <figure>
@@ -2702,15 +2782,39 @@
 <figure>
     <img alt="Img 5" src="../../../../img/ADS/ADS_ch3_img5.png" width="600" />
 </figure>
+<details class="question" open="open">
+<summary>PTA 3.1</summary>
+<p>In distributed indexing, document-partitioned strategy is to store on each node all the documents that contain the terms in a certain range.</p>
+<p>T<br/>
+F</p>
+<details class="success">
+<summary>答案</summary>
+<p>F</p>
+<hr />
+<p>题目中描述的是 term-partitioned</p>
+</details>
+</details>
 <h2 id="threshold">threshold<a class="headerlink" href="#threshold" title="Permanent link">&para;</a></h2>
 <p>用户搜索后，根据某种规则将搜索到的文档排序，并只展示前 x 个文档给用户</p>
-<h2 id="搜索性能评估">搜索性能评估<a class="headerlink" href="#搜索性能评估" title="Permanent link">&para;</a></h2>
+<h2 id="评价搜索引擎">评价搜索引擎<a class="headerlink" href="#评价搜索引擎" title="Permanent link">&para;</a></h2>
+<h3 id="性能评估">性能评估<a class="headerlink" href="#性能评估" title="Permanent link">&para;</a></h3>
 <ol>
 <li>响应时间</li>
 <li>索引表大小</li>
-<li>文档相关性</li>
 </ol>
-<h3 id="相关性">相关性<a class="headerlink" href="#相关性" title="Permanent link">&para;</a></h3>
+<details class="question" open="open">
+<summary>PTA 3.2</summary>
+<p>When evaluating the performance of data retrieval, it is important to measure the relevancy of the answer set.</p>
+<p>T<br/>
+F</p>
+<details class="success">
+<summary>答案</summary>
+<p>F</p>
+<hr />
+<p>搜索性能与答案集文档相关性无关。可以说文档相关性和搜索准确性有关，但是和搜索性能无关</p>
+</details>
+</details>
+<h3 id="答案集相关性">答案集相关性<a class="headerlink" href="#答案集相关性" title="Permanent link">&para;</a></h3>
 <figure>
     <img alt="Img 6" src="../../../../img/ADS/ADS_ch3_img6.png" width="600" />
 </figure>
@@ -2728,10 +2832,67 @@ Recall:\ R = \frac{R_R}{R_R + R_N}
     <img alt="Img 7" src="../../../../img/ADS/ADS_ch3_img7.png" width="600" />
 </figure>
 <ol>
-<li>Precision 大，Recall 小：展示给用户的文档相关性很大，但是也会漏掉其他有用的文档</li>
-<li>Precision 小，Recall 大：展示给用户的文档中，相关性大的文档很多，但是也会包含很多没用的文档</li>
+<li>Precision 大，Recall 小：大多数展示的文档都是相关的，但仍会遗漏一些相关的文档</li>
+<li>Precision 小，Recall 大：大多数相关的文档都展示了，但仍会包含一些不相关的文档</li>
 <li>Precision 大，Recall 大：理想情况</li>
 </ol>
+<details class="question" open="open">
+<summary>PTA 3.3</summary>
+<p>Precision is more important than recall when evaluating the explosive detection in airport security.</p>
+<p>T<br/>
+F</p>
+<details class="success">
+<summary>答案</summary>
+<p>F</p>
+<hr />
+<p>机场安检时，为了安全起见，怀疑的东西都检查一下，即使会误判，Recall 反映了在所有爆炸品中，被检查的占比。所以 Recall 更重要一些</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 3.5</summary>
+<p>When measuring the relevancy of the answer set, if the precision is high but the recall is low, it means that:</p>
+<p>A. most of the relevant documents are retrieved, but too many irrelevant documents are returned as well<br/>
+B. most of the retrieved documents are relevant, but still a lot of relevant documents are missed<br/>
+C. most of the relevant documents are retrieved, but the benchmark set is not large enough<br/>
+D. most of the retrieved documents are relevant, but the benchmark set is not large enough</p>
+<details class="success">
+<summary>答案</summary>
+<p>B</p>
+<hr />
+<p>上文有提到。大多数展示的文档都是相关的，但仍会遗漏一些相关的文档</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 3.6</summary>
+<p>Which of the following is NOT concerned for measuring a search engine?</p>
+<p>A. How fast does it index<br/>
+B. How fast does it search<br/>
+C. How friendly is the interface<br/>
+D. How relevant is the answer set</p>
+<details class="success">
+<summary>答案</summary>
+<p>C</p>
+<hr />
+<p>构建索引表时的速度、搜索的速度和答案集的相关性都是评价一个搜索引擎的要素。能用就行，C 选项说的东西有空再弄（</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 3.7</summary>
+<p>There are 28000 documents in the database. The statistic data for one query are shown in the following table. The recall is: __</p>
+<p><figure markdown="span">
+    <img alt="Img 8" src="../../../../img/ADS/ADS_ch3_img8.png" width="300" />
+</figure></p>
+<p>A. 14%<br/>
+B. 25%<br/>
+C. 33%<br/>
+D. 50%</p>
+<details class="success">
+<summary>答案</summary>
+<p>C</p>
+<hr />
+<p><span class="arithmatex">\(Recall = \frac{R_R}{R_R + R_N} = \frac{4000}{4000 + 8000} = \frac{1}{3} = 33\%\)</span></p>
+</details>
+</details>
 
 
 
@@ -2879,13 +3040,13 @@ Recall:\ R = \frac{R_R}{R_R + R_N}
         
         
           
-          <a href="../ch7/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 Divide and Conquer">
+          <a href="../ch4/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4 Leftist Heaps and Skew Heaps">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                7 Divide and Conquer
+                4 Leftist Heaps and Skew Heaps
               </div>
             </div>
             <div class="md-footer__button md-icon">
