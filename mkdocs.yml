@@ -14,10 +14,14 @@ nav:
   - 首页: index.md
   - ZJU:
     - zju/index.md
+    - 思政类:
+      - zju/political/index.md
+      - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:
       - zju/military_PE/index.md
       - 无线电测向（初级）: zju/military_PE/radio_direction_finding.md
       - 羽毛球（初级）: zju/military_PE/badminton.md
+      - 军事理论: zju/military_PE/military_theory.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 

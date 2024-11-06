@@ -4,10 +4,17 @@
 
 ## 通识课程
 
+### 思政类
+
+#### 选修课程
+
+[中国共产党历史](./political/history_of_CPC.md)
+
 ### 军体类
 
 [无线电测向（初级）](./military_PE/radio_direction_finding.md)<br/>
-[羽毛球（初级）](./military_PE/badminton.md)
+[羽毛球（初级）](./military_PE/badminton.md)<br/>
+[军事理论](./military_PE/military_theory.md)
 
 ### 自然科学通识类
 
