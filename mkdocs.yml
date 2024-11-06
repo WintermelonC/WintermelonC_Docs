@@ -50,6 +50,7 @@ nav:
         - 1 AVL Trees, Splay Trees and Amortized Analysis: zju/compulsory_courses/ADS/ch1.md
         - 2 Red-Black Trees and B+ Trees: zju/compulsory_courses/ADS/ch2.md
         - 3 Inverted File Index: zju/compulsory_courses/ADS/ch3.md
+        - 4 Leftist Heaps and Skew Heaps: zju/compulsory_courses/ADS/ch4.md
         - 7 Divide and Conquer: zju/compulsory_courses/ADS/ch7.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
