@@ -82,7 +82,31 @@ $$
             ![Img 4](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img4.png){ width="300" }
         </figure>
 
-## 4 连续性随机变量及其密度函数
+???+ example "例题 3.3 - 分布函数"
+
+    设一物体在 A, B 两点间移动，A, B 之间距离 3 个单位。该物体落在 A, B 间任一子区间的概率与区间长度成正比。设它离 A 点的距离为 X ，求 X 的分布函数
+
+    ??? success "答案"
+
+        由“落在 A, B 间任一子区间的概率与区间长度成正比”：
+    
+        $P(0 \leqslant X \leqslant 3) = 3k = 1$
+
+        $\therefore k = \frac{1}{3}$
+
+        当 $0 \leqslant x < 3$ 时，$F(x) = P\lbrace X \leqslant x \rbrace = \frac{x}{3}$
+
+        $\therefore F(x) = \begin{cases}
+            0 & x < 0\\
+            \frac{x}{3} & 0 \leqslant x < 3\\
+            1 & x \geqslant 3
+        \end{cases}$
+
+        <figure markdown="span">
+            ![Img 9](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img9.png){ width="300" }
+        </figure>
+
+## 4 连续型随机变量
 
 ### 4.1 定义
 
@@ -172,3 +196,47 @@ $$
         ---
 
         (3) $P \lbrace X < k \rbrace = F(k) = \frac{2}{3}$，由 (2) 分布函数 $F(x)$ 得，$k = 4.5$
+
+### 4.3 连续型随机变量分布
+
+#### 4.3.1 均匀分布
+
+**定义：**
+
+设随机变量 $X$ 具有概率密度函数
+
+$$
+f(x) = \begin{cases}
+    \dfrac{1}{b - a} & x \in (a, b)\\
+    0 & 其他
+\end{cases}
+$$
+
+则称 $X$ 服从 **区间 $(a, b)$ 上的均匀分布** (uniform distribution)，记为 $X \sim U(a, b)$
+
+根据密度函数的定义，可知 $X$ 的分布函数为
+
+$$
+F(x) = \begin{cases}
+    0 & x < a\\
+    \dfrac{x - a}{b - a} & a \leqslant x < b\\
+    1 & x \geqslant b
+\end{cases}
+$$
+
+<div class="grid" style="align-items: center;" markdown>
+<figure markdown="span">
+    ![Img 10](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img10.png){ width="400" }
+</figure>
+<figure markdown="span">
+    ![Img 11](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img11.png){ width="400" }
+</figure>
+</div>
+
+**性质：**
+
+设有实数 $c,\ l$ 满足 $a \leqslant c < c + l \leqslant b$，则
+$$
+P\lbrace c < X < c + l \rbrace = \int_c^{c + l} \frac{1}{b - a} dx = \frac{l}{b - a}
+$$
+上式的值与 $c$ 无关，==即 $X$ 落在区间 $(a, b)$ 内任意长度为 $l$ 的子区间的概率为子区间的长度 $l$ 与 $(b - a)$ 的比 $\dfrac{l}{b - a}$==，其概率与 $l$ 成正比，而且仅依赖于子区间的长度，与子区间的位置没有关系
