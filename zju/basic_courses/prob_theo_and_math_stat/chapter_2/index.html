@@ -1468,13 +1468,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-连续性随机变量及其密度函数" class="md-nav__link">
+  <a href="#4-连续型随机变量" class="md-nav__link">
     <span class="md-ellipsis">
-      4 连续性随机变量及其密度函数
+      4 连续型随机变量
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4 连续性随机变量及其密度函数">
+    <nav class="md-nav" aria-label="4 连续型随机变量">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1492,6 +1492,30 @@
       4.2 性质
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-连续型随机变量分布" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 连续型随机变量分布
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 连续型随机变量分布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-均匀分布" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 均匀分布
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2687,13 +2711,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-连续性随机变量及其密度函数" class="md-nav__link">
+  <a href="#4-连续型随机变量" class="md-nav__link">
     <span class="md-ellipsis">
-      4 连续性随机变量及其密度函数
+      4 连续型随机变量
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4 连续性随机变量及其密度函数">
+    <nav class="md-nav" aria-label="4 连续型随机变量">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2711,6 +2735,30 @@
       4.2 性质
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-连续型随机变量分布" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 连续型随机变量分布
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3 连续型随机变量分布">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-均匀分布" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 均匀分布
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2823,7 +2871,26 @@ $$</p>
 </figure></p>
 </details>
 </details>
-<h2 id="4-连续性随机变量及其密度函数">4 连续性随机变量及其密度函数<a class="headerlink" href="#4-连续性随机变量及其密度函数" title="Permanent link">&para;</a></h2>
+<details class="example" open="open">
+<summary>例题 3.3 - 分布函数</summary>
+<p>设一物体在 A, B 两点间移动，A, B 之间距离 3 个单位。该物体落在 A, B 间任一子区间的概率与区间长度成正比。设它离 A 点的距离为 X ，求 X 的分布函数</p>
+<details class="success">
+<summary>答案</summary>
+<p>由“落在 A, B 间任一子区间的概率与区间长度成正比”：</p>
+<p><span class="arithmatex">\(P(0 \leqslant X \leqslant 3) = 3k = 1\)</span></p>
+<p><span class="arithmatex">\(\therefore k = \frac{1}{3}\)</span></p>
+<p>当 <span class="arithmatex">\(0 \leqslant x &lt; 3\)</span> 时，<span class="arithmatex">\(F(x) = P\lbrace X \leqslant x \rbrace = \frac{x}{3}\)</span></p>
+<p><span class="arithmatex">\(\therefore F(x) = \begin{cases}
+    0 &amp; x &lt; 0\\
+    \frac{x}{3} &amp; 0 \leqslant x &lt; 3\\
+    1 &amp; x \geqslant 3
+\end{cases}\)</span></p>
+<p><figure markdown="span">
+    <img alt="Img 9" src="../../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img9.png" width="300" />
+</figure></p>
+</details>
+</details>
+<h2 id="4-连续型随机变量">4 连续型随机变量<a class="headerlink" href="#4-连续型随机变量" title="Permanent link">&para;</a></h2>
 <h3 id="41-定义">4.1 定义<a class="headerlink" href="#41-定义" title="Permanent link">&para;</a></h3>
 <p>对于随机变量 <span class="arithmatex">\(X\)</span> 的分布函数 <span class="arithmatex">\(F(x)\)</span> ，若存在非负的函数 <span class="arithmatex">\(f(x)\)</span> ，使对于任意实数 <span class="arithmatex">\(x\)</span> ， 有：
 $$
@@ -2897,6 +2964,39 @@ $$</p>
 <p>(3) <span class="arithmatex">\(P \lbrace X &lt; k \rbrace = F(k) = \frac{2}{3}\)</span>，由 (2) 分布函数 <span class="arithmatex">\(F(x)\)</span> 得，<span class="arithmatex">\(k = 4.5\)</span></p>
 </details>
 </details>
+<h3 id="43-连续型随机变量分布">4.3 连续型随机变量分布<a class="headerlink" href="#43-连续型随机变量分布" title="Permanent link">&para;</a></h3>
+<h4 id="431-均匀分布">4.3.1 均匀分布<a class="headerlink" href="#431-均匀分布" title="Permanent link">&para;</a></h4>
+<p><strong>定义：</strong></p>
+<p>设随机变量 <span class="arithmatex">\(X\)</span> 具有概率密度函数</p>
+<div class="arithmatex">\[
+f(x) = \begin{cases}
+    \dfrac{1}{b - a} &amp; x \in (a, b)\\
+    0 &amp; 其他
+\end{cases}
+\]</div>
+<p>则称 <span class="arithmatex">\(X\)</span> 服从 <strong>区间 <span class="arithmatex">\((a, b)\)</span> 上的均匀分布</strong> (uniform distribution)，记为 <span class="arithmatex">\(X \sim U(a, b)\)</span></p>
+<p>根据密度函数的定义，可知 <span class="arithmatex">\(X\)</span> 的分布函数为</p>
+<div class="arithmatex">\[
+F(x) = \begin{cases}
+    0 &amp; x &lt; a\\
+    \dfrac{x - a}{b - a} &amp; a \leqslant x &lt; b\\
+    1 &amp; x \geqslant b
+\end{cases}
+\]</div>
+<div class="grid" style="align-items: center;">
+<figure>
+    <img alt="Img 10" src="../../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img10.png" width="400" />
+</figure>
+<figure>
+    <img alt="Img 11" src="../../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img11.png" width="400" />
+</figure>
+</div>
+<p><strong>性质：</strong></p>
+<p>设有实数 <span class="arithmatex">\(c,\ l\)</span> 满足 <span class="arithmatex">\(a \leqslant c &lt; c + l \leqslant b\)</span>，则
+$$
+P\lbrace c &lt; X &lt; c + l \rbrace = \int_c^{c + l} \frac{1}{b - a} dx = \frac{l}{b - a}
+$$
+上式的值与 <span class="arithmatex">\(c\)</span> 无关，<mark>即 <span class="arithmatex">\(X\)</span> 落在区间 <span class="arithmatex">\((a, b)\)</span> 内任意长度为 <span class="arithmatex">\(l\)</span> 的子区间的概率为子区间的长度 <span class="arithmatex">\(l\)</span> 与 <span class="arithmatex">\((b - a)\)</span> 的比 <span class="arithmatex">\(\dfrac{l}{b - a}\)</span></mark>，其概率与 <span class="arithmatex">\(l\)</span> 成正比，而且仅依赖于子区间的长度，与子区间的位置没有关系</p>
 
 
 
@@ -2919,7 +3019,7 @@ $$</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月6日</span>
   </span>
 
     
