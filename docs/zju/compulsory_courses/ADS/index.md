@@ -26,6 +26,7 @@ dyx老师
 
 [1 AVL Trees, Splay Trees and Amortized Analysis](./ch1.md)<br/>
 [2 Red-Black Trees and B+ Trees](./ch2.md)<br/>
+[3 Inverted File Index](./ch3.md)<br/>
 [7 Divide and Conquer](./ch7.md)
 
 ### 其他

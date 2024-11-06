@@ -1,8 +1,8 @@
 # 2 Red-Black Trees and B+ Trees
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -68,7 +68,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 1. case 2：可以直接 double rotation
 2. case 3：single rotation
 
-???+ question "PTA 2.1"
+???+ question "PTA 2.2"
 
     In the red-black tree that results after successively inserting the keys 41; 38; 31; 12; 19; 8 into an initially empty red-black tree, which one of the following statements is FALSE?
 
@@ -186,7 +186,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 1. w，远子，x.p 均变黑
 2. w 结点旋转
 
-???+ question "PTA 2.2"
+???+ question "PTA 2.3"
 
     After deleting 15 from the red-black tree given in the figure, which one of the following statements must be FALSE?
     
@@ -290,7 +290,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
         2.如果找左子树的最大：
 
-        15 的 degree 为 2，交换 15 和 11 的值，将 11（原来 11 结点的位置）标记为 新的 x
+        15 的 degree 为 2，交换 15 和 11 的值，将 11（原来 11 结点的位置）标记为新的 x
 
         ```mermaid
         graph TD;
@@ -428,3 +428,603 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         </div>
 
         </div>
+
+## 2 B+ Trees
+
+### 定义
+
+!!! info "注意"
+
+    这是我们这门课当中的对 B+ Tree 定义，做题时遵循我们的定义
+
+一个 order 为 M 的 B+ Tree 有以下性质：
+
+1. 根结点是叶结点或者有 2 ~ M 个孩子
+2. 所有的非叶结点（除了根结点）有 $\lceil \frac{M}{2} \rceil \sim M$ 个孩子
+3. 所有的叶结点具有相同的 depth
+4. 叶结点上键值的个数为 $\lceil \frac{M}{2} \rceil \sim M$
+
+<figure markdown="span">
+    ![Img 12](../../../img/ADS/ADS_ch2_img12.png){ width="600" }
+</figure>
+
+==我们这门课遇到的 2-3 树，2-3-4 树，全都默认看成 B+ Tree==
+
+???+ question "PTA 2.1"
+
+    A 2-3 tree with 3 nonleaf nodes must have 18 keys at most.
+
+    T<br/>
+    F
+
+    ??? success "答案"
+
+        T
+
+        ---
+
+        ```mermaid
+        graph TD;
+        a[a]
+        subgraph two
+            direction LR
+            d === e
+        end
+        subgraph one
+            direction LR
+            b === c
+        end
+        subgraph leaf1
+            direction LR
+            f === g
+            g === h
+        end
+        a === one
+        a === two
+        one === leaf1
+        one === leaf2
+        one === leaf3
+        two === leaf4
+        two === leaf5
+        two === leaf6
+        ```
+
+        最多有 6 个叶结点，每个叶节点最多有 3 个键值，所以最多有 $3 \times 6 = 18$ 个键值
+
+???+ question "PTA 2.6"
+
+    Which of the following statements concerning a B+ tree of order M is TRUE?
+
+    A. the root always has between 2 and M children<br/>
+    B. not all leaves are at the same depth<br/>
+    C. leaves and nonleaf nodes have some key values in common<br/>
+    D. all nonleaf nodes have between ⌈M/2⌉ and M children
+
+    ??? success "答案"
+
+        C
+
+        ---
+
+        A：如果整棵树只有一个结点，即一个叶结点，那么根结点就是一个叶结点，此时根结点没有孩子
+
+        B：B+ Tree 所有的叶子节点必须在同一 depth
+
+        D：没有排除掉根结点，根结点可以有 2 ~ M 个孩子
+
+### insert
+
+插入到叶结点，如果需要的话不断向上分裂
+
+???+ question "PTA 2.4"
+
+    Insert 3, 1, 4, 5, 9, 2, 6, 8, 7, 0 into an initially empty 2-3 tree (with splitting).  Which one of the following statements is FALSE?
+
+    A. 7 and 8 are in the same node<br/>
+    B. the parent of the node containing 5 has 3 children<br/>
+    C. the first key stored in the root is 6<br/>
+    D. there are 5 leaf nodes
+
+    ??? success "答案"
+
+        A
+
+        ---
+   
+        insert 3
+
+        <div>
+        ```mermaid
+        graph TD;
+        a3((3))
+        ```
+
+        ---
+
+        insert 1
+
+        ```mermaid
+        graph TD;
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a3((3))
+            a1 === a3
+        end
+        ```
+        </div>
+
+        ---
+
+        insert 4
+
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a3((3))
+            a4((4))
+            a1 === a3 === a4
+        end
+        ```
+        </div>
+
+        ---
+    
+        insert 5
+
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a3((3))
+            a4((4))
+            a5((5))
+            a1 === a3 === a4 === a5
+        end
+        ```
+        </div>
+        <div>
+        ```mermaid
+        graph TD;
+        b4((4))
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a3((3))
+            a1 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        b4 === leaf1
+        b4 === leaf2
+        ```
+        </div>
+
+        ---
+
+        insert 9
+
+        <div>
+        ```mermaid
+        graph TD;
+        b4((4))
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a3((3))
+            a1 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a9((9))
+            a4 === a5 === a9
+        end
+        b4 === leaf1
+        b4 === leaf2
+        ```
+        </div>
+
+        ---
+
+        insert 2
+
+        <div>
+        ```mermaid
+        graph TD;
+        b4((4))
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a9((9))
+            a4 === a5 === a9
+        end
+        b4 === leaf1
+        b4 === leaf2
+        ```
+        </div>
+
+        ---
+
+        insert 6
+
+        <div>
+        ```mermaid
+        graph TD;
+        b4((4))
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a6((6))
+            a9((9))
+            a4 === a5 === a6 === a9
+        end
+        b4 === leaf1
+        b4 === leaf2
+        ```
+        </div>
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph node1
+            direction LR
+            b4((4))
+            b6((6))
+            b4 === b6
+        end
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a9((9))
+            a6 === a9
+        end
+        node1 === leaf1
+        node1 === leaf2
+        node1 === leaf3
+        ```
+        </div>
+
+        ---
+
+        insert 8
+
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph node1
+            direction LR
+            b4((4))
+            b6((6))
+            b4 === b6
+        end
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a8((8))
+            a9((9))
+            a6 === a8 === a9
+        end
+        node1 === leaf1
+        node1 === leaf2
+        node1 === leaf3
+        ```
+        </div>
+
+        --- 
+        
+        insert 7
+
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph node1
+            direction LR
+            b4((4))
+            b6((6))
+            b4 === b6
+        end
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a7((7))
+            a8((8))
+            a9((9))
+            a6 === a7 === a8 === a9
+        end
+        node1 === leaf1
+        node1 === leaf2
+        node1 === leaf3
+        ```
+        </div>
+        <div>
+        ```mermaid
+        graph TD;
+        subgraph node1
+            direction LR
+            b4((4))
+            b6((6))
+            b8((8))
+            b4 === b6 === b8
+        end
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a7((7))
+            a6 === a7
+        end
+        subgraph leaf4
+            direction LR;
+            a8((8))
+            a9((9))
+            a8 === a9
+        end
+        node1 === leaf1
+        node1 === leaf2
+        node1 === leaf3
+        node1 === leaf4
+        ```
+        </div>
+        <div>
+        ```mermaid
+        graph TD;
+        b6((6))
+        b4((4))
+        b8((8))
+        subgraph leaf1
+            direction LR;
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a7((7))
+            a6 === a7
+        end
+        subgraph leaf4
+            direction LR;
+            a8((8))
+            a9((9))
+            a8 === a9
+        end
+        b6 === b4
+        b6 === b8
+        b4 === leaf1
+        b4 === leaf2
+        b8 === leaf3
+        b8 === leaf4
+        ```
+        </div>
+
+        ---
+
+        insert 0
+
+        <div>
+        ```mermaid
+        graph TD;
+        b6((6))
+        b4((4))
+        b8((8))
+        subgraph leaf1
+            direction LR;
+            a0((0))
+            a1((1))
+            a2((2))
+            a3((3))
+            a0 === a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR;
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR;
+            a6((6))
+            a7((7))
+            a6 === a7
+        end
+        subgraph leaf4
+            direction LR;
+            a8((8))
+            a9((9))
+            a8 === a9
+        end
+        b6 === b4
+        b6 === b8
+        b4 === leaf1
+        b4 === leaf2
+        b8 === leaf3
+        b8 === leaf4
+        ```
+        </div>
+        <figure markdown="span">
+            ![Img 13](../../../img/ADS/ADS_ch2_img13.png){ width="800" }
+        </figure>
+
+### deletion
+
+删除叶结点中相应的数据，如果需要的话：
+
+1. 从其他叶结点借来键值
+2. 和其他叶结点合并
+
+???+ question "PTA 2.5"
+
+    After deleting 9 from the 2-3 tree given in the figure, which one of the following statements is FALSE?
+
+    <figure markdown="span">
+        ![Img 14](../../../img/ADS/ADS_ch2_img14.png){ width="300" }
+    </figure>
+    
+    A. the root is full<br/>
+    B. the second key stored in the root is 6<br/>
+    C. 6 and 8 are in the same node<br/>
+    D. 6 and 5 are in the same node
+
+    ??? success "答案"
+
+        D
+
+        ---
+
+        ```mermaid
+        graph TD;
+        b6((6))
+        b4((4))
+        b8((8))
+        subgraph leaf1
+            direction LR
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR
+            a6((6))
+            a7((7))
+            a6 === a7
+        end
+        subgraph leaf4
+            direction LR
+            a8((8))
+        end
+        b6 === b4
+        b6 === b8
+        b4 === leaf1
+        b4 === leaf2
+        b8 === leaf3
+        b8 === leaf4
+        ```
+
+        <figure markdown="span">
+            ![Img 15](../../../img/ADS/ADS_ch2_img15.png){ width="600" }
+        </figure>
+
+        ```mermaid
+        graph TD;
+        subgraph node1
+            direction LR
+            b4((4))
+            b6((6))
+            b4 === b6
+        end
+        subgraph leaf1
+            direction LR
+            a1((1))
+            a2((2))
+            a3((3))
+            a1 === a2 === a3
+        end
+        subgraph leaf2
+            direction LR
+            a4((4))
+            a5((5))
+            a4 === a5
+        end
+        subgraph leaf3
+            direction LR
+            a6((6))
+            a7((7))
+            a8((8))
+            a6 === a7 === a8
+        end
+        node1 === leaf1
+        node1 === leaf2
+        node1 === leaf3
+        ```
