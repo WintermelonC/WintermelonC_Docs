@@ -39,6 +39,10 @@
 
 [经济法理论与实务](./general_courses/economic_law.md)
 
+#### 科技创新
+
+[生物进化与设计](./general_courses/bio_evolution_and_design.md)
+
 #### 生命探索
 
 [生命科学导论](./general_courses/life_science.md)

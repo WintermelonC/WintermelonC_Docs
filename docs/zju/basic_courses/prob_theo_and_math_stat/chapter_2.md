@@ -82,7 +82,7 @@ $$
             ![Img 4](../../../img/prob_theo_and_math_stat/chapter_2/prob_math_ch2_img4.png){ width="300" }
         </figure>
 
-???+ example "例题 3.3 - 分布函数"
+???+ question "3.3 - 分布函数"
 
     设一物体在 A, B 两点间移动，A, B 之间距离 3 个单位。该物体落在 A, B 间任一子区间的概率与区间长度成正比。设它离 A 点的距离为 X ，求 X 的分布函数
 

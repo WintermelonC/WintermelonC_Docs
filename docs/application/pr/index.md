@@ -1,3 +1,3 @@
 # Pr
 
-[插件](./pr/plugins.md)
+[插件](./plugins.md)
