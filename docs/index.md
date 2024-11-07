@@ -8,6 +8,10 @@
 
 ^^方山厨子^^ 老师[大学生生活常识课](https://www.bilibili.com/video/BV1gVsSeyEAv/){:target="_blank"}的课程笔记
 
-## [Adobe](./adobe/index.md)
+## [常用软件](./application/index.md)
 
-你可以找到 Adobe 软件的一些使用教程和小技巧
+你可以找到一些软件的使用教程或小技巧
+
+1. Ps
+2. Pr
+3. Ae
