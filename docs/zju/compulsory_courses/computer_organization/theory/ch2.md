@@ -119,6 +119,29 @@ Synchronization**
 ## 2.12 翻译并执行程序
 
 <figure markdown="span">
-    ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img9.png){ width="800" }
+    ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img9.png){ width="600" }
 </figure>
 
+### 2.12.3 链接器
+
+### 2.12.4 加载器
+
+### 2.12.5 动态链接库
+
+### 2.12.6 启动一个 Java 程序
+
+## 2.13 以一个 C 排序程序为例
+
+1. 为程序变量分配寄存器
+2. 为过程体生成汇编代码
+3. 保存过程调用间的寄存器
+
+> 书上的例子
+
+## 2.14 数组与指针
+
+> 书上的例子
+
+### 2.14.1 用数组实现 clear
+
+### 2.14.2 用指针实现 clear
