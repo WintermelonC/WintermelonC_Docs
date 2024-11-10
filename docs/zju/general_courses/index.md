@@ -14,7 +14,7 @@
 
 ## 科技创新
 
-[生物进化与设计](./bio_evolution_and_design.md)
+[生物进化与设计](./bio_evolution_and_design/index.md)
 
 ## 生命探索
 

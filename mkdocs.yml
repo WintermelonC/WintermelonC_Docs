@@ -35,7 +35,9 @@ nav:
       - zju/general_courses/index.md
       - 茶文化与茶健康: zju/general_courses/tea_culture.md
       - 经济法理论与实务: zju/general_courses/economic_law.md
-      - 生物进化与设计: zju/general_courses/bio_evolution_and_design.md
+      - 生物进化与设计: 
+        - zju/general_courses/bio_evolution_and_design/index.md
+        - 整理: zju/general_courses/bio_evolution_and_design/doc.md
       - 生命科学导论: zju/general_courses/life_science.md
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
@@ -48,6 +50,7 @@ nav:
       - 概率论与数理统计: 
         - zju/basic_courses/prob_theo_and_math_stat/index.md
         - 2 随机变量及其概率分布: zju/basic_courses/prob_theo_and_math_stat/chapter_2.md
+        - 4 随机变量的数字特征: zju/basic_courses/prob_theo_and_math_stat/chapter_4.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -56,6 +59,8 @@ nav:
         - 2 Red-Black Trees and B+ Trees: zju/compulsory_courses/ADS/ch2.md
         - 3 Inverted File Index: zju/compulsory_courses/ADS/ch3.md
         - 4 Leftist Heaps and Skew Heaps: zju/compulsory_courses/ADS/ch4.md
+        - 5 Binomial Queues: zju/compulsory_courses/ADS/ch5.md
+        - 6 Backtracking: zju/compulsory_courses/ADS/ch6.md
         - 7 Divide and Conquer: zju/compulsory_courses/ADS/ch7.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
