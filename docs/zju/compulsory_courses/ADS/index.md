@@ -28,6 +28,8 @@ dyx老师
 [2 Red-Black Trees and B+ Trees](./ch2.md)<br/>
 [3 Inverted File Index](./ch3.md)<br/>
 [4 Leftist Heaps and Skew Heaps](./ch4.md)<br/>
+[5 Binomial Queues](./ch5.md)<br/>
+[6 Backtracking](./ch6.md)<br/>
 [7 Divide and Conquer](./ch7.md)
 
 ### 其他
