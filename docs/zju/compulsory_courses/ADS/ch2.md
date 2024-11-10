@@ -429,6 +429,21 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
         </div>
 
+### 旋转次数
+
+<table>
+    <tbody>
+        <tr>
+            <td id="tab-both-mid">Insertion</td>
+            <td id="tab-both-mid">$\leqslant 2$</td>
+        </tr>
+        <tr>
+            <td id="tab-both-mid">Deletion</td>
+            <td id="tab-both-mid">$\leqslant 3$</td>
+        </tr>
+    </tbody>
+</table>
+
 ## 2 B+ Trees
 
 ### 定义
