@@ -394,6 +394,21 @@ $F_i$ 是斐波那契数列，$F_0 = 0,\ F_1 = 1,\ F_i = F_{i-1} + F_{i-2}$
 
         $n_6 = F_9 - 1 = 34 -1 = 33$
 
+### 旋转次数
+
+<table>
+    <tbody>
+        <tr>
+            <td id="tab-both-mid">Insertion</td>
+            <td id="tab-both-mid">$\leqslant 2$</td>
+        </tr>
+        <tr>
+            <td id="tab-both-mid">Deletion</td>
+            <td id="tab-both-mid">$O(\log N)$</td>
+        </tr>
+    </tbody>
+</table>
+
 ## 2 Splay Trees
 
 ### Splay 操作
