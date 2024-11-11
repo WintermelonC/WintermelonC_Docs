@@ -316,7 +316,7 @@ $$
 根据 right paths 上的结点值的大小进行 merge，但是每次 merge 要交换左右孩子，除了 right paths 上值最大的那个结点
 
 <figure markdown="span">
-    ![Img 18](../../../img/ADS/ADS_ch4_img18.png){ width="300" }
+    ![Img 18](../../../img/ADS/ADS_ch4_img18.png){ width="500" }
 </figure>
 
 ???+ question "PTA 4.6"
@@ -348,7 +348,7 @@ $$
 把那个要 insert 进来的结点当作另一个 Heap，相当于做一次 merge
 
 <figure markdown="span">
-    ![Img 19](../../../img/ADS/ADS_ch4_img19.png){ width="300" }
+    ![Img 19](../../../img/ADS/ADS_ch4_img19.png){ width="500" }
 </figure>
 
 ???+ question "PTA 4.2"
