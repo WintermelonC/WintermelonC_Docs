@@ -48,13 +48,11 @@ BIO0603G（0716N007）
 
 ??? quote "碎碎念"
 
-    这题…… 无法评价，欲言又止一下吧
+    一部分题真的…… 无法评价，欲言又止一下吧
 
-测试题及答案整理：
+[测试题及答案整理](../../file/life_science/life_science_doc2.pdf){:target="_blank"}
 
 > 有很多重复的题，懒得删除整理了
-
-<embed src="../../../file/life_science/life_science_doc2.pdf" width="100%" height="500">
 
 #### 线下学习（30%）
 

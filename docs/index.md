@@ -12,6 +12,6 @@
 
 你可以找到一些软件的使用教程或小技巧
 
-1. Ps
-2. Pr
-3. Ae
+1. [Ps](./application/ps/index.md)
+2. [Pr](./application/pr/index.md)
+3. [Ae](./application/ae/index.md)
