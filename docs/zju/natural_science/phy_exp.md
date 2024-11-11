@@ -88,7 +88,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">ylm老师</td>
       <td style="text-align: center; vertical-align: middle;">中等<br/>费时长</td>
       <td style="vertical-align: middle;">1. 须先做“分光计的调整和使用”实验<br/>2. 数据处理的要求和表格按照老师的要求来做</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">95</td>
       <td></td>
     </tr>
     <tr>
@@ -102,8 +102,8 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">旋转液体综合实验</td>
       <td style="text-align: center; vertical-align: middle;">yhc老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">中等<br/>费时较长</td>
+      <td>1. 仪器操作不方便，非常难以读数，看得人眼睛疼<br/>2. 测量出来的实验数据误差非常之大，根本不能用（可能是我自己的问题）</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
