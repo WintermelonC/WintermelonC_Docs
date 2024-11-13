@@ -2,16 +2,52 @@
 
 你可以找到一些软件的使用教程或小技巧
 
+## Br
+
+**Adobe Bridge** 
+
+管理各种图片、视频、音频等素材
+
+## Lr
+
+**Adobe Lightroom**
+
+管理和编辑图片，图片调色
+
 ## Ps
+
+**Adobe Photoshop**
+
+图像编辑、处理和图形设计
 
 ## Pr
 
-[插件](./pr/plugins.md)
+**Adobe Premiere Pro**
+
+视频编辑
+
+### [插件](./pr/plugins.md)
 
 ## Ae
 
-[插件](./ae/plugins.md)
+**Adobe After Effects**
+
+动态图形和视觉效果合成
+
+### [插件](./ae/plugins.md)
 
 ### 其他
 
 [物体阴影](./ae/other/shadow.md)
+
+## Au
+
+**Adobe Audition**
+
+音频编辑和处理
+
+## Me
+
+**Adobe Media Encoder**
+
+视频和音频编码

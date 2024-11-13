@@ -38,6 +38,7 @@ nav:
       - 生物进化与设计: 
         - zju/general_courses/bio_evolution_and_design/index.md
         - 整理: zju/general_courses/bio_evolution_and_design/doc.md
+      - 数字音视频基础与制作: zju/general_courses/digital_audio_video.md
       - 生命科学导论: zju/general_courses/life_science.md
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
@@ -81,6 +82,10 @@ nav:
     - 租房流程及注意事项: common_sense/rent.md
   - 常用软件:
     - application/index.md
+    - Br:
+      - application/br/index.md
+    - Lr:
+      - application/lr/index.md
     - Ps:
       - application/ps/index.md
     - Pr:
@@ -88,9 +93,13 @@ nav:
       - 插件: application/pr/plugins.md
     - Ae:
       - application/ae/index.md
+      - 插件: application/ae/plugins.md
       - 其他:
         - 物体阴影: application/ae/other/shadow.md
-      - 插件: application/ae/plugins.md
+    - Au:
+      - application/au/index.md
+    - Me:
+      - application/me/index.md
 
 not_in_nav: |
   /file/*.md
