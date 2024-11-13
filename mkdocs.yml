@@ -84,6 +84,8 @@ nav:
     - application/index.md
     - Br:
       - application/br/index.md
+      - 1 首选项: application/br/ch1.md
+      - 2 文件整理/归纳/筛选: application/br/ch2.md
     - Lr:
       - application/lr/index.md
     - Ps:
