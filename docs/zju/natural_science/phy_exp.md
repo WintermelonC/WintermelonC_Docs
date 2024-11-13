@@ -103,7 +103,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">旋转液体综合实验</td>
       <td style="text-align: center; vertical-align: middle;">yhc老师</td>
       <td style="text-align: center; vertical-align: middle;">中等<br/>费时较长</td>
-      <td>1. 仪器操作不方便，非常难以读数，看得人眼睛疼<br/>2. 测量出来的实验数据误差非常之大，根本不能用（可能是我自己的问题）</td>
+      <td>1. 仪器操作不方便，非常难以读数，看得人眼睛疼<br/>2. 第一个实验测量出来的实验数据误差非常之大，根本不能用（可能是我自己的问题）</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
@@ -208,6 +208,10 @@ xt老师 (1)
 1. 为什么经典物理无法解释光电效应，而量子理论可以？
 
 ### 旋转液体综合实验
+
+思考题：
+
+1. 课本
 
 ### 动态法测量材料杨氏模量
 

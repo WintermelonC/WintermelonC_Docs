@@ -38,6 +38,6 @@ dyx老师
 
 ## 历年题整理
 
-[2024-2025 期中考试](../../../file/ADS/ADS_doc2.pdf){:target="_blank"}
+[2024-2025秋冬 期中考试](../../../file/ADS/ADS_doc2.pdf){:target="_blank"}
 
 [浙江大学课程攻略共享计划 - 高级数据结构与算法分析](https://qsctech.github.io/zju-icicles/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/){:target="_blank"}
