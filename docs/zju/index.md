@@ -41,7 +41,8 @@
 
 #### 科技创新
 
-[生物进化与设计](./general_courses/bio_evolution_and_design/index.md)
+[生物进化与设计](./general_courses/bio_evolution_and_design/index.md)<br/>
+[数字音视频基础与制作](./general_courses/digital_audio_video.md)
 
 #### 生命探索
 
