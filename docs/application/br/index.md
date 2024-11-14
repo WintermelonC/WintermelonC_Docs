@@ -17,3 +17,9 @@
     总的来说，Adobe Bridge 是一个强大的工具，尤其适合需要管理和处理大量视觉内容的专业人士使用
 
 软件下载：[浙江大学校园正版化软件平台](https://software.zju.edu.cn/index.html){:target="_blank"}
+
+## 教程
+
+[1 首选项](./ch1.md)<br/>
+[2 基本操作](./ch2.md)<br/>
+[3 文件整理/归纳/筛选](./ch3.md)
