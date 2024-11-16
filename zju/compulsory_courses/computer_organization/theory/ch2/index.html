@@ -1449,6 +1449,8 @@
       
         
       
+        
+      
     
     
       
@@ -1490,6 +1492,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../basic_courses/prob_theo_and_math_stat/chapter_1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 概率论的基本概念
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -1912,6 +1935,8 @@
   
     
     
+      
+        
       
         
       
@@ -2376,6 +2401,27 @@
   
   <span class="md-ellipsis">
     3 Arithmetic for Computers
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 The Processor
   </span>
   
 
@@ -4073,13 +4119,146 @@
 <h3 id="282-嵌套过程">2.8.2 嵌套过程<a class="headerlink" href="#282-嵌套过程" title="Permanent link">&para;</a></h3>
 <p><strong>Nested Procedures</strong></p>
 <p>不调用其他过程的过程称为 <strong>叶过程</strong>（leaf procedure）</p>
+<p>caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 x5-x7 x28-x31 压栈。callee 将返回地址寄存器 x1 和 callee 使用的保留寄存器 x8-x9 x18-x27 都压栈。栈指针 x2（sp）随着栈中寄存器个数调整。到返回时，寄存器会从存储器中恢复，栈指针也随着重新调整</p>
+<div class="admonition example">
+<p class="admonition-title">编译一个递归 C 过程，演示嵌套过程的链接</p>
+<p>n 存储在 x10 当中</p>
+<div class="grid" markdown>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">c</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span>
+<span class="normal"><a href="#__codelineno-14-4">4</a></span>
+<span class="normal"><a href="#__codelineno-14-5">5</a></span>
+<span class="normal"><a href="#__codelineno-14-6">6</a></span>
+<span class="normal"><a href="#__codelineno-14-7">7</a></span>
+<span class="normal"><a href="#__codelineno-14-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">fact</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">fact</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">));</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="nl">fact:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">16</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="n">sd</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// 保存返回地址</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="n">sd</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// 保存 caller 的参数 n</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x5 = x10 - 1</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="n">bge</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">L1</span><span class="w">  </span><span class="c1">// 若 (n - 1) &gt;= 0，跳转至 L1</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">1</span><span class="w">  </span><span class="c1">// return 1</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span><span class="w">  </span><span class="c1">// pop 两个值</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="n">jalr</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="w">  </span><span class="c1">// 返回 caller</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="nl">L1:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// n = n - 1</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="n">jal</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">fact</span><span class="w">  </span><span class="c1">// 使用新的 n 值即 (n - 1) 调用 callee</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="n">addi</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="w">  </span><span class="c1">// x6 = fact(n - 1)</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="n">ld</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// 恢复原来的 n 值 x10 = n</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="n">ld</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// 恢复原来的返回地址</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="n">mul</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="w">  </span><span class="c1">// x10 = n * fact(n - 1)</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="n">jalr</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>我们拿 n = 2 来举个例子，首先某个地方调用了 fact 函数，比如</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">2</span><span class="w">  </span><span class="c1">// x10 = n = 2</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="n">jal</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">fact</span>
+</span></code></pre></div></td></tr></table></div>
+<p>假设 x1 值为 001，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span>
+<span class="normal"><a href="#__codelineno-17-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="nl">fact:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">16</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">sd</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="n">sd</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x5 = 1</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="n">bge</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">L1</span><span class="w">  </span><span class="c1">// x5 &gt;= 0，跳转至 L1</span>
+</span></code></pre></div></td></tr></table></div>
+<p>此时 <code>sp = [2, 001]</code>，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-18-1">1</a></span>
+<span class="normal"><a href="#__codelineno-18-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="nl">L1:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x10 = n = 1</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><span class="n">jal</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">fact</span><span class="w">  </span><span class="c1">// 假设 x1 = 002</span>
+</span></code></pre></div></td></tr></table></div>
+<p>现在 x1 值为 002，回到 fact，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-19-1">1</a></span>
+<span class="normal"><a href="#__codelineno-19-2">2</a></span>
+<span class="normal"><a href="#__codelineno-19-3">3</a></span>
+<span class="normal"><a href="#__codelineno-19-4">4</a></span>
+<span class="normal"><a href="#__codelineno-19-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="nl">fact:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">16</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">sd</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><span class="n">sd</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x5 = 0</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><span class="n">bge</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">L1</span><span class="w">  </span><span class="c1">// x5 &gt;= 0，跳转至 L1</span>
+</span></code></pre></div></td></tr></table></div>
+<p>此时 <code>sp = [1, 002, 2, 001]</code>，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-20-1">1</a></span>
+<span class="normal"><a href="#__codelineno-20-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="nl">L1:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x10 = n = 0</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="n">jal</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">fact</span><span class="w">  </span><span class="c1">// 假设 x1 = 003</span>
+</span></code></pre></div></td></tr></table></div>
+<p>现在 x1 值为 003，回到 fact，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
+<span class="normal"><a href="#__codelineno-21-2">2</a></span>
+<span class="normal"><a href="#__codelineno-21-3">3</a></span>
+<span class="normal"><a href="#__codelineno-21-4">4</a></span>
+<span class="normal"><a href="#__codelineno-21-5">5</a></span>
+<span class="normal"><a href="#__codelineno-21-6">6</a></span>
+<span class="normal"><a href="#__codelineno-21-7">7</a></span>
+<span class="normal"><a href="#__codelineno-21-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="nl">fact:</span><span class="w"> </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">16</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="n">sd</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="n">sd</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mh">1</span><span class="w">  </span><span class="c1">// x5 = -1</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="n">bge</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">L1</span><span class="w">  </span><span class="c1">// x5 &lt; 0，不跳转</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="n">addi</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">1</span><span class="w">  </span><span class="c1">// return 1，即x10 = 1</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7"></a><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8"></a><span class="n">jalr</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>此时 <code>sp = [1, 002, 2, 001]</code>，回到 x1 = 003，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-22-1">1</a></span>
+<span class="normal"><a href="#__codelineno-22-2">2</a></span>
+<span class="normal"><a href="#__codelineno-22-3">3</a></span>
+<span class="normal"><a href="#__codelineno-22-4">4</a></span>
+<span class="normal"><a href="#__codelineno-22-5">5</a></span>
+<span class="normal"><a href="#__codelineno-22-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="w">  </span><span class="c1">// x6 = fact(0) = 1</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="n">ld</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// x10 = 1</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="n">ld</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// x1 = 002</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="n">mul</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="w">  </span><span class="c1">// x10 = x10 * 1 = 1</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="n">jalr</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>此时 <code>sp = [2, 001]</code>，回到 x1 = 002，接下来运行</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-23-1">1</a></span>
+<span class="normal"><a href="#__codelineno-23-2">2</a></span>
+<span class="normal"><a href="#__codelineno-23-3">3</a></span>
+<span class="normal"><a href="#__codelineno-23-4">4</a></span>
+<span class="normal"><a href="#__codelineno-23-5">5</a></span>
+<span class="normal"><a href="#__codelineno-23-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="w">  </span><span class="c1">// x6 = fact(1) = 1</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="n">ld</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// x10 = 2</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="n">ld</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w">  </span><span class="c1">// x1 = 001</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="n">mul</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="w">  </span><span class="c1">// x10 = x10 * 1 = 2</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a><span class="n">jalr</span><span class="w"> </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>此时 sp 无值，回到 x1 = 001， 接下来回到最开始那个 <code>jal x1, fact</code> caller，此时 x10 里的值即为 <code>fact(2) = 2</code></p>
+</div>
 <p>过程调用时保留和不保留的内容：</p>
 <figure>
     <img alt="Img 4" src="../../../../../img/computer_organization/theory/comp_orga_theo_ch2_img4.png" width="600" />
 </figure>
-<blockquote>
-<p>书上的例子</p>
-</blockquote>
 <h3 id="283-在栈中为新数据分配空间">2.8.3 在栈中为新数据分配空间<a class="headerlink" href="#283-在栈中为新数据分配空间" title="Permanent link">&para;</a></h3>
 <p><strong>Allocating Space for New Data on the Stack</strong></p>
 <p>栈中包含过程所保存的寄存器和局部变量的片段称为 <strong>过程帧</strong>（procedure frame）或 <strong>活动记录</strong>（activation record）</p>
@@ -4172,7 +4351,7 @@ Synchronization</strong></p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月16日</span>
   </span>
 
     
