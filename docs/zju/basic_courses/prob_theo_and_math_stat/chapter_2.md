@@ -1,13 +1,82 @@
 # 2 随机变量及其概率分布
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
-    有些公式块因为已经有图片了，懒得打 $\KaTeX$ 了，所以就直接用图片替代了
+    1. 有些公式块因为已经有图片了，懒得打 $\KaTeX$ 了，所以就直接用图片替代了
+    2. 本文档仅涉及部分内容，仅可用于复习重点知识
 
+## 1 随机变量
+
+## 2 离散型随机变量
+
+### 2.1 离散型随机变量分布
+
+#### 2.1.1 0-1(p) 分布
+
+| $X$ | 0 | 1 |
+| :-: | :-: | :-: |
+| $p$ | $1 - p$ | $p$ |
+
+**概率分布律：** 
+$$
+P \lbrace X = k \rbrace = p^k(1- p)^{1-k},\ k = 0, 1
+$$
+
+记为 $X \sim 0-1(p)$ 或 $X \sim B(1, p)$
+
+#### 2.1.2 二项分布
+
+**概率分布律：** 
+
+$$
+P \lbrace X = k \rbrace = C_n^kp^k(1 - p)^{1 - k},\ k = 0,1,2,···,n
+$$
+
+记为 $X \sim B(n,p)$
+
+#### 2.1.3 泊松分布
+
+**概率分布律：** 
+
+$$
+P \lbrace X = k \rbrace = \dfrac{e^{-\lambda}\lambda^k}{k!},\ k=0,1,2,···
+$$
+
+记为 $X \sim P(\lambda)$
+
+一般来说，当 $n > 10,\ p< 0.1$，参数为 $(n,p)$ 的二项分布也可用泊松分布近似描述，且 $\lambda = np$
+
+#### 2.1.4 超几何分布
+
+**概率分布律：** 
+
+$$
+P \lbrace X = k \rbrace = \dfrac{C_a^kC_b^{n-k}}{C_N^n}
+$$
+
+记为 $X \sim H(n,a,N)$
+
+#### 2.1.5 几何分布
+
+**概率分布律：** 
+$$
+P \lbrace X = k \rbrace = p(1 - p)^{k-1},\ k=1,2,···
+$$
+
+#### 2.1.6 帕斯卡分布（负二项分布）
+
+**概率分布律：** 
+
+$$
+P \lbrace X = k \rbrace = C_{k-1}^{r-1}p^r(1-p)^{k-r},\ k = r,r+1,r+2,···
+$$
+
+记为 $X \sim NB(r,p)$
+ 
 ## 3 随机变量的概率分布函数
 
 ### 3.1 定义
@@ -240,3 +309,67 @@ $$
 P\lbrace c < X < c + l \rbrace = \int_c^{c + l} \frac{1}{b - a} dx = \frac{l}{b - a}
 $$
 上式的值与 $c$ 无关，==即 $X$ 落在区间 $(a, b)$ 内任意长度为 $l$ 的子区间的概率为子区间的长度 $l$ 与 $(b - a)$ 的比 $\dfrac{l}{b - a}$==，其概率与 $l$ 成正比，而且仅依赖于子区间的长度，与子区间的位置没有关系
+
+#### 4.3.2 正态分布
+
+**密度函数：**
+
+$$
+f(x) = \dfrac{1}{\sqrt{2\pi}\sigma}e^{-\frac{(x - \mu)^2}{2\sigma^2}},\ -\infty < x < +\infty
+$$
+
+记为 $X \sim N(\mu, \sigma^2)$
+
+---
+
+**标准正态分布**
+
+密度函数：
+
+$$
+\phi(x) = \dfrac{1}{\sqrt{2\pi}}e^{\frac{-x^2}{2}},\ -\infty < x < +\infty
+$$
+
+分布函数 $\Phi(x)$
+
+$\Phi(x) + \Phi(-x) = 1$
+
+$P\lbrace a < X < b\rbrace = \Phi(\dfrac{b - \mu}{\sigma}) - \Phi(\dfrac{a - \mu}{\sigma})$
+
+#### 4.3.3 指数分布
+
+**密度函数：**
+
+$$
+f(x) = \begin{cases}
+    \lambda e^{-\lambda x}& x > 0\\
+    0& x \leqslant 0
+\end{cases}
+$$
+
+**分布函数：**
+
+$$
+F(x) = \int_{-\infty}^x f(t)dt = \begin{cases}
+    1 - e^{-\lambda x}& x > 0\\
+    0& x \leqslant 0
+\end{cases}
+$$
+
+记为 $X \sim E(\lambda)$
+
+==无记忆性：$P \lbrace X > t_0 + t | X > t_0 \rbrace = P \lbrace X > t \rbrace$==
+
+## 5 随机变量函数的分布
+
+**定理：** 设 $X$ 为一连续型随机变量，其密度函数为 $f_X(x)$，随机变量 $Y = g(X)$，若函数 $y = g(x)$ 为一处处可导的严格单调函数，记 $y = g(x)$ 的反函数为 $x = h(y)$，则 $Y$ 的密度函数为
+
+$$
+f_Y(y) = \begin{cases}
+    f_X(h(y))|h'(y)|& y \in D\\
+    0& y \notin D
+\end{cases}
+$$
+
+其中 $D$ 为函数 $y = g(x)$ 的值域
+

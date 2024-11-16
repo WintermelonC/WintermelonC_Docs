@@ -340,13 +340,129 @@ RISC-V 还包含一条过程调用指令，跳转到某个地址的同时将下�
 
 不调用其他过程的过程称为 **叶过程**（leaf procedure）
 
+caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 x5-x7 x28-x31 压栈。callee 将返回地址寄存器 x1 和 callee 使用的保留寄存器 x8-x9 x18-x27 都压栈。栈指针 x2（sp）随着栈中寄存器个数调整。到返回时，寄存器会从存储器中恢复，栈指针也随着重新调整
+
+!!! example "编译一个递归 C 过程，演示嵌套过程的链接"
+
+    n 存储在 x10 当中
+
+    <div class="grid" markdown>
+    
+    ```c title="c" linenums="1"
+    int fact(int n)
+    {
+        if (n < 1) {
+            return 1;
+        } else {
+            return (n * fact(n - 1));
+        }
+    }
+    ```
+    
+    ```verilog title="RISC-V" linenums="1"
+    fact: addi sp, sp, -16
+    sd x1, 8(sp)  // 保存返回地址
+    sd x10, 0(sp)  // 保存 caller 的参数 n
+    addi x5, x10, -1  // x5 = x10 - 1
+    bge x5, x0, L1  // 若 (n - 1) >= 0，跳转至 L1
+    addi x10, x0, 1  // return 1
+    addi sp, sp, 16  // pop 两个值
+    jalr x0, 0(x1)  // 返回 caller
+    L1: addi x10, x10, -1  // n = n - 1
+    jal x1, fact  // 使用新的 n 值即 (n - 1) 调用 callee
+    addi x6, x10, 0  // x6 = fact(n - 1)
+    ld x10, 0(sp)  // 恢复原来的 n 值 x10 = n
+    ld x1, 8(sp)  // 恢复原来的返回地址
+    addi sp, sp, 16
+    mul x10, x10, x6  // x10 = n * fact(n - 1)
+    jalr x0, 0(x1)
+    ```
+
+    </div>
+
+    我们拿 n = 2 来举个例子，首先某个地方调用了 fact 函数，比如
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x10, x0, 2  // x10 = n = 2
+    jal x1, fact
+    ```
+
+    假设 x1 值为 001，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    fact: addi sp, sp, -16
+    sd x1, 8(sp)
+    sd x10, 0(sp)
+    addi x5, x10, -1  // x5 = 1
+    bge x5, x0, L1  // x5 >= 0，跳转至 L1
+    ```
+
+    此时 `sp = [2, 001]`，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    L1: addi x10, x10, -1  // x10 = n = 1
+    jal x1, fact  // 假设 x1 = 002
+    ```
+
+    现在 x1 值为 002，回到 fact，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    fact: addi sp, sp, -16
+    sd x1, 8(sp)
+    sd x10, 0(sp)
+    addi x5, x10, -1  // x5 = 0
+    bge x5, x0, L1  // x5 >= 0，跳转至 L1
+    ```
+
+    此时 `sp = [1, 002, 2, 001]`，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    L1: addi x10, x10, -1  // x10 = n = 0
+    jal x1, fact  // 假设 x1 = 003
+    ```
+
+    现在 x1 值为 003，回到 fact，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    fact: addi sp, sp, -16
+    sd x1, 8(sp)
+    sd x10, 0(sp)
+    addi x5, x10, -1  // x5 = -1
+    bge x5, x0, L1  // x5 < 0，不跳转
+    addi x10, x0, 1  // return 1，即x10 = 1
+    addi sp, sp, 16
+    jalr x0, 0(x1)
+    ```
+
+    此时 `sp = [1, 002, 2, 001]`，回到 x1 = 003，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x6, x10, 0  // x6 = fact(0) = 1
+    ld x10, 0(sp)  // x10 = 1
+    ld x1, 8(sp)  // x1 = 002
+    addi sp, sp, 16
+    mul x10, x10, x6  // x10 = x10 * 1 = 1
+    jalr x0, 0(x1)
+    ```
+
+    此时 `sp = [2, 001]`，回到 x1 = 002，接下来运行
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x6, x10, 0  // x6 = fact(1) = 1
+    ld x10, 0(sp)  // x10 = 2
+    ld x1, 8(sp)  // x1 = 001
+    addi sp, sp, 16
+    mul x10, x10, x6  // x10 = x10 * 1 = 2
+    jalr x0, 0(x1)
+    ```
+
+    此时 sp 无值，回到 x1 = 001， 接下来回到最开始那个 `jal x1, fact` caller，此时 x10 里的值即为 `fact(2) = 2`
+
 过程调用时保留和不保留的内容：
 
 <figure markdown="span">
     ![Img 4](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img4.png){ width="600" }
 </figure>
-
-> 书上的例子
 
 ### 2.8.3 在栈中为新数据分配空间
 
