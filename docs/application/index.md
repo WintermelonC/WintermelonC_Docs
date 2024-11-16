@@ -26,19 +26,11 @@
 
 视频编辑
 
-### [插件](./pr/plugins.md)
-
 ## Ae
 
 **Adobe After Effects**
 
 动态图形和视觉效果合成
-
-### [插件](./ae/plugins.md)
-
-### 其他
-
-[物体阴影](./ae/other/shadow.md)
 
 ## Au
 
