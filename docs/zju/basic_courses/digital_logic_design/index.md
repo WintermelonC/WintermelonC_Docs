@@ -51,22 +51,22 @@ cm老师
 
     历年题整理资料均来自于 [浙江大学cc98论坛](https://www.cc98.org/){:target="_blank"}
 
-### 2022-2023
+### 2022-2023 秋冬
 
 <embed src="../../../file/digital_logic_design/digital_doc1.pdf" type="application/pdf" width="100%" height="500" />
 
-### 2021-2022
+### 2021-2022 秋冬
 
 <embed src="../../../file/digital_logic_design/digital_doc2.pdf" type="application/pdf" width="100%" height="500" />
 
-### 2020-2021
+### 2020-2021 秋冬
 
 <embed src="../../../file/digital_logic_design/digital_doc3.pdf" type="application/pdf" width="100%" height="500" />
 
-### 2019-2020
+### 2019-2020 秋冬
 
 [数字逻辑设计2019-2020秋冬回忆](https://www.cc98.org/topic/4900664){:target="_blank"}
 
-### 2018-2019
+### 2018-2019 秋冬
 
 <embed src="../../../file/digital_logic_design/digital_doc4.pdf" type="application/pdf" width="100%" height="500" />

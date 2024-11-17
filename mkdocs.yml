@@ -43,6 +43,7 @@ nav:
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
       - zju/basic_courses/index.md
+      - 离散数学及其应用: zju/basic_courses/discrete_math.md
       - 数字逻辑设计:
         - zju/basic_courses/digital_logic_design/index.md
         - 实验部分:
@@ -52,6 +53,7 @@ nav:
         - zju/basic_courses/prob_theo_and_math_stat/index.md
         - 1 概率论的基本概念: zju/basic_courses/prob_theo_and_math_stat/chapter_1.md
         - 2 随机变量及其概率分布: zju/basic_courses/prob_theo_and_math_stat/chapter_2.md
+        - 3 多维随机变量及其分布: zju/basic_courses/prob_theo_and_math_stat/chapter_3.md
         - 4 随机变量的数字特征: zju/basic_courses/prob_theo_and_math_stat/chapter_4.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md

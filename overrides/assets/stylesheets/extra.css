@@ -1,6 +1,12 @@
 .md-grid {
     max-width: 1440px;
 }
+.md-typeset h5 {
+    color: #212121;
+}
+.md-typeset hr {
+    border-bottom-width: 0.1rem;
+}
 #tab-both-mid {
     text-align: center;
     vertical-align: middle;
