@@ -3469,7 +3469,8 @@
 <h3 id="2023-2024-春夏-期中">2023-2024 春夏 期中<a class="headerlink" href="#2023-2024-春夏-期中" title="Permanent link">&para;</a></h3>
 <p>试题：</p>
 <p><embed src="../../../file/discrete_math/discrete_doc3.pdf" type="application/pdf" width="100%" height="500" /></p>
-<p>部分答案：</p>
+<details class="success">
+<summary>部分答案</summary>
 <ol>
 <li>判断题<ol>
 <li>1 - 5：TFTTT</li>
@@ -3505,9 +3506,10 @@
 </ol>
 </li>
 <li><span class="arithmatex">\(\lbrace 1,2 \rbrace \lbrace 3,4 \rbrace \lbrace 5,6 \rbrace ··· \lbrace 2n-1,2n \rbrace\)</span>，<span class="arithmatex">\(n\)</span> 个 set，但需要 <span class="arithmatex">\(n + 1\)</span> 个正数，必存在两个数是相邻的，相邻的数互质</li>
-<li><span class="arithmatex">\(L.H.S = C_n^n + C_{n+1}^n + C_{n-2}^n + ··· + C_{n+r}^n\)</span><br/><span class="arithmatex">\(R.H.S = C_{n+r+1}^{n+1}\)</span><br/>假设有一个长度为 <span class="arithmatex">\(n+r+1\)</span> 的字符串，里面有 <span class="arithmatex">\(n+1\)</span> 个 1。<span class="arithmatex">\(R.H.S\)</span> 就是从 <span class="arithmatex">\(n+r+1\)</span> 中直接选 <span class="arithmatex">\(n+1\)</span> 个。<span class="arithmatex">\(L.H.S\)</span>：<span class="arithmatex">\(C_n^n\)</span> 表示最后一个 1 在 <span class="arithmatex">\((n+1)^{th}\)</span> 的位置；<span class="arithmatex">\(C_{n+1}^n\)</span> 表示最后一个 1 在 <span class="arithmatex">\((n + 2)^{th}\)</span> 的位置，在此位置之前有 <span class="arithmatex">\(C_{n+1}^n\)</span> 种选择；以此类推直至最后一个 1 在 <span class="arithmatex">\((n+r+1)^{th}\)</span> 的位置，在此位置之前有 <span class="arithmatex">\(C_{n+r}^r\)</span> 种选择。每一项加起来就是 <span class="arithmatex">\(L.H.S\)</span></li>
+<li><span class="arithmatex">\(L.H.S = C_n^n + C_{n+1}^n + C_{n-2}^n + ··· + C_{n+r}^n\)</span><br/><span class="arithmatex">\(R.H.S = C_{n+r+1}^{n+1}\)</span><br/>假设有一个长度为 <span class="arithmatex">\(n+r+1\)</span> 的 <span class="arithmatex">\(01\)</span> 字符串，要求刚好有 <span class="arithmatex">\(n+1\)</span> 个 <span class="arithmatex">\(1\)</span>，满足此要求的字符串有多少个。<span class="arithmatex">\(R.H.S\)</span> 就是从 <span class="arithmatex">\(n+r+1\)</span> 中直接选 <span class="arithmatex">\(n+1\)</span> 个。<span class="arithmatex">\(L.H.S\)</span>：<span class="arithmatex">\(C_n^n\)</span> 表示最后一个 1 在 <span class="arithmatex">\((n+1)^{th}\)</span> 的位置；<span class="arithmatex">\(C_{n+1}^n\)</span> 表示最后一个 1 在 <span class="arithmatex">\((n + 2)^{th}\)</span> 的位置，在此位置之前有 <span class="arithmatex">\(C_{n+1}^n\)</span> 种选择；以此类推直至最后一个 1 在 <span class="arithmatex">\((n+r+1)^{th}\)</span> 的位置，在此位置之前有 <span class="arithmatex">\(C_{n+r}^r\)</span> 种选择。每一项加起来就是 <span class="arithmatex">\(L.H.S\)</span></li>
 <li><span class="arithmatex">\(a_n = 2a_{n-1} + a_{n-2} + 2a_{n-5},\ a_0 = 1,\ a_1 = 2,\ a_2 = 5,\ a_3 = 12,\ a_4 = 29\)</span><br/>当第一个为 <span class="arithmatex">\(1\ coin\)</span> 时：<span class="arithmatex">\(a_{n-1}\)</span><br/>当第一个为 <span class="arithmatex">\(1\ bill\)</span> 时：<span class="arithmatex">\(a_{n-1}\)</span><br/>当第一个为 <span class="arithmatex">\(2\ bill\)</span> 时：<span class="arithmatex">\(a_{n-2}\)</span><br/>当第一个为 <span class="arithmatex">\(5\ coin\)</span> 时：<span class="arithmatex">\(a_{n-5}\)</span><br/>当第一个为 <span class="arithmatex">\(5\ bill\)</span> 时：<span class="arithmatex">\(a_{n-5}\)</span></li>
 </ol>
+</details>
 <h3 id="2018-2019-春夏-期末">2018-2019 春夏 期末<a class="headerlink" href="#2018-2019-春夏-期末" title="Permanent link">&para;</a></h3>
 <p>试题：</p>
 <p><embed src="../../../file/discrete_math/discrete_doc1.pdf" type="application/pdf" width="100%" height="500" /></p>
@@ -3541,7 +3543,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月18日</span>
   </span>
 
     
