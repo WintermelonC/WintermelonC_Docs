@@ -470,9 +470,23 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
 
 栈中包含过程所保存的寄存器和局部变量的片段称为 **过程帧**（procedure frame）或 **活动记录**（activation record）
 
+某些 RISC-V 软件使用 **帧指针**（fp）或 x8 指向过程帧的第一个双字
+
+<figure markdown="span">
+    ![Img 14](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img14.png){ width="600" }
+</figure>
+
 ### 2.8.4 在堆中为新数据分配空间
 
 **Allocating Space for New Data on the Heap**
+
+栈由内存高端开始并向下增长。内存低端的第一部分是保留的，之后是 RISC-V 机器代码的第一部分，通常称为 **正文段**（text segment）。正文段之上的代码为 **静态数据段**（static data segment），是存储常量和其他静态变量的空间。然后是动态数据，动态数据在某一区域中朝着栈的方向向上生长，该区域称为 **堆**（heap）
+
+一些递归过程可以不使用递归而使用迭代的方式实现。通过消除过程调用的相关开销，迭代可以显著提高性能
+
+<figure markdown="span">
+    ![Img 15](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img15.png){ width="600" }
+</figure>
 
 RISC-V 寄存器约定：
 
@@ -484,6 +498,59 @@ RISC-V 寄存器约定：
 
 **Communicating with People**
 
+`lbu x12, 0(x10)`
+
+从地址 x10 中读取一个字节（8 bit），经零扩展后写入 x12
+
+`sb x12, 0(x11)`
+
+将 x12 的低 8 位存入内存地址 x11
+
+!!! example "通过编译一个字符串复制过程，来展示如何使用 C 字符串"
+
+    假设 x，y 的基地址存储在 x10，x11，i 存储在 x19
+
+    <div class="grid" markdown>
+    
+    ```c title="c" linenums="1"
+    void strcpy(char x[], char y[])
+    {
+        size_t i;
+        i = 0;
+        while ((x[i] = y[i]) != '\0') {
+            i += 1;
+        }
+    }
+    ```
+    
+    ```verilog title="RISC-V" linenums="1" hl_lines="4 5"
+    strcpy: addi sp, sp, -8
+    sd x19, 0(sp)  // 存储 i
+    add x19, x0, x0  // i = 0
+    L1: add x5, x19, x11  // 计算 y[i] 的地址
+    lbu x6, 0(x5)  // x6 = y[i]
+    add x7, x19, x10  // 计算 x[i] 的地址
+    sb x6, 0(x7)  // x[i] = y[i]
+    beq x6, x0, L2
+    addi x19, x19 1  // i += 1
+    jal x0, L1
+    L2: ld x19, 0(sp)  // 恢复 x19 i 的值
+    addi sp, sp, 8
+    jalr x0, 0(x1)  // 返回 caller
+    ```
+
+    </div>
+
+    line 4-5：`y[]` 中存放着字符，一个字符刚好 1 byte（8 bit），RISC-V 使用字节编码，因此这里不需要像上面的例子中乘以 8（上面例子的数组中存储的是 doubleword，是 8 bytes，所以要乘以 8）
+
+`lhu x19, x0(x10)`
+
+从地址 x10 中读取 2 bytes（16 bits），经零扩展后写入 x19
+
+`sh x19, 0(x11)`
+
+将 x19 的低 2 bytes（16 bits）存入内存地址 x11
+
 ## 2.10 RISC-V 中立即数和地址的寻址
 
 **RISC-V Addressing for Wide Immediates
@@ -493,20 +560,73 @@ and Addresses**
 
 RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`，将 20 bit 常数存储到寄存器的 [31:12] 中，寄存器 [63:32] 复制填充 [31] 的数据，[11:0] 填充 0
 
+`lui rd, immediate`
+
 ### 2.10.2 分支和跳转中的寻址
 
-> 书上的例子
+`bne rs1, rs2, offset` 不相等时分支
+
+<figure markdown="span">
+    ![Img 16](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img16.png){ width="600" }
+</figure>
+
+`jal rd, offset`
+
+<figure markdown="span">
+    ![Img 17](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img17.png){ width="600" }
+</figure>
+
+**PC 相对寻址**（PC-relative addressing）
+
+!!! example "在机器语言中描述分支偏转"
+
+    假设把 loop 的开始位置放在内存的 80000 处
+
+    <div class="grid" markdown>
+    <div>
+    ```c title="c" linenums="1"
+    Loop: slli x10, x22, 3
+    add x10, x10, x25
+    ld x9, 0(x10)
+    bne x9, x24, Exit
+    addi x22, x22, 1
+    beq x0, x0, Loop
+    Exit:
+    ```
+    </div>
+    <figure markdown="span">
+        ![Img 18](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img18.png){ width="400" }
+    </figure>
+    </div>
+
+!!! example "远距离的分支转移"
+
+    ```verilog title="RISC-V" linenums="1"
+    beq x10, x0, L1
+    ```
+
+    假设当 x10 等于 0 时，跳转到 L1。可以用两条指令替换上面的指令，以获得更远的转移距离
+
+    ```verilog title="RISC-V" linenums="1"
+    bne x10, x0, L2
+    jal x0, L1
+    L2:
+    ```
+
+    因为 `jal` 指令里面的 offset 位数更多，所以可以跳转的距离就更远
 
 ### 2.10.3 RISC-V 寻址模式总结
+
+多种不同的寻址形式一般统称为 **寻址模式**（addressing mode）
 
 <figure markdown="span">
     ![Img 6](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img6.png){ width="600" }
 </figure>
 
-1. Immediate addressing: where the operand is a constant within the instruction itself.
-2. Register addressing: where the operand is a register.
-3. Base or displacement addressing: where the operand is at the memory location whose address is the sum of a register and a constant in the instruction.
-4. PC-relative addressing: where the branch address is the sum of the PC and a constant in the instruction.
+1. 立即数寻址（immediate addressing）: 操作数是位于指令自身中的常数
+2. 寄存器寻址（register addressing）: 操作数是寄存器
+3. 基址或偏移寻址（base or displacement addressing）: 操作数在内存中，其地址是指令中基址寄存器和常数的和
+4. PC 相对寻址（PC-relative addressing）: 地址是 PC 和指令中常数的和
 
 ### 2.10.4 机器语言解码
 
@@ -527,17 +647,23 @@ RISC-V 指令的格式：
 **Parallelism and Instructions:
 Synchronization**
 
-`lr.d`
+`lr.d rd, rs1`
 
-`sc.d`
+从内存地址为 rs1 中加载 8 bytes，写入 rd，并对这个内存双字注册保留
 
-> 书上的例子
+`sc.d rd, rs2, rs1`
+
+如果内存地址 rs1 上存在加载保留，将 rs2 寄存器中的 8 bytes 数存入 rs1。如果存入成功，向 rd 存入 0，否则存入一个非 0 的错误码
 
 ## 2.12 翻译并执行程序
 
 <figure markdown="span">
     ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img9.png){ width="600" }
 </figure>
+
+### 2.12.1 编译器
+
+### 2.12.2 汇编器
 
 ### 2.12.3 链接器
 
@@ -553,12 +679,298 @@ Synchronization**
 2. 为过程体生成汇编代码
 3. 保存过程调用间的寄存器
 
-> 书上的例子
+### 2.13.1 swap 过程
+
+```c title="c" linenums="1"
+void swap(int v[], int k)
+{
+    int temp;
+    temp = v[k];
+    v[k] = v[k + 1];
+    v[k + 1] = temp;
+}
+```
+
+#### 为 swap 分配寄存器
+
+实现参数传递通常使用 x10-x17，因为此 swap 只需要两个参数，v 和 k，它们将被分配到 x10 和 x11。还有一个变量是 temp，分配到 x5
+
+#### 为 swap 过程体生成代码
+
+<div class="grid" markdown>
+
+```c title="c" linenums="1"
+temp = v[k];
+v[k] = v[k + 1];
+v[k + 1] = temp;
+```
+
+```verilog title="RISC-V" linenums="1"
+slli x6, x11, 3  // x6 = k * 8
+add x6, x10, x6  // x6 为 v[k] 的地址
+ld x5, 0(x6)  // temp = v[k]
+ld x7, 8(x6)  // x7 = v[k + 1]
+sd x7, 0(x6)  // v[k] = x7 = v[k + 1]
+sd x5, 8(x6)  // v[k + 1] = temp
+```
+
+</div>
+
+#### 完整的 swap 程序
+
+```verilog title="RISC-V" linenums="1"
+swap: slli x6, x11, 3  // x6 = k * 8
+add x6, x10, x6  // x6 为 v[k] 的地址
+ld x5, 0(x6)  // temp = v[k]
+ld x7, 8(x6)  // x7 = v[k + 1]
+sd x7, 0(x6)  // v[k] = x7 = v[k + 1]
+sd x5, 8(x6)  // v[k + 1] = temp
+jalr x0, 0(x1)  // return
+```
+
+### 2.13.2 sort 过程
+
+```c title="c" linenums="1"
+void sort (int v[], int n)
+{
+    int i, j;
+    for (i = 0; i < n; i += 1) {
+        for (j = i - 1; j >= 0 && v[j] > v[j + 1]; j -= 1) {
+            swap(v, j);
+        }
+    }
+}
+```
+
+#### sort 的寄存器分配
+
+v，n 存储在 x10，x11 中，i，j 分配在 x19，x20 中
+
+#### 为 sort 过程体生成代码
+
+第一个 for 循环：
+
+<div class="grid" markdown>
+
+```c title="c" linenums="4"
+for (i = 0; i < n; i += 1) {
+```
+
+```verilog title="RISC-V" linenums="1"
+li x19, 0  // 伪指令，立即数加载
+for1tst: bge x19, x11, exit1  // i >= n 则退出
+-- snip --  // 第一个 for 循环的 body
+addi x19, x19, 1
+j for1tst
+exit1:
+```
+
+</div>
+
+第二个 for 循环：
+
+<div class="grid" markdown>
+
+```c title="c" linenums="5"
+for (j = i - 1; j >= 0 && v[j] > v[j + 1]; j -= 1) {
+```
+
+```verilog title="RISC-V" linenums="1"
+addi x20, x19, -1
+for2tst: blt x20, 0, exit2  // j < 0 则退出
+slli x5, x20, 3  // x5 = j * 8
+add x5, x10, x5  // x5 = v[j] 的地址
+ld x6, 0(x5)  // x6 = v[j]
+ld x7, 8(x5)  // x7 = v[j + 1]
+ble x6, x7, exit2  // v[j] <= v[j + 1] 则退出
+-- snip -- // 第二个 for 循环的 body
+addi x20, x20, -1
+j for2tst
+exit2:
+```
+
+</div>
+
+#### sort 中的过程调用
+
+第二个 for 循环的 body：
+
+<div class="grid" markdown>
+
+```c title="c" linenums="6"
+swap(v, j);
+```
+
+```verilog title="RISC-V" linenums="1"
+jal x1, swap
+```
+
+</div>
+
+#### sort 中的参数传递
+
+sort 函数中需要使用 x10，x11，而 swap 函数也需要使用。一种解决方法是再过程较早的地方将 sort 的参数复制到其他的寄存器中，这个方法比在栈中保存再取回快得多
+
+```verilog title="RISC-V" linenums="1"
+mv x21, x10  // 复制 x10 到 x21 中
+mv x22, x11
+```
+
+调用 swap 前，传递值
+
+```verilog title="RISC-V" linenums="1"
+mv x10, x21
+mv x11, x22
+```
+
+#### 在 sort 中保存寄存器
+
+保存返回地址 x1，保留寄存器 x19，x20，x21，x22 也需要保存
+
+```verilog title="RISC-V" linenums="1"
+addi sp, sp, -40
+sd x1, 32(sp)
+sd x22, 24(sp)
+sd x21, 16(sp)
+sd x20, 8(sp)
+sd x19, 0(sp)
+```
+
+#### 完整的 sort 过程
+
+把上面的步骤拼起来
+
+```verilog title="RISC-V" linenums="1"
+// 保存寄存器
+addi sp, sp, -40
+sd x1, 32(sp)
+sd x22, 24(sp)
+sd x21, 16(sp)
+sd x20, 8(sp)
+sd x19, 0(sp)
+// 过程体
+// 复制参数
+mv x21, x10  // 复制 x10 到 x21 中
+mv x22, x11
+// 第一个 for 循环
+li x19, 0  // 伪指令，立即数加载
+for1tst: bge x19, x11, exit1  // i >= n 则退出
+// 第二个 for 循环
+addi x20, x19, -1
+for2tst: blt x20, 0, exit2  // j < 0 则退出
+slli x5, x20, 3  // x5 = j * 8
+add x5, x10, x5  // x5 = v[j] 的地址
+ld x6, 0(x5)  // x6 = v[j]
+ld x7, 8(x5)  // x7 = v[j + 1]
+ble x6, x7, exit2  // v[j] <= v[j + 1] 则退出
+// 传递参数，调用 swap
+mv x10, x21
+mv x11, x22
+jal x1, swap
+// 第二个 for 循环末尾
+addi x20, x20, -1
+j for2tst
+// 第一个 for 循环末尾
+exit2: addi x19, x19, 1
+j for1tst
+// 恢复寄存器
+exit1: ld x19, 0(sp)
+ld x20, 8(sp)
+ld x21, 16(sp)
+ld x22, 24(sp)
+ld x1, 32(sp)
+addi sp, sp, 40
+// 返回 caller
+jalr x0, 0(x1)
+```
 
 ## 2.14 数组与指针
 
-> 书上的例子
-
 ### 2.14.1 用数组实现 clear
 
+假设 array，size 保存在 x10，x11。i 保存在 x5
+
+<div class="grid" markdown>
+
+```c title="c" linenums="1"
+clear1 (int array[], int size)
+{
+    int i;
+    for (i = 0; i < size; i += 1) {
+        array[i] = 0;
+    }
+}
+```
+
+```verilog title="RISC-V" linenums="1"
+li x5, 0
+loop1: slli x6, x5, 3
+add x7, x10, x6
+sd x0, 0(x7)  // array[i] = 0
+addi x5, x5, 1
+blt x5, x11, loop1
+```
+
+</div>
+
 ### 2.14.2 用指针实现 clear
+
+array，size 存储在 x10，x11。p 存储在 x5
+
+<div class="grid" markdown>
+
+```c title="c" linenums="1"
+clear2 (int *array, int size)
+{
+    int *p;
+    for (p = &array[0]; p < &array[size]; p = p + 1) {
+        *p = 0;
+    }
+}
+```
+
+```verilog title="RISC-V" linenums="1"
+mv x5, x10
+loop2: sd x0, 0(x5)
+addi x5, x5, 8
+slli x6, x11, 3
+add x7, x10, x6
+bltu x5, x7, loop2
+```
+
+</div>
+
+上述代码中，每次循环都会计算一次 `&array[size]`，可以将其放在循环外面
+
+```verilog title="RISC-V" linenums="1"
+mv x5, x10
+slli x6, x11, 3
+add x7, x10, x6
+loop2: sd x0, 0(x5)
+addi x5, x5, 8
+bltu x5, x7, loop2
+```
+
+### 2.14.3 比较两个版本的 clear
+
+<div class="grid" markdown>
+
+```verilog title="RISC-V clear1" linenums="1"
+li x5, 0
+loop1: slli x6, x5, 3
+add x7, x10, x6
+sd x0, 0(x7)
+addi x5, x5, 1
+blt x5, x11, loop1
+```
+
+```verilog title="RISC-V clear2" linenums="1"
+mv x5, x10
+slli x6, x11, 3
+add x7, x10, x6
+loop2: sd x0, 0(x5)
+addi x5, x5, 8
+bltu x5, x7, loop2
+```
+
+</div>
