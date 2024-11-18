@@ -96,7 +96,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">lyh老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td></td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">93</td>
       <td></td>
     </tr>
     <tr>
@@ -110,7 +110,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">动态法测量材料杨氏模量</td>
       <td style="text-align: center; vertical-align: middle;">zl老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td></td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
@@ -214,6 +214,10 @@ xt老师 (1)
 1. 课本
 
 ### 动态法测量材料杨氏模量
+
+思考题：
+
+1. 课本
 
 ### 空气密度测量
 

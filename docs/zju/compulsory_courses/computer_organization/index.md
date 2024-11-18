@@ -35,7 +35,7 @@ yk老师
 
 ## 个人笔记
 
-### 理论部分
+### 理论部分及课本部分练习题详解
 
 [1 Computer Abstractions and Technology](./theory/ch1.md)<br/>
 [2 Instructions: Language of the Computer](./theory/ch2.md)<br/>
