@@ -464,6 +464,116 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
     ![Img 4](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img4.png){ width="600" }
 </figure>
 
+!!! tip "一个简单且万能的实现方式"
+
+    ```c title="c" linenums="1"
+    int fact(int n)
+    {
+        if (n < 1) {
+            return 1;
+        } else {
+            return (n * fact(n - 1));
+        }
+    }
+    ```
+
+    n 存储在 x10
+    
+    ```verilog title="RISC-V" linenums="1"
+    // 存储参数
+    fact: addi sp, sp, -16
+    sd x1, 8(sp)
+    sd x8, 0(sp)
+    mv x8, x10  // 将参数 n 复制到 x8 中，之后需要用 n，就使用 x8
+    
+    // 分支跳转
+    li x5, 1  // x5 = 1
+    blt x8, x5, rtr_1  // x8 < x5 (n < 1)，管你相反条件速度更快，能用就行（
+    
+    // 最后一个 else 语句的内容
+    addi x10, x8, -1  // x10 = n - 1
+    jal x1, fact  // 调用 fact(n - 1)，最后的结果在 x10 当中
+    mul x10, x8, x10  // x10 = n * fact(n - 1)
+    
+    // 跳转到 end
+    j end
+    
+    // rtr_1
+    rtr_1: li x10, 1  // return 1
+    // j end 可以省略
+    
+    // 恢复寄存器的值并返回
+    end: ld x8, 0(sp)
+    ld x1, 8(sp)
+    addi sp, sp, 16
+    jalr x0, 0(x1)
+    ```
+
+    书上给的示例，没有使用 x8，理解起来有点费脑子（比如 line 7，直接 pop 了两个值），但是这个方法使用了 x8，理解起来非常简单
+
+???+ question "课本 2.29"
+
+    Implement the following C code in RISC-V assembly. Hint: Remember that the stack pointer must remain aligned on a multiple of 16.
+
+    ```c title="c" linenums="1"
+    int fib(int n) {
+        if (n == 0) {
+            return 0;
+        } else if (n == 1) {
+            return 1;
+        } else {
+            return fib(n - 1) + fib(n - 2);
+        }
+    }
+    ```
+    
+    ??? success "答案"
+
+        直接套上面的格式
+        
+        n 存储在 x10 中
+    
+        ```verilog title="RISC-V" linenums="1"
+        // 存储参数
+        fib: addi sp, sp, -16
+        sd x1, 8(sp)
+        sd x8, 0(sp)
+        mv x8, x10
+
+        // 分支跳转
+        beq x8, x0, rtr_0
+
+        li x5, 1
+        beq x8, x5, rtr_1
+        
+        // 最后一个 else 语句的内容
+        addi x10, x8, -1  // x10 = x8 - 1 = n - 1
+        jal x1, fib  // 调用 fib(n - 1)，结果存储在 x10 中
+        mv x28, x10  // 复制 x10 的值到 x28
+        addi x10, x8, -2  // x10 = x8 - 2 = n - 2
+        jal x1, fib  // 调用 fib(n - 2)，结果存储在 x10 中
+        add x10, x28, x10  // x10 = fib(n - 1) + fib(n - 2)
+
+        // 跳转到 end
+        j end
+
+        // rtr_0
+        rtr_0: li x10, 0
+        j end
+
+        // rtr_1
+        rtr_1: li x10, 1
+        // j end 可以省略
+
+        // 恢复寄存器的值并返回
+        end: ld x8, 0(sp)
+        ld x1, 8(sp)
+        addi sp, sp, 16
+        jalr x0 0(x1)
+        ```
+
+        可以让 `n = 3`，手写体会一下过程
+
 ### 2.8.3 在栈中为新数据分配空间
 
 **Allocating Space for New Data on the Stack**
