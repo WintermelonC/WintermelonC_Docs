@@ -96,7 +96,7 @@
 ### 定义
 
 $$
-Performance = \frac{1}{Execution time}
+Performance = \frac{1}{Execution\ time}
 $$
 
 定量地比较两台不同计算机地性能，使用"X is $n$ times faster than Y" 或 "X is $n$ times as fast as Y"的表达方式：

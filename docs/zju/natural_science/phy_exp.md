@@ -104,7 +104,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">yhc老师</td>
       <td style="text-align: center; vertical-align: middle;">中等<br/>费时较长</td>
       <td>1. 仪器操作不方便，非常难以读数，看得人眼睛疼<br/>2. 第一个实验测量出来的实验数据误差非常之大，根本不能用（可能是我自己的问题）</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">94</td>
       <td></td>
     </tr>
     <tr>

@@ -107,6 +107,8 @@ nav:
       - application/au/index.md
     - Me:
       - application/me/index.md
+    - Vivado: 
+      - application/Vivado/index.md
 
 not_in_nav: |
   /file/*.md
