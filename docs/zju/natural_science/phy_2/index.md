@@ -19,3 +19,19 @@ whc老师
 ## 个人笔记
 
 [整理](./phy_2_doc.md)
+
+### 历年题整理
+
+#### 2024-2025 秋冬
+
+##### 小测 1
+
+<embed src="../../../file/phy_2/phy_2_doc2.pdf" type="application/pdf" width="100%" height="500" />
+
+##### 小测 2
+
+<embed src="../../../file/phy_2/phy_2_doc3.pdf" type="application/pdf" width="100%" height="500" />
+
+##### 期中
+
+<embed src="../../../file/phy_2/phy_2_doc4.pdf" type="application/pdf" width="100%" height="500" />
