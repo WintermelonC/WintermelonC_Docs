@@ -51,6 +51,36 @@ RISC-V 汇编语言（assembly language）：
 
     t0 和 t1 是临时寄存器
 
+???+ question "课本 2.1"
+
+    For the following C statement, write the corresponding RISC-V assembly code. Assume that the C variables f, g, and h, have already been placed in registers x5, x6, and x7 respectively. Use a minimal number of RISC-V assembly instructions.
+
+    ```c title="c" linenums="1"
+    f = g + (h - 5);
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        addi x5, x7, -5
+        add x5, x5, x6
+        ```
+
+???+ question "课本 2.2"
+
+    Write a single C statement that corresponds to the two RISC-V assembly instructions below.
+
+    ```verilog title="RISC-V" linenums="1"
+    add f, g, h
+    add f, i, f
+    ```
+
+    ??? success "答案"
+
+        ```c title="c" linenums="1"
+        f = g + h + i;
+        ```
+
 ## 2.3 计算机硬件的操作数
 
 在 RISC-V 体系结构中寄存器大小为 64 bit，由于 64 bit 为 1 组的情况经常出现，因此在 RISC-V 体系结构中将其称为 $doubleword$，32 bit 为 1 组则称为 $word$
@@ -115,6 +145,16 @@ RISC-V 汇编语言（assembly language）：
 
 字节寻址也影响到数组下标。在上面的代码中，为了得到正确的字节地址，与基址寄存器相加的偏移量必须是 $8 \times 8$，即 64，这样才能正确读到 A[8] 的数据
 
+???+ question "课本 2.5"
+
+    Show how the value 0xabcdef12 would be arranged in memory of a little-endian and a big-endian machine. Assume the data are stored starting at address 0 and that the word size is 4 bytes.
+
+    ??? success "答案"
+    
+        <figure markdown="span">
+            ![Img 19](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img19.png){ width="600" }
+        </figure>
+
 与取数指令相对应的指令通常叫做 **存数指令**（store），它将数据从寄存器拷贝到存储器。RISC-V 中为 `sd`，表示 $store\ doubleword$
 
 !!! example "用取数/存数指令进行编译"
@@ -140,6 +180,97 @@ RISC-V 汇编语言（assembly language）：
 加立即数 `addi`（add immediate）
 
 RISC-V 将寄存器 x0 恒置为 0
+
+???+ question "课本 2.3"
+
+    For the following C statement, write the corresponding RISC-V assembly code. Assume that the variables f, g, h, i, and j are assigned to registers x5, x6, x7, x28, and x29, respectively. Assume that the base address of the arrays A and B are in registers x10 and x11, respectively.
+
+    ```c title="c" linenums="1"
+    B[8] = A[i - j];
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        sub x5, x28, x29  // x5 = i - j
+        slli x5, x5, 3  // x5 = 8(i - j)
+        add x5, x10, x5  // x5 = &A[i - j]
+        ld x6, 0(x5)  // x6 = A[i - j]
+        sd x6, 64(x11)  // B[8] = A[i - j]
+        ```
+
+???+ question "课本 2.4"
+
+    For the RISC-V assembly instructions below, what is the corresponding C statement? Assume that the variables f, g, h, i, and j are assigned to registers x5, x6, x7, x28, and x29, respectively. Assume that the base address of the arrays A and B are in registers x10 and x11, respectively.
+
+    ```verilog title="RISC-V" linenums="1"
+    slli x30, x5, 3  // x30 = f*8
+    add x30, x10, x30  // x30 = &A[f]
+    slli x31, x6, 3  // x31 = g*8
+    add x31, x11, x31  // x31 = &B[g]
+    ld x5, 0(x30)  // f = A[f]
+
+    addi x12, x30, 8
+    ld x30, 0(x12)
+    add x30, x30, x5
+    sd x30, 0(x31)
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="7"
+        addi x12, x30, 8  // x12 = &A[f + 1]
+        ld x30, 0(x12)  // x30 = A[f + 1]
+        add x30, x30, x5  // x30 = A[f + 1] + A[f]
+        sd x30, 0(x31)  // B[g] = A[f + 1] + A[f]
+        ```
+
+        ```c title="c" linenums="1"
+        B[g] = A[f + 1] + A[f]
+        ```
+
+???+ question "课本 2.7"
+
+    Translate the following C code to RISC-V. Assume that the variables f, g, h, i, and j are assigned to registers x5, x6, x7, x28, and x29, respectively. Assume that the base address of the arrays A and B are in registers x10 and x11, respectively. Assume that the elements of the arrays A and B are 8-byte words:
+
+    ```c title="c" linenums="1"
+    B[8] = A[i] + A[j]
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        slli x5, x28, 3  // x5 = 8 * i
+        add x5, x10, x5  // x5 = &A[i]
+        ld x6, 0(x5)  // x6 = A[i]
+        slli x5, x29, 3  // x5 = 8 * j
+        add x5, x10, x5  // x5 = &A[j]
+        ld x7, 0(x5)  // x7 = A[j]
+        add x5, x6, x7  // x5 = x6 + x7
+        sd x5, 64(x11)  // B[8] = x5
+        ```
+
+???+ question "课本 2.8"
+
+    Translate the following RISC-V code to C. Assume that the variables f, g, h, i, and j are assigned to registers x5, x6, x7, x28, and x29, respectively. Assume that the base address of the arrays A and B are in registers x10 and x11, respectively.
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x30, x10, 8
+    addi x31, x10, 0
+    sd x31, 0(x30)
+    ld x30, 0(x30)
+    add x5, x30, x31
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        addi x30, x10, 8  // x30 = &A[1]
+        addi x31, x10, 0  // x31 = &A[0]
+        sd x31, 0(x30)  // A[1] = &A[0]
+        ld x30, 0(x30)  // x30 = &A[0]
+        add x5, x30, x31  // x5 = 2 * &A[0]
+        ```
 
 ## 2.5 计算机中指令的表示
 
@@ -175,6 +306,113 @@ RISC-V 指令的格式：
 <figure markdown="span">
     ![Img 13](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img13.png){ width="600" }
 </figure>
+
+???+ question "课本 2.12"
+
+    Provide the instruction type and assembly language instruction for the following binary value:
+
+    ```verilog title="machine code" linenums="1"
+    0000 0000 0001 0000 1000 0000 1011 0011
+    ```
+
+    ??? success "答案"
+
+        `opcode = 0110011`
+
+        R-type
+
+        `funct7 = 0000000`<br/>
+        `rs2 = 00001`<br/>
+        `rs1 = 00001`<br/>
+        `funct3 = 000`<br/>
+        `rd = 00001`
+
+        ```verilog title="RISC-V" linenums="1"
+        add x1, x1, x1
+        ```
+
+???+ question "课本 2.13"
+
+    Provide the instruction type and hexadecimal representation of the following instruction:
+
+    ```verilog title="RISC-V" linenums="1"
+    sd x5, 32(x30)
+    ```
+
+    ??? success "答案"
+
+        S-type
+        
+        <figure markdown="span">
+            ![Img 20](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img20.png){ width="600" }
+        </figure>
+
+        $immed = 32_{10} = 000\_000\_100\_000_2$<br/>
+        $rs2 = 5_{10} = 00101_2$<br/>
+        $rs1 = 30_{10} = 11110_2$<br/>
+        $funct3 = 111$<br/>
+        $opcode = 0100011$
+
+        ```verilog title="machine code" linenums="1"
+        0000 0010 0101 1111 0111 0000 0010 0011
+        ```
+
+???+ question "课本 2.14"
+
+    Provide the instruction type, assembly language instruction, and binary representation of instruction described by the following RISC-V fields:
+
+    `opcode=0x33, funct3=0x0, funct7=0x20, rs2=5, rs1=7, rd=6`
+
+    ??? success "答案"
+
+        `opcode = 0110011`
+
+        R-type
+
+        `funct3 = 000`<br/>
+        `funct7 = 0100000`
+
+        sub
+
+        `rs2 = 00101`<br/>
+        `rs1 = 00111`<br/>
+        `rd = 00110`
+
+        ```verilog title="RISC-V" linenums="1"
+        sub x6, x7, x5
+        ```
+
+        ```verilog title="machine code" linenums="1"
+        0100 0000 0101 0011 1000 0011 0011 0011
+        ```
+
+???+ question "课本 2.15"
+
+    Provide the instruction type, assembly language instruction, and binary representation of instruction described by the following RISC-V fields:
+
+    `opcode=0x3, funct3=0x3, rs1=27, rd=3, imm=0x4`
+
+    ??? success "答案"
+
+        `opcode = 0000011`
+
+        I-type
+
+        `funct3 = 011`
+
+        ld
+
+        `rs1 = 11011`<br/>
+        `rd = 00011`<br/>
+        `imm = 000_000_000_100`
+
+        ```verilog title="RISC-V" linenums="1"
+        ld x3, 4(x27)
+        ```
+
+        ```verilog title="machine code" linenums="1"
+        0000 0000 0100 1101 1011 0001 1000 0011
+        ```
 
 ## 2.7 决策指令
 
