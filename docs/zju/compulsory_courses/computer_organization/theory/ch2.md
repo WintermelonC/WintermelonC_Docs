@@ -350,11 +350,11 @@ RISC-V 指令的格式：
         $immed = 32_{10} = 000\_000\_100\_000_2$<br/>
         $rs2 = 5_{10} = 00101_2$<br/>
         $rs1 = 30_{10} = 11110_2$<br/>
-        $funct3 = 111$<br/>
+        $funct3 = 011$<br/>
         $opcode = 0100011$
 
         ```verilog title="machine code" linenums="1"
-        0000 0010 0101 1111 0111 0000 0010 0011
+        0000 0010 0101 1111 0011 0000 0010 0011
         ```
 
 ???+ question "课本 2.14"
@@ -983,6 +983,8 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 <figure markdown="span">
     ![Img 7](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img7.png){ width="600" }
 </figure>
+
+> 课本原图有误，本图片已修正
 
 RISC-V 指令的格式：
 
