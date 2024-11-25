@@ -223,7 +223,7 @@ IEEE 754 双精度浮点
     ![Img 2](../../../../img/computer_organization/theory/comp_orga_theo_img2.png){ width="800" }
 </figure>
 
-> 课本原图有误，本图片已改正
+> 课本原图有误，本图片已改修正
 
 符号位 S：0 为正数，1 为负数
 
