@@ -145,8 +145,8 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">空气密度测量</td>
       <td style="text-align: center; vertical-align: middle;">yhc老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时长</td>
+      <td>一个人做实验的话费时短，但抽真空的仪器只有一台，所以一群人做实验费时长</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
