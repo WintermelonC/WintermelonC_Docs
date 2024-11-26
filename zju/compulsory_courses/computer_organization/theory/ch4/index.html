@@ -2372,6 +2372,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#控制冒险" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制冒险
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2379,6 +2388,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-流水线数据通路及其控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 流水线数据通路及其控制
+    </span>
+  </a>
   
 </li>
       
@@ -3696,6 +3714,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#控制冒险" class="md-nav__link">
+    <span class="md-ellipsis">
+      控制冒险
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3703,6 +3730,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#46-流水线数据通路及其控制" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 流水线数据通路及其控制
+    </span>
+  </a>
   
 </li>
       
@@ -3948,14 +3984,60 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <span class="normal"><a href="#__codelineno-2-5">5</a></span>
 <span class="normal"><a href="#__codelineno-2-6">6</a></span>
 <span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">ld</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">ld</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">add</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">sd</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="mh">24</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="n">ld</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">add</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">sd</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="mh">32</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="hll"><span class="n">ld</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span></span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="hll"><span class="n">add</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
+</span></span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">sd</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="mh">24</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="hll"><span class="n">ld</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span></span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="hll"><span class="n">add</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
+</span></span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">sd</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="mh">32</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>两条 add 指令都存在冒险，因为他们都依赖于上一条 ld 指令。通过将第三条 ld 指令提前可以消除所有的冒险</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">ld</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">ld</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">ld</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">add</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="n">sd</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="mh">24</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">add</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">sd</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="mh">32</span><span class="p">(</span><span class="n">x31</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
 </div>
+<h4 id="控制冒险">控制冒险<a class="headerlink" href="#控制冒险" title="Permanent link">&para;</a></h4>
+<p><strong>Control Hazards</strong></p>
+<p>控制冒险也称为 <strong>分支冒险</strong>（branch hazard）。控制冒险发生在决策依赖于一条指令的结果，而其正在执行中。计算机中的决策就是分支指令。在去分支指令之后，紧跟着就会取下一条指令。但是流水线并不知道下一条真正要执行的指令在哪里，因为它才刚刚从指令存储器中把分支指令给取出来</p>
+<p>一种可能的解决方法是取分支指令后立即 <strong>阻塞</strong>（stall）流水线，直到流水线确定分支指令的结果并指导下一条真正要执行的指令在哪为止</p>
+<figure>
+    <img alt="Img 19" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img19.png" width="600" />
+</figure>
+<div class="admonition example">
+<p class="admonition-title">阻塞对分支性能的影响</p>
+<p>假设其他所有指令的 CPI 都为 1，分支指令约占执行指令的 17%。分支指令阻塞要多一个时钟周期，因此平均 CPI 为 1.17</p>
+</div>
+<p>如果不能在第二级解决分支问题，那么分支结构上的阻塞将导致更大的速度下降。对很多计算机来说，这种阻塞的方法代价太大，因此也就产生了另外一种消除控制冒险的方法</p>
+<p><strong>预测：</strong>（predict）一种简单的预测方法讲就是总预测分支未发生。当预测正确的时候，流水线会全速地执行。只有当分支发生时流水线才会阻塞</p>
+<figure>
+    <img alt="Img 20" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img20.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 21" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img21.png" width="500" />
+</figure>
+<p>一种更加成熟的分支预测方法是预测一些分支发生而预测另一些分支不发生。在计算机程序中，循环体底部的分支总是会跳回到循环体的顶部。在此种情况下，由于分支总是发生并且向前跳转，因此我们可以预测分支会跳转到前面的某一地址处</p>
+<p>这种分支预测方法依赖于始终不变的行为，它没有考虑特定分支指令的特点。<strong>动态</strong>（Dynamic）硬件预测其与这种方法截然不同，它的预测取决于每一条指令的行为，并且在整个程序生命期内可能改变分支的预测结果</p>
+<p>计算机中动态预测方法的一种比较普遍的实现方式是保存每次分支的历史记录，然后利用这个历史记录来预测。稍后我们将看到，历史记录的数量和类型足够多时，这种硬件预测分支的方式能够达到 90% 的正确率。当预测错误时，流水线控制必须确保被错误预测的分支后面的指令执行不会生效，并且必须在正确的分支地址处重新开始启动流水线</p>
+<p>如同其他解决控制冒险的方法一样，较长的流水线会恶化预测的性能，并会提高错误预测的代价</p>
+<h2 id="46-流水线数据通路及其控制">4.6 流水线数据通路及其控制<a class="headerlink" href="#46-流水线数据通路及其控制" title="Permanent link">&para;</a></h2>
+<p>将指令划分为五个阶段意味着一个流水线采用五级</p>
+<figure>
+    <img alt="Img 22" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img22.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 23" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img23.png" width="500" />
+</figure>
 
 
 
@@ -3978,7 +4060,7 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月21日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月26日</span>
   </span>
 
     
