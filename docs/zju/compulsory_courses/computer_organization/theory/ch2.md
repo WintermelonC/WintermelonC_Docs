@@ -414,6 +414,21 @@ RISC-V 指令的格式：
         0000 0000 0100 1101 1011 0001 1000 0011
         ```
 
+???+ question "课本 2.20"
+
+    For the following C statement, write a minimal sequence of RISC-V assembly instructions that performs the identical operation. Assume x6 = A, and x17 is the base address of C.
+
+    ```c title="c" linenums="1"
+    A = C[0] << 4;
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        ld x5, 0(x17)  // x5 = C[0]
+        slli x6, x5, 4
+        ```
+
 ## 2.7 决策指令
 
 **Instructions for Making Decisions**
@@ -747,7 +762,69 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
     jalr x0, 0(x1)
     ```
 
-    书上给的示例，没有使用 x8，理解起来有点费脑子（比如 line 7，直接 pop 了两个值），但是这个方法使用了 x8，理解起来非常简单
+???+ question "课本 2.25"
+
+    Translate the following C code to RISC-V assembly code. Use a minimum number of instructions. Assume that the values of a, b, i, and j are in registers x5, x6, x7, and x29, respectively. Also, assume that register x10 holds the base address of the array D.
+
+    ```c title="c" linenums="1"
+    for (i = 0; i < a; i++) {
+        for (j = 0; j < b; j++) {
+             D[4 * j] = i + j;
+        }
+    }
+        
+    ```
+    
+    ??? success "答案"
+
+        <div class="grid" id="grid-mid">
+        ```verilog title="第一个 for 循环" linenums="1"
+        li x7, 0
+        for1tst: bge x7, x5, exit1
+        -- snip --
+        addi x7, x7, 1
+        j for1tst
+
+        exit1:
+        ```
+        ```verilog title="第二个 for 循环" linenums="1"
+        li x29, 0
+        for2tst: bge x29, x6, exit2
+
+        slli x28, x29, 2  // x28 = 4 * j
+        slli x28, x28, 3  // x28 = 8 * (4 * j)
+        add x28, x10, x28  // x28 = &D[4 * j]
+        add x30, x7, x29  // x30 = i + j
+        ld x30, 0(x28)  // D[4 * j] = i + j
+
+        addi x29, x29, 1
+        j for2tst
+
+        exit2:
+        ```
+        </div>
+
+        ```verilog title="RSIC-V" linenums="1"
+        li x7, 0
+        for1tst: bge x7, x5, exit1
+        
+        li x29, 0
+        for2tst: bge x29, x6, exit2
+
+        slli x28, x29, 2  // x28 = 4 * j
+        slli x28, x28, 3  // x28 = 8 * (4 * j)
+        add x28, x10, x28  // x28 = &D[4 * j]
+        add x30, x7, x29  // x30 = i + j
+        ld x30, 0(x28)  // D[4 * j] = i + j
+
+        addi x29, x29, 1
+        j for2tst
+
+        exit2: addi x7, x7, 1
+        j for1tst
+        
+        exit1:
+        ```
 
 ???+ question "课本 2.29"
 
@@ -811,6 +888,59 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
         ```
 
         可以让 `n = 3`，手写体会一下过程
+
+???+ question "课本 2.31"
+
+    Translate function f into RISC-V assembly language. Assume the function declaration for g is int g(int a, int b). The code for function f is as follows:
+
+    ```c title="c" linenums="1"
+    int f (int a, int b, int c, int d) {
+        return g(g(a, b), c + d);
+    }
+    ```
+    
+    ??? success "答案"
+
+        a, b, c, d 存储在 x10, x11, x12, x13 当中，g 函数的结果存储在 x10 中
+
+        ```verilog title="RISC-V" linenums="1"
+        addi sp, sp, -16
+        sd x1, 8(sp)
+        add x5, x12, x13  // x5 = c + d
+        sd x5, 0(sp)
+        jal x1, g
+        ld x11, 0(sp)  // x11 = c + d
+        jal x1, g
+        ld x1, 8(sp)
+        addi sp, sp, 16
+        jalr x0, x1
+        ```
+
+???+ question "课本 2.32"
+
+    Can we use the tail-call optimization in this function? If no, explain why not. If yes, what is the difference in the number of executed instruction in f with and without the optimization?
+
+    ```c title="c" linenums="1"
+    int f (int a, int b, int c, int d) {
+        return g(g(a, b), c + d);
+    }
+    ```
+    
+    ??? success "答案"
+
+        a, b, c, d 存储在 x10, x11, x12, x13 当中，g 函数的结果存储在 x10 中
+
+        ```verilog title="RISC-V" linenums="1"
+        addi sp, sp, -16
+        sd x1, 8(sp)
+        add x5, x12, x13
+        sd x5, 0(sp)
+        jal x1, g
+        ld x11, 0(sp)
+        ld x1, 8(sp)
+        addi sp, sp, 16
+        jal x0, g
+        ```
 
 ### 2.8.3 在栈中为新数据分配空间
 
@@ -1170,7 +1300,7 @@ mv x22, x11
 
 ```verilog title="RISC-V" linenums="1"
 mv x10, x21
-mv x11, x22
+mv x11, x20
 ```
 
 #### 在 sort 中保存寄存器
@@ -1204,18 +1334,18 @@ mv x21, x10  // 复制 x10 到 x21 中
 mv x22, x11
 // 第一个 for 循环
 li x19, 0  // 伪指令，立即数加载
-for1tst: bge x19, x11, exit1  // i >= n 则退出
+for1tst: bge x19, x22, exit1  // i >= n 则退出
 // 第二个 for 循环
 addi x20, x19, -1
 for2tst: blt x20, 0, exit2  // j < 0 则退出
 slli x5, x20, 3  // x5 = j * 8
-add x5, x10, x5  // x5 = v[j] 的地址
+add x5, x21, x5  // x5 = v[j] 的地址
 ld x6, 0(x5)  // x6 = v[j]
 ld x7, 8(x5)  // x7 = v[j + 1]
 ble x6, x7, exit2  // v[j] <= v[j + 1] 则退出
 // 传递参数，调用 swap
 mv x10, x21
-mv x11, x22
+mv x11, x20
 jal x1, swap
 // 第二个 for 循环末尾
 addi x20, x20, -1
