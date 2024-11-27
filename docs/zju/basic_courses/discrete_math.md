@@ -1,8 +1,8 @@
 # 离散数学及其应用
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 ## 课程介绍
 
@@ -39,9 +39,9 @@ wyl老师
 ??? success "部分答案"
 
     1. 判断题
-        1. 1 - 5：TFTTT
-        2. 6 - 10：FTTFF
-        3. 11：F
+        1. 1 - 5：$T\ F\ T\ T\ T$
+        2. 6 - 10：$F\ T\ T\ F\ F$
+        3. 11：$F$
     2. 填空题
         1. $(p \wedge q \wedge r) \vee (p \wedge q \wedge \neg r) \vee (\neg p \wedge q \wedge r) \vee (\neg p \wedge q \wedge \neg r) \vee (\neg p \wedge \neg q \wedge r) \vee (\neg p \wedge \neg q \wedge \neg r)$
         2. $\lbrace \varnothing,\lbrace \varnothing \rbrace,\lbrace \lbrace \varnothing \rbrace \rbrace,\lbrace \varnothing, \lbrace \varnothing \rbrace \rbrace \rbrace$

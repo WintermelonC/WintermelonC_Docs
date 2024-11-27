@@ -1,13 +1,14 @@
 # 2 Instructions: Language of the Computer
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
     1. 部分内容由 AI 翻译课本原文，可能存在错误
     2. 本文档只涉及部分知识点，仅可用来复习重点知识
+    3. 部分课本练习题答案可能存在错误，欢迎在评论区指出
 
 ## 2.2 计算机硬件的操作
 
@@ -414,6 +415,46 @@ RISC-V 指令的格式：
         0000 0000 0100 1101 1011 0001 1000 0011
         ```
 
+???+ question "课本 2.17"
+
+    Assume the following register contents:
+
+    `x5 = 0x00000000AAAAAAAA, x6 = 0x1234567812345678`
+
+    (1) For the register values shown above, what is the value of x7 for the following sequence of instructions?
+
+    ```verilog title="RISC-V" linenums="1"
+    slli x7, x5, 4
+    or x7, x7, x6
+    ```
+
+    (2) For the register values shown above, what is the value of x7 for the following sequence of instructions?
+
+    ```verilog title="RISC-V" linenums="1"
+    slli x7, x6, 4
+    ```
+
+    (3) For the register values shown above, what is the value of x7 for the following sequence of instructions?
+
+    ```verilog title="RISC-V" linenums="1"
+    srli x7, x5, 3
+    andi x7, x7, 0xFEF
+    ```
+
+    ??? success "答案"
+
+        (1) `x7 = x5 << 4 = 0x0000_000A_AAAA_AAA0`<br/>
+        `x7 = x7 or x6 = 0x1234_567A_BABE_FEF8`
+
+        ---
+
+        (2) `x7 = x6 << 4 = 0x2345_6781_2345_6780`
+
+        ---
+
+        (3) `x7 = x5 >> 3 = 0x0000_0000_1555_5555`<br/>
+        `x7 = x7 and 0xFEF = 0x0000_0000_0000_0545`
+
 ???+ question "课本 2.20"
 
     For the following C statement, write a minimal sequence of RISC-V assembly instructions that performs the identical operation. Assume x6 = A, and x17 is the base address of C.
@@ -510,6 +551,113 @@ RISC-V 指令的格式：
 大多数程序设计语言中都包括 case 或 switch 语句，使得程序员可以根据某个变量的值选择不同分支之一。实现 switch 语句的最简单方法是借助一系列的条件判断，将 switch 语句转化为 if-then-else 语句嵌套
 
 有时候另一种更有效的方法是将多个指令序列分支的地址编码为一张表，即 **转移地址表**（branch address table / branch table）。这样程序只需索引该表即可跳转到恰当的指令序列。转移地址表是一个由代码中标签所对应地址构成的数组。程序需要跳转的时候首先将转移地址表中适当的项加载到寄存器中，然后使用寄存器中的地址值进行跳转。为了支持这种情况，RISC-V 提供了寄存器跳转指令 `jalr`，用来无条件地跳转到寄存器指定的地址
+
+???+ question "课本 2.21"
+
+    Assume x5 holds the value 0x00000000001010000. What is the value of x6 after the following instructions?
+
+    ```verilog title="RISC-V" linenums="1"
+    bge x5, x0, ELSE
+    jal x0, DONE
+    ELSE: ori x6, x0, 2
+    DONE:
+    ```
+
+    ??? success "答案"
+    
+        ```verilog title="RISC-V" linenums="1"
+        x6 = 00 or 10 = 10
+        ```
+
+        $x6 = 10_2 = 2_{10}$
+
+???+ question "课本 2.24"
+
+    Consider the following RISC-V loop:
+
+    ```verilog title="RISC-V" linenums="1"
+    LOOP: beq x6, x0, DONE
+    addi x6, x6, -1
+    addi x5, x5, 2
+    jal x0, LOOP
+    DONE:
+    ```
+
+    (1) Assume that the register x6 is initialized to the value 10. What is the final value in register x5 assuming the x5 is initially zero?
+
+    (2) For the loop above, write the equivalent C code. Assume that the registers x5 and x6 are integers acc and i, respectively.
+
+    (3) For the loop written in RISC-V assembly above, assume that the register x6 is initialized to the value N. How many RISC-V instructions are executed?
+
+    (4) For the loop written in RISC-V assembly above, replace the instruction “beq x6, x0, DONE” with the instruction “blt x6, x0, DONE” and write the equivalent C code.
+
+    ??? success "答案"
+
+        (1) 简单的循环问题，`x5 = 20`
+
+        ---
+
+        (2)
+
+        ```c title="c" linenums="1"
+        i = 10;
+        acc = 0;
+        while (i != 0) {
+            acc += 2;
+            i --;
+        }
+        ```
+
+        ---
+
+        (3) 共 $4N + 1$ 次
+
+        ---
+
+        (4)
+
+        ```c title="c" linenums="1"
+        i = 10;
+        acc = 0;
+        while (i >= 0) {
+            acc += 2;
+            i --;
+        }
+        ```
+
+???+ question "课本 2.27"
+
+    Translate the following loop into C. Assume that the C-level integer i is held in register x6,x5 holds the C-level integer called result, and x10 holds the base address of the integer MemArray.
+
+    > 原题题干有误，本文已修正
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x6, x0, 0
+    addi x29, x0, 100
+    LOOP: ld x7, 0(x10)
+    add x5, x5, x7
+    addi x10, x10, 8
+    addi x6, x6, 1
+    blt x6, x29, LOOP
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        addi x6, x0, 0  // x6 = 0
+        addi x29, x0, 100  // x29 = 100
+        LOOP: ld x7, 0(x10)  // x7 = MemArray[x10]
+        add x5, x5, x7  // x5 = x5 + x7
+        addi x10, x10, 8  // x10 = x10 + 8
+        addi x6, x6, 1  // x6 = x6 + 1
+        blt x6, x29, LOOP  // x6 < x29
+        ```
+
+        ```c title="c" linenums="1"
+        for (i = 0; i < 100; i++) {
+            result += MemArray[i];
+        }
+        ```
 
 ## 2.8 计算机硬件对过程的支持
 
@@ -903,7 +1051,7 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
 
         a, b, c, d 存储在 x10, x11, x12, x13 当中，g 函数的结果存储在 x10 中
 
-        ```verilog title="RISC-V" linenums="1"
+        ```verilog title="参考答案" linenums="1"
         addi sp, sp, -16
         sd x1, 8(sp)
         add x5, x12, x13  // x5 = c + d
@@ -913,7 +1061,37 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
         jal x1, g
         ld x1, 8(sp)
         addi sp, sp, 16
-        jalr x0, x1
+        jalr x0, 0(x1)
+        ```
+
+        ---
+
+        我的答案
+
+        ```verilog title="函数内部" linenums="1" hl_lines="3"
+        add x8, x12, x13  // x8 = c + d
+        jal x1, g  // x10 = g(a, b)
+        mv x11, x8  // x11 = c + d
+        jal x1, g  // x10 = g(g(a, b), c + d)
+        ```
+
+        x8 是保留寄存器，如果 g 函数需要用到 x8，g 函数 body 代码执行前会存储的，g 函数返回前也会恢复 x8 的值，所以我觉得 line 3 可以这样写
+
+        ```verilog title="RISC-V" linenums="1"
+        addi sp, sp, -16
+        sd x1, 8(sp)
+        sd x8, 0(sp)  // f 函数也需要存储 x8 的值
+
+        add x8, x12, x13  // x8 = c + d
+        jal x1, g  // x10 = g(a, b)
+        mv x11, x8  // x11 = c + d
+        jal x1, g  // x10 = g(g(a, b), c + d)
+
+        ld x1, 8(sp)
+        ld x8, 0(sp)
+        addi sp, sp, 16
+
+        jalr x0, 0(x1)
         ```
 
 ???+ question "课本 2.32"
@@ -1029,6 +1207,43 @@ RISC-V 寄存器约定：
 
 将 x19 的低 2 bytes（16 bits）存入内存地址 x11
 
+???+ question "课本 2.35"
+
+    Consider the following code:
+
+    ```verilog title="RISC-V" linenums="1"
+    lb x6, 0(x7)
+    sd x6, 8(x7)
+    ```
+
+    Assume that the register x7 contains the address 0×10000000 and the data at address is 0×1122334455667788.
+
+    (1) What value is stored in 0×10000008 on a big-endian machine?
+
+    (2) What value is stored in 0×10000008 on a little-endian machine?
+    
+    ??? success "答案"
+
+        (1) 大端寻址：最高有效位在低地址
+
+        ```verilog title="RISC-V" linenums="1"
+        lb x6, 0(x7)  // x6 = 0x11
+        sd x6, 8(x7)  // x6 存在 0×10000008
+        ```
+
+        `x6 = 0x11`
+
+        ---
+
+        (2) 小端寻址：最低有效位在低地址
+
+        ```verilog title="RISC-V" linenums="1"
+        lb x6, 0(x7)  // x6 = 0x88
+        sd x6, 8(x7)  // x6 存在 0×10000008
+        ```
+
+        `x6 = 0x88`
+
 ## 2.10 RISC-V 中立即数和地址的寻址
 
 **RISC-V Addressing for Wide Immediates
@@ -1093,6 +1308,36 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 
     因为 `jal` 指令里面的 offset 位数更多，所以可以跳转的距离就更远
 
+???+ question "课本 2.22"
+
+    Suppose the program counter (PC) is set to 0x20000000.
+
+    (1) What range of addresses can be reached using the RISC-V jump-and-link (jal) instruction? (In other words, what is the set of possible values for the PC after the jump instruction executes?)
+
+    (2) What range of addresses can be reached using the RISC-V branch if equal (beq) instruction? (In other words, what is the set of possible values for the PC after the branch instruction executes?)
+
+    ??? success "答案"
+
+        (1) 注意 jal 的指令格式中立即数的存储方式
+
+        $offset_{max} = 0111\_1111\_1111\_1111\_1111\_0 = 1048574_{10}$<br/>
+        $offset_{min} = 1000\_0000\_0000\_0000\_0000\_0 = -1048576_{10}$
+
+        $PC_{min} = PC + offset_{min} = 0x1ff0\_0000$<br/>
+        $PC_{max} = PC + offset_{max} = 0x200f\_fffe$
+
+        $\therefore PC = [0x1ff0\_0000, 0x200f\_fffe]$
+
+        ---
+
+        (2) $offset_{max} = 0111\_1111\_1111\_0 = 4094_{10}$<br/>
+        $offset_{min} = 1000\_0000\_0000\_0 = -4096_{10}$
+
+        $PC_{min} = PC + offset_{min} = 0x1fff\_f000$<br/>
+        $PC_{max} = PC + offset_{max} = 0x2000\_0ffe$
+
+        $\therefore PC = [0x1fff\_f000, 0x2000\_0ffe]$
+
 ### 2.10.3 RISC-V 寻址模式总结
 
 多种不同的寻址形式一般统称为 **寻址模式**（addressing mode）
@@ -1121,6 +1366,21 @@ RISC-V 指令的格式：
 <figure markdown="span">
     ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img8.png){ width="800" }
 </figure>
+
+???+ question "课本 2.36"
+
+    Write the RISC-V assembly code that creates the 64-bit constant $0x1122334455667788_{two}$ and stores that value to register x10.
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        lui x10, 0x11223
+        addi x10, x10, 0x344
+        slli x10, x10, 32
+        lui x5, 0x55667
+        addi x5, x5, 0x788
+        add x10, x10, x5
+        ```
 
 ## 2.11 并行与指令：同步
 
