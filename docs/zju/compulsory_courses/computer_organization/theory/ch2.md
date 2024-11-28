@@ -15,23 +15,23 @@
 RISC-V 操作数（operands）：
 
 <figure markdown="span">
-    ![Img 1](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img1.png){ width="800" }
+    ![Img 1](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img1.png){ width="800" }
 </figure>
 
 RISC-V 寄存器约定：
 
 <figure markdown="span">
-    ![Img 5](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img5.png){ width="600" }
+    ![Img 5](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img5.png){ width="600" }
 </figure>
 
 RISC-V 汇编语言（assembly language）：
 
 <figure markdown="span">
-    ![Img 2](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img2.png){ width="800" }
+    ![Img 2](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img2.png){ width="800" }
 </figure>
 
 <figure markdown="span">
-    ![Img 3](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img3.png){ width="800" }
+    ![Img 3](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img3.png){ width="800" }
 </figure>
 
 !!! example "把 C 语言中一条复杂的赋值语句编译成 RISC-V"
@@ -130,7 +130,7 @@ RISC-V 汇编语言（assembly language）：
     x22 称为基址寄存器（base register），8 称为偏移量（offset）
 
 <figure markdown="span">
-    ![Img 10](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img10.png){ width="400" }
+    ![Img 10](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img10.png){ width="400" }
 </figure>
 
 很多程序都用到字节类型，且大多数体系结构按字节编址。因此，一个双字的地址必和它所包括的八个字节中的某个地址相匹配，且连续双字的地址相差 8。上图中展示了实际的 RISC-V 地址，其中第三个双字的字节地址为 16
@@ -139,7 +139,7 @@ RISC-V 汇编语言（assembly language）：
 2. 小端编址（little-endian）：最低有效位在低地址
 
 <figure markdown="span">
-    ![Img 11](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img11.png){ width="600" }
+    ![Img 11](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img11.png){ width="600" }
 </figure>
 
 ==RISC-V 使用小端编址==
@@ -153,7 +153,7 @@ RISC-V 汇编语言（assembly language）：
     ??? success "答案"
     
         <figure markdown="span">
-            ![Img 19](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img19.png){ width="600" }
+            ![Img 19](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img19.png){ width="600" }
         </figure>
 
 与取数指令相对应的指令通常叫做 **存数指令**（store），它将数据从寄存器拷贝到存储器。RISC-V 中为 `sd`，表示 $store\ doubleword$
@@ -284,7 +284,7 @@ RISC-V 将寄存器 x0 恒置为 0
 **RISC-V Fields**
 
 <figure markdown="span">
-    ![Img 12](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img12.png){ width="600" }
+    ![Img 12](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img12.png){ width="600" }
 </figure>
 
 1. opcode：指令的基本操作，通常称为 **操作码**
@@ -297,7 +297,7 @@ RISC-V 将寄存器 x0 恒置为 0
 RISC-V 指令的格式：
 
 <figure markdown="span">
-    ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img8.png){ width="800" }
+    ![Img 8](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img8.png){ width="800" }
 </figure>
 
 ## 2.6 逻辑操作
@@ -305,7 +305,7 @@ RISC-V 指令的格式：
 **Logical Operations**
 
 <figure markdown="span">
-    ![Img 13](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img13.png){ width="600" }
+    ![Img 13](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img13.png){ width="600" }
 </figure>
 
 ???+ question "课本 2.12"
@@ -345,7 +345,7 @@ RISC-V 指令的格式：
         S-type
         
         <figure markdown="span">
-            ![Img 20](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img20.png){ width="600" }
+            ![Img 20](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img20.png){ width="600" }
         </figure>
 
         $immed = 32_{10} = 000\_000\_100\_000_2$<br/>
@@ -629,7 +629,7 @@ RISC-V 指令的格式：
 
     Translate the following loop into C. Assume that the C-level integer i is held in register x6,x5 holds the C-level integer called result, and x10 holds the base address of the integer MemArray.
 
-    > 原题题干有误，本文已修正
+    > 课本题干有误，本文已修正
 
     ```verilog title="RISC-V" linenums="1"
     addi x6, x0, 0
@@ -862,7 +862,7 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
 过程调用时保留和不保留的内容：
 
 <figure markdown="span">
-    ![Img 4](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img4.png){ width="600" }
+    ![Img 4](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img4.png){ width="600" }
 </figure>
 
 !!! tip "一个简单且万能的实现方式"
@@ -1129,7 +1129,7 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
 某些 RISC-V 软件使用 **帧指针**（fp）或 x8 指向过程帧的第一个双字
 
 <figure markdown="span">
-    ![Img 14](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img14.png){ width="600" }
+    ![Img 14](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img14.png){ width="600" }
 </figure>
 
 ### 2.8.4 在堆中为新数据分配空间
@@ -1141,13 +1141,13 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
 一些递归过程可以不使用递归而使用迭代的方式实现。通过消除过程调用的相关开销，迭代可以显著提高性能
 
 <figure markdown="span">
-    ![Img 15](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img15.png){ width="600" }
+    ![Img 15](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img15.png){ width="600" }
 </figure>
 
 RISC-V 寄存器约定：
 
 <figure markdown="span">
-    ![Img 5](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img5.png){ width="600" }
+    ![Img 5](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img5.png){ width="600" }
 </figure>
 
 ## 2.9 人机交互
@@ -1260,13 +1260,13 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 `bne rs1, rs2, offset` 不相等时分支
 
 <figure markdown="span">
-    ![Img 16](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img16.png){ width="600" }
+    ![Img 16](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img16.png){ width="600" }
 </figure>
 
 `jal rd, offset`
 
 <figure markdown="span">
-    ![Img 17](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img17.png){ width="600" }
+    ![Img 17](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img17.png){ width="600" }
 </figure>
 
 **PC 相对寻址**（PC-relative addressing）
@@ -1288,7 +1288,7 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
     ```
     </div>
     <figure markdown="span">
-        ![Img 18](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img18.png){ width="400" }
+        ![Img 18](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img18.png){ width="400" }
     </figure>
     </div>
 
@@ -1343,7 +1343,7 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 多种不同的寻址形式一般统称为 **寻址模式**（addressing mode）
 
 <figure markdown="span">
-    ![Img 6](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img6.png){ width="600" }
+    ![Img 6](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img6.png){ width="600" }
 </figure>
 
 1. 立即数寻址（immediate addressing）: 操作数是位于指令自身中的常数
@@ -1356,7 +1356,7 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 **Decoding Machine Language**
 
 <figure markdown="span">
-    ![Img 7](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img7.png){ width="600" }
+    ![Img 7](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img7.png){ width="600" }
 </figure>
 
 > 课本原图有误，本图片已修正
@@ -1364,7 +1364,7 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
 RISC-V 指令的格式：
 
 <figure markdown="span">
-    ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img8.png){ width="800" }
+    ![Img 8](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img8.png){ width="800" }
 </figure>
 
 ???+ question "课本 2.36"
@@ -1398,20 +1398,8 @@ Synchronization**
 ## 2.12 翻译并执行程序
 
 <figure markdown="span">
-    ![Img 8](../../../../img/computer_organization/theory/comp_orga_theo_ch2_img9.png){ width="600" }
+    ![Img 8](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img9.png){ width="600" }
 </figure>
-
-### 2.12.1 编译器
-
-### 2.12.2 汇编器
-
-### 2.12.3 链接器
-
-### 2.12.4 加载器
-
-### 2.12.5 动态链接库
-
-### 2.12.6 启动一个 Java 程序
 
 ## 2.13 以一个 C 排序程序为例
 

@@ -111,6 +111,8 @@ nav:
       - application/me/index.md
     - Vivado: 
       - application/Vivado/index.md
+    - VS Code:
+      - application/vscode/index.md
 
 not_in_nav: |
   /file/*.md

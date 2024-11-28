@@ -313,10 +313,43 @@ sub x2, x19, x3
 将指令划分为五个阶段意味着一个流水线采用五级
 
 <figure markdown="span">
-    ![Img 22](../../../../img/computer_organization/theory/ch4/comp_ch4_img22.png){ width="600" }
+    ![Img 22](../../../../img/computer_organization/theory/ch4/comp_ch4_img22.png){ width="800" }
 </figure>
 
 <figure markdown="span">
-    ![Img 23](../../../../img/computer_organization/theory/ch4/comp_ch4_img23.png){ width="500" }
+    ![Img 23](../../../../img/computer_organization/theory/ch4/comp_ch4_img23.png){ width="800" }
 </figure>
+
+1. IF：取指令
+2. ID：指令译码，读寄存器堆
+3. EX：执行或计算地址
+4. MEM：存储器访问
+5. WB：写回
+
+## 4.7 数据冒险：转发与阻塞
+
+**Data Hazard: Forwarding versus Stalling**
+
+4 个冒险条件：
+
+1a. EX/MEM.RegisterEd = ID/EX.RegisterRs<br/>
+1b. <br/>
+2a. <br/>
+2b. 
+
+### 4.7.1 数据冒险与阻塞
+
+**Data Hazards and Stalls**
+
+## 4.8 控制冒险
+
+**Branch Hazard**
+
+### 4.8.1 假定分支不发生
+
+### 4.8.2 缩短分支的延迟
+
+### 4.8.3 动态分支预测
+
+**Dynamic Branch Prediction**
 

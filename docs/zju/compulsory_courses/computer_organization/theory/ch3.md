@@ -177,6 +177,137 @@ $M +/- N$ 无论加减法都适用
 
         $151 + 214 = 365$，但是 8 bit 无符号数最大为 255，所以最后结果是 255
 
+## 3.3 乘法
+
+**Multiplication**
+
+第一个操作数称为 **被乘数**（multiplicand），第二个操作数称为 **乘数**（multiplier），最终的结果称为 **积**（product）
+
+### 3.3.1 顺序的乘法算法和硬件
+
+#### V1
+
+64-bit 乘法器 V1：
+
+<figure markdown="span">
+    ![Img 4](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img4.png){ width="600" }
+</figure>
+
+
+1. 被乘数放在 multiplicand 寄存器的低 64 位中，乘数放在 multiplier 寄存器中，积放在 product 寄存器中且被初始化为 0
+2. 检测 multiplier 的最低有效位
+      1. 若为 0：跳转到第 3 步
+      2. 若为 1：multiplicand 与 product 进行加法运算，并将结果存储到 product 寄存器中
+3. 将 multiplicand 寄存器中的值左移一位
+4. 将 multiplier 寄存器中的值右移一位
+5. 若已重复操作了 64 次，结束；否则回到第 2 步
+
+#### V2
+
+64-bit 乘法器 V2：
+
+<figure markdown="span">
+    ![Img 5](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img5.png){ width="600" }
+</figure>
+
+1. 被乘数放在 multiplicand 寄存器中，乘数放在 multiplier 寄存器中，积放在 product 寄存器的高 64 位中且被初始化为 0
+2. 检测 multiplier 的最低有效位
+      1. 若为 0：跳转到第 3 步
+      2. 若为 1： multiplicand 与 product 寄存器的高 64 位进行加法运算，并将结果存储到 product 寄存器的高 64 位中
+3. 将 product 寄存器的值右移一位
+4. 将 multiplier 寄存器的值右移一位
+5. 若已重复操作了 64 次，结束；否则回到第 2 步
+
+#### V3
+
+64-bit 乘法器 V3：
+
+<figure markdown="span">
+    ![Img 6](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img6.png){ width="600" }
+</figure>
+
+1. 被乘数放在 multiplicand 寄存器中，乘数放在 product 寄存器的低 64 位中，其余为初始化为 0
+2. 检测 product 寄存器的最低有效位
+      1. 若为 0：跳转到第 3 步
+      2. 若为 1：multiplicand 与 product 寄存器的高 65 位（加法运算时，product 的最高有效位当作 $C_{in}$）进行加法运算，并将结果存储到 product 寄存器的高 65 位中（product 的最高有效位存放加法结果的 $C_{out}$）
+3. 将 product 寄存器的值右移一位
+4. 若已重复操作了 64 次，结束；否则回到第 2 步
+
+### 3.3.2 有符号乘法
+
+最简单的方法是首先将被乘数和乘数转化为正数，并记住原来的符号位。接下来按无符号乘法来算，并根据两个操作数的符号来调整结果
+
+### 3.3.3 更快速的乘法
+
+Booth's Algorithm
+
+<figure markdown="span">
+    ![Img 7](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img7.png){ width="500" }
+</figure>
+
+<figure markdown="span">
+    ![Img 8](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img8.png){ width="600" }
+</figure>
+
+## 3.4 除法
+
+**Division**
+
+除法中的两个操作数分别称为 **被除数**（dividend），**除数**（divisor），结果称为 **商**（quotient）和 **余数**（remainder）
+
+### 3.4.1 除法算法及其硬件结构
+
+#### V1
+
+64-bit 除法器 V1：
+
+<figure markdown="span">
+    ![Img 9](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img9.png){ width="600" }
+</figure>
+
+1. 被除数存放在 remainder 寄存器中，除数存放在 divisor 寄存器的高 64 位，商存放在 quotient 寄存器中
+2. 用 remainder 寄存器中的值减去 divisor 寄存器中的值，将结果放入 remainder 寄存器中
+3. 检测 remainder 寄存器
+      1. 若为正数：将 quotient 寄存器中的值左移一位，并将最低有效位置为 1
+      2. 若为负数：
+         1. 撤销第 2 步操作，即将 remainder 寄存器中的值与 divisor 寄存器中的值相加，将结果存入 remainder 寄存器
+         2. 将 quotient 寄存器中的值左移一位，并将最低有效位置为 0
+4. 将 divisor 寄存器中的值右移一位
+5. 若已重复了 65 次，结束；否则返回第 2 步
+
+#### V2
+
+64-bit 除法器 V2：
+
+<figure markdown="span">
+    ![Img 10](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img10.png){ width="600" }
+</figure>
+
+1. 被除数存放在 remainder 寄存器低 128 位中，最高有效位初始化为 0（多出来的这一位是为了保证做 ALU 运算时，进位和借位不丢失），除数存放在 divisor 寄存器中
+2. 将 remainder 寄存器中的值左移一位
+3. 用 remainder 寄存器高 65 位减去 divisor 寄存器中的值，将结果放入 remainder 寄存器高 65 位
+4. 检测 remainder 寄存器
+      1. 若为正数：将 remainder 寄存器中的值左移一位，并将最低有效位置为 1
+      2. 若为负数：
+         1. 撤销第 2 步操作，即将 remainder 寄存器高 65 位与 divisor 寄存器中的值相加，将结果存入 remainder 寄存器高 65 位
+         2. 将 remainder 寄存器中的值左移一位，并将最低有效位置为 0
+5. 若已重复了 64 次，跳转至第 6 步；否则返回第 3 步
+6. 将 remainder 寄存器高 65 位的值右移一位。此时 remainder 寄存器 [127:64] 位为余数，低 64 位为商
+
+!!! tip "除数为 0"
+
+    divisor 为 0 时，硬件无法检测，需要软件进行检测
+
+### 3.4.2 有符号除法
+
+同有符号乘法一样，首先记住转化被除数和除数为正数，并记住原来的符号。但在最后根据符号处理结果的时候要遵循以下规则：
+
+==两操作数符号相反时商为负，并使余数的符号和被除数相同==
+
+1. $(+7) \div (-2) = -3 ······ +1$
+2. $(-7) \div (+2) = -3 ······ -1$
+3. $(-7) \div (-2) = +3 ······ -1$
+
 ## 3.5 Floating Point
 
 ### 表示
@@ -186,7 +317,7 @@ $M +/- N$ 无论加减法都适用
 IEEE 754 单精度浮点
 
 <figure markdown="span">
-    ![Img 1](../../../../img/computer_organization/theory/comp_orga_theo_img1.png){ width="800" }
+    ![Img 1](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img1.png){ width="800" }
 </figure>
 
 符号位 S：0 为正数，1 为负数
@@ -221,7 +352,7 @@ $$
 IEEE 754 双精度浮点
 
 <figure markdown="span">
-    ![Img 2](../../../../img/computer_organization/theory/comp_orga_theo_img2.png){ width="800" }
+    ![Img 2](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img2.png){ width="800" }
 </figure>
 
 > 课本原图有误，本图片已修正
@@ -420,10 +551,19 @@ IEEE 754 双精度浮点
 ### 范围和精度
 
 <figure markdown="span">
-    ![Img 3](../../../../img/computer_organization/theory/comp_orga_theo_img3.png){ width="800" }
+    ![Img 3](../../../../img/computer_organization/theory/ch3/comp_orga_theo_ch3_img3.png){ width="800" }
 </figure>
 
 ==我们不考虑 $denormalized\ number$ （非规格化数）的存在==
+
+!!! note "记忆"
+
+    1. $0x0000\_0000 = 0$
+    2. $0x7F80\_0000 = +\infty$
+    3. $0xFF80\_0000 = -\infty$
+    4. 注意 NaN 也需要记忆，考试也会考
+
+    > 可恶，没人告诉我呀
 
 #### single precision
 
