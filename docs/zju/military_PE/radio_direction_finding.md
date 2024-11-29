@@ -55,6 +55,15 @@ dyp老师 / zl老师 (1)
 
     可以相互帮助哦（小声）
 
+## 理论考试资料
+
+[体育通用资料](./index.md#体育理论考试通用资料){:target="_blank"}
+
+[无线电测向题库](../../file/PE/radio_doc1.pdf){:target="_blank"}<br/>
+[无线电测向介绍](../../file/PE/radio_doc2.pdf){:target="_blank"}
+
+> 无线电测向题库中 ^^答案^^ 那一列是正确答案
+
 ## 个人感受
 
 很有意思的一门课呀

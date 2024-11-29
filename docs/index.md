@@ -20,3 +20,4 @@
 6. [Au](./application/au/index.md)
 7. [Me](./application/me/index.md)
 8. [Vivado](./application/Vivado/index.md)
+9. [VS Code](./application/vscode/index.md)

@@ -35,3 +35,7 @@ whc老师
 ##### 期中
 
 <embed src="../../../file/phy_2/phy_2_doc4.pdf" type="application/pdf" width="100%" height="500" />
+
+##### 小测 3
+
+<embed src="../../../file/phy_2/phy_2_doc5.pdf" type="application/pdf" width="100%" height="500" />
