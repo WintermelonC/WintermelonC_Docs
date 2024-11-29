@@ -50,4 +50,6 @@
 
 ## VS Code
 
+**Visual Studio Code**
+
 轻量级但功能强大的免费源代码编辑器，支持多种编程语言
