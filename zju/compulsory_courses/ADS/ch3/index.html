@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -1480,6 +1480,8 @@
       
         
       
+        
+      
     
     
       
@@ -1649,6 +1651,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 参数估计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1743,6 +1766,8 @@
       
         
           
+        
+      
         
       
         
@@ -2091,6 +2116,27 @@
   
   <span class="md-ellipsis">
     7 Divide and Conquer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 Approximation Algorithms
   </span>
   
 
@@ -3634,17 +3680,17 @@
 <h2 id="定义">定义<a class="headerlink" href="#定义" title="Permanent link">&para;</a></h2>
 <p>存储每个单词出现的次数，和出现过此单词的文档</p>
 <figure>
-    <img alt="Img 1" src="../../../../img/ADS/ADS_ch3_img1.png" width="600" />
+    <img alt="Img 1" src="../../../../img/ADS/ch3/ADS_ch3_img1.png" width="600" />
 </figure>
 <p>也可以存储单词在每个文档中的位置</p>
 <figure>
-    <img alt="Img 2" src="../../../../img/ADS/ADS_ch3_img2.png" width="600" />
+    <img alt="Img 2" src="../../../../img/ADS/ch3/ADS_ch3_img2.png" width="600" />
 </figure>
 <h2 id="word-stemming">word stemming<a class="headerlink" href="#word-stemming" title="Permanent link">&para;</a></h2>
 <p>词干提取</p>
 <p>处理单词时，只记录此单词的词干</p>
 <figure>
-    <img alt="Img 3" src="../../../../img/ADS/ADS_ch3_img3.png" width="600" />
+    <img alt="Img 3" src="../../../../img/ADS/ch3/ADS_ch3_img3.png" width="600" />
 </figure>
 <h2 id="stop-words">stop words<a class="headerlink" href="#stop-words" title="Permanent link">&para;</a></h2>
 <p>停止词</p>
@@ -3673,11 +3719,11 @@ F</p>
 <h2 id="distributed-indexing">distributed indexing<a class="headerlink" href="#distributed-indexing" title="Permanent link">&para;</a></h2>
 <h3 id="1-term-partitioned-index">1 term-partitioned index<a class="headerlink" href="#1-term-partitioned-index" title="Permanent link">&para;</a></h3>
 <figure>
-    <img alt="Img 4" src="../../../../img/ADS/ADS_ch3_img4.png" width="600" />
+    <img alt="Img 4" src="../../../../img/ADS/ch3/ADS_ch3_img4.png" width="600" />
 </figure>
 <h3 id="2-document-partitioned-index">2 document-partitioned index<a class="headerlink" href="#2-document-partitioned-index" title="Permanent link">&para;</a></h3>
 <figure>
-    <img alt="Img 5" src="../../../../img/ADS/ADS_ch3_img5.png" width="600" />
+    <img alt="Img 5" src="../../../../img/ADS/ch3/ADS_ch3_img5.png" width="600" />
 </figure>
 <details class="question" open="open">
 <summary>PTA 3.1</summary>
@@ -3713,7 +3759,7 @@ F</p>
 </details>
 <h3 id="答案集相关性">答案集相关性<a class="headerlink" href="#答案集相关性" title="Permanent link">&para;</a></h3>
 <figure>
-    <img alt="Img 6" src="../../../../img/ADS/ADS_ch3_img6.png" width="600" />
+    <img alt="Img 6" src="../../../../img/ADS/ch3/ADS_ch3_img6.png" width="600" />
 </figure>
 <ol>
 <li>Precision 反映了在展示出的文档中，与用户搜索相关性大的文档的占比</li>
@@ -3726,7 +3772,7 @@ Precision:\ P = \frac{R_R}{R_R + I_R}
 Recall:\ R = \frac{R_R}{R_R + R_N}
 \]</div>
 <figure>
-    <img alt="Img 7" src="../../../../img/ADS/ADS_ch3_img7.png" width="600" />
+    <img alt="Img 7" src="../../../../img/ADS/ch3/ADS_ch3_img7.png" width="600" />
 </figure>
 <ol>
 <li>Precision 大，Recall 小：大多数展示的文档都是相关的，但仍会遗漏一些相关的文档</li>
@@ -3777,7 +3823,7 @@ D. How relevant is the answer set</p>
 <summary>PTA 3.7</summary>
 <p>There are 28000 documents in the database. The statistic data for one query are shown in the following table. The recall is: __</p>
 <p><figure markdown="span">
-    <img alt="Img 8" src="../../../../img/ADS/ADS_ch3_img8.png" width="300" />
+    <img alt="Img 8" src="../../../../img/ADS/ch3/ADS_ch3_img8.png" width="300" />
 </figure></p>
 <p>A. 14%<br/>
 B. 25%<br/>
@@ -3812,7 +3858,7 @@ D. 50%</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年11月6日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月1日</span>
   </span>
 
     
