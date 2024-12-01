@@ -21,11 +21,11 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 5. 对于每个结点，从一个结点到其 descendant 的所有叶结点的路径包含相同数量的 black 结点
 
 <figure markdown="span">
-    ![Img 1](../../../img/ADS/ADS_ch2_img1.png){ width="400" }
+    ![Img 1](../../../img/ADS/ch2/ADS_ch2_img1.png){ width="400" }
 </figure>
 
 <figure markdown="span">
-    ![Img 2](../../../img/ADS/ADS_ch2_img2.png){ width="500" }
+    ![Img 2](../../../img/ADS/ch2/ADS_ch2_img2.png){ width="500" }
 </figure>
 
 !!! tip "引理"
@@ -45,7 +45,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 1 z 的叔结点 y 是红色的 （三红变色）
 
 <figure markdown="span">
-    ![Img 3](../../../img/ADS/ADS_ch2_img3.png){ width="500" }
+    ![Img 3](../../../img/ADS/ch2/ADS_ch2_img3.png){ width="500" }
 </figure>
 
 **三红变色：** z, z.p, y 均为红色
@@ -60,7 +60,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 3 z 的叔结点 y 是黑色的且 z 处于 zig-zig 状态 （二红旋转）
 
 <figure markdown="span">
-    ![Img 4](../../../img/ADS/ADS_ch2_img4.png){ width="500" }
+    ![Img 4](../../../img/ADS/ch2/ADS_ch2_img4.png){ width="500" }
 </figure>
 
 **二红旋转：** z, z.p 均为红色
@@ -86,11 +86,11 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         > 具体过程动画模拟：[Red/Black Tree Visualizations](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html){:target="_blank"}
 
         <figure markdown="span">
-            ![Img 9](../../../img/ADS/ADS_ch2_img9.png){ width="500" }
+            ![Img 9](../../../img/ADS/ch2/ADS_ch2_img9.png){ width="500" }
         </figure>
 
         <figure markdown="span">
-            ![Img 10](../../../img/ADS/ADS_ch2_img10.png){ width="500" }
+            ![Img 10](../../../img/ADS/ch2/ADS_ch2_img10.png){ width="500" }
         </figure>
 
 ### deletion
@@ -130,7 +130,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 1 x 的兄弟结点 w 是红色的（颜色不同换兄弟）
 
 <figure markdown="span">
-    ![Img 5](../../../img/ADS/ADS_ch2_img5.png){ width="500" }
+    ![Img 5](../../../img/ADS/ch2/ADS_ch2_img5.png){ width="500" }
 </figure>
 
 > 黑结点为 black，深阴影为 red，浅阴影颜色两种都可以
@@ -146,7 +146,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 2 x 的兄弟结点 w 是黑色的，而且 w 的两个子结点都是黑色的（一家三黑要褪色）
 
 <figure markdown="span">
-    ![Img 6](../../../img/ADS/ADS_ch2_img6.png){ width="500" }
+    ![Img 6](../../../img/ADS/ch2/ADS_ch2_img6.png){ width="500" }
 </figure>
 
 > 黑结点为 black，深阴影为 red，浅阴影颜色两种都可以
@@ -162,7 +162,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 3 x 的兄弟结点 w 是黑色的，w 的两个孩子，离 x 远的孩子是黑色的，离 x 近的孩子是红色的（远子不红近子上位）
 
 <figure markdown="span">
-    ![Img 7](../../../img/ADS/ADS_ch2_img7.png){ width="500" }
+    ![Img 7](../../../img/ADS/ch2/ADS_ch2_img7.png){ width="500" }
 </figure>
 
 > 黑结点为 black，深阴影为 red，浅阴影颜色两种都可以
@@ -178,7 +178,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 #### case 4 x 的兄弟结点 w 是黑色的，w 的两个孩子，离 x 远的孩子是红色的（远子为红父亲上位）
 
 <figure markdown="span">
-    ![Img 8](../../../img/ADS/ADS_ch2_img8.png){ width="500" }
+    ![Img 8](../../../img/ADS/ch2/ADS_ch2_img8.png){ width="500" }
 </figure>
 
 **远子为红父亲上位：** w 的两个孩子，离 x 远的是红色，则 w 旋转
@@ -191,7 +191,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
     After deleting 15 from the red-black tree given in the figure, which one of the following statements must be FALSE?
     
     <figure markdown="span">
-        ![Img 11](../../../img/ADS/ADS_ch2_img11.png){ width="200" }
+        ![Img 11](../../../img/ADS/ch2/ADS_ch2_img11.png){ width="200" }
     </figure>
 
     A. 11 is the parent of 17, and 11 is black<br/>
@@ -460,7 +460,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 4. 叶结点上键值的个数为 $\lceil \frac{M}{2} \rceil \sim M$
 
 <figure markdown="span">
-    ![Img 12](../../../img/ADS/ADS_ch2_img12.png){ width="600" }
+    ![Img 12](../../../img/ADS/ch2/ADS_ch2_img12.png){ width="600" }
 </figure>
 
 ==我们这门课遇到的 2-3 树，2-3-4 树，全都默认看成 B+ Tree==
@@ -942,7 +942,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         ```
         </div>
         <figure markdown="span">
-            ![Img 13](../../../img/ADS/ADS_ch2_img13.png){ width="800" }
+            ![Img 13](../../../img/ADS/ch2/ADS_ch2_img13.png){ width="800" }
         </figure>
 
 ### deletion
@@ -957,7 +957,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
     After deleting 9 from the 2-3 tree given in the figure, which one of the following statements is FALSE?
 
     <figure markdown="span">
-        ![Img 14](../../../img/ADS/ADS_ch2_img14.png){ width="300" }
+        ![Img 14](../../../img/ADS/ch2/ADS_ch2_img14.png){ width="300" }
     </figure>
     
     A. the root is full<br/>
@@ -1008,7 +1008,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
         ```
 
         <figure markdown="span">
-            ![Img 15](../../../img/ADS/ADS_ch2_img15.png){ width="600" }
+            ![Img 15](../../../img/ADS/ch2/ADS_ch2_img15.png){ width="600" }
         </figure>
 
         ```mermaid

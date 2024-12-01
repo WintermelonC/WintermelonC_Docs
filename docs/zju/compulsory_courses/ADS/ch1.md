@@ -360,11 +360,11 @@ style C fill: #23a7f2
         > 具体过程动画模拟：[AVL树|算法数据结构可视化](https://algo.hufeifei.cn/AVLtree.html){:target="_blank"}
 
         <figure markdown="span">
-            ![Img 1](../../../img/ADS/ADS_ch1_img1.png){ width="600" }
+            ![Img 1](../../../img/ADS/ch1/ADS_ch1_img1.png){ width="600" }
         </figure>
 
         <figure markdown="span">
-            ![Img 2](../../../img/ADS/ADS_ch1_img2.png){ width="700" }
+            ![Img 2](../../../img/ADS/ch1/ADS_ch1_img2.png){ width="700" }
         </figure>
 
 ### 小结论
@@ -670,7 +670,7 @@ $F_i$ 是斐波那契数列，$F_0 = 0,\ F_1 = 1,\ F_i = F_{i-1} + F_{i-2}$
     For the result of accessing the keys 3, 9, 1, 5 in order in the splay tree in the following figure, which one of the following statements is FALSE?
 
     <figure markdown="span">
-        ![Img 3](../../../img/ADS/ADS_ch1_img3.png){ width="400" }
+        ![Img 3](../../../img/ADS/ch1/ADS_ch1_img3.png){ width="400" }
     </figure>
 
     A.5 is the root<br/>
@@ -1157,7 +1157,7 @@ $F_i$ 是斐波那契数列，$F_0 = 0,\ F_1 = 1,\ F_i = F_{i-1} + F_{i-2}$
 某些操作的 $\hat{c_i}$ 大于 $c_i$，大于的部分当作 credit，某些操作的 $\hat{c_i}$ 小于 $c_i$，小于的部分用于偿还 credit
 
 <figure markdown="span">
-    ![Img 4](../../../img/ADS/ADS_ch1_img4.png){ width="600" }
+    ![Img 4](../../../img/ADS/ch1/ADS_ch1_img4.png){ width="600" }
 </figure>
 
 ### 3.3 potential method

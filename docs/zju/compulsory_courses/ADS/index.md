@@ -22,7 +22,9 @@ dyx老师
 
 ## 笔记
 
-### 个人笔记及 PTA 习题详解
+### 个人笔记及部分 PTA 习题详解
+
+> 为什么部分习题有详解呢？因为我不会呀 😭
 
 [1 AVL Trees, Splay Trees and Amortized Analysis](./ch1.md)<br/>
 [2 Red-Black Trees and B+ Trees](./ch2.md)<br/>
@@ -30,7 +32,8 @@ dyx老师
 [4 Leftist Heaps and Skew Heaps](./ch4.md)<br/>
 [5 Binomial Queues](./ch5.md)<br/>
 [6 Backtracking](./ch6.md)<br/>
-[7 Divide and Conquer](./ch7.md)
+[7 Divide and Conquer](./ch7.md)<br/>
+[11 Approximation Algorithms](./ch11.md)
 
 ### 其他
 

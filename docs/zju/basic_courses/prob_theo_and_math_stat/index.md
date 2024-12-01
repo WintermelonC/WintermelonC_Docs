@@ -19,7 +19,8 @@ zmz老师
 [3 多维随机变量及其分布](./chapter_3.md)<br/>
 [4 随机变量的数字特征](./chapter_4.md)<br/>
 [5 大数定律及中心极限定律](./chapter_5.md)<br/>
-[6 统计量与抽样分布](./chapter_6.md)
+[6 统计量与抽样分布](./chapter_6.md)<br/>
+[7 参数估计](./chapter_7.md)
 
 ## 课本习题及答案
 

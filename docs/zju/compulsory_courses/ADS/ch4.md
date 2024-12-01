@@ -25,7 +25,7 @@ $$
 1. 对于每个结点 X，X 左孩子的 Npl 值大于等于 X 右孩子的 Npl 值
 
 <figure markdown="span">
-    ![Img 1](../../../img/ADS/ADS_ch4_img1.png){ width="600" }
+    ![Img 1](../../../img/ADS/ch4/ADS_ch4_img1.png){ width="600" }
 </figure>
 
 !!! tip "定理"
@@ -39,7 +39,7 @@ $$
 **recursive version**
 
 <figure markdown="span">
-    ![Img 2](../../../img/ADS/ADS_ch4_img2.png){ width="600" }
+    ![Img 2](../../../img/ADS/ch4/ADS_ch4_img2.png){ width="600" }
 </figure>
 
 ??? example "递归实现模拟"
@@ -102,31 +102,31 @@ $$
     ---
     
     <figure markdown="span">
-        ![Img 3](../../../img/ADS/ADS_ch4_img3.png){ width="700" }
+        ![Img 3](../../../img/ADS/ch4/ADS_ch4_img3.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 4](../../../img/ADS/ADS_ch4_img4.png){ width="700" }
+        ![Img 4](../../../img/ADS/ch4/ADS_ch4_img4.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 5](../../../img/ADS/ADS_ch4_img5.png){ width="700" }
+        ![Img 5](../../../img/ADS/ch4/ADS_ch4_img5.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 6](../../../img/ADS/ADS_ch4_img6.png){ width="700" }
+        ![Img 6](../../../img/ADS/ch4/ADS_ch4_img6.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 7](../../../img/ADS/ADS_ch4_img7.png){ width="700" }
+        ![Img 7](../../../img/ADS/ch4/ADS_ch4_img7.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 8](../../../img/ADS/ADS_ch4_img8.png){ width="700" }
+        ![Img 8](../../../img/ADS/ch4/ADS_ch4_img8.png){ width="700" }
     </figure>
     
     <figure markdown="span">
-        ![Img 9](../../../img/ADS/ADS_ch4_img9.png){ width="700" }
+        ![Img 9](../../../img/ADS/ch4/ADS_ch4_img9.png){ width="700" }
     </figure>
     
     ```mermaid
@@ -175,33 +175,33 @@ $$
 2. 如果需要的话交换左右孩子
 
 <figure markdown="span">
-    ![Img 10](../../../img/ADS/ADS_ch4_img10.png){ width="400" }
+    ![Img 10](../../../img/ADS/ch4/ADS_ch4_img10.png){ width="400" }
 </figure>
 
 <div class="grid" id="grid-mid" markdown>
 <figure markdown="span">
-    ![Img 11](../../../img/ADS/ADS_ch4_img11.png){ width="300" }
+    ![Img 11](../../../img/ADS/ch4/ADS_ch4_img11.png){ width="300" }
 </figure>
 <figure markdown="span">
-    ![Img 12](../../../img/ADS/ADS_ch4_img12.png){ width="300" }
+    ![Img 12](../../../img/ADS/ch4/ADS_ch4_img12.png){ width="300" }
 </figure>
 <figure markdown="span">
-    ![Img 13](../../../img/ADS/ADS_ch4_img13.png){ width="300" }
+    ![Img 13](../../../img/ADS/ch4/ADS_ch4_img13.png){ width="300" }
 </figure>
 <figure markdown="span">
-    ![Img 14](../../../img/ADS/ADS_ch4_img14.png){ width="300" }
+    ![Img 14](../../../img/ADS/ch4/ADS_ch4_img14.png){ width="300" }
 </figure>
 <figure markdown="span">
-    ![Img 15](../../../img/ADS/ADS_ch4_img15.png){ width="300" }
+    ![Img 15](../../../img/ADS/ch4/ADS_ch4_img15.png){ width="300" }
 </figure>
 
 ---
 
 <figure markdown="span">
-    ![Img 16](../../../img/ADS/ADS_ch4_img16.png){ width="300" }
+    ![Img 16](../../../img/ADS/ch4/ADS_ch4_img16.png){ width="300" }
 </figure>
 <figure markdown="span">
-    ![Img 17](../../../img/ADS/ADS_ch4_img17.png){ width="300" }
+    ![Img 17](../../../img/ADS/ch4/ADS_ch4_img17.png){ width="300" }
 </figure>
 </div>
 
@@ -210,7 +210,7 @@ $$
     Merge the two leftist heaps in the following figure.  Which one of the following statements is FALSE?
 
     <figure markdown="span">
-        ![Img 20](../../../img/ADS/ADS_ch4_img20.png){ width="300" }
+        ![Img 20](../../../img/ADS/ch4/ADS_ch4_img20.png){ width="300" }
     </figure>
 
     A. 2 is the root with 11 being its right child<br/>
@@ -225,7 +225,7 @@ $$
         ---
 
         <figure markdown="span">
-            ![Img 21](../../../img/ADS/ADS_ch4_img21.png){ width="300" }
+            ![Img 21](../../../img/ADS/ch4/ADS_ch4_img21.png){ width="300" }
         </figure>
 
         $Npl(4) = Npl(2) = 2$
@@ -316,7 +316,7 @@ $$
 根据 right paths 上的结点值的大小进行 merge，但是每次 merge 要交换左右孩子，除了 right paths 上值最大的那个结点
 
 <figure markdown="span">
-    ![Img 18](../../../img/ADS/ADS_ch4_img18.png){ width="500" }
+    ![Img 18](../../../img/ADS/ch4/ADS_ch4_img18.png){ width="500" }
 </figure>
 
 ???+ question "PTA 4.6"
@@ -324,7 +324,7 @@ $$
     Merge the two skew heaps in the following figure.  Which one of the following statements is FALSE?
 
     <figure markdown="span">
-        ![Img 26](../../../img/ADS/ADS_ch4_img26.png){ width="400" }
+        ![Img 26](../../../img/ADS/ch4/ADS_ch4_img26.png){ width="400" }
     </figure>
 
 
@@ -340,7 +340,7 @@ $$
         ---
 
         <figure markdown="span">
-            ![Img 27](../../../img/ADS/ADS_ch4_img27.png){ width="400" }
+            ![Img 27](../../../img/ADS/ch4/ADS_ch4_img27.png){ width="400" }
         </figure>
 
 ### insert
@@ -348,7 +348,7 @@ $$
 把那个要 insert 进来的结点当作另一个 Heap，相当于做一次 merge
 
 <figure markdown="span">
-    ![Img 19](../../../img/ADS/ADS_ch4_img19.png){ width="500" }
+    ![Img 19](../../../img/ADS/ch4/ADS_ch4_img19.png){ width="500" }
 </figure>
 
 ???+ question "PTA 4.2"
@@ -384,19 +384,19 @@ $$
         > Skew Heap 模拟：[Skew Heap Visualization](https://www.cs.usfca.edu/~galles/visualization/SkewHeap.html){:target="_blank"}
 
         <figure markdown="span">
-            ![Img 22](../../../img/ADS/ADS_ch4_img22.png){ width="700" }
+            ![Img 22](../../../img/ADS/ch4/ADS_ch4_img22.png){ width="700" }
         </figure>
 
         <figure markdown="span">
-            ![Img 23](../../../img/ADS/ADS_ch4_img23.png){ width="700" }
+            ![Img 23](../../../img/ADS/ch4/ADS_ch4_img23.png){ width="700" }
         </figure>
 
         <figure markdown="span">
-            ![Img 24](../../../img/ADS/ADS_ch4_img24.png){ width="700" }
+            ![Img 24](../../../img/ADS/ch4/ADS_ch4_img24.png){ width="700" }
         </figure>
 
         <figure markdown="span">
-            ![Img 25](../../../img/ADS/ADS_ch4_img25.png){ width="400" }
+            ![Img 25](../../../img/ADS/ch4/ADS_ch4_img25.png){ width="400" }
         </figure>
 
 ### 摊还分析
