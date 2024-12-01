@@ -13,13 +13,13 @@
 存储每个单词出现的次数，和出现过此单词的文档
 
 <figure markdown="span">
-    ![Img 1](../../../img/ADS/ADS_ch3_img1.png){ width="600" }
+    ![Img 1](../../../img/ADS/ch3/ADS_ch3_img1.png){ width="600" }
 </figure>
 
 也可以存储单词在每个文档中的位置
 
 <figure markdown="span">
-    ![Img 2](../../../img/ADS/ADS_ch3_img2.png){ width="600" }
+    ![Img 2](../../../img/ADS/ch3/ADS_ch3_img2.png){ width="600" }
 </figure>
 
 ## word stemming
@@ -29,7 +29,7 @@
 处理单词时，只记录此单词的词干
 
 <figure markdown="span">
-    ![Img 3](../../../img/ADS/ADS_ch3_img3.png){ width="600" }
+    ![Img 3](../../../img/ADS/ch3/ADS_ch3_img3.png){ width="600" }
 </figure>
 
 ## stop words
@@ -65,13 +65,13 @@
 ### 1 term-partitioned index
 
 <figure markdown="span">
-    ![Img 4](../../../img/ADS/ADS_ch3_img4.png){ width="600" }
+    ![Img 4](../../../img/ADS/ch3/ADS_ch3_img4.png){ width="600" }
 </figure>
 
 ### 2 document-partitioned index
 
 <figure markdown="span">
-    ![Img 5](../../../img/ADS/ADS_ch3_img5.png){ width="600" }
+    ![Img 5](../../../img/ADS/ch3/ADS_ch3_img5.png){ width="600" }
 </figure>
 
 ???+ question "PTA 3.1"
@@ -118,7 +118,7 @@
 ### 答案集相关性
 
 <figure markdown="span">
-    ![Img 6](../../../img/ADS/ADS_ch3_img6.png){ width="600" }
+    ![Img 6](../../../img/ADS/ch3/ADS_ch3_img6.png){ width="600" }
 </figure>
 
 1. Precision 反映了在展示出的文档中，与用户搜索相关性大的文档的占比
@@ -133,7 +133,7 @@ Recall:\ R = \frac{R_R}{R_R + R_N}
 $$
 
 <figure markdown="span">
-    ![Img 7](../../../img/ADS/ADS_ch3_img7.png){ width="600" }
+    ![Img 7](../../../img/ADS/ch3/ADS_ch3_img7.png){ width="600" }
 </figure>
 
 1. Precision 大，Recall 小：大多数展示的文档都是相关的，但仍会遗漏一些相关的文档
@@ -194,7 +194,7 @@ $$
     There are 28000 documents in the database. The statistic data for one query are shown in the following table. The recall is: __
 
     <figure markdown="span">
-        ![Img 8](../../../img/ADS/ADS_ch3_img8.png){ width="300" }
+        ![Img 8](../../../img/ADS/ch3/ADS_ch3_img8.png){ width="300" }
     </figure>
 
     A. 14%<br/>

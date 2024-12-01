@@ -57,6 +57,7 @@ nav:
         - 4 随机变量的数字特征: zju/basic_courses/prob_theo_and_math_stat/chapter_4.md
         - 5 大数定律及中心极限定律: zju/basic_courses/prob_theo_and_math_stat/chapter_5.md
         - 6 统计量与抽样分布: zju/basic_courses/prob_theo_and_math_stat/chapter_6.md
+        - 7 参数估计: zju/basic_courses/prob_theo_and_math_stat/chapter_7.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -68,6 +69,7 @@ nav:
         - 5 Binomial Queues: zju/compulsory_courses/ADS/ch5.md
         - 6 Backtracking: zju/compulsory_courses/ADS/ch6.md
         - 7 Divide and Conquer: zju/compulsory_courses/ADS/ch7.md
+        - 11 Approximation Algorithms: zju/compulsory_courses/ADS/ch11.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 

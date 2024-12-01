@@ -101,7 +101,7 @@ $$
 设 $X_1, X_2,\cdots, X_n$ 为来自正态总体 $N(\mu, \sigma^2)$ 的简单随机样本， $\bar{X}$ 是样本均值，则有
 
 $$
-\bar{X} = N(\mu, \dfrac{\sigma^2}{n})
+\bar{X} \sim N(\mu, \dfrac{\sigma^2}{n})
 $$
 
 **定理：**
