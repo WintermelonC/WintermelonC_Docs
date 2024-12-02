@@ -33,6 +33,9 @@ dyx老师
 [5 Binomial Queues](./ch5.md)<br/>
 [6 Backtracking](./ch6.md)<br/>
 [7 Divide and Conquer](./ch7.md)<br/>
+[8 Dynamic Programming](./ch8.md)<br/>
+[9 Greedy Algorithms](./ch9.md)<br/>
+[10 Intractability](./ch10.md)<br/>
 [11 Approximation Algorithms](./ch11.md)
 
 ### 其他
