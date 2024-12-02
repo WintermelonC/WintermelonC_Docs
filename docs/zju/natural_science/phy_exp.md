@@ -139,7 +139,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">zl老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时短</td>
       <td></td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">92</td>
       <td></td>
     </tr>
     <tr>
@@ -153,7 +153,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">用双臂电桥测低电阻</td>
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时中等</td>
       <td></td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
@@ -567,6 +567,53 @@ xt老师 (1)
 > 实验测出来的数据太少，拟合曲线弄不出来，报告里的曲线是我用 Ps 画的 🤫 
 
 ### 用双臂电桥测低电阻
+
+思考题：
+
+1. 课本
+
+??? success "python 代码"
+
+    ```python linenums="1"
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy import optimize as op
+    
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    
+    
+    def my_func(t, a, r):
+        return r * (1 + a * t)
+    
+    
+    t = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65]
+    R = [0.004625, 0.00471, 0.00481, 0.004895, 0.004985,
+         0.005075, 0.005165, 0.00526, 0.00535, 0.005445]
+    
+    a1, r1 = op.curve_fit(my_func, t, R)[0]
+    
+    t_extend = np.arange(20, 65, 1)
+    R1 = my_func(t_extend, a1, r1)
+    
+    fig = plt.figure()
+    
+    ax1 = fig.add_subplot(111)
+    ax1.plot(t_extend, R1, c='r')
+    ax1.scatter(t, R, s=30, marker='x', c='b')
+    ax1.set_xlabel('t(℃)')
+    ax1.set_ylabel('R(Ω)', rotation=0, y=1.02, labelpad=-30)
+    ax1.grid(linestyle=':', alpha=0.6)
+    ax1.set_xlim(20, 65)
+    ax1.xaxis.set_major_locator(plt.MultipleLocator(5))
+    ax1.set_ylim(0.004525, 0.005545)
+    ax1.yaxis.set_major_locator(plt.MultipleLocator(0.0001))
+    ax1.set_title('R - t图')
+    ax1.text(21, 0.0054, f'R = {r1:.6f} * (1 + {a1:.6f} * t)',
+             fontsize=10, verticalalignment='bottom', horizontalalignment='left')
+    
+    plt.show()
+    
+    ```
 
 ### 非平衡电桥
 

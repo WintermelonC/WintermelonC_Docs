@@ -69,6 +69,9 @@ nav:
         - 5 Binomial Queues: zju/compulsory_courses/ADS/ch5.md
         - 6 Backtracking: zju/compulsory_courses/ADS/ch6.md
         - 7 Divide and Conquer: zju/compulsory_courses/ADS/ch7.md
+        - 8 Dynamic Programming: zju/compulsory_courses/ADS/ch8.md
+        - 9 Greedy Algorithms: zju/compulsory_courses/ADS/ch9.md
+        - 10 Intractability: zju/compulsory_courses/ADS/ch10.md
         - 11 Approximation Algorithms: zju/compulsory_courses/ADS/ch11.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
