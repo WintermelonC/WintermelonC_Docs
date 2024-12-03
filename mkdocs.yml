@@ -73,6 +73,7 @@ nav:
         - 9 Greedy Algorithms: zju/compulsory_courses/ADS/ch9.md
         - 10 Intractability: zju/compulsory_courses/ADS/ch10.md
         - 11 Approximation Algorithms: zju/compulsory_courses/ADS/ch11.md
+        - 12 Local Search: zju/compulsory_courses/ADS/ch12.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 

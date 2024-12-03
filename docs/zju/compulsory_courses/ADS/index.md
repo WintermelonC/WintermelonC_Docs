@@ -36,7 +36,8 @@ dyx老师
 [8 Dynamic Programming](./ch8.md)<br/>
 [9 Greedy Algorithms](./ch9.md)<br/>
 [10 Intractability](./ch10.md)<br/>
-[11 Approximation Algorithms](./ch11.md)
+[11 Approximation Algorithms](./ch11.md)<br/>
+[12 Local Search](./ch12.md)
 
 ### 其他
 
