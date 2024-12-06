@@ -50,7 +50,7 @@ BIO0603G（0716N007）
 
     虽然但是，部分题真的无法评价
 
-[测试题及答案整理](../../file/life_science/life_science_doc2.pdf){:target="_blank"}
+[测试题及答案整理](../../../file/life_science/life_science_doc2.pdf){:target="_blank"}
 
 > 有很多重复的题，懒得删除整理了
 
