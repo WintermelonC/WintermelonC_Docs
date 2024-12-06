@@ -28,4 +28,4 @@ zmz老师
 
     《概率论与数理统计》第二版<br/>浙江大学 黄炜 张帼奋 张奕 张彩伢 主编<br/>高等教育出版社
 
-<embed src="../../../file/prob_theo_and_math_stat/prob_math_doc1.pdf" type="application/pdf" width="100%" height="500">
+[课本习题及答案](../../../file/prob_theo_and_math_stat/prob_math_doc1.pdf){:target="_blank"}
