@@ -92,7 +92,7 @@ nav:
     - 医保: common_sense/medical_insurance.md
     - 如何乘坐交通工具: common_sense/transportation.md
     - 租房流程及注意事项: common_sense/rent.md
-  - 常用软件:
+  - 软件:
     - application/index.md
     - Br:
       - application/br/index.md

@@ -29,9 +29,15 @@ yk老师
 
 [浙江大学课程攻略共享计划 - 计算机组成](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/){:target="_blank"}
 
-## RISC-V 手册
+## RISC-V 相关
 
 [RISC-V 手册](../../../file/computer_organization/comp_organ_doc1.pdf){:target="_blank"}
+
+[高级语言编译器](https://godbolt.org/){:target="_blank"}
+
+> 比如可以将 C 语言编译为 RISC-V
+
+[RISC-V 运行模拟](https://venus.cs61c.org){:target="_blank"}
 
 ## 个人笔记
 
@@ -43,3 +49,15 @@ yk老师
 [4 The Processor](./theory/ch4.md)
 
 ### [实验部分](./lab/index.md)
+
+## 历年题整理
+
+### 2024-2025 秋冬
+
+小测 1：
+
+<embed src="../../../file/computer_organization/comp_organ_doc3.pdf" type="application/pdf" width="100%" height="500" />
+
+小测 2：
+
+<embed src="../../../file/computer_organization/comp_organ_doc4.pdf" type="application/pdf" width="100%" height="500" />
