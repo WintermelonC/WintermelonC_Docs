@@ -1,5 +1,9 @@
 # 大学生生活常识
 
+!!! tip "说明"
+
+    此文档正在更新中……
+
 ^^方山厨子^^ 老师[大学生生活常识课](https://www.bilibili.com/video/BV1gVsSeyEAv/){:target="_blank"}的课程笔记
 
 ## 课程介绍

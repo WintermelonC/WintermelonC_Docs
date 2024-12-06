@@ -39,7 +39,9 @@ nav:
         - zju/general_courses/bio_evolution_and_design/index.md
         - 整理: zju/general_courses/bio_evolution_and_design/doc.md
       - 数字音视频基础与制作: zju/general_courses/digital_audio_video.md
-      - 生命科学导论: zju/general_courses/life_science.md
+      - 生命科学导论: 
+        - zju/general_courses/life_science/index.md
+        - 整理: zju/general_courses/life_science/doc.md
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
       - zju/basic_courses/index.md

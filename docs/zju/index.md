@@ -46,7 +46,7 @@
 
 #### 生命探索
 
-[生命科学导论](./general_courses/life_science.md)
+[生命科学导论](./general_courses/life_science/index.md)
 
 #### 博雅技艺
 
