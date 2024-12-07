@@ -2085,6 +2085,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    9 Greedy Algorithms
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2094,6 +2105,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-activity-selection-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Activity Selection Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-huffman-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Huffman Code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3537,6 +3585,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-activity-selection-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 Activity Selection Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-huffman-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Huffman Code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3575,6 +3649,66 @@
 <p class="admonition-title">说明</p>
 <p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
 </div>
+<p>只有在局部最优解和全局最优解相等时，贪心算法得到的结果才是最优解</p>
+<h2 id="1-activity-selection-problem">1 Activity Selection Problem<a class="headerlink" href="#1-activity-selection-problem" title="Permanent link">&para;</a></h2>
+<figure>
+    <img alt="Img 1" src="../../../../img/ADS/ch9/ADS_ch9_img1.png" width="600" />
+</figure>
+<p>按照结束最早来选择</p>
+<details class="question" open="open">
+<summary>PTA 9.1</summary>
+<p>Let S be the set of activities in Activity Selection Problem.  Then the earliest finish activity <span class="arithmatex">\(a_m\)</span> must be included in all the maximum-size subset of mutually compatible activities of S.</p>
+<p>T<br/>F</p>
+<details class="success">
+<summary>答案</summary>
+<p>F</p>
+<hr />
+<p>贪心算法得到的结果包含 <span class="arithmatex">\(a_m\)</span>，但实际的最优解不一定包含</p>
+</details>
+</details>
+<h2 id="2-huffman-code">2 Huffman Code<a class="headerlink" href="#2-huffman-code" title="Permanent link">&para;</a></h2>
+<figure>
+    <img alt="Img 2" src="../../../../img/ADS/ch9/ADS_ch9_img2.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 3" src="../../../../img/ADS/ch9/ADS_ch9_img3.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 4" src="../../../../img/ADS/ch9/ADS_ch9_img4.png" width="600" />
+</figure>
+<details class="question" open="open">
+<summary>PTA 9.2</summary>
+<p>Let C be an alphabet in which each character c in C has frequency c.freq.  If the size of C is n,  the length of the optimal prefix code for any character c is not greater than n−1.   </p>
+<p>T<br/>F</p>
+<details class="success">
+<summary>答案</summary>
+<p>T</p>
+<hr />
+<p><figure markdown="span">
+    <img alt="Img 5" src="../../../../img/ADS/ch9/ADS_ch9_img5.png" width="200" />
+</figure></p>
+<p>如果我们让 Huffman tree 一直向上生长，会发现最长编码长度确实不可能超过 n - 1</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 9.3</summary>
+<p>Consider the problem of making change for n cents using the fewest number of coins. Assume that each coin's value is an integer.</p>
+<p>The coins of the lowest denomination（面额） is the cent.</p>
+<p>(I) Suppose that the available coins are quarters (25 cents), dimes (10 cents), nickels (5 cents), and pennies (1 cent). The greedy algorithm always yields an optimal solution.</p>
+<p>(II) Suppose that the available coins are in the denominations that are powers of c, that is, the denominations are <span class="arithmatex">\(c^0,c^1,\cdots,c^k\)</span> for some integers c&gt;1 and k&gt;=1. The greedy algorithm always yields an optimal solution.</p>
+<p>(III) Given any set of k different coin denominations which includes a penny (1 cent) so that there is a solution for every value of n, greedy algorithm always yields an optimal solution.</p>
+<p>Which of the following is correct?</p>
+<p>A. Statement (I) is false.<br/>
+B. Statement (II) is false.<br/>
+C. Statement (III) is false.<br/>
+D. All of the three statements are correct.</p>
+<details class="success">
+<summary>答案</summary>
+<p>C</p>
+<hr />
+<p>C 选项一个很经典的反例是：有 1，3，4 面额的硬币，要凑出 6。贪心的解为 6 = 4 + 1 + 1，实际最优解为 6 = 3 + 3</p>
+</details>
+</details>
 
 
 
@@ -3597,7 +3731,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月7日</span>
   </span>
 
     
