@@ -121,6 +121,7 @@ nav:
       - application/Vivado/index.md
     - VS Code:
       - application/vscode/index.md
+      - Github Copilot: application/vscode/copilot.md
 
 not_in_nav: |
   /file/*.md
