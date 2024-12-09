@@ -147,7 +147,7 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">yhc老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时长</td>
       <td>1. 一个人做实验的话费时短，但抽真空的仪器只有一台，所以一群人做实验费时长<br/>2. 实验中并未使用书上所说的电光分析天平，用的是电子天平，操作简单<br/>3. 另外，老师还要求我们做出抽出空气后瓶子的质量与抽取时间的关系曲线。个人感觉没啥意义，且不易操作 😑</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">93</td>
       <td></td>
     </tr>
     <tr>
@@ -161,7 +161,7 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">非平衡电桥</td>
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时中等</td>
       <td></td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
