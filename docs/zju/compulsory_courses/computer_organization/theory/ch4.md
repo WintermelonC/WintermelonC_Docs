@@ -224,7 +224,7 @@
 
         don't care: `MemRead`，由于 `MemToReg` 为 0，选择的是 ALU 结果，因此 DataMemory 读不读出数据无所谓
 
-???+ question "课本 4.6"
+???+ question "课本 4.7"
 
     Problems in this exercise assume that the logic blocks used to implement a processor’s datapath have the following latencies:
 
@@ -248,15 +248,82 @@
 
     ??? success "答案"
 
+        找最长的那条路径
+
         (1) `RegisterRead + I-Mem + RegisterFile + Mux + ALU + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 25 + 20 = 700ps`
+
+        <figure markdown="span">
+            ![Img 52](../../../../img/computer_organization/theory/ch4/comp_ch4_img52.png){ width="600" }
+        </figure>
 
         ---
 
         (2) `RegisterRead + I-Mem + RegisterFile + Mux + ALU + D-Mem + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 250 + 25 + 20 = 950ps`
 
+        <figure markdown="span">
+            ![Img 53](../../../../img/computer_organization/theory/ch4/comp_ch4_img53.png){ width="600" }
+        </figure>
+
         ---
 
-        (3) `RegisterRead + I-Mem + RegisterFile + ALU + Mux + D-Mem = 30 + 250 + 150 + 200 + 25 + 250 = 905ps`
+        (3) `RegisterRead + I-Mem + RegisterFile + Mux + ALU + D-Mem = 30 + 250 + 150 + 25 + 200 + 250 = 905ps`
+
+        <figure markdown="span">
+            ![Img 54](../../../../img/computer_organization/theory/ch4/comp_ch4_img54.png){ width="600" }
+        </figure>
+
+        ---
+
+        (4) `RegisterRead + I_Mem + RegisterFile + Mux + ALU + SingleGate + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 5 + 25 + 20 = 705ps`
+
+        <figure markdown="span">
+            ![Img 55](../../../../img/computer_organization/theory/ch4/comp_ch4_img55.png){ width="600" }
+        </figure>
+
+        ---
+
+        (5) `RegisterRead + I_Mem + RegisterFile + Mux + ALU + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 25 + 20 = 700ps`
+
+        <figure markdown="span">
+            ![Img 56](../../../../img/computer_organization/theory/ch4/comp_ch4_img56.png){ width="600" }
+        </figure>
+
+        ---
+
+        (6) `sd` 指令最长，选择 950ps 最为 CPU clock
+
+???+ question "课本 4.9"
+
+    Consider the addition of a multiplier to the CPU shown in the figure below. This addition will add 300 ps to the latency of the ALU, but will reduce the number of instructions by 5% (because there will no longer be a need to emulate the multiply instruction).
+
+     <figure markdown="span">
+        ![Img 57](../../../../img/computer_organization/theory/ch4/comp_ch4_img57.png){ width="600" }
+    </figure>
+
+    (1) What is the clock cycle time with and without this improvement?
+
+    (2) What is the speedup achieved by adding this improvement?
+
+    (3) What is the slowest the new ALU can be and still result in improved performance?
+
+    ???+ success "答案"
+
+        (1) without improvement: 950ps（应该是延续 4.7）with improvement: 950 + 300 = 1250ps
+
+        ---
+
+        (2) 设程序的指令数为 $n$
+        
+        $T = 950n \times CPI$<br/>
+        $T' = 1250\times (1 - 5\%)n \times CPI= 1187.5n \times CPI$
+
+        则“加速”了 $\dfrac{T}{T'} = 0.8$ 倍
+
+        ---
+
+        (3) 答案原文：Because adding a multiply instruction will remove 5% of the instructions, the cycle time can grow to as much as 950/(0.95) = 1000. Thus, the time for the ALU can increase by up to 50 (from 200 to 250).
+
+        > 暂时没看懂
 
 ## 4.5 流水线概述
 
