@@ -4519,7 +4519,7 @@ output not used: ImmGen and DataMemory</p>
 </details>
 </details>
 <details class="question" open="open">
-<summary>课本 4.6</summary>
+<summary>课本 4.7</summary>
 <p>Problems in this exercise assume that the logic blocks used to implement a processor’s datapath have the following latencies:</p>
 <p><figure markdown="span">
     <img alt="Img 51" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img51.png" width="600" />
@@ -4533,11 +4533,57 @@ output not used: ImmGen and DataMemory</p>
 <p>(6) What is the minimum clock period for this CPU?</p>
 <details class="success">
 <summary>答案</summary>
+<p>找最长的那条路径</p>
 <p>(1) <code>RegisterRead + I-Mem + RegisterFile + Mux + ALU + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 25 + 20 = 700ps</code></p>
+<p><figure markdown="span">
+    <img alt="Img 52" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img52.png" width="600" />
+</figure></p>
 <hr />
 <p>(2) <code>RegisterRead + I-Mem + RegisterFile + Mux + ALU + D-Mem + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 250 + 25 + 20 = 950ps</code></p>
+<p><figure markdown="span">
+    <img alt="Img 53" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img53.png" width="600" />
+</figure></p>
 <hr />
-<p>(3) <code>RegisterRead + I-Mem + RegisterFile + ALU + Mux + D-Mem = 30 + 250 + 150 + 200 + 25 + 250 = 905ps</code></p>
+<p>(3) <code>RegisterRead + I-Mem + RegisterFile + Mux + ALU + D-Mem = 30 + 250 + 150 + 25 + 200 + 250 = 905ps</code></p>
+<p><figure markdown="span">
+    <img alt="Img 54" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img54.png" width="600" />
+</figure></p>
+<hr />
+<p>(4) <code>RegisterRead + I_Mem + RegisterFile + Mux + ALU + SingleGate + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 5 + 25 + 20 = 705ps</code></p>
+<p><figure markdown="span">
+    <img alt="Img 55" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img55.png" width="600" />
+</figure></p>
+<hr />
+<p>(5) <code>RegisterRead + I_Mem + RegisterFile + Mux + ALU + Mux + RegisterSetup = 30 + 250 + 150 + 25 + 200 + 25 + 20 = 700ps</code></p>
+<p><figure markdown="span">
+    <img alt="Img 56" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img56.png" width="600" />
+</figure></p>
+<hr />
+<p>(6) <code>sd</code> 指令最长，选择 950ps 最为 CPU clock</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 4.9</summary>
+<p>Consider the addition of a multiplier to the CPU shown in the figure below. This addition will add 300 ps to the latency of the ALU, but will reduce the number of instructions by 5% (because there will no longer be a need to emulate the multiply instruction).</p>
+<p><figure markdown="span">
+    <img alt="Img 57" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img57.png" width="600" />
+</figure></p>
+<p>(1) What is the clock cycle time with and without this improvement?</p>
+<p>(2) What is the speedup achieved by adding this improvement?</p>
+<p>(3) What is the slowest the new ALU can be and still result in improved performance?</p>
+<details class="success" open="open">
+<summary>答案</summary>
+<p>(1) without improvement: 950ps（应该是延续 4.7）with improvement: 950 + 300 = 1250ps</p>
+<hr />
+<p>(2) 设程序的指令数为 <span class="arithmatex">\(n\)</span></p>
+<p><span class="arithmatex">\(T = 950n \times CPI\)</span><br/>
+<span class="arithmatex">\(T' = 1250\times (1 - 5\%)n \times CPI= 1187.5n \times CPI\)</span></p>
+<p>则“加速”了 <span class="arithmatex">\(\dfrac{T}{T'} = 0.8\)</span> 倍</p>
+<hr />
+<p>(3) 答案原文：Because adding a multiply instruction will remove 5% of the instructions, the cycle time can grow to as much as 950/(0.95) = 1000. Thus, the time for the ALU can increase by up to 50 (from 200 to 250).</p>
+<blockquote>
+<p>暂时没看懂</p>
+</blockquote>
 </details>
 </details>
 <h2 id="45-流水线概述">4.5 流水线概述<a class="headerlink" href="#45-流水线概述" title="Permanent link">&para;</a></h2>
@@ -5000,7 +5046,7 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月6日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月9日</span>
   </span>
 
     
