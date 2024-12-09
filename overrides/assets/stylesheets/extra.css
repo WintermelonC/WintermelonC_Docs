@@ -7,6 +7,9 @@
 .md-typeset hr {
     border-bottom-width: 0.1rem;
 }
+.md-typeset h4 {
+    font-size: 1.125em;
+}
 #tab-both-mid {
     text-align: center;
     vertical-align: middle;
