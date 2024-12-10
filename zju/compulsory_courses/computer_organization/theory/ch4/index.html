@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch3/">
       
       
-        <link rel="next" href="../../lab/">
+        <link rel="next" href="../ch5/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -1856,6 +1856,8 @@
       
         
       
+        
+      
     
     
       
@@ -2151,6 +2153,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ADS/ch13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2231,6 +2254,8 @@
   
     
     
+      
+        
       
         
       
@@ -2740,6 +2765,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Large and Fast: Exploiting Memory Hierarchy
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4340,7 +4386,7 @@
 <ol>
 <li>部分内容由 AI 翻译课本原文，可能存在错误</li>
 <li>本文档只涉及部分知识点，仅可用来复习重点知识</li>
-<li>部分课本练习题答案可能存在错误，欢迎在评论区指出</li>
+<li>部分课本练习题答案可能存在错误，欢迎在评论区指出，也可以写下你的疑问</li>
 </ol>
 <blockquote>
 <p>理论课讲到这里的时候，实验课已经把单周期 CPU 都实现了，4.1 - 4.4 理解起来很容易啦，就不过多讲解了。需要注意的是，实验课讲的一些实现方法和这里讲的有些不一样</p>
@@ -4559,7 +4605,7 @@ output not used: ImmGen and DataMemory</p>
     <img alt="Img 56" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img56.png" width="600" />
 </figure></p>
 <hr />
-<p>(6) <code>sd</code> 指令最长，选择 950ps 最为 CPU clock</p>
+<p>(6) <code>ld</code> 指令最长，选择 950ps 最为 CPU clock</p>
 </details>
 </details>
 <details class="question" open="open">
@@ -4571,7 +4617,7 @@ output not used: ImmGen and DataMemory</p>
 <p>(1) What is the clock cycle time with and without this improvement?</p>
 <p>(2) What is the speedup achieved by adding this improvement?</p>
 <p>(3) What is the slowest the new ALU can be and still result in improved performance?</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
 <p>(1) without improvement: 950ps（应该是延续 4.7）with improvement: 950 + 300 = 1250ps</p>
 <hr />
@@ -4584,6 +4630,25 @@ output not used: ImmGen and DataMemory</p>
 <blockquote>
 <p>暂时没看懂</p>
 </blockquote>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 4.11</summary>
+<p>Examine the difficulty of adding a proposed lwi.d rd, rs1, rs2 (“Load With Increment”) instruction to RISC-V.</p>
+<p>Interpretation: Reg[rd]=Mem[Reg[rs1]+Reg[rs2]]</p>
+<p>(1) Which new functional blocks (if any) do we need for this instruction?</p>
+<p>(2) Which existing functional blocks (if any) require modification?</p>
+<p>(3) Which new data paths (if any) do we need for this instruction?</p>
+<p>(4) What new signals do we need (if any) from the control unit to support this instruction?</p>
+<details class="success">
+<summary>答案</summary>
+<p>(1) No new functional blocks are needed.</p>
+<hr />
+<p>(2) Only the control unit needs modification.</p>
+<hr />
+<p>(3) No new data paths are needed.</p>
+<hr />
+<p>(4) No new signals are needed.</p>
 </details>
 </details>
 <h2 id="45-流水线概述">4.5 流水线概述<a class="headerlink" href="#45-流水线概述" title="Permanent link">&para;</a></h2>
@@ -4710,6 +4775,86 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <p>这种分支预测方法依赖于始终不变的行为，它没有考虑特定分支指令的特点。<strong>动态</strong>（Dynamic）硬件预测其与这种方法截然不同，它的预测取决于每一条指令的行为，并且在整个程序生命期内可能改变分支的预测结果</p>
 <p>计算机中动态预测方法的一种比较普遍的实现方式是保存每次分支的历史记录，然后利用这个历史记录来预测。稍后我们将看到，历史记录的数量和类型足够多时，这种硬件预测分支的方式能够达到 90% 的正确率。当预测错误时，流水线控制必须确保被错误预测的分支后面的指令执行不会生效，并且必须在正确的分支地址处重新开始启动流水线</p>
 <p>如同其他解决控制冒险的方法一样，较长的流水线会恶化预测的性能，并会提高错误预测的代价</p>
+<details class="question" open="open">
+<summary>课本 4.16</summary>
+<p>In this exercise, we examine how pipelining affects the clock cycle time of the processor. Problems in this exercise assume that individual stages of the datapath have the following latencies:</p>
+<p><figure markdown="span">
+    <img alt="Img 58" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img58.png" width="400" />
+</figure></p>
+<p>Also, assume that instructions executed by the processor are broken down as follows:</p>
+<p><figure markdown="span">
+    <img alt="Img 59" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img59.png" width="400" />
+</figure></p>
+<p>(1) What is the clock cycle time in a pipelined and non-pipelined processor?</p>
+<p>(2) What is the total latency of an ld instruction in a pipelined and non-pipelined processor?</p>
+<p>(3) If we can split one stage of the pipelined datapath into two new stages, each with half the latency of the original stage, which stage would you split and what is the new clock cycle time of the processor?</p>
+<p>(4) Assuming there are no stalls or hazards, what is the utilization of the data memory?</p>
+<p>(5) Assuming there are no stalls or hazards, what is the utilization of the write-register port of the “Registers” unit?</p>
+<details class="success">
+<summary>答案</summary>
+<p>(1) Pipelined: 350ps<br/>
+Non-pipelined: 1250ps</p>
+<hr />
+<p>(2) Pipelined: 1250ps<br/>
+Non-pipelined: 1250ps</p>
+<hr />
+<p>(3) ID 的 latency 最长，所以 split ID。New clock cycle is 300ps</p>
+<hr />
+<p>(4) Load + Store = 35%</p>
+<hr />
+<p>(5) ALU + Load = 65%</p>
+<p>ALU 计算的结果和内存中的数据会写回寄存器组，需要用到 write-register port</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 4.18</summary>
+<p>Assume that x11 is initialized to 11 and x12 is initialized to 22. Suppose you executed the code below on a version of the pipeline from Section 4.5 that does not handle data hazards (i.e., the programmer is responsible for addressing data hazards by inserting NOP instructions where necessary). What would the final values of registers x13 and x14 be?</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="mh">5</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">add</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">addi</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mh">15</span>
+</span></code></pre></div></td></tr></table></div>
+<details class="success">
+<summary>答案</summary>
+<p><code>x13 = 33</code> <code>x14 = 26</code></p>
+<p>line 2：此时 x11 仍为 11，11 + 22 = 33</p>
+<p>line 3：此时 x11 仍为 11，11 + 15 = 26</p>
+<blockquote>
+<p>答案上写的 <code>x14 = 36</code>，没看明白</p>
+</blockquote>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 4.20</summary>
+<p>Add NOP instructions to the code below so that it will run correctly on a pipeline that does not handle data hazards.</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="mh">5</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">add</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">addi</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mh">15</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">add</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span>
+</span></code></pre></div></td></tr></table></div>
+<details class="success">
+<summary>答案</summary>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">addi</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="mh">5</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">NOP</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">NOP</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="n">add</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="n">addi</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mh">15</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="n">NOP</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="n">add</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x12</span>
+</span></code></pre></div></td></tr></table></div>
+<p>画个图</p>
+</details>
+</details>
 <h2 id="46-流水线数据通路及其控制">4.6 流水线数据通路及其控制<a class="headerlink" href="#46-流水线数据通路及其控制" title="Permanent link">&para;</a></h2>
 <p>将指令划分为五个阶段意味着一个流水线采用五级</p>
 <figure>
@@ -4822,72 +4967,72 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <li>直接采用总是转发的方式解决冒险是不正确的，因为某些指令可能不写回寄存器，就会产生一些不必要的转发。一种简单的解决方法是检测 RegWrite 信号是否是活动的</li>
 <li>x0 寄存器始终为 0，必须避免把 x0 按非零结果转发</li>
 </ol>
-<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-4-10">10</a></span>
-<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="n">ForwardA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="p">}</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="n">ForwardB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="p">}</span>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="n">ForwardA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">}</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">    </span><span class="n">ForwardB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>MEM 冒险：</strong></p>
 <p>更为复杂的潜在数据冒险发生在 WB 级的指令结果、MEM 级的指令结果和 ALU 级的指令源操作数之间。例如，在一个寄存器中对多个数字进行求和运算时，一系列连续的指令将会读写到同一寄存器：</p>
-<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
-<span class="normal"><a href="#__codelineno-5-2">2</a></span>
-<span class="normal"><a href="#__codelineno-5-3">3</a></span>
-<span class="normal"><a href="#__codelineno-5-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x3</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="p">......</span>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x3</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="p">......</span>
 </span></code></pre></div></td></tr></table></div>
 <p>在这种情况下，由于 MEM 级的结果是最新的，因而结果是由 MEM 级转发得到，因而需要添加一些控制条件，用行高亮表示</p>
-<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-6-10">10</a></span>
-<span class="normal"><a href="#__codelineno-6-11">11</a></span>
-<span class="normal"><a href="#__codelineno-6-12">12</a></span>
-<span class="normal"><a href="#__codelineno-6-13">13</a></span>
-<span class="normal"><a href="#__codelineno-6-14">14</a></span>
-<span class="normal"><a href="#__codelineno-6-15">15</a></span>
-<span class="normal"><a href="#__codelineno-6-16">16</a></span>
-<span class="normal"><a href="#__codelineno-6-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="hll"><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span>
-</span></span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span>
-</span></span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span>
-</span></span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="w">    </span><span class="n">ForwardA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">01</span><span class="p">;</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="p">}</span>
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
-</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="hll"><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span>
-</span></span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span>
-</span></span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span>
-</span></span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a><span class="w">    </span><span class="n">ForwardB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">01</span><span class="p">;</span>
-</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17"></a><span class="p">}</span>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span>
+<span class="normal"><a href="#__codelineno-9-15">15</a></span>
+<span class="normal"><a href="#__codelineno-9-16">16</a></span>
+<span class="normal"><a href="#__codelineno-9-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="hll"><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span>
+</span></span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span>
+</span></span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span>
+</span></span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="n">ForwardA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">01</span><span class="p">;</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="p">}</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegWrite</span><span class="w"> </span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="hll"><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="p">(</span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegWrite</span>
+</span></span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">0</span>
+</span></span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="hll"><span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">EX</span><span class="o">/</span><span class="n">MEM</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span>
+</span></span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">MEM</span><span class="o">/</span><span class="n">WB</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16"></a><span class="w">    </span><span class="n">ForwardB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">01</span><span class="p">;</span>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <p>添加支持转发的硬件：</p>
 <figure>
@@ -4904,15 +5049,15 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
     <img alt="Img 40" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img40.png" width="800" />
 </figure>
 <p><strong>冒险检测单元</strong>，工作在 ID 级，控制条件：</p>
-<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
-<span class="normal"><a href="#__codelineno-7-2">2</a></span>
-<span class="normal"><a href="#__codelineno-7-3">3</a></span>
-<span class="normal"><a href="#__codelineno-7-4">4</a></span>
-<span class="normal"><a href="#__codelineno-7-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">MemRead</span><span class="w"> </span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IF</span><span class="o">/</span><span class="n">ID</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IF</span><span class="o">/</span><span class="n">ID</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="n">stall</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pipeline</span><span class="p">;</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="p">}</span>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">MemRead</span><span class="w"> </span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IF</span><span class="o">/</span><span class="n">ID</span><span class="p">.</span><span class="n">RegisterRs1</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="w">    </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">ID</span><span class="o">/</span><span class="n">EX</span><span class="p">.</span><span class="n">RegisterRd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IF</span><span class="o">/</span><span class="n">ID</span><span class="p">.</span><span class="n">RegisterRs2</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="w">    </span><span class="n">stall</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">pipeline</span><span class="p">;</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <p>如果条件成立，指令将阻塞一个时钟周期。经过这一个周期的阻塞，转发逻辑就可以处理相关性并继续执行程序了</p>
 <p>如果处于 ID 级的指令被阻塞，那么处于 IF 级的指令也必须被阻塞，否则，已经取到的指令就会丢失。防止这两条指令继续执行的方法是保持 PC 寄存器和 IF/ID 流水线寄存器不变。如果这些寄存器内容保持不变，在 IF 级的指令将继续使用相同的 PC 取指令，而在 ID 级将继续使用 IF/ID 流水线寄存器中的相同的指令字段读寄存器堆</p>
@@ -4924,6 +5069,35 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <figure>
     <img alt="Img 42" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img42.png" width="800" />
 </figure>
+<details class="question" open="open">
+<summary>课本 4.25</summary>
+<p>Consider the following loop.</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">RISC-V</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span>
+<span class="normal"><a href="#__codelineno-11-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="nl">LOOP:</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x13</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="n">ld</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mh">8</span><span class="p">(</span><span class="n">x13</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="n">add</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x11</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">subi</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="n">bnez</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">LOOP</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Assume that perfect branch prediction is used (no stalls due to control hazards), that there are no delay slots, that the pipeline has full forwarding support, and that branches are resolved in the EX (as opposed to the ID) stage.</p>
+<p>(1) Show a pipeline execution diagram for the first two iterations of this loop.</p>
+<p>(2) Mark pipeline stages that do not perform useful work. How often while the pipeline is full do we have a cycle in which all five pipeline stages are doing useful work? (Begin with the cycle during which the subi is in the IF stage. End with the cycle during which the bnez is in the IF stage.)</p>
+<details class="success" open="open">
+<summary>答案</summary>
+<p>(1) </p>
+<p><figure markdown="span">
+    <img alt="Img 60" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img60.png" width="600" />
+</figure></p>
+<blockquote>
+<p>答案图片有误，本图片已改正</p>
+</blockquote>
+<hr />
+<p>(2) As the diagram above shows, there are not any cycles during which every pipeline stage is doing useful work.</p>
+</details>
+</details>
 <h2 id="48-控制冒险">4.8 控制冒险<a class="headerlink" href="#48-控制冒险" title="Permanent link">&para;</a></h2>
 <p><strong>Branch Hazard</strong></p>
 <figure>
@@ -4938,21 +5112,21 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <div class="admonition example">
 <p class="admonition-title">流水线分支</p>
 <p>假定流水线对分支不发生进行了优化，并且分支的执行提前到流水线的 ID 级。试说明下面的指令序列在分支发生时的执行情况：</p>
-<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
-<span class="normal"><a href="#__codelineno-8-2">2</a></span>
-<span class="normal"><a href="#__codelineno-8-3">3</a></span>
-<span class="normal"><a href="#__codelineno-8-4">4</a></span>
-<span class="normal"><a href="#__codelineno-8-5">5</a></span>
-<span class="normal"><a href="#__codelineno-8-6">6</a></span>
-<span class="normal"><a href="#__codelineno-8-7">7</a></span>
-<span class="normal"><a href="#__codelineno-8-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="mh">36</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="n">x8</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="mh">40</span><span class="w"> </span><span class="n">beq</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="mh">44</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
-</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="mh">48</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span>
-</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="mh">52</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
-</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="mh">56</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x7</span>
-</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="err">···</span>
-</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="mh">72</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mh">50</span><span class="p">(</span><span class="n">x7</span><span class="p">)</span>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span>
+<span class="normal"><a href="#__codelineno-12-5">5</a></span>
+<span class="normal"><a href="#__codelineno-12-6">6</a></span>
+<span class="normal"><a href="#__codelineno-12-7">7</a></span>
+<span class="normal"><a href="#__codelineno-12-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="mh">36</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="n">x8</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="mh">40</span><span class="w"> </span><span class="n">beq</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x3</span><span class="p">,</span><span class="w"> </span><span class="mh">16</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="mh">44</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="mh">48</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><span class="mh">52</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><span class="mh">56</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x7</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7"></a><span class="err">···</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8"></a><span class="mh">72</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mh">50</span><span class="p">(</span><span class="n">x7</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
 <p><figure markdown="span">
     <img alt="Img 50" src="../../../../../img/computer_organization/theory/ch4/comp_ch4_img50.png" width="800" />
@@ -4993,26 +5167,26 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 <div class="admonition example">
 <p class="admonition-title">流水线处理器中的异常</p>
 <p>给出以下指令序列：</p>
-<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
-<span class="normal"><a href="#__codelineno-9-2">2</a></span>
-<span class="normal"><a href="#__codelineno-9-3">3</a></span>
-<span class="normal"><a href="#__codelineno-9-4">4</a></span>
-<span class="normal"><a href="#__codelineno-9-5">5</a></span>
-<span class="normal"><a href="#__codelineno-9-6">6</a></span>
-<span class="normal"><a href="#__codelineno-9-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="mh">40</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="mh">44</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="mh">48</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">xx6</span>
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="mh">4</span><span class="n">C</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="w">  </span><span class="c1">// 该 add 指令发生溢出</span>
-</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="mh">50</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x7</span>
-</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="mh">54</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="n">x16</span><span class="p">,</span><span class="w"> </span><span class="mh">100</span><span class="p">(</span><span class="n">x7</span><span class="p">)</span>
-</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="err">···</span>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span>
+<span class="normal"><a href="#__codelineno-13-4">4</a></span>
+<span class="normal"><a href="#__codelineno-13-5">5</a></span>
+<span class="normal"><a href="#__codelineno-13-6">6</a></span>
+<span class="normal"><a href="#__codelineno-13-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="mh">40</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x4</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="mh">44</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="mh">48</span><span class="w"> </span><span class="k">or</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">xx6</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="mh">4</span><span class="n">C</span><span class="w"> </span><span class="n">add</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="n">x2</span><span class="p">,</span><span class="w"> </span><span class="n">x1</span><span class="w">  </span><span class="c1">// 该 add 指令发生溢出</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="mh">50</span><span class="w"> </span><span class="n">sub</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="n">x7</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="mh">54</span><span class="w"> </span><span class="n">ld</span><span class="w"> </span><span class="n">x16</span><span class="p">,</span><span class="w"> </span><span class="mh">100</span><span class="p">(</span><span class="n">x7</span><span class="p">)</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><span class="err">···</span>
 </span></code></pre></div></td></tr></table></div>
 <p>假定异常处理程序的开始部分如下：</p>
-<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
-<span class="normal"><a href="#__codelineno-10-2">2</a></span>
-<span class="normal"><a href="#__codelineno-10-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="mh">1</span><span class="n">C09_0000</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="n">x26</span><span class="p">,</span><span class="w"> </span><span class="mh">1000</span><span class="p">(</span><span class="n">x10</span><span class="p">)</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="mh">1</span><span class="n">C09_0004</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="n">x27</span><span class="p">,</span><span class="w"> </span><span class="mh">1008</span><span class="p">(</span><span class="n">x10</span><span class="p">)</span>
-</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="err">···</span>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
+<span class="normal"><a href="#__codelineno-14-2">2</a></span>
+<span class="normal"><a href="#__codelineno-14-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="mh">1</span><span class="n">C09_0000</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="n">x26</span><span class="p">,</span><span class="w"> </span><span class="mh">1000</span><span class="p">(</span><span class="n">x10</span><span class="p">)</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="mh">1</span><span class="n">C09_0004</span><span class="w"> </span><span class="n">sd</span><span class="w"> </span><span class="n">x27</span><span class="p">,</span><span class="w"> </span><span class="mh">1008</span><span class="p">(</span><span class="n">x10</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="err">···</span>
 </span></code></pre></div></td></tr></table></div>
 <p>给出 add 指令发生溢出异常时流水线的情况</p>
 <p><figure markdown="span">
@@ -5046,7 +5220,7 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月9日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月10日</span>
   </span>
 
     
@@ -5071,7 +5245,7 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
 
 <h2>评论区</h2>
 
-<div>欢迎在评论区指出文档错误，或为文档提供宝贵意见</div>
+<div>欢迎在评论区指出文档错误，为文档提供宝贵意见，或写下你的疑问</div>
 
 <br/>
 
@@ -5171,13 +5345,13 @@ Time\ between\ instruction_{pipelined} = \dfrac{Time\ between\ instruction_{nonp
         
         
           
-          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机组成 - 实验部分">
+          <a href="../ch5/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Large and Fast: Exploiting Memory Hierarchy">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机组成 - 实验部分
+                5 Large and Fast: Exploiting Memory Hierarchy
               </div>
             </div>
             <div class="md-footer__button md-icon">
