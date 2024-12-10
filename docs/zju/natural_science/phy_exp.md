@@ -621,6 +621,86 @@ xt老师 (1)
 
 1. 课本
 
+??? success "python 代码"
+
+    ```python linenums="1" title="实验 1"
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy import optimize as op
+    
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    
+    
+    def my_func(t, a):
+        return a * t / (4 + 2 * a * t) * 1.3
+    
+    
+    t = [13.7, 19.9, 26.0, 31.0, 36.0, 40.9, 45.9, 51.1]
+    U = [21.1, 29.2, 36.8, 42.9, 49.0, 54.8, 60.6, 66.6]
+    U = [u / 1000 for u in U]
+    
+    a = op.curve_fit(my_func, t, U)[0]
+    
+    t_extend = np.arange(10, 55, 1)
+    U_extend = my_func(t_extend, a)
+    
+    fig = plt.figure()
+    
+    ax1 = fig.add_subplot(111)
+    ax1.plot(t_extend, U_extend, c='r')
+    ax1.scatter(t, U, s=30, marker='x', c='b')
+    ax1.set_xlabel('t(℃)')
+    ax1.set_ylabel('U(V)', rotation=0, y=1.02, labelpad=-30)
+    ax1.grid(linestyle=':', alpha=0.6)
+    ax1.set_xlim(10, 55)
+    ax1.xaxis.set_major_locator(plt.MultipleLocator(5))
+    ax1.set_ylim(0.015, 0.070)
+    ax1.yaxis.set_major_locator(plt.MultipleLocator(0.005))
+    ax1.set_title('U - t图')
+    
+    plt.show()
+
+    ```
+
+    ```python linenums="1" title="实验 2"
+    import matplotlib.pyplot as plt
+    import numpy as np
+    from scipy import optimize as op
+    
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    
+    
+    def my_func(t, a, b):
+        return b * (1 + a * t)
+    
+    
+    t = [13.7, 20.0, 26.4, 31.0, 36.2, 40.9, 45.8, 51.1]
+    R = [53.79, 55.18, 56.52, 57.51, 58.64, 59.64, 60.71, 61.84]
+    
+    a, b = op.curve_fit(my_func, t, R)[0]
+    
+    t_extend = np.arange(10, 55, 1)
+    R_extend = my_func(t_extend, a, b)
+    
+    fig = plt.figure()
+    
+    ax1 = fig.add_subplot(111)
+    ax1.plot(t_extend, R_extend, c='r')
+    ax1.scatter(t, R, s=30, marker='x', c='b')
+    ax1.set_xlabel('t(℃)')
+    ax1.set_ylabel('R(Ω)', rotation=0, y=1.02, labelpad=-30)
+    ax1.grid(linestyle=':', alpha=0.6)
+    ax1.set_xlim(10, 55)
+    ax1.xaxis.set_major_locator(plt.MultipleLocator(5))
+    ax1.set_ylim(50, 65)
+    ax1.yaxis.set_major_locator(plt.MultipleLocator(2))
+    ax1.set_title('R - t图')
+    ax1.text(11, 64, f'R = {b:.2f} * (1 + {a:.6f} * t)')
+    
+    plt.show()
+
+    ```
+
 ### 惠斯登电桥
 
 

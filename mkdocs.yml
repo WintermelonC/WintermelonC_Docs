@@ -76,6 +76,7 @@ nav:
         - 10 Intractability: zju/compulsory_courses/ADS/ch10.md
         - 11 Approximation Algorithms: zju/compulsory_courses/ADS/ch11.md
         - 12 Local Search: zju/compulsory_courses/ADS/ch12.md
+        - 13 Randomized Algorithms: zju/compulsory_courses/ADS/ch13.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 
@@ -83,6 +84,7 @@ nav:
           - '2 Instructions: Language of the Computer': zju/compulsory_courses/computer_organization/theory/ch2.md
           - 3 Arithmetic for Computers: zju/compulsory_courses/computer_organization/theory/ch3.md
           - 4 The Processor: zju/compulsory_courses/computer_organization/theory/ch4.md
+          - '5 Large and Fast: Exploiting Memory Hierarchy': zju/compulsory_courses/computer_organization/theory/ch5.md
         - 实验部分:
           - zju/compulsory_courses/computer_organization/lab/index.md
     - 实践教学环节:

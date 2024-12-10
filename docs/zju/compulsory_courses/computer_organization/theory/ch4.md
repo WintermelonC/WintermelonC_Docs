@@ -8,7 +8,7 @@
 
     1. 部分内容由 AI 翻译课本原文，可能存在错误
     2. 本文档只涉及部分知识点，仅可用来复习重点知识
-    3. 部分课本练习题答案可能存在错误，欢迎在评论区指出
+    3. 部分课本练习题答案可能存在错误，欢迎在评论区指出，也可以写下你的疑问
    
     > 理论课讲到这里的时候，实验课已经把单周期 CPU 都实现了，4.1 - 4.4 理解起来很容易啦，就不过多讲解了。需要注意的是，实验课讲的一些实现方法和这里讲的有些不一样
 
@@ -290,13 +290,13 @@
 
         ---
 
-        (6) `sd` 指令最长，选择 950ps 最为 CPU clock
+        (6) `ld` 指令最长，选择 950ps 最为 CPU clock
 
 ???+ question "课本 4.9"
 
     Consider the addition of a multiplier to the CPU shown in the figure below. This addition will add 300 ps to the latency of the ALU, but will reduce the number of instructions by 5% (because there will no longer be a need to emulate the multiply instruction).
 
-     <figure markdown="span">
+    <figure markdown="span">
         ![Img 57](../../../../img/computer_organization/theory/ch4/comp_ch4_img57.png){ width="600" }
     </figure>
 
@@ -306,7 +306,7 @@
 
     (3) What is the slowest the new ALU can be and still result in improved performance?
 
-    ???+ success "答案"
+    ??? success "答案"
 
         (1) without improvement: 950ps（应该是延续 4.7）with improvement: 950 + 300 = 1250ps
 
@@ -324,6 +324,36 @@
         (3) 答案原文：Because adding a multiply instruction will remove 5% of the instructions, the cycle time can grow to as much as 950/(0.95) = 1000. Thus, the time for the ALU can increase by up to 50 (from 200 to 250).
 
         > 暂时没看懂
+
+???+ question "课本 4.11"
+
+    Examine the difficulty of adding a proposed lwi.d rd, rs1, rs2 (“Load With Increment”) instruction to RISC-V.
+
+    Interpretation: Reg[rd]=Mem[Reg[rs1]+Reg[rs2]]
+
+    (1) Which new functional blocks (if any) do we need for this instruction?
+
+    (2) Which existing functional blocks (if any) require modification?
+
+    (3) Which new data paths (if any) do we need for this instruction?
+
+    (4) What new signals do we need (if any) from the control unit to support this instruction?
+
+    ??? success "答案"
+
+        (1) No new functional blocks are needed.
+
+        ---
+
+        (2) Only the control unit needs modification.
+
+        ---
+
+        (3) No new data paths are needed.
+
+        ---
+
+        (4) No new signals are needed.
 
 ## 4.5 流水线概述
 
@@ -483,6 +513,99 @@ sub x2, x19, x3
 计算机中动态预测方法的一种比较普遍的实现方式是保存每次分支的历史记录，然后利用这个历史记录来预测。稍后我们将看到，历史记录的数量和类型足够多时，这种硬件预测分支的方式能够达到 90% 的正确率。当预测错误时，流水线控制必须确保被错误预测的分支后面的指令执行不会生效，并且必须在正确的分支地址处重新开始启动流水线
 
 如同其他解决控制冒险的方法一样，较长的流水线会恶化预测的性能，并会提高错误预测的代价
+
+???+ question "课本 4.16"
+
+    In this exercise, we examine how pipelining affects the clock cycle time of the processor. Problems in this exercise assume that individual stages of the datapath have the following latencies:
+
+    <figure markdown="span">
+        ![Img 58](../../../../img/computer_organization/theory/ch4/comp_ch4_img58.png){ width="400" }
+    </figure>
+
+    Also, assume that instructions executed by the processor are broken down as follows:
+
+    <figure markdown="span">
+        ![Img 59](../../../../img/computer_organization/theory/ch4/comp_ch4_img59.png){ width="400" }
+    </figure>
+
+    (1) What is the clock cycle time in a pipelined and non-pipelined processor?
+
+    (2) What is the total latency of an ld instruction in a pipelined and non-pipelined processor?
+    
+    (3) If we can split one stage of the pipelined datapath into two new stages, each with half the latency of the original stage, which stage would you split and what is the new clock cycle time of the processor?
+    
+    (4) Assuming there are no stalls or hazards, what is the utilization of the data memory?
+    
+    (5) Assuming there are no stalls or hazards, what is the utilization of the write-register port of the “Registers” unit?
+
+    ??? success "答案"
+
+        (1) Pipelined: 350ps<br/>
+        Non-pipelined: 1250ps
+
+        ---
+
+        (2) Pipelined: 1250ps<br/>
+        Non-pipelined: 1250ps
+
+        ---
+
+        (3) ID 的 latency 最长，所以 split ID。New clock cycle is 300ps
+
+        ---
+
+        (4) Load + Store = 35%
+
+        ---
+
+        (5) ALU + Load = 65%
+
+        ALU 计算的结果和内存中的数据会写回寄存器组，需要用到 write-register port
+
+???+ question "课本 4.18"
+
+    Assume that x11 is initialized to 11 and x12 is initialized to 22. Suppose you executed the code below on a version of the pipeline from Section 4.5 that does not handle data hazards (i.e., the programmer is responsible for addressing data hazards by inserting NOP instructions where necessary). What would the final values of registers x13 and x14 be?
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x11, x12, 5
+    add x13, x11, x12
+    addi x14, x11, 15
+    ```
+
+    ??? success "答案"
+
+        `x13 = 33` `x14 = 26`
+
+        line 2：此时 x11 仍为 11，11 + 22 = 33
+
+        line 3：此时 x11 仍为 11，11 + 15 = 26
+
+        > 答案上写的 `x14 = 36`，没看明白
+
+???+ question "课本 4.20"
+
+    Add NOP instructions to the code below so that it will run correctly on a pipeline that does not handle data hazards.
+
+    ```verilog title="RISC-V" linenums="1"
+    addi x11, x12, 5
+    add x13, x11, x12
+    addi x14, x11, 15
+    add x15, x13, x12
+    ```
+
+    ??? success "答案"
+
+        ```verilog title="RISC-V" linenums="1"
+        addi x11, x12, 5
+        NOP
+        NOP
+        add x13, x11, x12
+        addi x14, x11, 15
+        NOP
+        add x15, x13, x12
+        ```
+
+        画个图
 
 ## 4.6 流水线数据通路及其控制
 
@@ -722,6 +845,38 @@ if (ID/EX.MemRead
     ![Img 42](../../../../img/computer_organization/theory/ch4/comp_ch4_img42.png){ width="800" }
 </figure>
 
+???+ question "课本 4.25"
+
+    Consider the following loop.
+
+    ```verilog title="RISC-V" linenums="1"
+    LOOP: ld x10, 0(x13)
+    ld x11, 8(x13)
+    add x12, x10, x11
+    subi x13, x13, 16
+    bnez x12, LOOP
+    ```
+
+    Assume that perfect branch prediction is used (no stalls due to control hazards), that there are no delay slots, that the pipeline has full forwarding support, and that branches are resolved in the EX (as opposed to the ID) stage.
+
+    (1) Show a pipeline execution diagram for the first two iterations of this loop.
+
+    (2) Mark pipeline stages that do not perform useful work. How often while the pipeline is full do we have a cycle in which all five pipeline stages are doing useful work? (Begin with the cycle during which the subi is in the IF stage. End with the cycle during which the bnez is in the IF stage.)
+
+    ???+ success "答案"
+
+        (1) 
+        
+        <figure markdown="span">
+            ![Img 60](../../../../img/computer_organization/theory/ch4/comp_ch4_img60.png){ width="600" }
+        </figure>
+
+        > 答案图片有误，本图片已改正
+
+        ---
+
+        (2) As the diagram above shows, there are not any cycles during which every pipeline stage is doing useful work.
+        
 ## 4.8 控制冒险
 
 **Branch Hazard**
