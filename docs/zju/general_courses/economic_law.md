@@ -158,11 +158,11 @@ zlm老师
 
 使用Xmind整理的思维导图，可以打印下来便于期末考试查看，知识点旁边标有课本的页码
 
-PDF打印文件：
+PDF 打印文件：
 
 <embed src="../../../file/economic_law/economic_law_doc1.pdf" type="application/pdf" width="100%" height="500" />
 
-Xmind原文件：
+Xmind 原文件：
 
 [1 经济法基础理论](../../file/economic_law/economic_law_doc2.xmind)<br/>
 [2 合同法](../../file/economic_law/economic_law_doc3.xmind)<br/>

@@ -73,7 +73,7 @@ $Var(\sum\limits_{i=1}^nX_i) = \sum\limits_{i=1}^n Var(X_i) + 2\sum\limits_{1 \l
 若随机变量 $X$ 的方差存在，则称
 
 $$
-X^* = \dfrac{X = E(X)}{\sqrt{Var(X)}}
+X^* = \dfrac{X - E(X)}{\sqrt{Var(X)}}
 $$
 
 为 $X$ 的 **标准化随机变量**，简称 **标准化变量**
