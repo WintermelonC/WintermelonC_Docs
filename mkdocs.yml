@@ -16,6 +16,7 @@ nav:
     - zju/index.md
     - 思政类:
       - zju/political/index.md
+      - 中国近现代史纲要: zju/political/history_of_modern_china.md
       - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:
       - zju/military_PE/index.md
@@ -124,9 +125,6 @@ nav:
     - VS Code:
       - application/vscode/index.md
       - Github Copilot: application/vscode/copilot.md
-
-not_in_nav: |
-  /file/*.md
 
 # 主题设置
 theme:
