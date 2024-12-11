@@ -37,7 +37,7 @@ cby老师
 
 使用 Xmind 整理了一份思维导图，知识点后标有课本页码
 
-> 但实话说这个思维导图整理的不怎么样，我是在 2024-2025 冬学期[中国共产党历史](./history_of_CPC.md){:target="_blank"}这门课期末考试前整理的，所以整理的很粗糙，同学们可以自己再补充
+> 但实话说这个思维导图整理的不怎么样，我是在 2024-2025 冬学期[中国共产党历史](./history_of_CPC.md){:target="_blank"}这门课期末考试前整理的（这门课期末考试开卷也要带上近现代史的课本），所以整理的很粗糙，同学们可以自己再补充
 
 PDF 打印文件：
 
@@ -56,3 +56,7 @@ Xmind 原文件：
 [8 中华人民共和国的成立与中国社会主义建设道路的探索](../../file/history_china/history_china_doc10.xmind){:target="_blank"}<br/>
 [9 改革开放与中国特色社会主义的开创和发展](../../file/history_china/history_china_doc11.xmind){:target="_blank"}<br/>
 [10 中国特色社会主义进入新时代](../../file/history_china/history_china_doc12.xmind){:target="_blank"}<br/>
+
+## 个人感受
+
+期末考试前记得看一遍书哦
