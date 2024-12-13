@@ -96,3 +96,122 @@ tag field 的大小为：$64 - (n + m + 2)$
 块大小为 $2^m$ 个字（$2^{m+5}$ 位），同时我们需要 1 位有效位，因此这样一个 cache 的位数是 $2^n \times (2^m \times 32 + (64 - m - n -2) + 1) = 2^n \times (2^m \times 32 + 63 - n - m)$
 
 尽管以上计算是实际的大小，但是通常对 cache 命名只考虑数据的大小而不考虑标记域和有效位域的大小，因此上图中是一个 4 KiB 的 cache
+
+!!! example "cache 中的位数"
+
+    假设一个直接映射的 cache，有 16 KiB 的数据，块大小为 4 个字，地址为 64 位，那么该 cache 总共需要多少位？
+
+    ??? success "答案"
+
+        数据共 $16\ KiB = 2^{14}\ bytes = 2^{12}\ words$，一个块 4 个 word，则一共有 $2^{10}$ 个块，因此用来索引的位有 10 位，标记域有 $64 - 10 - 2 - 2 = 50$ 位，有效位 1 位。则 cache 大小总共为 $2^{10} \times (4 \times 32 + 50 + 1) = 2^{10} \times 179 = 179\ Kibibits = 22.4\ KiB$
+
+!!! example "将一个地址映射到多字大小的 cache 块中"
+
+    考虑一个 cache 有 64 个块，每个块 16 字节，那么字节地址为 1200 将被映射到 cache 中的哪一块？
+
+    ??? success "答案"
+
+        $块地址 = \lfloor \dfrac{字节地址}{每块字节数} \rfloor = \lfloor \dfrac{1200}{16} \rfloor = 75$
+
+        $（块地址）mod（cache 中的块数）= 75\ mod\ 64 = 11$。事实上地址 1200 和 1215 之间的所有地址都映射在这一块
+
+### 5.3.2 cache 缺失处理
+
+1. 把 PC 的原始值（当前 PC - 4）送到存储器中
+2. 通知主存执行一次读操作，并等待主存访问完成
+3. 写 cache 项，将从主存取回的数据写入 cache 中存放数据的部分，并将地址的高位（从 ALU 中得到）写入标记域，设置有效位
+4. 重新返回指令执行第一步，重新取值，这次该指令在 cache 中
+
+### 5.3.3 写操作处理
+
+**write-through**（写直达法）：
+
+将数据同时写入主存和 cache 中。但这样会花费大量的时间，一种解决方法是 write-buffer（写缓冲），当一个数据在等待写入主存时，先将它放入写缓冲中
+
+**write-back**（写回机制）：
+
+新值仅仅被写入 cache 块中，只有当修改过的块被替换时才需要写到较低层次存储结构中
+
+### 5.3.4 一个 cache 的例子：内置 FastMATH 处理器
+
+<figure markdown="span">
+    ![Img 9](../../../../img/computer_organization/theory/ch5/comp_ch5_img9.png){ width="600" }
+</figure>
+
+cache 容量为 16 KB，有 256 个块，每个块有 16 个字
+
+对 cache 的读请求的步骤如下：
+
+1. 将地址送到适当的 cache 中去，该地址来自程序计数器（对于指令访问），或者来自于ALU（对于数据访问）
+
+2. 如果 cache 发出命中信号，请求的字就出现在数据线上。由于在请求的数据块中有16个字，因此需要选择那个正确的字。块索引域用来控制多路选择器（如图5-9底部所示），从检索到的块中选择16个字中的某个字
+
+3. 如果 cache 发出缺失信号，我们把地址送到主存。当主存返回数据时，把它写入 cache 后再读出以满足请求
+
+对于写操作，内置 FastMATH 处理器同时提供写直达和写回机制，由操作系统来决定某种应用该使用哪个机制。它有一个只包含一项的写缓冲
+
+## 5.4 cache 性能的评估和改进
+
+$CPU\ time = (CPU\ execution\ clock\ cycles + Memory-stall\ clock\ cycles) \times Clock\ cycle\ time$<br/>
+$CPU\ 时间 = （CPU\ 执行时钟周期 + 存储器阻塞的时钟周期）\times 时钟周期$
+
+$Memory-stall\ clock\ cycles = (Read-stall\ cycles + Write-stall\ cycles)$<br/>
+$存储器阻塞时钟周期 = 读操作引起阻塞时的时钟周期 + 写操作引起阻塞的时钟周期$
+
+$Read-stall\ cycles = \dfrac{Reads}{Program} \times Read\ miss\ rate \times Read\ miss\ penalty$<br/>
+$读操作阻塞的时钟周期数 = \dfrac{读的次数}{程序数} \times 读缺失率 \times 读确实代价$
+
+$Write-stall\ cycles = (\dfrac{Writes}{Program} \times Write\ miss\ rate \times Write\ miss\ penalty) + Write\ buffer\ stalls$<br/>
+$写操作阻塞的时钟周期数 = (\dfrac{写的次数}{程序数} \times 写缺失率 \times 写缺失代价) + 写缓冲区阻塞$
+
+在大部分写直达 cache 结构中，读和写的缺失代价是一样的（都是从主存中取回数据块的时间）。如果假设写缓冲区阻塞可以被忽略，那么我们可以合并读写操作并共用一个缺失率和缺失代价
+
+$Memory-stall\ clock\ cycles = \dfrac{Memory\ accesses}{Program} \times Miss\ rate \times Miss\ penalty$<br/>
+$存储器阻塞时钟周期 = \dfrac{存储器访问次数}{程序数} \times 缺失率 \times 缺失代价$
+
+$Memory-stall\ clock\ cycles = \dfrac{Instructions}{Program} \times \dfrac{Misses}{Instructions} \times Miss\ penalty$<br/>
+$存储器阻塞时钟周期 = \dfrac{指令数}{程序数} \times \dfrac{缺失数}{指令} \times 缺失代价$
+
+!!! example "计算 cache 性能"
+
+    假设指令 cache 的缺失率为 2%，数据 cache 的缺失率为 4%，处理器的 CPI 为 2，没有存储器阻塞，且每次缺失的代价为 100 个时钟周期，那么配置一个从不发生缺失的理想的 cache，处理器的速度快多少？这里假定全部 load 和 store 的频率为 36%
+    
+    根据指令计数器(I)，由指令缺失引起的时钟周期损失数为：
+    
+    指令缺失时钟周期 = I × 2% × 100 = 2.00 × I
+    
+    由于所有load和store指令出现的频率为36%，我们可以计算出数据缺失引起的时钟周期损失数：
+    
+    数据缺失时钟周期 = I × 36% × 4% × 100 = 1.44 × I
+    
+    总的存储器阻塞时钟周期为：
+    
+    2.00 × I + 1.44 × I = 3.44 × I
+    
+    每条指令的存储器阻塞超过3个时钟周期。因此，包括存储器阻塞在内的总的CPI是：$2 + 3.44 = 5.44$。由于指令计数器或时钟频率都没有改变，CPU 执行时间的比率为：
+    
+    $\dfrac{有阻塞的 CPU 执行时间}{配置理想 cache 的 CPU 执行时间} = \dfrac{I × CPI阻塞 × 时钟周期}{I × CPI理想 × 时钟周期} = \dfrac{CPI 阻塞}{CPI 理想} = \dfrac{5.44}{2}$
+    
+    因此，配置了理想的cache的CPU的性能是原来的：
+    
+    $\dfrac{5.44}{2} = 2.72 倍$
+    
+    所以，配置了理想的 cache 的 CPU 的性能是原来的 2.72 倍
+
+如果处理器速度很快，而存储系统却不快，那样又会发生什么？存储器阻塞花费的时间占据执行时间的比例会上升。一些简单的例子会说明这个问题有多严重。假设我们加速上面例子中的计算机，通过改进流水线，在不改变时钟频率的情况下，将 CPI 从 2 降到 1。那么具有 cache 缺失的系统的 CPI 为 1 + 3.44 = 4.44，而配置理想的 cache 的系统性能是它的 4.44 / 1 = 4.44 倍。存储器阻塞所花费的时间占据整个执行时间的比例则从 3.44 / 5.4 = 63% 上升到 3.44 / 4.44 = 77%
+
+同样，仅仅提高时钟频率而不改进存储系统也会因cache缺失的增加而加剧性能的流失
+
+**平均存储器访问时间**（AMAT）：$Time\ for\ a\ hit + Miss\ rate \times Miss\ penalty$<br/>
+$命中时间 + 缺失率 \times 缺失代价$
+
+!!! example "计算平均存储器访问时间"
+
+    处理器时钟周期的时间为 1 ns，缺失代价是 20 个时钟周期，缺失率为每条指令 0.05 次缺失，cache 访问时间（包括命中判断）为 1 个时钟周期。假设读操作和写操作的缺失代价相同并且忽略其他写阻塞。请计算 AMAT
+
+    $AMAT = 1 + 0.05 \times 20 = 2 个时钟周期$
+
+    即为 2 ns
+
+### 5.4.1 通过更灵活地放置块来减少 cache 缺失
+

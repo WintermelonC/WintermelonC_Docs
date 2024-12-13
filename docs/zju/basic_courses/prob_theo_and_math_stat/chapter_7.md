@@ -116,3 +116,11 @@ $$
 **引理：**
 
 设统计量 $\hat{\theta}_L$ 和 $\hat{\theta}_U$ 分别是参数 $\theta$ 的置信水平为 $1 - \alpha_1$ 和  $1 - \alpha_2$ 的单侧置信下限、单侧置信上限，且 $\hat{\theta}_L < \hat{\theta}_U$，那么 $(\hat{\theta}_L,\hat{\theta}_U)$ 是 $\theta$ 的置信水平为 $1-\alpha_1-\alpha_2$ 的置信区间
+
+### 3.2 枢轴量法
+
+## 4 正态总体参数的区间估计
+
+<figure markdown="span">
+    ![Img 1](../../../img/prob_theo_and_math_stat/chapter_7/prob_ch7_img1.jpg){ width="800" }
+</figure>

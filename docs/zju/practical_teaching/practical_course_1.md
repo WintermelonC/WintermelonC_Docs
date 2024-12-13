@@ -18,10 +18,11 @@
 
 project 2 建议选择 ^^可视分析系统^^，更容易拿高分
 
-## 个人感受
-
-project 2 的可视分析系统最好提前了解一下 html，css，javascript 这三种语言，网页框架等概念。最后我们小组用 React 框架弄出来以后，还是非常有成就感的
-
 ## project 2
 
 我们小组的 github 项目仓库：[ZJU2024SummerDV_G13](https://github.com/WintermelonC/ZJU2024SummerDV_G13){:target="_blank"}
+
+## 个人感受
+
+1. project 2 的可视分析系统最好提前了解一下 html，css，javascript 这三种语言，网页框架等概念。最后我们小组用 React 框架弄出来以后，还是非常有成就感的
+2. 讲座是英语讲座，讲的内容不影响你完成作业。碍于英语水平有限，我是想听也听不太明白的，干脆干自己的事情去了 😂
