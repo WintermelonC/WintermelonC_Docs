@@ -4048,12 +4048,18 @@
 <p>对一个近似模式来说，如果其运行时间表达式即为 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 的多项式，又为输入实例规模 <span class="arithmatex">\(n\)</span> 的多项式，则称其为 <strong>完全多项式时间近似模式</strong>（fully polynomial-time
 approximation scheme 
 (FPTAS)）。例如 <span class="arithmatex">\(O((\dfrac{1}{\epsilon})^2n^3)\)</span></p>
-<details class="question" open="open">
+<details class="question">
 <summary>PTA 11.1</summary>
 <p>Suppose ALG is an α-approximation algorithm for an optimization problem Π whose approximation ratio is tight. Then for every ϵ&gt;0 there is no (α−ϵ)-approximation algorithm for Π unless P = NP.  </p>
 <p>T<br/>F</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>F</p>
+<hr />
+<p>这句话前后说的是两码事</p>
+<blockquote>
+<p>没看明白</p>
+</blockquote>
 </details>
 </details>
 <h2 id="2-bin-packing">2 Bin Packing<a class="headerlink" href="#2-bin-packing" title="Permanent link">&para;</a></h2>
@@ -4078,8 +4084,18 @@ approximation scheme
 B. The number of bins used by the first-fit heuristic is never more than ⌈2S⌉<br/>
 C. The next-fit heuristic leaves at most one bin less than half full<br/>
 D. The first-fit heuristic leaves at most one bin less than half full</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>C</p>
+<hr />
+<p><strong>A 选项：</strong></p>
+<p>上文图片中有结论，若 next-fit 产生 <span class="arithmatex">\(2M\)</span> 或 <span class="arithmatex">\(2M + 1\)</span> 个 bins，则 <span class="arithmatex">\(\sum\limits_{i=1}^{2M}S(B_i) &gt; M\)</span>，<span class="arithmatex">\(\therefore 2S &gt; 2M \Rightarrow \lceil 2S \rceil \geqslant 2M + 1\)</span></p>
+<p><strong>B 选项：</strong></p>
+<p>first-fit 优于 next-fit，所以 B 肯定也对</p>
+<p><strong>C 选项：</strong></p>
+<p>两个少于半满的 bin 不相邻的情况可能出现，如 0.4，0.8，0.4。</p>
+<p><strong>D 选项：</strong></p>
+<p>如果存在两个少于半满的 bin，在放第二个 bin 时，一定会扫描到第一个 bin，将第二个 bin 放到第一个 bin 上面。所以 D 正确</p>
 </details>
 </details>
 <h3 id="on-line-algorithms">On-line Algorithms<a class="headerlink" href="#on-line-algorithms" title="Permanent link">&para;</a></h3>
@@ -4161,8 +4177,20 @@ D. The first-fit heuristic leaves at most one bin less than half full</p>
 <summary>PTA 11.2</summary>
 <p>As we know there is a 2-approximation algorithm for the Vertex Cover problem.  Then we must be able to obtain a 2-approximation algorithm for the Clique problem, since the Clique problem can be polynomially reduced to the Vertex Cover problem.  </p>
 <p>T<br/>F</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>F</p>
+<hr />
+<p>虽然两者存在 <span class="arithmatex">\(Clique \leqslant_P Vertex\ Cover\)</span> 的关系，但它们的代价分析不同，题目的推断不成立</p>
+<p>两个问题的实例规模对应关系：<span class="arithmatex">\(K_{Vertex\ in\ \bar{G}} = |V| - K_{Clique\ in\ G}\)</span></p>
+<blockquote>
+<p>回顾两者的<a href="../ch10/#ADS_ch10_CliqueAndVertex" target="_blank">对应关系</a></p>
+</blockquote>
+<p>设 Vertex Cover Problem 的 2-近似算法得到的顶点覆盖规模为 <span class="arithmatex">\(K\)</span>，最优规模为 <span class="arithmatex">\(K^*\)</span>，则</p>
+<div class="arithmatex">\[
+\rho_{Vertex} = \dfrac{C_{Vertex}}{C_{Vertex}^*} = \dfrac{K}{K^*} = 2\\
+\rho_{Clique} = \dfrac{C_{Clique}^*}{C_{Clique}} = \dfrac{|V| - K^*}{|V| - K} = 1 + \dfrac{1}{\dfrac{|V|}{K^*} - 2} \not ={2}
+\]</div>
 </details>
 </details>
 <details class="question" open="open">
@@ -4172,8 +4200,22 @@ D. The first-fit heuristic leaves at most one bin less than half full</p>
 B. S≠T for any graph G<br/>
 C. w(T)≥w(S)/2 for any graph G<br/>
 D. None of the above</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>C</p>
+<hr />
+<p><strong>A 选项：</strong></p>
+<p><figure markdown="span">
+    <img alt="Img 13" src="../../../../img/ADS/ch11/ADS_ch11_img13.png" width="200" />
+</figure></p>
+<p><span class="arithmatex">\(S = ab,\ cd\)</span>，<span class="arithmatex">\(T = ab,\ bc,\ cd\)</span>，存在 <span class="arithmatex">\(S \not ={T}\)</span>，A 错误</p>
+<p><strong>B 选项：</strong></p>
+<p><figure markdown="span">
+    <img alt="Img 12" src="../../../../img/ADS/ch11/ADS_ch11_img12.png" width="200" />
+</figure></p>
+<p><span class="arithmatex">\(S = ab,\ bd,\ cd\)</span>，<span class="arithmatex">\(T = ab,\ bd,\ cd\)</span>，存在 <span class="arithmatex">\(S = T\)</span>，B 错误</p>
+<p><strong>C 选项：</strong></p>
+<p>我感觉 <span class="arithmatex">\(w(T) \geqslant w(S)\)</span>，所以 C 更对了</p>
 </details>
 </details>
 <h2 id="6-traveling-salesman-problem">6 Traveling Salesman Problem<a class="headerlink" href="#6-traveling-salesman-problem" title="Permanent link">&para;</a></h2>
@@ -4241,8 +4283,11 @@ c(H) \leqslant c(W)
 B. 1<br/>
 C. 2<br/>
 D. 3</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>C</p>
+<hr />
+<p>上面的定理证明说明 Preorder 是符合的。然后我感觉 Postorder 也是符合的，但是不会证</p>
 </details>
 </details>
 <h3 id="一般旅行商问题">一般旅行商问题<a class="headerlink" href="#一般旅行商问题" title="Permanent link">&para;</a></h3>
@@ -4272,7 +4317,7 @@ D. 3</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月15日</span>
   </span>
 
     
