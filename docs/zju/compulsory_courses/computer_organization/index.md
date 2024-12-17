@@ -55,10 +55,10 @@ yk老师
 
 ### 2024-2025 秋冬
 
-小测 1：
+#### 小测 1
 
 <embed src="../../../file/computer_organization/comp_organ_doc3.pdf" type="application/pdf" width="100%" height="500" />
 
-小测 2：
+#### 小测 2
 
 <embed src="../../../file/computer_organization/comp_organ_doc4.pdf" type="application/pdf" width="100%" height="500" />

@@ -155,8 +155,8 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时中等</td>
       <td></td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">88</td>
+      <td>电阻率、相对误差有效数字保留有误 缺少系统误差 思考题R1/R2-R3/R4=0</td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: middle;">非平衡电桥</td>
@@ -169,8 +169,8 @@ xt老师 (1)
     <tr>
       <td style="text-align: center; vertical-align: middle;">惠斯登电桥</td>
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">简单<br/>费时较长</td>
+      <td>本来实验费时短，但是由于老师是先去别的教室讲实验，所以实际费时较长</td>
       <td style="text-align: center; vertical-align: middle;"></td>
       <td></td>
     </tr>
@@ -703,6 +703,9 @@ xt老师 (1)
 
 ### 惠斯登电桥
 
+思考题：
+
+1. 课本
 
 ## 个人感受
 
