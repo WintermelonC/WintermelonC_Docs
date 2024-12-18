@@ -72,7 +72,7 @@
     ![Img 4](../../../../img/computer_organization/theory/ch4/comp_ch4_img4.png){ width="600" }
 </figure>
 
-> 实验课实现的数据通路，分支指令的立即数乘以 2 已经在 ImmGen 模块就实现了，不需要后续在左移 1 位 
+> 实验课实现的数据通路，分支指令的立即数乘以 2 已经在 ImmGen 模块就实现了，不需要后续再左移 1 位 
 
 ### 4.3.1 创建一个简单的数据通路
 
@@ -216,8 +216,6 @@
 
         (1) No additional logic blocks are needed
 
-        > 无语
-
         ---
 
         (2) `Branch = false` `MemRead = false` `MemToReg = 0` `ALUOp = "add"` `MemWrite = false` `ALUSrc = 1` `RegWrite = 1`
@@ -290,7 +288,7 @@
 
         ---
 
-        (6) `ld` 指令最长，选择 950ps 最为 CPU clock
+        (6) `ld` 指令最长，选择 950ps 作为 CPU clock
 
 ???+ question "课本 4.9"
 
@@ -580,7 +578,7 @@ sub x2, x19, x3
 
         line 3：此时 x11 仍为 11，11 + 15 = 26
 
-        > 答案上写的 `x14 = 36`，没看明白
+        > 答案上写的 `x14 = 36`，我觉得答案写错了
 
 ???+ question "课本 4.20"
 
@@ -697,7 +695,7 @@ sub x2, x19, x3
 
 1. **取指令**：读指令存储器和写PC的控制信号总是有效的，因此在取指阶段没有特别需要控制的内容
 2. **指令译码/寄存器堆读**：与第一步类似，在每个时钟周期内本阶段所做的工作都是完全相同的，因此不需要设置控制信号
-3. **指令执行/地址计算**：控制信号有 ALUOp 和 ALUSrc（见图4-47和图4-48）。根据这些信号选择结果寄存器、ALU 操作，并为 ALU 读取数据2或符号扩展后的立即数
+3. **指令执行/地址计算**：控制信号有 ALUOp 和 ALUSrc。根据这些信号选择结果寄存器、ALU 操作，并为 ALU 读取数据 2 或符号扩展后的立即数
 4. **存储器访问**：这一步的控制信号有 Branch、MemRead 和 MemWrite。这些控制信号分别由相等则分支、装载指令和存储指令设置。除非控制电路断言是一条分支指令并且 ALU 结果为0，否则将选择线性地址中的下一条指令作为图4-48中的PCSrc信号
 5. **写回**：控制信号有 MemtoReg 和 RegWrite，其中前者决定是将 ALU 结果还是将存储器数据传送到寄存器堆，后者决定是否写入寄存器堆
 
@@ -863,7 +861,7 @@ if (ID/EX.MemRead
 
     (2) Mark pipeline stages that do not perform useful work. How often while the pipeline is full do we have a cycle in which all five pipeline stages are doing useful work? (Begin with the cycle during which the subi is in the IF stage. End with the cycle during which the bnez is in the IF stage.)
 
-    ???+ success "答案"
+    ??? success "答案"
 
         (1) 
         
