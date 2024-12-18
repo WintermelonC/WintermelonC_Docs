@@ -24,4 +24,5 @@
 [医院看病流程](./hospital.md)<br/>
 [医保](./medical_insurance.md)<br/>
 [如何乘坐交通工具](./transportation.md)<br/>
-[租房流程及注意事项](./rent.md)
+[租房流程及注意事项](./rent.md)<br/>
+[做饭的基本逻辑](./cooking.md)
