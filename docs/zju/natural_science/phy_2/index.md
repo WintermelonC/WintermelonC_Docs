@@ -51,3 +51,7 @@ whc老师
 #### 小测 3
 
 <embed src="../../../file/phy_2/phy_2_doc5.pdf" type="application/pdf" width="100%" height="500" />
+
+#### 小测 4
+
+<embed src="../../../file/phy_2/phy_2_doc6.pdf" type="application/pdf" width="100%" height="500" />

@@ -53,6 +53,8 @@ yk老师
 
 ## 历年题整理
 
+[浙江大学课程攻略共享计划 - 计算机组成](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/){:target="_blank"}
+
 ### 2024-2025 秋冬
 
 #### 小测 1
