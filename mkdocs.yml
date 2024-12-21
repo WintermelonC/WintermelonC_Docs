@@ -79,6 +79,7 @@ nav:
         - 11 Approximation Algorithms: zju/compulsory_courses/ADS/ch11.md
         - 12 Local Search: zju/compulsory_courses/ADS/ch12.md
         - 13 Randomized Algorithms: zju/compulsory_courses/ADS/ch13.md
+        - 14 Parallel Algorithms: zju/compulsory_courses/ADS/ch14.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 
