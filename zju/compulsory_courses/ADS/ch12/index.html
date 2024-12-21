@@ -1571,6 +1571,8 @@
       
         
       
+        
+      
     
     
       
@@ -1761,6 +1763,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 假设检验
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1855,6 +1878,8 @@
       
         
           
+        
+      
         
       
         
@@ -2257,6 +2282,27 @@
   
   <span class="md-ellipsis">
     13 Randomized Algorithms
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 Parallel Algorithms
   </span>
   
 
@@ -3779,10 +3825,10 @@
 
 
 <h1 id="12-local-search">12 Local Search<a class="headerlink" href="#12-local-search" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>此文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    此文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
@@ -3823,10 +3869,17 @@
     <img alt="Img 11" src="../../../../img/ADS/ch12/ADS_ch12_img11.png" width="100" />
 </figure></p>
 <p>T<br/>F</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
 <p>T</p>
 <hr />
+<p>删除黑点后，剩下的满足 Vertex Cover</p>
+<ol>
+<li>如果尝试删除右上角白点：删除后不满足 Vertex Cover，回退。尝试删除中间白点</li>
+<li>如果尝试删除中间白点：删除后不满足 Vertex Cover，回。尝试删除左下角白点，删除后满足 Vertex Cover，保留。尝试删除右下角白点，删除后满足，保留</li>
+<li>······</li>
+</ol>
+<p>总之，在这种情况下，不管以何种顺序删除白点，总能得到最优解</p>
 </details>
 </details>
 <h2 id="3-maximum-cut-problem">3 Maximum Cut Problem<a class="headerlink" href="#3-maximum-cut-problem" title="Permanent link">&para;</a></h2>
@@ -3842,9 +3895,11 @@
 <figure>
     <img alt="Img 9" src="../../../../img/ADS/ch12/ADS_ch12_img9.png" width="600" />
 </figure>
+<p><span id="ADS_ch12_maxcut"></p>
 <figure>
     <img alt="Img 10" src="../../../../img/ADS/ch12/ADS_ch12_img10.png" width="600" />
 </figure>
+<p></span></p>
 <details class="question" open="open">
 <summary>PTA 12.2</summary>
 <p>We are given a set of sites <span class="arithmatex">\(S = \lbrace s_1,s_2,\cdots,s_n \rbrace\)</span> in the plane, and we want to choose a set of k centers <span class="arithmatex">\(C = \lbrace c_1,c_2,\cdots,c_k \rbrace\)</span> so that the maximum distance from a site to the nearest center is minimized. Here <span class="arithmatex">\(c_i\)</span> can be an arbitrary point in the plane. </p>
@@ -3854,16 +3909,23 @@
 <p>If steps (1) and (2) cause the covering radius to strictly decrease, we perform another iteration, otherwise the algorithm stops. </p>
 <p>When the above local search algorithm terminates, the covering radius of its solution is at most 2 times the optimal covering radius. </p>
 <p>T<br/>F</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>F</p>
+<hr />
+<p>是存在反例的，但我不知道怎么想出来的，详见<a href="https://zhoutimemachine.github.io/note/courses/ads-hw-review/#hw12" target="_blank">Homework - Jianjun Zhou's Notebook</a></p>
 </details>
 </details>
 <details class="question" open="open">
 <summary>PTA 12.3</summary>
 <p>Local search algorithm can be used to solve lots of classic problems, such as SAT and N-Queen problems.  Define the configuration of SAT to be X = vector of assignments of N boolean variables, and that of N-Queen to be Y =  positions of the N queens in each column.  The sizes of the search spaces of SAT and N-Queen are <span class="arithmatex">\(O(2^N)\)</span> and <span class="arithmatex">\(O(N^N)\)</span>, respectively.  </p>
 <p>T<br/>F</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>T</p>
+<hr />
+<p>SAT：每个变量有 2 中情况，N 个变量即有 <span class="arithmatex">\(2^N\)</span></p>
+<p>Queen：每个 queen 有 N 个放置位置，N 个 queen 有 <span class="arithmatex">\(N^N\)</span></p>
 </details>
 </details>
 <details class="question" open="open">
@@ -3891,8 +3953,12 @@ For a pair of edges <span class="arithmatex">\((e,e')\)</span>where e∈T and e'
 B. The local search always return an optimal solution for Minimum Spanning Tree<br/>
 C. The local search always return an optimal solution for Minimum Degree Spanning Tree<br/>
 D. For neither of the problems that this local search always return an optimal solution</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>B</p>
+<hr />
+<p>我们数据结构这门课里讲的两种算法，都能得到 Minimum Spanning Tree 的最优解，其中 Prim 算法和本题给出的算法类似</p>
+<p>A、C 选项能够给出反例，但我不知道怎么想出来的，详见<a href="https://zhoutimemachine.github.io/note/courses/ads-hw-review/#hw12" target="_blank">Homework - Jianjun Zhou's Notebook</a></p>
 </details>
 </details>
 <details class="question" open="open">
@@ -3904,8 +3970,18 @@ D. For neither of the problems that this local search always return an optimal s
 B. When there are many candidate jobs that can be moved to reduce the absolute difference, if we always move the job j with maximum <span class="arithmatex">\(t_j\)</span>, then the local search terminates in at most n moves.<br/>
 C. The local search algorithm always returns an optimal solution.<br/>
 D. The local search algorithm always returns a local solution with <span class="arithmatex">\(\dfrac{1}{2}T_1 \leqslant T_2 \leqslant 2T_1\)</span>.</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>B</p>
+<hr />
+<p><strong>A 选项：</strong></p>
+<p>不至于停不下来，最后肯定会因为无法减少差值而停止</p>
+<p><strong>B 选项：</strong></p>
+<p>应该不至于每个 job 都挪一遍，次数肯定小于 n</p>
+<p><strong>C 选项：</strong></p>
+<p>{5, 6, 8} + {7, 7, 9}，根据此算法，无法再移动，但最优解为 {6, 7, 8} + {5, 7, 9}</p>
+<p><strong>D 选项：</strong></p>
+<p>反例：{1, 1} + {10}，<span class="arithmatex">\(T_1 = 2, T_2 = 10\)</span></p>
 </details>
 </details>
 <details class="question" open="open">
@@ -3915,8 +3991,11 @@ D. The local search algorithm always returns a local solution with <span class="
 B. The algorithm terminates after at most O(log∣V∣logW) flips, where W is the total weight of edges.<br/>
 C. Upon the termination of the algorithm, the algorithm returns a cut (A,B) so that <span class="arithmatex">\(2w(A,B) \geqslant w(A^*,B^*)\)</span><br/>
 D. The algorithm terminates after at most <span class="arithmatex">\(O(|V|^2)\)</span> flips.</p>
-<details class="success" open="open">
+<details class="success">
 <summary>答案</summary>
+<p>A</p>
+<hr />
+<p>这张 <a href="#ADS_ch12_maxcut">图片</a> 里都有结论</p>
 </details>
 </details>
 
@@ -3941,7 +4020,7 @@ D. The algorithm terminates after at most <span class="arithmatex">\(O(|V|^2)\)<
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月21日</span>
   </span>
 
     
