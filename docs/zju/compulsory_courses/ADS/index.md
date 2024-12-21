@@ -110,7 +110,8 @@ dyx老师
 [10 Intractability](./ch10.md)<br/>
 [11 Approximation Algorithms](./ch11.md)<br/>
 [12 Local Search](./ch12.md)<br/>
-[13 Randomized Algorithms](./ch13.md)
+[13 Randomized Algorithms](./ch13.md)<br/>
+[14 Parallel Algorithms](./ch14.md)
 
 ### 其他
 
