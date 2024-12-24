@@ -1204,6 +1204,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1259,6 +1263,48 @@
   
   <span class="md-ellipsis">
     整理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general_courses/life_science/ch1.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 细胞与细胞工程
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general_courses/life_science/ch2.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 基因与基因工程
   </span>
   
 
@@ -1906,6 +1952,8 @@
       
         
       
+        
+      
     
     
       
@@ -2243,6 +2291,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ADS/ch15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2323,6 +2392,8 @@
   
     
     
+      
+        
       
         
       
@@ -2917,6 +2988,27 @@
   
   <span class="md-ellipsis">
     5 Large and Fast: Exploiting Memory Hierarchy
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 Storage and Other I/O Topics
   </span>
   
 
@@ -5511,7 +5603,7 @@
 </span><span id="__span-62-5"><a id="__codelineno-62-5" name="__codelineno-62-5"></a><span class="n">slli</span><span class="w"> </span><span class="n">x28</span><span class="p">,</span><span class="w"> </span><span class="n">x28</span><span class="p">,</span><span class="w"> </span><span class="mh">3</span><span class="w">  </span><span class="c1">// x28 = 8 * (4 * j)</span>
 </span><span id="__span-62-6"><a id="__codelineno-62-6" name="__codelineno-62-6"></a><span class="n">add</span><span class="w"> </span><span class="n">x28</span><span class="p">,</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="n">x28</span><span class="w">  </span><span class="c1">// x28 = &amp;D[4 * j]</span>
 </span><span id="__span-62-7"><a id="__codelineno-62-7" name="__codelineno-62-7"></a><span class="n">add</span><span class="w"> </span><span class="n">x30</span><span class="p">,</span><span class="w"> </span><span class="n">x7</span><span class="p">,</span><span class="w"> </span><span class="n">x29</span><span class="w">  </span><span class="c1">// x30 = i + j</span>
-</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8"></a><span class="n">ld</span><span class="w"> </span><span class="n">x30</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x28</span><span class="p">)</span><span class="w">  </span><span class="c1">// D[4 * j] = i + j</span>
+</span><span id="__span-62-8"><a id="__codelineno-62-8" name="__codelineno-62-8"></a><span class="n">sd</span><span class="w"> </span><span class="n">x30</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">x28</span><span class="p">)</span><span class="w">  </span><span class="c1">// D[4 * j] = i + j</span>
 </span><span id="__span-62-9"><a id="__codelineno-62-9" name="__codelineno-62-9"></a>
 </span><span id="__span-62-10"><a id="__codelineno-62-10" name="__codelineno-62-10"></a><span class="n">addi</span><span class="w"> </span><span class="n">x29</span><span class="p">,</span><span class="w"> </span><span class="n">x29</span><span class="p">,</span><span class="w"> </span><span class="mh">1</span>
 </span><span id="__span-62-11"><a id="__codelineno-62-11" name="__codelineno-62-11"></a><span class="n">j</span><span class="w"> </span><span class="n">for2tst</span>
@@ -6361,7 +6453,7 @@ Synchronization</strong></p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月10日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月24日</span>
   </span>
 
     
