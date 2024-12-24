@@ -111,7 +111,8 @@ dyx老师
 [11 Approximation Algorithms](./ch11.md)<br/>
 [12 Local Search](./ch12.md)<br/>
 [13 Randomized Algorithms](./ch13.md)<br/>
-[14 Parallel Algorithms](./ch14.md)
+[14 Parallel Algorithms](./ch14.md)<br/>
+[15 External Sorting](./ch15.md)
 
 ### 其他
 

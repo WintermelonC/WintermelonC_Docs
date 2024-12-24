@@ -43,6 +43,8 @@ nav:
       - 生命科学导论: 
         - zju/general_courses/life_science/index.md
         - 整理: zju/general_courses/life_science/doc.md
+        - 1 细胞与细胞工程: zju/general_courses/life_science/ch1.md
+        - 2 基因与基因工程: zju/general_courses/life_science/ch2.md
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
     - 专业基础课程:
       - zju/basic_courses/index.md
@@ -80,6 +82,7 @@ nav:
         - 12 Local Search: zju/compulsory_courses/ADS/ch12.md
         - 13 Randomized Algorithms: zju/compulsory_courses/ADS/ch13.md
         - 14 Parallel Algorithms: zju/compulsory_courses/ADS/ch14.md
+        - 15 External Sorting: zju/compulsory_courses/ADS/ch15.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 
@@ -88,6 +91,7 @@ nav:
           - 3 Arithmetic for Computers: zju/compulsory_courses/computer_organization/theory/ch3.md
           - 4 The Processor: zju/compulsory_courses/computer_organization/theory/ch4.md
           - '5 Large and Fast: Exploiting Memory Hierarchy': zju/compulsory_courses/computer_organization/theory/ch5.md
+          - 6 Storage and Other I/O Topics: zju/compulsory_courses/computer_organization/theory/ch6.md
         - 实验部分:
           - zju/compulsory_courses/computer_organization/lab/index.md
     - 实践教学环节:

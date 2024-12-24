@@ -64,3 +64,11 @@ yk老师
 #### 小测 2
 
 <embed src="../../../file/computer_organization/comp_organ_doc4.pdf" type="application/pdf" width="100%" height="500" />
+
+#### 小测 3
+
+<embed src="../../../file/computer_organization/comp_organ_doc5.pdf" type="application/pdf" width="100%" height="500" />
+
+### 2022-2023
+
+[咸鱼暄的代码空间](https://xuan-insr.github.io/computer_organization/%E5%8E%86%E5%B9%B4%E5%8D%B7/){:target="_blank"}

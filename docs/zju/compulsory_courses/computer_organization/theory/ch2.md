@@ -943,7 +943,7 @@ caller 将所有调用后还需要的参数寄存器 x10-x17 或临时寄存器 
         slli x28, x28, 3  // x28 = 8 * (4 * j)
         add x28, x10, x28  // x28 = &D[4 * j]
         add x30, x7, x29  // x30 = i + j
-        ld x30, 0(x28)  // D[4 * j] = i + j
+        sd x30, 0(x28)  // D[4 * j] = i + j
 
         addi x29, x29, 1
         j for2tst
