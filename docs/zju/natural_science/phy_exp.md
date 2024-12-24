@@ -163,8 +163,8 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时中等</td>
       <td></td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">89</td>
+      <td>温度系数有效数字保留有误 U-t图拟合有误 缺少系统误差 思考题1平衡电桥测量静态电阻，非平衡电桥测量动态电阻</td>
     </tr>
     <tr>
       <td style="text-align: center; vertical-align: middle;">惠斯登电桥</td>
