@@ -3966,9 +3966,50 @@
 </figure>
 <p><span class="arithmatex">\(number\ of\ passes\ = 1 + \lceil \log_k \dfrac{N}{M} \rceil\)</span></p>
 <p>使用 k-way merge 至少需要 2k 个 tape</p>
+<details class="question" open="open">
+<summary>PTA 15.4</summary>
+<p>Given 100,000,000 records of 256 bytes each, and the size of the internal memory is 128MB.  If simple 2-way merges are used, how many passes do we have to do?</p>
+<p>A. 10<br/>
+B. 9<br/>
+C. 8<br/>
+D. 7</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
 <h2 id="减少-pass-的数量">减少 pass 的数量<a class="headerlink" href="#减少-pass-的数量" title="Permanent link">&para;</a></h2>
 <p>增加 k 可以减少 pass 的数量</p>
 <p>采用 Replacement Selection</p>
+<details class="question" open="open">
+<summary>PTA 15.2</summary>
+<p>In external sorting, a k-way merging is usually used in order to reduce the number of passes and we will take the k as large as possible as long as we have enough amount of tapes. </p>
+<p>T<br/>F</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 15.6</summary>
+<p>In external sorting, in order to reduce the number of passes, minimizing the initial number of runs (i.e. generating longer runs ) is a good idea. Suppose the input record keys are (25, 74, 56, 34, 21, 11, 29, 80, 38, 53) and the internal memery can hold only 3 records, the minimum number of initial runs obtained by replacement selection is__ 。</p>
+<p>A. 1<br/>
+B. 2<br/>
+C. 3<br/>
+D. 4</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 15.8</summary>
+<p>Suppose that the replacement selection is applied to generate longer runs with a priority queue of size 4. Given the sequence of numbers { 9, 75, 17, 12, 88, 91, 25, 22, 35, 41, 58, 96, 15 }.  Which of the following gives the second output run?</p>
+<p>A. 22 35 88 91<br/>
+B. 22 35 41 58 88 91 96<br/>
+C. 22 35 41 58 96<br/>
+D. 22 35 41 58</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
 <h2 id="减少-tape-的数量">减少 tape 的数量<a class="headerlink" href="#减少-tape-的数量" title="Permanent link">&para;</a></h2>
 <p>如果 run 的数量是某个斐波那契数 <span class="arithmatex">\(F_N\)</span>，那么最好的方法就是分成 <span class="arithmatex">\(F_{N-1}\)</span> 和 <span class="arithmatex">\(F_{N-2}\)</span> 两个 runs</p>
 <p>对于 k-way merge，<span class="arithmatex">\(F_N^k = F_{N-1}^k + \cdots F_{N-k}^k,\ F_N^k = 0(0\leqslant N \leqslant k-2),\ F_{k-1}^k = 1\)</span></p>
@@ -4034,13 +4075,54 @@
 </tr>
 </tbody>
 </table>
+<details class="question" open="open">
+<summary>PTA 15.1</summary>
+<p>To merge 55 runs using 3 tapes for a 2-way merge, the original distribution (34, 21) is better than (27, 28).</p>
+<p>T<br/>F</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
 <h2 id="k-way-内排序优化">k-way 内排序优化<a class="headerlink" href="#k-way-内排序优化" title="Permanent link">&para;</a></h2>
 <p>可使用 Huffman 树</p>
 <figure>
     <img alt="Img 6" src="../../../../img/ADS/ch15/ADS_ch15_img6.png" width="600" />
 </figure>
+<details class="question" open="open">
+<summary>PTA 15.5</summary>
+<p>In external sorting, suppose we have 5 runs of lengths 2, 8, 9, 5, and 3, respectively.  Which of the following merging orders can obtain the minimum merge time?</p>
+<p>A. merge runs of lengths 2 and 3 to obtain Run#1; merge Run#1 with the one of length 5 to obtain Run#2; merge Run#2 with the one of length 8 to obtain Run#3; merge Run#3 with the one of length 9<br/>
+B. merge runs of lengths 2 and 3 to obtain Run#1; merge Run#1 with the one of length 5 to obtain Run#2; merge runs of lengths 8 and 9 to obtain Run#3; merge Run#2 and Run#3<br/>
+C. merge runs of lengths 2 and 3 to obtain Run#1; merge runs of lengths 5 and 8 to obtain Run#2; merge Run#1 and Run#2 to obtain Run#3; merge Run#3 with the one of length 9<br/>
+D. merge runs of lengths 2 and 3 to obtain Run#1; merge runs of lengths 5 and 8 to obtain Run#2; merge Run#2 with the one of length 9 to obtain Run#3; merge Run#1 and Run#3</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
 <h2 id="并行">并行<a class="headerlink" href="#并行" title="Permanent link">&para;</a></h2>
 <p>通常对于 k-way merge，我们需要 2k 个 input buffers 和 2 个 output buffer</p>
+<details class="question" open="open">
+<summary>PTA 15.3</summary>
+<p>In general, for a 3-way merge we need 6 input buffers and 2 output buffers for parallel operations.</p>
+<p>T<br/>F</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
+<details class="question" open="open">
+<summary>PTA 15.7</summary>
+<p>Suppose we have the internal memory that can handle 12 numbers at a time, and the following two runs on the tapes:</p>
+<p>Run 1: 1, 3, 5, 7, 8, 9, 10, 12</p>
+<p>Run 2: 2, 4, 6, 15, 20, 25, 30, 32</p>
+<p>Use 2-way merge with 4 input buffers and 2 output buffers for parallel operations.  Which of the following three operations are NOT done in parallel?</p>
+<p>A. 1 and 2 are written onto the third tape; 3 and 4 are merged into an output buffer; 6 and 15 are read into an input buffer<br/>
+B. 3 and 4 are written onto the third tape; 5 and 6 are merged into an output buffer; 8 and 9 are read into an input buffer<br/>
+C. 5 and 6 are written onto the third tape; 7 and 8 are merged into an output buffer; 20 and 25 are read into an input buffer<br/>
+D. 7 and 8 are written onto the third tape; 9 and 15 are merged into an output buffer; 10 and 12 are read into an input buffer</p>
+<details class="success">
+<summary>答案</summary>
+</details>
+</details>
 
 
 

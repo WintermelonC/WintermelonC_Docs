@@ -3966,14 +3966,14 @@ D = T_{\infty} = \Theta(\log n)
 <p>上界：<span class="arithmatex">\(T_p \leqslant \dfrac{W}{p} + D\)</span></p>
 </div>
 <p>在此问题中，<span class="arithmatex">\(\Theta(\dfrac{n}{p}) \leqslant T_p \leqslant \Theta(\dfrac{n}{p} + \log n)\)</span></p>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.3</p>
+<details class="question" open="open">
+<summary>PTA 14.3</summary>
 <p>To evaluate the sum of a sequence of 16 numbers by the parallel algorithm with Balanced Binary Trees, B(1,6) is found before B(2,1).</p>
 <p>T<br/>F</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
+</details>
 <h2 id="2-prefix-sums">2 Prefix-Sums<a class="headerlink" href="#2-prefix-sums" title="Permanent link">&para;</a></h2>
 <figure>
     <img alt="Img 3" src="../../../../img/ADS/ch14/ADS_ch14_img3.png" width="600" />
@@ -3981,16 +3981,16 @@ D = T_{\infty} = \Theta(\log n)
 <figure>
     <img alt="Img 4" src="../../../../img/ADS/ch14/ADS_ch14_img4.png" width="600" />
 </figure>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.2</p>
+<details class="question" open="open">
+<summary>PTA 14.2</summary>
 <p>To evaluate the Prefix-Sums of a sequence of 16 numbers by the parallel algorithm with Balanced Binary Trees, C(4,1) is found before C(2,2).</p>
 <p>T<br/>F</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.6</p>
+</details>
+<details class="question" open="open">
+<summary>PTA 14.6</summary>
 <p>The prefix-min problem is to find for each i, 1≤i≤n, the smallest element among A(1), A(2), ⋯, A(i).  What is the run time and work load for the following algorithm?</p>
 <div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
@@ -4027,7 +4027,7 @@ D. O(n), O(logn)</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
+</details>
 <h2 id="3-merge-two-non-decreasing-arrays">3 Merge two non-decreasing arrays<a class="headerlink" href="#3-merge-two-non-decreasing-arrays" title="Permanent link">&para;</a></h2>
 <figure>
     <img alt="Img 5" src="../../../../img/ADS/ch14/ADS_ch14_img5.png" width="600" />
@@ -4041,8 +4041,8 @@ D. O(n), O(logn)</p>
 <figure>
     <img alt="Img 8" src="../../../../img/ADS/ch14/ADS_ch14_img8.png" width="600" />
 </figure>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.9</p>
+<details class="question" open="open">
+<summary>PTA 14.9</summary>
 <p>Which one of the following statements about the Ranking problem is true? (Assume that both arrays contain N elements.)</p>
 <p>A. There exists a serial algorithm with time complexity being O(logN).<br/>
 B. Parallel binary search algorithm can solve the problem in O(1) time.<br/>
@@ -4051,7 +4051,7 @@ D. There is a parallel algorithm that can run in O(logN) time and O(N) work.</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
+</details>
 <h2 id="4-maximum-finding">4 Maximum finding<a class="headerlink" href="#4-maximum-finding" title="Permanent link">&para;</a></h2>
 <figure>
     <img alt="Img 9" src="../../../../img/ADS/ch14/ADS_ch14_img9.png" width="600" />
@@ -4068,24 +4068,24 @@ D. There is a parallel algorithm that can run in O(logN) time and O(N) work.</p>
 <figure>
     <img alt="Img 13" src="../../../../img/ADS/ch14/ADS_ch14_img13.png" width="600" />
 </figure>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.4</p>
+<details class="question" open="open">
+<summary>PTA 14.4</summary>
 <p>In order to solve the maximum finding problem by a parallel  algorithm  with T(n)=O(1) , we need work load <span class="arithmatex">\(W(n)=Ω(n^2)\)</span> in return.</p>
 <p>T<br/>F</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.5</p>
+</details>
+<details class="question" open="open">
+<summary>PTA 14.5</summary>
 <p>To solve the Maximum Finding problem with parallel Random Sampling method, O(n) processors are required to get T(n)=O(1) and W(n)=O(n) with very high probability.   </p>
 <p>T<br/>F</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.7</p>
+</details>
+<details class="question" open="open">
+<summary>PTA 14.7</summary>
 <p>Which one of the following statements about the Maximum Finding problem is true?</p>
 <p>A. There exists a serial algorithm with time complexity being O(logN).<br/>
 B. No parallel algorithm can solve the problem in O(1) time.<br/>
@@ -4094,17 +4094,17 @@ D. Parallel random sampling algorithm can run in O(1) time and O(N) work with ve
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.1</p>
+</details>
+<details class="question" open="open">
+<summary>PTA 14.1</summary>
 <p>While comparing a serial algorithm with its parallel counterpart, we just concentrate on reducing the work load.   </p>
 <p>T<br/>F</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
-<div class="admonition question">
-<p class="admonition-title">PTA 14.8</p>
+</details>
+<details class="question" open="open">
+<summary>PTA 14.8</summary>
 <p>Sorting-by-merging is a classic serial algorithm.  It can be translated directly into a reasonably efficient parallel algorithm. A recursive description follows.</p>
 <p>MERGE−SORT( A(1), A(2), ..., A(n); B(1), B(2), ..., B(n) )</p>
 <p>Assume that <span class="arithmatex">\(n = 2^l\)</span> for some integer l≥0</p>
@@ -4122,7 +4122,7 @@ D. <span class="arithmatex">\(O(n\log^2 n)\)</span> work and O(logn) time</p>
 <details class="success">
 <summary>答案</summary>
 </details>
-</div>
+</details>
 
 
 
@@ -4145,7 +4145,7 @@ D. <span class="arithmatex">\(O(n\log^2 n)\)</span> work and O(logn) time</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月21日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月25日</span>
   </span>
 
     
