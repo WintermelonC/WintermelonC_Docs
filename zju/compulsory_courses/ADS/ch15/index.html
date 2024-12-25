@@ -2309,6 +2309,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    15 External Sorting
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2318,6 +2329,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#减少-pass-的数量" class="md-nav__link">
+    <span class="md-ellipsis">
+      减少 pass 的数量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#减少-tape-的数量" class="md-nav__link">
+    <span class="md-ellipsis">
+      减少 tape 的数量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-way-内排序优化" class="md-nav__link">
+    <span class="md-ellipsis">
+      k-way 内排序优化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#并行" class="md-nav__link">
+    <span class="md-ellipsis">
+      并行
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3795,6 +3861,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#减少-pass-的数量" class="md-nav__link">
+    <span class="md-ellipsis">
+      减少 pass 的数量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#减少-tape-的数量" class="md-nav__link">
+    <span class="md-ellipsis">
+      减少 tape 的数量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k-way-内排序优化" class="md-nav__link">
+    <span class="md-ellipsis">
+      k-way 内排序优化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#并行" class="md-nav__link">
+    <span class="md-ellipsis">
+      并行
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3833,6 +3943,104 @@
 <p class="admonition-title">说明</p>
 <p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
 </div>
+<p>假设内存一次只能处理 M = 3 个单位的数据</p>
+<figure>
+    <img alt="Img 1" src="../../../../img/ADS/ch15/ADS_ch15_img1.png" width="600" />
+</figure>
+<p>k-way merge：将 k 个有序序列合并为 1 个有序序列。这里的有序序列被称为 run，而将 <span class="arithmatex">\(k·c\)</span> 个 run 合并成 <span class="arithmatex">\(c\)</span> 个 run 的过程，称为 1 个 pass</p>
+<p>Pass 1：2-way merge，将 <span class="arithmatex">\(T_1\)</span> 的 5 段数据均分到两条 tape 上</p>
+<figure>
+    <img alt="Img 2" src="../../../../img/ADS/ch15/ADS_ch15_img2.png" width="600" />
+</figure>
+<p>Pass 2：</p>
+<figure>
+    <img alt="Img 3" src="../../../../img/ADS/ch15/ADS_ch15_img3.png" width="600" />
+</figure>
+<p>Pass 3：</p>
+<figure>
+    <img alt="Img 4" src="../../../../img/ADS/ch15/ADS_ch15_img4.png" width="600" />
+</figure>
+<p>Pass 4：</p>
+<figure>
+    <img alt="Img 5" src="../../../../img/ADS/ch15/ADS_ch15_img5.png" width="600" />
+</figure>
+<p><span class="arithmatex">\(number\ of\ passes\ = 1 + \lceil \log_k \dfrac{N}{M} \rceil\)</span></p>
+<p>使用 k-way merge 至少需要 2k 个 tape</p>
+<h2 id="减少-pass-的数量">减少 pass 的数量<a class="headerlink" href="#减少-pass-的数量" title="Permanent link">&para;</a></h2>
+<p>增加 k 可以减少 pass 的数量</p>
+<p>采用 Replacement Selection</p>
+<h2 id="减少-tape-的数量">减少 tape 的数量<a class="headerlink" href="#减少-tape-的数量" title="Permanent link">&para;</a></h2>
+<p>如果 run 的数量是某个斐波那契数 <span class="arithmatex">\(F_N\)</span>，那么最好的方法就是分成 <span class="arithmatex">\(F_{N-1}\)</span> 和 <span class="arithmatex">\(F_{N-2}\)</span> 两个 runs</p>
+<p>对于 k-way merge，<span class="arithmatex">\(F_N^k = F_{N-1}^k + \cdots F_{N-k}^k,\ F_N^k = 0(0\leqslant N \leqslant k-2),\ F_{k-1}^k = 1\)</span></p>
+<p>只需要 k + 1 个 tapes</p>
+<p>假设 <span class="arithmatex">\(T_1\)</span> 有 34 个 runs 需要 merge，若采用 2-way merge，首先将其拆分成 21 和 13 两段</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(T_1\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(T_2\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(T_3\)</span></th>
+<th style="text-align: left;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: left;"><span class="arithmatex">\(T_1\)</span> 的前 13 个 run 与 <span class="arithmatex">\(T_2\)</span> 合并，写入 <span class="arithmatex">\(T_3\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: left;"><span class="arithmatex">\(T_3\)</span> 的前 8 个 run 与 <span class="arithmatex">\(T_1\)</span> 合并，写入 <span class="arithmatex">\(T_2\)</span></td>
+</tr>
+<tr>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="k-way-内排序优化">k-way 内排序优化<a class="headerlink" href="#k-way-内排序优化" title="Permanent link">&para;</a></h2>
+<p>可使用 Huffman 树</p>
+<figure>
+    <img alt="Img 6" src="../../../../img/ADS/ch15/ADS_ch15_img6.png" width="600" />
+</figure>
+<h2 id="并行">并行<a class="headerlink" href="#并行" title="Permanent link">&para;</a></h2>
+<p>通常对于 k-way merge，我们需要 2k 个 input buffers 和 2 个 output buffer</p>
 
 
 
@@ -3855,7 +4063,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月25日</span>
   </span>
 
     
