@@ -88,6 +88,17 @@ dyx老师
         ![Img 14](../../../img/ADS/ADS_img14.png){ width="800" }
     </figure>
 
+### 期末考试
+
+#### 题型
+
+判断：13 x 2分
+选择：20 x 3分
+程序填空题：2空 x 3分
+函数题：1 x 8分
+
+程序填空题和函数题重点关注前半学期（Intractability）均为 C 语言
+
 ## 课本
 
 [浙江大学课程攻略共享计划 - 高级数据结构与算法分析](https://qsctech.github.io/zju-icicles/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/){:target="_blank"}

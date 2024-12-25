@@ -179,6 +179,8 @@ xt老师 (1)
 
 ## 我的实验报告
 
+参考下方的实验报告时，记得看一下上方表格中 ^^说明^^ 和 ^^备注^^ 一栏的内容
+
 ### 万用表的设计
 
 思考题：
@@ -558,6 +560,8 @@ xt老师 (1)
 
     ```
 
+<embed src="../../../file/phy_exp/phy_exp_10.pdf" width="100%" height="500">
+
 ### 空气密度测量
 
 思考题：
@@ -565,6 +569,8 @@ xt老师 (1)
 1. 课本
 
 > 实验测出来的数据太少，拟合曲线弄不出来，报告里的曲线是我用 Ps 画的 🤫 
+
+<embed src="../../../file/phy_exp/phy_exp_11.pdf" width="100%" height="500">
 
 ### 用双臂电桥测低电阻
 
@@ -614,6 +620,8 @@ xt老师 (1)
     plt.show()
     
     ```
+
+<embed src="../../../file/phy_exp/phy_exp_12.pdf" width="100%" height="500">
 
 ### 非平衡电桥
 
@@ -701,11 +709,15 @@ xt老师 (1)
 
     ```
 
+<embed src="../../../file/phy_exp/phy_exp_13.pdf" width="100%" height="500">
+
 ### 惠斯登电桥
 
 思考题：
 
 1. 课本
+
+<embed src="../../../file/phy_exp/phy_exp_14.pdf" width="100%" height="500">
 
 ## 个人感受
 
