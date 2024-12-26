@@ -210,7 +210,7 @@ $$
     Merge the two leftist heaps in the following figure.  Which one of the following statements is FALSE?
 
     <figure markdown="span">
-        ![Img 20](../../../img/ADS/ch4/ADS_ch4_img20.png){ width="300" }
+        ![Img 20](../../../img/ADS/ch4/ADS_ch4_img20.png){ width="400" }
     </figure>
 
     A. 2 is the root with 11 being its right child<br/>
