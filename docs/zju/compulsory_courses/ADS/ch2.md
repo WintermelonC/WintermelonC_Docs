@@ -183,7 +183,7 @@ Red-Black tree 是一个 binary search tree，且满足以下性质：
 
 **远子为红父亲上位：** w 的两个孩子，离 x 远的是红色，则 w 旋转
 
-1. w，远子，x.p 均变黑
+1. 远子，x.p 均变黑
 2. w 结点旋转
 
 ???+ question "PTA 2.3"
