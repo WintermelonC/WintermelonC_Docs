@@ -171,15 +171,19 @@ xt老师 (1)
       <td style="text-align: center; vertical-align: middle;">dxy老师</td>
       <td style="text-align: center; vertical-align: middle;">简单<br/>费时较长</td>
       <td>本来实验费时短，但是由于老师是先去别的教室讲实验，所以实际费时较长</td>
-      <td style="text-align: center; vertical-align: middle;"></td>
-      <td></td>
+      <td style="text-align: center; vertical-align: middle;">91</td>
+      <td>误差分析缺少系统误差 思考题3分点作答、缺少实验心得</td>
     </tr>
   </tbody>
 </table>
 
+> 妈耶，最后三个实验老师批改的好严格呀，记得认真写报告
+
 ## 我的实验报告
 
 参考下方的实验报告时，记得看一下上方表格中 ^^说明^^ 和 ^^备注^^ 一栏的内容
+
+> 哎呀，我以为实验报告批改完学期末会发下来的，导致我只有实验 10 - 14 的完整实验报告
 
 ### 万用表的设计
 
@@ -272,6 +276,14 @@ xt老师 (1)
     
     ```
 
+<figure markdown="span">
+    ![Img 1](../../img/phy_exp/exp1_img1.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 2](../../img/phy_exp/exp1_img2.png){ width="600" }
+</figure>
+
 ### 交流电路功率因数实验 ▲弗兰克赫兹实验
 
 思考题：
@@ -309,6 +321,10 @@ xt老师 (1)
     plt.show()
 
     ```
+
+<figure markdown="span">
+    ![Img 3](../../img/phy_exp/exp2_img1.png){ width="600" }
+</figure>
 
 ### 分光计的调整和使用
 
@@ -388,6 +404,8 @@ xt老师 (1)
     plt.show()
 
     ```
+
+<embed src="../../../file/phy_exp/phy_exp_7.pdf" width="100%" height="500">
     
 ### ▲普朗克常数
 
@@ -455,6 +473,8 @@ xt老师 (1)
 
     ```
 
+<embed src="../../../file/phy_exp/phy_exp_8.pdf" width="100%" height="500">
+
 ### 旋转液体综合实验
 
 思考题：
@@ -506,6 +526,8 @@ xt老师 (1)
     plt.show()
     
     ```
+
+<embed src="../../../file/phy_exp/phy_exp_9.pdf" width="100%" height="500">
 
 ### 动态法测量材料杨氏模量
 
