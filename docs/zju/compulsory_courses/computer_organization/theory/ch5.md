@@ -122,6 +122,13 @@ tag field 的大小为：$64 - (n + m + 2)$
 3. 写 cache 项，将从主存取回的数据写入 cache 中存放数据的部分，并将地址的高位（从 ALU 中得到）写入标记域，设置有效位
 4. 重新返回指令执行第一步，重新取值，这次该指令在 cache 中
 
+read miss 时：从 memory 中把整个 block 复制到 cache 中
+
+write miss 时：
+
+1. write-allocate：从 memory 把整个 block 复制到 cache 中
+2. write-around：只将 cache 中的数据写回 memory
+
 ### 5.3.3 写操作处理
 
 **write-through**（写直达法）：
@@ -149,6 +156,157 @@ cache 容量为 16 KB，有 256 个块，每个块有 16 个字
 3. 如果 cache 发出缺失信号，我们把地址送到主存。当主存返回数据时，把它写入 cache 后再读出以满足请求
 
 对于写操作，内置 FastMATH 处理器同时提供写直达和写回机制，由操作系统来决定某种应用该使用哪个机制。它有一个只包含一项的写缓冲
+
+???+ question "课本 5.3"
+
+    By convention, a cache is named according to the amount of data it contains (i.e., a 4 KiB cache can hold 4 KiB of data); however, caches also require SRAM to store metadata such as tags and valid bits. For this exercise, you will examine how a cache’s configuration affects the total amount of SRAM needed to implement it as well as the performance of the cache. For all parts, assume that the caches are byte addressable, and that addresses and words are 64 bits.
+
+    (1) Calculate the total number of bits required to implement a 32 KiB cache with two-word blocks.
+
+    (2) Calculate the total number of bits required to implement a 64 KiB cache with 16-word blocks. How much bigger is this cache than the 32 KiB cache described in Exercise 5.3.1? (Notice that, by changing the block size, we doubled the amount of data without doubling the total size of the cache.)
+
+    (3) Explain why this 64 KiB cache, despite its larger data size, might provide slower performance than the first cache.
+
+    (4) Generate a series of read requests that have a lower miss rate on a 32 KiB two-way set associative cache than on the cache described in Exercise 5.3.1.
+
+    ??? success "答案"
+
+        (1) 一共 $32 KiB = 2^{15} bytes$ 的数据，一个块 $2 words = 2^4 bytes (题目中 1 word = 64 bit = 8 bytes)$，所以块的数量为 $\dfrac{2^{15}}{2^4} = 2^{11}$ 个，即 index 位数为 11。一个地址中还有 3 位字节偏移，1 位用于选择块中的字。所以 tag 有 64 - 11 - 3 - 1 = 49 位。那么 cache 的总大小为 $2^{11} \times (2^4 \times 2^3 + 49 + 1(valid)) = 364544 bit$
+
+        ---
+
+        (2) 一个块 $16 word = 2^7 bytes$，块的数量为 $\dfrac{2^{16}}{2^7} = 2^9$，即 index 位数为 9，一个地址中还有 3 位字节偏移，4 位用于选择块中的字。所以 tag 有 64 - 9 - 3 - 4 = 48 位。那么 cache 的总大小为 $2^9 \times (2^7 \times 2^3 + 48 + 1) = 549376 bit$
+
+        比 (1) 的 cache 大 $\dfrac{549376}{364544} = 1.51$ 倍
+
+        ---
+
+        (3) The larger block size may require an increased hit time and an increased miss penalty than the original cache. The fewer number of blocks may cause a higher conflict miss rate than the original cache.
+
+        ---
+
+        (4) Associative caches are designed to reduce the rate of conflict misses. As such, a sequence of read requests with the same 12-bit index fi eld but a different tag fi eld will generate many misses. For the cache described above, the sequence 0, 32768, 0, 32768, 0, 32768, … , would miss on every access, while a two-way set associate cache with LRU replacement, even one with a significantly smaller overall capacity, would hit on every access aft er the fi rst two.
+
+???+ question "课本 5.5"
+
+    For a direct-mapped cache design with a 64-bit address, the following bits of the address are used to access the cache.
+
+    <figure markdown="span">
+        ![Img 27](../../../../img/computer_organization/theory/ch5/comp_ch5_img27.png){ width="400" }
+    </figure>
+
+    (1) What is the cache block size (in words)?
+
+    (2) How many blocks does the cache have?
+
+    (3) What is the ratio between total bits required for such a cache implementation over the data storage bits?
+
+    Beginning from power on, the following byte-addressed cache references are recorded.
+
+    <figure markdown="span">
+        ![Img 28](../../../../img/computer_organization/theory/ch5/comp_ch5_img28.png){ width="600" }
+    </figure>
+
+    (4) For each reference, list (1) its tag, index, and offset, (2) whether it is a hit or a miss, and (3) which bytes were replaced (if any)
+
+    (5) What is the hit ratio?
+
+    (6) List the final state of the cache, with each valid entry represented as a record of <index, tag, data>. For example, <0, 3, Mem[0xC00]-Mem[0xC1F]>
+
+    ??? success "答案"
+
+        (1) offset 有 5 位，其中字节偏移有 3 位，那么用于选择块中字的有 2 位，所以 1 个块 $2^2 = 4$ 个 word
+
+        ---
+
+        (2) index 有 5 位，那么一共有 $2^5 = 32$ 个块
+
+        ---
+
+        (3) 只考虑数据位的话，cache 大小为 $2^5 \times 2^2 \times 2^6 = 2^{13} bit$
+
+        tag 有 54 位，cache 总大小为 $2^5 \times (2^2 \times 2^6 + 54 + 1) = 9952 bit$
+
+        $ratio = \dfrac{9952}{2^{13}} = 1.21$
+
+        ---
+
+        (4)
+
+        | Byte Address | Binary Address | Tag | Index | Offset | 说明 |
+        | :--: | :--: | :--: | :--: | :--: | :--: |
+        | 0x00 | 0000 0000 0000 | 0x0 | 0x00 | 0x00 | |
+        | 0x04 | 0000 0000 0100 | 0x0 | 0x00 | 0x04 | |
+        | 0x10 | 0000 0001 0000 | 0x0 | 0x00 | 0x10 | |
+        | 0x84 | 0000 1000 0100 | 0x0 | 0x04 | 0x04 | 块地址 = $\lfloor \dfrac{132}{32} \rfloor= 4$，$4 mod 32 = 4$，因此 index 为 4，offset 为 4（$132 - 32 \times 4$），或者直接看 Binary Address，4 - 0 位为 offset，9 - 5 位为 index|
+        | 0xe8 | 0000 1110 1000 | 0x0 | 0x07 | 0x08 | 直接看 Binary Address，4 - 0 位为 offset (01000 = 0x8)，9 - 5 位为 index (00111 = 0x7)|
+        | 0xa0 | 0000 1010 0000 | 0x0 | 0x05 | 0x00 | |
+        | 0x400 | 0100 0000 0000 | 0x1 | 0x00 | 0x00 | 63 - 10 位为 tag (01 = 0x1) 或者块地址 $\lfloor \dfrac{1024}{32} \rfloor = 32$，$32 mod 32 = 0$，那么 tag 为 0x1，index 为 0x0，offset 为 0x0| 
+        | 0x1e | 0000 0001 1110 | 0x0 | 0x00 | 0x1e | |
+        | 0x8c | 0000 1000 1100 | 0x0 | 0x04 | 0x0c | |
+        | 0xc1c | 1100 0001 1100 | 0x3 | 0x0 | 0x1c | 块地址 = $\lfloor \dfrac{3100}{32} \rfloor = 96$，$96 mod 32 = 0$， 那么 tag 为 0x3，index 为 0，offset 为 28 = 0x1c（$3100 - 32 \times 96$） |
+        | 0xb4 | 0000 1011 0100 | 0x0 | 0x05 | 0x14 | |
+        | 0x884 | 1000 1000 0100 | 0x2 | 0x04 | 0x04 | |
+
+        | Byte Address | Binary Address | Tag | Index | Offset | Hit/Miss | Bytes Replaced |
+        | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+        | 0x00 | 0000 0000 0000 | 0x0 | 0x00 | 0x00 | M | |
+        | 0x04 | 0000 0000 0100 | 0x0 | 0x00 | 0x04 | H | |
+        | 0x10 | 0000 0001 0000 | 0x0 | 0x00 | 0x10 | H | |
+        | 0x84 | 0000 1000 0100 | 0x0 | 0x04 | 0x04 | M | |
+        | 0xe8 | 0000 1110 1000 | 0x0 | 0x07 | 0x08 | M | |
+        | 0xa0 | 0000 1010 0000 | 0x0 | 0x05 | 0x00 | M | |
+        | 0x400 | 0100 0000 0000 | 0x1 | 0x00 | 0x00 | M | 0x00 - 0x1f |
+        | 0x1e | 0000 0001 1110 | 0x0 | 0x00 | 0x1e | M | 0x400 - 0x41f |
+        | 0x8c | 0000 1000 1100 | 0x0 | 0x04 | 0x0c | H |
+        | 0xc1c | 1100 0001 1100 | 0x3 | 0x00 | 0x1c | M | 0x00 - 0x1f |
+        | 0xb4 | 0000 1011 0100 | 0x0 | 0x05 | 0x14 | H |
+        | 0x884 | 1000 1000 0100 | 0x2 | 0x04 | 0x04 | M | 0x80 - 0x9f |
+
+        ---
+
+        (5) $\dfrac{4}{12} = \dfrac{1}{3} = 33\%$
+
+        ---
+
+        (6) <0, 3, Mem[c00] - Mem[c1f]><br/>
+        <4, 2, Mem[880] - Mem[89f]><br/>
+        <5, 0, Mem[a0] - Mem[bf]><br/>
+        <7, 0, Mem[e0] - Mem[ff]>
+
+???+ question "课本 5.7"
+
+    Consider the following program and cache behaviors.
+
+    <figure markdown="span">
+        ![Img 29](../../../../img/computer_organization/theory/ch5/comp_ch5_img29.png){ width="600" }
+    </figure>
+
+    (1) Suppose a CPU with a write-through, write-allocate cache achieves a CPI of 2. What are the read and write bandwidths (measured by bytes per cycle) between RAM and the cache? (Assume each miss generates a request for one block.)
+
+    (2) For a write-back, write-allocate cache, assuming 30% of replaced data cache blocks are dirty, what are the read and write bandwidths needed for a CPI of 2?
+
+    ??? success "答案"
+
+        (1) CPI 为 2，即 2 cycles/instr，即 0.5 instr/cycle。
+
+        当发生 instruction cache miss 时，产生 $0.5 \times 0.003 \times 64 = 0.096\ bytes/cycle$ 的 read traffic
+
+        当发生 data miss 时：
+
+        1）read miss：需要把 memory 中的数据复制到 cache 中，所以 $0.5 \times 0.25 \times 0.02 \times 64 = 0.16\ bytes/cycle$ read traffic
+
+        2）write miss：首先由于是 write-through，不管有没有数据缺失，都要将 cache 的数据写回 memory 中，但只有 1 word（8 bytes）数据需要写回，所以 $0.5 \times 0.1 \times 8 = 0.4\ bytes/cycle$ write traffic
+
+        由于是 write-allocate，需要读取 RAM 中的数据，将其复制到 cache 中，所以 $0.5 \times 0.1 \times 0.02 \times 64 = 0.064\ bytes/cycle$ read traffic
+
+        总结：read bandwidth：0.096 + 0.16 + 0.064 = 0.32 bytes/cycle，write bandwidth：0.4 bytes/cycle 
+
+        > 没太看明白，为什么只有 1 word 数据需要写回？
+
+        (2) read bandwidth 还是 0.32 bytes/cycle
+        
+        dirty 标记为 1 的数据需要写回 memory，因此 write bandwidth 为 $0.5 \times (0.25 + 0.1) \times 0.02 \times 0.3 \times 64 = 0.0672\ bytes/cycle$
 
 ## 5.4 cache 性能的评估和改进
 
@@ -368,6 +526,32 @@ cache 中块的总数等于组数乘以关联度
     
     我们还可以使用另一种方法来计算阻塞时间。在二级 cache 命中的阻塞周期为 \( (2\% - 0.5\%) \times 20 = 0.3 \)；而必须访问主存的阻塞周期必须同时包括访问二级 cache 和访问主存的时间，为 \( 0.5\% \times (20 + 400) = 2.1 \)。对它们求和为 \( 1.0 + 0.3 + 2.1 \)，同样等于 3.4
 
+???+ question "课本 5.11"
+
+    This exercise examines the effect of different cache designs, specifically comparing associative caches to the direct-mapped caches from Section 5.4. For these exercises, refer to the sequence of word address shown below.
+
+    0x03, 0xb4, 0x2b, 0x02, 0xbe, 0x58, 0xbf, 0x0e, 0x1f,<br/>
+    0xb5, 0xbf, 0xba, 0x2e, 0xce
+
+    (1) Sketch the organization of a three-way set associative cache with two-word blocks and a total size of 48 words. Your sketch should have a style similar to the figure below, but clearly show the width of the tag and data fields.
+
+    <figure markdown="span">
+        ![Img 18](../../../../img/computer_organization/theory/ch5/comp_ch5_img18.png){ width="600" }
+    </figure>
+
+    (2) Trace the behavior of the cache from Exercise 5.11.1. Assume a true LRU replacement policy. For each reference, identify
+
+    - the binary word address,
+    - the tag,
+    - the index,
+    - the offset
+    - whether the reference is a hit or a miss, and
+    - which tags are in each way of the cache after the reference has been handled.
+
+    ??? success "答案"
+
+        (1) 
+
 ## 5.7 虚拟存储器
 
 **Virtual Memory**
@@ -395,7 +579,7 @@ cache 中块的总数等于组数乘以关联度
 
 ### 5.7.1 页的存放和查找
 
-在虚拟存储系统中，我们使用一个索引存储器的表来定位页，这种结构称为 **页表**（page table），它被存放在存储器中。页表使用虚拟地址中的页号作索引，以找到相应的物理页号。每个程序都有它自己的页表。为了指出页表再存储器中的位置，硬件包含一个指向页表首地址的寄存器，我们称之为页表寄存器
+在虚拟存储系统中，我们使用一个索引存储器的表来定位页，这种结构称为 **页表**（page table），它被存放在存储器中。页表使用虚拟地址中的页号作索引，以找到相应的物理页号。每个程序都有它自己的页表。为了指出页表在存储器中的位置，硬件包含一个指向页表首地址的寄存器，我们称之为页表寄存器
 
 <figure markdown="span">
     ![Img 21](../../../../img/computer_organization/theory/ch5/comp_ch5_img21.png){ width="600" }

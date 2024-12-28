@@ -47,7 +47,8 @@ yk老师
 [2 Instructions: Language of the Computer](./theory/ch2.md)<br/>
 [3 Arithmetic for Computers](./theory/ch3.md)<br/>
 [4 The Processor](./theory/ch4.md)<br/>
-[5 Large and Fast: Exploiting Memory Hierarchy](./theory/ch5.md)
+[5 Large and Fast: Exploiting Memory Hierarchy](./theory/ch5.md)<br/>
+[6 Storage and Other I/O Topics](./theory/ch6.md)
 
 ### [实验部分](./lab/index.md)
 
