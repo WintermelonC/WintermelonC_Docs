@@ -4407,6 +4407,12 @@
 <li>写 cache 项，将从主存取回的数据写入 cache 中存放数据的部分，并将地址的高位（从 ALU 中得到）写入标记域，设置有效位</li>
 <li>重新返回指令执行第一步，重新取值，这次该指令在 cache 中</li>
 </ol>
+<p>read miss 时：从 memory 中把整个 block 复制到 cache 中</p>
+<p>write miss 时：</p>
+<ol>
+<li>write-allocate：从 memory 把整个 block 复制到 cache 中</li>
+<li>write-around：只将 cache 中的数据写回 memory</li>
+</ol>
 <h3 id="533-写操作处理">5.3.3 写操作处理<a class="headerlink" href="#533-写操作处理" title="Permanent link">&para;</a></h3>
 <p><strong>write-through</strong>（写直达法）：</p>
 <p>将数据同时写入主存和 cache 中。但这样会花费大量的时间，一种解决方法是 write-buffer（写缓冲），当一个数据在等待写入主存时，先将它放入写缓冲中</p>
@@ -4430,6 +4436,318 @@
 </li>
 </ol>
 <p>对于写操作，内置 FastMATH 处理器同时提供写直达和写回机制，由操作系统来决定某种应用该使用哪个机制。它有一个只包含一项的写缓冲</p>
+<details class="question" open="open">
+<summary>课本 5.3</summary>
+<p>By convention, a cache is named according to the amount of data it contains (i.e., a 4 KiB cache can hold 4 KiB of data); however, caches also require SRAM to store metadata such as tags and valid bits. For this exercise, you will examine how a cache’s configuration affects the total amount of SRAM needed to implement it as well as the performance of the cache. For all parts, assume that the caches are byte addressable, and that addresses and words are 64 bits.</p>
+<p>(1) Calculate the total number of bits required to implement a 32 KiB cache with two-word blocks.</p>
+<p>(2) Calculate the total number of bits required to implement a 64 KiB cache with 16-word blocks. How much bigger is this cache than the 32 KiB cache described in Exercise 5.3.1? (Notice that, by changing the block size, we doubled the amount of data without doubling the total size of the cache.)</p>
+<p>(3) Explain why this 64 KiB cache, despite its larger data size, might provide slower performance than the first cache.</p>
+<p>(4) Generate a series of read requests that have a lower miss rate on a 32 KiB two-way set associative cache than on the cache described in Exercise 5.3.1.</p>
+<details class="success">
+<summary>答案</summary>
+<p>(1) 一共 <span class="arithmatex">\(32 KiB = 2^{15} bytes\)</span> 的数据，一个块 <span class="arithmatex">\(2 words = 2^4 bytes (题目中 1 word = 64 bit = 8 bytes)\)</span>，所以块的数量为 <span class="arithmatex">\(\dfrac{2^{15}}{2^4} = 2^{11}\)</span> 个，即 index 位数为 11。一个地址中还有 3 位字节偏移，1 位用于选择块中的字。所以 tag 有 64 - 11 - 3 - 1 = 49 位。那么 cache 的总大小为 <span class="arithmatex">\(2^{11} \times (2^4 \times 2^3 + 49 + 1(valid)) = 364544 bit\)</span></p>
+<hr />
+<p>(2) 一个块 <span class="arithmatex">\(16 word = 2^7 bytes\)</span>，块的数量为 <span class="arithmatex">\(\dfrac{2^{16}}{2^7} = 2^9\)</span>，即 index 位数为 9，一个地址中还有 3 位字节偏移，4 位用于选择块中的字。所以 tag 有 64 - 9 - 3 - 4 = 48 位。那么 cache 的总大小为 <span class="arithmatex">\(2^9 \times (2^7 \times 2^3 + 48 + 1) = 549376 bit\)</span></p>
+<p>比 (1) 的 cache 大 <span class="arithmatex">\(\dfrac{549376}{364544} = 1.51\)</span> 倍</p>
+<hr />
+<p>(3) The larger block size may require an increased hit time and an increased miss penalty than the original cache. The fewer number of blocks may cause a higher conflict miss rate than the original cache.</p>
+<hr />
+<p>(4) Associative caches are designed to reduce the rate of conflict misses. As such, a sequence of read requests with the same 12-bit index fi eld but a different tag fi eld will generate many misses. For the cache described above, the sequence 0, 32768, 0, 32768, 0, 32768, … , would miss on every access, while a two-way set associate cache with LRU replacement, even one with a significantly smaller overall capacity, would hit on every access aft er the fi rst two.</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 5.5</summary>
+<p>For a direct-mapped cache design with a 64-bit address, the following bits of the address are used to access the cache.</p>
+<p><figure markdown="span">
+    <img alt="Img 27" src="../../../../../img/computer_organization/theory/ch5/comp_ch5_img27.png" width="400" />
+</figure></p>
+<p>(1) What is the cache block size (in words)?</p>
+<p>(2) How many blocks does the cache have?</p>
+<p>(3) What is the ratio between total bits required for such a cache implementation over the data storage bits?</p>
+<p>Beginning from power on, the following byte-addressed cache references are recorded.</p>
+<p><figure markdown="span">
+    <img alt="Img 28" src="../../../../../img/computer_organization/theory/ch5/comp_ch5_img28.png" width="600" />
+</figure></p>
+<p>(4) For each reference, list (1) its tag, index, and offset, (2) whether it is a hit or a miss, and (3) which bytes were replaced (if any)</p>
+<p>(5) What is the hit ratio?</p>
+<p>(6) List the final state of the cache, with each valid entry represented as a record of <index, tag, data>. For example, &lt;0, 3, Mem[0xC00]-Mem[0xC1F]&gt;</p>
+<details class="success">
+<summary>答案</summary>
+<p>(1) offset 有 5 位，其中字节偏移有 3 位，那么用于选择块中字的有 2 位，所以 1 个块 <span class="arithmatex">\(2^2 = 4\)</span> 个 word</p>
+<hr />
+<p>(2) index 有 5 位，那么一共有 <span class="arithmatex">\(2^5 = 32\)</span> 个块</p>
+<hr />
+<p>(3) 只考虑数据位的话，cache 大小为 <span class="arithmatex">\(2^5 \times 2^2 \times 2^6 = 2^{13} bit\)</span></p>
+<p>tag 有 54 位，cache 总大小为 <span class="arithmatex">\(2^5 \times (2^2 \times 2^6 + 54 + 1) = 9952 bit\)</span></p>
+<p><span class="arithmatex">\(ratio = \dfrac{9952}{2^{13}} = 1.21\)</span></p>
+<hr />
+<p>(4)</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Byte Address</th>
+<th style="text-align: center;">Binary Address</th>
+<th style="text-align: center;">Tag</th>
+<th style="text-align: center;">Index</th>
+<th style="text-align: center;">Offset</th>
+<th style="text-align: center;">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0000 0000 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0000 0000 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x10</td>
+<td style="text-align: center;">0000 0001 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x10</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x84</td>
+<td style="text-align: center;">0000 1000 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">块地址 = <span class="arithmatex">\(\lfloor \dfrac{132}{32} \rfloor= 4\)</span>，<span class="arithmatex">\(4 mod 32 = 4\)</span>，因此 index 为 4，offset 为 4（<span class="arithmatex">\(132 - 32 \times 4\)</span>），或者直接看 Binary Address，4 - 0 位为 offset，9 - 5 位为 index</td>
+</tr>
+<tr>
+<td style="text-align: center;">0xe8</td>
+<td style="text-align: center;">0000 1110 1000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x07</td>
+<td style="text-align: center;">0x08</td>
+<td style="text-align: center;">直接看 Binary Address，4 - 0 位为 offset (01000 = 0x8)，9 - 5 位为 index (00111 = 0x7)</td>
+</tr>
+<tr>
+<td style="text-align: center;">0xa0</td>
+<td style="text-align: center;">0000 1010 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x05</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x400</td>
+<td style="text-align: center;">0100 0000 0000</td>
+<td style="text-align: center;">0x1</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">63 - 10 位为 tag (01 = 0x1) 或者块地址 <span class="arithmatex">\(\lfloor \dfrac{1024}{32} \rfloor = 32\)</span>，<span class="arithmatex">\(32 mod 32 = 0\)</span>，那么 tag 为 0x1，index 为 0x0，offset 为 0x0</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x1e</td>
+<td style="text-align: center;">0000 0001 1110</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x1e</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x8c</td>
+<td style="text-align: center;">0000 1000 1100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x0c</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0xc1c</td>
+<td style="text-align: center;">1100 0001 1100</td>
+<td style="text-align: center;">0x3</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x1c</td>
+<td style="text-align: center;">块地址 = <span class="arithmatex">\(\lfloor \dfrac{3100}{32} \rfloor = 96\)</span>，<span class="arithmatex">\(96 mod 32 = 0\)</span>， 那么 tag 为 0x3，index 为 0，offset 为 28 = 0x1c（<span class="arithmatex">\(3100 - 32 \times 96\)</span>）</td>
+</tr>
+<tr>
+<td style="text-align: center;">0xb4</td>
+<td style="text-align: center;">0000 1011 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x05</td>
+<td style="text-align: center;">0x14</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x884</td>
+<td style="text-align: center;">1000 1000 0100</td>
+<td style="text-align: center;">0x2</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Byte Address</th>
+<th style="text-align: center;">Binary Address</th>
+<th style="text-align: center;">Tag</th>
+<th style="text-align: center;">Index</th>
+<th style="text-align: center;">Offset</th>
+<th style="text-align: center;">Hit/Miss</th>
+<th style="text-align: center;">Bytes Replaced</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0000 0000 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0000 0000 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x10</td>
+<td style="text-align: center;">0000 0001 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x10</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x84</td>
+<td style="text-align: center;">0000 1000 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0xe8</td>
+<td style="text-align: center;">0000 1110 1000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x07</td>
+<td style="text-align: center;">0x08</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0xa0</td>
+<td style="text-align: center;">0000 1010 0000</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x05</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x400</td>
+<td style="text-align: center;">0100 0000 0000</td>
+<td style="text-align: center;">0x1</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">0x00 - 0x1f</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x1e</td>
+<td style="text-align: center;">0000 0001 1110</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x1e</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">0x400 - 0x41f</td>
+</tr>
+<tr>
+<td style="text-align: center;">0x8c</td>
+<td style="text-align: center;">0000 1000 1100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x0c</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0xc1c</td>
+<td style="text-align: center;">1100 0001 1100</td>
+<td style="text-align: center;">0x3</td>
+<td style="text-align: center;">0x00</td>
+<td style="text-align: center;">0x1c</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">0x00 - 0x1f</td>
+</tr>
+<tr>
+<td style="text-align: center;">0xb4</td>
+<td style="text-align: center;">0000 1011 0100</td>
+<td style="text-align: center;">0x0</td>
+<td style="text-align: center;">0x05</td>
+<td style="text-align: center;">0x14</td>
+<td style="text-align: center;">H</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">0x884</td>
+<td style="text-align: center;">1000 1000 0100</td>
+<td style="text-align: center;">0x2</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">0x04</td>
+<td style="text-align: center;">M</td>
+<td style="text-align: center;">0x80 - 0x9f</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>(5) <span class="arithmatex">\(\dfrac{4}{12} = \dfrac{1}{3} = 33\%\)</span></p>
+<hr />
+<p>(6) &lt;0, 3, Mem[c00] - Mem[c1f]&gt;<br/>
+&lt;4, 2, Mem[880] - Mem[89f]&gt;<br/>
+&lt;5, 0, Mem[a0] - Mem[bf]&gt;<br/>
+&lt;7, 0, Mem[e0] - Mem[ff]&gt;</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 5.7</summary>
+<p>Consider the following program and cache behaviors.</p>
+<p><figure markdown="span">
+    <img alt="Img 29" src="../../../../../img/computer_organization/theory/ch5/comp_ch5_img29.png" width="600" />
+</figure></p>
+<p>(1) Suppose a CPU with a write-through, write-allocate cache achieves a CPI of 2. What are the read and write bandwidths (measured by bytes per cycle) between RAM and the cache? (Assume each miss generates a request for one block.)</p>
+<p>(2) For a write-back, write-allocate cache, assuming 30% of replaced data cache blocks are dirty, what are the read and write bandwidths needed for a CPI of 2?</p>
+<details class="success">
+<summary>答案</summary>
+<p>(1) CPI 为 2，即 2 cycles/instr，即 0.5 instr/cycle。</p>
+<p>当发生 instruction cache miss 时，产生 <span class="arithmatex">\(0.5 \times 0.003 \times 64 = 0.096\ bytes/cycle\)</span> 的 read traffic</p>
+<p>当发生 data miss 时：</p>
+<p>1）read miss：需要把 memory 中的数据复制到 cache 中，所以 <span class="arithmatex">\(0.5 \times 0.25 \times 0.02 \times 64 = 0.16\ bytes/cycle\)</span> read traffic</p>
+<p>2）write miss：首先由于是 write-through，不管有没有数据缺失，都要将 cache 的数据写回 memory 中，但只有 1 word（8 bytes）数据需要写回，所以 <span class="arithmatex">\(0.5 \times 0.1 \times 8 = 0.4\ bytes/cycle\)</span> write traffic</p>
+<p>由于是 write-allocate，需要读取 RAM 中的数据，将其复制到 cache 中，所以 <span class="arithmatex">\(0.5 \times 0.1 \times 0.02 \times 64 = 0.064\ bytes/cycle\)</span> read traffic</p>
+<p>总结：read bandwidth：0.096 + 0.16 + 0.064 = 0.32 bytes/cycle，write bandwidth：0.4 bytes/cycle </p>
+<blockquote>
+<p>没太看明白，为什么只有 1 word 数据需要写回？</p>
+</blockquote>
+<p>(2) read bandwidth 还是 0.32 bytes/cycle</p>
+<p>dirty 标记为 1 的数据需要写回 memory，因此 write bandwidth 为 <span class="arithmatex">\(0.5 \times (0.25 + 0.1) \times 0.02 \times 0.3 \times 64 = 0.0672\ bytes/cycle\)</span></p>
+</details>
+</details>
 <h2 id="54-cache-性能的评估和改进">5.4 cache 性能的评估和改进<a class="headerlink" href="#54-cache-性能的评估和改进" title="Permanent link">&para;</a></h2>
 <p><span class="arithmatex">\(CPU\ time = (CPU\ execution\ clock\ cycles + Memory-stall\ clock\ cycles) \times Clock\ cycle\ time\)</span><br/>
 <span class="arithmatex">\(CPU\ 时间 = （CPU\ 执行时钟周期 + 存储器阻塞的时钟周期）\times 时钟周期\)</span></p>
@@ -4562,6 +4880,29 @@
 <p>因此，有二级 cache 的处理器性能是没有二级 cache 处理器性能的 <span class="arithmatex">\( \frac{9.0}{3.4} = 2.6 \)</span> 倍</p>
 <p>我们还可以使用另一种方法来计算阻塞时间。在二级 cache 命中的阻塞周期为 <span class="arithmatex">\( (2\% - 0.5\%) \times 20 = 0.3 \)</span>；而必须访问主存的阻塞周期必须同时包括访问二级 cache 和访问主存的时间，为 <span class="arithmatex">\( 0.5\% \times (20 + 400) = 2.1 \)</span>。对它们求和为 <span class="arithmatex">\( 1.0 + 0.3 + 2.1 \)</span>，同样等于 3.4</p>
 </div>
+<details class="question" open="open">
+<summary>课本 5.11</summary>
+<p>This exercise examines the effect of different cache designs, specifically comparing associative caches to the direct-mapped caches from Section 5.4. For these exercises, refer to the sequence of word address shown below.</p>
+<p>0x03, 0xb4, 0x2b, 0x02, 0xbe, 0x58, 0xbf, 0x0e, 0x1f,<br/>
+0xb5, 0xbf, 0xba, 0x2e, 0xce</p>
+<p>(1) Sketch the organization of a three-way set associative cache with two-word blocks and a total size of 48 words. Your sketch should have a style similar to the figure below, but clearly show the width of the tag and data fields.</p>
+<p><figure markdown="span">
+    <img alt="Img 18" src="../../../../../img/computer_organization/theory/ch5/comp_ch5_img18.png" width="600" />
+</figure></p>
+<p>(2) Trace the behavior of the cache from Exercise 5.11.1. Assume a true LRU replacement policy. For each reference, identify</p>
+<ul>
+<li>the binary word address,</li>
+<li>the tag,</li>
+<li>the index,</li>
+<li>the offset</li>
+<li>whether the reference is a hit or a miss, and</li>
+<li>which tags are in each way of the cache after the reference has been handled.</li>
+</ul>
+<details class="success">
+<summary>答案</summary>
+<p>(1) </p>
+</details>
+</details>
 <h2 id="57-虚拟存储器">5.7 虚拟存储器<a class="headerlink" href="#57-虚拟存储器" title="Permanent link">&para;</a></h2>
 <p><strong>Virtual Memory</strong></p>
 <p>主存也可以为通常由磁盘实现的辅助存储器充当“cache”，这项技术被称作“虚拟存储器”。构造虚拟存储器有两个主要动机：允许在多道程序之间有效而安全地共享存储器；消除一个小而受限的主存容量对程序设计造成的影响</p>
@@ -4581,7 +4922,7 @@
 <li>由于写时间太长，因此在虚拟存储器中，写直达机制不能很好地管理写操作。因此虚拟存储系统中都采用写回机制</li>
 </ul>
 <h3 id="571-页的存放和查找">5.7.1 页的存放和查找<a class="headerlink" href="#571-页的存放和查找" title="Permanent link">&para;</a></h3>
-<p>在虚拟存储系统中，我们使用一个索引存储器的表来定位页，这种结构称为 <strong>页表</strong>（page table），它被存放在存储器中。页表使用虚拟地址中的页号作索引，以找到相应的物理页号。每个程序都有它自己的页表。为了指出页表再存储器中的位置，硬件包含一个指向页表首地址的寄存器，我们称之为页表寄存器</p>
+<p>在虚拟存储系统中，我们使用一个索引存储器的表来定位页，这种结构称为 <strong>页表</strong>（page table），它被存放在存储器中。页表使用虚拟地址中的页号作索引，以找到相应的物理页号。每个程序都有它自己的页表。为了指出页表在存储器中的位置，硬件包含一个指向页表首地址的寄存器，我们称之为页表寄存器</p>
 <figure>
     <img alt="Img 21" src="../../../../../img/computer_organization/theory/ch5/comp_ch5_img21.png" width="600" />
 </figure>
@@ -4690,7 +5031,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2024年12月28日</span>
   </span>
 
     
