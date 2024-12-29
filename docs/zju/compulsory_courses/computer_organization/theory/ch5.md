@@ -550,7 +550,28 @@ cache 中块的总数等于组数乘以关联度
 
     ??? success "答案"
 
-        (1) 
+        (1) 1 行 3 个 block，6 个 word，一共 48 word，则有 8 行。所以 index 有 3 位。block offset 有 1 位，tag 有 32 - 3 - 1 = 28 位
+
+        ---
+
+        (2) T(x) is the tag at index x
+        
+        | Word Address | Binary Address | tag | index | offset | hit/miss | way 0 | way 1 | way 2 |
+        | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+        | 0x03 | 0000 0011 | 0x0 | 1 | 1 | M | T(1) = 0 | | |
+        | 0xb4 | 1011 0100 | 0xb | 2 | 0 | M | T(1) = 0<br/>T(2) = b | | |
+        | 0x2b | 0010 1011 | 0x2 | 5 | 1 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2 | | |
+        | 0x02 | 0000 0010 | 0x0 | 1 | 0 | H | T(1) = 0<br/>T(2) = b<br/>T(5) = 2 | | |
+        | 0xbe | 1011 1110 | 0xb | 7 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b | | |
+        | 0x58 | 0101 1000 | 0x5 | 4 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | | |
+        | 0xbf | 1011 1111 | 0xb | 7 | 1 | H | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | | |
+        | 0x0e | 0000 1110 | 0x0 | 7 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 0 | |
+        | 0x1f | 0001 1111 | 0x1 | 7 | 1 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 0 | T(7) = 1 |
+        | 0xb5 | 1011 0101 | 0xb | 2 | 1 | H | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 0 | T(7) = 1 |
+        | 0xbf | 1011 1111 | 0xb | 7 | 1 | H | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 0 | T(7) = 1 |
+        | 0xba | 1011 1010 | 0xb | 5 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 0<br/>T(5) = b | T(7) = 1 |
+        | 0x2e | 0010 1110 | 0x2 | 7 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 2<br/>T(5) = b | T(7) = 1 |
+        | 0xce | 1100 1110 | 0xc | 7 | 0 | M | T(1) = 0<br/>T(2) = b<br/>T(5) = 2<br/>T(7) = b<br/>T(4) = 5 | T(7) = 2<br/>T(5) = b | T(7) = c |
 
 ## 5.7 虚拟存储器
 
@@ -705,3 +726,422 @@ TLB的每个标记项存放虚拟页号的一部分，每个数据项中存放�
 虚拟存储器机制提供了从被程序使用的虚拟地址到用来访问主存的物理地址空间之间的转换。这个地址转换允许对主存进行受保护的共享，同时还提供了很多额外的好处，如简化了存储器分配。为了保证进程间受到保护，要求只有操作系统才能改变地址变换，这是通过防止用户程序更改页表来实现的。进程之间受控制地共享页可以在操作系统的帮助下实现，页表中的访问位被用来指出用户程序对页进行读访问还是写访问
 
 如果对于每一次访问，处理器不得不访问主存中的页表来进行转换，虚拟存储器的开销将很大，cache也将失去意义。相反，对于页表，TLB扮演了地址转换cache的角色，利用TLB中的变换，将虚拟地址转换为物理地址
+
+???+ question "课本 5.16"
+
+    As described in Section 5.7, virtual memory uses a page table to track the mapping of virtual addresses to physical addresses. This exercise shows how this table must be updated as addresses are accessed. The following data constitute a stream of virtual byte addresses as seen on a system. Assume 4 KiB pages, a fourentry fully associative TLB, and true LRU replacement. If pages must be brought in from disk, increment the next largest page number.
+
+    <figure markdown="span">
+        ![Img 30](../../../../img/computer_organization/theory/ch5/comp_ch5_img30.png){ width="600" }
+    </figure>
+
+    (1) For each access shown above, list
+
+    - whether the access is a hit or miss in the TLB,
+    - whether the access is a hit or miss in the page table,
+    - whether the access is a page fault,
+    - the updated state of the TLB.
+
+    (2) Repeat Exercise 5.16.1, but this time use 16 KiB pages instead of 4 KiB pages. What would be some of the advantages of having a larger page size? What are some of the disadvantages?
+
+    ??? success "答案"
+
+        (1) 
+        
+        <table>
+            <tr>
+                <th rowspan="2" id="tab-both-mid">Address</th>
+                <th rowspan="2" id="tab-both-mid">Virtual Page</th>
+                <th rowspan="2" id="tab-both-mid">H/M</th>
+                <th colspan="3" id="tab-both-mid">TLB</th>
+            </tr>
+            <tr>
+                <th id="tab-both-mid">valid</th>
+                <th id="tab-both-mid">tag</th>
+                <th id="tab-both-mid">physical page</th>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">4669<br/>0x123d</td>
+                <td rowspan="4" id="tab-both-mid">1</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit<br/>page fault</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">13</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">2227<br/>0x08b3</td>
+                <td rowspan="4" id="tab-both-mid">0</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit</td>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">0</td>
+                <td id="tab-bg-both-mid">5</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">13</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">13916<br/>0x365c</td>
+                <td rowspan="4" id="tab-both-mid">3</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">3</td>
+                <td id="tab-bg-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">13</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">34587<br/>0x871b</td>
+                <td rowspan="4" id="tab-both-mid">8</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit<br/>page fault</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">8</td>
+                <td id="tab-bg-both-mid">14</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">13</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">48870<br/>0xbee6</td>
+                <td rowspan="4" id="tab-both-mid">b</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">8</td>
+                <td id="tab-both-mid">14</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">b</td>
+                <td id="tab-bg-both-mid">12</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">12608<br/>0x3140</td>
+                <td rowspan="4" id="tab-both-mid">3</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">8</td>
+                <td id="tab-both-mid">14</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">3</td>
+                <td id="tab-bg-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">49225<br/>0xc049</td>
+                <td rowspan="4" id="tab-both-mid">c</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit<br/>page fault</td>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">c</td>
+                <td id="tab-bg-both-mid">15</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">8</td>
+                <td id="tab-both-mid">14</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+        </table>
+
+        > 答案部分有误，本文档已修正
+
+        ---
+
+        (2) 
+
+        <table>
+            <tr>
+                <th rowspan="2" id="tab-both-mid">Address</th>
+                <th rowspan="2" id="tab-both-mid">Virtual Page</th>
+                <th rowspan="2" id="tab-both-mid">H/M</th>
+                <th colspan="3" id="tab-both-mid">TLB</th>
+            </tr>
+            <tr>
+                <th id="tab-both-mid">valid</th>
+                <th id="tab-both-mid">tag</th>
+                <th id="tab-both-mid">physical page</th>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">4669<br/>0x123d</td>
+                <td rowspan="4" id="tab-both-mid">0</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">0</td>
+                <td id="tab-bg-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">2227<br/>0x08b3</td>
+                <td rowspan="4" id="tab-both-mid">0</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">0</td>
+                <td id="tab-bg-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">13916<br/>0x365c</td>
+                <td rowspan="4" id="tab-both-mid">0</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">b</td>
+                <td id="tab-both-mid">12</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">0</td>
+                <td id="tab-bg-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">34587<br/>0x871b</td>
+                <td rowspan="4" id="tab-both-mid">2</td>
+                <td rowspan="4" id="tab-both-mid">TLB miss<br/>PT hit<br/>page fault</td>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">2</td>
+                <td id="tab-bg-both-mid">13</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">48870<br/>0xbee6</td>
+                <td rowspan="4" id="tab-both-mid">2</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">2</td>
+                <td id="tab-bg-both-mid">13</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">12608<br/>0x3140</td>
+                <td rowspan="4" id="tab-both-mid">0</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">2</td>
+                <td id="tab-both-mid">13</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">3</td>
+                <td id="tab-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">0</td>
+                <td id="tab-bg-both-mid">5</td>
+            </tr>
+            <tr>
+                <td rowspan="4" id="tab-both-mid">49225<br/>0xc049</td>
+                <td rowspan="4" id="tab-both-mid">3</td>
+                <td rowspan="4" id="tab-both-mid">TLB hit</td>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">2</td>
+                <td id="tab-both-mid">13</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">7</td>
+                <td id="tab-both-mid">4</td>
+            </tr>
+            <tr>
+                <td id="tab-bg-both-mid">1</td>
+                <td id="tab-bg-both-mid">3</td>
+                <td id="tab-bg-both-mid">6</td>
+            </tr>
+            <tr>
+                <td id="tab-both-mid">1</td>
+                <td id="tab-both-mid">0</td>
+                <td id="tab-both-mid">5</td>
+            </tr>
+        </table>
+
+        > 答案部分有误，本文档已修正
+
+        优点：减少了 TLB miss rate
+
+        缺点：可能会导致 higher fragment，降低物理内存的利用率
+
+        > higher fragment 没看懂啥意思
+
+???+ question "课本 5.17"
+
+    There are several parameters that affect the overall size of the page table. Listed below are key page table parameters.
+
+    <figure markdown="span">
+        ![Img 31](../../../../img/computer_organization/theory/ch5/comp_ch5_img31.png){ width="600" }
+    </figure>
+
+    (1) Given the parameters shown above, calculate the maximum possible page table size for a system running five processes.
+
+    (2) Given the parameters shown above, calculate the total page table size for a system running five applications that each utilize half of the virtual memory available, given a two-level page table approach with up to 256 entries at the 1st level. Assume each entry of the main page table is 6 bytes. Calculate the minimum and maximum amount of memory required for this page table.
+
+    (3) A cache designer wants to increase the size of a 4 KiB virtually indexed, physically tagged cache. Given the page size shown above, is it possible to make a 16 KiB direct-mapped cache, assuming two 64-bit words per block? How would the designer increase the data size of the cache?
+
+    ??? success "答案"
+
+        (1) virtual page number 有 32 - 13 = 19 位，一个 page 大小为 $2^{19} \times 4 = 2^{21}$ bytes，5 个 page 大小为 $5 \times 2^{21} = 10 MB$
+
+        ---
+
+        (2) first-level：9 位，second-level：11 位，每个 second-level 大小为 $2^{11} \times 4 = 8KB$
+
+        min：second-level 一共 $5 \times 128 \times 8KB = 5MB$，first-level 一共 $5 \times 128 \times 6 = 3840$ bytes
+
+        max: second-level 一共 $5 \times 256 \times 8KB = 10MB$，first-level 一共 $5 \times 256 \times 6 = 7680$ bytes
+
+        ---
+
+        (3) page index 有 13 位
+        
+        cache：有 1024 个 block，index 有 10 位，offset 总共 4 位
+
+        可以提高 cache 的关联度来降低 cache 的 index 位数，以便 cache 的索引完全适合 page 索引
