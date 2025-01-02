@@ -1,8 +1,8 @@
 # 5 Large and Fast: Exploiting Memory Hierarchy
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -211,7 +211,7 @@ cache 容量为 16 KB，有 256 个块，每个块有 16 个字
 
     (5) What is the hit ratio?
 
-    (6) List the final state of the cache, with each valid entry represented as a record of <index, tag, data>. For example, <0, 3, Mem[0xC00]-Mem[0xC1F]>
+    (6) List the final state of the cache, with each valid entry represented as a record of `<index, tag, data>`. For example, <0, 3, Mem[0xC00]-Mem[0xC1F]>
 
     ??? success "答案"
 
@@ -550,11 +550,13 @@ cache 中块的总数等于组数乘以关联度
 
     ??? success "答案"
 
-        (1) 1 行 3 个 block，6 个 word，一共 48 word，则有 8 行。所以 index 有 3 位。block offset 有 1 位，tag 有 32 - 3 - 1 = 28 位
+        (1) 1 行 3 个 block，6 个 word，一共 48 word，则有 8 行。所以 index 有 3 位。offset 有 4 位，tag 有 32 - 3 - 4 = 25 位，其中用来寻找块中字偏移的有 1 位
 
         ---
 
-        (2) T(x) is the tag at index x
+        (2) 注意题目中给的是 word address
+        
+        T(x) is the tag at index x
         
         | Word Address | Binary Address | tag | index | offset | hit/miss | way 0 | way 1 | way 2 |
         | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
