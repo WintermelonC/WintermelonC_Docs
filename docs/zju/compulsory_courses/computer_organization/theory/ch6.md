@@ -42,7 +42,9 @@ I/O 重要的三类特性：
 可靠性（reliability）：实现连续服务的度量
 
 **平均故障时间**（MTTF）
+
 **平均修理时间**（MTTR）
+
 **故障之间的平均时间**（MTBF）：是 MTTF 和 MTTR 的和
 
 可用性（availability）：服务实现的一个度量

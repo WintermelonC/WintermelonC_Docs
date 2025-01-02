@@ -123,7 +123,8 @@ dyx老师
 [12 Local Search](./ch12.md)<br/>
 [13 Randomized Algorithms](./ch13.md)<br/>
 [14 Parallel Algorithms](./ch14.md)<br/>
-[15 External Sorting](./ch15.md)
+[15 External Sorting](./ch15.md)<br/>
+[期末复习整理](./final_review.md)
 
 ### 其他
 
@@ -138,3 +139,11 @@ dyx老师
 ### 2024-2025 秋冬 期中
 
 <embed src="../../../file/ADS/ADS_doc2.pdf" type="application/pdf" width="100%" height="500" />
+
+??? success "程序填空题 2 答案"
+
+    1. `a, mid + 1, r`
+    2. `a[i] < a[j]`
+    3. `ans += j - mid - 1`
+    4. `tmp[++cnt] = a[j++]`
+    5. `a[i] = tmp[i - l + 1]`
