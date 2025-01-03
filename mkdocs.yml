@@ -23,6 +23,8 @@ nav:
       - 无线电测向（初级）: zju/military_PE/radio_direction_finding.md
       - 羽毛球（初级）: zju/military_PE/badminton.md
       - 军事理论: zju/military_PE/military_theory.md
+    - 计算机类:
+      - zju/computer/index.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 
@@ -49,6 +51,7 @@ nav:
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md
+      - 数据结构基础: zju/basic_courses/data_structure.md
       - 数字逻辑设计:
         - zju/basic_courses/digital_logic_design/index.md
         - 实验部分:
@@ -83,7 +86,6 @@ nav:
         - 13 Randomized Algorithms: zju/compulsory_courses/ADS/ch13.md
         - 14 Parallel Algorithms: zju/compulsory_courses/ADS/ch14.md
         - 15 External Sorting: zju/compulsory_courses/ADS/ch15.md
-        - 期末复习整理: zju/compulsory_courses/ADS/final_review.md
       - 计算机组成:
         - zju/compulsory_courses/computer_organization/index.md
         - 理论部分: 

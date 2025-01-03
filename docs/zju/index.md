@@ -20,6 +20,8 @@
 [羽毛球（初级）](./military_PE/badminton.md)<br/>
 [军事理论](./military_PE/military_theory.md)
 
+### 计算机类
+
 ### 自然科学通识类
 
 [大学物理（乙）Ⅱ](./natural_science/phy_2/index.md)<br/>
@@ -59,6 +61,7 @@
 ## 专业基础课程
 
 [离散数学及其应用](./basic_courses/discrete_math.md)<br/>
+[数据结构基础](./basic_courses/data_structure.md)<br/>
 [数字逻辑设计](./basic_courses/digital_logic_design/index.md)<br/>
 [概率论与数理统计](./basic_courses/prob_theo_and_math_stat/index.md)
 
