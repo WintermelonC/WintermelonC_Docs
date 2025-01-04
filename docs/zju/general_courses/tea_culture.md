@@ -101,6 +101,12 @@ wyf老师、hpm老师 (1)
 
 <embed src="../../../file/tea_culture/tea_culture_doc2.pdf" type="application/pdf" width="100%" height="500">
 
+## 历年题整理
+
+### 2024-2025 秋冬
+
+[2024-2025秋冬《茶文化与茶健康》期末回忆卷（含资料）](https://www.cc98.org/topic/6084003){:target="_blank"}
+
 ## 个人感受
 
 我感觉课上讲的内容挺有意思的，虽然最后绩点只有 4.2，但是整体感觉还是非常愉快的

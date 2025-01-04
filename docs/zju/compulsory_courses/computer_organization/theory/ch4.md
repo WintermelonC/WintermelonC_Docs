@@ -821,7 +821,7 @@ if (MEM/WB.RegWrite
 
 ```c linenums="1"
 if (ID/EX.MemRead 
-&& (ID/EX.RegisterRd = IF/ID.RegisterRs1) 
+&& ((ID/EX.RegisterRd = IF/ID.RegisterRs1) 
     || (ID/EX.RegisterRd = IF/ID.RegisterRs2)) {
     stall the pipeline;
 }
