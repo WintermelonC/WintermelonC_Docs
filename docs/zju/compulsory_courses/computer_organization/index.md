@@ -52,6 +52,10 @@ yk老师
 
 ### [实验部分](./lab/index.md)
 
+### 其他
+
+[咸鱼喧的代码空间 - 计算机组成](https://xuan-insr.github.io/computer_organization/){:target="_blank"}
+
 ## 历年题整理
 
 [浙江大学课程攻略共享计划 - 计算机组成](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/){:target="_blank"}
