@@ -42,7 +42,7 @@ wyl老师
 
 <embed src="../../../file/discrete_math/discrete_doc3.pdf" type="application/pdf" width="100%" height="500" />
 
-??? success "部分答案"
+??? success "答案"
 
     1. 判断题
         1. 1 - 5：$T\ F\ T\ T\ T$

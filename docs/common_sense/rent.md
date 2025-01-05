@@ -198,7 +198,7 @@
 
 ## 房租谈判技巧
 
-> 这里还是建议看一下[原视频](https://www.bilibili.com/video/BV1auC2YvEQR/){:target="_blank"}吧
+> 这里还是建议看一下[原视频](https://www.bilibili.com/video/BV1auC2YvEQR/?share_source=copy_web&vd_source=8c8806bf56ee59fe86de67e00d08c354&t=1480){:target="_blank"}吧
 
 总之，谈判的时候要搞清楚双方的需求到底是什么，租房的人想更便宜租到房，房东想更方便、更省心的把这笔钱赚到
 
