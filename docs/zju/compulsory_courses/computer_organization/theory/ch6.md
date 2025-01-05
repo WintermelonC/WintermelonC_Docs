@@ -1,8 +1,8 @@
 # 6 Storage and Other I/O Topics
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -105,7 +105,7 @@ $Availability = \dfrac{MTTF}{MTTF + MTTR}$
 
 !!! info "说明"
 
-    此 RAID 部分内容不是我整理的，是同学分享的，具体来源未知
+    此 RAID 部分内容来源：[Wu-wu-u's Notebooks - 计算机组成 6 I/O](https://wu-wu-u.github.io/Notebooks/cs/systems/CO/IO/#redundant-array-of-independent-disks){:target="_blank"}
 
 RAID（Redundant Array of Independent Disks，独立磁盘冗余阵列）是一种将多个物理磁盘组合成一个逻辑单元，以提高数据存储性能和/或提供数据冗余的技术。RAID 通过将数据分布在多个磁盘上来实现这些目标，从而提高了数据的可靠性和读取/写入速度
 

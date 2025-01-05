@@ -1112,7 +1112,7 @@ TLB的每个标记项存放虚拟页号的一部分，每个数据项中存放�
 
         缺点：可能会导致 higher fragment，降低物理内存的利用率
 
-        > higher fragment 没看懂啥意思
+        > higher fragment 应该是指内存碎片化，因为这样一个进程最少申请内存的单位会变大
 
 ???+ question "课本 5.17"
 
