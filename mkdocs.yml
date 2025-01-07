@@ -175,12 +175,6 @@ theme:
     - search.suggest
     - toc.follow
 
-# 额外设置
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/WintermelonC
-
 # 扩展
 markdown_extensions:
   # Python Markdown
@@ -231,15 +225,24 @@ markdown_extensions:
       url_max_size: 33554432
       url_timeout: 10
 
+# 额外设置
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/WintermelonC
+
+# 额外 js
 extra_javascript:
   - assets/javascripts/katex.js
   - https://unpkg.com/katex@0/dist/katex.min.js
   - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
+# 额外 css
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
   - assets/stylesheets/extra.css
 
+# 插件
 plugins:
   - search
   - git-revision-date-localized:
