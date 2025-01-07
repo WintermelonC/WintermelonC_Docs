@@ -21,7 +21,7 @@
 
 ### 2.2 概率
 
-$P(A) = P(B) + P(\bar{A}B)$
+$P(A) = P(AB) + P(A\bar{B})$
 
 $P(A \cup B) = P(A) + P(B) - P(AB)$
 
