@@ -25,3 +25,5 @@
     - **游戏开发**：适用于Unity等游戏引擎相关的脚本编写
     
     总之，VS Code是一个非常灵活且高效的开发工具，适合不同类型的开发者使用。由于其高度可定制性和丰富的社区资源，成为了许多程序员日常工作的首选编辑器之一
+
+软件下载：[Visual Studio Code](https://code.visualstudio.com/){:target="_blank"}

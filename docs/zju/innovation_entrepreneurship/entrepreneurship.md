@@ -119,6 +119,10 @@ lh老师
 
 测试题答案：
 
+!!! info "说明"
+
+    来源于 [浙江大学cc98论坛](https://www.cc98.org/){:target="_blank"}
+
 <embed src="../../../file/entrepreneurship/entre_ship_document2.pdf" type="application/pdf" width="100%" height="500" />
 
 ##### 讨论（20%）
