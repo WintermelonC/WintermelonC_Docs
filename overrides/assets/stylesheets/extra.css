@@ -3,6 +3,7 @@
 }
 .md-typeset h5 {
     color: #212121;
+    text-transform: none;
 }
 .md-typeset hr {
     border-bottom-width: 0.1rem;

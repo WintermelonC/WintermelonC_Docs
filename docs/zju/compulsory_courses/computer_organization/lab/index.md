@@ -10,3 +10,7 @@
 
 1. 开发板型号：xc7a100tcsg324-1
 2. [xdc 引脚约束文件](../../../../file/computer_organization/xc7a100tcsg324-1.xdc){:target="_blank"}
+
+## 实验指导文档
+
+[Lab 0: Vivado 介绍与模块封装](./lab1.md)
