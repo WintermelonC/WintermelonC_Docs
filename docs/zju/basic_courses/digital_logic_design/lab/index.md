@@ -11,6 +11,10 @@
 1. 开发板型号：xc7k160tffg676-2L
 2. [xdc 引脚约束文件](../../../../file/digital_logic_design/lab/xc7k160tffg676-2L.xdc){:target="_blank"}
 
+## Vivado 相关操作
+
+详见 [Vivado](../../../../application/Vivado/index.md){:target="_blank"}
+
 ## 实验内容
 
 ### final

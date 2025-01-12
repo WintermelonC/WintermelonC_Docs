@@ -49,3 +49,38 @@
 > 更详细的解释，互联网自行搜索
 
 很容易发现，我们生成的 IP 核如果是保持默认设置的话，左边也有这个小黄方块标识，因为 IP 核本身内部的东西就不会变（在当前工程文件中，无法直接修改 IP 核内部代码）
+
+## 关联 vscode
+
+设置中选择 Text Editor -> Custom Editor
+
+<figure markdown="span">
+    ![Img 4](../../img/Vivado/vivado_img4.png){ width="600" }
+</figure>
+
+输入内容：`cmd /S /k "code -g [file name]:[line number]"`
+
+<figure markdown="span">
+    ![Img 5](../../img/Vivado/vivado_img5.png){ width="600" }
+</figure>
+
+之后在 Vivado 工程内双击文件，便可打开 vscode 进行编辑
+
+注意：
+
+1. Vivado 仿真之前建议将 Text Editor 切换为默认选项，否则容易报错，报错大意“其他进程正在使用 simulate”
+2. 若遇到此类报错，如下操作：
+
+打开任务管理器 -> 资源监视器
+
+<figure markdown="span">
+    ![Img 6](../../img/Vivado/vivado_img6.png){ width="600" }
+</figure>
+
+在 CPU -> 关联的句柄下，搜索 simulate，删除所有 code.exe 结果
+
+<figure markdown="span">
+    ![Img 7](../../img/Vivado/vivado_img7.png){ width="600" }
+</figure>
+
+之后重新仿真即可
