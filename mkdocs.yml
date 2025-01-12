@@ -99,6 +99,7 @@ nav:
           - zju/compulsory_courses/computer_organization/lab/index.md
           - 'Lab 0: Vivado 介绍与模块封装': zju/compulsory_courses/computer_organization/lab/lab0.md
           - 'Lab 1: ALU、Regfiles 设计与有限状态机': zju/compulsory_courses/computer_organization/lab/lab1.md
+          - 'Lab 2: CPU 调试 SOC 系统设计': zju/compulsory_courses/computer_organization/lab/lab2.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
