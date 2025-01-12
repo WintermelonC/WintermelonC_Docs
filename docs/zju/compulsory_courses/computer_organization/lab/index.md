@@ -11,8 +11,13 @@
 1. 开发板型号：xc7a100tcsg324-1
 2. [xdc 引脚约束文件](../../../../file/computer_organization/xc7a100tcsg324-1.xdc){:target="_blank"}
 
+## Vivado 相关操作
+
+详见 [Vivado](../../../../application/Vivado/index.md){:target="_blank"}
+
 ## 实验指导文档
 
 [Lab 0: Vivado 介绍与模块封装](./lab0.md)<br/>
 [Lab 1: ALU、Regfiles 设计与有限状态机](./lab1.md)<br/>
-[Lab 2: CPU 调试 SOC 系统设计](./lab2.md)
+[Lab 2: CPU 调试 SOC 系统设计](./lab2.md)<br/>
+[Lab 3: 复杂操作实现](./lab3.md)
