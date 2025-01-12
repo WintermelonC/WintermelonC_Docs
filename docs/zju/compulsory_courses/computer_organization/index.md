@@ -52,7 +52,7 @@ yk老师
 
 ### [实验部分](./lab/index.md)
 
-[Lab 0: Vivado 介绍与模块封装](./lab/lab1.md)
+[Lab 0: Vivado 介绍与模块封装](./lab/lab0.md)
 
 ### 其他
 
