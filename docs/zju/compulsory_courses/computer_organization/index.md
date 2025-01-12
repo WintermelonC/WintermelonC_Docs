@@ -52,6 +52,8 @@ yk老师
 
 ### [实验部分](./lab/index.md)
 
+[Lab 0: Vivado 介绍与模块封装](./lab/lab1.md)
+
 ### 其他
 
 [咸鱼喧的代码空间 - 计算机组成](https://xuan-insr.github.io/computer_organization/){:target="_blank"}

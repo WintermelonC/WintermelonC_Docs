@@ -25,4 +25,5 @@
 [医保](./medical_insurance.md)<br/>
 [如何乘坐交通工具](./transportation.md)<br/>
 [租房流程及注意事项](./rent.md)<br/>
-[做饭的基本逻辑](./cooking.md)
+[做饭的基本逻辑](./cooking.md)<br/>
+[行政服务办理流程](./administrative_service.md)

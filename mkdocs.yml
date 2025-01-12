@@ -97,6 +97,7 @@ nav:
           - 6 Storage and Other I/O Topics: zju/compulsory_courses/computer_organization/theory/ch6.md
         - 实验部分:
           - zju/compulsory_courses/computer_organization/lab/index.md
+          - 'Lab 0: Vivado 介绍与模块封装': zju/compulsory_courses/computer_organization/lab/lab1.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
@@ -107,6 +108,7 @@ nav:
     - 如何乘坐交通工具: common_sense/transportation.md
     - 租房流程及注意事项: common_sense/rent.md
     - 做饭的基本逻辑: common_sense/cooking.md
+    - 行政服务办理流程: common_sense/administrative_service.md
   - 软件:
     - application/index.md
     - Br:
