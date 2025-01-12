@@ -32,7 +32,7 @@
 
 ### ALU
 
-新建 `comp_organ/project/lab1/ALU`，在此目录下创建工程文件
+新建 `comp_organ/project/lab1/`，在此目录下创建工程文件，命名为 `ALU`
 
 ---
 
@@ -55,7 +55,7 @@
 
 ### regs
 
-新建 `comp_organ/project/lab1/regs`，在此目录下创建工程文件
+在目录 `comp_organ/project/lab1/regs` 下创建工程文件，命名为 `regs`
 
 ---
 
@@ -75,7 +75,7 @@
 
 ### seq
 
-新建 `comp_organ/project/lab1/seq`，在此目录下创建工程文件
+在目录 `comp_organ/project/lab1/` 下创建工程文件，命名为 `seq`
 
 ---
 

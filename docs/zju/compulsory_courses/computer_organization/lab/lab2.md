@@ -28,7 +28,7 @@
 
 ## 2.1 SOC 系统设计
 
-新建 `comp_organ/project/lab2_CSSTE`，在此目录下创建工程文件
+在目录 `comp_organ/project/` 下创建工程文件，命名为 `lab2_CSSTE`
 
 ### 调用模块
 
@@ -79,9 +79,9 @@ D7DBFDB9,D7BDFBD9,FFFF07E0,007E0FFF,03bdf020,03def820,
 修改此模块部分内容，填写正确的 `font_8x16.mem` `vga_debugger.mem` 文件路径
 
 ```verilog title="VgaDisplay.v"
---- snip ---
+-- snip --
 initial $readmemh("comp_organ//vga_debugger.mem", display_data);
---- snip ---
+-- snip --
 initial $readmemh("comp_organ//font_8x16.mem", fonts_data);
 ```
 
@@ -99,6 +99,7 @@ initial $readmemh("comp_organ//font_8x16.mem", fonts_data);
 2. SCPU 每个时钟周期从 ROM 那里读取一个指令，并执行这段指令
 3. 如果这段指令是和 RAM 有关的（例如读内存 `lw` 和写内存 `sw`），那么会使用到 RAM 中保存的数据
 4. 普通的指令执行完后，SCPU 将 PC 码 + 4，因此下一个时钟周期 SCPU 会读取下一条指令；但如果是跳转指令（如 `bne` `beq` `jal` 等），SCPU 则会计算相应的 PC 码，下一个周期便会读取该 PC 码所对应的指令
+5. 若要修改测试代码，可新建 `.coe` 文件并仿照 `comp_organ/lab2_instr_mem.coe` 文件进行编写。之后修改 ROM 的初始化文件即可（或者生成一个新的 ROM）
 
 ### 上板验证
 

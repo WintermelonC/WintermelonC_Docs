@@ -34,7 +34,7 @@ ROM 和 RAM 的生成建议在使用时再生成，不建议封装为 IP 核
 
 ## 0.1 Water_LED 的设计
 
-新建 `comp_organ/project/lab0/Water_LED`，在此目录下创建 Vivado 工程
+新建 `comp_organ/project/lab0/`，在此目录下创建 Vivado 工程，命名为 `Water_LED`
 
 ---
 
@@ -82,7 +82,7 @@ endmodule
 新建 `Water_LED_tb.v` testbench 文件
 
 ```verilog title="Water_LED_tb.v" linenums="1"
-module Water_LED_tb;
+module Water_LED_tb();
     reg clk;
     reg rst;
     
@@ -95,8 +95,7 @@ module Water_LED_tb;
     );
 
     always begin
-        #5;
-        clk = ~clk;
+        #5 clk = ~clk;
     end
 
     initial begin
@@ -139,7 +138,7 @@ set_property -dict { PACKAGE_PIN N14   IOSTANDARD LVCMOS33 } [get_ports { LED[3]
 
 ##### MUX2T1_5
 
-新建 `comp_organ/project/lab0/MUX2T1_5`，在此目录下创建 Vivado 工程
+在目录 `comp_organ/project/lab0/` 下创建 Vivado 工程，命名为 `MUX2T1_5`
 
 ---
 
@@ -191,7 +190,7 @@ endmodule
 
 ##### MUX2T1_8
 
-新建 `comp_organ/project/lab0/MUX2T1_8`，在此目录下创建 Vivado 工程
+在目录 `comp_organ/project/lab0/` 下创建 Vivado 工程，命名为 `MUX2T1_8`
 
 ---
 
@@ -507,7 +506,7 @@ endmodule
 
 ## 0.3 muxctrl 的设计
 
-新建 `comp_organ/project/lab0/muxctrl`，在此路径下创建工程文件
+在目录 `comp_organ/project/lab0/` 下创建工程文件，命名为 `muxctrl`
 
 ### 调用 IP 核
 
