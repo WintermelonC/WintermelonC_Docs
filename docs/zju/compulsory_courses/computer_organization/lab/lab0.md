@@ -1,8 +1,8 @@
 # Lab 0: Vivado 介绍与模块封装
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! warning "注意"
 
@@ -528,7 +528,7 @@ endmodule
 
 根据 ppt 内容，在 IP -> Repository 下添加路径 `comp_organ/IP`，Vivado 会识别该路径下所有的 IP 核
 
-之后可在 IP Catalog 中生成 IP 核
+之后可在 IP Catalog 中生成所需要的 IP 核
 
 ### muxctrl
 

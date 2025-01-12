@@ -52,7 +52,9 @@ yk老师
 
 ### [实验部分](./lab/index.md)
 
-[Lab 0: Vivado 介绍与模块封装](./lab/lab0.md)
+[Lab 0: Vivado 介绍与模块封装](./lab/lab0.md)<br/>
+[Lab 1: ALU、Regfiles 设计与有限状态机](./lab/lab1.md)<br/>
+[Lab 2: CPU 调试 SOC 系统设计](./lab/lab2.md)
 
 ### 其他
 
