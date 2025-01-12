@@ -1,5 +1,5 @@
 set_property IOSTANDARD LVCMOS33  [get_ports  clk_100mhz]
-set_property PACKAGE_PIN E3     [get_ports  clk_100mhz]
+set_property PACKAGE_PIN E3       [get_ports  clk_100mhz]
 set_property IOSTANDARD LVCMOS33  [get_ports  RSTN]
 set_property PACKAGE_PIN C12      [get_ports  RSTN]
 
