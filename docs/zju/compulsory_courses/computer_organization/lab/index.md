@@ -13,4 +13,4 @@
 
 ## 实验指导文档
 
-[Lab 0: Vivado 介绍与模块封装](./lab1.md)
+[Lab 0: Vivado 介绍与模块封装](./lab0.md)
