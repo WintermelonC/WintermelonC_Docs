@@ -18,7 +18,7 @@
 
 ---
 
-ROM 和 RAM 的生成建议在使用时再生成，不建议封装为 IP 核。但建议保存 `.coe` 文件，后续实验会使用，详见[准备工作](#准备工作)
+ROM 和 RAM 的生成建议在使用时再生成，不建议封装为 IP 核
 
 ## 准备工作
 
@@ -31,21 +31,6 @@ ROM 和 RAM 的生成建议在使用时再生成，不建议封装为 IP 核。�
 1. 新建文件夹 `comp_organ`，存放所有本次课程的 lab 相关文件
 2. 新建 `comp_organ/project`，存放所有 Vivado 的工程文件
 3. 新建 `comp_organ/IP`，存放所有 IP 核文件
-
----
-
-将 `lab0_ROM.coe` 文件保存在 `comp_organ/lab0_ROM.coe`（自己新建这个文件）
-
-```verilog title="lab0_ROM.coe" linenums="1"
-memory_initialization_radix=16;
-memory_initialization_vector=
-00000000,11111111,22222222,33333333,44444444,55555555,
-66666666,77777777,88888888,99999999,aaaaaaaa,bbbbbbbb,
-cccccccc,dddddddd,eeeeeeee,ffffffff,557EF7E0,D7BDFBD9,
-D7DBFDB9,DFCFFCFB,DFCFBFFF,F7F3DFFF,FFFFDF3D,FFFF9DB9,
-FFFFBCFB,DFCFFCFB,DFCFBFFF,D7DB9FFF,D7DBFDB9,D7BDFBD9,
-FFFF07E0,007E0FFF,03bdf020,03def820,08002300;
-```
 
 ## 0.1 Water_LED 的设计
 
@@ -529,6 +514,12 @@ endmodule
 根据 ppt 内容，在 IP -> Repository 下添加路径 `comp_organ/IP`，Vivado 会识别该路径下所有的 IP 核
 
 之后可在 IP Catalog 中生成所需要的 IP 核
+
+虽然 ppt 上建议生成 IP 核时选择 Global，但我个人建议选择 Out of context per IP
+
+<figure markdown="span">
+    ![Img 6](../../../../img/computer_organization/lab/lab0/lab0_img6.png){ width="600" }
+</figure>
 
 ### muxctrl
 
