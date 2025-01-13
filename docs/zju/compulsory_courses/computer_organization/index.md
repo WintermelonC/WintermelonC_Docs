@@ -56,7 +56,8 @@ yk老师
 [Lab 1: ALU、Regfiles 设计与有限状态机](./lab/lab1.md)<br/>
 [Lab 2: CPU 调试 SOC 系统设计](./lab/lab2.md)<br/>
 [Lab 3: 复杂操作实现](./lab/lab3.md)<br/>
-[Lab 4: 单周期 CPU](./lab/lab4.md)
+[Lab 4: 单周期 CPU](./lab/lab4.md)<br/>
+[Lab 5: 流水线 CPU](./lab/lab5.md)
 
 ### 其他
 

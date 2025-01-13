@@ -1,8 +1,8 @@
 # Lab 4: 单周期 CPU
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! warning "注意"
 
@@ -17,13 +17,11 @@
 4. 实现指令扩展
 5. 实现 CPU 中断处理
 
-## 准备工作
+## 4.1 构建 CPU 核
 
 将课件中的 `DataPath.edf` `DataPath.v` `SCPU_ctrl.edf` `SCPU_ctrl.v` 保存到 `comp_organ/IP/lab4` 目录下
 
-## 4.1 构建 CPU 核
-
-`comp_organ/project/`，在此目录下创建工程文件，命名为 `lab4_CPU`
+在目录 `comp_organ/project/` 下创建工程文件，命名为 `lab4_CPU`
 
 ---
 
@@ -410,6 +408,14 @@ endmodule
 
 > 即使仿真结果正确，也可能存在一些问题导致后续综合、实现报错
 
+如果需要多次封装 IP 核（即有多个版本做调试），封装时注意命名，避免调用时冲突
+
+<figure markdown="span">
+    ![Img 3](../../../../img/computer_organization/lab/lab4/lab4_img3.png){ width="600" }
+</figure>
+
+> 例如可命名为 `SCPU_v1` `SCPU_v2` 等等
+
 ### 上板验证
 
 !!! warning "注意"
@@ -418,7 +424,7 @@ endmodule
 
     > 我们验收可以仿真验收，也可以上板验收，我也遇到了这个问题，懒得弄了，就仿真验收了
 
-打开 lab 2 工程文件，生成调用 lab 4.3 SCPU 的 IP 核，替换掉原来的 SCPU 文件
+打开 lab 2 工程文件，生成调用 lab 4.3 SCPU 的 IP 核，替换掉原来的 SCPU 文件，检查 ROM 和 RAM 初始化文件是否是自己需要的
 
 > 如果觉得封装为 IP 核再调用太麻烦，你可以直接在 lab 2 工程文件里导入 SCPU 的源文件进行编辑
 
@@ -623,3 +629,399 @@ endmodule
 ---
 
 综合，实现，生成比特流文件，上板验证
+
+## 4.4 实现指令扩展
+
+保存文件 `comp_organ/lab4_instr_more_mem.coe`
+
+```verilog title="lab4_instr_more_mem.coe" linenums="1"
+memory_initialization_radix=16;
+memory_initialization_vector=
+00007293,00007313,88888137,00832183,0032A223,00402083,
+01C02383,00338863,555550B7,0070A0B3,FE0098E3,007282B3,
+00230333,00531463,40000033,40530433,405304B3,0080006F,
+00007033,0072F533,00157593,00B51463,00006033,00A5E5B3,
+0015E513,00558463,00004033,00A5C633,00164613,00B61463,
+00000013,0012D293,00060463,40000033,00129293,00B28463,
+00000013,001026B3,00503733,F65FF06F;
+```
+
+---
+
+> 之后 4.5 中断的 ppt 上用的是未进行指令扩展的版本，所以这里可以复制一份工程文件出来（可以新建一个工程文件，导入 4.1 4.2 4.3 的模块），在新的工程文件上完成 4.4，之后的 4.5 再用原来的工程文件。但其实就算用指令扩展后的版本做 4.5，也不是很费事，只是改的东西多了一些
+
+### DataPath 扩展
+
+#### ALU
+
+修改 `ALU.v`，按照 ppt 内容和下表，编写 verilog 代码
+
+| ALU 控制信号 | 功能 |
+|:-------:|:-------:|
+| 0010     | add        |
+| 0110     | sub        |
+| 1110     | sll（逻辑左移） |
+| 0111     | slt        |
+| 1001     | sltu |
+| 1100     | xor        |
+| 1101     | srl（逻辑右移）|
+| 1111     | sra（算术右移）|
+| 0001 | or |
+| 0000 | and |
+
+原来的 ALU 采用的是结构描述，增加的功能可以采用行为描述的方法，例如（具体情况具体分析）：
+
+```verilog title="ALU.v" linenums="1"
+module ALU(
+    -- snip --
+    input [3:0] ALU_operation,
+
+    output reg [31:0] res,
+    -- snip --
+);
+
+    wire [31:0] MUX8T1_32_0_0_out;
+
+    -- snip --
+
+    always @(*) begin
+        if (ALU_operation[3] == 0) begin  // 兼容原 ALU
+            res = MUX8T1_32_0_0_out;
+        end else if (ALU_operation[3] == 1) begin  // 扩展指令
+            case (ALU_operation[2:0])
+                3'b110: begin  // sll 逻辑左移
+                    res = A << B[4:0];
+                -- snip --
+            endcase
+        end
+    end
+
+    -- snip --
+
+    MUX8T1_32_0 MUX8T1_32_0_0 (
+        -- snip --
+        .s(ALU_operation[2:0]),    // input wire [2 : 0] s
+        .o(MUX8T1_32_0_0_out)    // output wire [31 : 0] o
+    );
+
+endmodule
+```
+
+#### ImmGen
+
+修改 `ImmGen.v`，根据 ppt 内容和下表，编写 verilog 代码
+
+| Instr_type | ImmSel |
+| :--: | :--: |
+| I-type | 001 |
+| S-type | 010 |
+| B-type | 011 |
+| J-type | 100 |
+| U-type | 000 |
+
+#### DataPath
+
+修改 `my_DataPath.v`，根据连接图编写 verilog 代码
+
+<embed src="../../../../../file/computer_organization/lab4/lab4_doc3.pdf" type="application/pdf" width="100%" height="500" />
+
+### Controller 扩展
+
+修改 `my_SCPU_ctrl.v`，根据 ppt 内容和下表，编写 verilog 代码
+
+| instr | opcode | fun3 | fun7 |
+| :--: | :--: | :--: | :--: |
+| add | 0110011 | 000 | 0000000 |
+| sub | 0110011 | 000 | 0100000 |
+| sll | 0110011 | 001 | 0000000 |
+| slt | 0110011 | 010 | 0000000 |
+| sltu | 0110011 | 011 | 0000000 |
+| xor | 0110011 | 100 | 0000000 |
+| srl | 0110011 | 101 | 0000000 |
+| sra | 0110011 | 101 | 0100000 |
+| or | 0110011 | 110 | 0000000 |
+| and | 0110011 | 111 | 0000000 |
+| sw | 0100011 | 010 | - |
+| beq | 1100011 | 000 | - |
+| bne | 1100011 | 001 | - |
+| lui | 0110111 | - | - |
+| jal | 1101111 | - | - |
+| lw | 0000011 | - | - |
+| jalr | 1100111 | - | - |
+| addi | 0010011 | 000 | - |
+| slti | 0010011 | 010 | - |
+| sltiu | 0010011 | 011 | - |
+| xori | 0010011 | 100 | - |
+| ori | 0010011 | 110 | - |
+| andi | 0010011 | 111 | - |
+| slli | 0010011 | 001 | 0000000 |
+| srli | 0010011 | 101 | 0000000 |
+| srai | 0010011 | 101 | 0100000 |
+
+---
+
+| Instr | Branch | BranchN | Jump | ImmSel | ALUSrc_B | ALU_Control | MemRW | RegWrite | MemtoReg |
+| :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: | :--: |
+| add | 0 | 0 | 00 | * | 0 | 0010 | 0 | 1 | 00 |
+| sub | 0 | 0 | 00 | * | 0 | 0110 | 0 | 1 | 00 |
+| and | 0 | 0 | 00 | * | 0 | 0000 | 0 | 1 | 00 |
+| or | 0 | 0 | 00 | * | 0 | 0001 | 0 | 1 | 00 |
+| sra | 0 | 0 | 00 | * | 0 | 1111 | 0 | 1 | 00 |
+| slt | 0 | 0 | 00 | * | 0 | 0111 | 0 | 1 | 00 |
+| sll | 0 | 0 | 00 | * | 0 | 1110 | 0 | 1 | 00 |
+| sltu | 0 | 0 | 00 | * | 0 | 1001 | 0 | 1 | 00 |
+| xor | 0 | 0 | 00 | * | 0 | 1100 | 0 | 1 | 00 |
+| srl | 0 | 0 | 00 | * | 0 | 1101 | 0 | 1 | 00 |
+| addi | 0 | 0 | 00 | 001 | 1 | 0010 | 0 | 1 | 00 |
+| slti | 0 | 0 | 00 | 001 | 1 | 0111 | 0 | 1 | 00 |
+| sltiu | 0 | 0 | 00 | 001 | 1 | 1001 | 0 | 1 | 00 |
+| xori | 0 | 0 | 00 | 001 | 1 | 1100 | 0 | 1 | 00 |
+| ori | 0 | 0 | 00 | 001 | 1 | 0001 | 0 | 1 | 00 |
+| andi | 0 | 0 | 00 | 001 | 1 | 0000 | 0 | 1 | 00 |
+| slli | 0 | 0 | 00 | 001 | 1 | 1110 | 0 | 1 | 00 |
+| srli | 0 | 0 | 00 | 001 | 1 | 1101 | 0 | 1 | 00 |
+| srai | 0 | 0 | 00 | 001 | 1 | 1111 | 0 | 1 | 00 |
+| lw | 0 | 0 | 00 | 001 | 1 | 0010 | 0 | 1 | 01 |
+| sw | 0 | 0 | 00 | 010 | 1 | 0010 | 1 | 0 | * |
+| beq | 1 | * | 00 | 011 | 0 | 0110 | * | 0 | * |
+| bne | * | 1 | 00 | 011 | 0 | 0110 | * | 0 | * |
+| jalr | * | * | 10 | 001 | 1 | 0010 | * | 1 | 10 |
+| jal | * | * | 01 | 100 | 1 | * | * | 1 | 10 |
+| lui | 0 | 0 | 00 | 000 | * | * | * | 1 | 11 |
+
+### SCPU 模块
+
+修改 `SCPU.v`，根据连接图编写 verilog 代码
+
+<embed src="../../../../../file/computer_organization/lab4/lab4_doc4.pdf" type="application/pdf" width="100%" height="500" />
+
+### 仿真验证
+
+启用 `SCPU_top.v`，ROM 和 RAM 模块，其中 ROM 的初始化文件为 `comp_organ/lab4_instr_more_mem.coe`，进行仿真验证
+
+### 上板验证
+
+停用 `SCPU_top.v`，ROM 和 RAM 模块，封装 IP 核，封装时注意命名，避免调用时出现冲突
+
+<figure markdown="span">
+    ![Img 3](../../../../img/computer_organization/lab/lab4/lab4_img3.png){ width="600" }
+</figure>
+
+## 4.5 实现中断
+
+保存文件 `comp_organ/lab4_instr_int_mem.coe`
+
+```verilog title="lab4_instr_int_mem.coe" linenums="1"
+memory_initialization_radix=16;
+memory_initialization_vector=
+0200006F,0C40006F,0D80006F,0C80006F,00000033,
+00000033,00000033,00000033,00007293,00007313,
+88888137,FE62DAE3,00832183,0032A223,00402083,
+01C02383,00338863,555550B7,0070A0B3,FE0098E3,
+007282B3,00230333,00531463,40000033,40530433,
+405304B3,0080006F,00007033,0072F533,00000073,
+00157593,00B51463,00006033,00A5E5B3,0015E513,
+00558463,00004033,00A5C633,00164613,00B61463,
+00000013,0012D293,00060463,40000033,00129293,
+00B28463,00000013,001026B3,00503733,F5DFF06F,
+00168693,00168693,30200073,40C70733,40C70733,
+30200073,00128793,00178793,30200073;
+```
+
+建议复制一份工程文件
+
+### 原理
+
+根据 ppt 内容和课件中的 `I_int.pdf` 文件了解中断处理的原理
+
+> 虽然 ppt 里介绍了很多中断需要用到的寄存器，但我自己在实现时只用了 `mepc` 这一个
+
+### RV_int
+
+新建 `RV_int.v` 源文件，根据 ppt 内容和下文提示（具体情况具体分析），编写 verilog 代码
+
+> 我自己实现的时候，仿真时发现 CPU 变成了双周期 CPU，因为第一个周期 PC 码停留在 `RV_int` 模块，处理中断，第二个周期 PC 码才到 `PC` 模块。还有一些因双周期带来的小 bug。我当时想不明白怎么改了，就改了这些 bug 按照双周期做了
+>
+> 不过我现在想到，可以把中断处理的功能也放到 `PC` 模块里，不需要额外增加这个 `RV_int` 模块了，应该能解决这个双周期问题吧（没试过，可行性不清楚）
+
+```verilog title="RV_int.v" linenums="1"
+module RV_int(
+    input clk,
+    input rst,
+    input INT,  // 外部中断信号
+    input ecall,  // 内部中断信号
+    input mret,  // 异常状态返回信号
+    input ill_instr,  // 非法指令中断信号
+    input [31:0] pc_next,
+
+    output reg [31:0] pc,
+);
+
+    reg [31:0] mepc;  // 存储异常的返回地址
+
+    // mepc
+    // 遇到 ecall 和 ill_instr 情况，mepc 应保存 pc_next 的值
+    // 遇到 INT 情况，mepc 应保存 pc_next - 4 的值
+
+    // pc
+    // 正常情况，pc 即为 pc_next
+    // 遇到 INT，pc 应为 0xc
+    // 遇到 ecall。pc 应为 0x8
+    // 遇到 ill_instr，pc 应为 0x4
+    // 遇到 mret，pc 应为 mepc（返回原来的地址）
+
+endmodule
+```
+
+### DataPath
+
+修改 `DataPath.v`，根据连接图，编写 verilog 代码
+
+<embed src="../../../../../file/computer_organization/lab4/lab4_doc5.pdf" type="application/pdf" width="100%" height="500" />
+
+### Controller
+
+修改 `my_SCPU_ctrl.v`，根据 ppt 内容、下表和下文提示（具体情况具体分析），编写 verilog 代码
+
+| instr | opcode | Fun_mret(instr[29:28]) | Fun_ecall(instr[22:20]) |
+| :--: | :--: | :--: | :--: |
+| mret | 1110011 | 11 | - |
+| ecall | 1110011 | - | 000 |
+
+```verilog title="my_SCPU_ctrl.v" linenums="1"
+module my_SCPU_ctrl(
+    input [6:0] OPcode,
+    input [2:0] Fun3,
+    input Fun7,
+    -- snip --
+    input [2:0] Fun_ecall,  // inst[22:20]
+    input [1:0] Fun_mret,  // inst[29:28]
+    
+    -- snip --
+    output reg ecall,
+    output reg mret,
+    output reg ill_instr
+);
+        
+    -- snip --
+
+    assign Fun = {Fun3, Fun7};
+
+    always @(*) begin
+        case (OPcode)
+            7'b0110011: begin  // R-type
+                mret = 1'b0;  // 正常的指令，这些信号均为 0
+                ecall = 1'b0;
+                ill_instr = 1'b0;
+                -- snip --
+                case (Fun)
+                    4'b0000: begin  // add
+                        ALU_Control = 4'b0010;
+                    end
+                    
+                    -- snip --
+
+                    default: begin  // default ill_instr
+                        ill_instr = 1'b1;  // 其余的指令均为未定义/错误指令
+                        RegWrite = 1'b0;  // 保险起见，为避免寄存器被修改，将这个置为 0
+                    end
+                endcase
+            end
+
+            -- snip --
+
+            7'b1110011: begin  // 中断处理
+                mret = 1'b0;
+                ecall = 1'b0;
+                ill_instr = 1'b0;
+                RegWrite = 1'b0;
+                if (Fun_mret == 2'b11) begin  // mret
+                    mret = 1'b1;
+                end else if (Fun_ecall == 3'b000) begin  // ecall
+                    ecall = 1'b1;
+                end else begin
+                    ill_instr = 1'b1;
+                end
+            end
+            default: begin  // default ill_instr
+                ill_instr = 1'b1;  // 其余的指令均为未定义/错误指令
+                RegWrite = 1'b0;
+            end
+        endcase
+    end
+
+endmodule
+```
+
+### SCPU
+
+修改 `SCPU.v`，根据连接图，编写 verilog 代码
+
+<embed src="../../../../../file/computer_organization/lab4/lab4_doc6.pdf" type="application/pdf" width="100%" height="500" />
+
+### 仿真验证
+
+修改 `SCPU_top.v`，增加 INT 信号
+
+```verilog title="SCPU_top_tb.v" linenums="1"
+module SCPU_top(
+    input clk,
+    input rst,
+    input INT
+);
+
+    -- snip --
+
+    SCPU my_SCPU (
+        -- snip --
+        .INT0(INT),
+        -- snip --
+    );
+
+    -- snip --
+
+endmodule
+```
+
+ROM 初始化文件使用 `comp_organ/lab4_instr_int_mem.coe`
+
+修改 `SCPU_top_tb.v`，增加 INT 信号
+
+```verilog title="SCPU_top_tb.v" linenums="1"
+module SCPU_top_tb();
+    reg clk;
+    reg rst;
+    reg INT;
+
+    SCPU_top my_SCPU_top (
+        .clk(clk),
+        .rst(rst),
+        .INT(INT)
+    );
+
+    always begin
+        #5 clk = ~clk;
+    end
+
+    initial begin
+        clk = 0;
+        rst = 1;
+        INT = 0;
+        #10;
+        rst = 0;
+        #615;  // 具体数值根据仿真波形图来定
+        INT = 1;
+        #20;
+        INT = 0;
+    end
+
+endmodule
+```
+
+### 上板验证
+
+建议复制一份 lab 2 的工程文件
+
+修改 `CSSTE.v`，根据连接图，编写 verilog 代码
+
+<embed src="../../../../../file/computer_organization/lab4/lab4_doc7.pdf" type="application/pdf" width="100%" height="500" />

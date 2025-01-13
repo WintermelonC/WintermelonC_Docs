@@ -102,6 +102,7 @@ nav:
           - 'Lab 2: CPU 调试 SOC 系统设计': zju/compulsory_courses/computer_organization/lab/lab2.md
           - 'Lab 3: 复杂操作实现': zju/compulsory_courses/computer_organization/lab/lab3.md
           - 'Lab 4: 单周期 CPU': zju/compulsory_courses/computer_organization/lab/lab4.md
+          - 'Lab 5: 流水线 CPU': zju/compulsory_courses/computer_organization/lab/lab5.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md

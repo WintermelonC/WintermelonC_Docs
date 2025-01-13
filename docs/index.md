@@ -29,7 +29,7 @@
         - [x] lab 1
         - [x] lab 2
         - [x] lab 3
-        - [ ] lab 4
+        - [x] lab 4
         - [ ] lab 5
     - [ ] [深度学习](https://zh.d2l.ai/chapter_preface/index.html){:target="_blank"}
         - [x] ch 1
