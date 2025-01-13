@@ -2680,6 +2680,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -2964,6 +2968,48 @@
   
   <span class="md-ellipsis">
     Lab 3: 复杂操作实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 4: 单周期 CPU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 5: 流水线 CPU
   </span>
   
 
@@ -4356,7 +4402,7 @@
 <li>新建 <code>comp_organ/IP</code>，存放所有 IP 核文件</li>
 </ol>
 <h2 id="01-water_led-的设计">0.1 Water_LED 的设计<a class="headerlink" href="#01-water_led-的设计" title="Permanent link">&para;</a></h2>
-<p>新建 <code>comp_organ/project/lab0/Water_LED</code>，在此目录下创建 Vivado 工程</p>
+<p>新建 <code>comp_organ/project/lab0/</code>，在此目录下创建 Vivado 工程，命名为 <code>Water_LED</code></p>
 <hr />
 <p>新建源文件 <code>Water_LED.v</code>，实现 4 个 LED 灯依次点亮的效果</p>
 <p>要实现每隔一段时间，熄灭原 LED 灯，点亮下一个 LED 灯的效果，可以新建一个计数器变量 <code>count</code>，每过一个时钟周期，<code>count</code> 加 1，每次 <code>count</code> 达到某个值，重置 <code>count</code> 并更新 <code>LED</code> 即可</p>
@@ -4446,8 +4492,7 @@
 <span class="normal"><a href="#__codelineno-1-21">21</a></span>
 <span class="normal"><a href="#__codelineno-1-22">22</a></span>
 <span class="normal"><a href="#__codelineno-1-23">23</a></span>
-<span class="normal"><a href="#__codelineno-1-24">24</a></span>
-<span class="normal"><a href="#__codelineno-1-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">module</span><span class="w"> </span><span class="n">Water_LED_tb</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">module</span><span class="w"> </span><span class="n">Water_LED_tb</span><span class="p">();</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="n">clk</span><span class="p">;</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">reg</span><span class="w"> </span><span class="n">rst</span><span class="p">;</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
@@ -4460,18 +4505,17 @@
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="p">);</span>
 </span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a>
 </span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="k">always</span><span class="w"> </span><span class="k">begin</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="p">#</span><span class="mh">5</span><span class="p">;</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">clk</span><span class="p">;</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">    </span><span class="k">end</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">    </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">        </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">        </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">        </span><span class="p">#</span><span class="mh">100</span><span class="p">;</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">        </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">    </span><span class="k">end</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="k">endmodule</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="p">#</span><span class="mh">5</span><span class="w"> </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">~</span><span class="n">clk</span><span class="p">;</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">    </span><span class="k">initial</span><span class="w"> </span><span class="k">begin</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">        </span><span class="n">clk</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">        </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b1</span><span class="p">;</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">        </span><span class="p">#</span><span class="mh">100</span><span class="p">;</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">        </span><span class="n">rst</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">1</span><span class="mb">&#39;b0</span><span class="p">;</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="k">end</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="k">endmodule</span>
 </span></code></pre></div></td></tr></table></div>
 <p>进行仿真验证</p>
 <hr />
@@ -4500,7 +4544,7 @@
 <h3 id="mux">MUX<a class="headerlink" href="#mux" title="Permanent link">&para;</a></h3>
 <p><code>MUXaTb_c</code>：表示 c 位 a 选 b MUX</p>
 <h5 id="mux2t1_5">MUX2T1_5<a class="headerlink" href="#mux2t1_5" title="Permanent link">&para;</a></h5>
-<p>新建 <code>comp_organ/project/lab0/MUX2T1_5</code>，在此目录下创建 Vivado 工程</p>
+<p>在目录 <code>comp_organ/project/lab0/</code> 下创建 Vivado 工程，命名为 <code>MUX2T1_5</code></p>
 <hr />
 <p>新建 <code>MUX2T1_5.v</code> 源文件</p>
 <div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">MUX2T1_5.v</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
@@ -4545,7 +4589,7 @@
     <img alt="Img 4" src="../../../../../img/computer_organization/lab/lab0/lab0_img4.png" width="600" />
 </figure>
 <h5 id="mux2t1_8">MUX2T1_8<a class="headerlink" href="#mux2t1_8" title="Permanent link">&para;</a></h5>
-<p>新建 <code>comp_organ/project/lab0/MUX2T1_8</code>，在此目录下创建 Vivado 工程</p>
+<p>在目录 <code>comp_organ/project/lab0/</code> 下创建 Vivado 工程，命名为 <code>MUX2T1_8</code></p>
 <hr />
 <p>新建 <code>MUX2T1_8.v</code> 源文件</p>
 <div class="language-verilog highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">MUX2T1_8.v</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
@@ -4990,7 +5034,7 @@
 </span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="k">endmodule</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="03-muxctrl-的设计">0.3 muxctrl 的设计<a class="headerlink" href="#03-muxctrl-的设计" title="Permanent link">&para;</a></h2>
-<p>新建 <code>comp_organ/project/lab0/muxctrl</code>，在此路径下创建工程文件</p>
+<p>在目录 <code>comp_organ/project/lab0/</code> 下创建工程文件，命名为 <code>muxctrl</code></p>
 <h3 id="调用-ip-核">调用 IP 核<a class="headerlink" href="#调用-ip-核" title="Permanent link">&para;</a></h3>
 <p>根据 ppt 内容，在 IP -&gt; Repository 下添加路径 <code>comp_organ/IP</code>，Vivado 会识别该路径下所有的 IP 核</p>
 <p>之后可在 IP Catalog 中生成所需要的 IP 核</p>

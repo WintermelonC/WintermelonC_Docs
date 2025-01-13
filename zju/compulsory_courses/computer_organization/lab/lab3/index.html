@@ -18,7 +18,7 @@
         <link rel="prev" href="../lab2/">
       
       
-        <link rel="next" href="../../../../practical_teaching/">
+        <link rel="next" href="../lab4/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -2680,6 +2680,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -2802,6 +2806,17 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Lab 3: 复杂操作实现
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2812,6 +2827,103 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验目标" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-整数乘法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 整数乘法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-整数除法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 整数除法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-浮点加法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 浮点加法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 4: 单周期 CPU
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lab 5: 流水线 CPU
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4004,6 +4116,50 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#实验目标" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#31-整数乘法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 整数乘法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-整数除法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 整数除法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-浮点加法" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 浮点加法
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4034,10 +4190,10 @@
 
 
 <h1 id="lab-3-复杂操作实现">Lab 3: 复杂操作实现<a class="headerlink" href="#lab-3-复杂操作实现" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>此文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    此文档正在更新中…… -->
+
 <div class="admonition warning">
 <p class="admonition-title">注意</p>
 <ol>
@@ -4045,6 +4201,18 @@
 <li>具体的 verilog 代码请先根据官方 ppt 自行完成，本文档不提供全部的 verilog 代码，仅作参考和提示作用</li>
 </ol>
 </div>
+<h2 id="实验目标">实验目标<a class="headerlink" href="#实验目标" title="Permanent link">&para;</a></h2>
+<ol>
+<li>32 位整数乘法</li>
+<li>32 位整数除法</li>
+<li>32 位浮点加法（选做）</li>
+</ol>
+<h2 id="31-整数乘法">3.1 整数乘法<a class="headerlink" href="#31-整数乘法" title="Permanent link">&para;</a></h2>
+<p>根据 ppt 或<a href="../../theory/ch3/#v3" target="_blank">此文档</a>的内容，采用 V3 实现乘法运算</p>
+<h2 id="32-整数除法">3.2 整数除法<a class="headerlink" href="#32-整数除法" title="Permanent link">&para;</a></h2>
+<p>根据 ppt 或<a href="../../theory/ch3/#v2_1" target="_blank">此文档</a>的内容，采用 V2 实现除法运算</p>
+<h2 id="33-浮点加法">3.3 浮点加法<a class="headerlink" href="#33-浮点加法" title="Permanent link">&para;</a></h2>
+<p>根据 ppt 的内容以及<a href="../../theory/ch3/#算数精确性" target="_blank">此文档例题</a>，实现浮点运算</p>
 
 
 
@@ -4192,13 +4360,13 @@
         
         
           
-          <a href="../../../../practical_teaching/" class="md-footer__link md-footer__link--next" aria-label="下一页: 实践教学环节">
+          <a href="../lab4/" class="md-footer__link md-footer__link--next" aria-label="下一页: Lab 4: 单周期 CPU">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                实践教学环节
+                Lab 4: 单周期 CPU
               </div>
             </div>
             <div class="md-footer__button md-icon">
