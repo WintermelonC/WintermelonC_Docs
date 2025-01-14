@@ -61,7 +61,7 @@
 输入内容：`cmd /S /k "code -g [file name]:[line number]"`
 
 <figure markdown="span">
-    ![Img 5](../../img/Vivado/vivado_img5.png){ width="600" }
+    ![Img 5](../../img/Vivado/vivado_img5.png){ width="400" }
 </figure>
 
 之后在 Vivado 工程内双击文件，便可打开 vscode 进行编辑

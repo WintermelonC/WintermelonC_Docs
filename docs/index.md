@@ -24,13 +24,7 @@
 
 !!! abstract "2025 寒假计划"
 
-    - [ ] 编写计算机组成实验部分指导文档
-        - [x] lab 0
-        - [x] lab 1
-        - [x] lab 2
-        - [x] lab 3
-        - [x] lab 4
-        - [ ] lab 5
+    - [x] 编写计算机组成实验部分指导文档
     - [ ] [深度学习](https://zh.d2l.ai/chapter_preface/index.html){:target="_blank"}
         - [x] ch 1
         - [x] ch 2
@@ -87,7 +81,6 @@
         - [ ] 其他数据结构
     - [ ] [达芬奇教程](https://www.bilibili.com/video/BV1B7411A7M1/){:target="_blank"}
         - [ ] 主要是学调色
-    - [ ] 编写 Br 教学文档
     - [ ] 编写大学生生活常识文档
     - [ ] 学一学 javascript
 
