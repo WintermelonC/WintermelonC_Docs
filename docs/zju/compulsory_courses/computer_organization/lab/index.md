@@ -23,3 +23,5 @@
 [Lab 3: 复杂操作实现](./lab3.md)<br/>
 [Lab 4: 单周期 CPU](./lab4.md)<br/>
 [Lab 5: 流水线 CPU](./lab5.md)
+
+> 由于 lab 6 是选做且我没有做，就不写 lab 6 的指导了
