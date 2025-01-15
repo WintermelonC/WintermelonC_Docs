@@ -1,10 +1,19 @@
 # 1 Python 基础
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 ## 1.1 表达式
+
+```python
+>>> 2 + 2
+4
+```
+
+> 上面这个包含 `>>>` 提示符的东西叫交互式环境，该环境是一个程序，就像是 Windows 操作系统上的“终端”一样。输入指令后按 ++enter++，计算机将读取你输入的指令并立即运行它们
+>
+> Windows 系统，按 ++windows+r++ 快捷键，输入 cmd 后回车，打开命令行窗口，输入 python 后回车，可进入 python 交互式环境
 
 在 Python 中，`2 + 2` 被称为“表达式”，它是语言中最基本的编程结构，表达式包含“值”（例如 2）和“操作符”（例如 +），并且总是可以“求值”（即归约）为单个值。这意味着在 Python 代码中，所有使用表达式的地方都可以使用一个值
 
@@ -55,7 +64,7 @@ Python 程序也可以有文本值，称为“字符串”（strs）。总是用
 # TypeError: can only concatenate str (not "int") to str
 ```
 
-'*' 操作符用于一个字符串值和一个整型值，它就变成了“字符串复制”操作符
+`*` 操作符用于一个字符串值和一个整型值，它就变成了“字符串复制”操作符
 
 ```python
 >>> 'Alice' * 5
@@ -109,3 +118,237 @@ Python 程序也可以有文本值，称为“字符串”（strs）。总是用
 | `hello` | `'hello'`（不允许 `'` 这样的特殊字符） | 
 
 ==变量名是区分大小写的。== `spam` `Spam` `SPAM` 是 3 个不同的变量。变量用小写字母开头是 Python 的惯例
+
+> 但某些变量的惯例是大写字母开头的，例如类名
+
+变量名命名法：
+
+1. 驼峰形式：`lookLikeThis`
+2. 下划线形式：`look_like_this`
+
+> 我个人喜欢用下划线形式，本文档参考书籍中使用驼峰形式，本文档改为下划线形式。但并不是所有变量都应使用同一种命名方法，例如某些情形下某些变量是以一个下划线 `_` 开头的
+
+## 1.5 一段简单的程序
+
+```python linenums="1"
+# This program says hello and asks for my name.
+
+print('Hello, world!')
+print('What is your name?')
+my_name = input()
+print('Nice to meet you, ' + my_name)
+print('The length of your name is:')
+print(len(my_name))
+print('What is your age?')
+my_age = input()
+print('You will be ' + str(int(my_age) + 1) + ' in a year.')
+```
+
+```python title="输出" linenums="1"
+Hello, world!
+What is your name?
+Wintermelon
+Nice to meet you, Wintermelon
+The length of your name is:
+11
+What is your age?
+18
+You will be 19 in a year.
+```
+
+Python 解释器一行一行的执行代码
+
+### 1.5.1 注释
+
+```python
+# This program says hello and asks for my name.
+```
+
+Python 会忽略注释，可以使用注释来解释说明程序，或提醒自己代码试图完成的事
+
+有时，在测试代码时，会在一行代码前面加上 `#`，临时删除这行代码，这称为“注释掉”代码
+
+> 大多数编辑器“添加注释”的快捷键是 ++ctrl+slash++
+
+在一段代码的末尾添加注释时，格式为：两个空格 + # + 一个空格 + 注释
+
+```python
+print()  # 添加注释
+```
+
+```python title="多行注释"
+"""
+多行注释
+多行注释
+多行注释一般可见于函数、类等，用于解释函数、类等的形式参数的含义
+"""
+```
+
+### 1.5.2 `print()` 函数
+
+`print()` 函数将括号内的字符串输出在屏幕上
+
+```python
+print('Hello, world!')
+```
+
+> 不同于 C，Python 一段代码的末尾没有 `;`，Python 判断一段代码在哪里结束便是看这段代码在哪里换行
+>
+> 不同于 C，Python `print()` 函数后面默认有一个换行符 `\n`
+
+Python 执行到这行时，表示 Python 在“调用” `print()` 函数，并将该字符串的值“传递”给函数。传递给函数的值称为“参数”。引号并没有输出在屏幕上，因为引号不是字符串的一部分
+
+在写函数名时，末尾带上括号表明它是一个函数的名字
+
+```python
+print()  # 可以使用 print() 来输出一个空行
+```
+
+### 1.5.3 `input()` 函数
+
+`input()` 函数等待用户在键盘上输入一些文本，并按回车键
+
+```python
+my_name = input()
+```
+
+> 不同于 C，Python 使用变量时，不需要先定义变量
+
+这个函数的字符串，即用户输入的文本。上面的代码行将这个字符串赋给变量 `my_name`
+
+`input()` 函数内其实也可以有参数，例如可以把这两行缩减成一行
+
+<div class="grid" markdown>
+
+```python
+print('What is your name?')
+my_name = input()
+```
+
+```python
+my_name = input('What is your name?\n')
+```
+
+</div>
+
+### 1.5.4 `len()` 函数
+
+该函数返回参数的长度。若传入字符串，则返回的就是字符串字符的个数
+
+```python
+print('The length of your name is:')
+print(len(my_name))
+```
+
+```python
+>>> len('')
+0
+>>> len('hello')
+5
+```
+
+### 1.5.5 `str()` `int()` `float()` 函数
+
+`str()` 可以将参数转换为 str 格式的变量
+
+```python
+>>> str(29)
+'29'
+>>> print('I am ' + 29 + ' years old.')
+# 报错
+>>> print('I am ' + str(29) + ' years old.')
+I am 29 years old.
+```
+
+`int()` `float()` 函数的作用也是类似的
+
+```python
+>>> int(1.25)
+1
+>>> int(1.9)
+1  # 不是我们一般情况下认为的四舍五入哦
+>>> float('3.14')
+3.14
+>>> float(10)
+10.0
+```
+
+`input()` 函数返回的是一个字符串
+
+```python
+>>> spam = input()
+101
+>>> spam
+'101'
+```
+
+可以通过这些函数来转换变量类型，以达到特定目的
+
+```python
+>>> spam = int(spam)
+>>> spam
+101
+>>> spam * 10 / 5
+202.0
+```
+
+```python
+print('You will be ' + str(int(my_age) + 1) + ' in a year.')
+```
+
+可以看到，上述程序通过灵活运用这些函数，达到显示正确字符串的目的
+
+!!! tip "文本和数字相等判断"
+
+    虽然数字的字符串值被认为与整型值和浮点型值完全不同，但整型值可以与浮点型值相等：
+
+    ```python
+    >>> 42 == '42'  # == 为比较操作符，两边相等返回 True，否则返回 False
+    False  # 因为整型值和字符串是不同的
+    >>> 42 == 42.0
+    True  # 整型值和浮点数值都是数字
+    >>> 42 == 0042.0000
+    True
+    ```
+    
+## 1.6 习题
+
+1.下列语句运行后，变量 `bacon` 的值是什么？
+
+```python linenums="1"
+bacon = 20
+bacon + 1
+```
+
+??? success "答案"
+
+    20
+
+    ---
+
+    第 2 行的内容并没有改变 bacon 的值，它只是一个表达式而已，计算了 `bacon + 1` 的值
+
+---
+
+2.自行搜索了解 `round()` 函数
+
+??? success "答案"
+
+    `round()` 函数是 Python 内置函数，用于将一个数字四舍五入到指定的精度。它的基本语法如下：
+
+    `round(number, ndigits)`
+
+    - number：必需，要进行四舍五入的数字
+    - ndigits：可选，表示要保留的小数位数。如果省略，则默认四舍五入到整数
+
+    示例：
+
+    ```python
+    >>> round(3.14159, 2)
+    3.14
+    >>> round(3.14159)
+    3
+    >>> round(2.675, 2)
+    2.67  # 注意：由于浮点数精度问题，结果可能不是预期的 2.68
+    ```
+    
