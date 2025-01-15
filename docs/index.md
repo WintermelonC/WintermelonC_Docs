@@ -13,14 +13,11 @@
 你可以找到一些软件的使用教程或小技巧
 
 1. [Br](./application/br/index.md)
-2. [Lr](./application/lr/index.md)
-3. [Ps](./application/ps/index.md)
-4. [Pr](./application/pr/index.md)
-5. [Ae](./application/ae/index.md)
-6. [Au](./application/au/index.md)
-7. [Me](./application/me/index.md)
-8. [Vivado](./application/Vivado/index.md)
-9. [VS Code](./application/vscode/index.md)
+2. [Ps](./application/ps/index.md)
+3. [Pr](./application/pr/index.md)
+4. [Ae](./application/ae/index.md)
+5. [Vivado](./application/Vivado/index.md)
+6. [VS Code](./application/vscode/index.md)
 
 !!! abstract "2025 寒假计划"
 
@@ -31,7 +28,7 @@
         - [x] ch 3
         - [x] ch 4
         - [x] ch 5
-        - [ ] ch 6
+        - [x] ch 6
         - [ ] ch 7
         - [ ] ch 8
         - [ ] ch 9
