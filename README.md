@@ -13,11 +13,8 @@
 你可以找到一些软件的使用教程或小技巧
 
 1. Br
-2. Lr
-3. Ps
-4. Pr
-5. Ae
-6. Au
-7. Me
-8. Vivado
-9. VS Code
+2. Ps
+3. Pr
+4. Ae
+5. Vivado
+6. VS Code

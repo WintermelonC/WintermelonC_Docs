@@ -8,12 +8,6 @@
 
 管理各种图片、视频、音频等素材
 
-## Lr
-
-**Adobe Lightroom**
-
-管理和编辑图片，图片调色
-
 ## Ps
 
 **Adobe Photoshop**
@@ -31,18 +25,6 @@
 **Adobe After Effects**
 
 动态图形和视觉效果合成
-
-## Au
-
-**Adobe Audition**
-
-音频编辑和处理
-
-## Me
-
-**Adobe Media Encoder**
-
-视频和音频编码
 
 ## Vivado
 
