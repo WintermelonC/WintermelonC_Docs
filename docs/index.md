@@ -19,6 +19,12 @@
 5. [Vivado](./application/Vivado/index.md)
 6. [VS Code](./application/vscode/index.md)
 
+## [知识](./knowledge/index.md)
+
+你可以找到一些有用的知识
+
+1. [Python](./knowledge/python/index.md)
+
 !!! abstract "2025 寒假计划"
 
     - [x] 编写计算机组成实验部分指导文档
