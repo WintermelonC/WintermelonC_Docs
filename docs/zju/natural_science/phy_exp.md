@@ -22,6 +22,8 @@ xt老师 (1)
 
 1. 当然前提是你电脑上下载了 python 和相应的库
 
+> [Python 环境及编辑器](../../knowledge/python/basic/ch0.md){:target="_blank"}，如果没有 Python 基础的话，就用 VS Code 就可以了
+
 !!! tip "python 代码说明"
 
     我的某些图使用了 ^^钉钉进步体^^，对应的代码行为

@@ -18,3 +18,9 @@
 4. Ae
 5. Vivado
 6. VS Code
+
+## 知识
+
+你可以找到一些有用的知识
+
+1. Python

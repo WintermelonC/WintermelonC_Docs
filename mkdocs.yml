@@ -136,6 +136,13 @@ nav:
     - VS Code:
       - application/vscode/index.md
       - Github Copilot: application/vscode/copilot.md
+  - 知识:
+    - knowledge/index.md
+    - Python:
+      - knowledge/python/index.md
+      - Python 编程基础:
+        - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
+        - 1 Python 基础: knowledge/python/basic/ch1.md
 
 # 主题设置
 theme:
