@@ -2,7 +2,7 @@
 site_name: WintermelonC Docs
 site_url: https://wintermelonc.github.io/WintermelonC_Docs/
 site_author: WintermelonC
-site_description: WinteremelonC 的网页
+site_description: WintermelonC 的网页
 
 # github 仓库
 repo_url: https://github.com/WintermelonC/WintermelonC_Docs
@@ -144,6 +144,7 @@ nav:
       - Python 编程基础:
         - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
         - 1 Python 基础: knowledge/python/basic/ch1.md
+        - 2 控制流: knowledge/python/basic/ch2.md
 
 # 主题设置
 theme:

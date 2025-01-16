@@ -293,10 +293,19 @@ I am 29 years old.
 ```
 
 ```python
+my_age = input()
 print('You will be ' + str(int(my_age) + 1) + ' in a year.')
 ```
 
 可以看到，上述程序通过灵活运用这些函数，达到显示正确字符串的目的
+
+但其实有个更方便的写法：
+
+```python
+print(f'You will be {int(my_age) + 1} in a year.')
+```
+
+称为 f 字符串，用 `{}` 标明被替换的字段
 
 !!! tip "文本和数字相等判断"
 

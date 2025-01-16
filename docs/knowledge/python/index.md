@@ -15,4 +15,5 @@
 ## Python 编程基础
 
 [0 Python 环境及编辑器](./basic/ch0.md)<br/>
-[1 Python 基础](./basic/ch1.md)
+[1 Python 基础](./basic/ch1.md)<br/>
+[2 控制流](./basic/ch2.md)
