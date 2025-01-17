@@ -145,6 +145,7 @@ nav:
         - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
         - 1 Python 基础: knowledge/python/basic/ch1.md
         - 2 控制流: knowledge/python/basic/ch2.md
+        - 3 函数: knowledge/python/basic/ch3.md
 
 # 主题设置
 theme:
