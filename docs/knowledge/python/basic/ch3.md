@@ -6,7 +6,7 @@
 
 ## 3.1 `def` 语句和参数
 
-```python
+```python linenums="1"
 def hello(name):
     print(f'Hello, {name}')
 
