@@ -17,14 +17,19 @@ nav:
     - 思政类:
       - zju/political/index.md
       - 中国近现代史纲要: zju/political/history_of_modern_china.md
+      - 马克思主义基本原理: zju/political/marxist_principles.md
+      - 习近平新时代中国特色社会主义思想概论: zju/political/xi_jinping_thought.md
       - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:
       - zju/military_PE/index.md
       - 无线电测向（初级）: zju/military_PE/radio_direction_finding.md
       - 羽毛球（初级）: zju/military_PE/badminton.md
+      - 游泳（初级）: zju/military_PE/swimming.md
       - 军事理论: zju/military_PE/military_theory.md
     - 计算机类:
       - zju/computer/index.md
+      - 汇编语言程序设计基础: zju/computer/assembly_programming.md
+      - 人工智能基础（A）: zju/computer/AI_basic.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 
@@ -67,6 +72,7 @@ nav:
         - 6 统计量与抽样分布: zju/basic_courses/prob_theo_and_math_stat/chapter_6.md
         - 7 参数估计: zju/basic_courses/prob_theo_and_math_stat/chapter_7.md
         - 8 假设检验: zju/basic_courses/prob_theo_and_math_stat/chapter_8.md
+      - 面向对象程序设计: zju/basic_courses/OOP.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -103,9 +109,17 @@ nav:
           - 'Lab 3: 复杂操作实现': zju/compulsory_courses/computer_organization/lab/lab3.md
           - 'Lab 4: 单周期 CPU': zju/compulsory_courses/computer_organization/lab/lab4.md
           - 'Lab 5: 流水线 CPU': zju/compulsory_courses/computer_organization/lab/lab5.md
+      - 数据库系统: zju/compulsory_courses/database_system.md
+      - 计算机体系结构: zju/compulsory_courses/computer_architecture.md
+    - 专业模块课程:
+      - zju/module_courses/index.md
+      - 密码学: zju/module_courses/cryptography.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
+    - 个性修读课程:
+      - zju/personal_courses/index.md
+      - 有机化学: zju/personal_courses/organic_chemistry.md
   - 大学生生活常识:
     - common_sense/index.md
     - 医院看病流程: common_sense/hospital.md
@@ -142,10 +156,15 @@ nav:
     - Python:
       - knowledge/python/index.md
       - Python 编程基础:
+        - knowledge/python/basic/index.md
         - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
         - 1 Python 基础: knowledge/python/basic/ch1.md
         - 2 控制流: knowledge/python/basic/ch2.md
         - 3 函数: knowledge/python/basic/ch3.md
+      - PyTorch 深度学习:
+        - knowledge/python/pytorch/index.md
+        - 7 现代卷积神经网络:
+          - 7.1 深度卷积神经网络(AlexNet): knowledge/python/pytorch/ch7/ch7_1.md
 
 # 主题设置
 theme:
