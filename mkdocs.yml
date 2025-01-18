@@ -164,7 +164,13 @@ nav:
       - PyTorch 深度学习:
         - knowledge/python/pytorch/index.md
         - 7 现代卷积神经网络:
-          - 7.1 深度卷积神经网络(AlexNet): knowledge/python/pytorch/ch7/ch7_1.md
+          - 7.1 AlexNet 深度卷积神经网络: knowledge/python/pytorch/ch7/ch7_1.md
+          - 7.2 VGG 使用块的网络: knowledge/python/pytorch/ch7/ch7_2.md
+          - 7.3 NiN 网络中的网络: knowledge/python/pytorch/ch7/ch7_3.md
+          - 7.4 GoogLeNet 含并行连结的网络: knowledge/python/pytorch/ch7/ch7_4.md
+          - 7.5 批量规范化: knowledge/python/pytorch/ch7/ch7_5.md
+          - 7.6 ResNet 残差网络: knowledge/python/pytorch/ch7/ch7_6.md
+          - 7.7 DenseNet 稠密连接网络: knowledge/python/pytorch/ch7/ch7_7.md
 
 # 主题设置
 theme:
