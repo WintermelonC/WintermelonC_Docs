@@ -161,6 +161,7 @@ nav:
         - 1 Python 基础: knowledge/python/basic/ch1.md
         - 2 控制流: knowledge/python/basic/ch2.md
         - 3 函数: knowledge/python/basic/ch3.md
+        - 4 列表: knowledge/python/basic/ch4.md
       - PyTorch 深度学习:
         - knowledge/python/pytorch/index.md
         - 7 现代卷积神经网络:
