@@ -17,4 +17,5 @@
 [0 Python 环境及编辑器](./ch0.md)<br/>
 [1 Python 基础](./ch1.md)<br/>
 [2 控制流](./ch2.md)<br/>
-[3 函数](./ch3.md)
+[3 函数](./ch3.md)<br/>
+[4 列表](./ch4.md)
