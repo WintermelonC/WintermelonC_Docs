@@ -1,8 +1,8 @@
 # 4 列表
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 ## 4.1 列表数据类型
 
@@ -511,3 +511,327 @@ False
 ```
 
 如果需要元组值得有一个可变版本，将元组转换成列表就很方便
+
+## 4.7 引用
+
+变量“保存”字符串和整数值，但是，实际上，变量存储的是对计算机内存位置得引用，这些位置存储了这些值
+
+```python
+>>> spam = 42
+>>> cheese = spam
+>>> spam = 100
+>>> spam
+100
+>>> cheese
+42
+```
+
+将 `42` 赋给 `spam` 变量时，实际上是在计算机内存中创建值 `42`，并将对它得“引用”存储在 `spam` 变量中。当复制 `spam` 变量中的值，并将它赋给 `cheese` 变量时，实际上是在复制引用。`spam` 和 `cheese` 变量均指向计算机内存中的值 `42`。接着，将 `spam` 变量中的值更改为 `100` 时，实际上是创建了一个新的值 `100`，并将它的引用存储在 `spam` 变量中。这不会影响 `cheese` 变量的值
+
+整数是“不变的”值，它们不会改变；更改 `spam` 变量实际上是让它引用内存中完全不同的值
+
+但列表是可变的，因此
+
+```python
+>>> spam = [0, 1, 2, 3]
+>>> cheese = spam
+# 将 spam 中的引用复制到 cheese
+# cheese 和 spam 现在同时指向同一个列表
+>>> cheese[1] = 'Hello'
+# 改变 cheese 就改变了列表值
+# 而这个列表值也是 spam 所指的
+>>> spam
+[0, 'Hello', 2, 3]
+>>> cheese
+[0, 'Hello', 2, 3]
+```
+
+### 4.7.1 标识和 `id()` 函数
+
+Python 中的所有值都有一个唯一的标识，通过 `id()` 函数可以获得该标识
+
+```python
+>>> id('Howdy')
+2143988223792
+```
+
+当运行 `id('Howdy')` 时，Python 会在计算机的内存中创建 `'Howdy'` 字符串，`id()` 函数返回存储字符串的数字内存地址
+
+<div class="grid" markdown>
+
+```python
+>>> bacon = 'Hello'
+>>> id(bacon)
+2143988473728
+>>> bacon += ' world'
+# 更改字符串值，相当于在内存中的其他位置创建新的字符串对象，并将引用赋给 bacon 变量
+>>> id(bacon)
+2143987780272  # id 值改变
+```
+
+```python
+>>> eggs = ['cat', 'dog']
+>>> id(eggs)
+2143985652224
+>>> eggs.append('moose')
+>>> id(eggs)
+2143985652224  # id 值没有改变
+>>> eggs = ['bat']
+>>> id(eggs)  # 这个上文提到过，相当于变量的覆写
+2143985652032  # id 值改变
+```
+
+</div>
+
+Python 的“自动垃圾收集器”会删除任何变量未引用的值，以释放内存
+
+### 4.7.2 传递引用
+
+当函数被调用时，参数的值也就是引用被复制给变元。要注意以下情况：
+
+<div class="grid" markdown>
+
+```python linenums="1"
+def eggs(list):
+    list.append('Hello')
+
+
+spam = [1, 2, 3]
+eggs(spam)
+print(spam)
+```
+
+```python title="output"
+[1, 2, 3, 'Hello']
+```
+
+```python linenums="1"
+def eggs(list):
+    list = ['Hello']
+
+
+spam = [1, 2, 3]
+eggs(spam)
+print(spam)
+```
+
+```python title="output"
+[1, 2, 3]
+```
+
+</div>
+
+### 4.7.3 copy 模块的 `copy()` 和 `deepcopy()` 函数
+
+像上面的情况一样，函数可能会修改传入的列表或字典（字典也是可变数据类型）。`copy.copy()` 函数可以用来复制列表或字典，而不只是复制引用
+
+```python
+>>> import copy
+>>> spam = [1, 2, 3]
+>>> id(spam)
+2143987780608
+>>> cheese = copy.copy(spam)
+>>> id(cheese)
+2143989703232  # id 值不同
+>>> cheese[1] = 42
+>>> cheese
+[1, 42, 3]
+>>> spam
+[1, 2, 3]
+```
+
+如果要复制的列表中包含了列表，那就使用 `copy.deepcopy()`，它会同时复制内部的列表
+
+## 4.8 小程序：Conway 的生命游戏
+
+该游戏在一个二维网格上进行，每个格子代表一个细胞，可以处于两种状态之一：存活或死亡。细胞的状态根据以下简单规则逐代演化：
+
+1. 孤独死亡：如果一个存活的细胞周围少于两个存活的邻居细胞，则该细胞在下一代会变成死亡状态
+2. 生存：如果一个存活的细胞周围有两到三个存活的邻居细胞，则该细胞保持存活状态
+3. 过度拥挤死亡：如果一个存活的细胞周围有超过三个存活的邻居细胞，则该细胞在下一代会变成死亡状态
+4. 繁殖：如果一个死亡的细胞周围恰好有三个存活的邻居细胞，则该细胞在下一代会变成存活状态
+
+<figure markdown="span">
+  ![img 1](../../../img/python_basic/ch4/basic_ch4_img1.png){ width="600" }
+</figure>
+
+我们可以用列表的列表来表示二维的空间。内部列表表示方块的每一列，对于活的方块，存储一个 `'#'` 字符串，对于死的方块，存储一个 `' '` 空格字符串
+
+```python title="conway.py" linenums="1"
+import copy
+import random
+import time
+
+# 定义网络的宽度和高度，可以修改这些值以改变网格的大小
+WIDTH = 6
+HEIGHT = 6
+
+next_cells = []  # 二维列表
+# 随机初始化细胞状态
+for x in range(WIDTH):
+    column = []  # 创建一个新列
+    for y in range(HEIGHT):
+        if random.randint(0, 1) == 0:  # 50% 的概率
+            column.append('#')  # 添加一个活细胞
+        else:
+            column.append(' ')  # 添加一个死细胞
+    next_cells.append(column)  # next_cells 是一个包含 WIDTH 个列表的列表
+
+while True:  # 主程序循环
+    print('\n\n\n\n\n')  # 分隔每一代
+    current_cells = copy.deepcopy(next_cells)  # 复制 next_cells 列表到 current_cells
+    # 打印 current_cells 列表
+    for y in range(HEIGHT):
+        for x in range(WIDTH):
+            print(current_cells[x][y], end='')
+        print()  # 在一行的末尾打印一个换行符
+
+    # 计算下一代的细胞
+    for x in range(WIDTH):
+        for y in range(HEIGHT):
+            # 获取周围细胞的坐标
+            left_coord = (x - 1) % WIDTH  # % WIDTH 保证坐标在网格内，即 0 到 WIDTH - 1 之间
+            right_coord = (x + 1) % WIDTH
+            above_coord = (y - 1) % HEIGHT
+            below_coord = (y + 1) % HEIGHT
+
+            # 计算周围细胞的数量
+            num_neighbors = 0
+            if current_cells[left_coord][above_coord] == '#':  # 左上角的细胞
+                num_neighbors += 1
+            if current_cells[x][above_coord] == '#':  # 上方的细胞
+                num_neighbors += 1
+            if current_cells[right_coord][above_coord] == '#':  # 右上角的细胞
+                num_neighbors += 1
+            if current_cells[left_coord][y] == '#':  # 左边的细胞
+                num_neighbors += 1
+            if current_cells[right_coord][y] == '#':  # 右边的细胞
+                num_neighbors += 1
+            if current_cells[left_coord][below_coord] == '#':  # 左下角的细胞
+                num_neighbors += 1
+            if current_cells[x][below_coord] == '#':  # 下方的细胞
+                num_neighbors += 1
+            if current_cells[right_coord][below_coord] == '#':  # 右下角的细胞
+                num_neighbors += 1
+
+            # 根据细胞的数量设置细胞的状态
+            if current_cells[x][y] == '#' and (num_neighbors == 2 or num_neighbors == 3):
+                next_cells[x][y] = '#'  # 生存
+            elif current_cells[x][y] == ' ' and num_neighbors == 3:
+                next_cells[x][y] = '#'  # 繁殖
+            else:
+                next_cells[x][y] = ' '  # 死亡
+
+    time.sleep(1)  # 添加延迟，以便观察
+```
+
+## 4.10 习题
+
+1.假定 `spam = ['a', 'b', 'c', 'd']`，那么 `spam[int('3' * 2) // 1]` 求值是多少
+
+??? success "答案"
+
+    IndexError: list index out of range
+    
+    ---
+
+    `spam[int('3' * 2) // 1]` = `spam[int('33') // 1]` = `spam[33 // 1]` = `spam[33]`
+
+    因此会报错
+
+## 4.11 实践项目
+
+### 4.11.1 逗号代码
+
+假定有列表 `spam = ['apples', 'bananas', 'tofu', 'cats']`
+
+编写一个函数，它以一个列表值作为参数，返回一个字符串。该字符串包含所有表项，表项之间以逗号和空格分隔，并在最后一个表项之前插入 `and`。例如，将前面的 `spam` 列表传递给函数，将返回 `apples, bananas, tofu, and cats`
+
+??? success "答案"
+
+    ```python linenums="1"
+    def print_list(list_param):
+        for i in range(len(list_param) - 1):
+            print(list_param[i], end=', ')
+        print(f'and {list_param[-1]}')
+    ```
+
+### 4.11.2 掷硬币的连胜
+
+如果掷硬币 100 次，并在每次正面时写下“H”，在每次反面时写下“T”，就会创建一个看起来像“TTTTTHHHHTT”这样的列表。有趣的是，我们 **人类** 几乎永远不会写下连续的 6 个正面或 6 个反面
+
+编写一个程序，查找随机生成的正面和反面列表中出现连续 6 个正面或 6 个反面的频率。你的程序将实验分为两部分：第一部分生成随机选择的“正面”和“反面”值的列表，第二部分检查其中是否有连胜。将所有这些代码放入一个循环中，重复该实验 10000 次，这样我们就可以找出掷硬币中包含连续 6 个正面或反面的百分比
+
+??? success "答案"
+
+    ```python linenums="1"
+    import random
+
+    num_streaks = 0
+    
+    for exp_num in range(10000):
+        coin_flips = ''
+        for _ in range(100):
+            if random.randint(0, 1) == 0:
+                coin_flips += 'H'  # 正面
+            else:
+                coin_flips += 'T'  # 反面
+    
+        if 'H' * 6 in coin_flips or 'T' * 6 in coin_flips:
+            num_streaks += 1
+    
+    print(f'Chance of streak: {num_streaks / 100}%')
+    ```
+
+    ---
+
+    虽然题目让我创建列表，但我觉得用字符串应该更简单
+
+### 4.11.3 字符图网格
+
+假定有一个列表的列表，内层列表的每个值都是包含一个字符的字符串，类似：
+
+```python linenums="1"
+grid = [['.', '.', '.', '.', '.', '.'],
+        ['.', '0', '0', '.', '.', '.'],
+        ['0', '0', '0', '0', '.', '.'],
+        ['0', '0', '0', '0', '0', '.'],
+        ['.', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '.'],
+        ['0', '0', '0', '0', '.', '.'],
+        ['.', '0', '0', '.', '.', '.'],
+        ['.', '.', '.', '.', '.', '.']]
+```
+
+复制前面的网络值，编写代码用它输出图像：
+
+```python linenums="1"
+..00.00..
+.0000000.
+.0000000.
+..00000..
+...000...
+....0....
+```
+
+??? success "答案"
+
+    ```python linenums="1"
+    grid = [['.', '.', '.', '.', '.', '.'],
+            ['.', '0', '0', '.', '.', '.'],
+            ['0', '0', '0', '0', '.', '.'],
+            ['0', '0', '0', '0', '0', '.'],
+            ['.', '0', '0', '0', '0', '0'],
+            ['0', '0', '0', '0', '0', '.'],
+            ['0', '0', '0', '0', '.', '.'],
+            ['.', '0', '0', '.', '.', '.'],
+            ['.', '.', '.', '.', '.', '.']]
+    
+    width = len(grid)
+    height = len(grid[0])
+    
+    for y in range(height):
+        for x in range(width):
+            print(grid[x][y], end='')
+        print()
+    ```
