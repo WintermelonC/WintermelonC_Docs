@@ -27,7 +27,7 @@
       1. [Python 编程基础](./knowledge/python/basic/index.md)
       2. [PyTorch 深度学习](./knowledge/python/pytorch/index.md)
 
-!!! abstract "2025 寒假计划"
+??? abstract "2025 寒假计划"
 
     - [x] 编写计算机组成实验部分指导文档
     - [ ] [深度学习](https://zh.d2l.ai/chapter_preface/index.html){:target="_blank"}
