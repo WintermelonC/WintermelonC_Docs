@@ -11,3 +11,9 @@
     此为 2024-2025 春夏学期课程安排，仅供参考
 
 cg老师
+
+### 考核方式
+
+<figure markdown="span">
+  ![Img 1](../../../img/database/database_img1.png){ width="600" }
+</figure>

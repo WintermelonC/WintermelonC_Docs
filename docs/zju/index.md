@@ -25,7 +25,6 @@
 
 ### 计算机类
 
-[汇编语言程序设计基础](./computer/assembly_programming.md)<br/>
 [人工智能基础（A）](./computer/AI_basic.md)
 
 ### 自然科学通识类
@@ -78,7 +77,7 @@
 
 [高级数据结构与算法分析](./compulsory_courses/ADS/index.md)<br/>
 [计算机组成](./compulsory_courses/computer_organization/index.md)<br/>
-[数据库系统](./compulsory_courses/database_system.md)<br/>
+[数据库系统](./compulsory_courses/database_system/index.md)<br/>
 [计算机体系结构](./compulsory_courses/computer_architecture.md)
 
 ### 专业模块课程
@@ -101,4 +100,4 @@
 
 ## 个性修读课程
 
-[有机化学](./personal_courses/organic_chemistry.md)
+[有机化学](./personal_courses/organic_chemistry/index.md)
