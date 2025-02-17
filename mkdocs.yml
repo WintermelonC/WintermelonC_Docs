@@ -28,7 +28,6 @@ nav:
       - 军事理论: zju/military_PE/military_theory.md
     - 计算机类:
       - zju/computer/index.md
-      - 汇编语言程序设计基础: zju/computer/assembly_programming.md
       - 人工智能基础（A）: zju/computer/AI_basic.md
     - 自然科学通识类:
       - zju/natural_science/index.md
@@ -109,7 +108,9 @@ nav:
           - 'Lab 3: 复杂操作实现': zju/compulsory_courses/computer_organization/lab/lab3.md
           - 'Lab 4: 单周期 CPU': zju/compulsory_courses/computer_organization/lab/lab4.md
           - 'Lab 5: 流水线 CPU': zju/compulsory_courses/computer_organization/lab/lab5.md
-      - 数据库系统: zju/compulsory_courses/database_system.md
+      - 数据库系统:
+        - zju/compulsory_courses/database_system/index.md
+        - 1 Introduction: zju/compulsory_courses/database_system/ch1.md
       - 计算机体系结构: zju/compulsory_courses/computer_architecture.md
     - 专业模块课程:
       - zju/module_courses/index.md
@@ -119,7 +120,9 @@ nav:
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
     - 个性修读课程:
       - zju/personal_courses/index.md
-      - 有机化学: zju/personal_courses/organic_chemistry.md
+      - 有机化学:
+        - zju/personal_courses/organic_chemistry/index.md
+        - 1 有机化合物分子结构基础: zju/personal_courses/organic_chemistry/ch1.md
   - 大学生生活常识:
     - common_sense/index.md
     - 医院看病流程: common_sense/hospital.md
@@ -279,6 +282,7 @@ extra_javascript:
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
   - assets/stylesheets/extra.css
+  - assets/stylesheets/card.css
 
 # 插件
 plugins:
