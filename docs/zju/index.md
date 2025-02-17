@@ -25,7 +25,7 @@
 
 ### 计算机类
 
-[人工智能基础（A）](./computer/AI_basic.md)
+[人工智能基础（A）](./computer/AI_basic/index.md)
 
 ### 自然科学通识类
 

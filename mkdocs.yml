@@ -28,7 +28,9 @@ nav:
       - 军事理论: zju/military_PE/military_theory.md
     - 计算机类:
       - zju/computer/index.md
-      - 人工智能基础（A）: zju/computer/AI_basic.md
+      - 人工智能基础（A）: 
+        - zju/computer/AI_basic/index.md
+        - 1 初识人工智能: zju/computer/AI_basic/ch1.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 
@@ -111,6 +113,7 @@ nav:
       - 数据库系统:
         - zju/compulsory_courses/database_system/index.md
         - 1 Introduction: zju/compulsory_courses/database_system/ch1.md
+        - 2 Introduction to the Relational Model: zju/compulsory_courses/database_system/ch2.md
       - 计算机体系结构: zju/compulsory_courses/computer_architecture.md
     - 专业模块课程:
       - zju/module_courses/index.md
