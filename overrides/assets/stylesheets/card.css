@@ -2,14 +2,14 @@
 源代码来源：https://github.com/HobbitQia/notebook/blob/note1/docs/css/card.css 
 作者：HobbitQia
 
-举例：
+文件下载 card：
 <div class="card file-block" markdown="1">
   <div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
   <div class="file-body">
     <div class="file-title">文件标题</div>
     <div class="file-meta">文件信息</div>
   </div>
-  <a class="down-button" target="_blank" href="/assets/files/DB_A4_HobbitQia.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+  <a class="down-button" target="_blank" href="/assets/files/HobbitQia.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 */
 

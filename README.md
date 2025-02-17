@@ -24,3 +24,5 @@
 你可以找到一些有用的知识
 
 1. Python
+   1. Python 编程基础
+   2. PyTorch 深度学习
