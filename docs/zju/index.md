@@ -69,7 +69,7 @@
 [数据结构基础](./basic_courses/data_structure.md)<br/>
 [数字逻辑设计](./basic_courses/digital_logic_design/index.md)<br/>
 [概率论与数理统计](./basic_courses/prob_theo_and_math_stat/index.md)<br/>
-[面向对象程序设计](./basic_courses/OOP.md)
+[面向对象程序设计](./basic_courses/OOP/index.md)
 
 ## 专业课程
 

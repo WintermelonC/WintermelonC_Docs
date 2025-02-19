@@ -15,5 +15,10 @@ wk老师
 ### 考核方式
 
 <figure markdown="span">
-  ![Img 1](../../img/OOP/oop_img1.png){ width="600" }
+  ![Img 1](../../../img/OOP/oop_img1.png){ width="600" }
 </figure>
+
+## 个人笔记
+
+[0 Introduction](./ch0.md)<br/>
+[1 Using Objects](./ch1.md)

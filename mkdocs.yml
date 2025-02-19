@@ -74,7 +74,10 @@ nav:
         - 6 统计量与抽样分布: zju/basic_courses/prob_theo_and_math_stat/chapter_6.md
         - 7 参数估计: zju/basic_courses/prob_theo_and_math_stat/chapter_7.md
         - 8 假设检验: zju/basic_courses/prob_theo_and_math_stat/chapter_8.md
-      - 面向对象程序设计: zju/basic_courses/OOP.md
+      - 面向对象程序设计:
+        - zju/basic_courses/OOP/index.md
+        - 0 Introduction: zju/basic_courses/OOP/ch0.md
+        - 1 Using Objects: zju/basic_courses/OOP/ch1.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
