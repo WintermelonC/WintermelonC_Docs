@@ -8,4 +8,4 @@
 
 ## 信息安全技术
 
-[密码学](./cryptography.md)
+[密码学](./cryptography/index.md)
