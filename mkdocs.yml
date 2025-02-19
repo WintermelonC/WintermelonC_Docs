@@ -17,7 +17,8 @@ nav:
     - 思政类:
       - zju/political/index.md
       - 中国近现代史纲要: zju/political/history_of_modern_china.md
-      - 马克思主义基本原理: zju/political/marxist_principles.md
+      - 马克思主义基本原理:
+        - zju/political/marxist_principles/index.md
       - 习近平新时代中国特色社会主义思想概论: zju/political/xi_jinping_thought.md
       - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:

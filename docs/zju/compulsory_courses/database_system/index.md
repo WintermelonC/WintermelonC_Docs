@@ -17,3 +17,12 @@ cg老师
 <figure markdown="span">
   ![Img 1](../../../img/database/database_img1.png){ width="600" }
 </figure>
+
+## 个人笔记
+
+!!! info "参考"
+
+    [HobbitQia的笔记本](https://note.hobbitqia.cc/DB/){:target="_blank"}
+
+[1 Introduction](./ch1.md)<br/>
+[2 Introduction to the Relational Model](./ch2.md)

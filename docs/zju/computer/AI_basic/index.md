@@ -19,10 +19,14 @@ nd老师
 </figure>
 
 <div class="card file-block" markdown="1">
-<div class="file-icon"><img src="../../../../../img/pdf.svg" style="height: 3em;"></div>
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
 <div class="file-body">
 <div class="file-title">人工智能基础（A）课程大纲</div>
 <div class="file-meta">703 KB | 14 page</div>
 </div>
-<a class="down-button" target="_blank" href="../../../../../file/AI_basic/ai_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="down-button" target="_blank" href="../../../file/AI_basic/ai_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
+
+## 个人笔记
+
+[1 初识人工智能](./ch1.md)
