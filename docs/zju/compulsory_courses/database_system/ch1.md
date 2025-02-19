@@ -193,7 +193,7 @@ Database Administrator (DBA):
 
 ???+ question "课本 1.7"
 
-    List four significant differences between a file-processing system and a DBMs.
+    List four significant differences between a file-processing system and a DBMS.
 
     ??? success "答案"
 

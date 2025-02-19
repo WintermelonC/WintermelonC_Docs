@@ -90,7 +90,7 @@
 
 #### 信息安全技术
 
-[密码学](./module_courses/cryptography.md)
+[密码学](./module_courses/cryptography/index.md)
 
 ### 专业选修课程
 
