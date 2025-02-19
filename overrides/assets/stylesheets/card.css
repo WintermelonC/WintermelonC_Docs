@@ -4,12 +4,12 @@
 
 文件下载 card：
 <div class="card file-block" markdown="1">
-  <div class="file-icon"><img src="/assets/images/pdf.svg" style="height: 3em;"></div>
+  <div class="file-icon"><img src="img/pdf.svg" style="height: 3em;"></div>
   <div class="file-body">
     <div class="file-title">文件标题</div>
     <div class="file-meta">文件信息</div>
   </div>
-  <a class="down-button" target="_blank" href="/assets/files/HobbitQia.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+  <a class="down-button" target="_blank" href="file/pdf.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 */
 
@@ -28,10 +28,10 @@
     margin-bottom: 1em;
 }
 
-/* [data-md-color-scheme="slate"] .card {
+[data-md-color-scheme="slate"] .card {
     background-color: #181818;
     border: 0.5px solid #606060;
-} */
+}
 
 .card-body {
     -ms-flex: 1 1 auto;
@@ -72,12 +72,12 @@
     transition: background-color .3s cubic-bezier(.4,0,.2,1);
 }
 
-/* .file-block:hover {
+.file-block:hover {
     background-color: #eeeeee;
 }
 [data-md-color-scheme="slate"] .file-block:hover {
     background-color: #606060;
-} */
+}
 
 .file-title {
     padding-left: 0rem;

@@ -18,3 +18,6 @@ lm老师
   ![Img 1](../../../img/organic_chemistry/organic_img1.png){ width="800" }
 </figure>
 
+## 个人笔记
+
+[1 有机化合物分子结构基础](./ch1.md)

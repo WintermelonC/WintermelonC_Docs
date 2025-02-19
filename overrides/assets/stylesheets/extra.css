@@ -11,6 +11,10 @@ class=""
     text-transform: none;
 }
 
+[data-md-color-scheme="slate"] .md-typeset h5 {
+    color: #c1c4c9;
+}
+
 .md-typeset h4 {
     font-size: 1.125em;
 }
@@ -32,6 +36,10 @@ id=""
     background-color: #f3f3f3;
     text-align: center;
     vertical-align: middle;
+}
+
+[data-md-color-scheme="slate"] #tab-bg-both-mid {
+    background-color: #2d2f38;
 }
 
 #grid-mid {
