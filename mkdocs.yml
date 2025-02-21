@@ -120,6 +120,10 @@ nav:
         - 2 Introduction to the Relational Model: zju/compulsory_courses/database_system/ch2.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
+        - 理论部分:
+          - 1: zju/compulsory_courses/computer_architecture/theory/ch1.md
+        - 实验部分:
+          - zju/compulsory_courses/computer_architecture/lab/index.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 密码学:
