@@ -29,3 +29,9 @@ wzh老师
 <figure markdown="span">
   ![Img 3](../../../img/comp_arch/ca_img3.png){ width="600" }
 </figure>
+
+## 个人笔记
+
+### 理论部分
+
+### [实验部分](./lab/index.md)
