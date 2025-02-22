@@ -126,8 +126,8 @@ $FC = V - (N + \dfrac{S}{2})$
 
 | 杂化类型 | 孤对电子对数量 | 空间构型 | 键角 |
 | :--: | :--: | :--: | :--: |
-| $sp^3$ | 0 | 四面体 | 109°28′ |
-| $sp^3$ | 1 | 三棱锥形 |  |
+| $sp^3$ | 0 | 正四面体形 | 109°28′ |
+| $sp^3$ | 1 | 三角锥形 |  |
 | $sp^3$ | 2 | V 形 |  |
 | $sp^2$ | 0 | 平面三角形 | 120° |
 | $sp^2$ | 1 | V 形 |  |
@@ -177,3 +177,30 @@ C—C 键长：154 pm
   ![Img 39](../../../img/organic_chemistry/ch1/organic_ch1_img39.png){ width="600" }
 </figure>
 
+当两个原子的电负性差值大于等于 2 时，可以发生电子的转移，形成 **离子键**
+
+<figure markdown="span">
+  ![Img 40](../../../img/organic_chemistry/ch1/organic_ch1_img40.png){ width="600" }
+</figure>
+
+衡量共价键的极性大小用 **键矩** —— 键的偶极矩，用符号 $\mu$ 表示。正、负电荷中心的距离 $d$，正或负电荷 $q$，$\mu = d \times q$，单位是 $D$ （德拜）
+
+键矩是一矢量，方向通常规定为由正到负，用符号 ![Img 41](../../../img/organic_chemistry/ch1/organic_ch1_img41.png){ width="20" } 表示，箭头指向带负电荷原子的一端
+
+电负性差值越大，键矩越大
+
+杂化轨道中 s 成分越多，对核外电子的束缚力越大，因此，不同杂化轨道碳原子的电负性大小顺序为：$C_{sp} > C_{sp^2} > C_{sp^3}$
+
+### 1.6.2 分子的偶极矩
+
+分子的偶极矩是各键矩的矢量和。矢量和为 0 是非极性分子，不为 0 是极性分子
+
+<figure markdown="span">
+  ![Img 42](../../../img/organic_chemistry/ch1/organic_ch1_img42.png){ width="600" }
+</figure>
+
+分子的极性导致整个分子电子云密度分布不均匀。一种直观的表示分子中各区域电子云密度分布情况的方法称为 **静电势图**。颜色深浅表示势能的高低
+
+<figure markdown="span">
+  ![Img 43](../../../img/organic_chemistry/ch1/organic_ch1_img43.png){ width="600" }
+</figure>
