@@ -9,6 +9,9 @@ repo_url: https://github.com/WintermelonC/WintermelonC_Docs
 repo_name: WintermelonC_Docs
 edit_uri: edit/main/docs/
 
+# 版权声明
+copyright: Copyright &copy; 2024 - 2025 WintermelonC
+
 # 页面布局
 nav:
   - 首页: index.md
@@ -286,6 +289,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/WintermelonC
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/1089287731
 
 # 额外 js
 extra_javascript:
