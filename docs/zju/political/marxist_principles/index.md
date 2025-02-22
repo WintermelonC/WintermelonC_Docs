@@ -21,3 +21,11 @@ lj老师
 ##### 考试类型
 
 闭卷考试
+
+## 个人笔记
+
+!!! info "参考"
+
+    [LH 的资源小站](https://lh-0124.github.io/LHstudy/note/notemy0/){:target="_blank"}
+
+[0 导论](./ch0.md)
