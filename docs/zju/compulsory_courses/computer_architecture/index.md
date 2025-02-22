@@ -30,6 +30,10 @@ wzh老师
   ![Img 3](../../../img/comp_arch/ca_img3.png){ width="600" }
 </figure>
 
+<figure markdown="span">
+  ![Img 4](../../../img/comp_arch/ca_img4.png){ width="600" }
+</figure>
+
 ## 个人笔记
 
 ### 理论部分
