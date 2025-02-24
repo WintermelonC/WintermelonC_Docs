@@ -8,6 +8,10 @@
 
     本文档只涉及部分知识点，仅可用来复习重点知识
 
+!!! info "参考"
+
+    [HobbitQia的笔记本](https://note.hobbitqia.cc/DB/){:target="_blank"}
+
 Database：长期存储在计算机内、有组织的、可共享的数据集合
 
 Database-management system (DBMS)：一个用来存储，管理，便捷访问 database 的软件系统
