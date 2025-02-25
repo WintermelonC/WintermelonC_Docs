@@ -2271,6 +2271,8 @@
       
         
       
+        
+      
     
     
       
@@ -2349,6 +2351,28 @@
   
   <span class="md-ellipsis">
     1 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/OOP/ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Grouping Objects
     
   </span>
   
@@ -3586,9 +3610,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#335-setting" class="md-nav__link">
+  <a href="#335-string-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      3.3.5 Setting
+      3.3.5 String Operations
     </span>
   </a>
   
@@ -3905,6 +3929,8 @@
       
         
       
+        
+      
     
     
       
@@ -3961,6 +3987,28 @@
   
   <span class="md-ellipsis">
     1 数学基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../module_courses/cryptography/ch2.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 古典密码
     
   </span>
   
@@ -5890,9 +5938,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#335-setting" class="md-nav__link">
+  <a href="#335-string-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      3.3.5 Setting
+      3.3.5 String Operations
     </span>
   </a>
   
@@ -5947,35 +5995,187 @@
 <h2 id="32-sql-data-definition">3.2 SQL Data Definition<a class="headerlink" href="#32-sql-data-definition" title="Permanent link">&para;</a></h2>
 <h3 id="321-basic-types">3.2.1 Basic Types<a class="headerlink" href="#321-basic-types" title="Permanent link">&para;</a></h3>
 <ol>
-<li><code>char(n)</code></li>
+<li><code>char(n)</code>：固定长度的字符串，长度为 n。如果字符串长度不足 n，则用空格填充</li>
+<li><code>varchar(n)</code>：可变长度的字符串，最大长度为 n。实际存储的字符串长度可以小于 n</li>
+<li><code>int</code></li>
+<li><code>smallint</code>：存储较小范围的整数</li>
+<li><code>numeric(p, d)</code>：精确的数值类型，其中 p 是总位数，s 是小数位数</li>
+<li><code>float(n)</code>：浮点数类型，n 表示精度</li>
+<li><code>real</code>：单精度浮点数类型</li>
+<li><code>double precision</code>：双精度浮点数类型</li>
+<li><code>null</code>：用于表示缺失或未知的值。不同于空字符串或零值，null 表示数据在逻辑上不存在或不可用</li>
+<li><code>date</code>：日期类型，格式为 <code>YYYY-MM-DD</code></li>
+<li><code>time</code>：时间类型，格式为 <code>HH:MI:SS</code></li>
+<li><code>timestamp</code>：时间戳类型，包含日期和时间，格式为 <code>YYYY-MM-DD HH:MI:SS</code></li>
 </ol>
 <h3 id="322-basic-schema-definition">3.2.2 Basic Schema Definition<a class="headerlink" href="#322-basic-schema-definition" title="Permanent link">&para;</a></h3>
 <p><code>create table</code>：定义一个 relation</p>
-<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
-<span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span>
-<span class="normal"><a href="#__codelineno-0-4">4</a></span>
-<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="p">(</span><span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">building</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="n">budget</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="p">));</span>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">-- Method 1:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="p">(</span><span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w">  </span><span class="c1">-- 确保非 null</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="n">building</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">budget</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="p">),</span><span class="w">  </span><span class="c1">-- 指定主键</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="k">check</span><span class="w"> </span><span class="p">(</span><span class="n">budget</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span><span class="w">  </span><span class="c1">-- 确保 budget 非负</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1">-- Method 2:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department2</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="p">(</span><span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w">  </span><span class="c1">-- 指定主键时，默认确保非 null</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="n">building</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="n">budget</span><span class="w"> </span><span class="nb">numeric</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="k">check</span><span class="w"> </span><span class="p">(</span><span class="n">budget</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>drop table</code>：删除一个 relation</p>
-<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="p">;</span>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department2</span><span class="p">;</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>alter table</code>：增加、删除或修改 attributes</p>
 <div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
-<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">D</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">loan</span><span class="w"> </span><span class="k">add</span><span class="w"> </span><span class="n">loan_date</span><span class="w"> </span><span class="nb">date</span><span class="p">;</span><span class="w">  </span><span class="c1">-- 增加一个数据类型为 date 的新列 loan_date</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="k">drop</span><span class="w"> </span><span class="n">A</span><span class="p">;</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">alter</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">department</span><span class="w"> </span><span class="k">modify</span><span class="w"> </span><span class="p">(</span><span class="n">dept_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="n">budget</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
 <p><code>create index</code>：定义索引</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">b_index</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">branch</span><span class="p">(</span><span class="n">branch_name</span><span class="p">);</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">create</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">cust_strt_city_index</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">customer</span><span class="p">(</span><span class="n">customer_city</span><span class="p">,</span><span class="w"> </span><span class="n">customer_street</span><span class="p">);</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1">-- 唯一索引确保索引列中的所有值都是唯一的，即不允许重复值</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="k">create</span><span class="w"> </span><span class="k">unique</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">uni_acnt_index</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="p">(</span><span class="n">account_number</span><span class="p">);</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">drop</span><span class="w"> </span><span class="k">index</span><span class="w"> </span><span class="n">b_index</span><span class="p">;</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="33-basic-structure-of-sql-queries">3.3 Basic Structure of SQL QUeries<a class="headerlink" href="#33-basic-structure-of-sql-queries" title="Permanent link">&para;</a></h2>
 <h3 id="331-select">3.3.1 Select<a class="headerlink" href="#331-select" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">select</span><span class="w"> </span><span class="n">branch_name</span><span class="p">,</span><span class="w"> </span><span class="n">balance</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">from</span><span class="w"> </span><span class="n">account</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">where</span><span class="w"> </span><span class="n">balance</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">大小写</p>
+<p>SQL 不区分大小写（case insensitive）</p>
+</div>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">select</span><span class="w"> </span><span class="k">distinct</span><span class="w"> </span><span class="n">branch_name</span><span class="w">  </span><span class="c1">-- 会去除掉重复的值</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">from</span><span class="w"> </span><span class="n">account</span><span class="p">;</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="k">select</span><span class="w"> </span><span class="k">all</span><span class="w"> </span><span class="n">branch_name</span><span class="w">  </span><span class="c1">-- all 是 select 的默认方式</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="k">from</span><span class="w"> </span><span class="n">loan</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 1" src="../../../img/database/ch3/database_ch3_img1.png" width="600" />
+</figure>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="n">loan</span><span class="p">;</span><span class="w">  </span><span class="c1">-- * 表示全部</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">select</span><span class="w"> </span><span class="n">loan_number</span><span class="p">,</span><span class="w"> </span><span class="n">branch_name</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="w">  </span><span class="c1">-- 可包含运算符</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">from</span><span class="w"> </span><span class="n">loan</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="332-where">3.3.2 Where<a class="headerlink" href="#332-where" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">select</span><span class="w"> </span><span class="n">loan_number</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">from</span><span class="w"> </span><span class="n">loan</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">where</span><span class="w"> </span><span class="n">branch_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Perryridge&#39;</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1200</span><span class="p">;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">select</span><span class="w"> </span><span class="n">loan_number</span><span class="w">  </span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">from</span><span class="w"> </span><span class="n">loan</span><span class="w"> </span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">where</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">90000</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">100000</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="333-from">3.3.3 From<a class="headerlink" href="#333-from" title="Permanent link">&para;</a></h3>
+<p><strong>Example</strong>: Find the customer name, loan number and loan amount of all customers having a loan at the Perryridge branch</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">select</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="k">from</span><span class="w"> </span><span class="n">borrower</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="k">where</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loan</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">branch_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Perryridge&#39;</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="334-rename">3.3.4 Rename<a class="headerlink" href="#334-rename" title="Permanent link">&para;</a></h3>
-<h3 id="335-setting">3.3.5 Setting<a class="headerlink" href="#335-setting" title="Permanent link">&para;</a></h3>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span>
+<span class="normal"><a href="#__codelineno-9-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">old_name</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">new_name</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="k">select</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">loan_id</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span><span class="p">.</span><span class="n">amount</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="k">from</span><span class="w"> </span><span class="n">borrower</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="k">where</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loan</span><span class="p">.</span><span class="n">loan_number</span><span class="p">;</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="c1">-- = 也可以</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="k">select</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">loan_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span><span class="p">.</span><span class="n">amount</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="k">from</span><span class="w"> </span><span class="n">borrower</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="k">where</span><span class="w"> </span><span class="n">borrower</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loan</span><span class="p">.</span><span class="n">loan_number</span><span class="p">;</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="k">select</span><span class="w"> </span><span class="n">customer_name</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">loan_number</span><span class="p">,</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">amount</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="k">from</span><span class="w"> </span><span class="n">borrower</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">loan</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">L</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14"></a><span class="k">where</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">loan_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">L</span><span class="p">.</span><span class="n">loan_number</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="335-string-operations">3.3.5 String Operations<a class="headerlink" href="#335-string-operations" title="Permanent link">&para;</a></h3>
+<p>通配符</p>
+<p><code>%</code>：表示零个或多个字符。它可以匹配任意长度的字符串，包括空字符串（相当于 <code>*</code>）
+<code>_</code>：只能匹配一个字符（相当于 <code>?</code>）
+<code>||</code>：连接字符</p>
+<div class="language-sql highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span>
+<span class="normal"><a href="#__codelineno-10-5">5</a></span>
+<span class="normal"><a href="#__codelineno-10-6">6</a></span>
+<span class="normal"><a href="#__codelineno-10-7">7</a></span>
+<span class="normal"><a href="#__codelineno-10-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="k">select</span><span class="w"> </span><span class="n">customer_name</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">from</span><span class="w"> </span><span class="n">customer</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">where</span><span class="w"> </span><span class="n">customer_name</span><span class="w"> </span><span class="k">like</span><span class="w"> </span><span class="s1">&#39;%泽%&#39;</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="k">like</span><span class="w"> </span><span class="s1">&#39;Main\%&#39;</span><span class="w">  </span><span class="c1">-- \ 转义字符，查询 Main%</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="k">select</span><span class="w"> </span><span class="s1">&#39;客户名=&#39;</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">customer_name</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><span class="k">from</span><span class="w"> </span><span class="n">customer</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p><code>lower()</code> 和 <code>upper()</code>：大小写转换函数</p>
 
 
 
@@ -5998,7 +6198,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年2月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年2月25日</span>
   </span>
 
     

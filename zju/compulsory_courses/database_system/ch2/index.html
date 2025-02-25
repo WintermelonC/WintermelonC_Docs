@@ -2271,6 +2271,8 @@
       
         
       
+        
+      
     
     
       
@@ -2349,6 +2351,28 @@
   
   <span class="md-ellipsis">
     1 Using Objects
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/OOP/ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Grouping Objects
     
   </span>
   
@@ -4103,6 +4127,8 @@
       
         
       
+        
+      
     
     
       
@@ -4159,6 +4185,28 @@
   
   <span class="md-ellipsis">
     1 数学基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../module_courses/cryptography/ch2.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 古典密码
     
   </span>
   
@@ -6332,10 +6380,10 @@
 
 
 <h1 id="2-introduction-to-the-relational-model">2 Introduction to the Relational Model<a class="headerlink" href="#2-introduction-to-the-relational-model" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>此文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    此文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档只涉及部分知识点，仅可用来复习重点知识</p>
@@ -6514,23 +6562,77 @@
 </figure>
 <h3 id="274-assignment-operation">2.7.4 Assignment Operation<a class="headerlink" href="#274-assignment-operation" title="Permanent link">&para;</a></h3>
 <p><strong>赋值</strong></p>
+<p><span class="arithmatex">\(temp \leftarrow s\)</span></p>
 <h3 id="275-banking-example">2.7.5 Banking Example<a class="headerlink" href="#275-banking-example" title="Permanent link">&para;</a></h3>
+<p><strong>Example 1</strong>: Find all customers who have an account from at least the “Downtown” and the “Uptown” branches</p>
+<ul>
+<li>$\Pi_{customer\text{-}name}(\sigma_{branch\text{-}name=‘Downtown’}(depositor \Join account)) \cap \Pi_{customer\text{-}name}(\sigma_{branch\text{-}name=‘Uptown’}(depositor \Join account)) $</li>
+<li><span class="arithmatex">\(\Pi_{customer\text{-}name, branch\text{-}name}(depositor \Join account)\div \rho_{temp(branch\text{-}name)}(\lbrace(‘Downtown’), (‘Uptown’)\rbrace)\)</span></li>
+</ul>
+<p><strong>Example 2</strong>: Find all customers who have an account at all branches located in Brooklyn city</p>
+<p><span class="arithmatex">\(\Pi_{customer\text{-}name, branch\text{-}name}(depositor \Join account) \div \Pi_{branch\text{-}name}(\sigma_{branch\text{-}city=‘Brooklyn’}(branch))\)</span></p>
+<p><strong>Example 3</strong>: 查询选修了全部课程的学生学号和姓名</p>
+<ul>
+<li>课程信息: course(cno, cname, pre-cno, credits)</li>
+<li>选课信息: enrolled(sno, cno, grade)</li>
+<li>
+<p>学生信息: student(sno, sname, sex, age) </p>
+</li>
+<li>
+<p>找出全部课程号：<span class="arithmatex">\(\Pi_{cno}(course)\)</span></p>
+</li>
+<li>找出选修了全部课程的学生的学号：<span class="arithmatex">\(\Pi_{sno, cno}(enrolled) \div \Pi_{cno}(course)\)</span></li>
+<li>与 <em>student</em> 表自然连接，获得学号、姓名：<span class="arithmatex">\((\Pi_{sno, cno}(enrolled) \div \Pi_{cno}(course)) \Join \Pi_{sno, sname}(student)\)</span></li>
+</ul>
 <h2 id="28-the-extended-relational-algebra">2.8 The Extended Relational Algebra<a class="headerlink" href="#28-the-extended-relational-algebra" title="Permanent link">&para;</a></h2>
 <h3 id="281-generalized-projection">2.8.1 Generalized Projection<a class="headerlink" href="#281-generalized-projection" title="Permanent link">&para;</a></h3>
+<p><strong>Example</strong>: Given a relation <em>credit-info(customer-name, limit, credit-balance)</em>,  find how much more each person can spend:  </p>
+<p><span class="arithmatex">\(\Pi_{customer\text{-}name, limit - credit\text{-}balance}(credit\text{-}info)\)</span></p>
 <h3 id="282-aggregate-functions-and-operations">2.8.2 Aggregate Functions and Operations<a class="headerlink" href="#282-aggregate-functions-and-operations" title="Permanent link">&para;</a></h3>
+<ol>
+<li>avg</li>
+<li>min</li>
+<li>max</li>
+<li>sum</li>
+<li>count：计数</li>
+<li>as：重命名</li>
+</ol>
 <figure>
   <img alt="Img 22" src="../../../../img/database/ch2/database_ch2_img22.png" width="600" />
 </figure>
+<p>$<em sum_balance_32_as_32_sum_text_-="sum(balance) as sum\text{-">{branch\text{-}name} g</em>(account)
+$}balance</p>
+<figure>
+  <img alt="Img 23" src="../../../../img/database/ch2/database_ch2_img23.png" width="600" />
+</figure>
 <h2 id="29-modification-of-the-database">2.9 Modification of The Database<a class="headerlink" href="#29-modification-of-the-database" title="Permanent link">&para;</a></h2>
 <h3 id="291-deletion">2.9.1 Deletion<a class="headerlink" href="#291-deletion" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(r \leftarrow r - E\)</span></p>
 <p><strong>Example 1</strong>: Delete all account records in the Perryridge branch</p>
+<p><span class="arithmatex">\(account \leftarrow account - \sigma_{branch-name = ‘Perryridge’}(account)\)</span></p>
+<p><strong>Example 2</strong>: Delete all loan records with amount in the range of 0 to 50</p>
+<p><span class="arithmatex">\(loan \leftarrow loan - \sigma_{amount \geqslant 0\ and\ amount \leqslant 50}(loan)\)</span></p>
+<p><strong>Example 3</strong>: Delete all accounts at branches located in Needham</p>
+<p><span class="arithmatex">\(r_1 \leftarrow \sigma_{branch\text{-}city = ‘Needham’}(account \Join branch)\)</span><br/>
+<span class="arithmatex">\(r_2 \leftarrow \Pi_{branch\text{-}name, account\text{-}number, balance}(r1)\)</span><br/>
+<span class="arithmatex">\(r_3 \leftarrow \Pi_{customer\text{-}name, account\text{-}number}(r2 \Join depositor)\)</span><br/>
+<span class="arithmatex">\(account \leftarrow account - r_2\)</span><br/>
+<span class="arithmatex">\(depositor \leftarrow depositor - r_3\)</span></p>
 <h3 id="292-insertion">2.9.2 Insertion<a class="headerlink" href="#292-insertion" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(r \leftarrow r \cup E\)</span></p>
 <p><strong>Example 1</strong>: Insert information in the database specifying that Smith has $1200 in account A-973 at the Perryridge branch</p>
-<p><span class="arithmatex">\(account \leftarrow account \cup \lbrace ('Perryridge', A\text{-}973, 1200) \rbrace\)</span></p>
+<p><span class="arithmatex">\(account \leftarrow account \cup \lbrace ('Perryridge', A\text{-}973, 1200) \rbrace\)</span><br/>
+<span class="arithmatex">\(depositor \leftarrow depositor \cup \lbrace('Smith', A\text{-}973) \rbrace\)</span></p>
+<p><strong>Example 2</strong>: Provide as a gift for all loan customers in the Perryridge branch, a $200 savings account. Let the loan number serve as the account number for the new savings account</p>
+<p><span class="arithmatex">\(r_1 \leftarrow (\sigma_{branch\text{-}name = 'Perryridge'}(borrower \Join loan))\)</span><br/>
+<span class="arithmatex">\(account \leftarrow account \cup \Pi_{branch\text{-}name, account\text{-}number, 200}(r_1)\)</span><br/>
+<span class="arithmatex">\(depositor \leftarrow depositor \cup \Pi_{customer\text{-}name, loan\text{-}number}(r_1)\)</span></p>
 <h3 id="293-update">2.9.3 Update<a class="headerlink" href="#293-update" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(r \leftarrow \Pi_{F_1, F_2, \cdots, F_n}(r)\)</span></p>
 <p><strong>Example 1</strong>: Make interest payments by increasing all balances by 5 percent</p>
 <p><span class="arithmatex">\(account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.05}(account)\)</span></p>
 <p><strong>Example 2</strong>: Pay all accounts with balances over $10,000 6 percent interest and pay all others 5 percent</p>
+<p><span class="arithmatex">\(account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.06}(\sigma_{balance &gt; 10000}(account)) \cup \Pi_{account\text{-}number, branch\text{-}name, balance * 1.05}(\sigma_{balance \leqslant 10000}(account))\)</span></p>
 
 
 
@@ -6553,7 +6655,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年2月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年2月25日</span>
   </span>
 
     
