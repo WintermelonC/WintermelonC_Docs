@@ -1,8 +1,8 @@
 # 2 Introduction to the Relational Model
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -260,34 +260,102 @@ $r \div s$
 
 **赋值**
 
+$temp \leftarrow s$
+
 ### 2.7.5 Banking Example
+
+**Example 1**: Find all customers who have an account from at least the “Downtown” and the “Uptown” branches
+
+- $\Pi_{customer\text{-}name}(\sigma_{branch\text{-}name=‘Downtown’}(depositor \Join account)) \cap \Pi_{customer\text{-}name}(\sigma_{branch\text{-}name=‘Uptown’}(depositor \Join account)) $
+- $\Pi_{customer\text{-}name, branch\text{-}name}(depositor \Join account)\div \rho_{temp(branch\text{-}name)}(\lbrace(‘Downtown’), (‘Uptown’)\rbrace)$
+
+**Example 2**: Find all customers who have an account at all branches located in Brooklyn city
+
+$\Pi_{customer\text{-}name, branch\text{-}name}(depositor \Join account) \div \Pi_{branch\text{-}name}(\sigma_{branch\text{-}city=‘Brooklyn’}(branch))$
+
+**Example 3**: 查询选修了全部课程的学生学号和姓名
+
+- 课程信息: course(cno, cname, pre-cno, credits)
+- 选课信息: enrolled(sno, cno, grade)
+- 学生信息: student(sno, sname, sex, age) 
+
+1. 找出全部课程号：$\Pi_{cno}(course)$
+2. 找出选修了全部课程的学生的学号：$\Pi_{sno, cno}(enrolled) \div \Pi_{cno}(course)$
+3. 与 *student* 表自然连接，获得学号、姓名：$(\Pi_{sno, cno}(enrolled) \div \Pi_{cno}(course)) \Join \Pi_{sno, sname}(student)$
 
 ## 2.8 The Extended Relational Algebra
 
 ### 2.8.1 Generalized Projection
 
+**Example**: Given a relation *credit-info(customer-name, limit, credit-balance)*,  find how much more each person can spend:  
+
+$\Pi_{customer\text{-}name, limit - credit\text{-}balance}(credit\text{-}info)$
+
 ### 2.8.2 Aggregate Functions and Operations
+
+1. avg
+2. min
+3. max
+4. sum
+5. count：计数
+6. as：重命名
 
 <figure markdown="span">
   ![Img 22](../../../img/database/ch2/database_ch2_img22.png){ width="600" }
+</figure>
+
+$_{branch\text{-}name} g_{sum(balance)\ as\ sum\text{-}balance}(account)
+$
+
+<figure markdown="span">
+  ![Img 23](../../../img/database/ch2/database_ch2_img23.png){ width="600" }
 </figure>
 
 ## 2.9 Modification of The Database
 
 ### 2.9.1 Deletion
 
+$r \leftarrow r - E$
+
 **Example 1**: Delete all account records in the Perryridge branch
+
+$account \leftarrow account - \sigma_{branch-name = ‘Perryridge’}(account)$
+
+**Example 2**: Delete all loan records with amount in the range of 0 to 50
+
+$loan \leftarrow loan - \sigma_{amount \geqslant 0\ and\ amount \leqslant 50}(loan)$
+
+**Example 3**: Delete all accounts at branches located in Needham
+
+$r_1 \leftarrow \sigma_{branch\text{-}city = ‘Needham’}(account \Join branch)$<br/>
+$r_2 \leftarrow \Pi_{branch\text{-}name, account\text{-}number, balance}(r1)$<br/>
+$r_3 \leftarrow \Pi_{customer\text{-}name, account\text{-}number}(r2 \Join depositor)$<br/>
+$account \leftarrow account - r_2$<br/>
+$depositor \leftarrow depositor - r_3$
 
 ### 2.9.2 Insertion
 
+$r \leftarrow r \cup E$
+
 **Example 1**: Insert information in the database specifying that Smith has $1200 in account A-973 at the Perryridge branch
 
-$account \leftarrow account \cup \lbrace ('Perryridge', A\text{-}973, 1200) \rbrace$
+$account \leftarrow account \cup \lbrace ('Perryridge', A\text{-}973, 1200) \rbrace$<br/>
+$depositor \leftarrow depositor \cup \lbrace('Smith', A\text{-}973) \rbrace$
+
+**Example 2**: Provide as a gift for all loan customers in the Perryridge branch, a $200 savings account. Let the loan number serve as the account number for the new savings account
+
+$r_1 \leftarrow (\sigma_{branch\text{-}name = 'Perryridge'}(borrower \Join loan))$<br/>
+$account \leftarrow account \cup \Pi_{branch\text{-}name, account\text{-}number, 200}(r_1)$<br/>
+$depositor \leftarrow depositor \cup \Pi_{customer\text{-}name, loan\text{-}number}(r_1)$
 
 ### 2.9.3 Update
+
+$r \leftarrow \Pi_{F_1, F_2, \cdots, F_n}(r)$
 
 **Example 1**: Make interest payments by increasing all balances by 5 percent
 
 $account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.05}(account)$
 
 **Example 2**: Pay all accounts with balances over $10,000 6 percent interest and pay all others 5 percent
+
+$account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.06}(\sigma_{balance > 10000}(account)) \cup \Pi_{account\text{-}number, branch\text{-}name, balance * 1.05}(\sigma_{balance \leqslant 10000}(account))$
