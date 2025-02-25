@@ -83,6 +83,7 @@ nav:
         - zju/basic_courses/OOP/index.md
         - 0 Introduction: zju/basic_courses/OOP/ch0.md
         - 1 Using Objects: zju/basic_courses/OOP/ch1.md
+        - 2 Grouping Objects: zju/basic_courses/OOP/ch2.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -135,6 +136,7 @@ nav:
       - 密码学:
         - zju/module_courses/cryptography/index.md
         - 1 数学基础: zju/module_courses/cryptography/ch1.md
+        - 2 古典密码: zju/module_courses/cryptography/ch2.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md

@@ -6,7 +6,8 @@
 
 !!! info "说明"
 
-    本文档只涉及部分知识点，仅可用来复习重点知识
+    1. 本文档只涉及部分知识点，仅可用来复习重点知识
+    2. 扫描课本上的二维码后，“易读书坊”公众号上提供的教材答案，部分有误，请注意辨别
 
 ## 1.1 有机化合物的基本类型
 
@@ -264,13 +265,35 @@ $$
 
 ## 1.8 共轭体系和共轭效应
 
-### 1.8.1 $p - p$ 共轭
+### 1.8.1 $p \text{-} p$ 共轭
 
-### 1.8.2 $p - \pi$ 共轭
+羰基中的碳氧双键，成键轨道上的 2 个电子更偏向氧原子。这种电子偏向某一个原子的运动，称为 $\pi$ 电子的 **离域**，==电子离域只能在共轭体系中进行==。羰基的 $\pi$ 键由 $p \text{-} p$ 轨道形成，称为 $p \text{-} p$ 共轭
 
-### 1.8.3 $\pi - \pi$ 共轭
+### 1.8.2 $p \text{-} \pi$ 共轭
+
+如果与 $\pi$ 键相连的原子具有一个与 $\pi$ 键平行的 $p$ 轨道，那么这个 $p$ 轨道就可与 $\pi$ 键共轭，形成 $p \text{-} \pi$ 共轭体系
+
+<figure markdown="span">
+  ![Img 50](../../../img/organic_chemistry/ch1/organic_ch1_img50.png){ width="600" }
+</figure>
+
+### 1.8.3 $\pi \text{-} \pi$ 共轭
+
+两个 $\pi$ 键通过一个单键相连形成的共轭称为 $\pi \text{-} \pi$ 共轭。$\pi \text{-} \pi$ 共轭体系可以完全由碳原子组成，也可以由碳原子和其他原子共同组成。只要是两个不饱和键通过一个单键相连，就可以形成 $\pi \text{-} \pi$ 共轭体系
+
+<figure markdown="span">
+  ![Img 51](../../../img/organic_chemistry/ch1/organic_ch1_img51.png){ width="600" }
+</figure>
+
+共轭体系的特点：
+
+1. 共轭使得参与共轭的共价键的键长趋于平均化
+2. 由于电子优先填充到能量更低的成键轨道上，因此体系的能量下降，稳定性增加
 
 ### 1.8.4 共轭效应
+
+- 常见给电子共轭效应（+C）的基团：$OH, OR, SH, SR, NH_2, NHR, NR_2, O^-, X$
+- 常见吸电子共轭效应（-C）的基团：$C=O, NO_2, CN$
 
 ## 1.9 共振理论
 
@@ -286,11 +309,87 @@ $$
 
 ### 1.9.2 共振结构的书写
 
-1. 共振结构之间用双箭头联系。共振杂化体比任何一个共振结构都稳定
-2. 共振的本质是共轭体系中电子的离域，即电子的合理运动。共轭体系上的电子可以离域。离域电子发生合理的离域运动，原子核的相对位置不能改变，即骨架不变。一对电子的离域用弯箭头 $\curvearrowright$ 表示，单个电子的离域用鱼钩表示
+1.共振结构之间用双箭头联系。共振杂化体比任何一个共振结构都稳定
+
+2.共振的本质是共轭体系中电子的离域，即电子的合理运动。共轭体系上的电子可以离域。离域电子发生合理的离域运动，原子核的相对位置不能改变，即骨架不变。一对电子的离域用弯箭头 $\curvearrowright$ 表示，单个电子的离域用鱼钩 ![Img 52](../../../img/organic_chemistry/ch1/organic_ch1_img52.png){ width="25" } 表示。用虚实线表示键长平均化，用 $\delta^+$ 和 $\delta^-$ 表示原子所带的相对电荷密度
+
+<figure markdown="span">
+  ![Img 54](../../../img/organic_chemistry/ch1/organic_ch1_img54.png){ width="400" }
+</figure>
+
+3.所有共振结构中的原子必须符合价键理论的规则。但对于第三、四周期的元素来说，八隅体规则可能并不适用
+
+<figure markdown="span">
+  ![Img 53](../../../img/organic_chemistry/ch1/organic_ch1_img53.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 55](../../../img/organic_chemistry/ch1/organic_ch1_img55.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 56](../../../img/organic_chemistry/ch1/organic_ch1_img56.png){ width="600" }
+</figure>
+
+4.所有共振结构中的净电荷数必须相同
+
+<figure markdown="span">
+  ![Img 57](../../../img/organic_chemistry/ch1/organic_ch1_img57.png){ width="600" }
+</figure>
+
+5.所有共振结构体中的未成对电子数必须相同
+
+<figure markdown="span">
+  ![Img 58](../../../img/organic_chemistry/ch1/organic_ch1_img58.png){ width="600" }
+</figure>
+
+6.$\pi$ 电子从富电性原子向缺电性原子偏移
+
+<figure markdown="span">
+  ![Img 59](../../../img/organic_chemistry/ch1/organic_ch1_img59.png){ width="600" }
+</figure>
+
+7.书写共振式时，需要满轨道方向性的要求
+
+<figure markdown="span">
+  ![Img 60](../../../img/organic_chemistry/ch1/organic_ch1_img60.png){ width="600" }
+</figure>
+
+!!! tip "书写共振式"
+
+    1. [有机化学2.2：共振式书写无敌攻略](https://www.bilibili.com/video/BV1yT411w7Hf/){:target="_blank"}
+    2. [有机化学2.3：共振论的书写和共振论的应用](https://www.bilibili.com/video/BV1it4y1g7sr/){:target="_blank"}
+
+    > 我超，这个视频太牛啦啦啦啦啦啦，不会写的赶紧去看啊啊啊啊啊啊
 
 ### 1.9.3 共振稳定作用
+
+1. 共振结构越稳定，对共振杂化体贡献越大  
+2. 共振杂化体的内能低于任何单个共振结构的内能
+3. 参加共振的结构越多，共振杂化体越稳定
+4. 共价键越多越稳定
+5. 具有八隅体结构的原子越多越稳定
+6. 形式电荷越接近 0 越稳定，电荷分离将导致稳定性降低
+7. 键角和键长变形较大的共振式极不稳定
+
+<figure markdown="span">
+  ![Img 61](../../../img/organic_chemistry/ch1/organic_ch1_img61.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 62](../../../img/organic_chemistry/ch1/organic_ch1_img62.png){ width="600" }
+</figure>
 
 ## 1.10 分子间弱的作用力
 
 ### 1.10.1 范德华力
+
+分子之间存在非定向的、无饱和性的、较弱的相互吸引的作用力
+
+范德华力的大小会影响有机化合物的熔点、沸点和密度等物理性质
+
+类型：
+
+1. 非离子型的极性分子具有永久偶极矩，它们之间存在 **偶极-偶极相互作用力**，也称为 **取向力**
+2. 极性分子堆非极性分子有极化作用，使非极性分子的电子云变形，产生诱导偶极矩，永久偶极矩与其诱导出的瞬间偶极矩相互作用。这种偶极-诱导偶极相互作用力称为 **诱导力**
+3. 非极性分子之间由于电子的概率运动，可以相互配合产生一对方向相反的诱导偶极矩，这种诱导偶极-诱导偶极相互作用力称为 **色散力** 或 **伦敦力**，它是范德华力的主要来源。色散力与分子的变形性有关，可变形性越强越易被极化，色散力也越强

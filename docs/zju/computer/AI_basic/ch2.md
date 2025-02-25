@@ -11,7 +11,7 @@
 本节要点：
 
 <figure markdown="span">
-  ![Img 1](../../../img/AI_basic/ch2/ai_ch_img1.png){ width="400" }
+  ![Img 1](../../../img/AI_basic/ch2/ai_ch2_img1.png){ width="400" }
 </figure>
 
 ## 2.1 初始人工智能系统
@@ -19,7 +19,7 @@
 ### 2.1.1 人工智能系统架构
 
 <figure markdown="span">
-  ![Img 2](../../../img/AI_basic/ch2/ai_ch_img2.png){ width="600" }
+  ![Img 2](../../../img/AI_basic/ch2/ai_ch2_img2.png){ width="600" }
 </figure>
 
 ### 2.1.2 人工智能系统三要素
@@ -27,7 +27,7 @@
 数据，算法，算力
 
 <figure markdown="span">
-  ![Img 3](../../../img/AI_basic/ch2/ai_ch_img3.png){ width="400" }
+  ![Img 3](../../../img/AI_basic/ch2/ai_ch2_img3.png){ width="400" }
 </figure>
 
 ## 2.2 人工智能系统基础
@@ -58,13 +58,13 @@
 连接三个子系统的是总线（Bus），分为地址总线、数据总线和控制总线
 
 <figure markdown="span">
-  ![Img 4](../../../img/AI_basic/ch2/ai_ch_img4.png){ width="400" }
+  ![Img 4](../../../img/AI_basic/ch2/ai_ch2_img4.png){ width="400" }
 </figure>
 
 #### CPU
 
 <figure markdown="span">
-  ![Img 5](../../../img/AI_basic/ch2/ai_ch_img5.png){ width="600" }
+  ![Img 5](../../../img/AI_basic/ch2/ai_ch2_img5.png){ width="600" }
 </figure>
 
 性能指标：
@@ -82,7 +82,7 @@
 - 存储容量即存储器中存储单元的总数，也叫做字节数，或者称为地址空间
 
 <figure markdown="span">
-  ![Img 7](../../../img/AI_basic/ch2/ai_ch_img7.png){ width="600" }
+  ![Img 7](../../../img/AI_basic/ch2/ai_ch2_img7.png){ width="600" }
 </figure>
 
 ##### 内存储器（主存储器）
@@ -93,7 +93,7 @@
 - 内存空间和 CPU 地址总线数目有关
 
 <figure markdown="span">
-  ![Img 6](../../../img/AI_basic/ch2/ai_ch_img6.png){ width="600" }
+  ![Img 6](../../../img/AI_basic/ch2/ai_ch2_img6.png){ width="600" }
 </figure>
 
 1. 随机存取存储器（RAM）
