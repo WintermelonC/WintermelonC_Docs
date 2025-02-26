@@ -359,3 +359,77 @@ $account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.
 **Example 2**: Pay all accounts with balances over $10,000 6 percent interest and pay all others 5 percent
 
 $account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.06}(\sigma_{balance > 10000}(account)) \cup \Pi_{account\text{-}number, branch\text{-}name, balance * 1.05}(\sigma_{balance \leqslant 10000}(account))$
+
+## Homework
+
+<!-- 本节内容在 2025/3/3 后上传至 Github -->
+
+<!-- ???+ question "课本 2.7"
+
+    Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:
+
+    <figure markdown="span">
+      ![Img 24](../../../img/database/ch2/database_ch2_img24.png){ width="600" }
+    </figure>
+
+    a. Find the name of each branch located in “Chicago”.<br/>
+    b. Find the ID of each borrower who has a loan in branch “Downtown”.
+
+    ??? success "答案"
+
+        a. $\Pi_{branch\_name}(\sigma_{branch\_city = 'Chicago'}(branch))$
+        
+        b. $\Pi_{ID}(\sigma_{branch\_name = 'Downtown'}(loan) \Join borrower)$
+
+???+ question "课本 2.12"
+
+    Consider the bank database of Figure 2.18. Assume that branch names and customer names uniquely identify branches and customers, but loans and accounts can be associated with more than one customer.
+
+    a. What are the appropriate primary keys?<br/>
+    b. Given your choice of primary keys, identify appropriate foreign keys.
+
+    ??? success "答案"
+
+        a. 
+        
+        - branch: branch_name
+        - customer: customer_name
+        - loan: loan_number
+        - borrower: (ID, loan_number)
+        - account: account_number
+        - depositor: (ID, account_number)
+
+        ---
+
+        b.
+
+        - loan: branch_name (branch.branch_name)
+        - borrower: ID (customer.ID), loan_number (loan.loan_number)
+        - account: branch_name (branch.branch_name)
+        - depositor: ID (customer.ID), account_number (account.account_number)
+
+???+ question "课本 2.13"
+
+    Construct a schema diagram for the bank database of Figure 2.18.
+
+    ??? success "答案"
+    
+        <figure markdown="span">
+          ![Img 25](../../../img/database/ch2/database_ch2_img25.png){ width="600" }
+        </figure>
+
+???+ question "课本 2.15"
+
+    Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:
+
+    a. Find each loan number with a loan amount greater than $10000.<br/>
+    b. Find the ID of each depositor who has an account with a balance greater than $6000.<br/>
+    c. Find the ID of each depositor who has an account with a balance greater than $6000 at the “Uptown” branch.
+
+    ??? success "答案"
+
+        a. $\Pi_{loan\_number}(\sigma_{amount > 10000}(loan))$
+        
+        b. $\Pi_{ID}((\sigma_{balance > 6000}(account)) \Join depositor)$
+        
+        c. $\Pi_{ID}((\sigma_{balance > 6000 \land branch\_name = 'Uptown'}(account)) \Join depositor)$ -->
