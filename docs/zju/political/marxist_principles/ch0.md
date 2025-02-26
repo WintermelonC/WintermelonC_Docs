@@ -1,8 +1,12 @@
 # 0 导论
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    此文档正在更新中……
+    此文档正在更新中…… -->
+
+!!! info "参考"
+
+    [LH 的资源小站](https://lh-0124.github.io/LHstudy/note/notemy0/){:target="_blank"}
 
 ## 1 什么是马克思主义
 
