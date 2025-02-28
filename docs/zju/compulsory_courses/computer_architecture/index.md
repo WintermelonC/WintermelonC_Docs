@@ -27,15 +27,13 @@ wzh老师
 #### 实验部分（32 %）
 
 <figure markdown="span">
-  ![Img 3](../../../img/comp_arch/ca_img3.png){ width="600" }
-</figure>
-
-<figure markdown="span">
   ![Img 4](../../../img/comp_arch/ca_img4.png){ width="600" }
 </figure>
 
 ## 个人笔记
 
 ### 理论部分
+
+[1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)
 
 ### [实验部分](./lab/index.md)
