@@ -9,6 +9,6 @@
 [4 列表](./basic/ch4.md)<br/>
 [5 字典和结构化数据](./basic/ch5.md)
 
-## PyTorch 深度学习
+## [PyTorch 深度学习](./pytorch/index.md)
 
 [7 现代卷积神经网络](./pytorch/ch7/ch7_1.md)

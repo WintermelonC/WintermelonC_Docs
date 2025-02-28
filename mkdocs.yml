@@ -200,6 +200,10 @@ nav:
           - 7.5 批量规范化: knowledge/python/pytorch/ch7/ch7_5.md
           - 7.6 ResNet 残差网络: knowledge/python/pytorch/ch7/ch7_6.md
           - 7.7 DenseNet 稠密连接网络: knowledge/python/pytorch/ch7/ch7_7.md
+    - 算法:
+      - knowledge/algorithm/index.md
+      - 其他:
+        - 埃拉托斯特尼筛法求质数: knowledge/algorithm/other/sieve_of_eratosthenes.md
 
 # 主题设置
 theme:
