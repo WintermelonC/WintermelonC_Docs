@@ -2,7 +2,7 @@
 
 <!-- !!! tip "说明"
 
-    此文档正在更新中…… -->
+    本文档正在更新中…… -->
 
 > 原视频：[成年人社会常识课-如何乘坐交通工具](https://www.bilibili.com/video/BV1wh29YLEA6/){:target="_blank"}
 

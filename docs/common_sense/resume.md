@@ -2,7 +2,7 @@
 
 !!! tip "说明"
 
-    此文档正在更新中……
+    本文档正在更新中……
 
 > 原视频：[大学生到底该怎么写简历？一个视频看懂简历底层逻辑](https://www.bilibili.com/video/BV1TAzoY1EQA/){:target="_blank"}
 
