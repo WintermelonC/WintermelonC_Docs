@@ -2,7 +2,7 @@
 
 <!-- !!! tip "说明"
 
-    此文档正在更新中…… -->
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -172,7 +172,7 @@ SQL = DDL + DML + DCL(Data Control Language)
 - 确保 database 保持在正常的状态下，即使发生了错误（通过 recovery system 处理问题）
 - Concurrency-control manager：控制并发事务之间的交互
 
-## 1.7 Database Architecture
+## 1.7 Database and Application Architecture
 
 <figure markdown="span">
   ![Img 7](../../../img/database/ch1/database_ch1_img7.png){ width="600" }

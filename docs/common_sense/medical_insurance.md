@@ -2,7 +2,7 @@
 
 <!-- !!! tip "说明"
 
-    此文档正在更新中…… -->
+    本文档正在更新中…… -->
 
 > 原视频：[真的有大学开了《成年人社会常识课》【看病&医保篇】](https://www.bilibili.com/video/BV1eWxneME3Q/){:target="_blank"}
 
