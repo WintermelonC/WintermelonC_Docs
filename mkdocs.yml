@@ -85,6 +85,7 @@ nav:
         - 0 Introduction: zju/basic_courses/OOP/ch0.md
         - 1 Using Objects: zju/basic_courses/OOP/ch1.md
         - 2 Grouping Objects: zju/basic_courses/OOP/ch2.md
+        - 3 Defining Class: zju/basic_courses/OOP/ch3.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -200,10 +201,10 @@ nav:
           - 7.5 批量规范化: knowledge/python/pytorch/ch7/ch7_5.md
           - 7.6 ResNet 残差网络: knowledge/python/pytorch/ch7/ch7_6.md
           - 7.7 DenseNet 稠密连接网络: knowledge/python/pytorch/ch7/ch7_7.md
-    - 算法:
-      - knowledge/algorithm/index.md
+    - 数据结构与算法:
+      - knowledge/data_stru_algorithm/index.md
       - 其他:
-        - 埃拉托斯特尼筛法求质数: knowledge/algorithm/other/sieve_of_eratosthenes.md
+        - 埃拉托斯特尼筛法求质数: knowledge/data_stru_algorithm/other/sieve_of_eratosthenes.md
 
 # 主题设置
 theme:

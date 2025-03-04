@@ -26,6 +26,7 @@
 1. [Python](./knowledge/python/index.md)
       1. [Python 编程基础](./knowledge/python/basic/index.md)
       2. [PyTorch 深度学习](./knowledge/python/pytorch/index.md)
+2. [数据结构与算法](./knowledge/data_stru_algorithm/index.md)
 
 ??? abstract "2025 寒假计划"
 

@@ -629,7 +629,7 @@ RISC-V 指令的格式：
 
     Translate the following loop into C. Assume that the C-level integer i is held in register x6,x5 holds the C-level integer called result, and x10 holds the base address of the integer MemArray.
 
-    > 课本题干有误，本文已修正
+    > 课本题干有误，本文档已修正
 
     ```verilog title="RISC-V" linenums="1"
     addi x6, x0, 0
@@ -1359,7 +1359,7 @@ RISC-V 指令集中的读取立即数高位指令（Load upper immediate）`lui`
     ![Img 7](../../../../img/computer_organization/theory/ch2/comp_orga_theo_ch2_img7.png){ width="600" }
 </figure>
 
-> 课本原图有误，本图片已修正
+> 课本原图有误，本文档已修正
 
 RISC-V 指令的格式：
 

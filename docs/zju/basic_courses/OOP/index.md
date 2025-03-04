@@ -22,4 +22,5 @@ wk老师
 
 [0 Introduction](./ch0.md)<br/>
 [1 Using Objects](./ch1.md)<br/>
-[2 Grouping Objects](./ch2.md)
+[2 Grouping Objects](./ch2.md)<br/>
+[3 Defining Class](./ch3.md)

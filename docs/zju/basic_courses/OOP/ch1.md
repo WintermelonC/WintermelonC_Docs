@@ -1,133 +1,238 @@
 # 1 Using Objects
 
-<!-- !!! tip "说明"
+!!! tip "说明"
 
-    本文档正在更新中…… -->
+    本文档正在更新中……
 
 !!! info "说明"
 
-    本文档仅涉及部分内容，仅可用于复习重点知识
+    1. 本文档仅涉及部分内容，仅可用于复习重点知识
+    2. Homework 的部分答案由 AI 生成
 
-## 1.1 string
+## 1 Object
 
-string 在 C++ 中是一个 class，使用前添加头文件 `# include <string>`
+在 C++ 中，"object"（对象）是一个核心概念，指的是类（class）或结构体（struct）的实例。简而言之，对象是数据和可在这些数据上操作的函数（方法）的封装体。通过这种封装，C++ 实现了面向对象编程（OOP）中的关键特性：封装、继承和多态
+
+## 2 `string`
+
+`string` 是 C++ 标准库中的一个类，用于表示和操作字符串，使用前添加头文件 `<string>`
+
+### 2.1 `string` 的创建和初始化
 
 ```cpp linenums="1"
+# include <iostream>
 # include <string>
-// string 的定义
-string str;
-// string 的初始化
-string str = "Hello";
-string str("Hello");
-string str{"Hello"};
-// string 的赋值
-string str1;
-string str2 = "Hello";
-str1 = str2;
-// string 的输入和输出
-cin >> str;
-cout << str;
-// 读入一整行，包括空格
-string line_var;
-getline(cin, line_var)
+using namespace std;
+
+int main()
+{
+    string str1; // 创建一个字符串，并初始化为空字符串
+    string str2 = "Hello, World!"; // 使用字符串字面值初始化
+    string str3("Hello, C++!"); // 使用构造函数初始化
+    string str4(str2); // 使用另一个字符串初始化
+
+    cout << str2 << endl; // 输出: Hello, World!
+    cout << str3 << endl; // 输出: Hello, C++!
+    cout << str4 << endl; // 输出: Hello, World!
+
+    return 0;
+}
 ```
 
-1. cin 是预定义的对象
-2. cin 也不能读取空格
-
-### 1.1.1 string 方法
-
-string 可以被看作 array 使用
+### 2.2 `string` 的输入和输出
 
 ```cpp linenums="1"
+# include <iostream>
 # include <string>
-string s = "Hello";
-s[0] = 'J';
+using namespace std;
 
-// string 的拼接
-string str3;
-str3 = str1 + str2;  // 直接使用 +
-str1 += str2;
-str1 += 'lalala';
+int main()
+{
+    string name;
+    cout << "Enter your name: ";
+    cin >> name; // 读取单个单词
+    cout << "Hello, " << name << "!" << endl;
+
+    cin.ignore(); // 忽略剩余的输入缓冲区内容
+    cout << "Enter your full name: ";
+    getline(cin, name); // 读取整行字符串
+    cout << "Hello, " << name << "!" << endl;
+
+    return 0;
+}
 ```
 
----
+#### `getline()`
 
-`.length()` 获取 string 的长度
+`getline()` 是 C++ 标准库中用于从输入流读取字符串的一个非常有用的函数，特别是当你需要读取包含空格的整行文本时
+
+- `std::istream& getline(std::istream& is, std::string& str);`
+      - 从输入流 `is` 中读取字符直到遇到换行符（`\n`），并将结果存储在 `str` 中，包括读取到的所有字符但不包括换行符本身
+- `std::istream& getline(std::istream& is, std::string& str, char delim);`
+      - 允许指定一个自定义的分隔符 `delim`，当读取过程中遇到该字符时停止读取
 
 ```cpp linenums="1"
-string str;
-str.length();
+# include <iostream>
+# include <string>
+
+int main() {
+    std::string data;
+    std::cout << "Enter data separated by commas: ";
+    std::getline(std::cin, data, ',');  // getline 将会读取输入直到遇到第一个逗号 ,
+    std::cout << "First part: " << data << std::endl;
+    return 0;
+}
 ```
 
-1. `.substr(int pos, int len)`：获取子字符串
-2. `.insert(size_t pos, const string& s)`：插入字符串
-3. `.erase(size_t pos = 0, size_t len = npos)`：删除字符串的部分内容
-4. `.append(const string& str)`：追加字符串
-5. `.replace(size_t pos, size_t len, const string& str)`：替换字符串的部分内容
-6. `size_t .find(const string& str, size_t pos = 0) const`：查找字符串的位置。未找到返回 `std::string::npos`
+1. 当使用 `getline()` 读取输入后，如果紧接着有其他非字符串类型的输入操作，可能会因为缓冲区中的剩余换行符而导致问题。在这种情况下，可能需要额外处理或清除输入缓冲区，可使用 `cin.ignore()`，默认忽略一个字符
+      - `istream& ignore(streamsize n = 1, int delim = EOF)`
+          - `n`：要忽略的最大字符数
+          - `delim`：分隔符，当遇到此字符时停止忽略字符
+          - `cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n')`：忽略尽可能多的字符数量
+2. `getline()` 返回其输入流参数，因此可以用来检查流状态（例如是否到达文件末尾）。如果读取失败，返回的流将处于错误状态
 
-!!! tip ".insert()"
+### 2.3 元素的访问和修改
 
-    `std::string::insert` 是 C++ 标准库中用于在 `std::string` 对象中插入字符或字符串的方法。它有几种不同的重载形式，允许你以不同的方式指定插入位置和内容。以下是几种常见的使用方式：
-    
-    **1.在指定位置插入单个字符**
-    
-    ```cpp
-    string& insert(size_t pos, char ch);
-    ```
-
-    这会在位置 `pos` 插入一个字符 `ch`
-    
-    **2.在指定位置插入另一个字符串**
-    
-    ```cpp
-    string& insert(size_t pos, const string& str);
-    ```
-
-    这会在位置 `pos` 插入整个字符串 `str`
-    
-    **3.在指定位置插入另一字符串的一部分**
-    
-    ```cpp
-    string& insert(size_t pos, const string& str, size_t subpos, size_t sublen);
-    ```
-
-    这会在位置 `pos` 插入从 `subpos` 开始的 `sublen` 个字符的子串
-    
-    **4.在指定位置插入多个相同字符**
-    
-    ```cpp
-    string& insert(size_t pos, size_t n, char ch);
-    ```
-
-    这会在位置 `pos` 插入 `n` 次字符 `ch`
-
----
-
-### 1.1.2 string 指针
+可以使用下标运算符 `[]` 或 `at()` 成员函数访问和修改字符串中的字符
 
 ```cpp linenums="1"
-string s = "Hello";
-string* ps = &s;
-// 使用指针
-(*ps).length();
-ps -> length();
+# include <iostream>
+# include <string>
+using namespace std;
+
+int main()
+{
+    string str = "Hello, World!";
+    cout << "First character: " << str[0] << endl; // 输出: H
+    cout << "Last character: " << str[str.length() - 1] << endl; // 输出: !
+
+    str[0] = 'h';
+    cout << "Modified string: " << str << endl; // 输出: hello, World!
+
+    return 0;
+}
 ```
 
-- `string s`：s 被创建并被初始化
-- `string *ps`：ps 指向什么未知
+### 2.4 `string` 的连接、比较
+
+可以使用 `+` 运算符或 `+=` 运算符连接字符串
 
 ```cpp linenums="1"
-string s1, s2;
-s1 = s2;  // s2 的值赋值给 s1
-string *ps1, *ps2;
-ps1 = ps2;  // 之后，ps1 也指向 ps2 所指的那个变量
+# include <iostream>
+# include <string>
+using namespace std;
+
+int main()
+{
+    string str1 = "Hello";
+    string str2 = "World";
+    string str3 = str1 + ", " + str2 + "!"; // 使用 + 运算符连接
+    str1 += ", " + str2 + "!"; // 使用 += 运算符连接
+
+    cout << str3 << endl; // 输出: Hello, World!
+    cout << str1 << endl; // 输出: Hello, World!
+
+    return 0;
+}
 ```
 
-## 1.2 Object
+可以使用比较运算符（如 `==`, `!=`, `<`, `>`, `<=`, `>=`）比较字符串
 
-存储在 string 变量里的那个东西就是一个 object，C++ 中任何一个类型都是一个 object
+```cpp linenums="1"
+# include <iostream>
+# include <string>
+using namespace std;
+
+int main()
+{
+    string str1 = "Hello";
+    string str2 = "World";
+    string str3 = "Hello";
+
+    cout << (str1 == str2) << endl; // 输出: 0 (false)
+    cout << (str1 == str3) << endl; // 输出: 1 (true)
+    cout << (str1 < str2) << endl; // 输出: 1 (true)
+
+    return 0;
+}
+```
+
+### 2.5 `string` 的方法
+
+| 方法 | 功能 | 返回值 |
+| -- | -- | -- |
+| `size_t length() const` | 获取字符串的长度 | |
+| `size_t size() const` | 获取字符串的长度 | |
+| `bool empty() const` | 检查字符串是否为空 | 如果字符串为空，返回 `true`，否则返回 `false` |
+| `void clear()` | 清空字符串内容 | |
+| `char& at(size_t pos)` | 访问字符串中的元素 | 如果 `pos >= size()`，则会抛出 `std::out_of_range` 异常 |
+| `string& append(const string& str)`<br/>`string& append(size_t n, char c)` | 在字符串末尾追加内容 | |
+| `string& insert(size_t pos, const string& str)`<br/>`string& insert(size_t pos, char ch)` | 在指定位置插入内容 | |
+| `string& erase(size_t pos = 0, size_t len = npos)` | 删除字符串中的部分内容 | |
+| `string substr(size_t pos = 0, size_t len = npos) const` | 返回一个子字符串 | |
+| `size_t find(const string& str, size_t pos = 0) const`| 查找子字符串在字符串中的位置 | 如果未找到，返回 `string::npos` |
+| `string& replace(size_t pos, size_t len, const string& str)` | 替换字符串中的部分内容 | |
+
+> 1. `size_t`：无符号整数类型，通常用于表示内存中对象的大小或者数组的长度
+> 2. `string&`：`string` 的引用
+> 3. 函数原型前面跟着 `const` 表示不能通过这个引用来修改原始字符串中的字符
+> 4. 函数原型后面跟着 `const` 表示这个成员函数不会修改其所属的对象，允许它被常量对象调用
+> 5. `string::npos`：通常用于表示一个无效的位置或者长度值。在实际应用中，`npos` 主要用于表示“直到字符串末尾”的位置或指示搜索函数没有找到匹配项的情况
+
+### 2.6 `string` 的指针
+
+```cpp linenums="1"
+# include <iostream>
+# include <string>
+using namespace std;
+
+int main()
+{
+    string s = "Hello";
+    string* ps = &s; // 定义一个指向 s 的指针
+
+    cout << "String: " << *ps << endl; // 输出: Hello
+
+    // 使用指针调用字符串的方法
+    cout << "Length: " << ps -> length() << endl; // 输出: 5
+    cout << "Length: " << *(ps).length() << endl; // 输出: 5
+
+    // 修改字符串内容
+    *ps = "Hello, World!";
+    cout << "Modified String: " << *ps << endl; // 输出: Hello, World!
+
+    return 0;
+}
+```
+
+可以将一个 `string` 指针赋值给另一个 `string` 指针，使它们指向同一个 `string` 对象
+
+```cpp linenums="1"
+# include <iostream>
+# include <string>
+using namespace std;
+
+int main()
+{
+    string s1 = "Hello";
+    string s2 = "World";
+    string* ps1 = &s1;
+    string* ps2 = &s2;
+
+    // 将 ps2 指向 ps1 所指向的对象
+    ps2 = ps1;
+
+    cout << "ps1 points to: " << *ps1 << endl; // 输出: Hello
+    cout << "ps2 points to: " << *ps2 << endl; // 输出: Hello
+
+    return 0;
+}
+```
+
+!!! tip "Object vs Pointer"
+
+    - `string s`：object `s` 被定义并被初始化
+    - `string* ps`：object `ps` 指向什么并不知道
 
 ## Homework
 
@@ -272,7 +377,7 @@ ps1 = ps2;  // 之后，ps1 也指向 ps2 所指的那个变量
 
         `cin >> n` 会读取数字 `1`，但不会读取之后的换行符，因此之后的 `getline` 语句会读取到一个空行
 
-        可以在两个语句之间添加一个 `getchar()` 来消除换行符
+        可以在两个语句之间添加一个 `getchar()` 来消除换行符，或者使用 `cin.ignore()`
 
         ```cpp linenums="1"
         int n;
