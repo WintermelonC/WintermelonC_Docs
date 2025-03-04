@@ -6,9 +6,10 @@
 
 !!! info "说明"
 
-    本文档仅涉及部分内容，仅可用于复习重点知识
+    1. 本文档仅涉及部分内容，仅可用于复习重点知识
+    2. Homework 的部分答案由 AI 生成
 
-## 2.1 STL
+## 1 STL
 
 Standard Template Library
 
@@ -18,7 +19,7 @@ Standard Template Library
 - STL 的一个基本理念就是将数据和操作分离
 - STL 中的所有组件都由模板构成，其元素可以是任意类型
 
----
+## 2 Container
 
 Container（容器）：容器就是放东西的东西
 
@@ -31,94 +32,228 @@ All Sequential Containers（顺序容器）:
 5. array：固定大小数组
 6. string：字符数组
 
-## 2.2 vector
+## 3 `vector`
 
-```cpp linenums="1"
-# include <vector>
-// vector 的定义
-vector<int> x;
-vector<string> notes;
-// 拷贝构造函数
-// 使用现有的 vector 对象 x 来初始化另一个 vector 对象 y
-// y 的内容与 x 完全相同
-vector<int> y(x);
-```
+使用前包含头文件 `<vector>`
 
-### 2.2.1 vector 方法
+### 3.1 `vector` 的创建和初始化
 
 ```cpp linenums="1"
 # include <iostream>
 # include <vector>
-
 using namespace std;
 
-int main() 
+int main()
 {
-    // Declare a vector of ints (no need to worry about size)
-    vector<int> x;
-    // Add elements
-    for (int a = 0; a < 1000; a++) {
-        x.push_back(a);        
-    }
-    // 迭代器
-    vector<int>::iterator p;
-    for (p = x.begin(); p < x.end(); p++) {
-        cout << *p << " ";
-    }
+    vector<int> vec1; // 创建一个空的 vector
+    vector<int> vec2(10); // 创建一个包含 10 个元素的 vector，元素值为默认值 0
+    vector<int> vec3(10, 5); // 创建一个包含 10 个元素的 vector，元素值为 5
+    vector<int> vec4 = {1, 2, 3, 4, 5}; // 使用初始化列表初始化
+
     return 0;
 }
 ```
 
-1. `v.size()`：获取 v 中成员的数量
-2. `v.empty()`：判断 v 是否为空
-3. `v.swap(x2)`：交换
-4. `I.begin()`：第一个元素的位置
-5. `I.end()`：最后一个元素的位置
-6. `v.at(index)`：`v[index]`，但会进行边界判断
-7. `v.front()`：访问第一个元素，返回引用
-8. `v.back()`：访问最后一个元素，返回引用
-9. `v.push_back(e)`
-10. `v.pop_back()`
-11. `v.insert(pos, e)`
-12. `v.erase(pos)`
-12. `v.clear()`
-13. `v.find(first, last, item)`
+### 3.2 `vector` 的比较
 
-## 2.3 list
+使用 `==` `!=` `>` `<` `>=` `<=` 比较 `vector`
 
-1. `x.front()`：返回列表中第一个元素的引用
-2. `x.back()`：返回列表中最后一个元素的引用
-3. `x.push_back(item)`：在列表末尾添加一个元素
-4. `x.push_front(item)`：在列表开头添加一个元素
-5. `x.pop_back()`：删除列表末尾的元素
-6. `x.pop_front()`：删除列表开头的元素
-7. `x.erase(pos1, pos2)`：删除范围 `[pos1, pos2)` 内的元素
+- `==` 运算符：当且仅当两个向量的大小相同，并且对应位置的所有元素都相等时，`==` 才返回 `true`
+- `!=` 运算符：这是等于运算符的逻辑否定。如果两个向量不相等（即大小不同或至少有一个对应位置的元素不同），则 `!=` 返回 `true`
+- `>` `<` `>=` `<=`：通过元素的字典序（lexicographical compare，即类似于字符串或词典中的顺序）来进行比较的
+      - 具体来说，当两个容器（例如 `std::vector`）使用这些运算符进行比较时，会从头到尾依次比较对应位置上的元素，直到找到一对不同的元素为止。如果所有对应位置的元素都相同，则较短的容器被视为“小于”较长的容器
+
+### 3.3 元素的访问和修改
+
+可以使用下标运算符 `[]` 或 `at()` 成员函数访问和修改 vector 中的元素
+
+```cpp linenums="1"
+# include <iostream>
+# include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vec = {1, 2, 3, 4, 5};
+
+    // 访问元素
+    cout << "First element: " << vec[0] << endl; // 输出: 1
+    cout << "Second element: " << vec.at(1) << endl; // 输出: 2
+
+    // 修改元素
+    vec[0] = 10;
+    vec.at(1) = 20;
+
+    cout << "Modified vector: ";
+    for (int i : vec)
+    {
+        cout << i << " ";
+    }
+    cout << endl; // 输出: 10 20 3 4 5
+
+    return 0;
+}
+```
+
+### 3.4 迭代器遍历元素
+
+可以使用迭代器遍历 `vector` 中的元素
+
+```cpp linenums="1"
+# include <iostream>
+# include <vector>
+using namespace std;
+
+int main()
+{
+    vector<int> vec = {1, 2, 3, 4, 5};
+
+    // 使用迭代器遍历元素
+    cout << "Vector elements: ";
+    for (vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+    cout << endl; // 输出: 1 2 3 4 5
+
+    return 0;
+}
+```
+
+### 3.5 `vector` 的方法
+
+| 方法 | 功能 | 返回值 |
+| -- | -- | -- |
+| `void push_back(const T& value)` | 在 `vector` 的末尾添加一个元素 | |
+| `void pop_back()` | 删除 `vector` 的最后一个元素 | |
+| `size_t size() const` | 获取 `vector` 中元素的数量 | |
+| `size_t capacity() const` | 获取 `vector` 的容量 | |
+| `bool empty() const` | 检查 `vector` 是否为空 | 如果 `vector` 为空，返回 `true`，否则返回 `false` |
+| `void clear()` | 清空 `vector` 中的所有元素 | |
+| `T& at(size_t pos)` | 访问 `vector` 中指定位置的元素 | 如果 `pos` 超出范围，则抛出 `std::out_of_range` 异常 |
+| `iterator begin()` | 返回指向 `vector` 起始位置的迭代器 | |
+| `iterator end()` | 返回指向 `vector` 最后一个元素之后的位置的迭代器 | |
+| `void insert(iterator pos, const T& value)` | 在指定位置插入一个元素 | |
+| `void erase(iterator pos)` | 删除指定位置的元素 | |
+| `void swap(vector& other)` | 交换两个 `vector` 的内容 | |
+| `T& front()` | 访问 `vector` 中的第一个元素 | |
+| `T& back()` | 访问 `vector` 中的最后一个元素 | |
+| `iterator find(const T& value)` | 查找 `vector` 中的元素 | 如果未找到则返回 `end()` |
+| `void resize(size_t count)` | 调整 `vector` 的大小 | |
+| `void reserve(size_t new_cap)` | 请求将 `vector` 的容量增加到至少 `new_cap` | |
+
+> `const T&`：是 C++ 中用于声明一个常量左值引用的语法形式，这里的 `T` 可以是任何数据类型
+
+## 3 `list`
+
+使用前包含头文件 `<list>`
+
+### 3.1 创建和初始化
 
 ```cpp linenums="1"
 # include <iostream>
 # include <list>
-# include <string>
-
 using namespace std;
 
-int main() 
+int main()
 {
-    // Declare a list of strings
-    list<string> s;
-    s.push_back("hello");
-    s.push_back("world");
-    s.push_front("tide");
-    s.push_front("crimson");
-    s.push_front("alabama");
+    list<int> lst1; // 创建一个空的 list
+    list<int> lst2(10); // 创建一个包含 10 个元素的 list，元素值为默认值 0
+    list<int> lst3(10, 5); // 创建一个包含 10 个元素的 list，元素值为 5
+    list<int> lst4 = {1, 2, 3, 4, 5}; // 使用初始化列表初始化
 
-    // list 迭代器，不能相互比较
-    list<string>::iterator p;
-    for (p = s.begin(); p != s.end(); p++) {
-        cout << *p << " ";
-    }
-    cout << endl;
+    return 0;
 }
 ```
+
+### 3.2 `list` 的比较
+
+使用 `==` `!=` `>` `<` `>=` `<=` 比较 `list`
+
+### 3.3 元素的访问和修改
+
+可以使用迭代器访问和修改 `list` 中的元素
+
+```cpp linenums="1"
+# include <iostream>
+# include <list>
+using namespace std;
+
+int main()
+{
+    list<int> lst = {1, 2, 3, 4, 5};
+
+    // 访问元素
+    cout << "List elements: ";
+    for (list<int>::iterator it = lst.begin(); it != lst.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+    cout << endl; // 输出: 1 2 3 4 5
+
+    // 修改元素
+    list<int>::iterator it = lst.begin();
+    *it = 10;
+    ++it;
+    *it = 20;
+
+    cout << "Modified list: ";
+    for (int i : lst)
+    {
+        cout << i << " ";
+    }
+    cout << endl; // 输出: 10 20 3 4 5
+
+    return 0;
+}
+```
+
+### 3.4 迭代器遍历元素
+
+```cpp linenums="1"
+# include <iostream>
+# include <list>
+using namespace std;
+
+int main()
+{
+    list<int> lst = {1, 2, 3, 4, 5};
+
+    // 使用迭代器遍历元素
+    cout << "List elements: ";
+    for (list<int>::iterator it = lst.begin(); it != lst.end(); ++it)
+    {
+        cout << *it << " ";
+    }
+    cout << endl; // 输出: 1 2 3 4 5
+
+    return 0;
+}
+```
+
+### 3.5 `list` 的方法
+
+| 方法 | 功能 | 返回值 |
+| -- | -- | -- |
+| `void push_back(const T& value)` | 在 `list` 的末尾添加一个元素 | |
+| `void push_front(const T& value)` | 在 `list` 的开头添加一个元素 | |
+| `void pop_back()` | 删除 `list` 的最后一个元素 | |
+| `void pop_front()` | 删除 `list` 的第一个元素 | |
+| `size_t size() const` | 获取 `list` 中元素的数量 | |
+| `bool empty() const` | 检查 `list` 是否为空 | 如果 `list` 为空，返回 `true`，否则返回 `false` |
+| `void clear()` | 清空 `list` 中的所有元素 | |
+| `iterator begin()` | 返回指向 `list` 起始位置的迭代器 | |
+| `iterator end()` | 返回指向 `list` 最后一个元素之后的位置的迭代器 | |
+| `T& front()` | 访问 `list` 中的第一个元素 | |
+| `T& back()` | 访问 `list` 中的最后一个元素 | |
+| `iterator insert(iterator pos, const T& value)` | 在指定位置插入一个元素 | 返回指向新插入元素的迭代器 |
+| `iterator erase(iterator pos)` | 删除指定位置的元素 | 返回指向被删除元素之后的迭代器 |
+| `void resize(size_t count)` | 调整 `list` 的大小 | |
+| `void swap(list& other)` | 交换两个 `list` 的内容 | |
+| `void sort()` | 对 `list` 中的元素进行排序 | |
+| `void reverse()` | 反转 `list` 中元素的顺序 | |
+
+---
 
 ```cpp linenums="1" title="维护一个有序列表"
 # include <iostream>
@@ -156,65 +291,119 @@ int main()
     4. 如果程序需要在中间插入元素，使用 list 或 forward_list
     5. 如果程序需要在前后插入元素，使用 deque
 
-## 2.4 map
+## 4 `map`
+
+使用前包含头文件 `<map>`
+
+### 4.1 创建和初始化
 
 ```cpp linenums="1"
+# include <iostream>
 # include <map>
-# include <string>
+using namespace std;
 
-map<string, float> price;
-price["snapple"] = 0.75;
-price["coke"] = 0.50;
-string item;
-double total = 0;
-while ( cin >> item ) {
-    total += price[item];
-}
+int main()
+{
+    map<int, string> map1; // 创建一个空的 map
+    map<int, string> map2 = {{1, "one"}, {2, "two"}, {3, "three"}}; // 使用初始化列表初始化
 
-map<long, int> root;
-root[4] = 2;
-root[1000000] = 1000;
-long l;
-cin >> l;
-// .count(item) 检查 key item 是否存在于 map 中 
-if (root.count(l)) {
-    cout << root[l];
-} else {
-    cout << "Not perfect square";
+    return 0;
 }
 ```
 
-```cpp linenums="1"
-// Create a map of three (string, int) pairs
-std::map<std::string, int> m{{"CPU", 10}, {"GPU", 15}, {"RAM", 20}};
-print_map("1) Initial map: ", m);
+`map` 不允许有重复的键
 
-m["CPU"] = 25; // update an existing value
-m["SSD"] = 30; // insert a new value
-print_map("2) Updated map: ", m);
+### 4.2 元素的访问和修改
 
-// Using operator[] with non-existent key always performs an insert
-std::cout << "3) m[UPS] = " << m["UPS"] << '\n';
-print_map("4) Updated map: ", m);
-
-m.erase("GPU");
-print_map("5) After erase: ", m);
-
-m.clear();
-std::cout << std::boolalpha << "6) Map is empty: " << m.empty() << '\n';
-```
-
-## 2.5 iterator
+可以使用下标运算符 `[]` 或 `at()` 成员函数访问和修改 map 中的元素
 
 ```cpp linenums="1"
-list<int>::iterator li;
-list<int> L;
-li = L.begin();
-li = L.end();
+# include <iostream>
+# include <map>
+using namespace std;
+
+int main()
+{
+    map<int, string> map1 = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+    // 访问元素
+    cout << "Key 1: " << map1[1] << endl; // 输出: one
+    cout << "Key 2: " << map1.at(2) << endl; // 输出: two
+
+    // 修改元素
+    map1[1] = "ONE";
+    map1.at(2) = "TWO";
+
+    cout << "Modified map: ";
+    for (const auto& pair : map1)
+    {
+        // 通过迭代器访问元素的 key 和 value
+        cout << "{" << pair.first << ", " << pair.second << "} ";
+    }
+    cout << endl; // 输出: {1, ONE} {2, TWO} {3, three}
+
+    return 0;
+}
 ```
 
-- `++li`
-- `*li = 10`
+### 4.3 迭代器遍历元素
+
+```cpp linenums="1"
+# include <iostream>
+# include <map>
+using namespace std;
+
+int main()
+{
+    map<int, string> map1 = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+    // 使用迭代器遍历元素
+    cout << "Map elements: ";
+    for (map<int, string>::iterator it = map1.begin(); it != map1.end(); ++it)
+    {
+        cout << "{" << it->first << ", " << it->second << "} ";
+    }
+    cout << endl; // 输出: {1, one} {2, two} {3, three}
+
+    return 0;
+}
+```
+
+### 4.4 `map` 的方法
+
+| 方法 | 功能 | 返回值 |
+| -- | -- | -- |
+| `void insert(const pair<const Key, T>& value)` | 插入一个键值对 | |
+| `iterator erase(const_iterator position)` | 删除指定位置的元素 | 返回一个迭代器，它指向被删除元素之后的元素。如果被删除的是最后一个元素，则返回 `end()` 迭代器 |
+| `size_type erase(const key_type& key)` | 删除指定键的元素 | 返回删除的元素数量，如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
+| `size_type count(const key_type& key) const` | 检查是否存在以指定键 `key` 作为键的元素 | 返回匹配的元素数量，如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
+| `iterator find(const Key& key)` | 查找指定键的元素 | 返回指向找到的元素的迭代器，如果未找到则返回 `end()` |
+| `size_t size() const` | 获取 `map` 中元素的数量 | |
+| `bool empty() const` | 检查 `map` 是否为空 | 如果 `map` 为空，返回 `true`，否则返回 `false` |
+| `void clear()` | 清空 `map` 中的所有元素 | |
+| `T& at(const Key& key)` | 访问指定键的元素 | 如果键不存在则抛出 `std::out_of_range` 异常 |
+| `iterator begin()` | 返回指向 `map` 起始位置的迭代器 | |
+| `iterator end()` | 返回指向 `map` 最后一个元素之后的位置的迭代器 | |
+| `void swap(map& other)` | 交换两个 `map` 的内容 | |
+
+## 5 iterator
+
+迭代器是用于遍历容器（如 `vector`, `list`, `map` 等）中的元素的对象
+
+迭代器的类型：
+
+- 输入迭代器（Input Iterator）：允许单次遍历元素的只读访问
+- 输出迭代器（Output Iterator）：允许单次遍历元素的只写访问
+- 前向迭代器（Forward Iterator）：支持输入迭代器和输出迭代器的所有操作，并且可以多次遍历同一个元素。它以单步方式前进
+- 双向迭代器（Bidirectional Iterator）：扩展了前向迭代器的功能，增加了逆向遍历的能力，即可以通过递减操作符 `--` 向后移动
+- 随机访问迭代器（Random Access Iterator）：提供了对元素的随机访问能力，支持全部的指针算术运算
+
+常见的迭代器操作：
+
+- 获取迭代器: 使用容器的 `begin()` 和 `end()` 成员函数获取指向容器起始位置和末尾位置的迭代器
+- 遍历容器: 使用迭代器遍历容器中的元素
+- 访问元素: 使用解引用运算符 `*` 访问迭代器指向的元素
+- 移动迭代器: 使用递增运算符 `++` 和递减运算符 `--` 移动迭代器
 
 ## Homework
 
@@ -307,7 +496,7 @@ li = L.end();
 
 ???+ question "PTA 2.6"
 
-    下列选项中，哪一项不是迭代器。
+    下列选项中，哪一项不是迭代器
 
     A.输入迭代器<br/>
     B.前向迭代器<br/>
