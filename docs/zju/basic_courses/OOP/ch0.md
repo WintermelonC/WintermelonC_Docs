@@ -14,7 +14,7 @@
 ```cpp linenums="1" title="第一个 C++ 程序"
 // 头文件
 # include <iostream>
-// 遇到下面不认识的关键字，都默认属于 std 命名空间
+// 遇到下面不认识的对象，都默认属于 std 命名空间
 // 不然就要写成 std::cout std::endl
 using namespace std;
 
