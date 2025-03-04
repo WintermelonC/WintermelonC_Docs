@@ -283,6 +283,19 @@ int main()
 }
 ```
 
+!!! tip "陷阱"
+
+    ```cpp linenums="1"
+    list<int> L;
+    list<int>::iterator li;
+    li = L.begin();
+    
+    L.erase(li);
+    ++li;  // 错误
+
+    li = L.erase(li);  // 正确，li 指向被删除元素之后的位置
+    ```
+
 !!! tip "选择 Sequential Containers"
 
     1. 优先选择 vector
@@ -346,6 +359,26 @@ int main()
 }
 ```
 
+!!! tip "陷阱"
+
+    ```cpp linenums="1"
+    # include <iostream>
+    # include <map>
+
+    using namespace std;
+
+    int main()
+    {
+        map<string, int> map1 = {{"one", 1}};
+
+        // 它会自动添加一个新的键值对，键为 "two"，值为该类型的默认值，对于 int 来说是 0
+        // 所以这个 if 语句的条件判断一定是 false
+        if (map1["two"] == 1) {
+            ...
+        }
+    }
+    ```
+
 ### 4.3 迭代器遍历元素
 
 ```cpp linenums="1"
@@ -404,6 +437,90 @@ int main()
 - 遍历容器: 使用迭代器遍历容器中的元素
 - 访问元素: 使用解引用运算符 `*` 访问迭代器指向的元素
 - 移动迭代器: 使用递增运算符 `++` 和递减运算符 `--` 移动迭代器
+
+## 6 `for-each` 循环
+
+`for-each` 循环（也称为范围 `for` 循环）是 C++ 11 引入的一种简化遍历容器中元素的语法。它可以用于遍历数组、`vector`、`list`、`map` 等容器中的元素
+
+```cpp linenums="1" title="遍历 list"
+# include <iostream>
+# include <map>
+using namespace std;
+
+int main()
+{
+    map<int, string> map1 = {{1, "one"}, {2, "two"}, {3, "three"}};
+
+    // 使用 for-each 循环遍历 map
+    cout << "Map elements: ";
+    for (const auto& pair : map1)
+    {
+        cout << "{" << pair.first << ", " << pair.second << "} ";
+    }
+    cout << endl; // 输出: {1, one} {2, two} {3, three}
+
+    return 0;
+}
+```
+
+- 优点：
+      1. 降低错误发生率，提高代码可读性
+      2. 易于实现
+      3. 无需定义迭代器
+- 缺点：
+      1. 无法直接访问对应的元素索引
+      2. 无法反向遍历元素
+      3. 不允许用户在遍历每个元素时跳过任何元素
+
+> `auto` 关键字用于让编译器自动推导变量的类型
+
+## 7 `typedef` 和 `using`
+
+### 7.1 `typedef`
+
+`typedef` 是 C++ 中用于为现有类型定义新的类型别名的关键字。它可以使代码更简洁、更易读，特别是在处理复杂类型时
+
+```cpp linenums="1"
+# include <iostream>
+# include <vector>
+using namespace std;
+
+typedef vector<pair<int, string>> IntStringPairVector;
+
+int main()
+{
+    IntStringPairVector vec = {{1, "one"}, {2, "two"}, {3, "three"}};
+    for (const auto& pair : vec)
+    {
+        cout << "{" << pair.first << ", " << pair.second << "} ";
+    }
+    cout << endl; // 输出: {1, one} {2, two} {3, three}
+    return 0;
+}
+```
+
+### 7.2 `using`
+
+`using` 是 C++ 中用于定义类型别名和引入命名空间的关键字。它在 C++ 11 中引入，并在某些情况下可以替代 `typedef`，使代码更简洁、更易读。
+
+```cpp linenums="1"
+# include <iostream>
+# include <vector>
+using namespace std;
+
+using IntStringPairVector = vector<pair<int, string>>;
+
+int main()
+{
+    IntStringPairVector vec = {{1, "one"}, {2, "two"}, {3, "three"}};
+    for (const auto& pair : vec)
+    {
+        cout << "{" << pair.first << ", " << pair.second << "} ";
+    }
+    cout << endl; // 输出: {1, one} {2, two} {3, three}
+    return 0;
+}
+```
 
 ## Homework
 
