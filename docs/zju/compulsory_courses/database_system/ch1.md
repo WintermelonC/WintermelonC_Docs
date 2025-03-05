@@ -10,7 +10,7 @@
 
 !!! info "参考"
 
-    [HobbitQia的笔记本](https://note.hobbitqia.cc/DB/){:target="_blank"}
+    [HobbitQia的笔记本](https://note.hobbitqia.cc/DB/db1/){:target="_blank"}
 
 Database：长期存储在计算机内、有组织的、可共享的数据集合
 

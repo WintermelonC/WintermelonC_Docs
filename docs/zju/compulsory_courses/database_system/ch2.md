@@ -364,7 +364,7 @@ $account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.
 
 <!-- 本节内容在 2025/3/3 后上传至 Github -->
 
-<!-- ???+ question "课本 2.7"
+???+ question "课本 2.7"
 
     Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:
 
@@ -432,4 +432,4 @@ $account \leftarrow \Pi_{account\text{-}number, branch\text{-}name, balance * 1.
         
         b. $\Pi_{ID}((\sigma_{balance > 6000}(account)) \Join depositor)$
         
-        c. $\Pi_{ID}((\sigma_{balance > 6000 \land branch\_name = 'Uptown'}(account)) \Join depositor)$ -->
+        c. $\Pi_{ID}((\sigma_{balance > 6000 \land branch\_name = 'Uptown'}(account)) \Join depositor)$

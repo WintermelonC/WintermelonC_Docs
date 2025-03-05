@@ -190,9 +190,55 @@ order by customer_city asc, customer_street desc, customer_name
 
 ## 3.5 Set Operations
 
+**Example 1**：Find all customers who have a loan or an account or both
+
+```sql linenums="1"
+(select customer_name from depositor)
+union
+(select customer_name from borrower)
+```
+
+**Example 2**：Find all customers who have both a loan and an account
+
+```sql linenums="1"
+(select customer_name from depositor)
+intersect
+(select customer_name from borrower)
+```
+
+**Example 3**：Find all customers who have an account but no loan
+
+```sql linenums="1"
+(select customer_name from depositor)
+except
+(select customer_name from borrower)
+```
+
 ## 3.6 Null Values
 
+- 包含 null 的算数运算结果均为 null
+- 包含 null 的比较结果均为 unknown
+- 逻辑运算
+      - or
+          - unknown or true = true
+          - unknown or false = unknown
+          - unknown or unknown = unknown
+      - and
+          - unknown and true = unknown
+          - unknown and false = false
+          - unknown and unknown = unknown
+      - not
+          - not unknown = unknown
+
 ## 3.7 Aggregate Functions
+
+**Example 1**：Find the average account balance at the Perryridge branch
+
+```sql linenums="1"
+select avg(balance) avg_bal
+from account
+where branch_name = 'Perryridge'
+```
 
 **Example 2**：Find the average account balance for each branch
 
@@ -261,8 +307,6 @@ where B.loan_number = L.loan_number and
     (select branch_name, customer_name
     from depositor D, account A
     where D.account_number = A.account_number)
-
-
 ```
 
 **Example 4**：Find the account_number with the maximum balance for every branch
@@ -276,7 +320,9 @@ where balance >= (select man(balance)
 order by balance
 ```
 
-**Example 5**：Find all branches that have greater assets than some branch located in Brooklyn
+### 3.8.1 Some
+
+**Example**：Find all branches that have greater assets than some branch located in Brooklyn
 
 ```sql linenums="1"
 select distinct branch_name
@@ -289,8 +335,6 @@ select distinct T.branch_name
 from branch as T, branch as S
 where T.assets > S.assets and S.branch_city = 'Brooklyn'
 ```
-
-### 3.8.1 Some
 
 <figure markdown="span">
   ![Img 3](../../../img/database/ch3/database_ch3_img3.png){ width="600" }
@@ -308,6 +352,23 @@ where T.assets > S.assets and S.branch_city = 'Brooklyn'
 - `not exists r` $\Leftrightarrow r = \varnothing$
 
 ### 3.8.4 Unique
+
+- `unique`
+- `not unique`
+
+**Example**：Find all customers who have at most one account at the Perryridge branch
+
+```sql linenums="1"
+-- 创建 view
+select customer_name
+from depositor as T
+where unique
+    (select R.customer_name
+    from account, depositor as R
+    where T.customer_name = R.customer_name and
+        R.account_number = account.account_number and
+        account.branch_name = 'Perryridge')
+```
 
 ## 3.9 View
 
@@ -338,6 +399,8 @@ create view all_customer as
 ```
 
 ## 3.10 Derived Relations
+
+不管是否被引用，导出表（或称嵌套表）必须给出别名
 
 **Example**：Find the average account balance of those branches where the average account balance is greater than $500
 
@@ -492,8 +555,379 @@ update account
 set balance = case
                 when balance <= 10000
                 then balance * 1.05
-                lese balance * 1.06
+                else balance * 1.06
             end
 ```
 
 对 view 进行修改，本质是对相应的 table 进行修改
+
+## 3.12 Joined Relations
+
+1. 连接类型
+      1. inner join：只返回两个表中满足连接条件的记录
+      2. left outer join：返回左表中的所有记录以及右表中满足连接条件的记录。如果右表中没有匹配的记录，则结果为 NULL
+      3. right outer join：返回右表中的所有记录以及左表中满足连接条件的记录。如果左表中没有匹配的记录，则结果为 NULL
+      4. full outer join：返回两个表中的所有记录。如果没有匹配项，则另一侧的结果为 NULL
+2. 连接条件
+      1. on：指定连接条件，明确指出如何关联两个表的数据
+      2. using：当两个表共享相同名称的列时，可以使用 using 来简化连接条件
+      3. natural join：自动基于两个表中所有同名列的值相等的情况进行连接，无需显式地使用 on 或 using 子句
+
+<figure markdown="span">
+  ![Img 6](../../../img/database/ch3/database_ch3_img6.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 7](../../../img/database/ch3/database_ch3_img7.png){ width="500" }
+</figure>
+
+**Example**：Find all customers who have either an account or a loan (but not both) at the bank
+
+```sql linenums="1"
+select customer_name
+from (depositor natural full outer join borrower)
+where account_name = null or loan_number is null
+```
+
+## Homework
+
+<!-- ???+ question "课本 3.8"
+
+    Consider the bank database of Figure 3.18, where the primary keys are underlined. Construct the following SQL queries for this relational database.
+
+    <figure markdown="span">
+      ![Img 5](../../../img/database/ch3/database_ch3_img5.png){ width="600" }
+    </figure>
+
+    a. Find the ID of each customer of the bank who has an account but not a loan.<br/>
+    b. Find the ID of each customer who lives on the same street and in the same city as customer '12345'.<br/>
+    c. Find the name of each branch that has at least one customer who has an account in the bank and who lives in “Harrison”.
+
+    ??? success "答案"
+
+        a.
+
+        ```sql linenums="1"
+        (select distinct ID
+        from depositor) except
+        (select distinct ID
+        from borrower)
+
+        select distinct d.ID
+        from depositor d
+        where d.ID not in (
+            select b.ID
+            from borrower b
+        )
+        ```
+
+        ---
+
+        b.
+
+        ```sql linenums="1"
+        select distinct ID
+        from customer
+        where (customer_street, customer_city) =
+                (select customer_street, customer_city
+                from customer
+                where ID = '12345')
+
+        select distinct ID
+        from customer
+        where customer_street = 
+            (select customer_street
+            from customer
+            where ID = '12345') and
+            customer_city = 
+            (select customer_city
+            from customer
+            where ID = '12345')
+        ```
+
+        ---
+
+        c.
+
+        ```sql linenums="1"
+        select distinct a.branch_name
+        from account a
+            join depositor d
+                on a.account_number = d.account_number
+            join customer c 
+                on c.ID = d.ID
+        where c.customer_city = 'Harrison'
+        ```
+
+???+ question "课本 3.9"
+
+    Consider the relational database of Figure 3.19, where the primary keys are underlined. Give an expression in SQL for each of the following queries.
+
+    <figure markdown="span">
+      ![Img 8](../../../img/database/ch3/database_ch3_img8.png){ width="600" }
+    </figure>
+
+    a. Find the ID, name, and city of residence of each employee who works for “First Bank Corporation”.<br/>
+    b. Find the ID, name, and city of residence of each employee who works for “First Bank Corporation” and earns more than $10000.<br/>
+    c. Find the ID of each employee who does not work for “First Bank Corporation”.<br/>
+    d. Find the ID of each employee who earns more than every employee of “Small Bank Corporation”.<br/>
+    e. Assume that companies may be located in several cities. Find the name of each company that is located in every city in which “Small Bank Corporation” is located.<br/>
+    f. Find the name of the company that has the most employees (or companies, in the case where there is a tie for the most).<br/>
+    g. Find the name of each company whose employees earn a higher salary, on average, than the average salary at “First Bank Corporation”.
+
+    ??? success "答案"
+
+        a.
+
+        ```sql linenums="1"
+        select e.ID, e.person_name, e.city
+        from employee e
+            join works w on e.ID = w.ID
+        where w.company_name = 'First Bank Corporation'
+        ```
+
+        ---
+
+        b.
+
+        ```sql linenums="1"
+        select e.ID, e.person_name, e.city
+        from employee e
+            join works w on e.ID = w.ID
+        where w.company_name = 'First Bank Corporation' and
+            w.salary > 10000
+        ```
+
+        ---
+
+        c.
+
+        ```sql linenums="1"
+        select ID
+        from works
+        where company_name != 'First Bank Corporation'
+        ```
+
+        ---
+
+        d.
+
+        ```sql linenums="1"
+        select w1.ID
+        from works w1
+        where w1.salary > all
+                        (select w2.salary
+                        from works w2
+                        where w2.company_name = 'Small Bank Corporation')
+        ```
+
+        ---
+
+        e.
+
+        ```sql linenums="1"
+        with sbc_cities as 
+            (select city
+            from company
+            where company_name = 'Small Bank Corporation')
+        with company_in_sbc_cities as
+            (select c.company_name, count(distinct c.city) city_count
+            from company c
+                join sbc_cities s on c.city = s.city
+            group by c.company_name)
+        select company_name
+        from company_in_sbc_cities
+        where city_count = 
+                        (select count(*)
+                        from sbc_cities)
+        ```
+
+        ---
+
+        f.
+
+        ```sql linenums="1"
+        with employee_count as
+            (select company_number, count(*) employee_num
+            from works
+            group by company_name)
+        select e1.company_name
+        from employee_count e1
+        where e1.employee_num >= all
+                    (select e2.employee_num
+                    from employee_count e2)
+        ```
+
+        ---
+
+        g.
+
+        ```sql linenums="1"
+        with avg_salary as
+            (select company_name, avg(w.salary) avg_sal
+            from works
+            group by company_name)
+        select a1.company_name
+        from avg_salary a1
+        where a1.avg_sal > all
+                        (select a2.avg_sal
+                        from avg_salary a2
+                        where a2.company_name = 'First Bank Corporation')
+        ```
+
+???+ question "课本 3.10"
+
+    Consider the relational database of Figure 3.19. Give an expression in SQL for each of the following:
+
+    <figure markdown="span">
+      ![Img 8](../../../img/database/ch3/database_ch3_img8.png){ width="600" }
+    </figure>
+
+    a. Modify the database so that the employee whose ID is '12345' now lives in “Newtown”.<br/>
+    b. Give each manager of “First Bank Corporation” a 10 percent raise unless the salary becomes greater than $100000; in such cases, give only a 3 percent raise.
+
+    ??? success "答案"
+
+        a.
+
+        ```sql linenums="1"
+        update employee
+        set city = 'Newtown'
+        where ID = '12345'
+        ```
+
+        ---
+
+        b.
+
+        ```sql linenums="1"
+        update works w
+            join manages m on m.ID = w.ID
+            join company c on c.company_name = w.company_name
+        set w.salary = case
+                        when w.salary * 1.1 <= 100000
+                        then w.salary * 1.1
+                        else w,salary * 1.03
+                    end
+        where c.company_name = 'First Bank Corporation'
+        ```
+
+???+ question "课本 3.11"
+
+    Write the following queries in SQL, using the university schema.
+
+    <figure markdown="span">
+      ![Img 9](../../../img/database/ch3/database_ch3_img9.png){ width="600" }
+    </figure>
+
+    a. Find the ID and name of each student who has taken at least one Comp. Sci. course; make sure there are no duplicate names in the result.<br/>
+    b. Find the ID and name of each student who has not taken any course offered before 2017.<br/>
+    c. For each department, find the maximum salary of instructors in that department. You may assume that every department has at least one instructor.<br/>
+    d. Find the lowest, across all departments, of the per-department maximum salary computed by the preceding query.
+
+    ??? success "答案"
+
+        a.
+
+        ```sql linenums="1"
+        select distinct s.ID, s.name
+        from student s
+            join takes t on s.ID = t.ID
+            join course c on t.course_id = c.course_id
+        where c.dept_name = 'Comp. Sci.'
+        ```
+
+        ---
+
+        b.
+
+        ```sql linenums="1"
+        select s.ID, s.name
+        from student s
+        where not exists 
+            (select 1
+            from takes t
+                join section sec on t.course_id = sec.course_id and 
+                    t.sec_id = sec.sec_id and 
+                    t.semester = sec.semester and 
+                    t.year = sec.year
+            where t.ID = s.ID and 
+                sec.year < 2017)
+        ```
+
+        ---
+
+        c.
+
+        ```sql linenums="1"
+        select dept_name, max(salary) max_salary
+        from instruct
+        group by dept_name
+        ```
+
+        ---
+
+        d.
+
+        ```sql linenums="1"
+        select min(max_salary) lowest_max_salary
+        from (
+            select dept_name, max(salary) max_salary
+            from instruct
+            group by dept_name
+        ) as dept_max_salaries
+        ```
+
+???+ question "课本 3.15"
+
+    Consider the bank database of Figure 3.18, where the primary keys are underlined. Construct the following SQL queries for this relational database.
+
+    <figure markdown="span">
+      ![Img 5](../../../img/database/ch3/database_ch3_img5.png){ width="600" }
+    </figure>
+
+    a. Find each customer who has an account at every branch located in “Brooklyn”.<br/>
+    b. Find the total sum of all loan amounts in the bank.<br/>
+    c. Find the names of all branches that have assets greater than those of at least one branch located in “Brooklyn”.
+
+    ??? success "答案"
+
+        a.
+
+        ```sql linenums="1"
+        select d.ID, c.customer_name
+        from depositor d
+            join account a on a.account_number = d.account_number
+            join branch b on b.branch_name = a.branch_name
+            join customer c on c.ID = d.ID
+        where b.branch_city = 'Brooklyn'
+        group by d.ID, c.customer_name
+        having count(distinct a.branch_name) = (
+            select count(*)
+            from branch
+            where branch_city = 'Brooklyn'
+        )
+        ```
+
+        ---
+
+        b.
+
+        ```sql linenums="1"
+        select sum(amount) total_loan_amount
+        from loan
+        ```
+
+        ---
+
+        c.
+
+        ```sql linenums="1"
+        select distinct b1.branch_name
+        from branch b1
+        where b1.assets > some (
+            select b2.assets
+            from branch b2
+            where b2.branch_city = 'Brooklyn'
+        )
+        ``` -->
