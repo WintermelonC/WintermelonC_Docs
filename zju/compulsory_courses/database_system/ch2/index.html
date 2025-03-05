@@ -5559,6 +5559,8 @@
       
         
       
+        
+      
     
     
       
@@ -6085,6 +6087,81 @@
           </ul>
         </nav>
       
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    其他
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            其他
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/python/other/anaconda/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Anaconda
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -6870,75 +6947,69 @@ $}balance</p>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
 <!-- 本节内容在 2025/3/3 后上传至 Github -->
 
-<!-- ???+ question "课本 2.7"
-
-    Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:
-
-    <figure markdown="span">
-      ![Img 24](../../../img/database/ch2/database_ch2_img24.png){ width="600" }
-    </figure>
-
-    a. Find the name of each branch located in “Chicago”.<br/>
-    b. Find the ID of each borrower who has a loan in branch “Downtown”.
-
-    ??? success "答案"
-
-        a. $\Pi_{branch\_name}(\sigma_{branch\_city = 'Chicago'}(branch))$
-
-        b. $\Pi_{ID}(\sigma_{branch\_name = 'Downtown'}(loan) \Join borrower)$
-
-???+ question "课本 2.12"
-
-    Consider the bank database of Figure 2.18. Assume that branch names and customer names uniquely identify branches and customers, but loans and accounts can be associated with more than one customer.
-
-    a. What are the appropriate primary keys?<br/>
-    b. Given your choice of primary keys, identify appropriate foreign keys.
-
-    ??? success "答案"
-
-        a. 
-
-        - branch: branch_name
-        - customer: customer_name
-        - loan: loan_number
-        - borrower: (ID, loan_number)
-        - account: account_number
-        - depositor: (ID, account_number)
-
-        ---
-
-        b.
-
-        - loan: branch_name (branch.branch_name)
-        - borrower: ID (customer.ID), loan_number (loan.loan_number)
-        - account: branch_name (branch.branch_name)
-        - depositor: ID (customer.ID), account_number (account.account_number)
-
-???+ question "课本 2.13"
-
-    Construct a schema diagram for the bank database of Figure 2.18.
-
-    ??? success "答案"
-
-        <figure markdown="span">
-          ![Img 25](../../../img/database/ch2/database_ch2_img25.png){ width="600" }
-        </figure>
-
-???+ question "课本 2.15"
-
-    Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:
-
-    a. Find each loan number with a loan amount greater than $10000.<br/>
-    b. Find the ID of each depositor who has an account with a balance greater than $6000.<br/>
-    c. Find the ID of each depositor who has an account with a balance greater than $6000 at the “Uptown” branch.
-
-    ??? success "答案"
-
-        a. $\Pi_{loan\_number}(\sigma_{amount > 10000}(loan))$
-
-        b. $\Pi_{ID}((\sigma_{balance > 6000}(account)) \Join depositor)$
-
-        c. $\Pi_{ID}((\sigma_{balance > 6000 \land branch\_name = 'Uptown'}(account)) \Join depositor)$ -->
+<details class="question" open="open">
+<summary>课本 2.7</summary>
+<p>Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:</p>
+<p><figure markdown="span">
+  <img alt="Img 24" src="../../../../img/database/ch2/database_ch2_img24.png" width="600" />
+</figure></p>
+<p>a. Find the name of each branch located in “Chicago”.<br/>
+b. Find the ID of each borrower who has a loan in branch “Downtown”.</p>
+<details class="success">
+<summary>答案</summary>
+<p>a. <span class="arithmatex">\(\Pi_{branch\_name}(\sigma_{branch\_city = 'Chicago'}(branch))\)</span></p>
+<p>b. <span class="arithmatex">\(\Pi_{ID}(\sigma_{branch\_name = 'Downtown'}(loan) \Join borrower)\)</span></p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 2.12</summary>
+<p>Consider the bank database of Figure 2.18. Assume that branch names and customer names uniquely identify branches and customers, but loans and accounts can be associated with more than one customer.</p>
+<p>a. What are the appropriate primary keys?<br/>
+b. Given your choice of primary keys, identify appropriate foreign keys.</p>
+<details class="success">
+<summary>答案</summary>
+<p>a. </p>
+<ul>
+<li>branch: branch_name</li>
+<li>customer: customer_name</li>
+<li>loan: loan_number</li>
+<li>borrower: (ID, loan_number)</li>
+<li>account: account_number</li>
+<li>depositor: (ID, account_number)</li>
+</ul>
+<hr />
+<p>b.</p>
+<ul>
+<li>loan: branch_name (branch.branch_name)</li>
+<li>borrower: ID (customer.ID), loan_number (loan.loan_number)</li>
+<li>account: branch_name (branch.branch_name)</li>
+<li>depositor: ID (customer.ID), account_number (account.account_number)</li>
+</ul>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 2.13</summary>
+<p>Construct a schema diagram for the bank database of Figure 2.18.</p>
+<details class="success">
+<summary>答案</summary>
+<p><figure markdown="span">
+  <img alt="Img 25" src="../../../../img/database/ch2/database_ch2_img25.png" width="600" />
+</figure></p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 2.15</summary>
+<p>Consider the bank database of Figure 2.18. Give an expression in the relational algebra for each of the following queries:</p>
+<p>a. Find each loan number with a loan amount greater than $10000.<br/>
+b. Find the ID of each depositor who has an account with a balance greater than $6000.<br/>
+c. Find the ID of each depositor who has an account with a balance greater than $6000 at the “Uptown” branch.</p>
+<details class="success">
+<summary>答案</summary>
+<p>a. <span class="arithmatex">\(\Pi_{loan\_number}(\sigma_{amount &gt; 10000}(loan))\)</span></p>
+<p>b. <span class="arithmatex">\(\Pi_{ID}((\sigma_{balance &gt; 6000}(account)) \Join depositor)\)</span></p>
+<p>c. <span class="arithmatex">\(\Pi_{ID}((\sigma_{balance &gt; 6000 \land branch\_name = 'Uptown'}(account)) \Join depositor)\)</span></p>
+</details>
+</details>
 
 
 
@@ -6961,7 +7032,7 @@ $}balance</p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年3月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月5日 14:51:22">2025年3月5日</span>
   </span>
 
     
@@ -6971,7 +7042,7 @@ $}balance</p>
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">2025年2月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年2月17日 15:40:17">2025年2月17日</span>
   </span>
 
     
