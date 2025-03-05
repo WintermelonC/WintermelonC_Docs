@@ -18,7 +18,7 @@ wk老师
   ![Img 1](../../../img/OOP/oop_img1.png){ width="600" }
 </figure>
 
-## 个人笔记
+## 个人笔记及 PTA 部分练习题详解
 
 [0 Introduction](./ch0.md)<br/>
 [1 Using Objects](./ch1.md)<br/>

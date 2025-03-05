@@ -6,7 +6,7 @@
 
 !!! info "参考"
 
-    [LH 的资源小站](https://lh-0124.github.io/LHstudy/note/notemy0/){:target="_blank"}
+    [LH 的资源小站](https://lh-0124.github.io/LHstudy/note/notemy1/){:target="_blank"}
 
 ## 1 什么是马克思主义
 

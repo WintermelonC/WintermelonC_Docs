@@ -1,6 +1,6 @@
 # Python
 
-## Python 编程基础
+## [Python 编程基础](./basic/index.md)
 
 [0 Python 环境及编辑器](./basic/ch0.md)<br/>
 [1 Python 基础](./basic/ch1.md)<br/>
@@ -12,3 +12,7 @@
 ## [PyTorch 深度学习](./pytorch/index.md)
 
 [7 现代卷积神经网络](./pytorch/ch7/ch7_1.md)
+
+## 其他
+
+[Anaconde](./other/anaconda.md)

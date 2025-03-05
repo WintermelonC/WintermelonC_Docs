@@ -201,6 +201,8 @@ nav:
           - 7.5 批量规范化: knowledge/python/pytorch/ch7/ch7_5.md
           - 7.6 ResNet 残差网络: knowledge/python/pytorch/ch7/ch7_6.md
           - 7.7 DenseNet 稠密连接网络: knowledge/python/pytorch/ch7/ch7_7.md
+      - 其他:
+        - Anaconda: knowledge/python/other/anaconda.md
     - 数据结构与算法:
       - knowledge/data_stru_algorithm/index.md
       - 其他:
