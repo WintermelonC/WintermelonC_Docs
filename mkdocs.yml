@@ -131,6 +131,7 @@ nav:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:
           - 1 Fundamentals of Quantitative Design and Analysis: zju/compulsory_courses/computer_architecture/theory/ch1.md
+          - '2 Pipelining: Basic and Intermediate Concepts': zju/compulsory_courses/computer_architecture/theory/ch2.md
         - 实验部分:
           - zju/compulsory_courses/computer_architecture/lab/index.md
     - 专业模块课程:

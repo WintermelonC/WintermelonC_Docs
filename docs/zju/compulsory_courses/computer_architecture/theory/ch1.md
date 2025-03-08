@@ -125,6 +125,27 @@ $N$ 是一个称为工艺复杂度因数的参数
 
 ## 1.9 计算机设计的量化原理
 
+### 1.9.1 充分利用并行
+
+**Take Advantage of Parallelism**
+
+- 系统层面：使用多处理器
+- 指令层面：使用流水线
+- 数据运算层面：组相联 cache
+
+### 1.9.2 局限性原理
+
+**Principle of Locality**
+
+一个程序 90 % 的执行时间花费在仅 10 % 的代码中
+
+- 时间局域性（temporal locality）：最近访问过的内容很可能会在短期内被再次访问
+- 空间局域性（Spatial locality）：地址相互临近的项目很可能会在短时间内都被用到
+
+### 1.9.3 Focus on the Common Case
+
+优化 common case 对整体性能的提升很大
+
 ### 1.9.4 Amdahl 定律
 
 $execution\ time_{new} = execution\ time_{old} \times ((1 - fraction_{enhanced}) + \dfrac{fraction_{enhanced}}{speedup_{enhanced}})$
@@ -138,3 +159,9 @@ $CPU\ execution\ time\ for\ a\ program = CPU\ clock\ cycles\ for\ program \times
 $CPU\ clock\ cycles = Instructions\ for\ a\ program \times Average\ clock\ cycles\ per\ instruction$
 
 $CPU\ time = Instruction\ count \times CPI \times Clock\ cycle\ time$
+
+??? example "例题"
+
+    <figure markdown="span">
+      ![Img 1](../../../img/comp_arch/ch1/ca_ch1_img1.png){ width="600" }
+    </figure>

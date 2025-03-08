@@ -34,6 +34,7 @@ wzh老师
 
 ### 理论部分
 
-[1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)
+[1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)<br/>
+[2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)
 
 ### [实验部分](./lab/index.md)
