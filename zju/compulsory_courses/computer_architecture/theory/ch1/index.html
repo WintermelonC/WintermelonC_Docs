@@ -18,7 +18,7 @@
         <link rel="prev" href="../../">
       
       
-        <link rel="next" href="../../lab/">
+        <link rel="next" href="../ch2/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -3628,6 +3628,8 @@
       
         
       
+        
+      
     
     
       
@@ -3811,6 +3813,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#191-充分利用并行" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.1 充分利用并行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#192-局限性原理" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.2 局限性原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#193-focus-on-the-common-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.3 Focus on the Common Case
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#194-amdahl-定律" class="md-nav__link">
     <span class="md-ellipsis">
       1.9.4 Amdahl 定律
@@ -3837,6 +3866,28 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Pipelining: Basic and Intermediate Concepts
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -6272,6 +6323,33 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#191-充分利用并行" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.1 充分利用并行
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#192-局限性原理" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.2 局限性原理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#193-focus-on-the-common-case" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.9.3 Focus on the Common Case
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#194-amdahl-定律" class="md-nav__link">
     <span class="md-ellipsis">
       1.9.4 Amdahl 定律
@@ -6439,6 +6517,22 @@
 <li>throughput（吞吐量）：在给定时间内完成的总工作量</li>
 </ul>
 <h2 id="19-计算机设计的量化原理">1.9 计算机设计的量化原理<a class="headerlink" href="#19-计算机设计的量化原理" title="Permanent link">&para;</a></h2>
+<h3 id="191-充分利用并行">1.9.1 充分利用并行<a class="headerlink" href="#191-充分利用并行" title="Permanent link">&para;</a></h3>
+<p><strong>Take Advantage of Parallelism</strong></p>
+<ul>
+<li>系统层面：使用多处理器</li>
+<li>指令层面：使用流水线</li>
+<li>数据运算层面：组相联 cache</li>
+</ul>
+<h3 id="192-局限性原理">1.9.2 局限性原理<a class="headerlink" href="#192-局限性原理" title="Permanent link">&para;</a></h3>
+<p><strong>Principle of Locality</strong></p>
+<p>一个程序 90 % 的执行时间花费在仅 10 % 的代码中</p>
+<ul>
+<li>时间局域性（temporal locality）：最近访问过的内容很可能会在短期内被再次访问</li>
+<li>空间局域性（Spatial locality）：地址相互临近的项目很可能会在短时间内都被用到</li>
+</ul>
+<h3 id="193-focus-on-the-common-case">1.9.3 Focus on the Common Case<a class="headerlink" href="#193-focus-on-the-common-case" title="Permanent link">&para;</a></h3>
+<p>优化 common case 对整体性能的提升很大</p>
 <h3 id="194-amdahl-定律">1.9.4 Amdahl 定律<a class="headerlink" href="#194-amdahl-定律" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(execution\ time_{new} = execution\ time_{old} \times ((1 - fraction_{enhanced}) + \dfrac{fraction_{enhanced}}{speedup_{enhanced}})\)</span></p>
 <p><span class="arithmatex">\(speedup_{overall} = \dfrac{execution\ time_{old}}{execution\ time_{new}}\)</span></p>
@@ -6446,6 +6540,12 @@
 <p><span class="arithmatex">\(CPU\ execution\ time\ for\ a\ program = CPU\ clock\ cycles\ for\ program \times Clock\ cycle\ time\)</span></p>
 <p><span class="arithmatex">\(CPU\ clock\ cycles = Instructions\ for\ a\ program \times Average\ clock\ cycles\ per\ instruction\)</span></p>
 <p><span class="arithmatex">\(CPU\ time = Instruction\ count \times CPI \times Clock\ cycle\ time\)</span></p>
+<details class="example">
+<summary>例题</summary>
+<p><figure markdown="span">
+  <img alt="Img 1" src="../../../img/comp_arch/ch1/ca_ch1_img1.png" width="600" />
+</figure></p>
+</details>
 
 
 
@@ -6468,7 +6568,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月3日 06:33:15">2025年3月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月8日 12:30:25">2025年3月8日</span>
   </span>
 
     
@@ -6593,13 +6693,13 @@
         
         
           
-          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构 - 实验部分">
+          <a href="../ch2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2 Pipelining: Basic and Intermediate Concepts">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机体系结构 - 实验部分
+                2 Pipelining: Basic and Intermediate Concepts
               </div>
             </div>
             <div class="md-footer__button md-icon">

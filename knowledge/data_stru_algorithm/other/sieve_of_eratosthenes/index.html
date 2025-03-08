@@ -3591,6 +3591,8 @@
       
         
       
+        
+      
     
     
       
@@ -3637,6 +3639,28 @@
   
   <span class="md-ellipsis">
     1 Fundamentals of Quantitative Design and Analysis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../zju/compulsory_courses/computer_architecture/theory/ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 Pipelining: Basic and Intermediate Concepts
     
   </span>
   
@@ -6027,7 +6051,7 @@
 <p class="admonition-title">说明</p>
 <p>本文档内容由 AI 生成</p>
 </div>
-<p>使用筛法求出 1 到 N 以内的所有质数，最常用的算法是埃拉托斯特尼筛法（Sieve of Eratosthenes）。这个算法的效率相对较高，特别是对于较大的N值。以下是该算法的基本步骤：</p>
+<p>使用筛法求出 1 到 N 以内的所有质数，最常用的算法是埃拉托斯特尼筛法（Sieve of Eratosthenes）。这个算法的效率相对较高，特别是对于较大的 N 值。以下是该算法的基本步骤：</p>
 <ol>
 <li>创建一个布尔数组 <code>isPrime</code>，大小为 N + 1，并初始化所有元素为 <code>true</code>。数组下标代表数字，而对应的值表示这个数字是否为质数。初始时假设所有数字都是质数</li>
 <li>将 <code>isPrime[0]</code> 和 <code>isPrime[1]</code> 设为 <code>false</code>，因为 0 和 1 不是质数</li>
@@ -6035,7 +6059,7 @@
 <li>如果当前数字 i 被视为质数（即 <code>isPrime[i] == true</code>），则将 i 的所有倍数标记为非质数（即设置对应位置的值为 <code>false</code>）。注意，这里的倍数从 <code>i*i</code> 开始，因为小于 <code>i*i</code> 的倍数已经被之前的质数标记过了</li>
 </ul>
 </li>
-<li>最后，遍历整个 <code>isPrime</code> 数组，收集所有值为 <code>true</code> 的下标，这些下标就是1到N范围内的所有质数</li>
+<li>最后，遍历整个 <code>isPrime</code> 数组，收集所有值为 <code>true</code> 的下标，这些下标就是 1 到 N 范围内的所有质数</li>
 </ol>
 <p>以下是一个简单的 C++ 代码实现示例：</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
@@ -6073,7 +6097,7 @@
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="n">isPrime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isPrime</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">            </span><span class="c1">// 将i的倍数标记为非质数</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">            </span><span class="c1">// 将 i 的倍数标记为非质数</span>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">                </span><span class="n">isPrime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">            </span><span class="p">}</span>
@@ -6089,7 +6113,7 @@
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="p">}</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 假设你想找到1至100之间的所有质数</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// 假设你想找到 1 至 100 之间的所有质数</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="n">SieveOfEratosthenes</span><span class="p">(</span><span class="n">N</span><span class="p">);</span>
 </span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="p">}</span>
@@ -6117,7 +6141,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月4日 14:06:02">2025年3月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月8日 12:30:25">2025年3月8日</span>
   </span>
 
     
