@@ -129,6 +129,8 @@ dyx老师
 
 [浙江大学课程攻略共享计划 - 高级数据结构与算法分析](https://qsctech.github.io/zju-icicles/%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90/){:target="_blank"}
 
+[NoughtQ的笔记本 - 高级数据结构与算法分析](https://note.noughtq.top/algorithms/ads/){:target="_blank"}
+
 [Isshiki修's Notebook - 💎 高级数据结构 | Advanced Data Structure](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/){:target="_blank"}
 
 [Zhou Jianjun's Notebook - ADS Homework Review](https://zhoutimemachine.github.io/note/courses/ads-hw-review/){:target="_blank"}
