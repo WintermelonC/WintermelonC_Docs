@@ -359,7 +359,6 @@ where T.assets > S.assets and S.branch_city = 'Brooklyn'
 **Example**：Find all customers who have at most one account at the Perryridge branch
 
 ```sql linenums="1"
--- 创建 view
 select customer_name
 from depositor as T
 where unique
