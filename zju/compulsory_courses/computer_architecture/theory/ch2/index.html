@@ -3756,6 +3756,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.2 流水线冒险">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-data-hazard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 Data Hazard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-branch-hazard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 Branch Hazard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6142,6 +6166,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2.2 流水线冒险">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221-data-hazard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 Data Hazard
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222-branch-hazard" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 Branch Hazard
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6215,15 +6263,116 @@
 <h2 id="21-引言">2.1 引言<a class="headerlink" href="#21-引言" title="Permanent link">&para;</a></h2>
 <p>如果各级达到完美平衡，那么每条指定在流水线处理器中的时间（假定为理想条件）等于：</p>
 <p><span class="arithmatex">\(\dfrac{非流水线机器上每条指令的时间}{流水级的数目}\)</span></p>
+<figure>
+    <img alt="Img 1" src="../../../img/comp_arch/ch2/ca_ch2_img1.png" width="600" />
+</figure>
 <h2 id="22-流水线冒险">2.2 流水线冒险<a class="headerlink" href="#22-流水线冒险" title="Permanent link">&para;</a></h2>
 <p><strong>Pipeline Hazards</strong></p>
 <ol>
-<li>结构冒险</li>
+<li>结构冒险：在重叠执行模式下，如果硬件无法同时支持指令的所有可能组合方式，就会出现资源冲突，从而导致结构冒险</li>
 <li>数据冒险</li>
 <li>控制冒险</li>
 </ol>
+<h3 id="221-data-hazard">2.2.1 Data Hazard<a class="headerlink" href="#221-data-hazard" title="Permanent link">&para;</a></h3>
+<ol>
+<li>RAW：最常见的一种情况，当指令 j 对寄存器 x 的读取发生在指令 i 对寄存器 x 的写入之前。如果这种风险不被预防，指令 j 将使用错误的 x 值</li>
+<li>WAR：这种风险发生在指令 i 对寄存器 x 的读取发生在指令 j 对寄存器 x 的写入之后。在这种情况下，指令 i 将使用错误的 x 值。<mark>WAR 风险在简单的五级整数流水线中是不可能发生的</mark></li>
+<li>WAW：这种风险发生在指令 i 对寄存器 x 的写入发生在指令 j 对寄存器 x 的写入之后。当这种情况发生时，寄存器 x 将向前传递错误的值。<mark>WAW 风险同样在简单的五级整数流水线中是不可能发生的</mark></li>
+</ol>
+<figure>
+    <img alt="Img 2" src="../../../img/comp_arch/ch2/ca_ch2_img2.png" width="600" />
+</figure>
+<p>处理数据冒险：</p>
+<p><strong>1.利用 forwarding 技术减少 stall</strong></p>
+<figure>
+    <img alt="Img 3" src="../../../img/comp_arch/ch2/ca_ch2_img3.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 4" src="../../../img/comp_arch/ch2/ca_ch2_img4.png" width="600" />
+</figure>
+<p><strong>2.需要 stall 的数据冒险</strong></p>
+<figure>
+    <img alt="Img 5" src="../../../img/comp_arch/ch2/ca_ch2_img5.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 6" src="../../../img/comp_arch/ch2/ca_ch2_img6.png" width="600" />
+</figure>
+<h3 id="222-branch-hazard">2.2.2 Branch Hazard<a class="headerlink" href="#222-branch-hazard" title="Permanent link">&para;</a></h3>
+<p>处理分支的最简单方法是：一旦在 ID 期间检测到分支，就对该分支之后的指令重新取值</p>
+<figure>
+    <img alt="Img 7" src="../../../img/comp_arch/ch2/ca_ch2_img7.png" width="600" />
+</figure>
+<p><strong>降低流水线分支代价</strong></p>
+<p>预测分支未发生</p>
+<figure>
+    <img alt="Img 8" src="../../../img/comp_arch/ch2/ca_ch2_img8.png" width="600" />
+</figure>
+<p>延迟分支</p>
 <h2 id="25-扩展流水线处理多周期操作">2.5 扩展流水线，处理多周期操作<a class="headerlink" href="#25-扩展流水线处理多周期操作" title="Permanent link">&para;</a></h2>
+<p>如何扩展 RISC-V 流水线，以处理浮点运算</p>
+<p>假定 RISC-V 实现中有以下 4 个独立的功能单元：</p>
+<ol>
+<li>主整数单元，处理载入和存储、整型 ALU 操作，还有分支</li>
+<li>FP 和整数乘法器</li>
+<li>FP 加法器，处理浮点加、减和转换</li>
+<li>FP 和整数除法器</li>
+</ol>
+<figure>
+    <img alt="Img 9" src="../../../img/comp_arch/ch2/ca_ch2_img9.png" width="600" />
+</figure>
+<ul>
+<li>功能单元的延迟：生成结果的指令与使用结果的指令之间的周期数</li>
+<li>功能单元的启动间隔（或重复间隔）：在发生两个给定类型的操作之间必须间隔的周期数</li>
+</ul>
+<figure>
+    <img alt="Img 10" src="../../../img/comp_arch/ch2/ca_ch2_img10.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 11" src="../../../img/comp_arch/ch2/ca_ch2_img11.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 12" src="../../../img/comp_arch/ch2/ca_ch2_img12.png" width="600" />
+</figure>
 <h3 id="251-长延迟流水线中的冒险与转发">2.5.1 长延迟流水线中的冒险与转发<a class="headerlink" href="#251-长延迟流水线中的冒险与转发" title="Permanent link">&para;</a></h3>
+<p>对于上图所示的流水线：</p>
+<ol>
+<li>因为除法单元未被完全流水化，所以可能发生结构冒险。需要对这些冒险进行检测，还将需要停顿指令发射</li>
+<li>因为指令的运行时间不同，所以一个周期内需要的寄存器写人次数可能会大于 1</li>
+<li>由于指令不会循序到达 WB，所以有可能存在写后写 WAW 冒险。注意，<mark>由于寄存器读总是在 ID 中发生，所以不可能存在读后写 WAR 冒险</mark></li>
+<li>指令的完成顺字可能不同于其发射顺序，从而导致异常问题</li>
+<li>由于操作的延迟较长，所以 RAW 冒险的停顿将会变得更为频繁</li>
+</ol>
+<figure>
+    <img alt="Img 13" src="../../../img/comp_arch/ch2/ca_ch2_img13.png" width="600" />
+    <figcaption>由于 RAW 冒险导致的停顿</figcaption>
+</figure>
+<p>如果假定浮点寄存器堆只有一个写端口，那么浮点操作序列可能导致寄存器写端口的冲突。这便是一种结构冒险</p>
+<p>只有主整数单元的 load 操作才会使用到 MEM，因此 MEM 不存在结构冒险</p>
+<figure>
+    <img alt="Img 14" src="../../../img/comp_arch/ch2/ca_ch2_img14.png" width="600" />
+</figure>
+<p>解决方案：</p>
+<ol>
+<li>跟踪 ID 级对写端口的使用，并在一条指令发射之前将其停顿<ul>
+<li>使用一个移位寄存器，这个寄存器可以指示已发射指令将会在何时使用这个寄存器堆。如果 ID 中的指令需要与已发射指令同时使用寄存器堆，那 ID 中的指令将会停顿一个周期</li>
+<li>在每个时钟周期，保留寄存器将会移动 1 位</li>
+<li>所有互联检测与停顿插入都在 ID 流水级内进行</li>
+</ul>
+</li>
+<li>当一个冲突指令尝试进入 MEM 级或 WB 级时，将其停顿</li>
+</ol>
+<p>另一个问题是 WAW 冒险，如果将上图的 L.D 指令提早一个周期，那么会与 ADD.D 产生 WAW 冒险（F2 的值本应该是 L.D 的结果，但是由于 ADD.D 的 WB 阶段在 L.D 的 WB 阶段之后，实际 F2 的值是 ADD.D 的值，产生 WAW 冒险）。但是，只有当 ADD.D 的结果被改写，而且从来没有任何指令使用这一结果时，WAW 冒险才会出现（因为如果在 L.D 和 ADD.D 之间使用到 F2，那么流水线将会因为 RAW 冒险而停顿，碰巧就处理了 WAW 冒险）</p>
+<p>解决方案：</p>
+<ol>
+<li>延迟载入指令的发射，直到 ADD.D 进入 MEM 为止</li>
+<li>废除 ADD.D 的结果：检测冒险并改变控制，使 ADD.D 不会写入其结果</li>
+</ol>
+<p><strong>总结</strong>：</p>
+<ol>
+<li>检查结构冒险：一直等到所需要功能单元不再繁忙为止（在这个流水线中，只有除法操作需要），并确保在需要寄存器写端口时可用</li>
+<li>检查 RAW 数据冒险：一直等到源寄存器未被列为流水线寄存器中的目的地为止（当这一指令需要结果时，这些寄存器不可用）。这里需要进行大量检查，具体取决于源指令和目标指令，前者决定结果何时可用，后者决定何时需要该取值。例如，如果 ID 中的指令是一个浮点运算，其源寄存器为 F2，那 F2 在 ID/A1、A1/A2或 A2/A3 中不能被列为目的地，它们与一些浮点加法指令相对应，当 ID 中的指令需要结果时，这些指令还不能完成（ID/A1是 ID 输出寄存器中被发送给 A1 的部分）。如果我们希望重叠执行除法的最后几个周期，由于需要将除法接近完成时的情景作为特殊情况加以处理，所以除法运算需要的技巧性更强一些。实际上，设计师可能会忽略这一优化，以简化发射测试</li>
+<li>检查 WAW 数据冒险：判断 A1，...，A4，D，M1，...，M7 中是否有任何指令的目标寄存器与这一指令相同。如果确实如此，则暂停发射 ID 中的指令</li>
+</ol>
 
 
 
@@ -6246,7 +6395,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月8日 12:30:25">2025年3月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月9日 07:56:09">2025年3月9日</span>
   </span>
 
     
