@@ -28,6 +28,12 @@
       2. [PyTorch 深度学习](./knowledge/python/pytorch/index.md)
 2. [数据结构与算法](./knowledge/data_stru_algorithm/index.md)
 
+## [工具](./tools/index.md)
+
+你可以找到一些实用的工具
+
+1. [Git](./tools/git/index.md)
+
 ??? abstract "2025 寒假计划"
 
     - [x] 编写计算机组成实验部分指导文档

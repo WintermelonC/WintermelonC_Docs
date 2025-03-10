@@ -1,13 +1,19 @@
 # Anaconda
 
-## 1 备份环境
+## 环境
+
+### 查看环境
+
+`conda info --env`
+
+### 备份环境
 
 1. 导出环境配置文件
       - `conda env export > environment.yml`
 2. 还原环境
       - `conda env create -f environment.yml`
 
-## 2 更新当前环境的 Python 版本
+## 更新当前环境的 Python 版本
 
 !!! info "参考"
 
