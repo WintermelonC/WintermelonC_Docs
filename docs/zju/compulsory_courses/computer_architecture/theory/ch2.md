@@ -16,7 +16,7 @@
 $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 
 <figure markdown="span">
-    ![Img 1](../../../img/comp_arch/ch2/ca_ch2_img1.png){ width="600" }
+    ![Img 1](../../../../img/comp_arch/ch2/ca_ch2_img1.png){ width="600" }
 </figure>
 
 ## 2.2 流水线冒险
@@ -34,7 +34,7 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 3. WAW：这种风险发生在指令 i 对寄存器 x 的写入发生在指令 j 对寄存器 x 的写入之后。当这种情况发生时，寄存器 x 将向前传递错误的值。==WAW 风险同样在简单的五级整数流水线中是不可能发生的==
 
 <figure markdown="span">
-    ![Img 2](../../../img/comp_arch/ch2/ca_ch2_img2.png){ width="600" }
+    ![Img 2](../../../../img/comp_arch/ch2/ca_ch2_img2.png){ width="600" }
 </figure>
 
 处理数据冒险：
@@ -42,21 +42,21 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 **1.利用 forwarding 技术减少 stall**
 
 <figure markdown="span">
-    ![Img 3](../../../img/comp_arch/ch2/ca_ch2_img3.png){ width="600" }
+    ![Img 3](../../../../img/comp_arch/ch2/ca_ch2_img3.png){ width="600" }
 </figure>
 
 <figure markdown="span">
-    ![Img 4](../../../img/comp_arch/ch2/ca_ch2_img4.png){ width="600" }
+    ![Img 4](../../../../img/comp_arch/ch2/ca_ch2_img4.png){ width="600" }
 </figure>
 
 **2.需要 stall 的数据冒险**
 
 <figure markdown="span">
-    ![Img 5](../../../img/comp_arch/ch2/ca_ch2_img5.png){ width="600" }
+    ![Img 5](../../../../img/comp_arch/ch2/ca_ch2_img5.png){ width="600" }
 </figure>
 
 <figure markdown="span">
-    ![Img 6](../../../img/comp_arch/ch2/ca_ch2_img6.png){ width="600" }
+    ![Img 6](../../../../img/comp_arch/ch2/ca_ch2_img6.png){ width="600" }
 </figure>
 
 ### 2.2.2 Branch Hazard
@@ -64,7 +64,7 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 处理分支的最简单方法是：一旦在 ID 期间检测到分支，就对该分支之后的指令重新取值
 
 <figure markdown="span">
-    ![Img 7](../../../img/comp_arch/ch2/ca_ch2_img7.png){ width="600" }
+    ![Img 7](../../../../img/comp_arch/ch2/ca_ch2_img7.png){ width="600" }
 </figure>
 
 **降低流水线分支代价**
@@ -72,7 +72,7 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 预测分支未发生
 
 <figure markdown="span">
-    ![Img 8](../../../img/comp_arch/ch2/ca_ch2_img8.png){ width="600" }
+    ![Img 8](../../../../img/comp_arch/ch2/ca_ch2_img8.png){ width="600" }
 </figure>
 
 延迟分支
@@ -89,22 +89,22 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 4. FP 和整数除法器
 
 <figure markdown="span">
-    ![Img 9](../../../img/comp_arch/ch2/ca_ch2_img9.png){ width="600" }
+    ![Img 9](../../../../img/comp_arch/ch2/ca_ch2_img9.png){ width="600" }
 </figure>
 
 - 功能单元的延迟：生成结果的指令与使用结果的指令之间的周期数
 - 功能单元的启动间隔（或重复间隔）：在发生两个给定类型的操作之间必须间隔的周期数
 
 <figure markdown="span">
-    ![Img 10](../../../img/comp_arch/ch2/ca_ch2_img10.png){ width="600" }
+    ![Img 10](../../../../img/comp_arch/ch2/ca_ch2_img10.png){ width="600" }
 </figure>
 
 <figure markdown="span">
-    ![Img 11](../../../img/comp_arch/ch2/ca_ch2_img11.png){ width="600" }
+    ![Img 11](../../../../img/comp_arch/ch2/ca_ch2_img11.png){ width="600" }
 </figure>
 
 <figure markdown="span">
-    ![Img 12](../../../img/comp_arch/ch2/ca_ch2_img12.png){ width="600" }
+    ![Img 12](../../../../img/comp_arch/ch2/ca_ch2_img12.png){ width="600" }
 </figure>
 
 ### 2.5.1 长延迟流水线中的冒险与转发
@@ -118,7 +118,7 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 5. 由于操作的延迟较长，所以 RAW 冒险的停顿将会变得更为频繁
 
 <figure markdown="span">
-    ![Img 13](../../../img/comp_arch/ch2/ca_ch2_img13.png){ width="600" }
+    ![Img 13](../../../../img/comp_arch/ch2/ca_ch2_img13.png){ width="600" }
     <figcaption>由于 RAW 冒险导致的停顿</figcaption>
 </figure>
 
@@ -127,7 +127,7 @@ $\dfrac{非流水线机器上每条指令的时间}{流水级的数目}$
 只有主整数单元的 load 操作才会使用到 MEM，因此 MEM 不存在结构冒险
 
 <figure markdown="span">
-    ![Img 14](../../../img/comp_arch/ch2/ca_ch2_img14.png){ width="600" }
+    ![Img 14](../../../../img/comp_arch/ch2/ca_ch2_img14.png){ width="600" }
 </figure>
 
 解决方案：

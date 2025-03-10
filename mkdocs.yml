@@ -38,6 +38,7 @@ nav:
         - zju/computer/AI_basic/index.md
         - 1 初识人工智能: zju/computer/AI_basic/ch1.md
         - 2 人工智能的系统数据基础: zju/computer/AI_basic/ch2.md
+        - 3 人工智能的应用开发基础: zju/computer/AI_basic/ch3.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 
@@ -127,6 +128,7 @@ nav:
         - 1 Introduction: zju/compulsory_courses/database_system/ch1.md
         - 2 Introduction to the Relational Model: zju/compulsory_courses/database_system/ch2.md
         - 3 Introduction to SQL: zju/compulsory_courses/database_system/ch3.md
+        - 4 Advanced SQL: zju/compulsory_courses/database_system/ch4.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:
@@ -208,6 +210,11 @@ nav:
       - knowledge/data_stru_algorithm/index.md
       - 其他:
         - 埃拉托斯特尼筛法求质数: knowledge/data_stru_algorithm/other/sieve_of_eratosthenes.md
+  - 工具:
+    - tools/index.md
+    - Git:
+      - tools/git/index.md
+      - 其他: tools/git/other.md
 
 # 主题设置
 theme:

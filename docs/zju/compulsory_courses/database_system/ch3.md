@@ -1,8 +1,8 @@
 # 3 Introduction to SQL
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -585,12 +585,12 @@ set balance = case
 ```sql linenums="1"
 select customer_name
 from (depositor natural full outer join borrower)
-where account_name = null or loan_number is null
+where account_name is null or loan_number is null
 ```
 
 ## Homework
 
-<!-- ???+ question "课本 3.8"
+???+ question "课本 3.8"
 
     Consider the bank database of Figure 3.18, where the primary keys are underlined. Construct the following SQL queries for this relational database.
 
@@ -929,4 +929,4 @@ where account_name = null or loan_number is null
             from branch b2
             where b2.branch_city = 'Brooklyn'
         )
-        ``` -->
+        ```

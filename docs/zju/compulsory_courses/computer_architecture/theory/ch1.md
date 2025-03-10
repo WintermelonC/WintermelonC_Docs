@@ -163,5 +163,5 @@ $CPU\ time = Instruction\ count \times CPI \times Clock\ cycle\ time$
 ??? example "例题"
 
     <figure markdown="span">
-      ![Img 1](../../../img/comp_arch/ch1/ca_ch1_img1.png){ width="600" }
+      ![Img 1](../../../../img/comp_arch/ch1/ca_ch1_img1.png){ width="600" }
     </figure>
