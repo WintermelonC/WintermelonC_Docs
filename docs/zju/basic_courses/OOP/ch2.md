@@ -1,8 +1,8 @@
 # 2 Grouping Objects
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -31,6 +31,14 @@ All Sequential Containers（顺序容器）:
 4. forward_list：单向链表
 5. array：固定大小数组
 6. string：字符数组
+
+!!! tip "选择 Sequential Containers"
+
+    1. 优先选择 vector
+    2. 如果程序包含大量小元素并且空间开销很重要，不要使用 list 和 forward_list
+    3. 如果程序需要随机访问元素，使用 vector 或 deque
+    4. 如果程序需要在中间插入元素，使用 list 或 forward_list
+    5. 如果程序需要在前后插入元素，使用 deque
 
 ## 3 `vector`
 
@@ -296,14 +304,6 @@ int main()
     li = L.erase(li);  // 正确，li 指向被删除元素之后的位置
     ```
 
-!!! tip "选择 Sequential Containers"
-
-    1. 优先选择 vector
-    2. 如果程序包含大量小元素并且空间开销很重要，不要使用 list 和 forward_list
-    3. 如果程序需要随机访问元素，使用 vector 或 deque
-    4. 如果程序需要在中间插入元素，使用 list 或 forward_list
-    5. 如果程序需要在前后插入元素，使用 deque
-
 ## 4 `map`
 
 使用前包含头文件 `<map>`
@@ -526,7 +526,7 @@ int main()
 
 <!-- 此节内容在 2025/3/11 后上传至 Github -->
 
-<!-- ???+ question "PTA 2.2"
+???+ question "PTA 2.2"
 
     设有定义 vector<string> v(10); 执行下列哪条语句时会调用构造函数?
 
@@ -609,4 +609,4 @@ int main()
         
         D. `vector<int> v = (10, 1);` 这种写法是错误的。这里的`(10, 1)`使用的是逗号运算符，它会先计算`10`然后计算`1`，最终结果是`1`，因此这行代码尝试用一个整数`1`来初始化一个`vector<int>`，这显然是不正确的。正确的做法应该类似于前面提到的方式，如使用列表初始化或提供元素数量与初始值等
         
-        因此，选项 D 是错误的创建`vector<int>`容器对象的方法 -->
+        因此，选项 D 是错误的创建`vector<int>`容器对象的方法

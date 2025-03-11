@@ -1,8 +1,8 @@
 # 3 Defining Class
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -102,7 +102,11 @@ struct Person {
 };
 ```
 
-构造函数用于在创建结构体对象时初始化成员变量。构造函数是一种特殊的成员函数，其名称与结构体名称相同，没有返回类型。构造函数可以有参数，也可以没有参数（默认构造函数）
+构造函数用于在创建结构体对象时初始化成员变量。构造函数是一种特殊的成员函数，其名称与结构体名称相同，没有返回类型。构造函数可以有参数，也可以没有参数
+
+**默认构造函数** 是指在没有参数或所有参数都有默认值的情况下调用的构造函数
+
+如果类中没有声明任何构造函数，编译器会提供一个隐式的默认构造函数，称为 **自动默认构造函数**
 
 <div class="grid" markdown>
 
@@ -114,11 +118,14 @@ struct Point {
     int x;
     int y;
 
-    // 默认构造函数
+    // 默认构造函数可以是无参的
     Point() {
         x = 0;
         y = 0;
     }
+
+    // 默认构造函数也可以是所有参数都有默认值的
+    Point(int xx = 0, int yy = 0) : x(xx), y(yy) {}
 };
 
 int main()
@@ -290,9 +297,9 @@ int main()
 
 #### 2.1.1 `#include`
 
-1. `#include`：用于包含标准库头文件或系统头文件
+1. `#include <>`：用于包含标准库头文件或系统头文件
       - 编译器首先在标准库或系统的头文件目录中搜索指定的头文件。如果未找到，编译器可能会在其他预定义的目录中继续搜索
-2. `#include`：用于包含用户自定义的头文件
+2. `#include ""`：用于包含用户自定义的头文件
       - 编译器首先在当前源文件所在的目录中搜索指定的头文件。如果未找到，编译器会在标准库或系统的头文件目录中继续搜索
       - `#include "utils/helper.h"`
 
@@ -415,105 +422,31 @@ private:
 };
 ```
 
-#### 2.2.1 访问权限
+### 2.3 析构函数
 
-在 C++ 中，类的成员（包括成员变量和成员函数）可以有三种访问权限：`public`、`protected` 和 `private`。这些访问权限控制了类的成员在类的外部和派生类中的可见性和可访问性
+析构函数（destructor）是类的一种特殊成员函数，==当对象的生命周期结束时自动调用==，用于执行清理操作，例如释放资源、关闭文件等。析构函数的名称与类名相同，但前面加上波浪号（~），==且没有返回类型和参数==
 
-- `public` 访问权限：公有成员可以在类的外部和派生类中访问
-- `protected` 访问权限：受保护成员只能在类的内部和派生类中访问，不能在类的外部访问
-- `private` 访问权限：私有成员只能在类的内部访问，不能在类的外部和派生类中访问
-      - 类成员的缺省访问权限是 `private`
-      - 在结构体（struct）中，默认的访问权限是 `public`
+析构函数通常用于执行以下操作：
 
-##### `public`
+- 释放动态分配的内存
+- 关闭文件或网络连接
+- 释放其他系统资源
 
-- 说明: 公有成员可以在类的外部和派生类中访问
-- 用途: 通常用于定义类的接口，使得类的用户可以访问和使用这些成员
-
-```cpp linenums="1"
-class MyClass {
-public:
-    int publicVar;
-
-    void publicMethod()
-    {
-        // 公有成员函数
-    }
-};
-
-int main()
-{
-    MyClass obj;
-    obj.publicVar = 10; // 可以在类的外部访问公有成员变量
-    obj.publicMethod(); // 可以在类的外部调用公有成员函数
-    return 0;
-}
-```
-
-##### `protected`
-
-- 说明: 受保护成员只能在类的内部和派生类中访问，不能在类的外部访问
-- 用途: 通常用于定义类的实现细节，使得派生类可以访问和使用这些成员，但类的用户不能直接访问
-
-```cpp linenums="1"
-class Base {
-protected:
-    int protectedVar;
-
-    void protectedMethod()
-    {
-        // 受保护成员函数
-    }
-};
-
-class Derived : public Base {
-public:
-    void accessProtectedMembers()
-    {
-        protectedVar = 20; // 可以在派生类中访问受保护成员变量
-        protectedMethod(); // 可以在派生类中调用受保护成员函数
-    }
-};
-
-int main()
-{
-    Derived obj;
-    obj.accessProtectedMembers();
-    // obj.protectedVar = 10; // 错误：不能在类的外部访问受保护成员变量
-    // obj.protectedMethod(); // 错误：不能在类的外部调用受保护成员函数
-    return 0;
-}
-```
-
-##### `private`
-
-- 说明: 私有成员只能在类的内部访问，不能在类的外部和派生类中访问
-- 用途: 通常用于定义类的实现细节，使得这些成员只能在类的内部使用，不能在类的外部和派生类中直接访问
+例如，如果类中有一个指向动态分配内存的指针，可以在析构函数中释放这块内存：
 
 ```cpp linenums="1"
 class MyClass {
 private:
-    int privateVar;
-
-    void privateMethod()
-    {
-        // 私有成员函数
+    int* data;
+public:
+    // 构造函数
+    MyClass() {
+        data = new int[100]; // 动态分配内存
     }
 
-public:
-    void accessPrivateMembers()
-    {
-        privateVar = 30; // 可以在类的内部访问私有成员变量
-        privateMethod(); // 可以在类的内部调用私有成员函数
+    // 析构函数
+    ~MyClass() {
+        delete[] data; // 释放内存
     }
 };
-
-int main()
-{
-    MyClass obj;
-    obj.accessPrivateMembers();
-    // obj.privateVar = 10; // 错误：不能在类的外部访问私有成员变量
-    // obj.privateMethod(); // 错误：不能在类的外部调用私有成员函数
-    return 0;
-}
 ```

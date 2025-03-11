@@ -32,7 +32,7 @@ wzh老师
 
 ## 个人笔记
 
-### 理论部分
+### 理论部分及课本部分练习题详解
 
 [1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)<br/>
 [2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)
