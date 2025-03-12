@@ -466,14 +466,180 @@ int main() {
 
 ### 2.3 Static
 
+1. 两个基本含义
+      1. 静态存储
+         - 在程序的生命周期内，静态变量只分配一次内存，并且在整个程序运行期间都存在。这意味着它们的值在函数调用之间保持不变
+      2. 受限访问
+         - 静态关键字可以用于限制变量或函数的访问范围。例如，在 C++ 中，静态成员变量或函数只能在类内部访问
+2. 在固定地址一次性分配
+      1. 名称的可见性
+         - 静态变量在程序启动时分配内存，并且在整个程序运行期间保持不变
+      2. 内部链接
+         - 在 C++ 中，静态变量或函数具有内部链接，这意味着它们只在定义它们的文件内可见，不会与其他文件中的同名变量或函数冲突
+3. 在 C++ 中，建议仅在函数和类内部使用 static 关键字。不要使用 static 来限制访问，因为 C++ 提供了其他更合适的访问控制机制（如 private 和 protected）
 
+#### 2.3.1 静态全局函数
 
-#### 静态（普通）函数
+> 不推荐使用
 
-#### 静态全局变量
+静态全局函数是一种特殊的函数，它的作用域仅限于定义它的文件。这意味着它不能被其他文件访问，从而实现了封装和信息隐藏
 
-#### 静态局部变量
+- 作用域：静态全局函数只能在定义它的文件中使用，其他文件无法访问
 
-#### 静态成员变量
+```cpp linenums="1"
+#include <iostream>
 
-#### 静态成员函数
+// 静态全局函数
+static void printMessage() {
+    std::cout << "Hello, World!" << std::endl;
+}
+
+int main() {
+    printMessage();  // 此函数只能在当前文件中使用
+    return 0;
+}
+```
+
+#### 2.3.2 静态全局变量
+
+> 不推荐使用
+
+静态全局变量是一种特殊的变量，它的作用域仅限于定义它的文件。这意味着它不能被其他文件访问，从而实现了封装和信息隐藏
+
+- **作用域**：静态全局变量只能在定义它的文件中使用，其他文件无法访问
+- **生命周期**：静态全局变量在程序开始时初始化，并在程序结束时销毁。它们在整个程序运行期间都存在
+
+```cpp linenums="1"
+#include <iostream>
+
+// 静态全局变量
+static int counter = 0;
+
+void incrementCounter() {
+    counter++;
+}
+
+void printCounter() {
+    std::cout << "Counter: " << counter << std::endl;
+}
+
+int main() {
+    incrementCounter();
+    printCounter();
+    return 0;
+}
+```
+
+#### 2.3.3 静态局部变量
+
+静态局部变量是一种特殊的局部变量，它在函数或代码块中定义，但其生命周期贯穿整个程序运行期间。静态局部变量在第一次调用时初始化，并在程序结束时销毁
+
+- **作用域**：静态局部变量的作用域仅限于定义它的函数或代码块，但其生命周期贯穿整个程序运行期间
+- **生命周期**：静态局部变量在第一次调用时初始化，并在程序结束时销毁。它们在整个程序运行期间都存在
+- **初始化**：静态局部变量只在第一次调用时初始化，后续调用不会重新初始化
+
+```cpp linenums="1"
+#include <iostream>
+
+void incrementCounter() {
+    // 静态局部变量
+    static int counter = 0;
+    counter++;
+    std::cout << "Counter: " << counter << std::endl;
+}
+
+int main() {
+    incrementCounter(); // 输出: Counter: 1
+    incrementCounter(); // 输出: Counter: 2
+    incrementCounter(); // 输出: Counter: 3
+    return 0;
+}
+```
+
+#### 2.3.4 静态成员变量
+
+静态成员变量是属于类而不是类的某个对象的变量。==它们在所有对象之间共享==，并且在程序开始时初始化，在程序结束时销毁
+
+1. **类范围内共享**：静态成员变量在所有类的对象之间共享
+2. **生命周期**：静态成员变量在程序开始时初始化，并在程序结束时销毁
+3. **类外定义**：静态成员变量必须在类外定义和初始化（在类中的只是声明，实际在内存里，静态成员变量的位置不和类在一起，因此执行 `sizeof(class)` 时，会发现没有静态成员变量的参与）
+
+注意事项：
+
+1. 访问权限：静态成员变量可以是 public、protected 或 private。访问权限决定了它们在类外部的可见性
+2. 初始化顺序：静态成员变量的初始化顺序在不同的编译单元之间是未定义的，这可能会导致一些难以发现的错误。应尽量避免在静态初始化期间依赖其他编译单元中的静态变量
+
+```cpp linenums="1"
+#include <iostream>
+
+class MyClass {
+public:
+    // 静态成员变量声明
+    static int staticVar;
+
+    static void printStaticVar() {
+        std::cout << "Static Variable: " << staticVar << std::endl;
+    }
+};
+
+// 静态成员变量定义和初始化
+int MyClass::staticVar = 0;
+
+int main() {
+    // 访问和修改静态成员变量
+    MyClass::printStaticVar(); // 输出: Static Variable: 0
+    MyClass::staticVar = 5;  // 可以直接通过类名来访问静态成员变量
+    MyClass::printStaticVar(); // 输出: Static Variable: 5
+
+    MyClass obj1, obj2;
+    obj1.staticVar = 10;
+    obj2.printStaticVar(); // 输出: Static Variable: 10
+
+    return 0;
+}
+```
+
+#### 2.3.5 静态成员函数
+
+静态成员函数是属于类而不是类的某个对象的函数。它们可以在没有对象实例的情况下调用，==并且只能访问静态成员变量和其他静态成员函数==
+
+1. **类范围内共享**：静态成员函数属于类，而不是类的某个对象
+2. **无需对象实例**：静态成员函数可以在没有对象实例的情况下调用
+3. **访问限制**：静态成员函数只能访问静态成员变量和其他静态成员函数，不能访问非静态成员变量和非静态成员函数
+
+注意事项：
+
+1. **访问权限**：静态成员函数可以是 public、protected 或 private。访问权限决定了它们在类外部的可见性
+2. **不能访问非静态成员**：静态成员函数不能访问类的非静态成员变量和非静态成员函数，==因为它们没有 this 指针==
+
+```cpp linenums="1"
+#include <iostream>
+
+class MyClass {
+public:
+    // 静态成员函数声明
+    static void printMessage();
+
+    // 静态成员变量声明
+    static int staticVar;
+};
+
+// 静态成员函数定义
+void MyClass::printMessage() {
+    std::cout << "Hello from static member function!" << std::endl;
+}
+
+// 静态成员变量定义和初始化
+int MyClass::staticVar = 0;
+
+int main() {
+    // 调用静态成员函数
+    MyClass::printMessage(); // 输出: Hello from static member function!
+
+    // 访问和修改静态成员变量
+    MyClass::staticVar = 5;
+    std::cout << "Static Variable: " << MyClass::staticVar << std::endl; // 输出: Static Variable: 5
+
+    return 0;
+}
+```

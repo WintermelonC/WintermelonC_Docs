@@ -75,4 +75,16 @@
   #home-title {
     font-size: 3rem;
   }
+
+  [data-md-color-scheme="slate"] #home-title {
+    font-size: 3rem;
+  }
+}
+
+#my-p {
+  color: #212121;
+}
+
+[data-md-color-scheme="slate"] #my-p {
+  color: #bec1c6;
 }
