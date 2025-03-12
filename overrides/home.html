@@ -1,0 +1,31 @@
+<!-- 自定义首页 WintermelonC_Docs/-->
+
+<!-- 继承 base.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html -->
+{% extends "base.html" %}
+
+<!-- 修改 container 块 https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html#L180 -->
+{% block container %}
+  <div class="md-content" data-md-component="content">
+    <article 
+      id="home-content__inner"
+      class="md-content__inner md-typeset"
+    >
+      <div 
+        class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary"
+      >
+        <div class="col-lg-6 px-0">
+          <h1 
+            id="home-title"
+            class="fst-italic"
+          >
+            Welcome to<br/>WintermelonC_Docs
+          </h1>
+          <p class="lead my-3">
+            呃 …… 这个冬瓜暂时没想好首页长什么样子
+          </p>
+        </div>
+      </div>
+      {% include "partials/content.html" %}
+    </article>
+  </div>
+{% endblock %}

@@ -1,51 +1,78 @@
 /* 
-class 选择器 
-class=""
-*/
+ * class 选择器 
+ * class=""
+ */
 .md-grid {
-    max-width: 1440px;
+  max-width: 1440px;
 }
 
 .md-typeset h5 {
-    color: #212121;
-    text-transform: none;
+  color: #212121;
+  text-transform: none;
 }
 
 [data-md-color-scheme="slate"] .md-typeset h5 {
-    color: #c1c4c9;
+  color: #c1c4c9;
 }
 
 .md-typeset h4 {
-    font-size: 1.125em;
+  font-size: 1.125em;
 }
 
 .md-typeset hr {
-    border-bottom-width: 0.1rem;
+  border-bottom-width: 0.1rem;
 }
 
 /* 
-ID 选择器 
-id=""
-*/
+ * ID 选择器 
+ * id=""
+ */
 #tab-both-mid {
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
 }
 
 #tab-bg-both-mid {
-    background-color: #f3f3f3;
-    text-align: center;
-    vertical-align: middle;
+  background-color: #f3f3f3;
+  text-align: center;
+  vertical-align: middle;
 }
 
 [data-md-color-scheme="slate"] #tab-bg-both-mid {
-    background-color: #2d2f38;
+  background-color: #2d2f38;
 }
 
 #grid-mid {
-    align-items: center;
+  align-items: center;
 }
 
 #txt-mid {
-    text-align: center;
+  text-align: center;
+}
+
+#home-content__inner {
+  width: 75%;
+  margin: 0 auto;
+}
+
+#home-title {
+  font-size: calc(1.5rem + 1.5vw);
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: Playfair Display, Georgia, Times New Roman, serif;
+  color: #212121cc;
+}
+
+[data-md-color-scheme="slate"] #home-title {
+  font-size: calc(1.5rem + 1.5vw);
+  font-weight: 300;
+  line-height: 1.2;
+  font-family: Playfair Display, Georgia, Times New Roman, serif;
+  color: #c8ccd0;
+}
+
+@media (min-width: 1200px) {
+  #home-title {
+    font-size: 3rem;
+  }
 }

@@ -14,13 +14,13 @@ zxq老师、sjq老师
 
 ### 考核方式
 
-<div class="card file-block" markdown="1">
+<div class="hq-card hq-file-block" markdown="1">
 <div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
-<div class="file-body">
-<div class="file-title">“习概”学生手册</div>
-<div class="file-meta">404 KB | 11 page</div>
+<div class="hq-file-body">
+<div class="hq-file-title">“习概”学生手册</div>
+<div class="hq-file-meta">404 KB | 11 page</div>
 </div>
-<a class="down-button" target="_blank" href="../../../file/xi_thought/xi_thought_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="hq-down-button" target="_blank" href="../../../file/xi_thought/xi_thought_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 每旷课一次在总成绩中扣 5 分
