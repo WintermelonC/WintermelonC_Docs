@@ -1,0 +1,15 @@
+[data-md-color-scheme="default"] {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-image: url('../images/2023SkyDesktopWindpaths4K.jpg');
+}
+
+[data-md-color-scheme="slate"] {
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	background-image: url('../images/2023SkyDesktopEden4K.jpg');
+}

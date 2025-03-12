@@ -31,6 +31,7 @@
       
     
     
+  
       <link rel="stylesheet" href="assets/stylesheets/main.8608ea7d.min.css">
       
         
@@ -46,6 +47,8 @@
 
 
     
+  <link rel="stylesheet" href="assets/stylesheets/homepage.css">
+
     
       
     
@@ -65,7 +68,7 @@
     
       <link rel="stylesheet" href="assets/stylesheets/hqcard.css">
     
-      <link rel="stylesheet" href="assets/stylesheets/bootstrap/bootstrap.css">
+      <link rel="stylesheet" href="assets/stylesheets/bootstrap.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -6417,204 +6420,63 @@
             
           
           
-  <div class="md-content" data-md-component="content">
-    <article 
-      id="home-content__inner"
-      class="md-content__inner md-typeset"
-    >
-      <div 
-        class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary"
-      >
-        <div class="col-lg-6 px-0">
-          <h1 
-            id="home-title"
-            class="fst-italic"
-          >
-            Welcome to<br/>WintermelonC_Docs
-          </h1>
-          <p class="lead my-3">
-            呃 …… 这个冬瓜暂时没想好首页长什么样子
-          </p>
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+  <div class="home-page">
+    <!-- 
+    源代码来源：https://getbootstrap.com/docs/5.3/examples/blog/
+    源代码作者：@mdo (https://twitter.com/mdo) 
+    -->
+    <div class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary">
+      <div class="col-lg-6 px-0">
+        <h1 id="home-title" class="fst-italic">
+          Welcome to<br/>WintermelonC_Docs
+        </h1>
+        <!-- 源代码来源：https://www.jinrishici.com/ -->
+        <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        <div id="poem_sentence" class="lead my-3"></div>
+        <script type="text/javascript">
+          jinrishici.load(function(result) {
+            var sentence = document.querySelector("#poem_sentence")
+            // 去除末尾句号
+            var content = result.data.content.replace(/。$/, '')
+            sentence.innerHTML = content
+          });
+        </script>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">ZJU</h3>
+            <p class="card-text" style="margin-bottom: 1.5rem;">你可以找到一些课程的学习笔记、学习资料等有用的内容</p>
+            <a href="./zju/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
         </div>
       </div>
-      
-  
-
-
-
-  
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/index.md" title="编辑此页" class="md-content__button md-icon">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
-    </a>
-  
-  
-    
-      
-    
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/index.md" title="查看本页的源代码" class="md-content__button md-icon">
-      
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
-    </a>
-  
-
-
-<h1 id="欢迎来到-wintermelonc-的网页">欢迎来到 WintermelonC 的网页<a class="headerlink" href="#欢迎来到-wintermelonc-的网页" title="Permanent link">&para;</a></h1>
-<h2 id="zju"><a href="zju/">ZJU</a><a class="headerlink" href="#zju" title="Permanent link">&para;</a></h2>
-<p>你可以找到一些课程的学习笔记、学习资料等有用的内容</p>
-<h2 id="大学生生活常识"><a href="common_sense/">大学生生活常识</a><a class="headerlink" href="#大学生生活常识" title="Permanent link">&para;</a></h2>
-<p><ins>方山厨子</ins> 老师<a href="https://www.bilibili.com/video/BV1gVsSeyEAv/" target="_blank">大学生生活常识课</a>的课程笔记</p>
-<h2 id="软件"><a href="application/">软件</a><a class="headerlink" href="#软件" title="Permanent link">&para;</a></h2>
-<p>你可以找到一些软件的使用教程或小技巧</p>
-<ol>
-<li><a href="application/br/">Br</a></li>
-<li><a href="application/ps/">Ps</a></li>
-<li><a href="application/pr/">Pr</a></li>
-<li><a href="application/ae/">Ae</a></li>
-<li><a href="application/Vivado/">Vivado</a></li>
-<li><a href="application/vscode/">VS Code</a></li>
-</ol>
-<h2 id="知识"><a href="knowledge/">知识</a><a class="headerlink" href="#知识" title="Permanent link">&para;</a></h2>
-<p>你可以找到一些有用的知识</p>
-<ol>
-<li><a href="knowledge/python/">Python</a><ol>
-<li><a href="knowledge/python/basic/">Python 编程基础</a></li>
-<li><a href="knowledge/python/pytorch/">PyTorch 深度学习</a></li>
-</ol>
-</li>
-<li><a href="knowledge/data_stru_algorithm/">数据结构与算法</a></li>
-</ol>
-<h2 id="工具"><a href="tools/">工具</a><a class="headerlink" href="#工具" title="Permanent link">&para;</a></h2>
-<p>你可以找到一些实用的工具</p>
-<ol>
-<li><a href="tools/git/">Git</a></li>
-</ol>
-<details class="abstract">
-<summary>2025 寒假计划</summary>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 编写计算机组成实验部分指导文档</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <a href="https://zh.d2l.ai/chapter_preface/index.html" target="_blank">深度学习</a><ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 1</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 2</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 3</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 4</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 5</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 6</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 7</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 8</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 9</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 10</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 11</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 12</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 13</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 14</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 15</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 16</li>
-</ul>
-</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Python 编程快速上手 —— 让繁琐工作自动化<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 1</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 2</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 3</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ch 4</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 5</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 6</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 7</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 8</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 9</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 10</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 11</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 12</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 13</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 14</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 15</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 16</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 17</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 18</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 19</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ch 20</li>
-</ul>
-</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <a href="https://leetcode.cn/leetbook/read/leetcode-cookbook/5is6a6/" target="_blank">LeetCode Cookbook</a><ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 数组</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 字符串</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 滑动窗口和双指针</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 链表</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 栈和队列</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 动态规划</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> DFS 和 BFS</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 二分搜索</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 数学</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 哈希表</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 排序</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 位运算</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 并查集</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 线段树</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 其他数据结构</li>
-</ul>
-</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <a href="https://www.bilibili.com/video/BV1B7411A7M1/" target="_blank">达芬奇教程</a><ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 主要是学调色</li>
-</ul>
-</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 编写大学生生活常识文档</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 学一学 javascript</li>
-</ul>
-<blockquote>
-<p>实际中的自己：打游戏~ 睡觉~</p>
-</blockquote>
-</details>
-
-
-
-
-
-
-
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="最后更新">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月12日 09:03:15">2025年3月12日</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="创建日期">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2024年10月5日 07:31:18">2024年10月5日</span>
-  </span>
-
-    
-    
-    
-  </aside>
-
-
-
-  
-
-
-
-
-
-    </article>
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">大学生生活常识</h3>
+            <p class="card-text" style="margin-bottom: 1.5rem;">
+              <ins>方山厨子</ins>
+              老师
+              <a href="https://www.bilibili.com/video/BV1gVsSeyEAv/" target="_blank">大学生生活常识课</a>
+              的课程笔记
+            </p>
+            <a href="./common_sense/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
+              </article>
+            </div>
+          
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
@@ -6669,6 +6531,10 @@
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
+    </a>
+		and
+		<a href="https://getbootstrap.com/" target="_blank" rel="noopener">
+      Bootstrap
     </a>
   
 </div>
