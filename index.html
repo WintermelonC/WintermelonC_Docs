@@ -1,3 +1,6 @@
+<!-- 自定义首页 WintermelonC_Docs/-->
+
+<!-- 继承 base.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html -->
 
 <!doctype html>
 <html lang="zh" class="no-js">
@@ -60,7 +63,9 @@
     
       <link rel="stylesheet" href="assets/stylesheets/extra.css">
     
-      <link rel="stylesheet" href="assets/stylesheets/card.css">
+      <link rel="stylesheet" href="assets/stylesheets/hqcard.css">
+    
+      <link rel="stylesheet" href="assets/stylesheets/bootstrap/bootstrap.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -69,10 +74,6 @@
     
     
     
-  
-  <script defer data-domain="wintermelonc.github.io" src="https://plausible.io/js/script.file-downloads.outbound-links.js"></script>
-  <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
-
   </head>
   
   
@@ -364,7 +365,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -6340,7 +6343,9 @@
             
             
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -6412,10 +6417,29 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
+  <div class="md-content" data-md-component="content">
+    <article 
+      id="home-content__inner"
+      class="md-content__inner md-typeset"
+    >
+      <div 
+        class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary"
+      >
+        <div class="col-lg-6 px-0">
+          <h1 
+            id="home-title"
+            class="fst-italic"
+          >
+            Welcome to<br/>WintermelonC_Docs
+          </h1>
+          <p class="lead my-3">
+            呃 …… 这个冬瓜暂时没想好首页长什么样子
+          </p>
+        </div>
+      </div>
+      
+  
+
 
 
   
@@ -6562,7 +6586,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月10日 09:51:56">2025年3月10日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月12日 09:03:15">2025年3月12日</span>
   </span>
 
     
@@ -6582,73 +6606,15 @@
 
 
 
+  
 
-<div id="__comments">
 
-<h2>评论区</h2>
 
-<div>欢迎在评论区指出文档错误，为文档提供宝贵意见，或写下你的疑问</div>
 
-<br/>
 
-<!-- Insert generated snippet here -->
-<script src="https://giscus.app/client.js"
-  data-repo="WintermelonC/WintermelonC_Docs"
-  data-repo-id="R_kgDOM7yCjg"
-  data-category="General"
-  data-category-id="DIC_kwDOM7yCjs4Cj6RZ"
-  data-mapping="pathname"
-  data-strict="0"
-  data-reactions-enabled="1"
-  data-emit-metadata="0"
-  data-input-position="top"
-  data-theme="preferred_color_scheme"
-  data-lang="zh-CN"
-  crossorigin="anonymous"
-  async>
-</script>
+    </article>
+  </div>
 
-<!-- Synchronize Giscus theme with palette -->
-<script>
-  var giscus = document.querySelector("script[src*=giscus]")
-
-  // Set palette on initial load
-  var palette = __md_get("__palette")
-  if (palette && typeof palette.color === "object") {
-    var theme = palette.color.scheme === "slate"
-      ? "transparent_dark"
-      : "light"
-
-    // Instruct Giscus to set theme
-    giscus.setAttribute("data-theme", theme) 
-  }
-
-  // Register event handlers after documented loaded
-  document.addEventListener("DOMContentLoaded", function() {
-    var ref = document.querySelector("[data-md-component=palette]")
-    ref.addEventListener("change", function() {
-      var palette = __md_get("__palette")
-      if (palette && typeof palette.color === "object") {
-        var theme = palette.color.scheme === "slate"
-          ? "transparent_dark"
-          : "light"
-
-        // Instruct Giscus to change theme
-        var frame = document.querySelector(".giscus-frame")
-        frame.contentWindow.postMessage(
-          { giscus: { setConfig: { theme } } },
-          "https://giscus.app"
-        )
-      }
-    })
-  })
-</script>
-
-</div>
-                
-              </article>
-            </div>
-          
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
@@ -6667,7 +6633,9 @@
   
     
       
-      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" hidden>
         
         
           
