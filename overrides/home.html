@@ -3,24 +3,62 @@
 <!-- 继承 base.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html -->
 {% extends "base.html" %}
 
-<!-- 修改 container 块 https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html#L180 -->
-{% block container %}
-  <div class="md-content" data-md-component="content">
-    <article 
-      id="home-content__inner"
-      class="md-content__inner md-typeset"
-    >
-      <div class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary">
-        <div class="col-lg-6 px-0">
-          <h1 id="home-title" class="fst-italic">
-            Welcome to<br/>WintermelonC_Docs
-          </h1>
-          <p id="my-p" class="lead my-3">
-            呃 …… 这个冬瓜暂时没想好首页长什么样子
-          </p>
+<!-- 修改 styles 块 https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html#L46 -->
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ 'assets/stylesheets/homepage.css' | url }}">
+{% endblock %}
+
+<!-- 修改 content 块 https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/base.html#L183 -->
+{% block content %}
+  <div class="home-page">
+    <!-- 
+    源代码来源：https://getbootstrap.com/docs/5.3/examples/blog/
+    源代码作者：@mdo (https://twitter.com/mdo) 
+    -->
+    <div class="p-4 p-md-4 mb-4 rounded text-body-emphasis bg-body-secondary">
+      <div class="col-lg-6 px-0">
+        <h1 id="home-title" class="fst-italic">
+          Welcome to<br/>WintermelonC_Docs
+        </h1>
+        <!-- 源代码来源：https://www.jinrishici.com/ -->
+        <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+        <div id="poem_sentence" class="lead my-3"></div>
+        <script type="text/javascript">
+          jinrishici.load(function(result) {
+            var sentence = document.querySelector("#poem_sentence")
+            // 去除末尾句号
+            var content = result.data.content.replace(/。$/, '')
+            sentence.innerHTML = content
+          });
+        </script>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">ZJU</h3>
+            <p class="card-text" style="margin-bottom: 1.5rem;">你可以找到一些课程的学习笔记、学习资料等有用的内容</p>
+            <a href="{{ base_url }}/zju/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
         </div>
       </div>
-      {% include "partials/content.html" %}
-    </article>
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">大学生生活常识</h3>
+            <p class="card-text" style="margin-bottom: 1.5rem;">
+              <ins>方山厨子</ins>
+              老师
+              <a href="https://www.bilibili.com/video/BV1gVsSeyEAv/" target="_blank">大学生生活常识课</a>
+              的课程笔记
+            </p>
+            <a href="{{ base_url }}/common_sense/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 {% endblock %}
