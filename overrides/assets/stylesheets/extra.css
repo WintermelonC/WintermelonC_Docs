@@ -1,7 +1,31 @@
+/* 源代码来源：https://getbootstrap.com/ */
+:root,
+[data-md-color-scheme="default"] {
+  --bs-heading-color: inherit;
+}
+
+[data-md-color-scheme="slate"] {
+  --bs-heading-color: inherit;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: 'almmdfdk';
+  src: url('../fonts/almmdfdk_REGULAR.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 /* 
  * class 选择器 
  * class=""
  */
+ 
 .md-grid {
   max-width: 1440px;
 }
@@ -21,6 +45,11 @@
 
 .md-typeset hr {
   border-bottom-width: 0.1rem;
+}
+
+.home-page {
+  width: 80%;
+  margin: 0 auto;
 }
 
 /* 
@@ -50,16 +79,12 @@
   text-align: center;
 }
 
-#home-content__inner {
-  width: 75%;
-  margin: 0 auto;
-}
-
 #home-title {
   font-size: calc(1.5rem + 1.5vw);
   font-weight: 300;
   line-height: 1.2;
-  font-family: Playfair Display, Georgia, Times New Roman, serif;
+  margin-bottom: 0.5rem;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   color: #212121cc;
 }
 
@@ -67,7 +92,8 @@
   font-size: calc(1.5rem + 1.5vw);
   font-weight: 300;
   line-height: 1.2;
-  font-family: Playfair Display, Georgia, Times New Roman, serif;
+  margin-bottom: 0.5rem;
+  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
   color: #c8ccd0;
 }
 
@@ -81,10 +107,30 @@
   }
 }
 
-#my-p {
+#poem_sentence {
+  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
   color: #212121;
 }
 
-[data-md-color-scheme="slate"] #my-p {
+[data-md-color-scheme="slate"] #poem_sentence {
+  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
   color: #bec1c6;
+}
+
+#bs-card-title {
+  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  font-weight: 500;
+  font-size: 1.75rem;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+}
+
+#button-text {
+  color: #f3f3f3;
+}
+
+#button-text:hover {
+  color: #f3f3f3;
 }
