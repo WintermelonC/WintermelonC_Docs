@@ -60,7 +60,7 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css?v=1.0.0">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/extra.css?v=1.0.1">
     
       <link rel="stylesheet" href="../../../../../assets/stylesheets/hqcard.css?v=1.0.0">
     
@@ -6586,6 +6586,9 @@
     <img alt="Img 8" src="../../../../../img/comp_arch/ch2/ca_ch2_img8.png" width="600" />
 </figure>
 <p>延迟分支</p>
+<figure>
+    <img alt="Img 15" src="../../../../../img/comp_arch/ch2/ca_ch2_img15.png" width="600" />
+</figure>
 <h2 id="25-扩展流水线处理多周期操作">2.5 扩展流水线，处理多周期操作<a class="headerlink" href="#25-扩展流水线处理多周期操作" title="Permanent link">&para;</a></h2>
 <p>如何扩展 RISC-V 流水线，以处理浮点运算</p>
 <p>假定 RISC-V 实现中有以下 4 个独立的功能单元：</p>
@@ -6648,7 +6651,7 @@
 <p><strong>总结</strong>：</p>
 <ol>
 <li>检查结构冒险：一直等到所需要功能单元不再繁忙为止（在这个流水线中，只有除法操作需要），并确保在需要寄存器写端口时可用</li>
-<li>检查 RAW 数据冒险：一直等到源寄存器未被列为流水线寄存器中的目的地为止（当这一指令需要结果时，这些寄存器不可用）。这里需要进行大量检查，具体取决于源指令和目标指令，前者决定结果何时可用，后者决定何时需要该取值。例如，如果 ID 中的指令是一个浮点运算，其源寄存器为 F2，那 F2 在 ID/A1、A1/A2或 A2/A3 中不能被列为目的地，它们与一些浮点加法指令相对应，当 ID 中的指令需要结果时，这些指令还不能完成（ID/A1是 ID 输出寄存器中被发送给 A1 的部分）。如果我们希望重叠执行除法的最后几个周期，由于需要将除法接近完成时的情景作为特殊情况加以处理，所以除法运算需要的技巧性更强一些。实际上，设计师可能会忽略这一优化，以简化发射测试</li>
+<li>检查 RAW 数据冒险：一直等到源寄存器未被列为流水线寄存器中的目的地为止（当这一指令需要结果时，这些寄存器不可用）。这里需要进行大量检查，具体取决于源指令和目标指令，前者决定结果何时可用，后者决定何时需要该取值。例如，如果 ID 中的指令是一个浮点运算，其源寄存器为 F2，那 F2 在 ID/A1、A1/A2或 A2/A3 中不能被列为目的地，它们与一些浮点加法指令相对应，当 ID 中的指令需要结果时，这些指令还不能完成（ID/A1 是 ID 输出寄存器中被发送给 A1 的部分）。如果我们希望重叠执行除法的最后几个周期，由于需要将除法接近完成时的情景作为特殊情况加以处理，所以除法运算需要的技巧性更强一些。实际上，设计师可能会忽略这一优化，以简化发射测试</li>
 <li>检查 WAW 数据冒险：判断 A1，...，A4，D，M1，...，M7 中是否有任何指令的目标寄存器与这一指令相同。如果确实如此，则暂停发射 ID 中的指令</li>
 </ol>
 
@@ -6673,7 +6676,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月10日 09:51:56">2025年3月10日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月13日 06:22:18">2025年3月13日</span>
   </span>
 
     
