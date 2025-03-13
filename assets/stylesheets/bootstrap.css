@@ -56,6 +56,10 @@
   flex: 1 0 0%;
 }
 
+.p-3 {
+  padding: 1rem !important;
+}
+
 .p-4 {
   padding: 1.5rem !important;
 }
@@ -93,6 +97,12 @@
 
 .gap-1 {
   gap: 0.25rem !important;
+}
+
+@media (min-width: 550) {
+  .p-ll-4 {
+    padding: 1.5rem !important;
+  }
 }
 
 @media (min-width: 768px) {
