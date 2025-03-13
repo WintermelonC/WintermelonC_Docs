@@ -52,6 +52,10 @@
   margin-top: var(--bs-gutter-y);
 }
 
+.col {
+  flex: 1 0 0%;
+}
+
 .p-4 {
   padding: 1.5rem !important;
 }
@@ -121,6 +125,18 @@
     flex: 0 0 auto;
     width: 100%;
   }
+  .d-lg-block {
+    display: block !important;
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
 }
 
 .stretched-link::after {

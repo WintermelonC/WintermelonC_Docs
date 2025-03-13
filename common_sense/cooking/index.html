@@ -6630,16 +6630,20 @@
             <div class="md-content" data-md-component="content">
               <article class="md-content__inner md-typeset">
                 
-                  
+                  <!-- 修改 content.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/content.html -->
 
 
-  
+<!-- 修改 actions.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/actions.html -->
+
+  <!-- 若 meta 中 edit 为 false，则不加 edit 按钮 -->
+	
     <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/common_sense/cooking.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
   
-  
+  <!-- 若 meta 中 view 为 false，则不加 edit 按钮 -->
+	
     
       
     
@@ -6649,6 +6653,7 @@
     </a>
   
 
+<!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="做饭的基本逻辑">做饭的基本逻辑<a class="headerlink" href="#做饭的基本逻辑" title="Permanent link">&para;</a></h1>
 <!-- !!! tip "说明"
@@ -6905,6 +6910,9 @@
 
 
 
+<!-- 修改 comments.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/comments.html -->
+
+<!-- 若 meta 中 comments 为 false，则不加评论区 -->
 
 
 <div id="__comments">
@@ -7033,7 +7041,8 @@
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
-      <div class="md-copyright">
+      <!-- 修改 copyright.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/copyright.html -->
+<div class="md-copyright">
   
     <div class="md-copyright__highlight">
       Copyright &copy; 2024 - 2025 WintermelonC
@@ -7044,6 +7053,7 @@
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+    <!-- 增加 Bootstrap -->
 		and
 		<a href="https://getbootstrap.com/" target="_blank" rel="noopener">
       Bootstrap
