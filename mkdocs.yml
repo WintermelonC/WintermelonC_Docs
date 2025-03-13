@@ -324,9 +324,9 @@ extra_javascript:
 # 额外 css
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
-  - assets/stylesheets/extra.css
-  - assets/stylesheets/hqcard.css
-  - assets/stylesheets/bootstrap.css
+  - assets/stylesheets/extra.css?v=1.0.0
+  - assets/stylesheets/hqcard.css?v=1.0.0
+  - assets/stylesheets/bootstrap.css?v=1.0.0
 
 # 插件
 plugins:
