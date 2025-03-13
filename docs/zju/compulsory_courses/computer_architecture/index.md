@@ -35,6 +35,7 @@ wzh老师
 ### 理论部分及课本部分练习题详解
 
 [1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)<br/>
-[2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)
+[2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)<br/>
+[3 Memory Hierarchy Design](./theory/ch3.md)
 
 ### [实验部分](./lab/index.md)
