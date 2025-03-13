@@ -1,47 +1,14 @@
 ---
 template: home.html
 comments: false
+home: true
+edit: false
+view: false
 hide:
   - navigation
   - footer
   - toc
 ---
-
-# 欢迎来到 WintermelonC 的网页
-
-## [ZJU](./zju/index.md)
-
-你可以找到一些课程的学习笔记、学习资料等有用的内容
-
-## [大学生生活常识](./common_sense/index.md)
-
-^^方山厨子^^ 老师[大学生生活常识课](https://www.bilibili.com/video/BV1gVsSeyEAv/){:target="_blank"}的课程笔记
-
-## [软件](./application/index.md)
-
-你可以找到一些软件的使用教程或小技巧
-
-1. [Br](./application/br/index.md)
-2. [Ps](./application/ps/index.md)
-3. [Pr](./application/pr/index.md)
-4. [Ae](./application/ae/index.md)
-5. [Vivado](./application/Vivado/index.md)
-6. [VS Code](./application/vscode/index.md)
-
-## [知识](./knowledge/index.md)
-
-你可以找到一些有用的知识
-
-1. [Python](./knowledge/python/index.md)
-      1. [Python 编程基础](./knowledge/python/basic/index.md)
-      2. [PyTorch 深度学习](./knowledge/python/pytorch/index.md)
-2. [数据结构与算法](./knowledge/data_stru_algorithm/index.md)
-
-## [工具](./tools/index.md)
-
-你可以找到一些实用的工具
-
-1. [Git](./tools/git/index.md)
 
 ??? abstract "2025 寒假计划"
 

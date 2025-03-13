@@ -57,8 +57,56 @@
             </p>
             <a href="{{ base_url }}/common_sense/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
           </div>
+          <div class="col-auto d-none d-lg-block">
+            <ul class="sub-text">
+              <li>医院看病流程</li>
+              <li>医保</li>
+              <li>如何乘坐交通工具</li>
+              <li>租房流程及注意事项</li>
+              <li>做饭的基本逻辑</li>
+              <li>行政服务办理流程</li>
+              <li>如何写简历</li>
+            </ul>
+          </div>
         </div>
       </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">软件</h3>
+            <p class="my-card-text">你可以找到一些软件的使用教程或小技巧</p>
+            <a href="{{ base_url }}/application/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">知识</h3>
+            <p class="my-card-text">你可以找到一些有用的知识</p>
+            <a href="{{ base_url }}/knowledge/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 flex-column position-static">
+            <h3 id="bs-card-title">工具</h3>
+            <p class="my-card-text">你可以找到一些实用的工具</p>
+            <a href="{{ base_url }}/tools/" type="button" id="button-text" class="btn btn-primary btn-lg">前往阅读</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-content">
+      {% include "partials/content.html" %}
     </div>
   </div>
 {% endblock %}
