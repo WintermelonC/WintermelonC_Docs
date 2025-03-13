@@ -139,19 +139,19 @@
 
 @media (max-width: 425px) {
   #home-title {
-    font-size: 1.15rem;
+    font-size: 1.25rem;
   }
   #poem_sentence {
-    font-size: 0.75rem;
+    font-size: 0.825rem;
   }
 }
 
 @media (max-width: 375px) {
   #home-title {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
   #poem_sentence {
-    font-size: 0.625rem;
+    font-size: 0.75rem;
   }
 }
 
