@@ -1,0 +1,24 @@
+<!-- 修改 actions.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/actions.html -->
+{% if page.edit_url %}
+  <!-- 若 meta 中 edit 为 false，则不加 edit 按钮 -->
+	{% if page.meta.edit == false %}
+  {% elif "content.action.edit" in features %}
+    <a href="{{ page.edit_url }}" title="{{ lang.t('action.edit') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.edit or "material/file-edit-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+  <!-- 若 meta 中 view 为 false，则不加 edit 按钮 -->
+	{% if page.meta.view == false %}
+  {% elif "content.action.view" in features %}
+    {% if "/blob/" in page.edit_url %}
+      {% set part = "blob" %}
+    {% else %}
+      {% set part = "edit" %}
+    {% endif %}
+    <a href="{{ page.edit_url | replace(part, 'raw') }}" title="{{ lang.t('action.view') }}" class="md-content__button md-icon">
+      {% set icon = config.theme.icon.view or "material/file-eye-outline" %}
+      {% include ".icons/" ~ icon ~ ".svg" %}
+    </a>
+  {% endif %}
+{% endif %}

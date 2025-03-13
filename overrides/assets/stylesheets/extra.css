@@ -61,6 +61,20 @@
   text-shadow: 1px 1px 2px #000000;
 }
 
+.home-content {
+  width: 75%;
+  margin: auto;
+}
+
+.sub-text {
+  text-shadow: 1px 1px 2px white;
+}
+
+[data-md-color-scheme="slate"] .sub-text {
+  text-shadow: 1px 1px 2px #000000;
+}
+
+
 /* 
  * ID 选择器 
  * id=""
