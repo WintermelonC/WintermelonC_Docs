@@ -5,7 +5,7 @@
 }
 
 [data-md-color-scheme="slate"] {
-  --bs-heading-color: inherit;
+  --bs-heading-color: #eeeeee;
 }
 
 *,
@@ -52,6 +52,15 @@
   margin: 0 auto;
 }
 
+.my-card-text {
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px white;
+}
+
+[data-md-color-scheme="slate"] .my-card-text {
+  text-shadow: 1px 1px 2px #000000;
+}
+
 /* 
  * ID 选择器 
  * id=""
@@ -85,24 +94,18 @@
   line-height: 1.2;
   margin-bottom: 0.5rem;
   font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  color: #212121cc;
+  color: #212121;
+  text-align: center;
+  text-shadow: 1px 0px #eff6ff, 2px 1px #eff6ff, 3px 2px #eff6ff, 4px 3px #535353;
 }
 
 [data-md-color-scheme="slate"] #home-title {
-  font-size: calc(1.5rem + 1.5vw);
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-  color: #c8ccd0;
+  color: #f1f9ff;
+  text-shadow: 1px 0px #212121, 2px 1px #212121, 3px 2px #212121, 4px 3px #bfbfbf;
 }
 
 @media (min-width: 1200px) {
   #home-title {
-    font-size: 3rem;
-  }
-
-  [data-md-color-scheme="slate"] #home-title {
     font-size: 3rem;
   }
 }
@@ -110,11 +113,11 @@
 #poem_sentence {
   font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
   color: #212121;
+  text-align: center;
 }
 
 [data-md-color-scheme="slate"] #poem_sentence {
-  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
-  color: #bec1c6;
+  color: #f1f7fa;
 }
 
 #bs-card-title {
@@ -122,9 +125,14 @@
   margin-top: 0;
   margin-bottom: 0 !important;
   font-weight: 500;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1.2;
   color: var(--bs-heading-color);
+  text-shadow: 3px 3px 3px rgb(177 177 177 / 80%);
+}
+
+[data-md-color-scheme="slate"] #bs-card-title {
+  text-shadow: 3px 3px 3px rgb(75 75 75 / 80%);
 }
 
 #button-text {
