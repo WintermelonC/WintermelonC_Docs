@@ -3,7 +3,17 @@ document.addEventListener('DOMContentLoaded', function() {
   var customMessage = document.getElementById('custom-message');
   var errorTitle = document.getElementById('error-title');
 
-  if (url.includes('/cryptography/')) {
+  var privateUrls = [
+    '/zju/module_courses/cryptography/ch1.md',
+    '/zju/module_courses/cryptography/ch2.md',
+    '/zju/module_courses/cryptography/ch3.md',
+  ];
+
+  var isPrivateUrl = privateUrls.some(function(privateUrl) {
+    return url.includes(privateUrl);
+  });
+
+  if (isPrivateUrl) {
     errorTitle.innerText = '本文档内容不对外开放，敬请谅解';
     customMessage.innerHTML = '<p>应课程老师要求，本文档内容不对外开放，敬请谅解</p>';
   } else {
