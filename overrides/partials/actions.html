@@ -8,7 +8,7 @@
       {% include ".icons/" ~ icon ~ ".svg" %}
     </a>
   {% endif %}
-  <!-- 若 meta 中 view 为 false，则不加 edit 按钮 -->
+  <!-- 若 meta 中 view 为 false，则不加 view 按钮 -->
 	{% if page.meta.view == false %}
   {% elif "content.action.view" in features %}
     {% if "/blob/" in page.edit_url %}
