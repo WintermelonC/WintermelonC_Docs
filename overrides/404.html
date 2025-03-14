@@ -1,8 +1,7 @@
 <!-- 修改 404.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/404.html -->
 {% extends "main.html" %}
-{% if page.meta.private %}
-	<h1>此内容不对外开放，敬请谅解</h1>
-{% endif %}
 {% block content %}
-  <h1>404 - Not found</h1>
+  <h1 id="error-title">404 - Not found</h1>
+	<div id="custom-message"></div>
+	<script src="{{ base_url }}/assets/javascripts/custom404.js"></script>
 {% endblock %}
