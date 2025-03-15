@@ -17,13 +17,13 @@ principle of locality of reference（局部性原理）：程序在任意时刻�
       1. temporal locality（时间局部性）：最近访问过的数据很可能在不久的将来再次被访问
       2. spatial locality（空间局部性）：如果一个数据被访问，那么它附近的数据也可能很快被访问
 
-### 3.1 4 个存储器层次结构问题
+### 3.1.1 4 个存储器层次结构问题
 
 如果处理器需要的数据存放在高层存储器中的某个块中，则称为一次 **命中**（hit）。如果在高层存储器中没有找到所需的数据，这次数据请求则称为一次 **缺失**（miss）。随后访问低层存储器来寻找包含所需数据的那一块。**命中率**（hit rate），或命中比率（hit ratio），是在高层存储器中找到数据的存储访问比例，通常被当成存储器层次结构性能的一个衡量标准。**缺失率**（miss rate）（1－命中率）则是数据在高层存储器中没有找到的存储访问比例
 
 追求高性能是我们使用存储器层次结构的主要目的，因而命中和缺失的执行时间就显得尤为重要。**命中时间**（hit time）是指访问存储器层次结构中的高层存储器所需要的时间，包括了判断当前访问是命中还是缺失所需的时间。**缺失代价**（miss penalty）是将相应的块从低层存储器替换到高层存储器中，以及将该信息块传送给处理器的时间之和，由于较高存储层次容量较小并且使用了快速的存储器部件，因此比起对存储层次中较低层的访问，命中时间要少得多，这也是缺失代价的主要组成部分
 
-#### 3.1.1 Block Placement
+#### Block Placement
 
 **一个块可以放在上一级的什么位置**
 
@@ -48,7 +48,7 @@ $（块号）mod（cache 中的组数）$
     ![Img 1](../../../../img/comp_arch/ch3/ca_ch3_img1.png){ width="600" }
 </figure>
 
-#### 3.1.2 Block Identification
+#### Block Identification
 
 **如果一个块在上一级中，如何找到它**
 
@@ -56,7 +56,7 @@ $（块号）mod（cache 中的组数）$
 
 我们还需要一种方法来判断 cache 块中确实没有包含有效信息。例如，当一个处理器启动时，cache 中没有数据，标记域中的值没有意义。甚至在执行了一些指令后，cache 中的一些块依然为空。因此，在 cache 中，这些块的标记应该被忽略。最常用的方法就是增加一个 **有效位**（valid bit）来标识一个块是否含有一个有效地址。如果该位没有被设置，则不能使用该块中的内容
 
-#### 3.1.3 Block Replacement
+#### Block Replacement
 
 **在缺失时应当替换哪个块**
 
@@ -64,11 +64,11 @@ $（块号）mod（cache 中的组数）$
 2. least-recently used（LRU）：最近最少的被替换
 3. first in, first out（FIFO）：先进先出法则
 
-#### 3.1.4 Write Strategy
+#### Write Strategy
 
 **在写入时会发生什么**
 
-当数据写入 cache 时，数据如何写入主存：
+当数据写入 cache 时，数据如何写入主存？
 
 1. **write-through**（写直达法）：将数据同时写入主存和 cache 中。但这样会花费大量的时间，一种解决方法是 write-buffer（写缓冲），当一个数据在等待写入主存时，先将它放入写缓冲中
 2. **write-back**（写回机制）：新值仅仅被写入 cache 块中，只有当修改过的块被替换时才需要写到较低层次存储结构中
@@ -89,3 +89,83 @@ $（块号）mod（cache 中的组数）$
       1. 写入操作的速度与缓存存储器的速度相同
       2. 使用的存储器带宽较少，使写回策略对多处理器更具吸引力
       3. 写回对存储器层次结构其余部分及存储器互连的使用少于直写，节省功耗，对于嵌入式应用极具吸引力
+
+处理器在直写期间必须等待写入操作的完成，则称该处理器处于写入停顿（write stall）状态。减少此停顿的常见优化方法时写入缓冲区（write buffer），但即使有了此缓冲区，write stall 也可能会发生
+
+当发生写入缺失时（cache 里没有处理器要修改的那个数据地址），如何处理？
+
+1. **write allocate**：将目标数据块从主存加载到缓存，随后在缓存中完成写入。适用于后续可能频繁访问该数据块的场景
+2. **write around** / **no-write allocate**：不将数据块加载到缓存，直接写入主存
+
+一般搭配：
+
+1. write-back + write-allocate
+2. write-through + write-around
+
+<figure markdown="span">
+    ![Img 2](../../../../img/comp_arch/ch3/ca_ch3_img2.png){ width="600" }
+</figure>
+
+> 好家伙，计组没搞懂的东西，终于在这里搞懂了
+
+### 3.1.2 缓存架构
+
+1. unified cache（统一缓存）：所有内存请求（包括指令和数据）都通过单一的缓存进行处理
+      1. 硬件需求较少，设计相对简单
+      2. 由于指令和数据共享同一个缓存，可能导致缓存争用，从而降低命中率
+2. spilt I & D cache（分离缓存）：使用独立的缓存分别处理指令和数据。指令缓存（I-Cache）和数据缓存（D-Cache）分开
+      1. 可以减少指令和数据之间的争用，提高命中率。指令缓存通常是只读的，这简化了设计
+      2. 需要更多的硬件资源
+
+<figure markdown="span">
+    ![Img 3](../../../../img/comp_arch/ch3/ca_ch3_img3.png){ width="600" }
+</figure>
+
+## 3.2 Cache Performance
+
+$CPU\ time = (CPU\ execution\ clock\ cycles + Memory\text{-}stall\ clock\ cycles) \times Clock\ cycle\ time$
+
+$Memory\ stall\ cycles = IC\times Mem\ refs\ per\ instruction（每条指令的内存访问次数）\times Miss\ rate\times Miss\ penalty$
+
+$\Rightarrow$
+
+$CPU\ time = IC\times (CPI + \dfrac{MemAccess}{Inst} \times miss\ rate \times miss\ penalty) \times cycle\ time$
+
+$\Rightarrow$
+
+$CPU\ time = IC\times (CPI + \dfrac{MemMisses}{Inst} \times miss\ penalty) \times cycle\ time$
+
+### 3.2.1 AMAT
+
+存储器平均访问时间（average memory access time）
+
+$AMAT = hit\ time + miss\ rate \times miss\ penalty$
+
+$CPU\ time = IC\times (\dfrac{AluOps}{Inst}\times CPI_{AluOps} + \dfrac{MemAccess}{Inst} \times AMAT) \times cycle\ time$
+
+<figure markdown="span">
+    ![Img 4](../../../../img/comp_arch/ch3/ca_ch3_img4.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 5](../../../../img/comp_arch/ch3/ca_ch3_img5.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 6](../../../../img/comp_arch/ch3/ca_ch3_img6.png){ width="600" }
+</figure>
+
+---
+
+<figure markdown="span">
+    ![Img 7](../../../../img/comp_arch/ch3/ca_ch3_img7.png){ width="600" }
+</figure>
+
+如上例所示，缓存特性可能会对性能产生巨大影响。此外，对于低 CPI、高时钟频率的处理器，缓存缺失会产生双重影响
+
+1. CPI_{execution} 越低，固定数目的缓存缺失时钟周期产生的相对影响越高
+2. 在计算 CPI 时，一次缺失的缓存代价是以处理器时钟周期进行计算的。因此，即使两个计算机的存储器层次结构相同，时钟频率较高的处理器在每次缺失时会占用较多的时钟周期，CPI 的存储器部分也相应较高
+
+<figure markdown="span">
+    ![Img 8](../../../../img/comp_arch/ch3/ca_ch3_img8.png){ width="600" }
+</figure>

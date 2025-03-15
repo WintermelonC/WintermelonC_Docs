@@ -310,16 +310,16 @@ cache 容量为 16 KB，有 256 个块，每个块有 16 个字
 
 ## 5.4 cache 性能的评估和改进
 
-$CPU\ time = (CPU\ execution\ clock\ cycles + Memory-stall\ clock\ cycles) \times Clock\ cycle\ time$<br/>
+$CPU\ time = (CPU\ execution\ clock\ cycles + Memory\text{-}stall\ clock\ cycles) \times Clock\ cycle\ time$<br/>
 $CPU\ 时间 = （CPU\ 执行时钟周期 + 存储器阻塞的时钟周期）\times 时钟周期$
 
-$Memory-stall\ clock\ cycles = (Read-stall\ cycles + Write-stall\ cycles)$<br/>
+$Memory\text{-}stall\ clock\ cycles = (Read\text{-}stall\ cycles + Write\text{-}stall\ cycles)$<br/>
 $存储器阻塞时钟周期 = 读操作引起阻塞时的时钟周期 + 写操作引起阻塞的时钟周期$
 
-$Read-stall\ cycles = \dfrac{Reads}{Program} \times Read\ miss\ rate \times Read\ miss\ penalty$<br/>
+$Read\text{-}stall\ cycles = \dfrac{Reads}{Program} \times Read\ miss\ rate \times Read\ miss\ penalty$<br/>
 $读操作阻塞的时钟周期数 = \dfrac{读的次数}{程序数} \times 读缺失率 \times 读确实代价$
 
-$Write-stall\ cycles = (\dfrac{Writes}{Program} \times Write\ miss\ rate \times Write\ miss\ penalty) + Write\ buffer\ stalls$<br/>
+$Write\text{-}stall\ cycles = (\dfrac{Writes}{Program} \times Write\ miss\ rate \times Write\ miss\ penalty) + Write\ buffer\ stalls$<br/>
 $写操作阻塞的时钟周期数 = (\dfrac{写的次数}{程序数} \times 写缺失率 \times 写缺失代价) + 写缓冲区阻塞$
 
 在大部分写直达 cache 结构中，读和写的缺失代价是一样的（都是从主存中取回数据块的时间）。如果假设写缓冲区阻塞可以被忽略，那么我们可以合并读写操作并共用一个缺失率和缺失代价
