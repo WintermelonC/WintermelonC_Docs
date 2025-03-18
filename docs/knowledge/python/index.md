@@ -33,7 +33,8 @@
 
 ## [PyTorch 深度学习](./pytorch/index.md)
 
-[7 现代卷积神经网络](./pytorch/ch7/ch7_1.md)
+[7 现代卷积神经网络](./pytorch/ch7/ch7_1.md)<br/>
+[8 循环神经网络](./pytorch/ch8/ch8_1.md)
 
 ## 其他
 

@@ -23,4 +23,5 @@ cg老师
 [1 Introduction](./ch1.md)<br/>
 [2 Introduction to the Relational Model](./ch2.md)<br/>
 [3 Introduction to SQL](./ch3.md)<br/>
-[4 Advanced SQL](./ch4.md)
+[4 Advanced SQL](./ch4.md)<br/>
+[5 Entity-Relationship Model](./ch5.md)

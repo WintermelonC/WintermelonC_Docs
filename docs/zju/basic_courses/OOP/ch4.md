@@ -401,49 +401,45 @@ int main() {
 
 !!! example "在多个文件中使用全局变量"
 
-    <div class="grid" markdown>
-    
     === "global.h"
-    
-    ```cpp linenums="1"
-    // global.h
-    #ifndef GLOBAL_H
-    #define GLOBAL_H
-    
-    extern int globalVar; // 声明全局变量
-    
-    void printGlobalVar();
-    
-    #endif // GLOBAL_H
-    ```
+        
+        ```cpp linenums="1"
+        // global.h
+        #ifndef GLOBAL_H
+        #define GLOBAL_H
+        
+        extern int globalVar; // 声明全局变量
+        
+        void printGlobalVar();
+        
+        #endif // GLOBAL_H
+        ```
     
     === "global.cpp"
-    
-    ```cpp linenums="1"
-    // global.cpp
-    #include "global.h"
-    #include <iostream>
-    
-    int globalVar = 10; // 定义全局变量
-    
-    void printGlobalVar() {
-        std::cout << "Global variable: " << globalVar << std::endl;
-    }
-    ```
+        
+        ```cpp linenums="1"
+        // global.cpp
+        #include "global.h"
+        #include <iostream>
+        
+        int globalVar = 10; // 定义全局变量
+        
+        void printGlobalVar() {
+            std::cout << "Global variable: " << globalVar << std::endl;
+        }
+        ```
     
     === "main.cpp"
-    
-    ```cpp linenums="1"
-    // main.cpp
-    #include "global.h"
-    
-    int main() {
-        printGlobalVar(); // 输出: Global variable: 10
-        return 0;
-    }
-    ```
-    
-    </div>
+        
+        ```cpp linenums="1"
+        // main.cpp
+        #include "global.h"
+        
+        int main() {
+            printGlobalVar(); // 输出: Global variable: 10
+            return 0;
+        }
+        ```
 
 #### 2.2.1 静态初始化依赖
 
