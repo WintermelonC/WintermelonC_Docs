@@ -8,9 +8,9 @@
 
     本文档仅涉及部分内容，仅可用于复习重点知识
 
-## 4.1 SQL Data Types and Schemas
+## 1 SQL Data Types and Schemas
 
-### 4.1.1 Large-Object Types
+### 1.1 Large-Object Types
 
 - blob（Binary Large Object）：即二进制大对象。它用于存储二进制数据，比如图像、音频文件、视频文件或其他类型的多媒体内容。blob 字段可以存储非常大的数据量，具体大小限制取决于数据库系统的实现
 - clob（Character Large Object）：即字符大对象。它用于存储大量的文本数据。clob 适用于存储那些可能超出 VARCHAR 或 TEXT 类型长度限制的大型文本数据，如完整的书籍、长篇文章等。与 blob 类似，clob 的实际最大容量也依赖于具体的数据库系统
@@ -21,7 +21,7 @@ image blob(10MB)
 movie blob(2GB)
 ```
 
-### 4.1.2 User-Defined Types
+### 1.2 User-Defined Types
 
 1. distinct types
 2. structured data types
@@ -66,15 +66,24 @@ create domain degree_level varchar(10)
         check(value in ('Bachelors', 'Masters', 'Doctorate'));
 ```
 
-## 4.2 Integrity Constraints
+## 2 Transaction
 
-### 4.2.1 Referential Integrity
+事务由一系列查询和/或更新语句组成。SQL 标准规定，当执行 SQL 语句时，事务隐式开始。必须使用以下 SQL 语句之一来结束事务：
+
+1. Commit work：提交当前事务；即，使事务执行的更新在数据库中永久生效。事务提交后，新事务会自动开始
+2. Rollback work：导致当前事务回滚；即，撤销事务中所有 SQL 语句执行的更新。因此，数据库状态将恢复到事务执行第一条语句之前的状态
+
+`begin atomic ... end`：SQL 标准中用于定义原子事务块的一种语法结构。它用于将一组 SQL 语句组合成一个原子操作，确保这些语句要么全部成功执行，要么全部不执行（即回滚）
+
+## 3 Integrity Constraints
+
+### 3.1 Referential Integrity
 
 **参照完整性**
 
 1. 参照完整性：这是数据库设计中的一个重要概念，确保一个表中的外键值必须在另一个表的主键中存在。==这有助于维护数据的一致性和完整性==
 2. 关系与主键：在关系数据库中，表被称为关系（relation）。每个关系有一个主键（primary key），它是唯一标识表中每一行的列或列的组合
-3. 外键：外键是一个表中的列或列的组合，它引用另一个表的主键。外键的值必须与引用表中的主键值匹配，或者为NULL（如果允许的话）
+3. 外键：外键是一个表中的列或列的组合，它引用另一个表的主键。外键的值必须与引用表中的主键值匹配，或者为 NULL（如果允许的话）
 4. 子集依赖：参照完整性约束可以表示为外键列的值集必须是引用表主键列值集的子集。这意味着外键的值不能随意设置，必须引用已存在的主键值
 
 <figure markdown="span">
@@ -108,7 +117,7 @@ Create table account (
 ); 
 ```
 
-#### Cascade
+#### 3.1.1 Cascade
 
 **级联**
 
@@ -151,7 +160,7 @@ create table course (
 
 事务的原子性：确保了所有操作要么全部成功，要么全部失败。如果在事务结束时参照完整性约束未被满足，整个事务将被回滚，数据库将恢复到事务开始前的状态
 
-### 4.2.2 Assertions
+### 3.2 Assertions
 
 **断言**
 
@@ -210,7 +219,7 @@ create assertion balance_constraint check (
 )
 ```
 
-### 4.2.3 Triggers
+### 3.3 Triggers
 
 **触发器**
 
@@ -257,7 +266,7 @@ after update of balance on account
 1. 引用旧行：`referencing old row as` 子句用于引用被更新或删除的行的旧值。这在需要比较更新前后的数据或记录历史数据时非常有用
 2. 引用新行：`referencing new row as` 子句用于引用插入或更新后的新行数据。这在需要访问新插入或更新后的数据时非常有用
 
-#### statement-level trigger
+#### 3.3.1 statement-level trigger
 
 **语句级触发器**
 
@@ -265,9 +274,9 @@ after update of balance on account
 
 在语句级触发器中，可以使用 referencing old table 和 referencing new table 来引用临时表（过渡表），这些表包含在 SQL 语句中受影响的所有行
 
-当SQL语句影响大量行时，使用语句级触发器可以显著提高效率，因为它只需要执行一次操作，而不是为每一行执行一次操作。这种方式减少了触发器的执行次数，降低了系统开销
+当 SQL 语句影响大量行时，使用语句级触发器可以显著提高效率，因为它只需要执行一次操作，而不是为每一行执行一次操作。这种方式减少了触发器的执行次数，降低了系统开销
 
-#### External World Actions
+#### 3.3.2 External World Actions
 
 外部世界操作指的是那些与数据库系统外部环境交互的操作，例如发送电子邮件、控制硬件设备（如报警灯）或与外部系统通信（如重新订购库存物品）。这些操作通常不能直接在数据库系统中执行，因为它们涉及到外部资源或系统
 
@@ -322,4 +331,158 @@ end
     2. 断言（Assertion）：用于在表级别或跨表级别强制执行复杂的约束条件，例如确保某个条件在整个数据库中始终为真
     3. 触发器（Trigger）：用于在数据修改时自动执行复杂的操作，例如更新其他表或执行外部操作
 
-## 4.3 Authorization
+## 4 Authorization
+
+Security：
+
+1. Database system level：认证和授权机制允许特定用户仅访问所需数据
+2. Operating system level：操作系统超级用户可以对数据库执行任何操作，需要良好的操作系统级别安全性
+3. Network level：必须使用加密来防止
+      -  Eavesdropping（窃听）：未经授权读取消息
+      -  Masquerading（伪装）：假装是授权用户或发送据称来自授权用户的消息
+4. Physical level
+      - 对计算机的物理访问允许入侵者破坏数据；需要传统的锁和钥匙安全措施
+      - 计算机还必须受到保护，防止洪水、火灾等）
+5. Human level
+      - 必须对用户进行筛选，以确保授权用户不会向入侵者提供访问权限
+      - 应对用户进行密码选择和保密培训
+
+对数据库部分的授权：
+
+1. 读取授权（Read authorization）：允许读取数据，但不允许修改数据
+2. 插入授权（Insert authorization）：允许插入新数据，但不允许修改现有数据
+3. 更新授权（Update authorization）：允许修改数据，但不允许删除数据
+4. 删除授权（Delete authorization）：允许删除数据
+
+对数据库模式修改的授权：
+
+1. 索引授权（Index authorization）：允许创建和删除索引
+2. 资源授权（Resources authorization）：允许创建新的关系（表）
+3. 修改授权（Alteration authorization）：允许在关系中添加或修改属性（列）
+4. 删除关系授权（Drop authorization）：允许删除关系（表）
+
+### 4.1 Authorization and Views
+
+用户可以被授予 views 权限，而 views 所使用的 relations 的权限可以不授予给用户，这在一定程度上能够保护数据库的安全
+
+创建 view 不需要 resources authorization 因为没有新表被创建
+
+### 4.2 Grant
+
+#### 4.2.1 Grant Graph
+
+被授予权限的用户可以授予其他用户相同的权限（如果允许的话）
+
+<figure markdown="span">
+  ![Img 2](../../../img/database/ch4/database_ch4_img2.png){ width="600" }
+</figure>
+
+授权图中的所有边必须是源自数据库管理员（DBA）的某条路径的一部分
+
+如果 DBA revoke U1 的授权：
+
+- 必须撤销对 U4 的授权
+- 不能撤销对 U5 的授权，因为 U5 有另一条通过 U2 从 DBA 获得的授权路径
+
+必须防止没有从 DBA 出发的路径的授权循环
+
+#### 4.2.2 SQL
+
+```sql linenums="1"
+grant <privilege list>
+on <relation name or view name>
+to <user/role list>;
+```
+
+`<user/role list>`：
+
+1. 具体的某个 user
+2. public（所有有效的用户）
+3. role
+
+SQL 中的权限：
+
+1. select：允许对关系（表）进行读取访问，或使用视图进行查询的能力
+2. insert
+3. update
+4. delete
+5. references（引用）：在创建关系时声明外键的能力
+6. all privileges：用于表示所有允许的权限的简写形式
+7. all：通常指代所有权限
+
+```sql linenums="1"
+-- 向用户 1，2 授予对 branch 的选择和插入权限
+grant select, insert
+on branch
+to user1, user2
+```
+
+权限传递：`with grant option`
+
+```sql linenums="1"
+grant select, insert
+on branch
+to user
+with grant option;  -- user 可以授予其他用户该权限
+```
+
+#### 4.2.3 Roles
+
+角色允许为一类用户指定共同的权限，只需创建相应的“角色”一次
+
+权限可以授予或从角色中撤销，就像用户一样；角色可以分配给用户，甚至可以分配给其他角色
+
+```sql linenums="1"
+Create role teller;
+Create role manager;
+-- 授予角色权限
+Grant select on branch to teller;
+Grant update (balance) on account to teller;
+Grant all privileges on account to manager;
+
+-- 将 teller 角色授予 manager 角色
+-- 意味着 manager 也拥有对 branch 的 select 权限
+Grant teller to manager;
+-- 将 teller 角色授予这两个用户
+Grant teller to Alice, bob;
+-- 将 manager 角色授予用户
+Grant manager to avi;
+```
+
+### 4.3 Revoke
+
+```sql linenums="1"
+revoke <privilege list>
+on <relation name or view name>
+from <user/role list>
+```
+
+```sql linenums="1"
+revoke select
+on branch
+from user1 cascade;  -- 撤销的级联
+
+revoke select
+on branch
+from user1 restrict;
+-- 使用 restrict 防止级联撤销
+-- 如果撤销操作会导致级联，命令将失败
+-- 从而保护其他用户的权限
+```
+
+1. 撤销所有权限：使用 ALL 可以一次性撤销用户或角色持有的所有权限
+2. 撤销 PUBLIC 权限：PUBLIC 是一个特殊的角色，代表所有用户。如果撤销 PUBLIC 的权限，所有用户都会失去该权限，除非他们被单独授予了该权限
+3. 多次授予的权限：如果用户通过不同的授予者获得了相同的权限，撤销一个授予者的权限可能不会影响用户保留该权限，因为他们可能还通过其他途径拥有该权限
+4. 依赖权限的撤销：当撤销某个权限时，所有依赖于该权限的其他权限也会被撤销。这确保了权限撤销的彻底性和一致性
+
+### 4.4 Limitations
+
+
+
+## 5 Embedded SQL
+
+## 6 Dynamic SQL
+
+## 7 ODBC and JDBC
+
+Open Database Connectivity（ODBC，开放数据库互连）

@@ -1,8 +1,8 @@
 # 3 人工智能的应用开发基础
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -26,6 +26,10 @@
 
 ## 3.2 基本环境搭建与配置
 
+!!! tip "教程"
+
+    详细教程见 [Python](../../../knowledge/python/index.md){:target="_blank"}
+
 ### 3.2.1 Anaconda
 
 Python 环境管理器
@@ -40,10 +44,6 @@ IDE（集成开发平台）
 
 ## 3.3 Python 入门
 
-!!! tip "教程"
-
-    详细 Python 教程见 [Python](../../../knowledge/python/index.md){:target="_blank"}
-
 ## 3.4 AI 算法库和开发工具包
 
 ### 3.4.1 Pandas
@@ -57,3 +57,15 @@ Python 科学计算库，提供高效的多维数组对象和用于数值计算�
 ### 3.4.3 Matplotlib
 
 绘图库
+
+### 3.4.4 Scikit-learn
+
+机器学习库
+
+## 3.5 深度学习框架
+
+深度学习框架是专为简化深度学习模型开发而设计的软件工具，它通过封装底层数学运算、优化算法实现和硬件加速功能，帮助开发者更高效地构建、训练和部署神经网络模型
+
+<figure markdown="span">
+  ![Img 2](../../../img/AI_basic/ch3/ai_ch3_img2.png){ width="400" }
+</figure>
