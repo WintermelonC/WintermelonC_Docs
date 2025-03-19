@@ -146,7 +146,6 @@ int main()
 | `void swap(vector& other)` | 交换两个 `vector` 的内容 | |
 | `T& front()` | 访问 `vector` 中的第一个元素 | |
 | `T& back()` | 访问 `vector` 中的最后一个元素 | |
-| `iterator find(const T& value)` | 查找 `vector` 中的元素 | 如果未找到则返回 `end()` |
 | `void resize(size_t count)` | 调整 `vector` 的大小 | |
 | `void reserve(size_t new_cap)` | 请求将 `vector` 的容量增加到至少 `new_cap` | |
 

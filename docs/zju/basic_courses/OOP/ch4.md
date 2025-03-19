@@ -1,4 +1,4 @@
-# 4 Inside Object
+# 4 Inside Object 1
 
 !!! tip "说明"
 
@@ -500,7 +500,7 @@ int main() {
 
 > 不推荐使用
 
-静态全局变量是一种特殊的变量，它的作用域仅限于定义它的文件。这意味着它不能被其他文件访问，从而实现了封装和信息隐藏
+静态全局变量是一种特殊的变量，==它的作用域仅限于定义它的文件==。这意味着它不能被其他文件访问，从而实现了封装和信息隐藏
 
 - **作用域**：静态全局变量只能在定义它的文件中使用，其他文件无法访问
 - **生命周期**：静态全局变量在程序开始时初始化，并在程序结束时销毁。它们在整个程序运行期间都存在
@@ -639,3 +639,50 @@ int main() {
     return 0;
 }
 ```
+
+### 2.4 总结
+
+| types of variables | scope | lifetime | init.time |
+|:---:|:---:|:---:|:---:|
+| local variable | in {} | in {} | at the definition line |
+| global variable | global | global | at the definition line, before main() |
+| static local variable | in {} | global | the 1st time executed |
+| static global variable | in file | global | as global variable |
+| member variable | in class | as the object| at the creation of that object |
+| static member variable | in class | global | at the definition line, before main() |
+
+---
+
+1. **栈（Stack）**：
+      - 栈用于存储局部变量和函数调用信息（如返回地址、参数等）。当你在一个函数中声明一个局部变量时，它就会被分配到栈上
+      - 栈上的变量具有自动存储期限，意味着它们在声明的代码块开始时被创建，在代码块结束时被销毁
+      - 由于栈的大小通常限制于系统或编译器设置，因此不适合用来存储需要大量空间的数据
+2. **堆（Heap）**：
+      - 堆用于动态内存分配，即程序运行期间根据需求进行内存分配的地方
+      - 使用 `new` 或 `malloc()` 等操作符/函数可以在堆上分配内存，并使用 `delete` 或 `free()` 来释放这些内存
+      - 堆上的数据可以由整个程序访问（只要指针能够引用），并且直到显式释放或程序结束才会被销毁。这使得堆非常适合用来存储那些需要在整个程序执行过程中持续存在的数据
+3. **全局变量区/静态存储区（Static Storage）**：
+      - 这里存放的是全局变量、静态局部变量和静态全局变量
+        - 全局变量是在任何函数之外声明的变量，它们的生命周期从程序开始到程序结束
+        - 静态局部变量是在函数内部用 `static` 关键字声明的变量，它们在函数调用之间保持值不变
+        - 静态全局变量是指在文件作用域内使用 `static` 关键字声明的变量，它的作用范围仅限于声明它的文件
+      - 所有在全局变量区的变量都具有静态存储期限，这意味着它们在程序的整个执行期间都存在
+
+除了上述提到的三个主要区域外，还有一个常量区，用于存放常量数据（如字符串字面量）
+
+## 3 引用
+
+**Reference**
+
+引用就是别名（alias）
+
+引用只能接收左值
+
+### 左值与右值
+
+## 4 Constant
+
+成员函数后面的 const 实际修饰的是 this 指针
+
+## 5 动态分配内存
+
