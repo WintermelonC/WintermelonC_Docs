@@ -4,6 +4,10 @@
 
     本文档正在更新中…… -->
 
+!!! info "说明"
+
+    本文档仅涉及部分内容，仅可用于复习重点知识
+
 !!! info "参考"
 
     [LH 的资源小站](https://lh-0124.github.io/LHstudy/note/notemy1/){:target="_blank"}

@@ -24,6 +24,7 @@ nav:
         - zju/political/marxist_principles/index.md
         - 0 导论: zju/political/marxist_principles/ch0.md
         - 1 世界的物质性及发展规律: zju/political/marxist_principles/ch1.md
+        - 2 实践与认识及其发展规律: zju/political/marxist_principles/ch2.md
       - 习近平新时代中国特色社会主义思想概论: zju/political/xi_jinping_thought.md
       - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:
@@ -88,7 +89,8 @@ nav:
         - 1 Using Objects: zju/basic_courses/OOP/ch1.md
         - 2 Grouping Objects: zju/basic_courses/OOP/ch2.md
         - 3 Defining Class: zju/basic_courses/OOP/ch3.md
-        - 4 Inside Object: zju/basic_courses/OOP/ch4.md
+        - 4 Inside Object 1: zju/basic_courses/OOP/ch4.md
+        - 5 Inside Object 2: zju/basic_courses/OOP/ch5.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:

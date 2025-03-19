@@ -30,7 +30,7 @@
 ## 0.3 安装库
 
 1. pip 安装
-2. conda 安装
+2. conda 安装（需安装 Anaconda）
 
 最好是根据你要安装的那个库来搜索教程，例如要安装 matplotlib 库，就搜索“matplotlib安装”等关键词即可
 
