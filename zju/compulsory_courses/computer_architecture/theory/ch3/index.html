@@ -4048,6 +4048,57 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#322-miss-penalty-and-out-of-order-execution-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 miss penalty and Out-of-Order Execution Processors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-optimizations-of-cache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Optimizations of Cache Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Optimizations of Cache Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-small-and-simple-first-level-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 Small and Simple First-Level Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-way-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.2 Way Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-avoiding-address-translation-during-indexing-of-the-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.3 Avoiding Address Translation During Indexing of the Cache
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6747,6 +6798,57 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#322-miss-penalty-and-out-of-order-execution-processors" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2.2 miss penalty and Out-of-Order Execution Processors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-optimizations-of-cache-performance" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Optimizations of Cache Performance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3 Optimizations of Cache Performance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-small-and-simple-first-level-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.1 Small and Simple First-Level Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-way-prediction" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.2 Way Prediction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-avoiding-address-translation-during-indexing-of-the-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.3 Avoiding Address Translation During Indexing of the Cache
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6916,24 +7018,42 @@
 <figure>
     <img alt="Img 4" src="../../../../../img/comp_arch/ch3/ca_ch3_img4.png" width="600" />
 </figure>
+<hr />
 <figure>
     <img alt="Img 5" src="../../../../../img/comp_arch/ch3/ca_ch3_img5.png" width="600" />
 </figure>
+<hr />
 <figure>
     <img alt="Img 6" src="../../../../../img/comp_arch/ch3/ca_ch3_img6.png" width="600" />
 </figure>
+<blockquote>
+<p>课本原图有误，本文档已修正</p>
+</blockquote>
 <hr />
 <figure>
     <img alt="Img 7" src="../../../../../img/comp_arch/ch3/ca_ch3_img7.png" width="600" />
 </figure>
 <p>如上例所示，缓存特性可能会对性能产生巨大影响。此外，对于低 CPI、高时钟频率的处理器，缓存缺失会产生双重影响</p>
 <ol>
-<li>CPI_{execution} 越低，固定数目的缓存缺失时钟周期产生的相对影响越高</li>
+<li><span class="arithmatex">\(CPI_{execution}\)</span> 越低，固定数目的缓存缺失时钟周期产生的相对影响越高</li>
 <li>在计算 CPI 时，一次缺失的缓存代价是以处理器时钟周期进行计算的。因此，即使两个计算机的存储器层次结构相同，时钟频率较高的处理器在每次缺失时会占用较多的时钟周期，CPI 的存储器部分也相应较高</li>
 </ol>
 <figure>
     <img alt="Img 8" src="../../../../../img/comp_arch/ch3/ca_ch3_img8.png" width="600" />
 </figure>
+<h3 id="322-miss-penalty-and-out-of-order-execution-processors">3.2.2 miss penalty and Out-of-Order Execution Processors<a class="headerlink" href="#322-miss-penalty-and-out-of-order-execution-processors" title="Permanent link">&para;</a></h3>
+<h2 id="33-optimizations-of-cache-performance">3.3 Optimizations of Cache Performance<a class="headerlink" href="#33-optimizations-of-cache-performance" title="Permanent link">&para;</a></h2>
+<h3 id="331-small-and-simple-first-level-caches">3.3.1 Small and Simple First-Level Caches<a class="headerlink" href="#331-small-and-simple-first-level-caches" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce hit time and power</strong></p>
+<p><strong>小而简单的第一级缓存，用以缩短命中时间、降低功率</strong></p>
+<h3 id="332-way-prediction">3.3.2 Way Prediction<a class="headerlink" href="#332-way-prediction" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce hie time</strong></p>
+<p><strong>采用路预测以缩短命中时间</strong></p>
+<p>在路预测技术中，缓存中另外保存了一些位，用于预测下一次缓存访问组中的路或块</p>
+<p>在一个缓存的每个块中都添加块预测位。根据这些位选定要在下一次缓存访问中优先尝试哪些块</p>
+<h3 id="333-avoiding-address-translation-during-indexing-of-the-cache">3.3.3 Avoiding Address Translation During Indexing of the Cache<a class="headerlink" href="#333-avoiding-address-translation-during-indexing-of-the-cache" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce hit time</strong></p>
+<p><strong>避免在索引缓存期间进行地址转换，以缩短命中时间</strong></p>
 
 
 
@@ -6956,7 +7076,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月15日 13:55:54">2025年3月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月20日 09:22:01">2025年3月20日</span>
   </span>
 
     
