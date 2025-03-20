@@ -674,15 +674,547 @@ int main() {
 
 **Reference**
 
-引用就是别名（alias）
+引用是 C++ 中的一种变量类型，它是某个已存在变量的别名（alias）。==引用在定义时必须被初始化，并且一旦绑定到某个变量，就无法更改绑定==
 
-引用只能接收左值
+特点：
 
-### 左值与右值
+1. 必须初始化：引用在定义时必须绑定到一个变量
+2. 不可更改绑定：引用一旦绑定到某个变量，就无法再绑定到其他变量
+3. 操作引用即操作原变量：对引用的操作会直接影响到它所绑定的变量
+
+> 在函数参数列表或类成员变量中，可以声明引用而不立即初始化。初始化将由函数的调用者或类的构造函数来完成
+
+```cpp linenums="1"
+int a = 10;
+int& ref = a; // ref 是 a 的引用
+
+// 之后对 ref 的任何操作都会直接影响 a
+```
+
+!!! tip "引用与指针的区别"
+
+    | 特性 | 引用 | 指针 |
+    | :--: | :--: | :--: |
+    | 是否必须初始化 | 必须初始化 | 可以不初始化 |
+    | 是否可以更改绑定 | 不可以更改绑定 | 可以更改指向的地址 |
+    | 是否可以为 `null` | 不可以为 `null` | 可以为 `null` |
+    | 语法 | 使用 `&` 定义引用 | 使用 `*` 定义指针 | 
+    | 操作复杂性 | 更简单，直接操作变量 | 需要解引用操作符 `*` |
+
+引用的目标必须有明确的内存位置。引用必须绑定到一个具体的、已存在的对象，而不能绑定到一个临时值或表达式的结果
+
+```cpp linenums="1"
+void func(int &);  
+func(i * 3);
+// func(i * 3); 会引发警告或错误
+// 因为 i * 3 是一个临时值，没有明确的内存位置，不能作为引用的目标
+```
+
+限制：
+
+1. 没有引用的引用
+2. 没有指向引用的指针：`int &*p`
+3. 允许指针的引用：`void f(int *&p)`
+4. 没有“引用数组”
+      - 不能定义一个数组，其元素是引用
+
+### 3.1 作为函数参数
+
+引用常用于函数参数，避免值传递时的拷贝开销，同时允许函数直接修改传入的变量
+
+```cpp linenums="1"
+#include <iostream>
+using namespace std;
+
+void increment(int& num) {
+    num++; // 修改引用会直接影响原变量
+}
+
+int main() {
+    int a = 5;
+    increment(a); // 传递 a 的引用
+    cout << "a = " << a << endl; // 输出：a = 6
+    return 0;
+}
+```
+
+优点：
+
+1. 避免了值传递时的拷贝开销
+2. 可以 ==直接修改传入的变量==
+
+### 3.2 作为函数返回值
+
+函数可以返回一个引用，从而允许函数直接返回变量本身，而不是其副本
+
+```cpp linenums="1"
+#include <iostream>
+using namespace std;
+
+int& getValue(int& num) {
+    return num; // 返回引用
+}
+
+int main() {
+    int a = 10;
+    int& ref = getValue(a); // ref 是 a 的引用
+    ref = 20; // 修改 ref 会直接影响 a
+    cout << "a = " << a << endl; // 输出：a = 20
+    return 0;
+}
+```
+
+注意：
+
+1. 返回引用时，必须确保返回的变量在函数外部仍然有效
+2. 不要返回局部变量的引用，因为局部变量在函数结束后会被销毁
+
+### 3.3 常量引用
+
+常量引用用于防止通过引用修改原变量，通常用于函数参数，特别是当传递大型对象时
+
+```cpp linenums="1"
+#include <iostream>
+using namespace std;
+
+void printValue(const int& num) {
+    // num 是常量引用，不能修改
+    cout << "Value: " << num << endl;
+}
+
+int main() {
+    int a = 10;
+    printValue(a); // 传递 a 的引用
+    return 0;
+}
+```
+
+优点：
+
+1. 提高了代码的安全性，防止意外修改变量
+2. 避免了值传递时的拷贝开销
+
+### 3.4 引用与数组
+
+引用不能直接绑定到数组，但可以通过函数参数传递数组的引用
+
+```cpp linenums="1"
+#include <iostream>
+using namespace std;
+
+void modifyArray(int (&arr)[5]) { // 引用数组
+    arr[0] = 100; // 修改数组的第一个元素
+}
+
+int main() {
+    int arr[5] = {1, 2, 3, 4, 5};
+    modifyArray(arr); // 传递数组引用
+    cout << "arr[0] = " << arr[0] << endl; // 输出：arr[0] = 100
+    return 0;
+}
+```
+
+### 3.5 左值与右值
+
+<div class="grid" markdown>
+<div class="card" markdown>
+
+左值是指程序中有明确地址的表达式，可以出现在赋值操作符的左侧
+
+特点：
+
+1. 左值是持久的，表示内存中的某个位置
+2. 可以对左值进行赋值操作
+
+例如：变量、数组元素、引用
+
+</div>
+<div class="card" markdown>
+
+右值是指程序中没有明确地址的表达式，通常是临时值或字面量，不能出现在赋值操作符的左侧
+
+特点：
+
+1. 右值是短暂的，通常在表达式结束后就会被销毁
+2. 右值只能出现在赋值操作符的右侧
+
+例如：字面量、表达式的结果、临时对象
+
+</div>
+</div>
+
+#### 3.5.1 左值引用与右值引用
+
+<div class="grid cards" markdown>
+<div class="card" markdown>
+
+- 左值引用是绑定到左值的引用
+- 用法：通过 `&` 定义
+
+```cpp linenums="1"
+int a = 10;
+int& ref = a; // ref 是 a 的左值引用
+ref = 20;     // 修改 ref 会直接影响 a
+```
+
+</div>
+<div class="card" markdown>
+
+- 右值引用是绑定到右值的引用
+- 用法：通过 `&&` 定义
+- 右值引用通常用于移动语义和避免不必要的拷贝
+- 通过右值引用实现移动语义以及完美转发
+
+```cpp linenums="1"
+int&& rref = 10; // rref 是绑定到右值 10 的右值引用
+rref = 20;       // 修改 rref
+```
+</div>
+</div>
+
+### 3.6 引用与右值
+
+一般来说，引用只能引用左值，但存在一个叫右值引用的东东
+
+- 右值通常用于临时计算结果
+- 右值可以通过右值引用传递给函数
+
+```cpp linenums="1"
+void print(int&& rref) {
+    std::cout << rref << std::endl;
+}
+
+int main() {
+    print(10); // 传递右值
+    return 0;
+}
+```
+
+```cpp linenums="1"
+const int& ref1 = 10; // 右值可以绑定到 const 左值引用
+int&& ref2 = 10;      // 右值可以绑定到右值引用
+```
 
 ## 4 Constant
 
-成员函数后面的 const 实际修饰的是 this 指针
+`const` 是 C++ 中的关键字，用于定义常量或不可修改的变量。它可以用来修饰变量、函数参数、函数返回值、成员函数等，表示这些内容在程序运行期间不能被修改
+
+- 在 C++ 中，const 变量默认具有内部链接（internal linkage），这意味着它们仅在定义它们的文件内可见
+- 编译器通常会尝试优化 const 变量的存储，将其值保存在符号表中，而不是分配实际的内存空间
+- 如果需要使 const 变量具有外部链接（external linkage），以便在其他文件中访问，可以使用 extern 关键字来强制分配存储空间
+
+### 4.1 修饰变量
+
+**修饰普通变量**
+
+```cpp linenums="1"
+const int a = 10; // a 是常量，不能被修改
+a = 20;           // 错误：尝试修改 const 变量
+```
+
+**修饰指针**
+
+| 声明 | 含义 |
+| :--: | :--: |
+| const int* p | 指针指向的值是常量，不能通过指针修改值，但可以改变指针指向的地址 |
+| int* const p | 指针本身是常量，不能改变指针指向的地址，但可以通过指针修改值 |
+| const int* const p | 指针本身和指针指向的值都是常量，既不能修改值，也不能改变指针指向的地址 |
+
+| | `int i` | `const int ci = 3` |
+| :--: | :--: | :--: |
+| `int *ip` | `ip = &i` | ~~`ip = &ci`~~ 错误 |
+| `const int *cip` | `cip = &i` | `cip = &ci` |
+
+```cpp linenums="1"
+int x = 10;
+int y = 20;
+
+// 指针本身是常量，即指针的值（地址）不能改变
+int* const p1 = &x;
+p1 = &y; // 错误：p1 是常量指针，不能修改指向的地址
+*p1 = 30; // 正确：可以修改指针指向的值
+
+// 指针指向的值是常量，即指针指向的值不能改变
+const int* p2 = &x;
+p2 = &y; // 正确：可以修改指针指向的地址
+*p2 = 30; // 错误：不能修改指针指向的值
+
+// 指针本身和指向的值都是常量
+const int* const p3 = &x;
+p3 = &y; // 错误：不能修改指针指向的地址
+*p3 = 30; // 错误：不能修改指针指向的值
+```
+
+**字符串字面量**（string literals）
+
+`char* s = "Hello, world!";`
+
+1. 这实际上是一个 `const char *s`，但编译器在没有 `const` 的情况下也接受它
+2. 字符串字面量通常存储在只读内存区域，这意味着它们的内容在程序运行期间不应被修改。不要尝试更改字符值（这是未定义行为，尝试修改字符串字面量的内容可能会导致程序崩溃或其他不可预测的行为）
+3. 如果想更改字符串，将其放入数组中：`char s[] = "Hello, world!";`
+
+### 4.2 修饰函数参数
+
+**修饰常量参数**
+
+```cpp linenums="1"
+void printValue(const int value) {
+    // value 是常量，不能被修改
+    // value = 20; // 错误
+    std::cout << value << std::endl;
+}
+```
+
+**传递常量引用**
+
+```cpp linenums="1"
+void printValue(const int& value) {
+    // value 是常量引用，不能通过引用修改原变量
+    // value = 20; // 错误
+    std::cout << value << std::endl;
+}
+
+int main() {
+    int a = 10;
+    printValue(a); // 传递变量
+    printValue(20); // 传递右值
+    return 0;
+}
+```
+
+优点：
+
+1. 避免了值传递时的拷贝开销
+2. 防止函数修改传入的参数，提高代码安全性
+
+### 4.3 修饰函数返回值
+
+**返回常量值**
+
+```cpp linenums="1"
+const int getValue() {
+    return 10;
+}
+
+int main() {
+    int a = getValue();
+    // getValue() = 20; // 错误：返回值是常量，不能被赋值
+    a = 20;  // a 可以被修改
+    return 0;
+}
+```
+
+**返回常量引用**
+
+```cpp linenums="1"
+const int& getValue(const int& value) {
+    return value;
+}
+
+int main() {
+    int a = 10;
+    const int& ref = getValue(a);
+    // ref = 20; // 错误：返回值是常量引用，不能被修改
+    return 0;
+}
+```
+
+### 4.4 修饰成员变量
+
+**常量成员变量**
+
+```cpp linenums="1"
+class MyClass {
+private:
+    const int value;
+
+public:
+    MyClass(int v) : value(v) {} // 必须通过构造函数初始化常量成员变量
+
+    void printValue() const {
+        std::cout << value << std::endl;
+    }
+};
+```
+
+### 4.5 修饰成员函数
+
+**常量成员函数**
+
+成员函数后面的 const 实际上修饰的是 this 指针，所以常量成员函数不能修改成员变量
+
+```cpp linenums="1"
+class MyClass {
+private:
+    int value;
+
+public:
+    MyClass(int v) : value(v) {}
+
+    void printValue() const {
+        // value = 20; // 错误：常量成员函数不能修改成员变量
+        std::cout << value << std::endl;
+    }
+};
+```
+
+特点：
+
+1. 常量成员函数不能修改类的成员变量（除非成员变量被声明为 mutable）
+2. 常量成员函数可以被 const 对象调用
+
+### 4.6 修饰类对象
+
+**常量对象**
+
+```cpp linenums="1"
+class MyClass {
+private:
+    int value;
+
+public:
+    MyClass(int v) : value(v) {}
+
+    void setValue(int v) {
+        value = v;
+    }
+
+    void printValue() const {
+        std::cout << value << std::endl;
+    }
+};
+
+int main() {
+    const MyClass obj(10); // 常量对象
+    obj.printValue(); // 正确：可以调用常量成员函数
+    // obj.setValue(20); // 错误：不能调用非常量成员函数
+    return 0;
+}
+```
+
+### 4.7 修饰静态成员变量
+
+静态成员变量可以被 `const` 修饰，但必须在类外初始化
+
+```cpp linenums="1"
+class MyClass {
+public:
+    static const int value; // 静态常量成员变量
+};
+
+const int MyClass::value = 10; // 在类外初始化
+```
+
+---
+
+### 4.8 总结
+
+1. 传递对象与传递指针：
+      - 在 C++ 中，传递整个对象（如结构体或类实例）可能会导致性能开销，尤其是当对象较大时。这是因为传递对象通常涉及复制整个对象的内容
+      - 通过传递指针（或引用），可以避免这种开销，因为只传递对象的内存地址，而不是对象本身
+2. 修改原始值的风险：
+      - 传递指针时，函数内部可以通过指针修改原始对象的值。这在某些情况下是期望的行为，但在其他情况下可能会导致意外的副作用
+      - 为了防止函数意外修改原始对象，可以使用 `const` 关键字来修饰指针。例如，`const MyClass* ptr` 表示 `ptr` 指向的对象是只读的，不能通过 `ptr` 修改
+3. `const` 的使用：
+      - 在函数参数中使用 `const` 可以增加代码的安全性和可读性。它明确表示函数不会修改传入的对象
 
 ## 5 动态分配内存
 
+动态内存分配允许程序在运行时根据需要分配和释放内存，而不是在编译时确定内存大小。C++ 提供了 `new` 和 `delete` 操作符来管理动态内存
+
+1. 堆（Heap）：动态分配的内存来自堆
+2. 优点：灵活性高，可以根据程序运行时的需求分配内存
+3. 缺点：需要手动管理内存，可能导致内存泄漏或悬空指针
+
+### 5.1 使用 `new` 分配内存
+
+**分配单个变量**
+
+```cpp linenums="1"
+int* ptr = new int; // 分配一个 int 类型的内存
+*ptr = 42;          // 给动态分配的内存赋值
+std::cout << *ptr << std::endl; // 输出：42
+```
+
+**分配数组**
+
+```cpp linenums="1"
+int* arr = new int[5]; // 分配一个包含 5 个 int 元素的数组
+for (int i = 0; i < 5; ++i) {
+    arr[i] = i * 10; // 初始化数组
+}
+for (int i = 0; i < 5; ++i) {
+    std::cout << arr[i] << " "; // 输出：0 10 20 30 40
+}
+```
+
+**分配对象**
+
+```cpp linenums="1"
+class MyClass {
+public:
+    MyClass() { std::cout << "Constructor called" << std::endl; }
+    ~MyClass() { std::cout << "Destructor called" << std::endl; }
+};
+
+MyClass* obj = new MyClass(); // 动态分配一个对象
+```
+
+### 5.2 使用 `delete` 释放内存
+
+**释放单个变量**
+
+```cpp linenums="1"
+delete ptr; // 释放动态分配的单个变量
+ptr = nullptr; // 避免悬空指针
+```
+
+**释放数组**
+
+```cpp linenums="1"
+delete[] arr; // 释放动态分配的数组
+arr = nullptr; // 避免悬空指针
+```
+
+**释放对象**
+
+```cpp linenums="1"
+delete obj; // 调用对象的析构函数并释放内存
+obj = nullptr; // 避免悬空指针
+```
+
+### 5.3 常见问题
+
+**内存泄漏**
+
+如果动态分配的内存没有被释放，就会导致内存泄漏
+
+```cpp linenums="1"
+int* leak = new int(42);
+// 没有调用 delete，导致内存泄漏
+```
+
+**悬空指针**
+
+释放内存后，指针仍然指向已释放的内存，称为悬空指针
+
+```cpp linenums="1"
+int* dangling = new int(42);
+delete dangling; // 释放内存
+// dangling 仍然指向已释放的内存
+```
+
+**使用未初始化的指针**
+
+```cpp linenums="1"
+int* uninitialized;
+*uninitialized = 42; // 未初始化的指针，可能导致未定义行为
+```
+
+!!! tip "`new` and `delete`"
+
+    1. 不要使用 `delete` 去释放 `new` 没有分配的内存
+    2. 不要使用两次 `delete` 去释放同一个内存
+    3. 使用 `delete[]` 和 `new[]` 去操作数组
+    4. 如果 `new` 给单个对象分配内存，使用 `delete` 释放内存
+    5. `delete` 一个空指针是安全的

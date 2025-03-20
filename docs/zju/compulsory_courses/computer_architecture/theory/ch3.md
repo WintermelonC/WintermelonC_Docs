@@ -147,13 +147,19 @@ $CPU\ time = IC\times (\dfrac{AluOps}{Inst}\times CPI_{AluOps} + \dfrac{MemAcces
     ![Img 4](../../../../img/comp_arch/ch3/ca_ch3_img4.png){ width="600" }
 </figure>
 
+---
+
 <figure markdown="span">
     ![Img 5](../../../../img/comp_arch/ch3/ca_ch3_img5.png){ width="600" }
 </figure>
 
+---
+
 <figure markdown="span">
     ![Img 6](../../../../img/comp_arch/ch3/ca_ch3_img6.png){ width="600" }
 </figure>
+
+> 课本原图有误，本文档已修正
 
 ---
 
@@ -163,9 +169,36 @@ $CPU\ time = IC\times (\dfrac{AluOps}{Inst}\times CPI_{AluOps} + \dfrac{MemAcces
 
 如上例所示，缓存特性可能会对性能产生巨大影响。此外，对于低 CPI、高时钟频率的处理器，缓存缺失会产生双重影响
 
-1. CPI_{execution} 越低，固定数目的缓存缺失时钟周期产生的相对影响越高
+1. $CPI_{execution}$ 越低，固定数目的缓存缺失时钟周期产生的相对影响越高
 2. 在计算 CPI 时，一次缺失的缓存代价是以处理器时钟周期进行计算的。因此，即使两个计算机的存储器层次结构相同，时钟频率较高的处理器在每次缺失时会占用较多的时钟周期，CPI 的存储器部分也相应较高
 
 <figure markdown="span">
     ![Img 8](../../../../img/comp_arch/ch3/ca_ch3_img8.png){ width="600" }
 </figure>
+
+### 3.2.2 miss penalty and Out-of-Order Execution Processors
+
+## 3.3 Optimizations of Cache Performance
+
+### 3.3.1 Small and Simple First-Level Caches
+
+**to reduce hit time and power**
+
+**小而简单的第一级缓存，用以缩短命中时间、降低功率**
+
+### 3.3.2 Way Prediction
+
+**to reduce hie time**
+
+**采用路预测以缩短命中时间**
+
+在路预测技术中，缓存中另外保存了一些位，用于预测下一次缓存访问组中的路或块
+
+在一个缓存的每个块中都添加块预测位。根据这些位选定要在下一次缓存访问中优先尝试哪些块
+
+### 3.3.3 Avoiding Address Translation During Indexing of the Cache
+
+**to reduce hit time**
+
+**避免在索引缓存期间进行地址转换，以缩短命中时间**
+
