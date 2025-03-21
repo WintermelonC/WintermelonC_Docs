@@ -169,7 +169,7 @@ $CPU\ time = Instruction\ count \times CPI \times Clock\ cycle\ time$
 
 ## Homework
 
-<!-- ???+ question "课本 1.6"
+???+ question "课本 1.6"
 
     General-purpose processes are optimized for general-purpose computing. That is, they are optimized for behavior that is generally found across a large number of applications. However, once the domain is restricted somewhat, the behavior that is found across a large number of the target applications may be different from general-purpose applications. One such application is deep learning or neural networks. Deep learning can be applied to many different applications, but the fundamental building block of inference—using the learned information to make decisions—is the same across them all. Inference operations are largely parallel, so they are currently performed on graphics processing units, which are specialized more toward this type of computation, and not to inference in particular. In a quest for more performance per watt, Google has created a custom chip using tensor processing units to accelerate inference operations in deep learning.1 This approach can be used for speech recognition and image recognition, for example. This problem explores the trade-offs between this process, a general-purpose processor (Haswell E5-2699 v3) and a GPU (NVIDIA K80), in terms of performance and cooling. If heat is not removed from the computer efficiently, the fans will blow hot air back onto the computer, not cold air. Note: The differences are more than processor—on-chip memory and DRAMalso come into play. Therefore statistics are at a system level, not a chip level.
 
@@ -505,4 +505,4 @@ $CPU\ time = Instruction\ count \times CPI \times Clock\ cycle\ time$
         - A：$\dfrac{0.228}{0.473} = 48.20\%$
         - B：$\dfrac{0.09}{0.473} = 19.03\%$
         - C：$\dfrac{0.099}{0.473} = 20.93\%$
-        - D：$\dfrac{0.056}{0.473} = 11.84\%$ -->
+        - D：$\dfrac{0.056}{0.473} = 11.84\%$
