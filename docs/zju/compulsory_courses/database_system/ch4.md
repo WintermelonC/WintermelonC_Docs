@@ -1,8 +1,8 @@
 # 4 Advanced SQL
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -101,10 +101,10 @@ create domain degree_level varchar(10)
 ```sql linenums="1"
 Create table account (
     account_number char(10), 
-    branch_name	char(15), 
+    branch_n	char(15), 
     balance	integer, 
     primary key (account_number), 
-    -- 外键名和被引用表的逐渐名可以不相同
+    -- 外键名和被引用表的主键名可以不相同
     foreign key (branch_n) references branch(branch_name)
 ); 
 
@@ -1152,7 +1152,7 @@ end;
 
 ## Homework
 
-<!-- ???+ question "课本 4.7"
+???+ question "课本 4.7"
 
     Consider the employee database of Figure 4.12. Give an SQL DDL definition of this database. Identify referential-integrity constraints that should hold, and include them in the DDL definition.
 
@@ -1309,4 +1309,4 @@ end;
         	delete from r
         	where r.B = orow.A;
         end
-        ``` -->
+        ```
