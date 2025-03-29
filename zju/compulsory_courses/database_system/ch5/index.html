@@ -2564,7 +2564,7 @@
         
   
   <span class="md-ellipsis">
-    4 Inside Object 1
+    4 Inside Object
     
   </span>
   
@@ -2586,7 +2586,7 @@
         
   
   <span class="md-ellipsis">
-    5 Inside Object 2
+    5 Inside Class
     
   </span>
   
@@ -3919,6 +3919,75 @@
   <a href="#6-extended-e-r-features" class="md-nav__link">
     <span class="md-ellipsis">
       6 Extended E-R Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 Extended E-R Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Specialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-generalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Generalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-design-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Design Constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Aggregation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-design-of-an-e-r-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Design of an E-R Database Schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reduction-of-an-e-r-schema-to-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Reduction of an E-R Schema to Tables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework
     </span>
   </a>
   
@@ -6862,6 +6931,75 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6 Extended E-R Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-specialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Specialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-generalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Generalization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-design-constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 Design Constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-aggregation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.4 Aggregation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-design-of-an-e-r-database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      7 Design of an E-R Database Schema
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-reduction-of-an-e-r-schema-to-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Reduction of an E-R Schema to Tables
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework
+    </span>
+  </a>
+  
 </li>
       
     </ul>
@@ -6995,6 +7133,16 @@
 </ol>
 <h2 id="4-e-r-diagram">4 E-R Diagram<a class="headerlink" href="#4-e-r-diagram" title="Permanent link">&para;</a></h2>
 <figure>
+  <img alt="Img 29" src="../../../../img/database/ch5/database_ch5_img29.png" width="600" />
+</figure>
+<figure>
+  <img alt="Img 30" src="../../../../img/database/ch5/database_ch5_img30.png" width="600" />
+</figure>
+<figure>
+  <img alt="Img 31" src="../../../../img/database/ch5/database_ch5_img31.png" width="600" />
+</figure>
+<hr />
+<figure>
   <img alt="Img 7" src="../../../../img/database/ch5/database_ch5_img7.png" width="500" />
 </figure>
 <ol>
@@ -7110,6 +7258,347 @@
   <img alt="Img 23" src="../../../../img/database/ch5/database_ch5_img23.png" width="800" />
 </figure>
 <h2 id="6-extended-e-r-features">6 Extended E-R Features<a class="headerlink" href="#6-extended-e-r-features" title="Permanent link">&para;</a></h2>
+<h3 id="61-specialization">6.1 Specialization<a class="headerlink" href="#61-specialization" title="Permanent link">&para;</a></h3>
+<p><strong>特殊化</strong></p>
+<ol>
+<li>设计方向：采用自上而下（Top-down）的方式，从一般到具体的设计过程</li>
+<li>核心思想：在一个通用的实体集中，识别出具有特殊属性的子类。例如，"人"实体集可以特殊化为"学生"和"教师"两个子类</li>
+<li>特点：<ol>
+<li>子分组（子类）具有父类没有的特殊属性或关系</li>
+<li>子类自动继承父类的所有属性和关系（属性继承）</li>
+<li>形成一种层级结构，上层更通用，下层更具体</li>
+</ol>
+</li>
+<li>应用：这种设计方法在面向对象数据库和ER模型中很常见，有助于实现数据的层次化组织和代码复用</li>
+</ol>
+<figure>
+  <img alt="Img 24" src="../../../../img/database/ch5/database_ch5_img24.png" width="600" />
+</figure>
+<h3 id="62-generalization">6.2 Generalization<a class="headerlink" href="#62-generalization" title="Permanent link">&para;</a></h3>
+<p><strong>泛化</strong></p>
+<ol>
+<li>设计方向：泛化是自下而上（Bottom-up）的设计过程，从具体的子类抽象出通用的父类。例如，将"学生"和"教师"实体集合并为更高层级的"人"实体集</li>
+<li>与特殊化的关系<ol>
+<li>泛化和特殊化是互逆过程<ul>
+<li>特殊化：从父类拆分出子类（如"人"→"学生"/"教师"）</li>
+<li>泛化：将子类合并为父类（如"学生"+"教师"→"人"）</li>
+</ul>
+</li>
+<li>在 E-R 图中，两者用相同的符号表示（通常用空心箭头指向父类）</li>
+</ol>
+</li>
+<li>应用：泛化用于提取共性，减少数据冗余（如"学生"和"教师"共享"姓名""年龄"等属性）</li>
+</ol>
+<h3 id="63-design-constraints">6.3 Design Constraints<a class="headerlink" href="#63-design-constraints" title="Permanent link">&para;</a></h3>
+<ol>
+<li>成员资格约束<ol>
+<li>条件定义的：通过明确的规则（如年龄、账户类型）自动划分实体<ul>
+<li>person 实体集中，年龄≥65的自动归入 senior-citizen 子类</li>
+<li>account 实体按类型分为 saving-account 和 checking-account</li>
+</ul>
+</li>
+<li>用户定义的：由人工指定（如管理员将员工分配到具体团队）</li>
+</ol>
+</li>
+<li>重叠性约束<ol>
+<li>不相交（Disjoint）：子类之间互斥，实体只能属于一个子类<ul>
+<li>E-R 图表示：在 ISA 关系旁标注 disjoint</li>
+<li>示例：student 和 teacher 作为 person 的子类，一个人不能同时属于两者</li>
+</ul>
+</li>
+<li>可重叠（Overlapping）：子类允许交叉，实体可属于多个子类<ul>
+<li>示例：person 的子类 employee 和 student 可以重叠（某人既是在职员工又是学生）</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>完全性约束（Completeness Constraint）<ol>
+<li>完全约束（Total）：父类中的所有实体都必须映射到至少一个子类</li>
+<li>部分约束（Partial）：父类中的实体可以不属于任何子类</li>
+</ol>
+</li>
+</ol>
+<p>ISA 关系：表示父类与子类的继承关系（如 senior-citizen ISA person）</p>
+<figure>
+  <img alt="Img 25" src="../../../../img/database/ch5/database_ch5_img25.png" width="400" />
+</figure>
+<figure>
+  <img alt="Img 26" src="../../../../img/database/ch5/database_ch5_img26.png" width="400" />
+</figure>
+<h3 id="64-aggregation">6.4 Aggregation<a class="headerlink" href="#64-aggregation" title="Permanent link">&para;</a></h3>
+<figure>
+  <img alt="Img 27" src="../../../../img/database/ch5/database_ch5_img27.png" width="600" />
+</figure>
+<ul>
+<li>works-on（员工-工作-分支机构）和 manages（经理-员工-工作-分支机构）两个关系集存在信息重叠</li>
+<li>每个 manages 实例必然对应一个 works-on 实例（经理必须先在该岗位工作），但反之不成立（普通员工的 works-on 可能无经理关联）</li>
+<li>直接合并会丢失信息：若仅保留 manages，会丢失无经理关联的 works-on 数据</li>
+</ul>
+<p>聚合：</p>
+<ol>
+<li>核心思想<ol>
+<li>将 works-on 关系抽象为一个实体（如 assignment）</li>
+<li>在 manages 中引用该实体，而非直接关联原始三要素（员工、工作、分支机构）</li>
+</ol>
+</li>
+<li>优势<ol>
+<li>消除冗余：manages 只需关联 assignment 实体，无需重复存储员工-工作-分支机构组合</li>
+<li>保留完整性：所有 works-on 数据（包括无经理关联的）均被保留</li>
+</ol>
+</li>
+</ol>
+<figure>
+  <img alt="Img 28" src="../../../../img/database/ch5/database_ch5_img28.png" width="600" />
+</figure>
+<h2 id="7-design-of-an-e-r-database-schema">7 Design of an E-R Database Schema<a class="headerlink" href="#7-design-of-an-e-r-database-schema" title="Permanent link">&para;</a></h2>
+<p><strong>1.使用属性还是实体集表示对象</strong></p>
+<ul>
+<li>作为属性的条件<ul>
+<li>对象是单值且无附加属性</li>
+<li>示例：gender（性别）只需存储“男/女”，适合作为 employee 的属性</li>
+</ul>
+</li>
+<li>作为实体集的条件<ul>
+<li>对象需要多值或额外属性描述</li>
+<li>示例：phone 需要存储号码、类型、颜色等，应独立为实体集，并通过联系集 emp-phone 与 employee 关联</li>
+<li>示例：department 若有预算、位置等属性，也需作为实体集</li>
+</ul>
+</li>
+</ul>
+<p><strong>2.使用实体集还是关系集</strong></p>
+<ul>
+<li>关系集的本质：描述实体间的动态交互行为（如“学生选课”“客户存款”），而非静态对象<ul>
+<li>示例：enrolled（学生与课程的注册关系）</li>
+<li>示例：borrower（客户与图书的借阅关系）</li>
+</ul>
+</li>
+<li>实体集的本质：表示独立存在的对象（如学生、课程、图书）</li>
+</ul>
+<figure>
+  <img alt="Img 32" src="../../../../img/database/ch5/database_ch5_img32.png" width="600" />
+</figure>
+<p><strong>3.将信息作为实体的属性还是关系的属性</strong></p>
+<p><code>student(sid, name, sex, age, ..., supervisor-id, supervisor-name, supervisor-position, ..., class, monitor)</code></p>
+<ul>
+<li>数据冗余：如果多个学生有同一位导师，导师信息会被重复存储</li>
+<li>结构混乱：将本应独立的实体（如导师、班级）信息作为属性存储</li>
+<li>维护困难：当导师信息变更时需要更新多条记录</li>
+</ul>
+<div class="language-sql highlight"><span class="filename">优化后</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">student</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">supervisor</span><span class="p">(</span><span class="n">sup</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">position</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">class</span><span class="p">(</span><span class="n">classno</span><span class="p">,</span><span class="w"> </span><span class="n">specialty</span><span class="p">,</span><span class="w"> </span><span class="n">monitor</span><span class="p">,</span><span class="w"> </span><span class="n">stu</span><span class="o">-</span><span class="n">num</span><span class="p">);</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">stu</span><span class="o">-</span><span class="k">class</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="n">classno</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">stu</span><span class="o">-</span><span class="n">sup</span><span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="w"> </span><span class="n">sup</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="k">from</span><span class="p">,</span><span class="w"> </span><span class="k">to</span><span class="p">);</span>
+</span></code></pre></div>
+<ol>
+<li>语义独立性：<ol>
+<li>具有独立语义的对象（如导师、班级）应建模为实体</li>
+<li>仅描述性的信息（如学生年龄）可作为属性</li>
+</ol>
+</li>
+<li>减少冗余：<ol>
+<li>通过关系连接实体，避免重复存储信息</li>
+<li>如导师信息只存储在 supervisor 实体中</li>
+</ol>
+</li>
+<li>扩展性：<ol>
+<li>关系可以添加属性（如 stu-sup 中的 from/to 时间）</li>
+<li>独立实体更易于扩展新属性</li>
+</ol>
+</li>
+</ol>
+<p><strong>4.使用三元 / N 元关系还是多个二元关系</strong></p>
+<p><strong>5.使用强实体集还是弱实体集</strong></p>
+<p><strong>6.使用特殊化/泛化</strong></p>
+<p>有助于设计的模块化</p>
+<p><strong>7.使用聚合</strong></p>
+<p>可以将 E-R 图的一部分组合成单个实体集，作为一个整体单元处理，而无需关心其内部结构细节</p>
+<h2 id="8-reduction-of-an-e-r-schema-to-tables">8 Reduction of an E-R Schema to Tables<a class="headerlink" href="#8-reduction-of-an-e-r-schema-to-tables" title="Permanent link">&para;</a></h2>
+<p>展开 composite attributes：例如 name.first-name, name.second-name，<code>customer(customer-id, first-name, last-name, cust-street, cust-city)</code></p>
+<p>multivalued attribute 用一个独立的 table 表示：例如多值属性 dependent-names</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">employee</span><span class="p">(</span><span class="n">emp</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">ename</span><span class="p">,</span><span class="w"> </span><span class="n">sex</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">employee</span><span class="o">-</span><span class="n">dependent</span><span class="o">-</span><span class="k">names</span><span class="p">(</span><span class="n">emp</span><span class="o">-</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">dependent</span><span class="o">-</span><span class="n">name</span><span class="p">)</span>
+</span></code></pre></div>
+<p>弱实体集的表格应包含其标识实体集的主键：<code>payment(loan-number, payment-number, payment-date, payment-amount)</code></p>
+<p>关系集的表格包含其强实体集的主键，和自身的属性</p>
+<p>对于"多"端 <strong>完全</strong> 参与（total on the many-side）的多对一或一对多关系集，可以通过在"多"端实体表中添加一个额外属性来表示该关系，该属性包含"一"端实体的主键</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="err">部门</span><span class="p">(</span><span class="n">dept_id</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="err">员工</span><span class="p">(</span><span class="n">emp_id</span><span class="p">,</span><span class="w"> </span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="err">工作于</span><span class="p">(</span><span class="n">emp_id</span><span class="p">,</span><span class="w"> </span><span class="n">dept_id</span><span class="p">)</span><span class="w">  </span><span class="c1">-- 单独的联系表</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="err">部门</span><span class="p">(</span><span class="n">dept_id</span><span class="p">,</span><span class="w"> </span><span class="n">dept_name</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="err">员工</span><span class="p">(</span><span class="n">emp_id</span><span class="p">,</span><span class="w"> </span><span class="n">emp_name</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">dept_id</span><span class="p">)</span><span class="w">  </span><span class="c1">-- 将部门 ID 作为外键直接加入员工表</span>
+</span></code></pre></div>
+<p>联系弱实体集及其标识性实体集的联系集对应的表是冗余的，即对应 identifying relationship 的表是多余的</p>
+<hr />
+<p>“特殊化”处理：</p>
+<p>方法一：</p>
+<figure>
+  <img alt="Img 33" src="../../../../img/database/ch5/database_ch5_img33.png" width="600" />
+</figure>
+<p>缺点：需要通过两个表格获取到信息</p>
+<p>方法二：</p>
+<figure>
+  <img alt="Img 34" src="../../../../img/database/ch5/database_ch5_img34.png" width="600" />
+</figure>
+<p>缺点：信息冗余</p>
+<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<!-- ???+ question "课本 6.1"
+
+    Construct an E-R diagram for a car insurance company whose customers own one or more cars each. Each car has associated with it zero to any number of recorded accidents. Each insurance policy covers one or more cars and has one or more premium payments associated with it. Each payment is for a particular period of time, and has an associated due date, and the date when the payment was received.
+
+    ??? success "答案"
+
+        <figure markdown="span">
+          ![Img 35](../../../img/database/ch5/database_ch5_img35.png){ width="600" }
+        </figure>
+
+???+ question "课本 6.2"
+
+    Consider a database that includes the entity sets student, course, and section from the university schema and that additionally records the marks that students receive in different exams of different sections.
+
+    a. Construct an E-R diagram thatmodels exams as entities and uses a ternary relationship as part of the design.<br/>
+    b. Construct an alternative E-R diagram that uses only a binary relationship between student and section. Make sure that only one relationship exists between a particular student and section pair, yet you can represent the marks that a student gets in different exams.
+
+    ??? success "答案"
+
+        a.
+
+        <figure markdown="span">
+          ![Img 36](../../../img/database/ch5/database_ch5_img36.png){ width="600" }
+        </figure>
+
+        ---
+
+        b.
+
+        <figure markdown="span">
+          ![Img 37](../../../img/database/ch5/database_ch5_img37.png){ width="600" }
+        </figure>
+
+???+ question "课本 6.21"
+
+    Consider the E-R diagram in Figure 6.30, which models an online bookstore.
+
+    <figure markdown="span">
+      ![Img 41](../../../img/database/ch5/database_ch5_img41.png){ width="600" }
+    </figure>
+
+    a. Suppose the bookstore adds Blu-ray discs and downloadable video to its collection. The same itemmay be present in one or both formats, with differing prices. Draw the part of the E-R diagram that models this addition, showing just the parts related to video.<br/>
+    b. Now extend the full E-R diagram to model the case where a shopping basketmay contain any combination of books, Blu-ray discs, or downloadable video.
+
+    ??? success "答案"
+
+        a.
+
+        <figure markdown="span">
+          ![Img 38](../../../img/database/ch5/database_ch5_img38.png){ width="600" }
+        </figure>
+
+        ---
+
+        b.
+
+        <figure markdown="span">
+          ![Img 39](../../../img/database/ch5/database_ch5_img39.png){ width="600" }
+        </figure>
+
+???+ question "课本 6.22"
+
+    Design a database for an automobile company to provide to its dealers to assist them in maintaining customer records and dealer inventory and to assist sales staff in ordering cars.
+
+    Each vehicle is identified by a vehicle identification number (VIN). Each individual vehicle is a particular model of a particular brand offered by the company (e.g., the XF is a model of the car brand Jaguar of Tata Motors). Each model can be offered with a variety of options, but an individual car may have only some (or none) of the available options. The database needs to store information about models, brands, and options, as well as information about individual dealers, customers, and cars. 
+
+    Your design should include an E-R diagram, a set of relational schemas, and a list of constraints, including primary-key and foreign-key constraints.
+
+    ??? success "答案"
+
+        <figure markdown="span">
+          ![Img 40](../../../img/database/ch5/database_ch5_img40.png){ width="600" }
+        </figure>
+
+        ```sql linenums="1"
+        create table customer (
+            customer_id type,
+            customer_name type,
+            contact_phone type,
+            primary key (customer_id)
+        );
+
+        create table dealer (
+            dealer_id type,
+            dealer_name type,
+            primary key (dealer_id)
+        );
+
+        create table vehicle (
+            vin type,
+            model_id type,
+            production_date type,
+            primary key (vin),
+            foreign key (model_id) references model
+        );
+
+        create table order (
+            order_id type,
+            customer_id type,
+            dealer_id type,
+            vin type,
+            order_date type,
+            sale_price type,
+            primary key (order_id),
+            foreign key (customer_id) references customer,
+            foreign key (dealer_id) references dealer,
+            foreign key (vin) references vehicle
+        );
+
+        create table brand (
+            brand_id type,
+            brand_name type,
+            primary key (brand_id)
+        );
+
+        create table model (
+            model_id type,
+            brand_id type,
+            model_name type,
+            primary key (model_id),
+            foreign key (brand_id) references brand
+        );
+
+        create table inventory (
+            inventory_id type,
+            dealer_id type,
+            model_id type,
+            amount type,
+            primary key (inventory_id),
+            foreign key (dealer_id) references dealer,
+            foreign key (model_id) references model
+        );
+
+        create table option (
+            option_id type,
+            option_name type,
+            option_desciption type,
+            primary key (option_id),
+        );
+
+        create table vehicle_option (
+            option_id type,
+            vin type,
+            is_valid type,
+            foreign key (option_id) references option,
+            foreign key (vin) references vehicle
+        );
+
+        create table model_option (
+            option_id type,
+            model_id type,
+            is_valid type,
+            foreign key (option_id) references option,
+            foreign key (model_id) references model
+        );
+        ``` -->
 
 
 
@@ -7132,7 +7621,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月24日 15:24:29">2025年3月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月29日 08:42:18">2025年3月29日</span>
   </span>
 
     

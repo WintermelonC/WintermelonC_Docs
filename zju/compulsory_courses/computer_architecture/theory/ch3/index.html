@@ -2564,7 +2564,7 @@
         
   
   <span class="md-ellipsis">
-    4 Inside Object 1
+    4 Inside Object
     
   </span>
   
@@ -2586,7 +2586,7 @@
         
   
   <span class="md-ellipsis">
-    5 Inside Object 2
+    5 Inside Class
     
   </span>
   
@@ -4127,6 +4127,69 @@
   <a href="#334-trace-caches" class="md-nav__link">
     <span class="md-ellipsis">
       3.3.4 Trace caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#335-pipelined-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.5 Pipelined Access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#336-nonblocking-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.6 Nonblocking Cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#337-multibanked-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.7 Multibanked Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#338-multilevel-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.8 Multilevel Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#339-critical-word-first-and-early-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.9 Critical Word First and Early Restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3310-giving-priority-to-read-misses-over-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.10 Giving Priority to Read Misses over Writes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3311-merging-write-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.11 Merging Write Buffer
     </span>
   </a>
   
@@ -6915,6 +6978,69 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#335-pipelined-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.5 Pipelined Access
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#336-nonblocking-cache" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.6 Nonblocking Cache
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#337-multibanked-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.7 Multibanked Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#338-multilevel-caches" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.8 Multilevel Caches
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#339-critical-word-first-and-early-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.9 Critical Word First and Early Restart
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3310-giving-priority-to-read-misses-over-writes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.10 Giving Priority to Read Misses over Writes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3311-merging-write-buffer" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3.11 Merging Write Buffer
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7125,8 +7251,19 @@
 </figure>
 <h2 id="33-optimizations-of-cache-performance">3.3 Optimizations of Cache Performance<a class="headerlink" href="#33-optimizations-of-cache-performance" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Reduce the time to hit in the cache：缩短命中时间</li>
-<li>Increase cache bandwidth：增加缓存带宽</li>
+<li>Reduce the time to hit in the cache：缩短命中时间<ol>
+<li>small and simple first-level caches</li>
+<li>wat prediction</li>
+<li>avoiding address translation during index of the cache</li>
+<li>trace caches</li>
+</ol>
+</li>
+<li>Increase cache bandwidth：增加缓存带宽<ol>
+<li>pipelined access</li>
+<li>nonblocking cache</li>
+<li>multibanked caches</li>
+</ol>
+</li>
 <li>Reduce the miss penalty：降低缺失代价</li>
 <li>Reduce the miss rate：降低缺失率</li>
 <li>Reduce the miss penalty and miss rate via parallelism：通过并行降低缺失代价或缺失率</li>
@@ -7161,7 +7298,7 @@
 <li>串行依赖：缓存访问必须等待 TLB 转换完成，导致流水线停顿</li>
 </ol>
 <p>为了减少这种延迟，可以采用以下优化方法</p>
-<p><strong>1.虚拟索引缓存</strong>（virtually indexed / VI）</p>
+<p><strong>1.虚拟索引缓存</strong>（virtually indexed  VI）</p>
 <ul>
 <li>原理：直接使用虚拟地址的一部分作为缓存的索引（Index），而不依赖物理地址</li>
 <li>优点：缓存访问和 TLB 转换可以并行进行（减少串行依赖）</li>
@@ -7171,7 +7308,7 @@
 </ul>
 </li>
 </ul>
-<p><strong>2.物理标记缓存</strong>（physically tagged / PT）</p>
+<p><strong>2.物理标记缓存</strong>（physically tagged  PT）</p>
 <ul>
 <li>原理：虽然索引使用虚拟地址，但缓存行的标记（Tag）仍然使用物理地址，以确保数据一致性</li>
 <li>工作流程<ol>
@@ -7222,19 +7359,29 @@
 </ul>
 </li>
 </ul>
-<p><strong>(2) 工作流程</strong>
-1. <strong>缓存存储结构</strong><br />
-      - 每个缓存行的标记（Tag）扩展为：<code>| Physical Address Tag | PID | Valid Bit |</code>
-      - <strong>PID 由操作系统分配</strong>（如进程 ID 或地址空间 ID, ASID）
-2. <strong>缓存访问过程</strong><br />
-      - CPU 访问虚拟地址 → TLB 转换为物理地址 + 当前进程 PID
-      - 缓存控制器比较：<br />
-          - 物理地址 Tag 是否匹配？
-          - PID 是否匹配？
-      - <strong>只有两者均匹配</strong>，才判定为缓存命中
-3. <strong>进程切换时的行为</strong><br />
-      - <strong>无需刷新缓存</strong>：新进程的 PID 不同，即使虚拟地址相同，也不会错误命中旧进程的数据
-      - <strong>PID 回收时刷新</strong>：仅当 PID 被操作系统回收（如进程退出）时，才需清理对应 PID 的缓存行</p>
+<p><strong>(2) 工作流程</strong></p>
+<ol>
+<li><strong>缓存存储结构</strong>  <ul>
+<li>每个缓存行的标记（Tag）扩展为：<code>| Physical Address Tag | PID | Valid Bit |</code></li>
+<li><strong>PID 由操作系统分配</strong>（如进程 ID 或地址空间 ID, ASID）</li>
+</ul>
+</li>
+<li><strong>缓存访问过程</strong>  <ul>
+<li>CPU 访问虚拟地址 → TLB 转换为物理地址 + 当前进程 PID</li>
+<li>缓存控制器比较：  <ul>
+<li>物理地址 Tag 是否匹配？</li>
+<li>PID 是否匹配？</li>
+</ul>
+</li>
+<li><strong>只有两者均匹配</strong>，才判定为缓存命中</li>
+</ul>
+</li>
+<li><strong>进程切换时的行为</strong>  <ul>
+<li><strong>无需刷新缓存</strong>：新进程的 PID 不同，即使虚拟地址相同，也不会错误命中旧进程的数据</li>
+<li><strong>PID 回收时刷新</strong>：仅当 PID 被操作系统回收（如进程退出）时，才需清理对应 PID 的缓存行</li>
+</ul>
+</li>
+</ol>
 </div>
 <p>操作系统和用户程序可能为同一物理地址使用两种不同的虚拟地址。这些重复地址称为同义地址或别名地址，可能会在虚拟缓存中生成同一数据的两个副本；如果其中一个被修改了，另一个就会包含错误值。而采用物理缓存是不可能发生这种情况的，因为这些访问将会首先被转换为相同的物理缓存块</p>
 <p>页面着色（Page Coloring） 是一种通过控制物理页帧的分配策略，确保不同虚拟地址映射到同一物理地址时，其缓存索引（Index Bits）相同的技术</p>
@@ -7290,6 +7437,252 @@
 </ul>
 </div>
 <h3 id="334-trace-caches">3.3.4 Trace caches<a class="headerlink" href="#334-trace-caches" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce hit time</strong></p>
+<p><strong>trace caches 缩短命中时间</strong></p>
+<p><strong>AI 解释</strong></p>
+<p>Trace Cache 是一种用于优化处理器指令缓存性能的高级技术，主要通过在缓存中存储动态指令序列（即“执行轨迹”）来提升指令供给效率</p>
+<ol>
+<li>基本概念<ul>
+<li>传统指令缓存（L1 ICache）：存储静态的指令代码（按内存地址顺序），但无法直接反映程序的实际执行路径（如分支后的指令流）</li>
+<li>Trace Cache：存储的是处理器实际执行的 <strong>动态指令序列</strong>（称为“trace”），即按程序运行时顺序捕获的指令块（包含分支预测后的路径）</li>
+</ul>
+</li>
+<li>工作原理<ul>
+<li>动态轨迹记录：当处理器执行指令时，Trace Cache 会记录分支预测后的指令流，形成一个连续的指令块（trace）<ul>
+<li>例如：循环或条件分支中的指令会被记录为一条线性化的轨迹，即使它们在内存中不连续</li>
+</ul>
+</li>
+<li>索引方式：通过指令的起始地址（如分支指令的PC）和分支历史（全局或局部）作为索引，确保同一段代码在不同执行路径下生成不同的 trace</li>
+</ul>
+</li>
+<li>关键优势<ul>
+<li><strong>减少取指延迟</strong>：传统缓存需要多次访问（尤其在分支密集代码中），而 Trace Cache 直接提供预测后的指令流，避免重复解码和分支预测</li>
+<li><strong>提高指令供给带宽</strong>：每个trace包含多条指令（可能跨基本块），单次访问可获取更多有效指令</li>
+<li><strong>缓解解码瓶颈</strong>：存储已解码的微操作（uOps），避免重复解码（在NetBurst架构等中使用）</li>
+</ul>
+</li>
+</ol>
+<h3 id="335-pipelined-access">3.3.5 Pipelined Access<a class="headerlink" href="#335-pipelined-access" title="Permanent link">&para;</a></h3>
+<p><strong>to increase bandwidth</strong></p>
+<p><strong>实现缓存访问的流水化，以提高缓存带宽</strong></p>
+<p><strong>AI 解释</strong></p>
+<p>缓存访问流水化是一种通过将缓存访问过程分解为多个流水级（pipeline stages），以提高缓存带宽和处理器整体性能的技术。其核心思想是 <strong>将串行的缓存访问操作拆分成多个并行执行的阶段</strong>，从而在每个时钟周期内处理更多的请求，提升吞吐量</p>
+<p><strong>1.传统缓存访问的瓶颈</strong></p>
+<p>在非流水化的缓存设计中，一次完整的缓存访问通常需要在一个时钟周期内完成以下操作：</p>
+<ol>
+<li>地址计算（Address Calculation）</li>
+<li>标签匹配（Tag Comparison）</li>
+<li>数据读取（Data Access）</li>
+<li>数据返回（Data Return）</li>
+</ol>
+<p>由于这些步骤是串行执行的，如果缓存访问延迟较高（如大容量缓存或高频率设计），可能会导致：</p>
+<ol>
+<li>时钟周期变长（降低处理器频率）</li>
+<li>带宽受限（每个周期只能处理一个请求）</li>
+</ol>
+<p><strong>2.缓存访问流水化的基本原理</strong></p>
+<p>流水化缓存访问的核心思想是 <strong>将缓存访问过程拆分成多个阶段</strong>，类似于 CPU 流水线。典型的缓存流水化设计可能包括以下阶段：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">流水级</th>
+<th style="text-align: center;">操作</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Stage 1</td>
+<td style="text-align: center;">地址计算（计算索引和标签）</td>
+</tr>
+<tr>
+<td style="text-align: center;">Stage 2</td>
+<td style="text-align: center;">标签匹配（比较标签是否命中）</td>
+</tr>
+<tr>
+<td style="text-align: center;">Stage 3</td>
+<td style="text-align: center;">数据读取（从数据阵列中读取数据）</td>
+</tr>
+<tr>
+<td style="text-align: center;">Stage 4</td>
+<td style="text-align: center;">数据返回（将数据送回 CPU 或下一级缓存）</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>每个时钟周期，一个新的缓存请求可以进入流水线的第一级</li>
+<li>前一个请求进入下一级流水线，同时新的请求进入第一级</li>
+<li>最终，每个时钟周期可以完成一个缓存访问（尽管单个访问仍然需要多个周期）</li>
+</ol>
+<hr />
+<ul>
+<li>优势<ol>
+<li>提高缓存带宽<ul>
+<li>传统缓存每个周期只能处理一个请求，而流水化缓存可以 每个周期接受一个新请求（即使单个访问仍需多个周期完成）</li>
+<li>适用于高吞吐量场景（如超标量处理器、多核共享缓存）</li>
+</ul>
+</li>
+<li>支持更高时钟频率：由于每个流水级逻辑更简单，可以缩短关键路径，提高处理器主频</li>
+<li>提高多级缓存的效率：适用于 L1、L2、L3 缓存，特别是多端口缓存（如同时支持 load/store 请求）</li>
+</ol>
+</li>
+<li>挑战<ol>
+<li>访问延迟增加<ul>
+<li>虽然吞吐量提高，但单个请求的延迟可能增加（因为需要多个时钟周期完成）</li>
+<li>需要通过预取（prefetching）或乱序执行（OoO）来隐藏延迟</li>
+</ul>
+</li>
+<li>流水线冲突<ul>
+<li>如果多个请求访问同一缓存行，可能导致结构冲突（structural hazard）</li>
+<li>解决方法<ul>
+<li>多端口缓存（支持多个并行访问）</li>
+<li>banked 缓存（将缓存分成多个 bank，允许并行访问不同 bank）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一致性维护复杂：在多核处理器中，流水化缓存需要处理缓存一致性协议（如 MESI）带来的额外复杂度</li>
+</ol>
+</li>
+</ul>
+<h3 id="336-nonblocking-cache">3.3.6 Nonblocking Cache<a class="headerlink" href="#336-nonblocking-cache" title="Permanent link">&para;</a></h3>
+<p><strong>to increase cache bandwidth</strong></p>
+<p><strong>采用无阻塞缓存，以提高缓存带宽</strong></p>
+<p>对于允许乱序执行的流水化计算机，其处理器不必因为一次数据缓存缺失而停顿。例如，在等待数据缓存返回缺失数据时，处理器可以继续从指令缓存中提取指令。无阻塞缓存（或称为自由查询缓存）允许数据缓存在一次缺失期间继续提供缓存命中，进一步加强了这种方案的潜在优势。这种“缺失时仍然命中”优化方法在缺失期间非常有用，它不会在此期间忽略处理器的请求，从而降低了实际缺失代价。还有一种精巧而复杂的选项:如果能够重看多个缺失,那缓存就能进一步降低实际缺失代价,这种选项被称为“多次缺失时仍然命中”（hitundermultiple miss）或者“缺失时缺失”（miss under miss）优化方法。只有当存储器系统可以为多次缺失提供服务时，第二种选项才有好处</p>
+<figure>
+    <img alt="Img 12" src="../../../../../img/comp_arch/ch3/ca_ch3_img12.png" width="600" />
+</figure>
+<h3 id="337-multibanked-caches">3.3.7 Multibanked Caches<a class="headerlink" href="#337-multibanked-caches" title="Permanent link">&para;</a></h3>
+<p><strong>to increase cache bandwidth</strong></p>
+<p><strong>采用多种缓存，以提高缓存带宽</strong></p>
+<p>将缓存划分为几个相互独立、支持同时访问的缓存组，而不是将它们看作一个整体</p>
+<p>显然，当访问请求很自然地分布在缓存组之间时，分组方式的效果最佳，所以将地址映射到缓存组的方式影响着存储器系统的行为。一种简单有效的映射方式是将缓存块地址按顺序分散在这些缓存组中，这种方式称为顺序交错。例如，如果有 4 个缓存组，0 号缓存组中的所有缓存块地址对 4 求模后余 0，1 号缓存组中的所有缓存块地址对 4 求模后余 1，以此类推</p>
+<figure>
+    <img alt="Img 13" src="../../../../../img/comp_arch/ch3/ca_ch3_img13.png" width="600" />
+</figure>
+<h3 id="338-multilevel-caches">3.3.8 Multilevel Caches<a class="headerlink" href="#338-multilevel-caches" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce miss penalty</strong></p>
+<p><strong>采用多级缓存降低缺失代价</strong></p>
+<p>处理器与存储器之间的性能差距让架构师开始思考这样一个问题:是应当加快缓存速度以与处理器速度相匹配呢？还是让缓存更大一些，以避免加宽处理器与主存储器之间的鸿沟？</p>
+<p>一个回答是：两者都要。在原缓存与存储器之间再添加一级缓存可以简化这一决定。第一级缓存可以小到足以与快速处理器的时钟周期时间相匹配。而第二级缓存则大到足以捕获本来可能进入主存储器的访问，从而降低实际缺失代价</p>
+<p>尽管再添加一级层次结构的思路非常简单，但它增加了性能分析的复杂程度。第二级缓存的定义也并非总是那么简单。首先让我们为一个二级缓存定义存储器平均访问时间。用下标 L1 和 L2 分别指代第一级、第二级缓存，原公式为：</p>
+<ul>
+<li><span class="arithmatex">\(average\ memory\ access\ time = hit\ time_{L1} + miss\ rate_{L1} \times miss\ penalty_{L1}\)</span></li>
+<li><span class="arithmatex">\(miss\ penalty_{L1} = hit\ time_{L2} + miss\ rate_{L2} \times miss\ penalty_{L2}\)</span></li>
+</ul>
+<p><span class="arithmatex">\(\Rightarrow\)</span></p>
+<p><span class="arithmatex">\(average\ memory\ access\ time = hit\ time_{L1} + miss\ rate_{L1} \times (hit\ time_{L2} + miss\ rate_{L2} \times miss\ penalty_{L2})\)</span></p>
+<p>在这个公式中，第二级缺失率是针对第一级缓存未能找到的内容进行测量的。对二级缓存系统采用以下术语</p>
+<ol>
+<li>local miss rate（局部缺失率）：<span class="arithmatex">\(\dfrac{缓存中的缺失数}{对该缓存进行存储器访问的总数}\)</span>，对于第一级缓存，等于 <span class="arithmatex">\(miss\ penalty_{L1}\)</span>；对于第二级缓存，等于 <span class="arithmatex">\(miss\ penalty_{L2}\)</span></li>
+<li>global miss rate（全局缺失率）：<span class="arithmatex">\(\dfrac{缓存中的缺失数}{处理器生成的存储器访问总数}\)</span>，对于第一级缓存，等于 <span class="arithmatex">\(miss\ penalty_{L1}\)</span>；对于第二级缓存，等于 <span class="arithmatex">\(miss\ penalty_{L1} \times miss\ penalty_{L2}\)</span></li>
+</ol>
+<p>在评估第二级缓存时，应当使用全局缓存缺失率</p>
+<p><span class="arithmatex">\(average\ memory\ stalls\ per\ instruction = misses\ per\ instruction_{L1} \times hit\ time_{L2} + misses\ per\ instruction_{L2} \times miss\ penalty_{L2}\)</span></p>
+<figure>
+    <img alt="Img 14" src="../../../../../img/comp_arch/ch3/ca_ch3_img14.png" width="600" />
+</figure>
+<h3 id="339-critical-word-first-and-early-restart">3.3.9 Critical Word First and Early Restart<a class="headerlink" href="#339-critical-word-first-and-early-restart" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce miss penalty</strong></p>
+<p><strong>关键字优先和提前重启动以降低缺失代价</strong></p>
+<p>这一技术的事实基础是人们观测到处理器在某一时刻通常仅需要缓存块的一个字。这一策略显得“不够耐心”：无须等待完成整个块的载入过程，一旦载入被请求字之后，立即将其发出然后就重启处理器。下面是两个特定策略</p>
+<ol>
+<li>关键字优先：首先从存储器中请求缺失的字，在其到达缓存之后立即发给处理器;使处理器能够在载入块中其他字时继续执行</li>
+<li>提前重启动：以正常顺序提取字，但只要块中的被请求字到达缓存，就立即将其发送给处理器，让处理器继续执行</li>
+</ol>
+<p>通常，只有在采用大型缓存块的设计中，这些技术才有用武之地，如果缓存块很小，它们带来的好处是很低的。注意，在载入某个块中的其余内容时，缓存通常可以继续满足对其他块的访问请求</p>
+<p><strong>AI 解释</strong></p>
+<p>在缓存（Cache）设计中，缺失代价（Miss Penalty）是指处理器因缓存未命中（Cache Miss）而不得不从下级存储（如主存或更高级缓存）加载数据所导致的额外延迟。为了减少缺失代价，现代处理器采用了多种优化技术，其中关键字优先（Critical Word First, CWF）和 提前重启动（Early Restart）是两种重要的方法。它们的核心思想是尽早提供处理器所需的关键数据，而不是等待整个缓存行完全加载</p>
+<ul>
+<li>缓存行（Cache Line）：缓存的最小存储单元，通常为 64 字节（现代 x86 CPU）</li>
+<li>缓存缺失（Cache Miss）：当处理器访问的数据不在当前缓存中时，需要从下级存储（如主存或L2缓存）加载整个缓存行</li>
+<li>缺失代价（Miss Penalty）：加载整个缓存行所需的时间，通常几十到几百个时钟周期</li>
+</ul>
+<p>那么问题来了：如果处理器只需要缓存行中的某个字（如 4 字节），为什么必须等待整个 64 字节加载完成呢？</p>
+<p><strong>关键字优先</strong>（CWF）</p>
+<ol>
+<li>基本思想<ul>
+<li>当缓存未命中时，优先加载并返回处理器当前请求的数据（关键字，Critical Word），然后再加载缓存行的其余部分</li>
+<li>这样可以让处理器尽早继续执行，而不必等待整个缓存行加载完成</li>
+</ul>
+</li>
+<li>工作流程<ol>
+<li>缓存未命中：处理器请求某个字（如 0xABCD1234），但该字不在当前缓存中</li>
+<li>请求下级存储：缓存控制器向主存或下级缓存发送请求，并指定关键字的地址</li>
+<li>关键字优先返回<ul>
+<li>主存或下级缓存先返回关键字（0xABCD1234），同时后台继续传输缓存行的剩余部分</li>
+<li>处理器在收到关键字后立即恢复执行，而不必等待整个缓存行加载完成</li>
+</ul>
+</li>
+<li>填充剩余数据：缓存行的其余部分稍后加载并存入缓存</li>
+</ol>
+</li>
+<li>优势<ul>
+<li>显著降低有效缺失代价：处理器只需等待关键字的加载时间，而不是整个缓存行的加载时间</li>
+<li>适用于顺序访问模式：如果后续访问的数据仍在传输中，可以利用缓存带宽优化</li>
+</ul>
+</li>
+<li>适用场景<ul>
+<li>单次访问（如指针解引用）：只需一个关键数据，其余数据可能暂时不需要</li>
+<li>乱序执行（OoO）：允许处理器在数据到达后立即继续执行，提高指令级并行度（ILP）</li>
+</ul>
+</li>
+</ol>
+<p><strong>提前重启动</strong></p>
+<ol>
+<li>基本思想<ul>
+<li>类似于关键字优先，但不严格区分关键字，而是一旦缓存行的部分数据到达，就立即提供给处理器</li>
+<li>适用于顺序访问模式（如数组遍历），处理器可能很快会访问后续数据</li>
+</ul>
+</li>
+<li>工作流程<ol>
+<li>缓存未命中：处理器请求某个数据，但缓存未命中</li>
+<li>从下级存储加载：缓存控制器开始加载整个缓存行</li>
+<li>部分数据到达时提前返回：<ul>
+<li>一旦请求的数据块（可能不是严格的关键字，而是缓存行的一部分）到达，就立即返回给处理器</li>
+<li>同时，后台继续加载剩余数据</li>
+</ul>
+</li>
+<li>处理器继续执行：无需等待整个缓存行加载完成</li>
+</ol>
+</li>
+<li>优势<ul>
+<li>适用于顺序访问：如果程序按顺序访问数据（如数组遍历），提前返回的数据可能正好是下一个所需数据</li>
+<li>减少平均访问延迟：比关键字优先更灵活，适用于连续访问模式</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">关键字优先</th>
+<th style="text-align: center;">提前重启动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">数据返回策略</td>
+<td style="text-align: center;">仅优先返回请求的关键字</td>
+<td style="text-align: center;">返回任意先到达的部分数据</td>
+</tr>
+<tr>
+<td style="text-align: center;">适用场景</td>
+<td style="text-align: center;">单词随机访问（如指针访问）</td>
+<td style="text-align: center;">顺序访问（如数组遍历）</td>
+</tr>
+<tr>
+<td style="text-align: center;">实现复杂度</td>
+<td style="text-align: center;">需要识别关键字地址</td>
+<td style="text-align: center;">只需检测数据是否到达</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3310-giving-priority-to-read-misses-over-writes">3.3.10 Giving Priority to Read Misses over Writes<a class="headerlink" href="#3310-giving-priority-to-read-misses-over-writes" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce miss penalty</strong></p>
+<p><strong>使读取缺失的优先级高于写入缺失，以降低缺失代价</strong></p>
+<h3 id="3311-merging-write-buffer">3.3.11 Merging Write Buffer<a class="headerlink" href="#3311-merging-write-buffer" title="Permanent link">&para;</a></h3>
+<p><strong>to reduce miss penalty</strong></p>
+<p><strong>合并写缓冲区以降低缺失代价</strong></p>
 
 
 
@@ -7312,7 +7705,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月24日 15:24:29">2025年3月24日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月29日 08:42:18">2025年3月29日</span>
   </span>
 
     
