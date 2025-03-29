@@ -1310,3 +1310,37 @@ end;
         	where r.B = orow.A;
         end
         ```
+
+???+ question "课本 5.24"
+
+    Consider the relation, r, shown in Figure 5.22. Give the result of the following query:
+
+    <figure markdown="span">
+      ![Img 6](../../../img/database/ch4/database_ch4_img6.png){ width="600" }
+    </figure>
+
+    ```sql linenums="1"
+    select building, room number, time slot id, count(*)
+    from r
+    group by rollup (building, room number, time slot id)
+    ```
+
+    ??? success "答案"
+
+        | building | room_number | time_slot_id | count |
+        | :--------: | :-----------: | :------------: | :-----: |
+        | Garfield | 359         | A            | 1     |
+        | Garfield | 359         | B            | 1     |
+        | Saucon   | 651         | A            | 1     |
+        | Saucon   | 550         | C            | 1     |
+        | Painter  | 705         | D            | 1     |
+        | Painter  | 403         | D            | 1     |
+        | Garfield | 359         | NULL         | 2     |
+        | Saucon   | 651         | NULL         | 1     |
+        | Saucon   | 550         | NULL         | 1     |
+        | Painter  | 705         | NULL         | 1     |
+        | Painter  | 403         | NULL         | 1     |
+        | Garfield | NULL        | NULL         | 2     |
+        | Saucon   | NULL        | NULL         | 2     |
+        | Painter  | NULL        | NULL         | 2     |
+        | NULL     | NULL        | NULL         | 6     |

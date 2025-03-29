@@ -90,8 +90,8 @@ nav:
         - 1 Using Objects: zju/basic_courses/OOP/ch1.md
         - 2 Grouping Objects: zju/basic_courses/OOP/ch2.md
         - 3 Defining Class: zju/basic_courses/OOP/ch3.md
-        - 4 Inside Object 1: zju/basic_courses/OOP/ch4.md
-        - 5 Inside Object 2: zju/basic_courses/OOP/ch5.md
+        - 4 Inside Object: zju/basic_courses/OOP/ch4.md
+        - 5 Inside Class: zju/basic_courses/OOP/ch5.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:

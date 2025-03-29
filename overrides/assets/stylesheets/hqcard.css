@@ -107,6 +107,18 @@
   transition: color .3s,background-color .3s,border-color .3s !important;
 }
 
+@media (max-width: 414px) {
+  .hq-file-title {
+    font-size: 0.9em;
+  }
+  .hq-file-meta {
+    font-size: 0.8em;
+  }
+  .hq-down-button {
+    font-size: 0.9em;
+  }
+}
+
 .hq-down-button:is(:focus,:hover) {
   background-color: var(--md-accent-fg-color);
   border-color: var(--md-accent-fg-color);
