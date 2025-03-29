@@ -24,5 +24,5 @@ wk老师
 [1 Using Objects](./ch1.md)<br/>
 [2 Grouping Objects](./ch2.md)<br/>
 [3 Defining Class](./ch3.md)<br/>
-[4 Inside Object 1](./ch4.md)<br/>
+[4 Inside Object](./ch4.md)<br/>
 [5 Inside Class](./ch5.md)
