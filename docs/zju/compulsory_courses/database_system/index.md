@@ -20,6 +20,8 @@ cg老师
 
 ## 个人笔记及课本部分习题答案
 
+> 习题答案仅供参考
+
 [1 Introduction](./ch1.md)<br/>
 [2 Introduction to the Relational Model](./ch2.md)<br/>
 [3 Introduction to SQL](./ch3.md)<br/>
