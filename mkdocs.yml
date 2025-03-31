@@ -135,6 +135,7 @@ nav:
         - 3 Introduction to SQL: zju/compulsory_courses/database_system/ch3.md
         - 4 Advanced SQL: zju/compulsory_courses/database_system/ch4.md
         - 5 Entity-Relationship Model: zju/compulsory_courses/database_system/ch5.md
+        - 6 Relational Database Design: zju/compulsory_courses/database_system/ch6.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:
