@@ -72,7 +72,7 @@ degree of a relationship set
 
 对于 binary relationship set：
 
-1. one to on：就任总统（总统，国家）
+1. one to one：就任总统（总统，国家）
 2. one to many：分班情况（班级，学生）
 3. many to one：就医（病人，医生）
 4. many ro many：选课（学生，课程）
