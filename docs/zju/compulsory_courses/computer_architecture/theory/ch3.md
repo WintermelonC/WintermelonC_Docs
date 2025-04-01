@@ -9,7 +9,7 @@
     1. 本文档仅涉及部分内容，仅可用于复习重点知识
     2. 本文档内容对应课本 Chapter 2 和 Appendix B
 
-## 3.1 引言
+## 1 引言
 
 memory hierarchy（存储器层次结构）：
 
@@ -17,13 +17,13 @@ principle of locality of reference（局部性原理）：程序在任意时刻�
       1. temporal locality（时间局部性）：最近访问过的数据很可能在不久的将来再次被访问
       2. spatial locality（空间局部性）：如果一个数据被访问，那么它附近的数据也可能很快被访问
 
-### 3.1.1 4 个存储器层次结构问题
+### 1.1 4 个存储器层次结构问题
 
 如果处理器需要的数据存放在高层存储器中的某个块中，则称为一次 **命中**（hit）。如果在高层存储器中没有找到所需的数据，这次数据请求则称为一次 **缺失**（miss）。随后访问低层存储器来寻找包含所需数据的那一块。**命中率**（hit rate），或命中比率（hit ratio），是在高层存储器中找到数据的存储访问比例，通常被当成存储器层次结构性能的一个衡量标准。**缺失率**（miss rate）（1－命中率）则是数据在高层存储器中没有找到的存储访问比例
 
 追求高性能是我们使用存储器层次结构的主要目的，因而命中和缺失的执行时间就显得尤为重要。**命中时间**（hit time）是指访问存储器层次结构中的高层存储器所需要的时间，包括了判断当前访问是命中还是缺失所需的时间。**缺失代价**（miss penalty）是将相应的块从低层存储器替换到高层存储器中，以及将该信息块传送给处理器的时间之和，由于较高存储层次容量较小并且使用了快速的存储器部件，因此比起对存储层次中较低层的访问，命中时间要少得多，这也是缺失代价的主要组成部分
 
-#### Block Placement
+#### 1.1.1 Block Placement
 
 **一个块可以放在上一级的什么位置**
 
@@ -48,7 +48,7 @@ $（块号）mod（cache 中的组数）$
     ![Img 1](../../../../img/comp_arch/ch3/ca_ch3_img1.png){ width="600" }
 </figure>
 
-#### Block Identification
+#### 1.1.2 Block Identification
 
 **如果一个块在上一级中，如何找到它**
 
@@ -56,7 +56,7 @@ $（块号）mod（cache 中的组数）$
 
 我们还需要一种方法来判断 cache 块中确实没有包含有效信息。例如，当一个处理器启动时，cache 中没有数据，标记域中的值没有意义。甚至在执行了一些指令后，cache 中的一些块依然为空。因此，在 cache 中，这些块的标记应该被忽略。最常用的方法就是增加一个 **有效位**（valid bit）来标识一个块是否含有一个有效地址。如果该位没有被设置，则不能使用该块中的内容
 
-#### Block Replacement
+#### 1.1.3 Block Replacement
 
 **在缺失时应当替换哪个块**
 
@@ -64,7 +64,7 @@ $（块号）mod（cache 中的组数）$
 2. least-recently used（LRU）：最近最少的被替换
 3. first in, first out（FIFO）：先进先出法则
 
-#### Write Strategy
+#### 1.1.4 Write Strategy
 
 **在写入时会发生什么**
 
@@ -108,7 +108,7 @@ $（块号）mod（cache 中的组数）$
 
 > 好家伙，计组没搞懂的东西，终于在这里搞懂了
 
-### 3.1.2 缓存架构
+### 1.2 缓存架构
 
 1. unified cache（统一缓存）：所有内存请求（包括指令和数据）都通过单一的缓存进行处理
       1. 硬件需求较少，设计相对简单
@@ -121,7 +121,7 @@ $（块号）mod（cache 中的组数）$
     ![Img 3](../../../../img/comp_arch/ch3/ca_ch3_img3.png){ width="600" }
 </figure>
 
-## 3.2 Cache Performance
+## 2 Cache Performance
 
 $CPU\ time = (CPU\ execution\ clock\ cycles + Memory\text{-}stall\ clock\ cycles) \times Clock\ cycle\ time$
 
@@ -135,7 +135,7 @@ $\Rightarrow$
 
 $CPU\ time = IC\times (CPI + \dfrac{MemMisses}{Inst} \times miss\ penalty) \times cycle\ time$
 
-### 3.2.1 AMAT
+### 2.1 AMAT
 
 存储器平均访问时间（average memory access time）
 
@@ -176,7 +176,7 @@ $CPU\ time = IC\times (\dfrac{AluOps}{Inst}\times CPI_{AluOps} + \dfrac{MemAcces
     ![Img 8](../../../../img/comp_arch/ch3/ca_ch3_img8.png){ width="600" }
 </figure>
 
-### 3.2.2 miss penalty and Out-of-Order Execution Processors
+### 2.2 miss penalty and Out-of-Order Execution Processors
 
 **缺失代价与乱序执行处理器**
 
@@ -201,7 +201,7 @@ $\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (
     ![Img 9](../../../../img/comp_arch/ch3/ca_ch3_img9.png){ width="600" }
 </figure>
 
-## 3.3 Optimizations of Cache Performance
+## 3 Optimizations of Cache Performance
 
 1. Reduce the time to hit in the cache：缩短命中时间
       1. small and simple first-level caches
@@ -212,11 +212,25 @@ $\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (
       1. pipelined access
       2. nonblocking cache
       3. multibanked caches
+      3. multibanked caches
 3. Reduce the miss penalty：降低缺失代价
+      1. multilevel caches
+      2. critical word first and early restart
+      3. giving priority to read misses over writes
+      4. merging write buffer
 4. Reduce the miss rate：降低缺失率
+      1. larger block size
+      2. larger caches
+      3. higher associativity
+      4. way prediction and pseudo-associative cache
+      5. compiler optimizations
 5. Reduce the miss penalty and miss rate via parallelism：通过并行降低缺失代价或缺失率
+      1. hardware prefetching of instruction and data
+      2. compiler-controlled prefetching
 
-### 3.3.1 Small and Simple First-Level Caches
+### 3.1 Reduce the time to hit
+
+#### 3.1.1 Small and Simple First-Level Caches
 
 **to reduce hit time and power**
 
@@ -230,7 +244,7 @@ $\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (
     ![Img 10](../../../../img/comp_arch/ch3/ca_ch3_img10.png){ width="600" }
 </figure>
 
-### 3.3.2 Way Prediction
+#### 3.1.2 Way Prediction
 
 **to reduce hie time**
 
@@ -240,7 +254,7 @@ $\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (
 
 在一个缓存的每个块中都添加块预测位。根据这些位选定要在下一次缓存访问中优先尝试哪些块。如果预测正确，则缓存访问延迟就等于这一快速命中时间。如果预测错误，则尝试其他块，改变路预测器，延迟会增加一个时钟周期
 
-### 3.3.3 Avoiding Address Translation During Indexing of the Cache
+#### 3.1.3 Avoiding Address Translation During Indexing of the Cache
 
 **to reduce hit time**
 
@@ -372,7 +386,7 @@ $\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (
           - 强制 `VA1` 和 `VA2` 使用颜色=5 的物理页（即物理页帧的 Index 位固定为 5）  
           - 访问时，无论 `VA1` 还是 `VA2`，均映射到缓存组 5，保证数据唯一性
 
-### 3.3.4 Trace caches
+#### 3.1.4 Trace caches
 
 **to reduce hit time**
 
@@ -394,7 +408,9 @@ Trace Cache 是一种用于优化处理器指令缓存性能的高级技术，�
       - **提高指令供给带宽**：每个trace包含多条指令（可能跨基本块），单次访问可获取更多有效指令
       - **缓解解码瓶颈**：存储已解码的微操作（uOps），避免重复解码（在NetBurst架构等中使用）
 
-### 3.3.5 Pipelined Access
+### 3.2 Increase cache bandwidth
+
+#### 3.2.1 Pipelined Access
 
 **to increase bandwidth**
 
@@ -452,7 +468,7 @@ Trace Cache 是一种用于优化处理器指令缓存性能的高级技术，�
               - banked 缓存（将缓存分成多个 bank，允许并行访问不同 bank）
       3. 一致性维护复杂：在多核处理器中，流水化缓存需要处理缓存一致性协议（如 MESI）带来的额外复杂度
 
-### 3.3.6 Nonblocking Cache
+#### 3.2.2 Nonblocking Cache
 
 **to increase cache bandwidth**
 
@@ -464,7 +480,7 @@ Trace Cache 是一种用于优化处理器指令缓存性能的高级技术，�
     ![Img 12](../../../../img/comp_arch/ch3/ca_ch3_img12.png){ width="600" }
 </figure>
 
-### 3.3.7 Multibanked Caches
+#### 3.2.3 Multibanked Caches
 
 **to increase cache bandwidth**
 
@@ -478,7 +494,9 @@ Trace Cache 是一种用于优化处理器指令缓存性能的高级技术，�
     ![Img 13](../../../../img/comp_arch/ch3/ca_ch3_img13.png){ width="600" }
 </figure>
 
-### 3.3.8 Multilevel Caches
+### 3.3 Reduce the miss penalty
+
+#### 3.3.1 Multilevel Caches
 
 **to reduce miss penalty**
 
@@ -510,7 +528,7 @@ $average\ memory\ stalls\ per\ instruction = misses\ per\ instruction_{L1} \time
     ![Img 14](../../../../img/comp_arch/ch3/ca_ch3_img14.png){ width="600" }
 </figure>
 
-### 3.3.9 Critical Word First and Early Restart
+#### 3.3.2 Critical Word First and Early Restart
 
 **to reduce miss penalty**
 
@@ -574,17 +592,417 @@ $average\ memory\ stalls\ per\ instruction = misses\ per\ instruction_{L1} \time
 | 适用场景 | 单词随机访问（如指针访问）| 顺序访问（如数组遍历）|
 | 实现复杂度 | 需要识别关键字地址 | 只需检测数据是否到达 |
 
-### 3.3.10 Giving Priority to Read Misses over Writes
+#### 3.3.3 Giving Priority to Read Misses over Writes
 
 **to reduce miss penalty**
 
 **使读取缺失的优先级高于写入缺失，以降低缺失代价**
 
+若给定一个直接映射 + 直写的 cache，现有一指令序列：
 
+```verilog linenums="1"
+SM R3, 512(R0)    ; 存储：M[512] ← R3（缓存索引 0）
+LM R1, 1024(R0)   ; 加载：R1 ← M[1024]（缓存索引 0）
+LM R2, 512(R0)    ; 加载：R2 ← M[512]（缓存索引 0）
+```
 
-### 3.3.11 Merging Write Buffer
+1. `SM R3, 512(R0)`
+      1. 将 R3 的值写入内存地址 512
+      2. 直写缓存：数据同时写入缓存和主存，但写入主存可能被缓冲到写入缓冲区（Write Buffer）
+      3. 此时写入缓冲区中有一个待完成的写操作（512 → R3）
+2. `LM R1, 1024(R0)`
+      1. 尝试从 1024 加载数据到 R1
+      2. 1024 和 512 映射到同一缓存块（索引 0），导致冲突缺失（Conflict Miss）
+      3. 读取缺失时，缓存不会检查写入缓冲区，因此直接从主存读取 1024 的值
+      4. 缓存块被替换为 1024 的数据，写入缓冲区中的 512 的写操作可能尚未完成
+3. `LM R2, 512(R0)`
+      1. 尝试从 512 加载数据到 R2
+      2. 由于缓存块当前存储的是 1024 的数据，再次发生缺失
+      3. 缓存从主存读取 512 的值：
+          1. 如果写入缓冲区尚未将 R3 的值写入主存，则读到的是 旧值（而非 R3 的值）
+          2. 因此 R2 ≠ R3
+
+摆脱这一两难境地的最简单方法是让读取缺失一直等待到写人缓冲区为空为止。一种替代方法是在 ==发生读取缺失时检查写入缓冲区的内容，如果没有冲突而且存储器系统可用，则让读取缺失继续==。几乎所有桌面与服务器处理器都使用后一方法，使读取操作的优先级高于写入操作
+
+处理器在 **写回** 缓存中的写入成本也可以降低。假定一次读取缺失将替换一个脏服务器块。我们不是将这个脏块写到存储器中，然后再读取存储器，而是将这个脏块复制到缓冲区中，然后读存储器，然后再写存储器。这样，处理器的读取操作将会很快结束(处理器可能正在等待这一操作的完成)。和前一种情况类似，如果发生了读取缺失，处理器或者停顿到缓冲区为空或者检查缓冲区中各个字的地址，以了解是否存在冲突
+
+!!! tip "AI 解释"
+
+    **传统写回缓存的读取缺失处理**
+
+    在标准写回缓存中，当发生 读取缺失（Read Miss） 且需要替换一个 脏块（Dirty Block，即已被修改但未写回主存的缓存行） 时，流程如下：
+
+    1. 写回脏块：先将脏块写回主存（高延迟操作）
+    2. 读取新块：再从主存加载新数据到缓存
+    3. 处理器停顿：整个过程中，处理器必须等待这两步完成才能继续执行
+
+    ---
+
+    **优化方法：脏块缓冲（Dirty Block Buffering）**
+
+    为了减少处理器等待时间，提出以下改进方案：
+
+    1. 脏块复制到缓冲区：
+          1. 不立即将脏块写回主存，而是先复制到临时缓冲区
+          2. 同时立即发起对新数据的读取（从主存加载到缓存）
+    2. 异步写回脏块：在主存读取完成后，后台将缓冲区中的脏块写回主存
+    3. 处理器无需完全停顿：处理器在新数据加载到缓存后即可继续执行，无需等待脏块写回完成
+
+#### 3.3.4 Merging Write Buffer
 
 **to reduce miss penalty**
 
 **合并写缓冲区以降低缺失代价**
 
+因为所有存储内容都必须发送到层次结构的下一层级，所以直写缓存依赖于写缓冲区。即使是写回缓存，在替代一个块时也会使用一个简单的缓冲区。如果写缓冲区为空，则数据和整个地址被写到缓冲区中，从处理器的角度来看，写入操作已经完成;在写缓冲区准备将字写到存储器时，处理器继续自己的工作。如果缓冲区中包含其他经过修改的块，则检查它们的地址，看看新数据的地址是否与写缓冲区中有效项目的地址匹配。如果匹配，则将新数据与这个项目合并在一起。这种优化方法称为写合并
+
+如果缓冲区已满，而且没有匹配地址，则缓存（和处理器）必须等待，直到缓冲区中拥有空白项目为止。由于多字写入的速度通常快于每次只写入一个字的写入操作，所以这种优化方法可以更高效地使用存储器
+
+这种优化方式还会减少因为写缓冲区已满而导致的停顿。下图显示了一个写缓冲区在采用和不采用写合并时的情况。假定这个写缓冲区中有四项，每一项有 4 个 64 位的字。在采用这一优化方法时，图中的 4 个字可以完全合并，放在写缓冲区的一个项目中，而在不采用这优化方法时，对写缓冲区的连续地址执行 4 次存储操作，将整个缓冲区填满，每个项目中保存一个字
+
+<figure markdown="span">
+    ![Img 15](../../../../img/comp_arch/ch3/ca_ch3_img15.png){ width="600" }
+</figure>
+
+注意，输入/输出设备寄存器经常被映射到物理地址空间。由于 I/O 寄存器是分享的，不能像存储器中的字数组那样操作，所以这些地址不能允许写合并。例如，它们可能要求为每个 I/O 寄存器提供一个地址和一个数据字，而不能只提供一个地址进行多字写入。为了实现这些副作用，通常由缓存将这些页面进行标记，表明其需要采用非合并直写方式
+
+!!! tip "AI 解释"
+
+    **问题背景**
+
+    如果多次写入同一缓存行（或相邻地址），每次单独写入主存效率低下。例如：连续写入 A[0]、A[1]、A[2]，若分 3 次写主存，带宽利用率低
+    
+    目标：合并多次写入，减少主存访问次数
+
+    ---
+
+    **工作流程**
+
+    1. 写入缓冲区非满
+          1. 处理器写入数据到写缓冲区，立即继续执行
+          2. 如果新写入的地址与缓冲区中某条目地址连续/属于同一块，则合并数据（而非新增条目）。例如：缓冲区已有 `[A0, A1]`，新写入 `A2` → 合并为 `[A0, A1, A2]`。若写入 `B0`（不连续），则新增条目
+    2. 写入缓冲区满
+          1. 若缓冲区已满且无法合并，处理器必须等待缓冲区腾出空间
+          2. 主存控制器会批量写入合并后的数据（如一次写入 64 字节而非多次写入 4 字节）
+
+#### 3.3.5 Victim Caches
+
+**受害者缓存**
+
+Victim Cache 是一种辅助缓存结构，用于减少冲突缺失（Conflict Misses）和提高缓存命中率，尤其在直接映射（Direct-Mapped）或低相联度（Low Associativity）缓存中效果显著。其核心思想是临时保存被替换出的缓存行，为后续访问提供二次机会
+
+基本工作原理：
+
+1. 主缓存（如 L1）在发生缓存替换时，被替换出的缓存行（称为“受害者”）不直接丢弃，而是暂存到 Victim Cache 中
+2. 当主缓存未命中时，优先检查 Victim Cache：
+      1. 若命中，则将数据移回主缓存，避免访问下级存储（如 L2 或主存）
+      2. 若未命中，再访问下级存储
+
+!!! question "为什么需要 Victim Cache"
+
+    1. 直接映射缓存的缺陷：同一索引的多个地址会互相冲突（如地址 A 和 B 映射到同一缓存行，交替访问会导致频繁替换）
+    2. 低相联度缓存的局限性：组相联缓存（如 2-way/4-way）仍可能因冲突导致缺失
+    3. Victim Cache 的作用：作为“逃生舱”，保存最近被替换的块，缓解冲突缺失
+
+典型架构：
+
+1. 位置：通常位于 L1 缓存和 L2 缓存之间（或集成在L1中）
+2. 容量：较小（如 4-16 条目），全相联（Fully Associative）设计，避免额外索引开销
+3. 替换策略：LRU（最近最少使用）或 FIFO
+
+### 3.4 Reduce the miss rate
+
+#### 3.4.1 Where misses come from
+
+1. compulsory miss（强制性缺失）：数据首次被访问时，必然不在缓存中
+2. capacity miss（容量缺失）：缓存容量不足，无法容纳所有活跃数据块
+3. conflict miss（冲突缺失）：多个地址映射到同一缓存组（如直接映射缓存中地址 A 和 B 索引相同）
+4. coherence miss（一致性缺失）：多核系统中，其他核心修改共享数据导致本地缓存块失效
+
+我们无法很大程度上减少 capacity miss 除非把 cache 做的很大。但是我们可以通过很多种方法减少 conflict misses 和 compulsory misses
+
+1. 增大 block size：
+      1. 减少 compulsory miss
+      2. 增加 capacity miss：固定缓存容量，块越大，总块数越少
+2. 增大 cache size：
+      1. 显著减少 capacity miss
+      2. 间接减少 conflict miss
+3. 提高 associativity：
+      1. 轻微减少 capacity miss
+      2. 显著减少 conflict miss
+
+#### 3.4.2 Larger Block Size
+
+**to reduce miss rate**
+
+**增大块大小以降低缺失率**
+
+通过充分利用 spatial locality 降低 compulsory miss
+
+较大的块也会增加 miss penalty。固定缓存容量，块越大，总块数越少，因此可能会增加 conflict miss
+
+如果缓存很小，还会增加 capacity miss
+
+<figure markdown="span">
+    ![Img 16](../../../../img/comp_arch/ch3/ca_ch3_img16.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 17](../../../../img/comp_arch/ch3/ca_ch3_img17.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 18](../../../../img/comp_arch/ch3/ca_ch3_img18.png){ width="600" }
+</figure>
+
+#### 3.4.3 Larger Caches
+
+**to reduce miss rate**
+
+**增大缓存以降低缺失率**
+
+降低 capacity miss
+
+但会增加命中时间、增加成本和功耗
+
+#### 3.4.4 Higher Associativity
+
+**to reduce miss rate**
+
+**提高相联度以降低缺失率**
+
+显著减少 conflict miss
+
+2:1 cache rule of thumb（缓存经验规律）：大小为 $N$ 的直接映射缓存与大小为 $\dfrac{N}{2}$ 的两路组相联缓存具有大体相同的缺失率
+
+<figure markdown="span">
+    ![Img 19](../../../../img/comp_arch/ch3/ca_ch3_img19.png){ width="600" }
+</figure>
+
+增大相联度可能会延长命中时间
+
+<figure markdown="span">
+    ![Img 20](../../../../img/comp_arch/ch3/ca_ch3_img20.png){ width="600" }
+</figure>
+
+#### 3.4.5 Way Prediction and Pseudo-Associative Cache
+
+**路预测与伪相联缓存**
+
+路预测：
+
+1. 减少 conflict miss：预测成功时，快速命中目标数据，避免因串行比较导致的流水线停顿
+2. 间接优化 capacity miss：更快的访问允许缓存更高效地服务请求，减少因延迟导致的替换
+
+---
+
+Pseudo-Associative Cache（伪相联缓存）：
+
+核心思想：
+
+1. 结合直接映射缓存（Direct-Mapped） 的低延迟和 组相联缓存 的低冲突缺失特性
+2. 首次访问按直接映射处理，若缺失则触发“二次查找”（类似组相联）
+
+工作原理：
+
+1. 首次访问（直接映射）：
+      1. 数据仅映射到唯一位置（如 Index = Address % Cache_Size）
+      2. 若命中，访问结束（延迟与直接映射相同）
+2. 首次缺失时二次查找（组相联）：
+      1. 检查同一 Set 的另一位置（如通过哈希函数生成备用 Index）
+      2. 若二次查找命中，数据被返回并可能交换到主位置（优化后续访问）
+3. 替换策略：二次查找仍缺失时，按 LRU 等策略替换
+
+对缺失率的影响：
+
+1. 显著减少 conflict miss：直接映射的冲突可通过二次查找缓解（类似 2 路组相联）
+2. 保持低延迟：多数情况下（首次命中）维持直接映射的速度
+
+#### 3.4.6 Compiler Optimizations
+
+**to reduce miss rate**
+
+**采用编译器优化以降低缺失率**
+
+##### Merging Arrays
+
+**合并数组**
+
+合并数组指的是将多个独立的数组合并为一个复合数组，或者将多个数据结构字段重新组织为数组结构
+
+提高 spatial locality
+
+**1.Array Packing**（数组打包）
+
+```c linenums="1"
+// 合并前
+float x[N], y[N], z[N];
+
+// 合并后
+struct Point { float x, y, z; };
+Point points[N];
+```
+
+**2.结构体数组转换**（AoS → SoA）
+
+将"结构体数组"（Array of Structures）转换为"数组结构体"（Structure of Arrays）
+
+```c linenums="1"
+// AoS 形式（Array of Structures）
+struct Particle {
+    float x, y, z;
+    float vx, vy, vz;
+};
+Particle particles[N];
+
+// SoA 形式（Structure of Arrays）
+struct Particles {
+    float x[N], y[N], z[N];
+    float vx[N], vy[N], vz[N];
+};
+```
+
+##### Loop Interchange
+
+**循环交换**
+
+一些程序中存在嵌套循环，它们会以非连续顺序访问存储器中的数据。只要交换一下这些循环的嵌套顺序，就可能使程序代码按照数据的存储顺序来访问它们。如果缓存中无法容纳这些数组，这一技术可以通过提高空间局域性来减少缺失；通过重新排序，可以使缓存块中的数据在被替换之前，得到最大限度的充分利用。例如，设x是一个大小为 [5000, 100] 的两维数据，其分配方式使得 `x[1, j]` 和 `x[i, j + 1]` 相邻(由于这个数组是按行进行排列的，所以我们说这种顺序是以行为主的)，以下两段代码说明可以怎样来优化访问过程:
+
+<div class="grid" markdown>
+
+```c linenums="1" title="优化前"
+for (j = 0; j < 100; j++) {
+    for (i = 0; i < 5000; i++) {
+        x[i][j] = 2 * x[i][j];
+    }
+}
+```
+
+```c linenums="1" title="优化后"
+for (i = 0; i < 5000; i++) {
+    for (j = 0; j < 100; j++) {
+        x[i][j] = 2 * x[i][j];
+    }
+}
+```
+
+</div>
+
+原代码以 100 个字的步幅跳跃式浏览存储器，而修改后的版本在访问了个缓存块中的所有字之后才进人下一个块。这一优化方法提高了缓存性能，却没有影响到所执行的指令数目
+
+##### Loop Fusion
+
+**循环融合**
+
+循环融合是一种编译器优化技术，它将多个相邻的、具有相同迭代空间的循环合并为单个循环，以减少循环开销和提高数据局部性
+
+<div class="grid" markdown>
+
+```c linenums="1" title="融合前"
+// 第一个循环
+for (int i = 0; i < N; i++) {
+    a[i] = b[i] + c[i];
+}
+
+// 第二个循环
+for (int i = 0; i < N; i++) {
+    d[i] = a[i] * e[i];
+}
+```
+
+```c linenums="1" title="融合后"
+for (int i = 0; i < N; i++) {
+    a[i] = b[i] + c[i];
+    d[i] = a[i] * e[i];
+}
+```
+
+</div>
+
+##### Blocking
+
+**分块**
+
+分块技术将大型数据结构或循环迭代空间划分为较小的块（tile），使得每个块能够完全装入 CPU 缓存中。这样可以在处理完一个块的所有数据后，再移动到下一个块，而不是按照原始顺序遍历整个数据结构
+
+当程序访问的数据无法在缓存中找到（缓存未命中）时，必须从主内存加载，这会显著降低性能。分块技术通过确保数据在被重复使用前保留在缓存中，减少了缓存未命中的次数
+
+矩阵乘法：
+
+```c linenums="1" title="无分块"
+for (i = 0; i < N; i++) {
+    for (j = 0; j < N; j++) {
+        for (k = 0; k < N; k++) {
+            C[i][j] += A[i][k] * B[k][j];
+        }
+    }
+}
+```
+
+```c linenums="1" title="分块优化"
+#define BLOCK_SIZE 32
+
+for (ii = 0; ii < N; ii += BLOCK_SIZE) {
+    for (jj = 0; jj < N; jj += BLOCK_SIZE) {
+        for (kk = 0; kk < N; kk += BLOCK_SIZE) {
+            // 处理一个块
+            for (i = ii; i < ii + BLOCK_SIZE; i++) {
+                for (j = jj; j < jj + BLOCK_SIZE; j++) {
+                    for (k = kk; k < kk + BLOCK_SIZE; k++) {
+                        C[i][j] += A[i][k] * B[k][j];
+                    }
+                }
+            }
+        }
+    }
+}
+```
+
+### 3.5 Reduce the miss penalty and miss rate via parallelism
+
+#### 3.5.1 Hardware Prefetching of Instructions and Data
+
+**to reduce miss penalty or miss rate**
+
+**对指令和数据进行硬件预取，以降低缺失代价或缺失率**
+
+处理器通过监测当前的内存访问模式，预测接下来可能会被访问的内存地址，并在这些数据被实际请求之前，自动将它们从主存预取到缓存中
+
+硬件预取是一种空间换时间的优化
+
+1. 降低 miss penalty
+      - 传统情况：当发生缓存缺失时，处理器必须等待数据从慢速的主存加载，造成流水线停顿（stall）
+      - 使用预取：所需数据已经被提前加载到缓存中，缺失时可直接从缓存获取，避免等待主存访问
+2. 降低 miss rate
+      - 传统情况：首次访问新数据必然导致缓存缺失
+      - 使用预取：在程序实际需要数据前已经将其加载到缓存，使得"首次访问"变成缓存命中
+
+预取技术依赖于存在可用的额外内存带宽，且不会因占用带宽造成性能损失
+
+#### 3.5.2 Compiler-Controlled Prefetching 
+
+**to reduce miss penalty or miss rate**
+
+**用编译器控制预取，以降低缺失代价或缺失率**
+
+编译器通过分析程序的内存访问模式，在适当位置插入预取指令，提前获取数据，在实际使用数据前启动加载操作
+
+- register prefetch：将数据加载到寄存器
+- cache prefetch：将数据加载到缓存
+
+两种类型：
+
+1. 绑定预取（binding prefetch）：类似普通加载指令，但需严格保证地址有效性，否则会触发异常
+2. 非绑定预取（non-binding prefetch）：安全推测，即使地址无效也不会报错
+
+不过，发出预取指令会导致指令开销，所以编译器必须非常小心地确保这些开销不会超过所得到的好处。如果程序能够将注意力放在那些可能导致缓存缺失的引用上，就可以避免不必要的预取操作，同时明显缩短存储器平均访问时间
+
+<figure markdown="span">
+    ![Img 21](../../../../img/comp_arch/ch3/ca_ch3_img21.png){ width="600" }
+</figure>
+
+---
+
+<figure markdown="span">
+    ![Img 22](../../../../img/comp_arch/ch3/ca_ch3_img22.png){ width="600" }
+</figure>
