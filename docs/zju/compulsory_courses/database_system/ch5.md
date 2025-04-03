@@ -444,7 +444,7 @@ employee-dependent-names(emp-id, dependent-name)
 
 ## Homework
 
-<!-- ???+ question "课本 6.1"
+???+ question "课本 6.1"
 
     Construct an E-R diagram for a car insurance company whose customers own one or more cars each. Each car has associated with it zero to any number of recorded accidents. Each insurance policy covers one or more cars and has one or more premium payments associated with it. Each payment is for a particular period of time, and has an associated due date, and the date when the payment was received.
 
@@ -599,4 +599,4 @@ employee-dependent-names(emp-id, dependent-name)
             foreign key (option_id) references option,
             foreign key (model_id) references model
         );
-        ``` -->
+        ```
