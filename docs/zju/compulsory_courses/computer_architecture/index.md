@@ -36,6 +36,7 @@ wzh老师
 
 [1 Fundamentals of Quantitative Design and Analysis](./theory/ch1.md)<br/>
 [2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)<br/>
-[3 Memory Hierarchy Design](./theory/ch3.md)
+[3 Memory Hierarchy Design](./theory/ch3.md)<br/>
+[4 Instruction-Level Parallelism and Its Exploitation](./theory/ch4.md)
 
 ### [实验部分](./lab/index.md)

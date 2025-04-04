@@ -115,7 +115,7 @@ Atomicity is actually a property of how the elements of the domain are used（�
 | a | f | 3 |
 | c | f | 4 |
 
-<div>
+<div markdown>
 
 1. 当 $\alpha = a$，$\beta$ 总是 $f$
 2. 当 $\alpha = b$，$\beta$ 总是 $h$
@@ -184,7 +184,7 @@ $F = \lbrace A \rightarrow B,\ B \rightarrow C \rbrace \implies F^+ = \lbrace A 
 Armstrong 公理提供了用于求 $F^+$ 的推理规则
 
 1. reflexivity（自反律）：$\beta \sube \alpha \implies \alpha \rightarrow \beta$
-2. augmentation（增补律）：$\alpha \rightarrow \beta \implies \gamma \alpha \rightarrow \gamma \beta$
+2. augmentation（增补律）：$\alpha \rightarrow \beta \implies \gamma \alpha \rightarrow \gamma \beta,\ \gamma \alpha \rightarrow \beta$
 3. transitivity（传递律）：$\alpha \rightarrow \beta,\ \beta \rightarrow \gamma \implies \alpha \rightarrow \gamma$
 
 性质：
@@ -272,4 +272,259 @@ a+ = result
 ### 3.5 Canonical Cover
 
 **正则覆盖**
+
+数据库管理系统应始终检查以确保不违反函数依赖集 F 中的任何函数依赖 FD。但如果 F 太大，检查成本会很高。因此我们需要简化 FD 集合
+
+F 的正则覆盖，记作 $F_c$，是一个与 F 等价的“最小” FD 集合。例如 $\alpha_1 \rightarrow \beta_1,\ \alpha_1 \rightarrow \beta_2 \implies \alpha_1 \rightarrow \beta_1\beta_2$
+
+1. 等价性：Fc 与原始函数依赖集 F 在逻辑上等价（Fc ≡ F），能推导出相同的函数依赖
+2. 最小性：没有冗余的函数依赖，也没有冗余的属性
+3. 唯一性：每个函数依赖的左侧都是唯一的
+
+通过删除 extraneous attributes（多余属性）得到 Fc
+
+1. FD 有可以通过其它依赖关系推导出的依赖关系
+      - $F = \lbrace A \rightarrow C,\ A \rightarrow B,\ B \rightarrow C \rbrace$ 中 $ A \rightarrow C$ 是 redundant，$F_c = \lbrace A \rightarrow B,\ B \rightarrow C \rbrace$
+2. 左侧有 extraneous attributes
+      - $F = \lbrace A \rightarrow B,\ B \rightarrow C,\ AC \rightarrow D \rbrace$，$F_c = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow D \rbrace$
+3. 右侧有 redundant
+      - $F = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow CD \rbrace$，$F = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow D \rbrace$
+
+#### 3.5.1 Extraneous Attributes
+
+**1.左侧冗余属性**
+
+在函数依赖 $\alpha \rightarrow \beta$ 中，若属性 $A \in \alpha$ 满足：移除 A 后，新的函数依赖 $(\alpha - A) \rightarrow \beta$ 仍然可以由原函数依赖集 F 逻辑推导得出，则称 A 是冗余的
+
+例如：$F = \lbrace A \rightarrow C,\ AB \rightarrow C \rbrace$，B 是冗余属性，$F_C = \lbrace A \rightarrow C \rbrace$
+
+1. 从函数依赖的左侧 $\alpha$ 中移除待测试属性 A，得到 $\alpha' = \alpha - A$
+2. 计算 $\alpha'$ 的属性闭包 $(\alpha')^+$
+3. 如果 $\beta \sube (\alpha')^+$，说明不需要 A 也能推导出 $\beta$，因此 A 是冗余的
+
+例如：$F = \lbrace AB \rightarrow C,\ A \rightarrow B \rbrace$，测试 $AB \rightarrow C$ 中的 B 是否冗余。计算 $(AB - B)^+ = A^+ = \lbrace A,\ B \rbrace$，所以 B 不是冗余的（不能只通过 A 得到 C）
+
+**2.右侧冗余属性**
+
+在函数依赖 $\alpha \rightarrow \beta$ 中，若属性 $A \in \beta$ 满足：移除 A 后，新的函数依赖 $\alpha \rightarrow (\beta - A)$ 仍然可以由原函数依赖集 F 逻辑推导得出，则称 A 是冗余的
+
+例如：$F = \lbrace A \rightarrow C,\ AB \rightarrow CD \rbrace$，C 是冗余的，$F_c = \lbrace A \rightarrow C,\ AB \rightarrow D \rbrace$
+
+1. 从函数依赖的右侧 $\beta$ 中移除待测试属性 A，得到 $\beta' = \beta - A$
+2. 构造新的函数依赖集 $F' = (F - \lbrace \alpha \rightarrow \beta \rbrace) \cup \lbrace \alpha \rightarrow \beta' \rbrace$
+3. 计算 $\alpha$ 在 $F'$ 下的属性闭包 $(\alpha)^+$
+4. 如果 $A \in (\alpha)^+$，说明 A 可以通过其他依赖推出，因此 A 在 $\beta$ 中是冗余的
+
+!!! example "例子"
+
+    $R = (A, B, C)$<br/>
+    $F = \lbrace A \rightarrow BC, B \rightarrow C, A \rightarrow B, AB \rightarrow C \rbrace$
+    
+    1. $F' = \lbrace A \rightarrow BC, B \rightarrow C, AB \rightarrow C \rbrace$
+    2. $F' = \lbrace A \rightarrow BC, B \rightarrow C \rbrace$
+    3. $F_c = \lbrace A \rightarrow B, B \rightarrow C \rbrace$
+
+## 4 Decomposition
+
+1. 属性完备性：原始模式的所有属性必须出现在分解后的子模式中
+2. lossless-join decomposition：分解后的关系通过自然连接能完全恢复原始数据
+      - 公共属性集必须是 R₁ 或 R₂ 的超键
+3. dependency preserving（依赖保持）：所有原始函数依赖都能通过子关系的依赖集推导出来
+4. no redundancy：分解后的子关系应达到 BCNF 或 3NF
+      - BCNF：每个决定因素都是超键
+      - 3NF：允许存在主属性对键的传递依赖
+
+!!! example "例子"
+
+    $R = (A,B,C)$<br/>
+    $F = \lbrace A \rightarrow B, B \rightarrow C \rbrace$
+
+    **方法 1** 正确
+
+    $R_1 = (A,B)$<br/>
+    $R_2 = (B,C)$
+
+    1. lossless-join decomposition：公共属性集为 B，是 $R_2$ 的超键
+    2. dependency preserving：$F_1 = \lbrace A \rightarrow B \rbrace,\ F_2 = \lbrace B \rightarrow C \rbrace$，$(F_1 \cup F_2)^+ = F^+$
+
+    **方法 2** 错误
+
+    $R_1 = (A,B)$<br/>
+    $R_2 = (A,C)$
+
+    1. lossless-join decomposition：公共属性集为 A，是 $R_1$ 的超键
+    2. dependency preserving：$F_1 = \lbrace A \rightarrow B \rbrace,\ F_2 = \lbrace A \rightarrow C \rbrace$，$(F_1 \cup F_2)^+ \not= F^+$
+
+## 5 Boyce-Codd Normal Form
+
+对于函数依赖集 F⁺ 中的每一个非平凡函数依赖 α → β，必须满足以下两条之一：
+
+1. 该依赖是平凡的：即 β 完全包含于 α 中（β ⊆ α）
+2. α 是关系 R 的超键：即 α 能函数决定 R 中的所有属性（R ⊆ α⁺）
+
+!!! example "例子"
+
+    $R = (A, B, C)$<br/>
+    $F = \lbrace A \rightarrow B, B \rightarrow C \rbrace$<br/>
+    $Key = \lbrace A \rbrace$
+
+    R 不满足 BCNF，因为函数依赖 $B \rightarrow C$ 中，B 不是一个 key
+
+方法：
+
+1. 列出所有非平凡函数依赖
+2. 检查每个依赖的左侧 α：
+      1. 计算 α 的属性闭包 α⁺
+      2. 验证是否 α⁺ = R（即 α 是超键）
+3. 若存在违反 BCNF 的依赖：
+      1. 需要将关系模式分解为多个符合 BCNF 的子模式
+
+==只需要检查给定函数依赖集 F 中的依赖是否违反 BCNF，而不需要检查 F⁺ 中的所有依赖==
+
+```c linenums title="BCNF decomposition 方法"
+result = {R};
+done = false;
+compute F+;
+while (!done) {
+    if (there is a schema Ri in result that is not in BCNF) {
+        let α → β be a nontrivial functional dependency that holds on Ri 
+        such that α → Ri is not in F+, and α ∩ β = ∅;
+        result = (result - Ri) ∪ (α, β) ∪ (Ri - β);
+        // (α, β) 就是 R1
+        // (Ri - β) 就是 R2
+    } else {
+        done = true;
+    }
+}
+```
+
+<figure markdown="span">
+  ![Img 7](../../../img/database/ch6/database_ch6_img7.png){ width="600" }
+</figure>
+
+但是我们不能永远同时满足这三个目标：
+
+1. lossless join
+2. BCNF
+3. dependency preservation
+
+## 6 Third Normal Form
+
+设计动机：
+
+1. BCNF 的局限性：当将关系分解为 BCNF 时，某些原始函数依赖可能无法在任何一个子关系中完整表达
+2. 解决方案：定义一个较弱范式，称为第三范式（3NF）
+      1. 允许存在一定冗余（会带来相关问题）
+      2. 保持依赖：所有原始函数依赖都能在分解后的子关系中体现
+      3. 无损连接：确保数据完整性不被破坏
+
+对于函数依赖闭包 F⁺ 中的每一个函数依赖 α → β，至少满足以下条件之一：
+
+1. 平凡依赖：β 完全包含于 α 中（β ⊆ α）
+2. 超键决定：α 是关系 R 的超键（R ⊆ α⁺）
+3. 主属性包含：β - α 中的每个属性都包含在 R 的某个候选键中
+
+主属性（Prime Attribute）：指包含在任何一个候选键中的属性。示例：在 R(A, B, C) 中，若候选键为 {A, B} 和 {A, C}，则 A、B、C 都是主属性
+
+> 所有 BCNF 都满足 3NF
+
+<figure markdown="span">
+  ![Img 8](../../../img/database/ch6/database_ch6_img8.png){ width="600" }
+</figure>
+
+### 6.1 Redundancy of 3NF
+
+<figure markdown="span">
+  ![Img 9](../../../img/database/ch6/database_ch6_img9.png){ width="600" }
+</figure>
+
+> 可能需要使用 null 值
+
+---
+
+3NF decomposition 方法：
+
+1. 为每个导致违反 3NF 的函数依赖创建新关系
+2. 保留原始候选键
+
+```c linenums title="3NF decomposition 方法"
+let Fc be a canonical cover of F;
+i = 0;
+for (each functional dependency α → β in Fc) {
+    if (none of the schemas Rj, 1 ≤ j ≤ i contains α, β) {
+        i = i + 1;
+        Ri = (α, β);
+    }
+}
+if (none of the schemas Rj, 1 ≤ j ≤ i contains a candidate key for R) {
+    i = i + 1;
+    Ri = any candidate key for R;
+}
+return (R1, R2, ..., Ri);
+```
+
+!!! example "例子"
+    
+    考虑一个 **学生选课系统** 的关系模式：
+    
+    ```
+    选课记录(学号, 学生姓名, 课程号, 课程名称, 成绩, 系别, 系主任)
+    ```
+    
+    函数依赖集 F 为：
+    
+    1. {学号} → {学生姓名, 系别}
+    2. {系别} → {系主任}
+    3. {课程号} → {课程名称}
+    4. {学号, 课程号} → {成绩}
+    
+    **步骤 1：确定候选键**
+    
+    - 找出所有属性闭包：
+            - {学号,课程号}⁺ = {学号,课程号,学生姓名,系别,系主任,课程名称,成绩} = 全部属性
+    - **唯一候选键**：{学号,课程号}
+    
+    **步骤 2：检查 3NF 条件**
+    
+    对于每个函数依赖：
+    
+    1. {学号} → {学生姓名, 系别}：
+            - 学号不是超键
+            - {学生姓名,系别}包含非主属性（不在任何候选键中）→ **违反 3NF**
+    2. {系别} → {系主任}：
+            - 系别不是超键
+            - 系主任是非主属性 → **违反 3NF**
+    3. {课程号} → {课程名称}：
+            - 课程号不是超键
+            - 课程名称是非主属性 → **违反 3NF**
+    4. {学号, 课程号} → {成绩}：
+            - {学号, 课程号}是超键 → 符合 3NF
+    
+    **步骤 3：进行 3NF 分解**
+    
+    5. 处理{学号} → {学生姓名, 系别}：
+            - 创建：学生(学号, 学生姓名, 系别)
+    6. 处理{系别} → {系主任}：
+            - 创建：系别(系别, 系主任)
+    7. 处理{课程号} → {课程名称}：
+            - 创建：课程(课程号, 课程名称)
+    8. 保留原始候选键：
+            - 创建：选课(学号, 课程号, 成绩)
+    
+    **最终分解结果**
+    
+    ```
+    学生(学号, 学生姓名, 系别)
+    系别(系别, 系主任)
+    课程(课程号, 课程名称)
+    选课(学号, 课程号, 成绩)
+    ```
+
+!!! tip "比较 BCNF 和 3NF"
+
+    | 特性 | BCNF | 3NF |
+    | :-: | :-: | :-: |
+    | 冗余 | 完全消除 | 部分允许 |
+    | dependency preserve | 不保证 | 保证 |
+    | lossless join | 保证 | 保证 |
 
