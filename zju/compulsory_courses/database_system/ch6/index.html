@@ -4124,10 +4124,43 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3.5 Canonical Cover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-extraneous-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Extraneous Attributes
+    </span>
+  </a>
+  
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Decomposition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-boyce-codd-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Boyce-Codd Normal Form
+    </span>
+  </a>
   
 </li>
       
@@ -4218,6 +4251,8 @@
   
     
     
+      
+        
       
         
       
@@ -4320,6 +4355,29 @@
   
   <span class="md-ellipsis">
     3 Memory Hierarchy Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_architecture/theory/ch4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Instruction-Level Parallelism and Its Exploitation
     
   </span>
   
@@ -7155,10 +7213,43 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3.5 Canonical Cover">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-extraneous-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Extraneous Attributes
+    </span>
+  </a>
+  
 </li>
         
       </ul>
     </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Decomposition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-boyce-codd-normal-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Boyce-Codd Normal Form
+    </span>
+  </a>
   
 </li>
       
@@ -7348,13 +7439,12 @@
 </tbody>
 </table>
 <div>
-
-1. 当 $\alpha = a$，$\beta$ 总是 $f$
-2. 当 $\alpha = b$，$\beta$ 总是 $h$
-3. 当 $\alpha = b$，$\beta$ 总是 $f$
-
-$\beta$ is functionally dependent on $\alpha$, $\alpha$ functionally determines $\beta$
-
+<ol>
+<li>当 <span class="arithmatex">\(\alpha = a\)</span>，<span class="arithmatex">\(\beta\)</span> 总是 <span class="arithmatex">\(f\)</span></li>
+<li>当 <span class="arithmatex">\(\alpha = b\)</span>，<span class="arithmatex">\(\beta\)</span> 总是 <span class="arithmatex">\(h\)</span></li>
+<li>当 <span class="arithmatex">\(\alpha = b\)</span>，<span class="arithmatex">\(\beta\)</span> 总是 <span class="arithmatex">\(f\)</span></li>
+</ol>
+<p><span class="arithmatex">\(\beta\)</span> is functionally dependent on <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\alpha\)</span> functionally determines <span class="arithmatex">\(\beta\)</span></p>
 </div>
 </div>
 <p>函数依赖是一种 integrity constraints，表达了特定属性的值的关系，可以用来判断模式规范化，并提出改进建议</p>
@@ -7403,7 +7493,7 @@ $\beta$ is functionally dependent on $\alpha$, $\alpha$ functionally determines 
 <p>Armstrong 公理提供了用于求 <span class="arithmatex">\(F^+\)</span> 的推理规则</p>
 <ol>
 <li>reflexivity（自反律）：<span class="arithmatex">\(\beta \sube \alpha \implies \alpha \rightarrow \beta\)</span></li>
-<li>augmentation（增补律）：<span class="arithmatex">\(\alpha \rightarrow \beta \implies \gamma \alpha \rightarrow \gamma \beta\)</span></li>
+<li>augmentation（增补律）：<span class="arithmatex">\(\alpha \rightarrow \beta \implies \gamma \alpha \rightarrow \gamma \beta,\ \gamma \alpha \rightarrow \beta\)</span></li>
 <li>transitivity（传递律）：<span class="arithmatex">\(\alpha \rightarrow \beta,\ \beta \rightarrow \gamma \implies \alpha \rightarrow \gamma\)</span></li>
 </ol>
 <p>性质：</p>
@@ -7496,6 +7586,276 @@ $\beta$ is functionally dependent on $\alpha$, $\alpha$ functionally determines 
 </ol>
 <h3 id="35-canonical-cover">3.5 Canonical Cover<a class="headerlink" href="#35-canonical-cover" title="Permanent link">&para;</a></h3>
 <p><strong>正则覆盖</strong></p>
+<p>数据库管理系统应始终检查以确保不违反函数依赖集 F 中的任何函数依赖 FD。但如果 F 太大，检查成本会很高。因此我们需要简化 FD 集合</p>
+<p>F 的正则覆盖，记作 <span class="arithmatex">\(F_c\)</span>，是一个与 F 等价的“最小” FD 集合。例如 <span class="arithmatex">\(\alpha_1 \rightarrow \beta_1,\ \alpha_1 \rightarrow \beta_2 \implies \alpha_1 \rightarrow \beta_1\beta_2\)</span></p>
+<ol>
+<li>等价性：Fc 与原始函数依赖集 F 在逻辑上等价（Fc ≡ F），能推导出相同的函数依赖</li>
+<li>最小性：没有冗余的函数依赖，也没有冗余的属性</li>
+<li>唯一性：每个函数依赖的左侧都是唯一的</li>
+</ol>
+<p>通过删除 extraneous attributes（多余属性）得到 Fc</p>
+<ol>
+<li>FD 有可以通过其它依赖关系推导出的依赖关系<ul>
+<li><span class="arithmatex">\(F = \lbrace A \rightarrow C,\ A \rightarrow B,\ B \rightarrow C \rbrace\)</span> 中 $ A \rightarrow C$ 是 redundant，<span class="arithmatex">\(F_c = \lbrace A \rightarrow B,\ B \rightarrow C \rbrace\)</span></li>
+</ul>
+</li>
+<li>左侧有 extraneous attributes<ul>
+<li><span class="arithmatex">\(F = \lbrace A \rightarrow B,\ B \rightarrow C,\ AC \rightarrow D \rbrace\)</span>，<span class="arithmatex">\(F_c = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow D \rbrace\)</span></li>
+</ul>
+</li>
+<li>右侧有 redundant<ul>
+<li><span class="arithmatex">\(F = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow CD \rbrace\)</span>，<span class="arithmatex">\(F = \lbrace A \rightarrow B,\ B \rightarrow C,\ A \rightarrow D \rbrace\)</span></li>
+</ul>
+</li>
+</ol>
+<h4 id="351-extraneous-attributes">3.5.1 Extraneous Attributes<a class="headerlink" href="#351-extraneous-attributes" title="Permanent link">&para;</a></h4>
+<p><strong>1.左侧冗余属性</strong></p>
+<p>在函数依赖 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中，若属性 <span class="arithmatex">\(A \in \alpha\)</span> 满足：移除 A 后，新的函数依赖 <span class="arithmatex">\((\alpha - A) \rightarrow \beta\)</span> 仍然可以由原函数依赖集 F 逻辑推导得出，则称 A 是冗余的</p>
+<p>例如：<span class="arithmatex">\(F = \lbrace A \rightarrow C,\ AB \rightarrow C \rbrace\)</span>，B 是冗余属性，<span class="arithmatex">\(F_C = \lbrace A \rightarrow C \rbrace\)</span></p>
+<ol>
+<li>从函数依赖的左侧 <span class="arithmatex">\(\alpha\)</span> 中移除待测试属性 A，得到 <span class="arithmatex">\(\alpha' = \alpha - A\)</span></li>
+<li>计算 <span class="arithmatex">\(\alpha'\)</span> 的属性闭包 <span class="arithmatex">\((\alpha')^+\)</span></li>
+<li>如果 <span class="arithmatex">\(\beta \sube (\alpha')^+\)</span>，说明不需要 A 也能推导出 <span class="arithmatex">\(\beta\)</span>，因此 A 是冗余的</li>
+</ol>
+<p>例如：<span class="arithmatex">\(F = \lbrace AB \rightarrow C,\ A \rightarrow B \rbrace\)</span>，测试 <span class="arithmatex">\(AB \rightarrow C\)</span> 中的 B 是否冗余。计算 <span class="arithmatex">\((AB - B)^+ = A^+ = \lbrace A,\ B \rbrace\)</span>，所以 B 不是冗余的（不能只通过 A 得到 C）</p>
+<p><strong>2.右侧冗余属性</strong></p>
+<p>在函数依赖 <span class="arithmatex">\(\alpha \rightarrow \beta\)</span> 中，若属性 <span class="arithmatex">\(A \in \beta\)</span> 满足：移除 A 后，新的函数依赖 <span class="arithmatex">\(\alpha \rightarrow (\beta - A)\)</span> 仍然可以由原函数依赖集 F 逻辑推导得出，则称 A 是冗余的</p>
+<p>例如：<span class="arithmatex">\(F = \lbrace A \rightarrow C,\ AB \rightarrow CD \rbrace\)</span>，C 是冗余的，<span class="arithmatex">\(F_c = \lbrace A \rightarrow C,\ AB \rightarrow D \rbrace\)</span></p>
+<ol>
+<li>从函数依赖的右侧 <span class="arithmatex">\(\beta\)</span> 中移除待测试属性 A，得到 <span class="arithmatex">\(\beta' = \beta - A\)</span></li>
+<li>构造新的函数依赖集 <span class="arithmatex">\(F' = (F - \lbrace \alpha \rightarrow \beta \rbrace) \cup \lbrace \alpha \rightarrow \beta' \rbrace\)</span></li>
+<li>计算 <span class="arithmatex">\(\alpha\)</span> 在 <span class="arithmatex">\(F'\)</span> 下的属性闭包 <span class="arithmatex">\((\alpha)^+\)</span></li>
+<li>如果 <span class="arithmatex">\(A \in (\alpha)^+\)</span>，说明 A 可以通过其他依赖推出，因此 A 在 <span class="arithmatex">\(\beta\)</span> 中是冗余的</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">例子</p>
+<p><span class="arithmatex">\(R = (A, B, C)\)</span><br/>
+<span class="arithmatex">\(F = \lbrace A \rightarrow BC, B \rightarrow C, A \rightarrow B, AB \rightarrow C \rbrace\)</span></p>
+<ol>
+<li><span class="arithmatex">\(F' = \lbrace A \rightarrow BC, B \rightarrow C, AB \rightarrow C \rbrace\)</span></li>
+<li><span class="arithmatex">\(F' = \lbrace A \rightarrow BC, B \rightarrow C \rbrace\)</span></li>
+<li><span class="arithmatex">\(F_c = \lbrace A \rightarrow B, B \rightarrow C \rbrace\)</span></li>
+</ol>
+</div>
+<h2 id="4-decomposition">4 Decomposition<a class="headerlink" href="#4-decomposition" title="Permanent link">&para;</a></h2>
+<ol>
+<li>属性完备性：原始模式的所有属性必须出现在分解后的子模式中</li>
+<li>lossless-join decomposition：分解后的关系通过自然连接能完全恢复原始数据<ul>
+<li>公共属性集必须是 R₁ 或 R₂ 的超键</li>
+</ul>
+</li>
+<li>dependency preserving（依赖保持）：所有原始函数依赖都能通过子关系的依赖集推导出来</li>
+<li>no redundancy：分解后的子关系应达到 BCNF 或 3NF<ul>
+<li>BCNF：每个决定因素都是超键</li>
+<li>3NF：允许存在主属性对键的传递依赖</li>
+</ul>
+</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">例子</p>
+<p><span class="arithmatex">\(R = (A,B,C)\)</span><br/>
+<span class="arithmatex">\(F = \lbrace A \rightarrow B, B \rightarrow C \rbrace\)</span></p>
+<p><strong>方法 1</strong> 正确</p>
+<p><span class="arithmatex">\(R_1 = (A,B)\)</span><br/>
+<span class="arithmatex">\(R_2 = (B,C)\)</span></p>
+<ol>
+<li>lossless-join decomposition：公共属性集为 B，是 <span class="arithmatex">\(R_2\)</span> 的超键</li>
+<li>dependency preserving：<span class="arithmatex">\(F_1 = \lbrace A \rightarrow B \rbrace,\ F_2 = \lbrace B \rightarrow C \rbrace\)</span>，<span class="arithmatex">\((F_1 \cup F_2)^+ = F^+\)</span></li>
+</ol>
+<p><strong>方法 2</strong> 错误</p>
+<p><span class="arithmatex">\(R_1 = (A,B)\)</span><br/>
+<span class="arithmatex">\(R_2 = (A,C)\)</span></p>
+<ol>
+<li>lossless-join decomposition：公共属性集为 A，是 <span class="arithmatex">\(R_1\)</span> 的超键</li>
+<li>dependency preserving：<span class="arithmatex">\(F_1 = \lbrace A \rightarrow B \rbrace,\ F_2 = \lbrace A \rightarrow C \rbrace\)</span>，<span class="arithmatex">\((F_1 \cup F_2)^+ \not= F^+\)</span></li>
+</ol>
+</div>
+<h2 id="5-boyce-codd-normal-form">5 Boyce-Codd Normal Form<a class="headerlink" href="#5-boyce-codd-normal-form" title="Permanent link">&para;</a></h2>
+<p>对于函数依赖集 F⁺ 中的每一个非平凡函数依赖 α → β，必须满足以下两条之一：</p>
+<ol>
+<li>该依赖是平凡的：即 β 完全包含于 α 中（β ⊆ α）</li>
+<li>α 是关系 R 的超键：即 α 能函数决定 R 中的所有属性（R ⊆ α⁺）</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">例子</p>
+<p><span class="arithmatex">\(R = (A, B, C)\)</span><br/>
+<span class="arithmatex">\(F = \lbrace A \rightarrow B, B \rightarrow C \rbrace\)</span><br/>
+<span class="arithmatex">\(Key = \lbrace A \rbrace\)</span></p>
+<p>R 不满足 BCNF，因为函数依赖 <span class="arithmatex">\(B \rightarrow C\)</span> 中，B 不是一个 key</p>
+</div>
+<p>方法：</p>
+<ol>
+<li>列出所有非平凡函数依赖</li>
+<li>检查每个依赖的左侧 α：<ol>
+<li>计算 α 的属性闭包 α⁺</li>
+<li>验证是否 α⁺ = R（即 α 是超键）</li>
+</ol>
+</li>
+<li>若存在违反 BCNF 的依赖：<ol>
+<li>需要将关系模式分解为多个符合 BCNF 的子模式</li>
+</ol>
+</li>
+</ol>
+<p><mark>只需要检查给定函数依赖集 F 中的依赖是否违反 BCNF，而不需要检查 F⁺ 中的所有依赖</mark></p>
+<p>```c linenums title="BCNF decomposition 方法"
+result = {R};
+done = false;
+compute F+;
+while (!done) {
+    if (there is a schema Ri in result that is not in BCNF) {
+        let α → β be a nontrivial functional dependency that holds on Ri 
+        such that α → Ri is not in F+, and α ∩ β = ∅;
+        result = (result - Ri) ∪ (α, β) ∪ (Ri - β);
+        // (α, β) 就是 R1
+        // (Ri - β) 就是 R2
+    } else {
+        done = true;
+    }
+}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&lt;figure markdown=&quot;span&quot;&gt;
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  ![Img 7](../../../img/database/ch6/database_ch6_img7.png){ width=&quot;600&quot; }
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>&lt;/figure&gt;
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>但是我们不能永远同时满足这三个目标：
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>1. lossless join
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>2. BCNF
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>3. dependency preservation
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>## 6 Third Normal Form
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>设计动机：
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>1. BCNF 的局限性：当将关系分解为 BCNF 时，某些原始函数依赖可能无法在任何一个子关系中完整表达
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>2. 解决方案：定义一个较弱范式，称为第三范式（3NF）
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>      1. 允许存在一定冗余（会带来相关问题）
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>      2. 保持依赖：所有原始函数依赖都能在分解后的子关系中体现
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>      3. 无损连接：确保数据完整性不被破坏
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>对于函数依赖闭包 F⁺ 中的每一个函数依赖 α → β，至少满足以下条件之一：
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>1. 平凡依赖：β 完全包含于 α 中（β ⊆ α）
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>2. 超键决定：α 是关系 R 的超键（R ⊆ α⁺）
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>3. 主属性包含：β - α 中的每个属性都包含在 R 的某个候选键中
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>主属性（Prime Attribute）：指包含在任何一个候选键中的属性。示例：在 R(A, B, C) 中，若候选键为 {A, B} 和 {A, C}，则 A、B、C 都是主属性
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>&gt; 所有 BCNF 都满足 3NF
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>&lt;figure markdown=&quot;span&quot;&gt;
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>  ![Img 8](../../../img/database/ch6/database_ch6_img8.png){ width=&quot;600&quot; }
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>&lt;/figure&gt;
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>### 6.1 Redundancy of 3NF
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>&lt;figure markdown=&quot;span&quot;&gt;
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>  ![Img 9](../../../img/database/ch6/database_ch6_img9.png){ width=&quot;600&quot; }
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>&lt;/figure&gt;
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>&gt; 可能需要使用 null 值
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>---
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>3NF decomposition 方法：
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>1. 为每个导致违反 3NF 的函数依赖创建新关系
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>2. 保留原始候选键
+</span><span id="__span-2-49"><a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a>
+</span><span id="__span-2-50"><a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>```c linenums title=&quot;3NF decomposition 方法&quot;
+</span><span id="__span-2-51"><a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>let Fc be a canonical cover of F;
+</span><span id="__span-2-52"><a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>i = 0;
+</span><span id="__span-2-53"><a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>for (each functional dependency α → β in Fc) {
+</span><span id="__span-2-54"><a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>    if (none of the schemas Rj, 1 ≤ j ≤ i contains α, β) {
+</span><span id="__span-2-55"><a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a>        i = i + 1;
+</span><span id="__span-2-56"><a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>        Ri = (α, β);
+</span><span id="__span-2-57"><a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>    }
+</span><span id="__span-2-58"><a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>}
+</span><span id="__span-2-59"><a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a>if (none of the schemas Rj, 1 ≤ j ≤ i contains a candidate key for R) {
+</span><span id="__span-2-60"><a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>    i = i + 1;
+</span><span id="__span-2-61"><a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>    Ri = any candidate key for R;
+</span><span id="__span-2-62"><a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>}
+</span><span id="__span-2-63"><a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>return (R1, R2, ..., Ri);
+</span></code></pre></div></p>
+<div class="admonition example">
+<p class="admonition-title">例子</p>
+<p>考虑一个 <strong>学生选课系统</strong> 的关系模式：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>选课记录(学号, 学生姓名, 课程号, 课程名称, 成绩, 系别, 系主任)
+</span></code></pre></div>
+<p>函数依赖集 F 为：</p>
+<ol>
+<li>{学号} → {学生姓名, 系别}</li>
+<li>{系别} → {系主任}</li>
+<li>{课程号} → {课程名称}</li>
+<li>{学号, 课程号} → {成绩}</li>
+</ol>
+<p><strong>步骤 1：确定候选键</strong></p>
+<ul>
+<li>找出所有属性闭包：
+        - {学号,课程号}⁺ = {学号,课程号,学生姓名,系别,系主任,课程名称,成绩} = 全部属性</li>
+<li><strong>唯一候选键</strong>：{学号,课程号}</li>
+</ul>
+<p><strong>步骤 2：检查 3NF 条件</strong></p>
+<p>对于每个函数依赖：</p>
+<ol>
+<li>{学号} → {学生姓名, 系别}：
+        - 学号不是超键
+        - {学生姓名,系别}包含非主属性（不在任何候选键中）→ <strong>违反 3NF</strong></li>
+<li>{系别} → {系主任}：
+        - 系别不是超键
+        - 系主任是非主属性 → <strong>违反 3NF</strong></li>
+<li>{课程号} → {课程名称}：
+        - 课程号不是超键
+        - 课程名称是非主属性 → <strong>违反 3NF</strong></li>
+<li>{学号, 课程号} → {成绩}：
+        - {学号, 课程号}是超键 → 符合 3NF</li>
+</ol>
+<p><strong>步骤 3：进行 3NF 分解</strong></p>
+<ol>
+<li>处理{学号} → {学生姓名, 系别}：
+        - 创建：学生(学号, 学生姓名, 系别)</li>
+<li>处理{系别} → {系主任}：
+        - 创建：系别(系别, 系主任)</li>
+<li>处理{课程号} → {课程名称}：
+        - 创建：课程(课程号, 课程名称)</li>
+<li>保留原始候选键：
+        - 创建：选课(学号, 课程号, 成绩)</li>
+</ol>
+<p><strong>最终分解结果</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>学生(学号, 学生姓名, 系别)
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>系别(系别, 系主任)
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>课程(课程号, 课程名称)
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>选课(学号, 课程号, 成绩)
+</span></code></pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">比较 BCNF 和 3NF</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">BCNF</th>
+<th style="text-align: center;">3NF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">冗余</td>
+<td style="text-align: center;">完全消除</td>
+<td style="text-align: center;">部分允许</td>
+</tr>
+<tr>
+<td style="text-align: center;">dependency preserve</td>
+<td style="text-align: center;">不保证</td>
+<td style="text-align: center;">保证</td>
+</tr>
+<tr>
+<td style="text-align: center;">lossless join</td>
+<td style="text-align: center;">保证</td>
+<td style="text-align: center;">保证</td>
+</tr>
+</tbody>
+</table>
+</div>
 
 
 
@@ -7518,7 +7878,7 @@ $\beta$ is functionally dependent on $\alpha$, $\alpha$ functionally determines 
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月31日 04:19:39">2025年3月31日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月4日 07:45:56">2025年4月4日</span>
   </span>
 
     

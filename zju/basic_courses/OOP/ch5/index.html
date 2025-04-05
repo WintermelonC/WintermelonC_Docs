@@ -2850,27 +2850,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4 Inline Variable">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-inline-和-static" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 inline 和 static
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-week" class="md-nav__link">
+  <a href="#5-weak" class="md-nav__link">
     <span class="md-ellipsis">
-      5 Week
+      5 Weak
     </span>
   </a>
   
@@ -4216,6 +4201,8 @@
       
         
       
+        
+      
     
     
     
@@ -4311,6 +4298,29 @@
   
   <span class="md-ellipsis">
     3 Memory Hierarchy Design
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../compulsory_courses/computer_architecture/theory/ch4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 Instruction-Level Parallelism and Its Exploitation
     
   </span>
   
@@ -7118,27 +7128,12 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4 Inline Variable">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41-inline-和-static" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 inline 和 static
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-week" class="md-nav__link">
+  <a href="#5-weak" class="md-nav__link">
     <span class="md-ellipsis">
-      5 Week
+      5 Weak
     </span>
   </a>
   
@@ -7182,10 +7177,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="5-inside-class">5 Inside Class<a class="headerlink" href="#5-inside-class" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <ol>
@@ -7656,7 +7651,7 @@
 <h2 id="4-inline-variable">4 Inline Variable<a class="headerlink" href="#4-inline-variable" title="Permanent link">&para;</a></h2>
 <p>inline variable 是 C++ 17 引入的一种特性，用于解决全局变量或静态成员变量在多文件中定义和使用时的重复定义问题</p>
 <ul>
-<li>核心特性：inline 变量可以在多个翻译单元中定义，但只会有一个实例（即全局唯一）</li>
+<li>核心特性：inline 变量可以在多个翻译单元中定义，但只会有一个实例（即全局唯一，具有“外部链接”）</li>
 <li>主要用途：避免全局变量或静态成员变量的重复定义错误</li>
 </ul>
 <div class="admonition question">
@@ -7690,8 +7685,94 @@
 </div>
 <p>编译时会报错 <code>multiple definition of 'globalValue'</code></p>
 </div>
-<h3 id="41-inline-和-static">4.1 inline 和 static<a class="headerlink" href="#41-inline-和-static" title="Permanent link">&para;</a></h3>
-<h2 id="5-week">5 Week<a class="headerlink" href="#5-week" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kr">inline</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">globalVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>inline 变量必须在定义时初始化</p>
+<p>使用 inline 后，类的静态成员变量可以直接在类内定义并初始化</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-16-1">1</a></span>
+<span class="normal"><a href="#__codelineno-16-2">2</a></span>
+<span class="normal"><a href="#__codelineno-16-3">3</a></span>
+<span class="normal"><a href="#__codelineno-16-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="w">    </span><span class="kr">inline</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">staticVar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// 静态成员变量的 inline 定义</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">When to use inline variable</p>
+<ol>
+<li>在头文件中定义全局常量时</li>
+<li>当静态类成员需要在类定义中直接初始化时</li>
+<li>需要在多个文件中保持变量单一定义时</li>
+<li>需要简化配置值或设置项的管理时</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">When not to use inline variable</p>
+<ol>
+<li>避免对大型对象或占用大量内存的变量使用内联变量，可能导致不必要的内存消耗</li>
+<li>不要用于需要在每个翻译单元有独立实例的变量</li>
+<li>谨慎对待运行时可能被修改的变量，可能导致意外副作用</li>
+</ol>
+</div>
+<h2 id="5-weak">5 Weak<a class="headerlink" href="#5-weak" title="Permanent link">&para;</a></h2>
+<ol>
+<li>inline 通常用于建议编译器内联展开函数（优化调用开销），属于编译期行为</li>
+<li>weak 用于声明弱符号，允许链接时存在同名符号的其他定义（强符号会覆盖弱符号），属于链接期行为</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方面</th>
+<th>inline</th>
+<th>weak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">主要用途</td>
+<td>通过建议编译器内联展开来优化函数调用</td>
+<td>允许符号被覆盖，避免链接冲突</td>
+</tr>
+<tr>
+<td style="text-align: center;">适用对象</td>
+<td>主要用于函数（尤其是小型或高频调用的函数）</td>
+<td>可用于函数、变量或对象（常见于动态链接或插件系统）</td>
+</tr>
+<tr>
+<td style="text-align: center;">符号管理</td>
+<td>编译器可能在多个翻译单元中生成函数的多个副本，并在链接时去重</td>
+<td>允许多个弱符号共存，链接器优先选择非弱符号（强符号）</td>
+</tr>
+<tr>
+<td style="text-align: center;">链接器行为</td>
+<td>如果同一内联函数在多个翻译单元中定义，不会引发链接错误</td>
+<td>如果存在多个弱符号，不会引发链接错误；若有非弱符号，则优先选择它</td>
+</tr>
+<tr>
+<td style="text-align: center;">优化重点</td>
+<td>专注于减少函数调用开销以提升性能</td>
+<td>提供后备实现或可选符号（如插件或动态库）</td>
+</tr>
+<tr>
+<td style="text-align: center;">使用场景</td>
+<td>最适合小型简单函数、模板函数或类成员函数</td>
+<td>常用于默认实现、模块化插件或单例模式</td>
+</tr>
+</tbody>
+</table>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-17-1">1</a></span>
+<span class="normal"><a href="#__codelineno-17-2">2</a></span>
+<span class="normal"><a href="#__codelineno-17-3">3</a></span>
+<span class="normal"><a href="#__codelineno-17-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="c1">// 将函数定义为弱符号作为后备实现</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2"></a><span class="n">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">printMessage</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Default message&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>如果程序中没有其他 <code>printMessage()</code> 的实现，则使用这个弱符号版本</li>
+<li>如果在其他翻译单元（源文件）中提供了非弱符号（强符号）版本的 <code>printMessage()</code>，则优先使用强符号版本</li>
+<li>适用于模块化应用程序中的可选功能或后备实现</li>
+</ol>
 
 
 
@@ -7714,7 +7795,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月1日 13:15:29">2025年4月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月5日 11:46:06">2025年4月5日</span>
   </span>
 
     
