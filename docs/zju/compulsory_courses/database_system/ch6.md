@@ -528,3 +528,212 @@ return (R1, R2, ..., Ri);
     | dependency preserve | 不保证 | 保证 |
     | lossless join | 保证 | 保证 |
 
+---
+
+<figure markdown="span">
+  ![Img 10](../../../img/database/ch6/database_ch6_img10.png){ width="600" }
+</figure>
+
+---
+
+<figure markdown="span">
+  ![Img 11](../../../img/database/ch6/database_ch6_img11.png){ width="600" }
+</figure>
+
+---
+
+<figure markdown="span">
+  ![Img 12](../../../img/database/ch6/database_ch6_img12.png){ width="600" }
+</figure>
+
+---
+
+<figure markdown="span">
+  ![Img 13](../../../img/database/ch6/database_ch6_img13.png){ width="600" }
+</figure>
+
+### 6.2 Design Goals
+
+关系数据库的设计目标是：
+
+1. BCNF
+2. lossless-join
+3. dependency preservation
+
+如果无法实现上述目标，我们接受以下情况之一：
+
+1. 缺乏 dependency preservation
+2. 使用 3NF（存在一定的冗余）
+
+SQL 实现限制：
+
+1. SQL 语言本身只能直接定义超键（superkey）约束，无法直接声明一般的函数依赖
+2. 虽然可以通过断言（assertions）实现函数依赖检查，但运行时验证代价很高
+3. 特别指出：即使设计是依赖保持的，对于左端不是键的函数依赖，SQL 也无法高效验证
+
+### 6.3 Materialized View
+
+**物化视图**
+
+当分解后的关系模式无法保持原始的函数依赖（FDs）时，利用物化视图（Materialized View）来间接维护这些依赖
+
+1. 创建物化视图，通过连接分解后的表并投影 αβ 来重建原始依赖关系
+2. 在物化视图上声明 α 为候选键，利用数据库系统的键约束机制间接强制执行 α → β
+
+优势：
+
+1. 自动化维护：现代数据库（如Oracle、PostgreSQL）支持物化视图的自动更新，无需手动编码
+2. 高效检查：数据库优化候选键检查（如索引），比直接验证函数依赖更高效
+
+缺点：
+
+1. 存储与计算成本：物化视图占用额外存储空间，且每次基表更新时需同步更新视图（可能影响性能）
+2. 兼容性限制：部分数据库不支持对物化视图添加键约束（如 MySQL 的物化视图功能有限）
+
+## 7 Multivalued Dependencies
+
+BCNF 的局限性：即使数据库模式满足 BCNF，仍可能存在数据冗余问题，此时需要引入多值依赖的概念进一步规范化
+
+!!! example "案例说明"
+
+    关系模式 classes(course, teacher, book) 中：
+
+    1. 每门课程（course）对应多个教师（teacher），构成 1 对多关系
+    2. 每门课程也对应多本必备教材（book），构成另一个 1 对多关系
+    3. 关键点：教师集合和教材集合是相互独立的（即教师的选择不影响教材的配置）
+
+    该案例中存在隐式的多值依赖：
+
+    1. course ↠ teacher（课程决定教师集合）
+    2. course ↠ book（课程决定教材集合）
+
+    这种依赖关系导致数据冗余：若课程 C 有 m 位教师和 n 本教材，则需要在表中存储 m×n 条记录（每位教师与每本教材的组合）
+
+    <figure markdown="span">
+      ![Img 14](../../../img/database/ch6/database_ch6_img14.png){ width="600" }
+    </figure>
+
+    还可能存在 insertion anomalies：如果 Sara 是一个教 database 的新老师，那么有两个 tuples 需要被插入 (database, Sara, DB Concepts) 和 (database, Sara, DB system (Ullman))
+
+上述案例的解决方法是：
+
+<figure markdown="span">
+  ![Img 15](../../../img/database/ch6/database_ch6_img15.png){ width="600" }
+</figure>
+
+### 7.1 Definition
+
+设 R 是一个关系模式，$\alpha \sube R$ 且 $\beta \sube R$，若存在任意合法关系 $r(R)$ 中，对于所有满足 $t_1[\alpha] = t_2[\alpha]$ 的元组对 $t_1$ 和 $t_2$，都存在元组 $t_3$ 和 $t_4$ 使得以下条件成立，则称多值依赖：
+
+$$
+\alpha \rightarrow \rightarrow \beta
+$$
+
+在 R 上成立：
+
+$$
+t_1[\alpha] = t_2[\alpha] = t_3[\alpha] = t_4[\alpha]\\
+t_3[\beta] = t_1[\beta],\ t_4[\beta] = t_2[\beta]\\
+t_3[R - \alpha - \beta] = t_2[R - \alpha - \beta]\\
+t_4[R - \alpha - \beta] = t_1[R - \alpha - \beta]
+$$
+
+- 数据独立性：多值依赖 α →→ β 表示属性集 β 的值由 α 独立决定，且与剩余属性 z 无关
+- 元组交换性：若存在元组 $(a, b_1, z_2)$ 和 $(a, b_2, z_1)$，则必须存在 $(a, b_1, z_1)$ 和 $(a, b_2, z_2)$，体现 $b$ 和 $z$ 的自由组合
+
+---
+
+<figure markdown="span">
+  ![Img 16](../../../img/database/ch6/database_ch6_img16.png){ width="600" }
+</figure>
+
+### 7.2 Theory of MVDs
+
+1. 每个 functional dependency 都是一个 multivalued dependency
+2. D 的闭包 $D^+$ 包含所有能从给定依赖集 D 推导出的函数依赖和多值依赖（推导规则见 Appendix C）
+
+## 8 Fourth Normal Form
+
+4NF 是比 BCNF 更高级别的范式，专门处理多值依赖(MVD)问题
+
+对于 D⁺ 中的每一个多值依赖 α →→ β，至少满足以下条件之一：
+
+1. α → β 是平凡的（即 β ⊆ α 或 α ∪ β = R）
+2. α 是模式 R 的超键
+
+如果一个关系满足 4NF，那么它一定满足 BCNF
+
+### 8.1 Decomposition
+
+关系分解后，每个子关系模式 Rᵢ 必须独立满足 4NF
+
+dependency restriction $D_i$ 的构成：
+
+1. 函数依赖部分：只保留那些属性完全存在于 Rᵢ 中的函数依赖
+2. 多值依赖部分：通过投影操作转换原始多值依赖
+      1. 形式：α → (β ∩ Rᵢ)
+      2. 条件：决定因素 α 必须完全包含在 Rᵢ 中 (α ⊆ Rᵢ)
+      3. 操作：将原多值依赖的 β 集合与 Rᵢ 的属性集取交集
+
+!!! example "例子"
+
+    原始关系：
+    
+    1. R(A,B,C,D)
+    2. 存在多值依赖：A →→ BC
+    3. 函数依赖：A → D
+
+    分解方案：
+    
+    1. R₁(A,B,C)
+    2. R₂(A,D)
+
+    依赖限制：
+    
+    1. 对于 R₁(A,B,C)：
+          1. 函数依赖：无（因为A → D不包含在R₁中）
+          2. 多值依赖：A →→ BC（因为A ⊆ R₁且BC ∩ R₁ = BC）
+    2. 对于 R₂(A,D)：
+          1. 函数依赖：A → D
+          2. 多值依赖：无（因为BC ∩ R₂ = ∅）
+
+```c linenums="1" title="4NF decomposition 方法"
+result = {R};
+done = false;
+compute D+;
+let Di denote the restriction of D+ to Ri
+while (!done) {
+    if (there is a schema Ri in result that is not in 4NF) {
+        let α →→ β be a nontrivial multivalued dependency that holds on Ri such that α → Ri is not in Di, and α ∩ β = ∅;
+        result = (result - Ri) ∪ (α, β) ∪ (Ri - β);
+        // (α, β) 就是 R1
+        // (Ri - β) 就是 R2
+    } else {
+        done = true;
+    }
+}
+```
+
+<figure markdown="span">
+  ![Img 17](../../../img/database/ch6/database_ch6_img17.png){ width="600" }
+</figure>
+
+### 8.2 Further Normal Forms
+
+1. 5NF/PJNF：
+      1. 基于连接依赖（Join Dependency）的概念
+      2. 连接依赖是指一个关系可以无损地分解为多个子关系，并能通过自然连接完全恢复
+      3. 比 4NF 更严格，处理更复杂的依赖关系
+2. DKNF（域-键范式）：
+      1. 目前理论中最严格的范式
+      2. 要求所有约束都必须表示为域约束或键约束的形式
+      3. 是理想化的范式，实践中难以达到
+
+实际应用限制：
+
+1. 这些高阶范式缺乏实用的推理规则系统
+2. 在数据库设计中很少被明确使用
+3. 更多具有理论意义而非实践价值
+
+## Homework
+
