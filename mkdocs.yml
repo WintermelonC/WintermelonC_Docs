@@ -44,6 +44,7 @@ nav:
         - 4 从问题求解到机器学习: zju/computer/AI_basic/ch4.md
         - 5 回归与分类模型: zju/computer/AI_basic/ch5.md
         - 6 数据的聚类和降维技术: zju/computer/AI_basic/ch6.md
+        - 7 深度网络基础组件: zju/computer/AI_basic/ch7.md
     - 自然科学通识类:
       - zju/natural_science/index.md
       - 大学物理（乙）Ⅱ: 
@@ -95,6 +96,7 @@ nav:
         - 4 Inside Object: zju/basic_courses/OOP/ch4.md
         - 5 Inside Class: zju/basic_courses/OOP/ch5.md
         - 6 Composition: zju/basic_courses/OOP/ch6.md
+        - 7 Inheritance: zju/basic_courses/OOP/ch7.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:

@@ -20,10 +20,13 @@ wk老师
 
 ## 个人笔记及 PTA 部分习题详解
 
+> Homework 的部分答案由 AI 生成
+
 [0 Introduction](./ch0.md)<br/>
 [1 Using Objects](./ch1.md)<br/>
 [2 Grouping Objects](./ch2.md)<br/>
 [3 Defining Class](./ch3.md)<br/>
 [4 Inside Object](./ch4.md)<br/>
 [5 Inside Class](./ch5.md)<br/>
-[6 Composition](./ch6.md)
+[6 Composition](./ch6.md)<br/>
+[7 Inheritance](./ch7.md)
