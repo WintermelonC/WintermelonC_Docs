@@ -101,6 +101,8 @@ const int MAX_BUFFER_SIZE = 1024;
 
 #### 3.1.4 私有成员变量
 
+前缀或后缀约定
+
 ```cpp linenums="1"
 class MyClass {
 private:
@@ -205,7 +207,121 @@ const std::string &str;
 #pragma once
 ```
 
-#### 3.2.6 其他
+#### 3.2.6 注释
+
+##### 单行注释
+
+```cpp linenums="1"
+// 这是一个单行注释
+int x = 5;  // 也可以放在代码行尾
+```
+
+##### 多行注释
+
+C 风格
+
+```cpp linenums="1"
+/* 
+ * 这是一个多行注释
+ * 可以跨越多行
+ */
+```
+
+##### 函数注释
+
+函数注释有多种风格
+
+=== "Doxygen（推荐）"
+
+    ```cpp linenums="1"
+    /**
+     * @brief 计算两个数的和
+     * 
+     * @param a 第一个加数
+     * @param b 第二个加数
+     * @return int 两个参数的和
+     * 
+     * @note 这是一个简单的加法函数示例
+     * @warning 不处理整数溢出
+     */
+    int add(int a, int b) {
+        return a + b;
+    }
+    ```
+
+=== "Qt"
+
+    ```cpp linenums="1"
+    /*!
+     * \brief 计算两个数的和
+     * \param a 第一个加数
+     * \param b 第二个加数
+     * \return 两个参数的和
+     */
+    int add(int a, int b) {
+        return a + b;
+    }
+    ```
+
+=== "简洁风格（适合简单函数）"
+
+    ```cpp linenums="1"
+    // 计算两个数的和，参数 a 和 b 为加数，返回它们的和
+    int add(int a, int b) {
+        return a + b;
+    }
+    ```
+
+##### 类注释
+
+```cpp linenums="1"
+/**
+ * @class MyClass
+ * @brief 示例类说明
+ * 
+ * 这里是类的详细描述，可以包含多行。
+ * 描述类的用途、设计思路等。
+ */
+class MyClass {
+public:
+    /**
+     * @brief 构造函数
+     * @param value 初始值
+     */
+    MyClass(int value);
+    
+    // ... 其他成员函数
+};
+```
+
+##### 文件头注释
+
+```cpp linenums="1"
+/**
+ * @file filename.cpp
+ * @author 作者名
+ * @date 创建日期
+ * @brief 文件简要说明
+ * 
+ * 这里是文件的详细描述，可以包含多行。
+ * 描述文件的主要内容、功能等。
+ */
+```
+
+##### 其他
+
+1. 公共 API 必须注释：所有公共函数、类、方法都应该有完整注释
+2. 避免无意义注释：不要写“设置 x 的值”这样的废话
+3. 注释要同步更新：代码修改时记得更新相关注释
+4. 复杂逻辑必须注释：解释算法、特殊处理等
+5. TODO/FIXME 注释：
+
+```cpp linenums="1"
+// TODO: 需要优化这个算法
+// FIXME: 这里存在潜在的内存泄漏风险
+```
+
+#### 3.2.7 其他
 
 1. 避免使用全局变量
 2. 类成员函数顺序：
