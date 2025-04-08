@@ -182,6 +182,117 @@ def func(a, b, c):  # 正确
 def func(a,b,c):    # 错误
 ```
 
+#### 空行
+
+##### 文件顶部
+
+- 文件开头不需要空行（除非有 Shebang）
+- Shebang 后应有 1 个空行
+
+```python linenums="1"
+#!/usr/bin/env python3
+# 这里空一行
+
+import os
+import sys
+```
+
+##### `import` 语句
+
+1. 标准库 `import` 和第三方库 `import` 之间：1 个空行、
+2. 第三方库 `import` 和本地应用/库 `import` 之间：1 个空行
+3. `import` 块和后续代码之间：2 个空行
+
+```python linenums="1"
+import os
+import sys
+# 这里空一行
+
+import django
+import flask
+# 这里空一行
+
+from myapp import utils
+# 这里空两行
+
+
+def main():
+    pass
+```
+
+##### 函数定义
+
+1. 函数定义前后：2 个空行
+2. 函数内部逻辑块之间：1 个空行
+
+```python linenums="1"
+def function_one():
+    pass
+# 这里空两行
+
+
+def function_two():
+    var = 1
+    # 这里空一行
+
+    if var:
+        print(var)
+```
+
+##### 类定义
+
+1. 类定义前后：2 个空行
+2. 类方法之间：1 个空行
+
+```python linenums="1"
+class MyClass:
+    def method_one(self):
+        pass
+    # 这里空一行
+    
+    def method_two(self):
+        pass
+# 这里空两行
+
+
+def another_function():
+    pass
+```
+
+##### 方法内部
+
+1. 方法内部逻辑块之间：1 个空行
+2. 不要滥用空行，仅在明显分隔逻辑块时使用
+
+```python linenums="1"
+def process_data(data):
+    # 数据清洗
+    cleaned = clean(data)
+    # 这里空一行
+    
+    # 数据分析
+    result = analyze(cleaned)
+    
+    return result
+```
+
+##### 特殊情况
+
+1. 类中的 `@classmethod`、`@staticmethod` 和 `@property` 装饰器之间：1 个空行
+2. 同一组的多个相关单行函数/方法之间可以减少到 1 个空行
+
+```python linenums="1"
+class Calculator:
+    @staticmethod
+    def add(a, b):
+        return a + b
+    # 这里空一行
+    
+    @staticmethod
+    def subtract(a, b):
+        return a - b
+```
+
 #### 其他规则
 
 1. 避免冗余代码：如无意义的括号或重复逻辑
