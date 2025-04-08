@@ -1088,6 +1088,8 @@
       
         
       
+        
+      
     
     
     
@@ -1261,6 +1263,29 @@
   
   <span class="md-ellipsis">
     6 数据的聚类和降维技术
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer/AI_basic/ch7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 深度网络基础组件
     
   </span>
   
@@ -2546,6 +2571,8 @@
       
         
       
+        
+      
     
     
     
@@ -3213,6 +3240,29 @@
   
   <span class="md-ellipsis">
     6 Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Inheritance
     
   </span>
   
@@ -7845,7 +7895,6 @@
 <p class="admonition-title">说明</p>
 <ol>
 <li>本文档仅涉及部分内容，仅可用于复习重点知识</li>
-<li>Homework 的部分答案由 AI 生成</li>
 </ol>
 </div>
 <h2 id="1-访问权限">1 访问权限<a class="headerlink" href="#1-访问权限" title="Permanent link">&para;</a></h2>
@@ -9579,11 +9628,10 @@
 </ol>
 </div>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<!-- ???+ question "PTA 4.4"
-
-    假设 A 是一个类的名字，下面程序片段，类 A 会调用析构函数几次？
-
-    <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
+<details class="question" open="open">
+<summary>PTA 4.4</summary>
+<p>假设 A 是一个类的名字，下面程序片段，类 A 会调用析构函数几次？</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
 <span class="normal"><a href="#__codelineno-49-2">2</a></span>
 <span class="normal"><a href="#__codelineno-49-3">3</a></span>
 <span class="normal"><a href="#__codelineno-49-4">4</a></span>
@@ -9595,27 +9643,33 @@
 </span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5"></a><span class="w">    </span><span class="k">delete</span><span class="w"> </span><span class="p">[]</span><span class="w"> </span><span class="n">p</span><span class="p">;</span>
 </span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
-
-    A.1<br/>
-    B.2<br/>
-    C.3<br/>
-    D.4
-
-    ??? success "答案"
-
-        C
-
-        ---
-
-        1. `A *p = new A[2];`
-              1. 动态分配了一个包含 2 个 A 对象的数组，会调用 2 次构造函数（默认构造函数 A()）
-              2. 析构时需要 delete[] p 来释放，这会调用 2 次析构函数
-        2. `A *p2 = new A;`
-              1. 动态分配了 1 个 A 对象，调用 1 次构造函数（默认构造函数 A()）
-              2. 但程序中没有 delete p2;，所以 不会调用析构函数（内存泄漏）
-        3. `A a;`
-              1. 在栈上创建 1 个 A 对象，调用 1 次构造函数（默认构造函数 A()）
-              2. 对象 a 在 main 函数结束时自动析构，调用 1 次析构函数 -->
+<p>A.1<br/>
+B.2<br/>
+C.3<br/>
+D.4</p>
+<details class="success">
+<summary>答案</summary>
+<p>C</p>
+<hr />
+<ol>
+<li><code>A *p = new A[2];</code><ol>
+<li>动态分配了一个包含 2 个 A 对象的数组，会调用 2 次构造函数（默认构造函数 A()）</li>
+<li>析构时需要 delete[] p 来释放，这会调用 2 次析构函数</li>
+</ol>
+</li>
+<li><code>A *p2 = new A;</code><ol>
+<li>动态分配了 1 个 A 对象，调用 1 次构造函数（默认构造函数 A()）</li>
+<li>但程序中没有 delete p2;，所以 不会调用析构函数（内存泄漏）</li>
+</ol>
+</li>
+<li><code>A a;</code><ol>
+<li>在栈上创建 1 个 A 对象，调用 1 次构造函数（默认构造函数 A()）</li>
+<li>对象 a 在 main 函数结束时自动析构，调用 1 次析构函数</li>
+</ol>
+</li>
+</ol>
+</details>
+</details>
 
 
 
@@ -9638,7 +9692,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月6日 09:50:20">2025年4月6日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月8日 08:40:26">2025年4月8日</span>
   </span>
 
     
