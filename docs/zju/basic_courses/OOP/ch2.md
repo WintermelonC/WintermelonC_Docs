@@ -7,7 +7,6 @@
 !!! info "说明"
 
     1. 本文档仅涉及部分内容，仅可用于复习重点知识
-    2. Homework 的部分答案由 AI 生成
 
 ## 1 STL
 
@@ -417,6 +416,8 @@ int main()
 | `iterator begin()` | 返回指向 `map` 起始位置的迭代器 | |
 | `iterator end()` | 返回指向 `map` 最后一个元素之后的位置的迭代器 | |
 | `void swap(map& other)` | 交换两个 `map` 的内容 | |
+
+> `size_type`：无符号整数类型，主要用于表示容器的大小（例如元素数量）或者作为索引来访问容器中的元素
 
 ## 5 iterator
 

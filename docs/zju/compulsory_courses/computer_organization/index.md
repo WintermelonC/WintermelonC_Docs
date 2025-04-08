@@ -59,7 +59,7 @@ yk老师
 [Lab 4: 单周期 CPU](./lab/lab4.md)<br/>
 [Lab 5: 流水线 CPU](./lab/lab5.md)
 
-## 其他笔记
+## 其他
 
 [咸鱼喧的代码空间 - 计算机组成](https://xuan-insr.github.io/computer_organization/){:target="_blank"}
 

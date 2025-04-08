@@ -7,9 +7,8 @@
 !!! info "说明"
 
     1. 本文档仅涉及部分内容，仅可用于复习重点知识
-    2. Homework 的部分答案由 AI 生成
 
-## 6.1 Definition
+## 1 Definition
 
 Composition（组合） 是一种面向对象编程的设计原则，用于通过将一个类的对象作为另一个类的成员变量来实现类之间的关系。它是一种 "has-a"（拥有）关系，与继承（"is-a" 关系）相对。通过这种方式，一个类可以复用另一个类的功能，而不需要继承。它强调对象之间的协作关系
 
@@ -82,7 +81,7 @@ embedded objects（嵌入式对象）：指作为类成员的其他对象（非�
 
 一般来说，我们都将嵌入式对象定义为 `private`
 
-## 6.2 Clock Display
+## 2 Clock Display
 
 === "number_display.h"
 
@@ -158,8 +157,8 @@ embedded objects（嵌入式对象）：指作为类成员的其他对象（非�
     #ifndef CLOCK_H
     #define CLOCK_H
     
-    #include "numberdisplay.h"
     #include <string>
+    #include "numberdisplay.h"
     
     using namespace std;
     
@@ -221,12 +220,35 @@ private:
     NumberDisplay second = 60;
 ```
 
-`NumberDisplay hour = 24;` 是一种拷贝初始化的方式，而 `NumberDisplay hour(24);` 是一种直接初始化的方式
+`NumberDisplay hour = 24` 是一种拷贝初始化的方式，而 `NumberDisplay hour(24)` 是一种直接初始化的方式
 
 在类定义中，成员变量的初始化只能使用以下两种方式：
 
-1. 非静态数据成员初始化器（NSDMI）：`NumberDisplay hour = 24;`
-2. 构造函数初始化列表：`Clock() : hour(24) {}`
+1. 非静态数据成员初始化器（NSDMI）
+      1. `NumberDisplay hour = 24`
+      2. `NumberDisplay hour{24}`：直接列表初始化，也叫大括号初始化。如果嵌入式对象有多个需要初始化的值，可使用此方法，`Embedded object{a1, a2, a3}`
+2. 构造函数初始化列表：`Clock() : hour(24) {}`：如果嵌入式对象有多个需要初始化的值，可使用此方法
 
-## 6.3 Namespace
+使用推荐：初始化列表 > 直接列表初始化 > 拷贝初始化
+
+!!! question "嵌入式对象的初始化可以在所在类的构造函数体内进行吗"
+
+    可以是可以，但是实际上：
+
+    1. 先调用嵌入式对象的默认构造函数（如果有的话）
+    2. 然后执行函数体内的赋值操作
+
+    ==这种方法并不推荐==，因为它会导致不必要的效率损失（首先默认构造，然后是赋值），而且对于那些没有默认构造函数的类型来说，这样的做法根本不可行
+
+如果在类中没有为嵌入式对象提供参数以初始化
+
+1. 如果该嵌入式对象的类有默认构造函数，编译器会自动调用这个默认构造函数来初始化该成员对象
+2. 如果嵌入式对象的类没有默认构造函数，且初始化列表中未显式调用其其他构造函数，则会导致 **编译错误**
+
+初始化顺序：
+
+1. 嵌入式对象的构造函数先于它所在类的构造函数
+2. 不同嵌入式对象的初始化顺序仅与成员变量在类中的声明顺序有关，与初始化列表中的顺序无关
+
+## 3 Namespace
 
