@@ -7653,10 +7653,12 @@
 </blockquote>
 <p>3 个符号异或为 0 <span class="arithmatex">\((\verb!1 ^ 0 ^ 1 = 0!)\)</span>，数值部分相加</p>
 <div class="arithmatex">\[
-\ \ \ 00\_011\_110\_101\\
-+11\_100\_001\_010\\
-————————\\
-\ \ \ 11\_111\_111\_111
+\begin{aligned}
+    \text{ } &amp; 00\_011\_110\_101 \\
+    + &amp; 11\_100\_001\_010 \\
+    — &amp; ———————— \\
+    \text{ } &amp; 11\_111\_111\_111
+\end{aligned}
 \]</div>
 <p>没有产生进位，符号与第一个运算数的符号相同，即 <span class="arithmatex">\((111\_111\_111\_111)_2 = (7777)_8\)</span></p>
 <blockquote>
@@ -7680,10 +7682,12 @@ neither?</p>
 </blockquote>
 <p>3 个符号异或为 1 <span class="arithmatex">\((\verb!1 ^ 0 ^ 0 = 1!)\)</span>，数值部分相减</p>
 <div class="arithmatex">\[
-\ \ \ \dot{0} \dot{1} \dot{1}\_ \dot{1} \dot{0}01\\
--111\_1010\\
-————————\\
-\ \ \ 011\_1111
+\begin{aligned}
+    \text{ } &amp; \dot{0} \dot{1} \dot{1}\_ \dot{1} \dot{0}01\\
+    - &amp; 111\_1010\\
+    — &amp; ————— \\
+    \text{ } &amp; 011\_1111
+\end{aligned}
 \]</div>
 <p>产生了借位，结果取补码，符号与第一个运算数的符号相反，即<span class="arithmatex">\((0100\_0001)_2 = (65)_{10}\)</span>，Neither</p>
 <blockquote>
@@ -7706,10 +7710,12 @@ neither?</p>
 </blockquote>
 <p>加法正常算</p>
 <div class="arithmatex">\[
-\ \ \ 1001\_0111\\
-+1101\_0110\\
-————————\\
-\ \ \ 0110\_1101
+\begin{aligned}
+    \text{ } &amp; 1001\_0111\\
+    + &amp; 1101\_0110\\
+    — &amp; ————— \\
+    \text{ } &amp; 0110\_1101
+\end{aligned}
 \]</div>
 <p>抛弃产生的进位，结果为 <span class="arithmatex">\(0110\_1101\)</span>，符号与原运算数符号不同，产生了 overflow。因为 2's complement 8 bit 最小的负数是 <span class="arithmatex">\((1000\_0000)_2 = (-128)_{10}\)</span>，所以答案为 <span class="arithmatex">\(-128\)</span></p>
 <blockquote>
@@ -7733,10 +7739,12 @@ result should be written in decimal. Show your work.</p>
 </blockquote>
 <p>减法，第 1 个运算数加上第 2 个运算数的补码 <span class="arithmatex">\(0010\_1010\)</span></p>
 <div class="arithmatex">\[
-\ \ \ 1001\_0111\\
-+0010\_1010\\
-————————\\
-\ \ \ 1100\_0001
+\begin{aligned}
+    \text{ } &amp; 1001\_0111\\
+    + &amp; 0010\_1010\\
+    — &amp; ————— \\
+    \text{ } &amp; 1100\_0001
+\end{aligned}
 \]</div>
 <p>结果为 <span class="arithmatex">\((1100\_0001)_2 = (-63)_{10}\)</span></p>
 <blockquote>
@@ -8025,8 +8033,10 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <details class="success">
 <summary>答案</summary>
 <div class="arithmatex">\[
-63.25 = 1111\ 11.01\\
-\kern5.2em = 1.1111\ 1010 \times 2 ^{5}\\
+\begin{aligned}
+    63.25 &amp; = 1111\ 11.01\\
+        &amp; = 1.1111\ 1010 \times 2 ^{5}\\
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(S = 0\)</span></p>
 <p><span class="arithmatex">\(E = e + 127 = 5 + 127 = 132 = 1000\ 0100\)</span></p>
@@ -8040,8 +8050,10 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <details class="success">
 <summary>答案</summary>
 <div class="arithmatex">\[
-63.25 = 1111\ 11.01\\
-\kern5.2em = 1.1111\ 1010 \times 2 ^{5}\\
+\begin{aligned}
+    63.25 &amp; = 1111\ 11.01\\
+        &amp; = 1.1111\ 1010 \times 2 ^{5}\\
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(S = 0\)</span></p>
 <p><span class="arithmatex">\(E = e + 1023 = 5 + 1023 = 1028 = 100\ 0000\ 0100\)</span></p>
@@ -8053,8 +8065,10 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <summary>0.3 转浮点数</summary>
 <p><strong>single precision:</strong></p>
 <div class="arithmatex">\[
-0.3 = 0.01\ 0011\ 0011\ 0011\ ··· \times 2 ^ 0\\
-\kern0.9em = 1.0011\ 0011\ 0011\ ··· \times 2^{-2}
+\begin{aligned}
+    0.3 &amp; = 0.01\ 0011\ 0011\ 0011\ ··· \times 2 ^ 0\\
+         &amp; = 1.0011\ 0011\ 0011\ ··· \times 2^{-2}
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(S = 0\)</span></p>
 <p><span class="arithmatex">\(E = e + 127 = -2 + 127 = 125 = 0111\ 1101\)</span></p>
@@ -8109,9 +8123,11 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <summary>答案</summary>
 <p>小数部分用 2's complement 表示，说明符号位是小数部分的第一位</p>
 <div class="arithmatex">\[
--1.5625 \times 10^{-1} = -0.15625 \times 10^0\\
-\kern6.5em = -0.00101 \times 2^0\\
-\kern6.1em = -0.101 \times 2^{-2}\\
+\begin{aligned}
+    -1.5625 \times 10^{-1} &amp; = -0.15625 \times 10^0\\
+                        &amp; = -0.00101 \times 2^0\\
+                        &amp; = -0.101 \times 2^{-2}\\
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(E = -2 = 1111\ 1111\ 1110\)</span></p>
 <p><span class="arithmatex">\(F = -0.101 = 0.1011\ 0000 ···\)</span></p>
@@ -8129,9 +8145,11 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <details class="success">
 <summary>答案</summary>
 <div class="arithmatex">\[
--1.5625 \times 10^{-1} = -0.15625 \times 10^0\\
-\kern6.5em = -0.00101 \times 2^0\\
-\kern5.6em = -1.01 \times 2^{-3}\\
+\begin{aligned}
+    -1.5625 \times 10^{-1} &amp; = -0.15625 \times 10^0\\
+                        &amp; = -0.00101 \times 2^0\\
+                        &amp; = -1.01 \times 2^{-3}\\
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(E = e + bias = -3 + 15 = 12 = 01100\)</span></p>
 <p><span class="arithmatex">\(F = 0100\ 0000\ ···\)</span></p>
@@ -8151,31 +8169,41 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <details class="success">
 <summary>答案</summary>
 <div class="arithmatex">\[
-3.984375 \times 10^{-1} = 0.3984375\\
-\kern9.5em = 0.0110\ 011 \times 2^0\\
-\kern11.5em = 1.10011\ 00000 \times 2^{-2}
+\begin{aligned}
+    3.984375 \times 10^{-1} &amp; = 0.3984375\\
+                            &amp; = 0.0110\ 011 \times 2^0\\
+                            &amp; = 1.10011\ 00000 \times 2^{-2}
+\end{aligned}
 \]</div>
 <div class="arithmatex">\[
-3.4375 \times 10^{-1} = 0.34375\\
-\kern8.3em = 0.01011 \times 2^0\\
-\kern11.6em = 1.01100\ 00000 \times 2^{-2}
+\begin{aligned}
+    3.4375 \times 10^{-1} &amp; = 0.34375\\
+                        &amp; = 0.01011 \times 2^0\\
+                        &amp; = 1.01100\ 00000 \times 2^{-2}
+\end{aligned}
 \]</div>
 <div class="arithmatex">\[
-1.771 \times 10^3 = 1771\\
-\kern9.2em = 110\ 1110\ 1011\\
-\kern11.7em = 1.10111\ 01011 \times 2^{10}
+\begin{aligned}
+    1.771 \times 10^3 &amp; = 1771\\
+                        &amp; = 110\ 1110\ 1011\\
+                        &amp; = 1.10111\ 01011 \times 2^{10}
+\end{aligned}
 \]</div>
 <p>设这 3 个数从左到右依次为A，B，C</p>
 <p>(A + B):</p>
 <div class="arithmatex">\[
-\ \ \ 1.10011\ 00000\\
-+ 1.01100\ 00000\\
-————————\\
-\ 10.11111\ 00000
+\begin{aligned}
+    \text{ } &amp; 1.10011\ 00000\\
+    + &amp; 1.01100\ 00000\\
+    — &amp; ——————— \\
+    1 &amp; 0.11111\ 00000
+\end{aligned}
 \]</div>
 <div class="arithmatex">\[
-(A + B) = 10.11111\ 00000 \times 2 ^{-2}\\
-\kern3.4em = 1.01111\ 10000 \times 2 ^{-1}
+\begin{aligned}
+    (A + B) &amp; = 10.11111\ 00000 \times 2 ^{-2}\\
+            &amp; = 1.01111\ 10000 \times 2 ^{-1}
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(A + B\)</span> 小数点左移：<span class="arithmatex">\(A + B = 0.00000\ 00000\ 101 \times 2 ^{10}\)</span></p>
 <p><span class="arithmatex">\(guard = 1, round = 0, sticky\ bit = 1\)</span></p>
@@ -8184,10 +8212,12 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 </blockquote>
 <p>(A + B) + C:</p>
 <div class="arithmatex">\[
-\ \ \ 0.00000\ 00000\\
-+ 1.10111\ 01011\\
-————————————\\
-\ \ \ 1.10111\ 01011
+\begin{aligned}
+     &amp; 0.00000\ 00000\\
+    + &amp; 1.10111\ 01011\\
+    — &amp; ——————— \\
+     &amp; 1.10111\ 01011
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(101 &gt; 100\)</span>，进位。结果为 <span class="arithmatex">\(1.10111\ 01100 \times 2 ^{10} = 110\ 1110\ 1100 = 1772\)</span></p>
 </details>
@@ -8198,19 +8228,25 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 <details class="success">
 <summary>答案</summary>
 <div class="arithmatex">\[
-3.984375 \times 10^{-1} = 0.3984375\\
-\kern9.5em = 0.0110\ 011 \times 2^0\\
-\kern11.5em = 1.10011\ 00000 \times 2^{-2}
+\begin{aligned}
+    3.984375 \times 10^{-1} &amp; = 0.3984375\\
+                            &amp; = 0.0110\ 011 \times 2^0\\
+                            &amp; = 1.10011\ 00000 \times 2^{-2}
+\end{aligned}
 \]</div>
 <div class="arithmatex">\[
-3.4375 \times 10^{-1} = 0.34375\\
-\kern8.3em = 0.01011 \times 2^0\\
-\kern11.6em = 1.01100\ 00000 \times 2^{-2}
+\begin{aligned}
+    3.4375 \times 10^{-1} &amp; = 0.34375\\
+                        &amp; = 0.01011 \times 2^0\\
+                        &amp; = 1.01100\ 00000 \times 2^{-2}
+\end{aligned}
 \]</div>
 <div class="arithmatex">\[
-1.771 \times 10^3 = 1771\\
-\kern9.2em = 110\ 1110\ 1011\\
-\kern11.7em = 1.10111\ 01011 \times 2^{10}
+\begin{aligned}
+    1.771 \times 10^3 &amp; = 1771\\
+                        &amp; = 110\ 1110\ 1011\\
+                        &amp; = 1.10111\ 01011 \times 2^{10}
+\end{aligned}
 \]</div>
 <p>设这 3 个数从左到右依次为A，B，C</p>
 <p>B 小数点左移。<span class="arithmatex">\(B = 0.00000\ 00000\ 011\)</span></p>
@@ -8220,18 +8256,22 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
 </blockquote>
 <p>(B + C):</p>
 <div class="arithmatex">\[
-\ \ \ 0.00000\ 00000\\
-+ 1.10111\ 01011\\
-————————————\\
-\ \ \ 1.10111\ 01011
+\begin{aligned}
+     &amp; 0.00000\ 00000\\
+    + &amp; 1.10111\ 01011\\
+    — &amp; ———————\\
+     &amp; 1.10111\ 01011
+\end{aligned}
 \]</div>
 <p>A 小数点左移。<span class="arithmatex">\(A = 0.00000\ 00000\ 011\)</span></p>
 <p>A + (B + C):</p>
 <div class="arithmatex">\[
-\ \ \ 0.00000\ 00000\\
-+ 1.10111\ 01011\\
-————————————\\
-\ \ \ 1.10111\ 01011
+\begin{aligned}
+     &amp; 0.00000\ 00000\\
+    + &amp; 1.10111\ 01011\\
+    — &amp; ———————\\
+     &amp; 1.10111\ 01011
+\end{aligned}
 \]</div>
 <p><span class="arithmatex">\(011 &lt; 100\)</span>，不进位</p>
 <p>结果为 <span class="arithmatex">\(1.10111\ 01011 \times 2 ^{10} = 110\ 1110\ 1011 = 1771\)</span></p>
@@ -8262,7 +8302,7 @@ floating\text{-} point\ number = (-1)^S \times (1 + F) \times 2^{E - bias}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月4日 14:06:02">2025年3月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月8日 15:06:21">2025年4月8日</span>
   </span>
 
     
