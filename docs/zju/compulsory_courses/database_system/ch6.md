@@ -381,7 +381,7 @@ F 的正则覆盖，记作 $F_c$，是一个与 F 等价的“最小” FD 集�
 
 ==只需要检查给定函数依赖集 F 中的依赖是否违反 BCNF，而不需要检查 F⁺ 中的所有依赖==
 
-```c linenums title="BCNF decomposition 方法"
+```c linenums="1" title="BCNF decomposition 方法"
 result = {R};
 done = false;
 compute F+;
@@ -447,7 +447,7 @@ while (!done) {
 1. 为每个导致违反 3NF 的函数依赖创建新关系
 2. 保留原始候选键
 
-```c linenums title="3NF decomposition 方法"
+```c linenums="1" title="3NF decomposition 方法"
 let Fc be a canonical cover of F;
 i = 0;
 for (each functional dependency α → β in Fc) {
