@@ -1,12 +1,12 @@
 # 6 Composition
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
-    1. 本文档仅涉及部分内容，仅可用于复习重点知识
+    本文档仅涉及部分内容，仅可用于复习重点知识
 
 ## 1 Definition
 
@@ -252,3 +252,162 @@ private:
 
 ## 3 Namespace
 
+**命名空间**
+
+`namespace` 是 C++ 提供的一种机制，用于组织代码并避免命名冲突。它允许将标识符（如变量、函数、类等）分组到一个逻辑命名空间中，从而避免全局命名空间中的冲突
+
+### 3.1 定义命名空间
+
+```cpp linenums="1"
+namespace MyNamespace {
+    int value = 42;
+
+    void display() {
+        std::cout << "Value: " << value << std::endl;
+    }
+}
+
+namespace supercalifragilistic {
+    void f();
+}
+// 为命名空间创建一个别名 alias
+namespace short = supercalifragilistic;
+short::f();
+```
+
+在 C++17 中，可以使用嵌套命名空间的简化语法：
+
+```cpp linenums="1"
+namespace A::B::C {
+    void func() {
+        std::cout << "Inside A::B::C" << std::endl;
+    }
+}
+A::B::C::func();
+```
+
+### 3.2 使用命名空间
+
+1.通过作用域解析运算符 `::` 访问命名空间中的成员
+
+```cpp linenums="1"
+#include <iostream>
+
+int main() {
+    std::cout << MyNamespace::value << std::endl;
+    MyNamespace::display();
+    return 0;
+}
+```
+
+2.使用 `using` 声明
+
+```cpp linenums="1"
+using MyNamespace::value;
+std::cout << value << std::endl; // 不需要加命名空间前缀
+```
+
+3.使用 `using namespace` 指令
+
+```cpp linenums="1"
+using namespace MyNamespace;
+std::cout << value << std::endl;
+display();
+```
+
+### 3.3 特性
+
+1.可以嵌套
+
+```cpp linenums="1"
+namespace Outer {
+    namespace Inner {
+        void func() {
+            std::cout << "Inside Inner namespace" << std::endl;
+        }
+    }
+}
+Outer::Inner::func();
+```
+
+2.可以分段定义：命名空间可以在多个地方定义（包括不同的文件），所有定义会合并到同一个命名空间中
+
+```cpp linenums="1"
+namespace MyNamespace {
+    void func1() {
+        std::cout << "Function 1" << std::endl;
+    }
+}
+
+namespace MyNamespace {
+    void func2() {
+        std::cout << "Function 2" << std::endl;
+    }
+}
+
+MyNamespace::func1();
+MyNamespace::func2();
+```
+
+3.匿名命名空间：匿名命名空间中的成员只能在定义它的文件中访问，类似于 `static` 的作用
+
+```cpp linenums="1"
+namespace {
+    int secret = 42;
+
+    void displaySecret() {
+        std::cout << "Secret: " << secret << std::endl;
+    }
+}
+```
+
+4.标准命名空间 C++ 标准库中的所有内容都定义在 `std` 命名空间中，例如 `std::cout`、`std::vector` 等
+
+### 3.4 应用
+
+1.避免命名冲突：当多个库或模块中定义了相同名称的标识符时，可以通过命名空间加以区分
+
+```cpp linenums="1"
+namespace LibraryA {
+    void print() {
+        std::cout << "Library A" << std::endl;
+    }
+}
+
+namespace LibraryB {
+    void print() {
+        std::cout << "Library B" << std::endl;
+    }
+}
+
+LibraryA::print();
+LibraryB::print();
+```
+
+2.组织代码：命名空间可以用来将相关的类、函数和变量分组，便于代码的组织和管理
+
+3.与类结合：命名空间可以与类结合使用，进一步细化代码的逻辑结构
+
+```cpp linenums="1"
+namespace Geometry {
+    class Point {
+    public:
+        int x, y;
+        Point(int x, int y) : x(x), y(y) {}
+    };
+}
+Geometry::Point p(1, 2);
+```
+
+### 3.5 注意事项
+
+1. 避免滥用 `using namespace`：
+      1. 在全局作用域中使用 `using namespace` 可能导致命名冲突，尤其是 `using namespace std;`
+      2. 推荐在局部作用域中使用 `using` 声明
+2. 匿名命名空间的作用域：匿名命名空间的成员只能在定义它的文件中访问，适合用于实现文件私有的功能
+3. 命名空间的嵌套：嵌套命名空间可能导致代码可读性下降，建议合理使用
+
+!!! tip "`namespace` 与宏的对比"
+
+    - 宏（`#define`）在 C 中常用于避免命名冲突，但宏没有作用域，可能导致全局污染
+    - 命名空间是 C++ 提供的更安全、更灵活的替代方案
