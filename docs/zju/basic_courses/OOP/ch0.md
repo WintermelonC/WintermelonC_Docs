@@ -131,6 +131,46 @@ std::vector<int> students;
 std::list<Employee> employeeList;
 ```
 
+##### 迭代器
+
+1.简单清晰的命名
+
+- `it`：最常见的迭代器变量名，简洁且易于理解
+- `iter`：`iterator` 的缩写，比 `it` 更明确
+
+2.结合容器名称
+
+`容器名 + It`：明确表示迭代器属于哪个容器
+
+```cpp linenums="1"
+auto vecIt = vec.begin();    // vector 的迭代器
+auto mapIt = myMap.begin();  // map 的迭代器
+```
+
+3.范围循环中的迭代器
+
+在 C++11 之后的基于范围的 `for` 循环中，直接使用元素类型（无需显式迭代器）：
+
+```cpp linenums="1"
+for (const auto& element : vec) {
+    std::cout << element << " ";
+}
+```
+
+---
+
+1. 反向迭代器
+      - `rit` 或 `reverseIt`：表示反向迭代器
+2. 常量迭代器
+      - `cit` 或 `constIt`：表示不可修改元素的迭代器
+3. 多容器协作时的命名
+      - 如果同时操作多个容器的迭代器，可以通过后缀区分
+
+```cpp linenums="1"
+auto srcIt = source.begin();
+auto destIt = destination.begin();
+```
+
 ### 3.2 格式规则
 
 #### 3.2.1 缩进
