@@ -260,3 +260,134 @@ class B : virtual public A {};
 class C : virtual public A {};
 class D : public B, public C {}; // D 中只有一份 A 的拷贝
 ```
+
+## Homework
+
+<!-- ???+ question "PTA 7.4"
+
+    For the code segment below, in the main(), 
+
+    1. the output at //1 is
+    2. the output at //2 is
+    3. the output at //3 is
+    4. the output at //4 is
+
+    ```cpp linenums="1"
+    class A{
+        int i;
+    public:
+        A(int ii=0):i(ii) { cout << 1; }
+        A(const A& a) {
+            i = a.i;
+            cout << 2;     
+        }
+        void print() const { cout << 3 << i; }
+    };
+    
+    class B : public A {
+        int i;
+        A a;
+    public:
+        B(int ii = 0) : i(ii) { cout << 4; }
+        B(const B& b) {
+            i = b.i;
+            cout << 5;
+        }
+        void print() const {
+            A::print();
+            a.print();
+            cout << 6 << i;    
+        }
+    };
+    
+    int main()
+    {
+        B b(2);        //1
+        b.print();    //2
+        B c(b);        //3
+        c.print();    //4
+    }
+    ```
+
+    ??? success "答案"
+
+        114\n
+        303062\n
+        115\n
+        303062
+
+        ---
+
+        **//1**
+
+        构造 b：
+
+        1. 基类 A 的初始化：
+              - 没有显式调用 A 的构造函数，使用 A 的默认构造函数 A(int ii = 0)，ii 默认为 0
+              - A::i 初始化为 0，输出 1
+        2. 成员 a 的初始化：
+              - A a 使用 A 的默认构造函数，a.i 初始化为 0，输出 1
+        3. B 的构造函数体：
+              - i 初始化为 2，输出 4
+        
+        输出：1（A 的构造） 1（a 的构造） 4（B 的构造体）
+        
+        //1 的输出：114
+
+        ---
+
+        **//2**
+
+        b.print()：
+
+        1. A::print()：
+              - A 的 i 是 0（因为基类 A 的 i 在构造时被初始化为 0）
+              - 输出 3 和 i 的值 0，即 30
+        2. a.print()：
+              - a 的 i 是 0（因为 a 的 i 在构造时被初始化为 0）
+              - 输出 3 和 i 的值 0，即 30
+        3. cout << 6 << i：
+              - B 的 i 是 2（构造函数中初始化为 2）
+              - 输出 6 和 2，即 62
+        
+        组合输出：30 30 62
+        
+        //2 的输出：303062
+
+        ---
+        
+        **//3**
+
+        拷贝构造 c 从 b：
+
+        1. 基类 A 的初始化：
+              - 没有显式调用 A 的拷贝构造函数，使用 A 的默认构造函数 A(int ii = 0)
+              - A::i 初始化为 0，输出 1
+        2. 成员 a 的初始化：
+              - A a 使用 A 的默认构造函数，a.i 初始化为 0，输出 1
+        3. B 的拷贝构造函数体：
+              - i 初始化为 b.i（即 2），输出 5
+        
+        输出：1（A 的默认构造） 1（a 的默认构造） 5（B 的拷贝构造体）
+        
+        //3 的输出：115
+
+        ---
+
+        **//4**
+
+        c.print()：
+
+        1. A::print()：
+              - A 的 i 是 0（因为基类 A 的 i 在拷贝构造时被默认初始化为 0）
+              - 输出 3 和 i 的值 0，即 30
+        2. a.print()：
+              - a 的 i 是 0（因为 a 的 i 在拷贝构造时被默认初始化为 0）
+              - 输出 3 和 i 的值 0，即 30
+        3. cout << 6 << i：
+              - B 的 i 是 2（拷贝构造函数中从 b.i 复制为 2）
+              - 输出 6 和 2，即 62
+        
+        组合输出：30 30 62
+        
+        //4 的输出：303062 -->

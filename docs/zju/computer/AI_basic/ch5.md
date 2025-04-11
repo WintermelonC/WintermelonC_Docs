@@ -10,9 +10,11 @@
 
 ## 5.1 监督学习方法概述
 
-监督学习主要解决两类问题：回归和分类
+监督学习是一种让计算机从带标签的数据中学习的方法
 
 监督学习的核心：从数据中发现规律，并将这些规律应用于新的、未知的数据
+
+监督学习主要解决两类问题：回归和分类
 
 <figure markdown="span">
   ![Img 1](../../../img/AI_basic/ch5/ai_ch5_img1.png){ width="600" }
@@ -71,11 +73,13 @@
 
 ## 5.2 回归模型
 
+### 5.2.2 回归模型的类型
+
 <figure markdown="span">
   ![Img 4](../../../img/AI_basic/ch5/ai_ch5_img4.png){ width="600" }
 </figure>
 
-### 5.2.1 线性回归模型
+### 5.2.3 线性回归模型
 
 输入变量和输出变量之间存在线性关系
 
@@ -87,7 +91,7 @@ $Y = \beta_0 + \beta_1 X + \beta_2 X + \cdots + \beta X + \epsilon$
   ![Img 5](../../../img/AI_basic/ch5/ai_ch5_img5.png){ width="600" }
 </figure>
 
-### 5.2.2 Logistic 回归
+### 5.2.4 Logistic 回归
 
 逻辑回归是一种广义线性回归，也是常用的统计学习方法，用于解决二分类问题
 
@@ -108,6 +112,8 @@ $Y = \beta_0 + \beta_1 X + \beta_2 X + \cdots + \beta X + \epsilon$
 
 ## 5.3 分类模型
 
+### 5.3.2 分类模型的类型
+
 <figure markdown="span">
   ![Img 7](../../../img/AI_basic/ch5/ai_ch5_img7.png){ width="600" }
 </figure>
@@ -120,11 +126,11 @@ $Y = \beta_0 + \beta_1 X + \beta_2 X + \cdots + \beta X + \epsilon$
   ![Img 9](../../../img/AI_basic/ch5/ai_ch5_img9.png){ width="600" }
 </figure>
 
-### 5.3.1 线性分类器
+### 5.3.3 线性分类器
 
 核心思想：在输入特征向量的特征空间中找到一个线性决策边界，将不同类别的数据点分开
 
-### 5.3.2 决策树分类模型
+### 5.3.4 决策树分类模型
 
 结构：类似于一棵倒置的树，从根节点开始，通过一系列的判断，最终到达叶节点得出结论
 
@@ -132,9 +138,8 @@ $Y = \beta_0 + \beta_1 X + \beta_2 X + \cdots + \beta X + \epsilon$
 
 1. 特征选择
 2. 决策树生成
-3. 决策树剪枝
+3. 决策树剪枝：解决过拟合问题
 
 <figure markdown="span">
   ![Img 10](../../../img/AI_basic/ch5/ai_ch5_img10.png){ width="600" }
 </figure>
-
