@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch6/">
       
       
-        <link rel="next" href="../../../natural_science/">
+        <link rel="next" href="../exercise/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -1094,6 +1094,8 @@
       
         
       
+        
+      
     
     
     
@@ -1334,6 +1336,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#71-深度学习三要素概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 深度学习三要素概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 深度学习三要素概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1.1 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#72-机器图像识别破冰" class="md-nav__link">
     <span class="md-ellipsis">
       7.2 机器图像识别破冰
@@ -1412,6 +1438,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#735-mlp-训练过程中权重值的调整" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.5 MLP 训练过程中权重值的调整
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1445,6 +1480,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#753-优化器的选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.3 优化器的选择
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1454,6 +1498,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    习题整理
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -7109,6 +7176,30 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#71-深度学习三要素概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 深度学习三要素概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 深度学习三要素概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1.1 算法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#72-机器图像识别破冰" class="md-nav__link">
     <span class="md-ellipsis">
       7.2 机器图像识别破冰
@@ -7187,6 +7278,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#735-mlp-训练过程中权重值的调整" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.5 MLP 训练过程中权重值的调整
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7215,6 +7315,15 @@
   <a href="#752-损失函数的选择" class="md-nav__link">
     <span class="md-ellipsis">
       7.5.2 损失函数的选择
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#753-优化器的选择" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.5.3 优化器的选择
     </span>
   </a>
   
@@ -7263,10 +7372,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="7-深度网络基础组件">7 深度网络基础组件<a class="headerlink" href="#7-深度网络基础组件" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -7276,6 +7385,16 @@
 <li>机器学习到深度学习：从简单到复杂，从线性到非线性，从可解释到不可解释</li>
 </ul>
 <p>最小二乘法是机器学习最基础的模型</p>
+<h2 id="71-深度学习三要素概述">7.1 深度学习三要素概述<a class="headerlink" href="#71-深度学习三要素概述" title="Permanent link">&para;</a></h2>
+<ol>
+<li>算法</li>
+<li>算力</li>
+<li>数据</li>
+</ol>
+<h3 id="711-算法">7.1.1 算法<a class="headerlink" href="#711-算法" title="Permanent link">&para;</a></h3>
+<p>误差反向传播算法（BP 算法）让神经网络的自主学习成为可能</p>
+<p>“没有免费的午餐”定律：不存在一种“万能”的深度学习模型（如 CNN、RNN、Transformer 等）能在所有任务（图像分类、NLP、时间序列预测等）中均达到最优性能</p>
+<p>应该按照任务的目标来设计网络</p>
 <h2 id="72-机器图像识别破冰">7.2 机器图像识别破冰<a class="headerlink" href="#72-机器图像识别破冰" title="Permanent link">&para;</a></h2>
 <figure>
   <img alt="Img 1" src="../../../../img/AI_basic/ch7/ai_ch7_img1.png" width="600" />
@@ -7333,6 +7452,42 @@ T_n(a) = \begin{cases}
 </figure>
 <h3 id="734-梯度下降法">7.3.4 梯度下降法<a class="headerlink" href="#734-梯度下降法" title="Permanent link">&para;</a></h3>
 <p>以最快的速度找到函数局部最小值的优化算法</p>
+<p>以 <span class="arithmatex">\(f(x) = x^2\)</span> 为例，其梯度下降法如下所述</p>
+<ol>
+<li>方向：即梯度的反方向，<span class="arithmatex">\(-\nabla f=-2x\)</span></li>
+<li>步长：假设学习率 <span class="arithmatex">\(\eta = 0.5\)</span>，则一次前进的步长为 <span class="arithmatex">\(-0.5\nabla f = -x\)</span></li>
+<li>终止条件：理性情况是梯度 <span class="arithmatex">\(\nabla = 0\)</span>，实际上一般做不到，可设置一个较小的值如 <span class="arithmatex">\(10^{-2}\)</span> 作为代替</li>
+</ol>
+<p>以 <span class="arithmatex">\(P(8, 64)\)</span> 为起点，<span class="arithmatex">\(\eta = 0.1\)</span>，梯度下降法的过程如下：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(x_i\)</span></th>
+<th style="text-align: center;">8</th>
+<th style="text-align: center;">6.4</th>
+<th style="text-align: center;">5.12</th>
+<th style="text-align: center;">4.096</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(\nabla f\)</span></td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">12.8</td>
+<td style="text-align: center;">10.24</td>
+<td style="text-align: center;">...</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span class="arithmatex">\(x_i - \eta \nabla f\)</span></td>
+<td style="text-align: center;">6.4</td>
+<td style="text-align: center;">5.12</td>
+<td style="text-align: center;">4.096</td>
+<td style="text-align: center;">...</td>
+</tr>
+</tbody>
+</table>
+<h3 id="735-mlp-训练过程中权重值的调整">7.3.5 MLP 训练过程中权重值的调整<a class="headerlink" href="#735-mlp-训练过程中权重值的调整" title="Permanent link">&para;</a></h3>
+<p>MLP 模型的训练，就是指不断地调整隐含层和输出层计算单元的权重值</p>
 <h2 id="75-扩展阅读">7.5 扩展阅读<a class="headerlink" href="#75-扩展阅读" title="Permanent link">&para;</a></h2>
 <h3 id="751-激活函数的选择">7.5.1 激活函数的选择<a class="headerlink" href="#751-激活函数的选择" title="Permanent link">&para;</a></h3>
 <p>激活函数的作用是通过非线性变换，使神经网络具备非线性特性，以解决一些非线性任务</p>
@@ -7342,8 +7497,8 @@ T_n(a) = \begin{cases}
 <li>tanh：<span class="arithmatex">\(\dfrac{e^x - e^{-x}}{e^x + e^{-x}}\)</span></li>
 <li>ReLU：<span class="arithmatex">\(\max(0, x)\)</span></li>
 <li>ELU：<span class="arithmatex">\(f_i(a_i) = \begin{cases}
-    x &amp; \text{if} x &gt; 0 \\
-    \alpha(e^x - 1) &amp; if x \leqslant 0
+    x &amp; \text{if}\  x &gt; 0 \\
+    \alpha(e^x - 1) &amp; \text{if}\  x \leqslant 0
 \end{cases}\)</span></li>
 <li>softmax：<span class="arithmatex">\(\dfrac{e^{x_i}}{\sum_j e^{x_j}}\)</span></li>
 </ol>
@@ -7351,10 +7506,10 @@ T_n(a) = \begin{cases}
 <p>常用损失函数：</p>
 <ol>
 <li>回归损失函数：用于衡量回归系统的误差<ol>
-<li>均方误差</li>
-<li>平均绝对误差</li>
-<li>平均绝对百分比误差</li>
-<li>均方根对数误差</li>
+<li>均方误差（MSE）</li>
+<li>平均绝对误差（MAE）</li>
+<li>平均绝对百分比误差（MAPE）</li>
+<li>均方根对数误差（MSLE）</li>
 </ol>
 </li>
 <li>分类损失函数<ol>
@@ -7362,6 +7517,15 @@ T_n(a) = \begin{cases}
 <li>多分类交叉熵</li>
 </ol>
 </li>
+</ol>
+<h3 id="753-优化器的选择">7.5.3 优化器的选择<a class="headerlink" href="#753-优化器的选择" title="Permanent link">&para;</a></h3>
+<ol>
+<li>随机梯度下降法（SGD）<ol>
+<li>小批量梯度下降法（Mini-batch SGD）</li>
+<li>动量梯度下降法（Momentum SGD）</li>
+</ol>
+</li>
+<li>自适应梯度算法（AdaGrad）</li>
 </ol>
 
 
@@ -7385,7 +7549,7 @@ T_n(a) = \begin{cases}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月8日 08:40:26">2025年4月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月11日 12:37:41">2025年4月11日</span>
   </span>
 
     
@@ -7517,13 +7681,13 @@ T_n(a) = \begin{cases}
         
         
           
-          <a href="../../../natural_science/" class="md-footer__link md-footer__link--next" aria-label="下一页: 自然科学通识类">
+          <a href="../exercise/" class="md-footer__link md-footer__link--next" aria-label="下一页: 习题整理">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                自然科学通识类
+                习题整理
               </div>
             </div>
             <div class="md-footer__button md-icon">

@@ -1094,6 +1094,8 @@
       
         
       
+        
+      
     
     
     
@@ -1331,18 +1333,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#521-线性回归模型" class="md-nav__link">
+  <a href="#522-回归模型的类型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2.1 线性回归模型
+      5.2.2 回归模型的类型
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#522-logistic-回归" class="md-nav__link">
+  <a href="#523-线性回归模型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2.2 Logistic 回归
+      5.2.3 线性回归模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-logistic-回归" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.4 Logistic 回归
     </span>
   </a>
   
@@ -1364,18 +1375,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#531-线性分类器" class="md-nav__link">
+  <a href="#532-分类模型的类型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3.1 线性分类器
+      5.3.2 分类模型的类型
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#532-决策树分类模型" class="md-nav__link">
+  <a href="#533-线性分类器" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3.2 决策树分类模型
+      5.3.3 线性分类器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#534-决策树分类模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.4 决策树分类模型
     </span>
   </a>
   
@@ -1431,6 +1451,29 @@
   
   <span class="md-ellipsis">
     7 深度网络基础组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    习题整理
     
   </span>
   
@@ -7134,18 +7177,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#521-线性回归模型" class="md-nav__link">
+  <a href="#522-回归模型的类型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2.1 线性回归模型
+      5.2.2 回归模型的类型
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#522-logistic-回归" class="md-nav__link">
+  <a href="#523-线性回归模型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2.2 Logistic 回归
+      5.2.3 线性回归模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#524-logistic-回归" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2.4 Logistic 回归
     </span>
   </a>
   
@@ -7167,18 +7219,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#531-线性分类器" class="md-nav__link">
+  <a href="#532-分类模型的类型" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3.1 线性分类器
+      5.3.2 分类模型的类型
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#532-决策树分类模型" class="md-nav__link">
+  <a href="#533-线性分类器" class="md-nav__link">
     <span class="md-ellipsis">
-      5.3.2 决策树分类模型
+      5.3.3 线性分类器
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#534-决策树分类模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3.4 决策树分类模型
     </span>
   </a>
   
@@ -7236,8 +7297,9 @@
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
 <h2 id="51-监督学习方法概述">5.1 监督学习方法概述<a class="headerlink" href="#51-监督学习方法概述" title="Permanent link">&para;</a></h2>
-<p>监督学习主要解决两类问题：回归和分类</p>
+<p>监督学习是一种让计算机从带标签的数据中学习的方法</p>
 <p>监督学习的核心：从数据中发现规律，并将这些规律应用于新的、未知的数据</p>
+<p>监督学习主要解决两类问题：回归和分类</p>
 <figure>
   <img alt="Img 1" src="../../../../img/AI_basic/ch5/ai_ch5_img1.png" width="600" />
 </figure>
@@ -7292,17 +7354,18 @@
 </li>
 </ol>
 <h2 id="52-回归模型">5.2 回归模型<a class="headerlink" href="#52-回归模型" title="Permanent link">&para;</a></h2>
+<h3 id="522-回归模型的类型">5.2.2 回归模型的类型<a class="headerlink" href="#522-回归模型的类型" title="Permanent link">&para;</a></h3>
 <figure>
   <img alt="Img 4" src="../../../../img/AI_basic/ch5/ai_ch5_img4.png" width="600" />
 </figure>
-<h3 id="521-线性回归模型">5.2.1 线性回归模型<a class="headerlink" href="#521-线性回归模型" title="Permanent link">&para;</a></h3>
+<h3 id="523-线性回归模型">5.2.3 线性回归模型<a class="headerlink" href="#523-线性回归模型" title="Permanent link">&para;</a></h3>
 <p>输入变量和输出变量之间存在线性关系</p>
 <p><span class="arithmatex">\(Y = \beta_0 + \beta_1 X + \beta_2 X + \cdots + \beta X + \epsilon\)</span></p>
 <p>线性回归评价指标：</p>
 <figure>
   <img alt="Img 5" src="../../../../img/AI_basic/ch5/ai_ch5_img5.png" width="600" />
 </figure>
-<h3 id="522-logistic-回归">5.2.2 Logistic 回归<a class="headerlink" href="#522-logistic-回归" title="Permanent link">&para;</a></h3>
+<h3 id="524-logistic-回归">5.2.4 Logistic 回归<a class="headerlink" href="#524-logistic-回归" title="Permanent link">&para;</a></h3>
 <p>逻辑回归是一种广义线性回归，也是常用的统计学习方法，用于解决二分类问题</p>
 <figure>
   <img alt="Img 6" src="../../../../img/AI_basic/ch5/ai_ch5_img6.png" width="600" />
@@ -7324,6 +7387,7 @@
 </li>
 </ol>
 <h2 id="53-分类模型">5.3 分类模型<a class="headerlink" href="#53-分类模型" title="Permanent link">&para;</a></h2>
+<h3 id="532-分类模型的类型">5.3.2 分类模型的类型<a class="headerlink" href="#532-分类模型的类型" title="Permanent link">&para;</a></h3>
 <figure>
   <img alt="Img 7" src="../../../../img/AI_basic/ch5/ai_ch5_img7.png" width="600" />
 </figure>
@@ -7333,15 +7397,15 @@
 <figure>
   <img alt="Img 9" src="../../../../img/AI_basic/ch5/ai_ch5_img9.png" width="600" />
 </figure>
-<h3 id="531-线性分类器">5.3.1 线性分类器<a class="headerlink" href="#531-线性分类器" title="Permanent link">&para;</a></h3>
+<h3 id="533-线性分类器">5.3.3 线性分类器<a class="headerlink" href="#533-线性分类器" title="Permanent link">&para;</a></h3>
 <p>核心思想：在输入特征向量的特征空间中找到一个线性决策边界，将不同类别的数据点分开</p>
-<h3 id="532-决策树分类模型">5.3.2 决策树分类模型<a class="headerlink" href="#532-决策树分类模型" title="Permanent link">&para;</a></h3>
+<h3 id="534-决策树分类模型">5.3.4 决策树分类模型<a class="headerlink" href="#534-决策树分类模型" title="Permanent link">&para;</a></h3>
 <p>结构：类似于一棵倒置的树，从根节点开始，通过一系列的判断，最终到达叶节点得出结论</p>
 <p>构建步骤：</p>
 <ol>
 <li>特征选择</li>
 <li>决策树生成</li>
-<li>决策树剪枝</li>
+<li>决策树剪枝：解决过拟合问题</li>
 </ol>
 <figure>
   <img alt="Img 10" src="../../../../img/AI_basic/ch5/ai_ch5_img10.png" width="600" />
@@ -7368,7 +7432,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月1日 13:15:29">2025年4月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月11日 12:37:41">2025年4月11日</span>
   </span>
 
     

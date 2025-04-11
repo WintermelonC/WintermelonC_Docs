@@ -1090,6 +1090,8 @@
       
         
       
+        
+      
     
     
     
@@ -1286,6 +1288,29 @@
   
   <span class="md-ellipsis">
     7 深度网络基础组件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer/AI_basic/exercise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    习题整理
     
   </span>
   
@@ -4415,20 +4440,23 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.1 Dynamic Scheduling: The Idea">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#311-dynamic-scheduling-with-a-scoreboard" class="md-nav__link">
+  <a href="#32-dynamic-scheduling-with-a-scoreboard" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1.1 Dynamic Scheduling With a Scoreboard
+      3.2 Dynamic Scheduling With a Scoreboard
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#33-dynamic-scheduling-using-tomasulos-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Dynamic Scheduling Using Tomasulo’s Approach
+    </span>
+  </a>
   
 </li>
         
@@ -7295,20 +7323,23 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="3.1 Dynamic Scheduling: The Idea">
-      <ul class="md-nav__list">
+</li>
         
           <li class="md-nav__item">
-  <a href="#311-dynamic-scheduling-with-a-scoreboard" class="md-nav__link">
+  <a href="#32-dynamic-scheduling-with-a-scoreboard" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1.1 Dynamic Scheduling With a Scoreboard
+      3.2 Dynamic Scheduling With a Scoreboard
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
+          <li class="md-nav__item">
+  <a href="#33-dynamic-scheduling-using-tomasulos-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Dynamic Scheduling Using Tomasulo’s Approach
+    </span>
+  </a>
   
 </li>
         
@@ -7382,7 +7413,7 @@
     <img alt="Img 1" src="../../../../../img/comp_arch/ch4/ca_ch4_img1.png" width="600" />
 </figure>
 <h3 id="11-what-is-instruction-level-parallelism">1.1 What is Instruction-Level Parallelism<a class="headerlink" href="#11-what-is-instruction-level-parallelism" title="Permanent link">&para;</a></h3>
-<p>basic block（基本块）：一段顺序执行代码，除入口外没有其他转人分支，除出口外没有其他转出分支</p>
+<p>basic block（基本块）：一段顺序执行代码，除入口外没有其他转入分支，除出口外没有其他转出分支</p>
 <p>基本块中可以利用的并行数非常有限。对于典型的 MIPS 程序，平均动态分支频率通常介于 15% 到 25% 之间，也就是说在一对分支之间会执行 3~6 条指令。由于这些指令可能相互依赖，所以在基本块中可以开发的重叠数量可能要少于基本块的平均大小。<mark>为了真正地提高性能，我们必须跨越多个基本块开发 ILP</mark></p>
 <p>提高 ILP 的最简单、最常见方法是在循环的各次选代之间开发并行。这种并行经常被称作 loop-level parallelism（循环级并行）。下面是一个简单的循环示例，它对两个分别有 1000 个元素的数组求和，完全可以并行实现：</p>
 <div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
@@ -7685,7 +7716,7 @@
 </span></code></pre></div></td></tr></table></div>
 <p>在 <code>ADDD</code> 和 <code>SUBD</code> 之间存在反相关，如果流水线在 <code>ADDD</code> 之前执行 <code>SUBD</code>（<code>ADDD</code> 在等待 <code>DIVD</code>），将会违犯反相关，产生 WAR 冒险。与此类似，为了避免违犯输出相关，比如由 <code>MULD</code> 写入 F6 就必须处理 WAW 冒险。后面将会看到，利用寄存器重命名可以避免这些冒险</p>
 <p>乱序完成还会使异常处理变得复杂。采用乱序完成的动态调度必须保持异常行为，使那些在严格按照程序顺序执行程序时会发生的异常仍然会实际发生，也不会发生其他异常。动态调度处理器会推迟发布相关异常的发布，一直等到处理器知道该指令就是接下来要完成的指令为止，通过这一方式来保持异常行为</p>
-<p>尽管异常行为必须保持，但动态调度处理器可能生成一些 imprecise（非精确）异常。如果在发生异常时，处理器的状态与严格按照程序顺序执行指令时的状态不完全一致，那就说这一异常是 imprecise（非精确的—）</p>
+<p>尽管异常行为必须保持，但动态调度处理器可能生成一些 imprecise（非精确）异常。如果在发生异常时，处理器的状态与严格按照程序顺序执行指令时的状态不完全一致，那就说这一异常是 imprecise（非精确的）</p>
 <p>非精确异常可以因为以下两种可能性而发生</p>
 <ol>
 <li>流水线在执行导致异常的指令时，可能已经完成了按照程序顺序排在这一指令之后的
@@ -7701,10 +7732,10 @@
 <p>指令提取阶段位于发射阶段之前，既可以把指令放到指令寄存器中，也可能放到一个待完成指令队列中；然后从寄存器或队列发射这些指令。执行阶段跟在读操作数阶段之后，这一点和五级流水线中一样。执行过程可能需要多个周期，具体数目取决于所执行的操作</p>
 <p>我们区分一个指令 begins execution（开始执行）和  completes execution（完成执行）的时刻，在这两个时刻之间，指令 in execution（处于执行过程中）。我们的流水线允许同时执行多条指令，没有这一功能，就会失去动态调度的主要优势。要同时执行多条执行，需要有多个功能单元、流水化功能单元，或者同时需要这两者。由于这两种功能（流水化功能单元和多个功能单元）在流水线控制方面大体相当，所以我们假定处理器拥有多个功能单元</p>
 <p>在动态调度流水线中，所有指令都循序经历发射阶段（循序发射）；但是，它们可能在第二阶段（读操作数阶段）停顿或者相互旁路，从而进行乱序执行状态。Scoreboarding（记分板技术）允许在有足够资源和没有数据相关时乱序执行指令，它的名字源于 CDC 6600 记分板，CDC 6600 记分板开发了这一功能</p>
-<h4 id="311-dynamic-scheduling-with-a-scoreboard">3.1.1 Dynamic Scheduling With a Scoreboard<a class="headerlink" href="#311-dynamic-scheduling-with-a-scoreboard" title="Permanent link">&para;</a></h4>
+<h3 id="32-dynamic-scheduling-with-a-scoreboard">3.2 Dynamic Scheduling With a Scoreboard<a class="headerlink" href="#32-dynamic-scheduling-with-a-scoreboard" title="Permanent link">&para;</a></h3>
 <p><strong>采用记分卡的动态调度</strong></p>
 <p>记分卡的目标是：通过尽早执行指令，保持每时钟周期 1 条指令的执行速率（在没有结构性冒险时）。因此，当下一条要执行的指令停顿时，如果其他指令不依赖于任何活动指令或停顿指令，则发射和执行这些指令。记分卡全面负责指令发射与执行，包括所有冒险检测任务。要充分利用乱序执行，需要在其 EX 级中同时有多条指令。这一点可以通过多个功能单元、流水化功能单元或同时利用两者来实现。由于这两种功能（流水化功能单元和多个功能单元）对于流水线控制来说基本上是等价的，所以我们将假定处理器拥有多个功能单元</p>
-<p>CDC 6600 拥有 16 个独立的功能单元，包括 4 个浮点单元、5 个存储器引用单元和 7 个整数运算单元。在采用 MIPS 体系结构的处理器上，记分卡主要在浮点单元上发挥作用，因为其他功能单元的延迟非常小。让我们假定一共有两个乘法器、一个加法器、一个除法单元和一个完成所有存储器引用、分支和整数运算的整数单元。尽管这个例子要比 CDC 6600 简单，但它的功能足以演示这些原理，不需要大量细节，也不需要非常长的示例。因为 MIPS 和 CDC 6600 都是载入-存储体系结构，所以这些技术对于这两种技术来说几乎是相同的。下图给出了该处理器的基本结构</p>
+<p>CDC 6600 拥有 16 个独立的功能单元，包括 4 个浮点单元、5 个存储器引用单元和 7 个整数运算单元。在采用 MIPS 体系结构的处理器上，记分卡主要在浮点单元上发挥作用，因为其他功能单元的延迟非常小。让我们假定一共有两个乘法器、一个加法器、一个除法单元和一个完成所有存储器引用、分支和整数运算的整数单元。尽管这个例子要比 CDC 6600 简单，但它的功能足以演示这些原理，不需要大量细节，也不需要非常长的示例。因为 MIPS 和 CDC 6600 都是载入—存储体系结构，所以这些技术对于这两种技术来说几乎是相同的。下图给出了该处理器的基本结构</p>
 <figure>
     <img alt="Img 5" src="../../../../../img/comp_arch/ch4/ca_ch4_img5.png" width="600" />
 </figure>
@@ -7732,7 +7763,7 @@
 <p>乍看起来，记分卡在区分 RAW 和 WAR 冒险时似乎会有困难</p>
 <p>因为只有当寄存器堆中拥有一条指令的两个操作数时，才会读取这些操作数，所以记分卡未能利用转发。只有当寄存器都可用时才会进行读取。这一代价并没有读者最初想象得那么严重。这里与我们前面的简单流水线不同，指令会在完成执行之后立即将结果写入寄存器堆（假定没有 WAR 冒险），而不是等待可能间隔几个周期的静态指定写入时隙。由于结果的写入和操作数的读取不能重叠，所以仍然会增加一个周期的延迟。我们需要增加缓冲，以消除这一开销</p>
 <p>记分卡根据自己的数据结构，通过与功能单元的沟通来控制指令从一个步骤到下一个步骤的进展。但这种做法有一点点复杂。指向寄存器堆的源操作数总线和结果总线数目是有限的，所以可能会存在结构性冒险。记分卡必须确保允许进入第 2、4 步的功能单元数不会超过可用总线数。这里不会进行深入讨论，仅提及 CDC 6600 在解决这一问题时，将 16 个功能单元分为四组，并为每一组提供一组总线，称为 data trunks（数据干线）。在一个时钟周期内，一个组中只有一个单元可以读取其操作数或写入其结果</p>
-<p>积分卡共有三个部分：</p>
+<p>记分卡共有三个部分：</p>
 <ol>
 <li>Instruction Status（指令状态）：指出该指令处于四个步骤中的哪一步</li>
 <li>Functional Unit Status（功能单元状态）：指出功能单元（FU）的状态，共有 9 个字段用来表示每个功能单元的状态<ol>
@@ -7759,8 +7790,23 @@
 </span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="n">ADDD</span><span class="w"> </span><span class="n">f6</span><span class="p">,</span><span class="w"> </span><span class="n">f8</span><span class="p">,</span><span class="w"> </span><span class="n">f2</span>
 </span></code></pre></div></td></tr></table></div>
 <figure>
-    <img alt="Img 6" src="../../../../../img/comp_arch/ch4/ca_ch4_img6.png" width="600" />
+    <img alt="Img 6" src="../../../../../img/comp_arch/ch4/ca_ch4_img6.png" width="700" />
 </figure>
+<hr />
+<p>记分卡是如何工作的：</p>
+<figure>
+    <img alt="Img 7" src="../../../../../img/comp_arch/ch4/ca_ch4_img7.png" width="600" />
+</figure>
+<p>假设 FP 运算的 ADD/SUB EX 阶段需要 3 个时钟周期，MULT 需要 7 个，DIVD 需要 24 个</p>
+<hr />
+<p>记分卡的缺点：</p>
+<ol>
+<li>没有 forwarding 机制</li>
+<li>由于 FU 数量较少，结构竞争很容易发生</li>
+</ol>
+<p>在消除停顿方面，记分卡受以下几个因素的影响：</p>
+<h3 id="33-dynamic-scheduling-using-tomasulos-approach">3.3 Dynamic Scheduling Using Tomasulo’s Approach<a class="headerlink" href="#33-dynamic-scheduling-using-tomasulos-approach" title="Permanent link">&para;</a></h3>
+<p><strong>使用 Tomasulo 算法进行动态调度</strong></p>
 
 
 
@@ -7783,7 +7829,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月8日 14:07:13">2025年4月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月11日 12:37:41">2025年4月11日</span>
   </span>
 
     
