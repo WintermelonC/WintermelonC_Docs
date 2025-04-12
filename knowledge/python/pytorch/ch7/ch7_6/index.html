@@ -7102,7 +7102,8 @@
 <h2 id="1-残差块">1 残差块<a class="headerlink" href="#1-残差块" title="Permanent link">&para;</a></h2>
 <figure>
   <img alt="img 6" src="../../../../../img/pytorch/ch7/pytorch_ch7_img6.png" width="400" />
-  <figcaption>左 正常块 右 残差块</figcaption>
+<br />
+<figcaption>左 正常块 右 残差块</figcaption>
 </figure>
 <p>残差块里首先有 2 个有相同输出通道数的 3 x 3 卷积层。每个卷积层后接一个批量规范化层和 ReLU 激活函数。然后我们通过跨层数据通路，跳过这 2 个卷积运算，将输入直接加在最后的 ReLU 激活函数前。这样的设计要求 2 个卷积层的输出与输入形状一样，从而使它们可以相加。如果想改变通道数，就需要引入一个额外的 1 x 1 卷积层来将输入变换成需要的形状后再做相加运算。</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
@@ -7165,7 +7166,8 @@
 </span></code></pre></div></td></tr></table></div>
 <figure>
   <img alt="img 7" src="../../../../../img/pytorch/ch7/pytorch_ch7_img7.png" width="400" />
-  <figcaption>左 <code>use_1x1conv=False</code> 右 <code>use_1x1conv=True</code></figcaption>
+<br />
+<figcaption>左 <code>use_1x1conv=False</code> 右 <code>use_1x1conv=True</code></figcaption>
 </figure>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
