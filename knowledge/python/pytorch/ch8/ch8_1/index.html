@@ -18,7 +18,7 @@
         <link rel="prev" href="../../ch7/ch7_7/">
       
       
-        <link rel="next" href="../../../other/anaconda/">
+        <link rel="next" href="../ch8_2/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -6448,6 +6448,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -6559,8 +6565,35 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#12-马尔可夫模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 马尔可夫模型
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-训练" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 训练
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-预测" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 预测
+    </span>
+  </a>
   
 </li>
       
@@ -6568,6 +6601,75 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8_2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.2 文本预处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8_3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.3 语言模型和数据集
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8_4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.4 循环神经网络
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -7034,8 +7136,35 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#12-马尔可夫模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 马尔可夫模型
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-训练" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 训练
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-预测" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 预测
+    </span>
+  </a>
   
 </li>
       
@@ -7077,10 +7206,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="81-序列模型">8.1 序列模型<a class="headerlink" href="#81-序列模型" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <h2 id="1-统计工具">1 统计工具<a class="headerlink" href="#1-统计工具" title="Permanent link">&para;</a></h2>
 <figure>
   <img alt="img 1" src="../../../../../img/pytorch/ch8/pytorch_ch8_img1.png" width="600" />
@@ -7090,6 +7219,205 @@
 <p>用 <span class="arithmatex">\(x_t\)</span> 表示价格，即在 <strong>时间步</strong>（time step）<span class="arithmatex">\(t \in \mathbb{Z}^+\)</span> 时，观察到的价格 <span class="arithmatex">\(x_t\)</span>。假设一个交易员想在 <span class="arithmatex">\(t\)</span> 日的股市中表现良好，于是通过以下途径预测 <span class="arithmatex">\(x_t\)</span>：</p>
 <p><span class="arithmatex">\(x_t \sim P(x_t | x_{t-1}, \cdots, x_1)\)</span></p>
 <h3 id="11-自回归模型">1.1 自回归模型<a class="headerlink" href="#11-自回归模型" title="Permanent link">&para;</a></h3>
+<p>为了实现这个预测，交易员可以使用回归模型。但有一个主要问题：输入数据的数量</p>
+<ol>
+<li>在现实情况下相当长的序列 <span class="arithmatex">\(x_{t-1}, \cdots, x_1\)</span> 可能是不必要的，因此我们只需要满足某个长度为 <span class="arithmatex">\(\tau\)</span> 的时间跨度，即使用观测序列 <span class="arithmatex">\(x_{t-1}, \cdots, x_{t - \tau}\)</span>。这种模型被称为 <strong>自回归模型</strong></li>
+<li>保留一些对过去观测的总结 <span class="arithmatex">\(h_t\)</span>，并且同时更新预测 <span class="arithmatex">\(\hat{x_t}\)</span> 和总结 <span class="arithmatex">\(h_t\)</span>。这就产生了基于 <span class="arithmatex">\(\hat{x_t} = P(x_t | h_t)\)</span> 估计 <span class="arithmatex">\(x_t\)</span>，以及公式 <span class="arithmatex">\(h_t = g(h_{t-1}, x_{t-1})\)</span> 更新的模型。由于 <span class="arithmatex">\(h_t\)</span> 从未被观测到，这类模型也被称为 <strong>隐变量自回归模型</strong></li>
+</ol>
+<p>这两种情况都有一个显而易见的问题：如何生成训练数据？一个经典方法是使用历史观测来预测下一个未来观测。显然，我们并不指望时间会停滞不前。然而，一个常见的假设是虽然特定值 <span class="arithmatex">\(x_t\)</span> 可能会改变，但是序列本身的动力学不会改变。这样的假设是合理的，因为新的动力学一定受新的数据影响，而我们不可能用目前所掌握的数据来预测新的动力学。统计学家称不变的动力学为 <strong>静止的</strong>（stationary）。因此，整个序列的估计值都将通过以下的方式获得：</p>
+<div class="arithmatex">\[
+P(x_1, \cdots, x_T) = \prod\limits_{t=1}^T P(x_t | x_{t-1}, \cdots, x_1)
+\]</div>
+<p>注意，如果我们处理的是离散的对象（如单词），而不是连续的数字，则上述的考虑仍然有效。唯一的差别是，对于离散的对象，我们需要使用分类器而不是回归模型来估计 <span class="arithmatex">\(P(x_t | x_{t-1}, \cdots, x_1)\)</span></p>
+<h3 id="12-马尔可夫模型">1.2 马尔可夫模型<a class="headerlink" href="#12-马尔可夫模型" title="Permanent link">&para;</a></h3>
+<p>在自回归模型的近似法中，我们使用 <span class="arithmatex">\(x_{t-1}, \cdots, x_{t - \tau}\)</span> 而不是 <span class="arithmatex">\(x_{t-1}, \cdots, x_1\)</span> 来估计。只要这种是近似精确的，我们就说序列满足 <strong>马尔可夫条件</strong>。特别是，如果 <span class="arithmatex">\(\tau = 1\)</span>，得到一个 <strong>一阶马尔可夫模型</strong>，<span class="arithmatex">\(P(x)\)</span> 由下式给出：</p>
+<div class="arithmatex">\[
+P(x_1, \cdots, x_T) = \prod\limits_{t=1}^T P(x_t | x_{t-1}),\ P(x_1 | x_0) = P(x_1)
+\]</div>
+<p>当假设 <span class="arithmatex">\(x_t\)</span> 仅是离散值时，这样的模型特别棒，因为在这种情况下，使用动态规划可以沿着马尔可夫链精确地计算结果。例如，我们可以高效地计算 <span class="arithmatex">\(P(x_{t+1} | x_{t-1}) = \sum\limits_{x_t} P(x_{t+1} | x_t)P(x_t | x_{t-1})\)</span></p>
+<p>利用这一事实，我们只需要考虑过去观察中的一个非常短的历史：<span class="arithmatex">\(P(x_{t+1} | x_t, x_{t-1}) = P(x_{t+1}, x_t)\)</span></p>
+<h2 id="2-训练">2 训练<a class="headerlink" href="#2-训练" title="Permanent link">&para;</a></h2>
+<p>首先，我们生成一些数据：使用正弦函数和一些可加性噪声来生成序列数据，时间步为 1，2，...，1000</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch</span><span class="w"> </span><span class="kn">import</span> <span class="n">nn</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">d2l</span><span class="w"> </span><span class="kn">import</span> <span class="n">torch</span> <span class="k">as</span> <span class="n">d2l</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">T</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># 总共产生1000个点</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="n">time</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.01</span> <span class="o">*</span> <span class="n">time</span><span class="p">)</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="p">(</span><span class="n">T</span><span class="p">,))</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="img 2" src="../../../../../img/pytorch/ch8/pytorch_ch8_img2.png" width="600" />
+</figure>
+<p>接下来，我们将这个序列转换为模型的特征－标签（feature-label）对。假设 <span class="arithmatex">\(\tau = 4\)</span>，这样我们提供的数据样本就少了 4 个，解决方法：</p>
+<ol>
+<li>如果拥有足够长的序列就丢弃这几项</li>
+<li>用零填充序列</li>
+</ol>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">tau</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span> <span class="o">-</span> <span class="n">tau</span><span class="p">,</span> <span class="n">tau</span><span class="p">))</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tau</span><span class="p">):</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="n">features</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">T</span> <span class="o">-</span> <span class="n">tau</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="n">labels</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">tau</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="n">batch_size</span><span class="p">,</span> <span class="n">n_train</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">600</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="c1"># 只有前n_train个样本用于训练</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">train_iter</span> <span class="o">=</span> <span class="n">d2l</span><span class="o">.</span><span class="n">load_array</span><span class="p">((</span><span class="n">features</span><span class="p">[:</span><span class="n">n_train</span><span class="p">],</span> <span class="n">labels</span><span class="p">[:</span><span class="n">n_train</span><span class="p">]),</span> 
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">batch_size</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>在这里，我们使用一个相当简单的架构训练模型： 一个拥有两个全连接层的多层感知机，ReLU 激活函数和平方损失</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 初始化网络权重的函数</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">init_weights</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">m</span><span class="p">)</span> <span class="o">==</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">xavier_uniform_</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># 一个简单的多层感知机</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">def</span><span class="w"> </span><span class="nf">get_net</span><span class="p">():</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="n">net</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>                        <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>                        <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="n">net</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">init_weights</span><span class="p">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>    <span class="k">return</span> <span class="n">net</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="c1"># 平方损失。注意：MSELoss计算平方误差时不带系数1/2</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="n">loss</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MSELoss</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>现在，准备训练模型了</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">train_iter</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">epochs</span><span class="p">,</span> <span class="n">lr</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="n">trainer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">net</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="p">)</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">train_iter</span><span class="p">:</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>            <span class="n">trainer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>            <span class="n">l</span> <span class="o">=</span> <span class="n">loss</span><span class="p">(</span><span class="n">net</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>            <span class="n">l</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>            <span class="n">trainer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;epoch </span><span class="si">{</span><span class="n">epoch</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">, &#39;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a>              <span class="sa">f</span><span class="s1">&#39;loss: </span><span class="si">{</span><span class="n">d2l</span><span class="o">.</span><span class="n">evaluate_loss</span><span class="p">(</span><span class="n">net</span><span class="p">,</span><span class="w"> </span><span class="n">train_iter</span><span class="p">,</span><span class="w"> </span><span class="n">loss</span><span class="p">)</span><span class="si">:</span><span class="s1">f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="n">net</span> <span class="o">=</span> <span class="n">get_net</span><span class="p">()</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="n">train</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">train_iter</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="3-预测">3 预测<a class="headerlink" href="#3-预测" title="Permanent link">&para;</a></h2>
+<p>由于训练损失很小，因此我们期望模型能有很好的工作效果。让我们看看这在实践中意味着什么。首先是检查模型预测下一个时间步的能力，也就是单步预测</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">onestep_preds</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">features</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">time</span><span class="p">,</span> <span class="n">time</span><span class="p">[</span><span class="n">tau</span><span class="p">:]],</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>         <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">onestep_preds</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()],</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>         <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;1-step preds&#39;</span><span class="p">],</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="img 3" src="../../../../../img/pytorch/ch8/pytorch_ch8_img3.png" width="600" />
+</figure>
+<p>通常，对于直到 <span class="arithmatex">\(x_t\)</span> 的观测序列，其在时间步 <span class="arithmatex">\(t + k\)</span> 处的预测输出 <span class="arithmatex">\(\hat{x}_{t+k}\)</span> 称为 k 步预测。由于我们的观察已经到了 <span class="arithmatex">\(x_{604}\)</span>，因此之后的数据需要使用我们自己的预测（而不是原始数据）来进行多步预测了。它的 k 步预测是 <span class="arithmatex">\(\hat{x}_{604+k}\)</span></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">multistep_preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="n">multistep_preds</span><span class="p">[:</span> <span class="n">n_train</span> <span class="o">+</span> <span class="n">tau</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:</span> <span class="n">n_train</span> <span class="o">+</span> <span class="n">tau</span><span class="p">]</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">tau</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="n">multistep_preds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>        <span class="n">multistep_preds</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="n">tau</span><span class="p">:</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">time</span><span class="p">,</span> <span class="n">time</span><span class="p">[</span><span class="n">tau</span><span class="p">:],</span> <span class="n">time</span><span class="p">[</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">tau</span><span class="p">:]],</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>         <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span> <span class="n">onestep_preds</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">(),</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>          <span class="n">multistep_preds</span><span class="p">[</span><span class="n">n_train</span> <span class="o">+</span> <span class="n">tau</span><span class="p">:]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()],</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>         <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="s1">&#39;1-step preds&#39;</span><span class="p">,</span> <span class="s1">&#39;multistep preds&#39;</span><span class="p">],</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>         <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="img 4" src="../../../../../img/pytorch/ch8/pytorch_ch8_img4.png" width="600" />
+</figure>
+<p>绿线的预测显然并不理想。经过几个预测步骤之后，预测的结果很快就会衰减到一个常数。为什么这个算法效果这么差呢？事实是由于错误的累积：假设在步骤 1 之后，我们积累了一些错误 <span class="arithmatex">\(\epsilon_1 = \bar{\epsilon}\)</span>。接着，步骤 2 的输入扰动了 <span class="arithmatex">\(\epsilon_1\)</span>，结果积累的误差是按照次序的 <span class="arithmatex">\(\epsilon_2 = \bar{\epsilon} + c\epsilon_1\)</span>，其中 c 为某个常数，后面的预测误差依此类推。因此误差可能会相当快地偏离真实的观测结果</p>
+<p>基于 <span class="arithmatex">\(k = 1, 4, 16, 64\)</span>，通过对整个序列预测的计算，让我们更仔细地看一下 k 步预测的困难</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span>
+<span class="normal"><a href="#__codelineno-6-12">12</a></span>
+<span class="normal"><a href="#__codelineno-6-13">13</a></span>
+<span class="normal"><a href="#__codelineno-6-14">14</a></span>
+<span class="normal"><a href="#__codelineno-6-15">15</a></span>
+<span class="normal"><a href="#__codelineno-6-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">max_steps</span> <span class="o">=</span> <span class="mi">64</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">features</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">T</span> <span class="o">-</span> <span class="n">tau</span> <span class="o">-</span> <span class="n">max_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tau</span> <span class="o">+</span> <span class="n">max_steps</span><span class="p">))</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="c1"># 列i（i&lt;tau）是来自x的观测，其时间步从（i）到（i+T-tau-max_steps+1）</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tau</span><span class="p">):</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="n">features</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">T</span> <span class="o">-</span> <span class="n">tau</span> <span class="o">-</span> <span class="n">max_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="c1"># 列i（i&gt;=tau）是来自（i-tau+1）步的预测，其时间步从（i）到（i+T-tau-max_steps+1）</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tau</span><span class="p">,</span> <span class="n">tau</span> <span class="o">+</span> <span class="n">max_steps</span><span class="p">):</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a>    <span class="n">features</span><span class="p">[:,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">net</span><span class="p">(</span><span class="n">features</span><span class="p">[:,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">tau</span><span class="p">:</span><span class="n">i</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="n">steps</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">64</span><span class="p">)</span>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13"></a><span class="n">d2l</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">time</span><span class="p">[</span><span class="n">tau</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span> <span class="n">T</span> <span class="o">-</span> <span class="n">max_steps</span> <span class="o">+</span> <span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">],</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14"></a>         <span class="p">[</span><span class="n">features</span><span class="p">[:,</span> <span class="p">(</span><span class="n">tau</span> <span class="o">+</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">],</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15"></a>         <span class="n">legend</span><span class="o">=</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">-step preds&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">],</span> <span class="n">xlim</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16"></a>         <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="img 5" src="../../../../../img/pytorch/ch8/pytorch_ch8_img5.png" width="600" />
+</figure>
 
 
 
@@ -7112,7 +7440,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月8日 08:40:26">2025年4月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月12日 09:28:22">2025年4月12日</span>
   </span>
 
     
@@ -7244,13 +7572,13 @@
         
         
           
-          <a href="../../../other/anaconda/" class="md-footer__link md-footer__link--next" aria-label="下一页: Anaconda">
+          <a href="../ch8_2/" class="md-footer__link md-footer__link--next" aria-label="下一页: 8.2 文本预处理">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Anaconda
+                8.2 文本预处理
               </div>
             </div>
             <div class="md-footer__button md-icon">
