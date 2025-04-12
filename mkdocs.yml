@@ -224,6 +224,9 @@ nav:
           - 7.7 DenseNet 稠密连接网络: knowledge/python/pytorch/ch7/ch7_7.md
         - 8 循环神经网络:
           - 8.1 序列模型: knowledge/python/pytorch/ch8/ch8_1.md
+          - 8.2 文本预处理: knowledge/python/pytorch/ch8/ch8_2.md
+          - 8.3 语言模型和数据集: knowledge/python/pytorch/ch8/ch8_3.md
+          - 8.4 循环神经网络: knowledge/python/pytorch/ch8/ch8_4.md
       - 其他:
         - Anaconda: knowledge/python/other/anaconda.md
     - 数据结构与算法:

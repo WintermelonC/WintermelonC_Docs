@@ -163,7 +163,7 @@ import sys
 ```python linenums="1"
 # 换行示例
 long_string = ("This is a very long string "
-                "that spans multiple lines.")
+               "that spans multiple lines.")
 ```
 
 #### 空格与运算符
