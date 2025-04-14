@@ -69,7 +69,12 @@
 ## 第 4 章
 
 - `sklearn.preprocessing`：用于数据的预处理和特征工程
+      - `StandardScaler`：标准化数据
 - `sklearn.metrics`：模型评估与指标计算
+      - `mean_squared_error()`：均方误差
+      - `r2_score()`：决定系数 $R^2$
+      - `accuracy_score()`：准确率
+      - `confusion_matrix()`：混淆矩阵
 - `sklearn.model_selection`：模型选择与数据划分
 - `sklearn.linear_model`：线性模型
 
