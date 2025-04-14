@@ -42,7 +42,7 @@ True
 
 字典可以用任意值作为键，这一点让你能够用强大的方式来组织数据。假定你希望程序保存朋友生日的数据，就可以使用一个字典，用名字作为键，用生日作为值
 
-```python linemums="1"
+```python linenums="1"
 birthdays = {'Alice': 'Apr 1', 'Bob': 'Dec 12'}
 
 while True:
@@ -355,7 +355,7 @@ Number of things being brought:
 我们用字典 `{'1h': 'bking', '6c': 'wqueen', '2g': 'bbishop', '5h', 'bqueen', '3e', 'wking'}` 代表棋盘
 
 <figure markdown="span">
-  ![img 1](../../../img/python_basic/ch5/basic_ch5_img1.png){ width="400" }
+  ![img 1](../../../img/python_basic/ch5/basic_ch5_img1.jpg){ width="400" }
 </figure>
 
 编写一个名为 `is_valid_chess_board()` 的函数，该函数接收一个字典作为参数，根据棋盘是否有效，返回 `True` 或 `False`
