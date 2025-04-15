@@ -45,6 +45,7 @@ nav:
         - 5 回归与分类模型: zju/computer/AI_basic/ch5.md
         - 6 数据的聚类和降维技术: zju/computer/AI_basic/ch6.md
         - 7 深度网络基础组件: zju/computer/AI_basic/ch7.md
+        - 8 卷积神经网络: zju/computer/AI_basic/ch8.md
         - 习题整理: zju/computer/AI_basic/exercise.md
     - 自然科学通识类:
       - zju/natural_science/index.md
@@ -69,6 +70,8 @@ nav:
         - 1 细胞与细胞工程: zju/general_courses/life_science/ch1.md
         - 2 基因与基因工程: zju/general_courses/life_science/ch2.md
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
+      - 无线网络应用:
+        - zju/general_courses/wireless_network/index.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md
@@ -98,6 +101,7 @@ nav:
         - 5 Inside Class: zju/basic_courses/OOP/ch5.md
         - 6 Composition: zju/basic_courses/OOP/ch6.md
         - 7 Inheritance: zju/basic_courses/OOP/ch7.md
+        - 8 Polymorphism: zju/basic_courses/OOP/ch8.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -142,6 +146,7 @@ nav:
         - 4 Advanced SQL: zju/compulsory_courses/database_system/ch4.md
         - 5 Entity-Relationship Model: zju/compulsory_courses/database_system/ch5.md
         - 6 Relational Database Design: zju/compulsory_courses/database_system/ch6.md
+        - 7 Storage and File Structure: zju/compulsory_courses/database_system/ch7.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:

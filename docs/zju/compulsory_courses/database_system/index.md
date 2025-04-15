@@ -27,4 +27,5 @@ cg老师
 [3 Introduction to SQL](./ch3.md)<br/>
 [4 Advanced SQL](./ch4.md)<br/>
 [5 Entity-Relationship Model](./ch5.md)<br/>
-[6 Relational Database Design](./ch6.md)
+[6 Relational Database Design](./ch6.md)<br/>
+[7 Storage and File Structure](./ch7.md)

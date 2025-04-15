@@ -139,6 +139,35 @@ $y_n = T_n(net_n, \theta_n)$，其中 $\theta_n$ 为阈值，又称偏置值
 
 MLP 模型的训练，就是指不断地调整隐含层和输出层计算单元的权重值
 
+## 7.4 人工神经网络应用实战 —— MNIST 手写体数字识别
+
+```python linenums="1"
+from sklearn.datasets import fetch_openml
+from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
+
+# 加载 MNIST 数据集
+mt_data = fetch_openml('mnist_784', version=1)
+# 归一化处理，每个像素的取值范围是 0~255
+X, y = mt_data.data / 255.0, mt_data.target
+# 划分训练集和测试集
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
+# 查看数据形状
+print(X_train.shape)
+
+# 创建并训练 MLP 分类器
+# hidden_layer_sizes 隐藏层的数量和每层的神经元数量
+# max_iter 迭代次数
+# random_state 随机数种子，用于训练的可重复性
+my_MLP = MLPClassifier(hidden_layer_sizes=(100, ), max_iter=100, random_state=42)
+# 模型训练
+my_MLP.fit(X_train, y_train)
+# 评估模型
+score = my_MLP.score(X_test, y_test)
+# 输出准确率
+print(f'Model accuracy: {score:.2f}')
+```
+
 ## 7.5 扩展阅读
 
 ### 7.5.1 激活函数的选择

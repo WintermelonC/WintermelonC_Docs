@@ -61,7 +61,8 @@
 
 #### 博雅技艺
 
-[生命科学导论实验](./general_courses/life_science_exp.md)
+[生命科学导论实验](./general_courses/life_science_exp.md)<br/>
+[无线网络应用](./general_courses/wireless_network/index.md)
 
 ## 专业基础课程
 

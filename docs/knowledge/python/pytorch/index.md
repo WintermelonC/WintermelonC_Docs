@@ -8,6 +8,12 @@
 
     [《动手学深度学习》—— 动手学深度学习 2.0.0](https://zh.d2l.ai/index.html){:target="_blank"}
 
+    “预修课程”：
+
+    1. 微积分
+    2. 线性代数
+    3. [概率论与数理统计](../../../zju/basic_courses/prob_theo_and_math_stat/index.md){:target="_blank"}
+
     > 本文档内容与上方参考文档基本一致，建议直接查阅上方参考文档获取更完整的学习资源
     >
     > 本文档的目的是：

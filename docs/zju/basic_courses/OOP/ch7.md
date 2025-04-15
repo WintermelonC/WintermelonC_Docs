@@ -1,8 +1,8 @@
 # 7 Inheritance
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -32,7 +32,13 @@
     - 必须通过基类提供的公有或受保护成员函数来间接访问
     - 如果派生类定义了同名变量，这将是完全独立的新变量，不会覆盖基类的变量
 
+不被继承的内容：
 
+1. 构造函数
+2. 析构函数
+3. 赋值运算符
+      1. 当派生类没有显式定义赋值运算符时：编译器会为派生类生成一个合成赋值运算符，这个合成版本会自动调用基类的赋值运算符
+      2. 当派生类显式定义赋值运算符时：不会自动调用基类赋值运算符，必须手动调用基类版本，否则基类部分不会被正确赋值
 
 ### 2.1 定义继承
 
@@ -64,8 +70,10 @@ int main() {
 继承可以通过以下三种方式指定访问权限：
 
 1. `public` 继承：基类的 `public` 成员在派生类中仍然是 `public`，`protected` 成员在派生类中仍然是 `protected`
+      -  对 struct 来说，`public` 是默认继承方式
 2. `protected` 继承：基类的 `public` 和 `protected` 成员在派生类中都变为 `protected`
 3. `private` 继承：基类的 `public` 和 `protected` 成员在派生类中都变为 `private`
+      -  对 class 来说，`private` 是默认继承方式
 
 ```cpp linenums="1"
 class Base {
@@ -101,6 +109,8 @@ class PrivateDerived : private Base {
 #### 2.3.1 构造函数与析构函数
 
 - 构造函数：派生类的构造函数不会继承基类的构造函数，但可以通过初始化列表调用基类的构造函数
+
+透传（forwarding）：派生类的构造函数需要将参数传递给基类的构造函数
 
 ```cpp linenums="1"
 #include <iostream>
@@ -261,9 +271,129 @@ class C : virtual public A {};
 class D : public B, public C {}; // D 中只有一份 A 的拷贝
 ```
 
+### 2.5 `using` 声明
+
+1.引入基类的构造函数：在派生类中，可以通过 `using` 声明引入基类的构造函数，使得派生类能够直接使用基类的构造函数
+
+如果派生类定义了自己的构造函数，则不会覆盖基类的构造函数
+
+```cpp linenums="1"
+class Base {
+public:
+    Base(int x) { std::cout << "Base Constructor: " << x << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    using Base::Base; // 引入基类的构造函数
+};
+
+int main() {
+    Derived d(42); // 调用 Base 的构造函数
+    return 0;
+}
+```
+
+如果基类的构造函数带有默认参数，当派生类使用 `using` 声明继承基类构造函数时，不会继承默认参数值本身，而是会生成对应的多个重载构造函数，相当于为每个可能的参数组合创建单独的重载版本
+
+```cpp linenums="1"
+class A {
+public:
+    A(int a=3, double b=2.4) {}  // 一个带有两个默认参数的构造函数
+};
+
+class B : public A {
+public:
+    using A::A;  // 继承A的构造函数
+    // 实际上会生成:
+    // B(int, double)
+    // B(int)
+    // B()
+};
+```
+
+!!! tip "默认参数构造函数的本质"
+
+    一个带有默认参数的构造函数实际上相当于多个重载的构造函数
+
+    ```cpp linenums="1"
+    class A {
+    public:
+        A(int a=3, double b=2.4) {}  // 一个带有两个默认参数的构造函数
+    };
+    
+    // 实际上等同于三个构造函数
+    A(int, double);  // 需要两个参数
+    A(int);         // 只需要一个int参数，b使用默认值
+    A();            // 无参，a和b都使用默认值
+    ```
+
+2.改变基类成员的访问权限：通过 `using` 声明，可以改变基类成员在派生类中的访问权限
+
+- 仅改变派生类中成员的访问权限，不影响基类中的权限
+- 常用于将基类的 protected 或 private 成员提升为 public
+
+```cpp linenums="1"
+class Base {
+protected:
+    void func() { std::cout << "Base func" << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    using Base::func; // 将 func 的访问权限从 protected 改为 public
+};
+
+int main() {
+    Derived d;
+    d.func(); // 现在可以访问 func
+    return 0;
+}
+```
+
+3.解决函数隐藏问题：在派生类中，如果定义了与基类同名的函数，基类的同名函数会被隐藏。通过 `using` 声明，可以显式引入基类的同名函数，解决隐藏问题（name hiding 问题）
+
+- 通过 using 声明，可以同时保留基类和派生类的同名函数
+- 避免了函数隐藏导致的访问问题
+
+```cpp linenums="1"
+class Base {
+public:
+    void func(int x) { std::cout << "Base func: " << x << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    using Base::func; // 引入基类的 func
+    void func() { std::cout << "Derived func" << std::endl; }
+};
+
+int main() {
+    Derived d;
+    d.func();    // 调用派生类的 func
+    d.func(42);  // 调用基类的 func
+    return 0;
+}
+```
+
+4.引入基类的类型定义：`using` 声明可以用来引入基类的类型定义，方便在派生类中使用
+
+```cpp linenums="1"
+class Base {
+public:
+    using ValueType = int; // 基类中的类型定义
+};
+
+class Derived : public Base {
+public:
+    using Base::ValueType; // 引入基类的类型定义
+    ValueType value;
+};
+```
+
 ## Homework
 
-<!-- ???+ question "PTA 7.4"
+???+ question "PTA 7.4"
 
     For the code segment below, in the main(), 
 
@@ -390,4 +520,4 @@ class D : public B, public C {}; // D 中只有一份 A 的拷贝
         
         组合输出：30 30 62
         
-        //4 的输出：303062 -->
+        //4 的输出：303062
