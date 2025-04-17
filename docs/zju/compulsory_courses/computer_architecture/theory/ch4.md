@@ -654,3 +654,55 @@ Tomasulo算法的执行分为三个阶段：
 6. **MUL F1**：执行并写回，更新寄存器
 
 ## 4 Dynamic Scheduling: Examples and the Algorithm
+
+<figure markdown="span">
+    ![Img 10](../../../../img/comp_arch/ch4/ca_ch4_img10.png){ width="600" }
+</figure>
+
+考虑以下指令序列：
+
+```verilog linenums="1"
+LD f6, 34(r2)
+LD f2, 45(r3)
+MULD f0, f2, f4
+SUBD f8, f6, f2
+DIVD f10, f0, f6
+ADDD f6, f8, f2
+```
+
+<figure markdown="span">
+    ![Img 11](../../../../img/comp_arch/ch4/ca_ch4_img11.png){ width="800" }
+</figure>
+
+### 4.1 Tomasulo's Algorithm: A Loop-Based Example
+
+考虑以下指令序列：
+
+```verilog linenums="1"
+LD f0, 0(r1)
+MULD f4, f0, f2
+SD f4, 0(r1)
+SUBI r1, r1, 8
+BNEZ r1, loop
+```
+
+提取前两个循环的 LD，MULD，SD 指令
+
+```verilog linenums="1"
+1 LD f0, 0(r1)
+1 MULD f4, f0, f2
+1 SD f4, 0(r1)
+2 LD f0, 0(r1)
+2 MULD f4, f0, f2
+2 SD f4, 0(r1)
+```
+
+假设 mult 花费 4 个时钟周期，第一次 load 花费 8 个（因为有 cahce miss），第二次 load 花费 4 个
+
+> 好累，不想画流程图了，但是 ppt 上有
+
+### 4.2 Summary of Tomasulo's Algorithm
+
+### 4.3 Explicit Renaming
+
+## 5 Branch Prediction

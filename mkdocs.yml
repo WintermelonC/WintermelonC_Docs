@@ -72,6 +72,7 @@ nav:
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
       - 无线网络应用:
         - zju/general_courses/wireless_network/index.md
+        - Lecture 1: zju/general_courses/wireless_network/ch1.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md
@@ -234,6 +235,8 @@ nav:
           - 8.4 循环神经网络: knowledge/python/pytorch/ch8/ch8_4.md
       - 其他:
         - Anaconda: knowledge/python/other/anaconda.md
+    - C/C++:
+      - knowledge/C_Cpp/index.md
     - 数据结构与算法:
       - knowledge/data_stru_algorithm/index.md
       - 其他:
