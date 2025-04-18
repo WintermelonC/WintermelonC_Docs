@@ -2234,9 +2234,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#132-拓扑图" class="md-nav__link">
+  <a href="#131-网络表示方式" class="md-nav__link">
     <span class="md-ellipsis">
-      1.3.2 拓扑图
+      1.3.1 网络表示方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-拓扑" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2 拓扑
     </span>
   </a>
   
@@ -7613,9 +7622,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#132-拓扑图" class="md-nav__link">
+  <a href="#131-网络表示方式" class="md-nav__link">
     <span class="md-ellipsis">
-      1.3.2 拓扑图
+      1.3.1 网络表示方式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-拓扑" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2 拓扑
     </span>
   </a>
   
@@ -7798,10 +7816,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="lecture-1">Lecture 1<a class="headerlink" href="#lecture-1" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -7819,13 +7837,47 @@
 <figure>
   <img alt="Img 1" src="../../../../img/wireless_network/ch1/wireless_ch1_img1.png" width="600" />
 </figure>
-<p>对等网络：</p>
+<ol>
+<li>终端设备：所有连接到网络并直接参与网络通信的计算机都属于主机。主机也称为终端设备</li>
+<li>服务器（Server）：服务器是为其他设备或程序（客户端）提供数据、服务或资源的硬件或软件系统<ol>
+<li>Web 服务器：托管网站（如 Nginx、Apache）</li>
+<li>文件服务器：提供文件存储和共享（如 FTP 服务器）</li>
+<li>游戏服务器：处理多玩家联机数据</li>
+<li>数据库服务器：存储和管理数据（如 MySQL）</li>
+</ol>
+</li>
+<li>客户端（Client）：客户端是向服务器发起请求并接收服务的终端设备或应用程序<ol>
+<li>浏览器（访问网页）</li>
+<li>手机 APP（调用 API）</li>
+<li>电子邮箱客户端（收发邮件）</li>
+</ol>
+</li>
+</ol>
+<p>对等网络：在小企业或家庭网络中，许多计算机既是服务器又是客户端。这种网络称为对等网络</p>
 <h3 id="12-网络组件">1.2 网络组件<a class="headerlink" href="#12-网络组件" title="Permanent link">&para;</a></h3>
 <h4 id="121-网络设备">1.2.1 网络设备<a class="headerlink" href="#121-网络设备" title="Permanent link">&para;</a></h4>
+<ol>
+<li>终端设备是通过网络传输的消息的源或目的地</li>
+<li>中间设备将每台终端设备连接到网络，并且可以将多个独立的网络连接成网际网络</li>
+</ol>
 <h4 id="122-网络介质">1.2.2 网络介质<a class="headerlink" href="#122-网络介质" title="Permanent link">&para;</a></h4>
+<ol>
+<li>电缆内的金属线</li>
+<li>玻璃或塑料光纤</li>
+<li>无线（电波）</li>
+</ol>
 <h4 id="123-网络服务">1.2.3 网络服务<a class="headerlink" href="#123-网络服务" title="Permanent link">&para;</a></h4>
+<p>网络组件用于提供服务和过程。服务和过程是网络设备上运行的通信程序，称为软件</p>
+<ul>
+<li>服务包括人们日常使用的许多常见网络应用程序。如电子邮件托管服务和 Web 托管服务</li>
+<li>过程提供的是通过网络引导和移动消息的功能。过程不易察觉，但却是网络运行的关键</li>
+</ul>
 <h3 id="13-网络表达方式和网络拓扑">1.3 网络表达方式和网络拓扑<a class="headerlink" href="#13-网络表达方式和网络拓扑" title="Permanent link">&para;</a></h3>
-<h4 id="132-拓扑图">1.3.2 拓扑图<a class="headerlink" href="#132-拓扑图" title="Permanent link">&para;</a></h4>
+<h4 id="131-网络表示方式">1.3.1 网络表示方式<a class="headerlink" href="#131-网络表示方式" title="Permanent link">&para;</a></h4>
+<figure>
+  <img alt="Img 3" src="../../../../img/wireless_network/ch1/wireless_ch1_img3.png" width="600" />
+</figure>
+<h4 id="132-拓扑">1.3.2 拓扑<a class="headerlink" href="#132-拓扑" title="Permanent link">&para;</a></h4>
 <ol>
 <li>物理拓扑图<ol>
 <li>各台主机的位置及其与网络连接的方式</li>
@@ -7838,11 +7890,17 @@
 </ol>
 </li>
 </ol>
+<figure>
+  <img alt="Img 4" src="../../../../img/wireless_network/ch1/wireless_ch1_img4.png" width="600" />
+</figure>
+<figure>
+  <img alt="Img 5" src="../../../../img/wireless_network/ch1/wireless_ch1_img5.png" width="600" />
+</figure>
 <h3 id="14-常见网络类型">1.4 常见网络类型<a class="headerlink" href="#14-常见网络类型" title="Permanent link">&para;</a></h3>
 <ol>
 <li>局域网（LAN）：针对较小地理区域内的用户和终端设备提供访问的网络基础设施<ol>
 <li>有线局域网</li>
-<li>无线局域网</li>
+<li>无线局域网（WLAN）</li>
 </ol>
 </li>
 <li>广域网（WAN）：针对广泛地理区域内的网络提供访问的网络基础设施，通常由服务提供商（SP）或 Internet 服务提供商（ISP）管理<ol>
@@ -7851,12 +7909,13 @@
 </li>
 </ol>
 <h3 id="15-internet-连接">1.5 Internet 连接<a class="headerlink" href="#15-internet-连接" title="Permanent link">&para;</a></h3>
+<p>以太网（Ethernet）是一种有线局域网（LAN）技术，用于在本地网络（如家庭、办公室、数据中心）中通过电缆连接设备并传输数据。它是目前应用最广泛的局域网通信标准，定义了物理层和数据链路层的技术规范</p>
 <h3 id="16-可靠网络">1.6 可靠网络<a class="headerlink" href="#16-可靠网络" title="Permanent link">&para;</a></h3>
 <p>网络底层架构必须解决以下四个基本特性才能满足用户的期望：</p>
 <ol>
 <li>容错能力</li>
 <li>可扩展性</li>
-<li>服务质量</li>
+<li>服务质量（QoS）：用于优先处理特定类型的数据流量，确保关键应用（如视频会议、在线游戏、 VoIP 电话）获得稳定的带宽、低延迟和低丢包率，尤其在网络拥塞时保障用户体验</li>
 <li>安全性</li>
 </ol>
 <h3 id="17-网络趋势">1.7 网络趋势<a class="headerlink" href="#17-网络趋势" title="Permanent link">&para;</a></h3>
@@ -8002,7 +8061,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月17日 12:55:17">2025年4月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月18日 09:06:06">2025年4月18日</span>
   </span>
 
     
