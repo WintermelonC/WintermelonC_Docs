@@ -595,6 +595,10 @@ record 分为两种类型：
 
 **槽页**
 
+<figure markdown="span">
+  ![Img 20](../../../img/database/ch7/database_ch7_img20.png){ width="600" }
+</figure>
+
 结构布局：
 
 1. 头部区域：
@@ -762,3 +766,47 @@ data-dictionary（或 system catalog）存储 metadata：
   ![Img 19](../../../img/database/ch7/database_ch7_img19.png){ width="400" }
 </figure>
 
+## Homework
+
+<!-- ???+ question "课本 12.13"
+
+    Suppose you have data that should not be lost on disk failure, and the application is write-intensive. How would you store the data?
+
+    ??? success "答案"
+
+        由于是写入密集型的数据库应用，我会优先选择 RAID 1
+
+        RAID 1 的优势：
+        
+        1. 直接镜像写入，只需同时写入 2 份数据
+        2. 无校验计算开销，延迟更低
+        3. 特别适合写入密集型负载
+        
+        同时 RAID 1 是 100 % 冗余，拥有高可靠性，可在一定程度上防止磁盘故障而导致的数据丢失问题（允许单盘故障）
+
+???+ question "课本 13.11"
+
+    List two advantages and two disadvantages of each of the following strategies for storing a relational database:
+
+    a. Store each relation in one file.<br/>
+    b. Store multiple relations (perhaps even the entire database) in one file.
+
+    ??? success "答案"
+
+        a. store each relation in one file.
+
+        - 优点：
+              1. 文件管理简单方便：每个表对应一个独立文件，备份、迁移单个表等操作比较容易
+              2. 不同表可以并行访问：在多用户同时访问不同表的场景下，不同表的 I/O 操作可以并行化
+        - 缺点：
+              1. 跨表查询性能较低：如果需要跨表查询的话，需要频繁打开或关闭多个文件，增加系统开销
+              2. 存储空间利用率低：如某一个表的内容相较于其他表内容很少，但也需要占用一个最小分配单元，存在浪费空间的问题
+
+        b. Store multiple relations (perhaps even the entire database) in one file.
+
+        - 优点：
+              1. 跨表操作高效：表连接操作可以在同一个文件内完成，减少 I/O 开销
+              2. 整体管理简便：因为多个表都在同一个文件当中，因此需要备份等操作时，只需要处理单个文件，事务管理更简单
+        - 缺点：
+              1. 维护数据难度大：单个文件损坏可能导致整个数据库不可用
+              2. 存在并发限制：所有表共享相同的 I/O 通道，大量并发写入时容易出现问题 -->

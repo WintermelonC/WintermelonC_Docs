@@ -737,3 +737,103 @@ while (!done) {
 
 ## Homework
 
+???+ question "课本 7.1"
+
+    Suppose that we decompose the schema R = (A, B, C, D, E) into
+
+    (A, B, C)<br/>
+    (A, D, E)
+
+    Show that this decomposition is a lossless decomposition if the following set F of functional dependencies holds:
+
+    A → BC<br/>
+    CD → E<br/>
+    B → D<br/>
+    E → A
+
+    ??? success "答案"
+
+        设 $R_1 = (A,B,C), R_2 = (A,D,E)$，$R_1$ 和 $R_2$ 的公共属性集为 $A$，因为存在 functional dependency $A \rightarrow BC$，所以 $A$ 是 $R_1$ 的 super key，则说明这个分解是 lossless decomposition
+
+???+ question "课本 7.13"
+
+    Show that the decomposition in Exercise 7.1 is not a dependency-preserving decomposition.
+
+    ??? success "答案"
+
+        $R_1$ 上的 functional dependency $F_1 = \lbrace A \rightarrow B, A \rightarrow C \rbrace$，$R_2$ 上的 functional dependency $F_2 = \lbrace A \rightarrow D, A \rightarrow E, E \rightarrow A \rbrace$
+
+???+ question "课本 7.21"
+
+    Give a lossless decomposition into BCNF of schema R of Exercise 7.1.
+
+    ??? success "答案"
+
+        $R = (A,B,C,D,E)$
+
+        $R$ 的 super key 是 $A$ 和 $E$
+        
+        1. $B \rightarrow D$：不满足 BCNF
+           1. $R_1 = (B, D)$
+           2. $R_2 = (A, B, C, E)$
+        2. $A \rightarrow BC$：在 $R_2$ 中不满足 BCNF
+           1. $R_{21} = (A,B,C)$
+           2. $R_{22} = (A,E)$
+        
+        因此，最终的分解结果为
+        
+        1. $R_1 = (B, D)$
+        2. $R_{21} = (A,B,C)$
+        3. $R_{22} = (A,E)$
+
+???+ question "课本 7.22"
+
+    Give a lossless, dependency-preserving decomposition into 3NF of schema R of Exercise 7.1.
+
+    ??? success "答案"
+
+        $R = (A,B,C,D,E)$
+
+        $R$ 的 super key 是 $A$ 和 $E$
+        
+        1. $B \rightarrow D$：不满足 3NF
+           1. $R_1 = (B, D)$
+           2. $R_2 = (A, B, C, E)$
+        2. $CD \Rrightarrow E$：无法在 $R_1, R_2$ 中体现
+           1. $R_3 = (C,D,E)$
+        
+        因此，最终的分解结果为
+        
+        1. $R_1 = (B, D)$
+        2. $R_2 = (A, B, C, E)$
+        3. $R_3 = (C,D,E)$
+
+???+ question "课本 7.29"
+
+    Show that the following decomposition of the schema R of Exercise 7.1 is not a lossless decomposition:
+
+    (A, B, C)<br/>
+    (C, D, E)
+    
+    Hint: Give an example of a relation r(R) such that $Π_{A, B, C} (r) ⋈ Π_{C, D, E}(r) ≠ r$
+
+    ??? success "答案"
+
+        设 $R_1 = (A,B,C), R_2 = (C,D,E)$。$R_1$ 和 $R_2$ 的公共属性集为 $C$，C 不是 $R_1$ 的 super key，也不是 $R_2$ 的 super key。例如
+
+        | A | B | C | D | E |
+        | :-: | :-: | :-: | :-: | :-: |
+        | a1 | b1 | c1 | d1 | e1 |
+        | a2 | b1 | c1 | d2 | e1 |
+        
+        | A | B | C |
+        | :-: | :-: | :-: |
+        | a1 | b1 | c1 |
+        | a2 | b1 | c1 |
+        
+        | C | D | E |
+        | :-: | :-: | :-: |
+        | c1 | d1 | e1 |
+        | c1 | d2 | e1 |
+        
+        如果两个子表做自然连接，会得到 4 个 tuple，但是原表只有 2 个。所以该分解不是 lossless decomposition
