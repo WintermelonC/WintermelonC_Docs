@@ -250,7 +250,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
 
 通过磁盘条带化结合奇偶校验位来以较低成本提供冗余的方案。不同的 RAID 级别具有不同的成本、性能和可靠性特征
 
-#### 3.3.1 RAID 0
+**RAID 0**
 
 - 纯块级条带化技术
 - 无任何冗余机制
@@ -270,7 +270,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
   ![Img 3](../../../img/database/ch7/database_ch7_img3.png){ width="400" }
 </figure>
 
-#### 3.3.2 RAID 1
+**RAID 1**
 
 磁盘镜像（100% 冗余）结合块级条带化
 
@@ -286,7 +286,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
 
 典型应用：数据库事务日志等关键写入密集型工作负载
 
-#### 3.3.3 RAID 2
+**RAID 2**
 
 - 采用内存式汉明码（Hamming Code）纠错技术
 - 按比特条带化分布数据
@@ -300,7 +300,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
   ![Img 4](../../../img/database/ch7/database_ch7_img4.png){ width="400" }
 </figure>
 
-#### 3.3.4 RAID 3
+**RAID 3**
 
 - 单块专用校验盘存储奇偶校验信息
 - 数据按比特/字节交错分布在其他磁盘
@@ -322,7 +322,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
 1. 随机 IOPS 性能差（每次 I/O 需同步所有磁盘）
 2. 校验盘可能成为瓶颈
 
-#### 3.3.5 RAID 4
+**RAID 4**
 
 <figure markdown="span">
   ![Img 5](../../../img/database/ch7/database_ch7_img5.png){ width="400" }
@@ -357,7 +357,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
 1. 校验盘成为写入瓶颈（所有写入都需访问校验盘）
 2. 随机写入性能差（小写入放大为多个物理 I/O）
 
-#### 3.3.6 RAID 5
+**RAID 5**
 
 <figure markdown="span">
   ![Img 6](../../../img/database/ch7/database_ch7_img6.png){ width="600" }
@@ -376,7 +376,7 @@ RAID 通过 redundancy 提高可靠性、通过 parallelism 提升速度
       1. 仍采用 XOR 校验机制
       2. 任意单盘故障可恢复
 
-#### 3.3.7 RAID 6
+**RAID 6**
 
 <figure markdown="span">
   ![Img 7](../../../img/database/ch7/database_ch7_img7.png){ width="400" }

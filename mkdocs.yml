@@ -245,6 +245,11 @@ nav:
     - tools/index.md
     - Git:
       - tools/git/index.md
+      - 1 Git 安装与配置: tools/git/ch1.md
+      - 2 Git 基本操作: tools/git/ch2.md
+      - 3 Git 分支操作: tools/git/ch3.md
+      - 4 Git 远程操作: tools/git/ch4.md
+      - 5 Git 多人协作: tools/git/ch5.md
       - 其他: tools/git/other.md
 
 # 主题设置
