@@ -8693,6 +8693,155 @@ t_4[R - \alpha - \beta] = t_1[R - \alpha - \beta]
 <li>更多具有理论意义而非实践价值</li>
 </ol>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<details class="question" open="open">
+<summary>课本 7.1</summary>
+<p>Suppose that we decompose the schema R = (A, B, C, D, E) into</p>
+<p>(A, B, C)<br/>
+(A, D, E)</p>
+<p>Show that this decomposition is a lossless decomposition if the following set F of functional dependencies holds:</p>
+<p>A → BC<br/>
+CD → E<br/>
+B → D<br/>
+E → A</p>
+<details class="success">
+<summary>答案</summary>
+<p>设 <span class="arithmatex">\(R_1 = (A,B,C), R_2 = (A,D,E)\)</span>，<span class="arithmatex">\(R_1\)</span> 和 <span class="arithmatex">\(R_2\)</span> 的公共属性集为 <span class="arithmatex">\(A\)</span>，因为存在 functional dependency <span class="arithmatex">\(A \rightarrow BC\)</span>，所以 <span class="arithmatex">\(A\)</span> 是 <span class="arithmatex">\(R_1\)</span> 的 super key，则说明这个分解是 lossless decomposition</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 7.13</summary>
+<p>Show that the decomposition in Exercise 7.1 is not a dependency-preserving decomposition.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(R_1\)</span> 上的 functional dependency <span class="arithmatex">\(F_1 = \lbrace A \rightarrow B, A \rightarrow C \rbrace\)</span>，<span class="arithmatex">\(R_2\)</span> 上的 functional dependency <span class="arithmatex">\(F_2 = \lbrace A \rightarrow D, A \rightarrow E, E \rightarrow A \rbrace\)</span></p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 7.21</summary>
+<p>Give a lossless decomposition into BCNF of schema R of Exercise 7.1.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(R = (A,B,C,D,E)\)</span></p>
+<p><span class="arithmatex">\(R\)</span> 的 super key 是 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(E\)</span></p>
+<ol>
+<li><span class="arithmatex">\(B \rightarrow D\)</span>：不满足 BCNF</li>
+<li><span class="arithmatex">\(R_1 = (B, D)\)</span></li>
+<li><span class="arithmatex">\(R_2 = (A, B, C, E)\)</span></li>
+<li><span class="arithmatex">\(A \rightarrow BC\)</span>：在 <span class="arithmatex">\(R_2\)</span> 中不满足 BCNF</li>
+<li><span class="arithmatex">\(R_{21} = (A,B,C)\)</span></li>
+<li><span class="arithmatex">\(R_{22} = (A,E)\)</span></li>
+</ol>
+<p>因此，最终的分解结果为</p>
+<ol>
+<li><span class="arithmatex">\(R_1 = (B, D)\)</span></li>
+<li><span class="arithmatex">\(R_{21} = (A,B,C)\)</span></li>
+<li><span class="arithmatex">\(R_{22} = (A,E)\)</span></li>
+</ol>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 7.22</summary>
+<p>Give a lossless, dependency-preserving decomposition into 3NF of schema R of Exercise 7.1.</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(R = (A,B,C,D,E)\)</span></p>
+<p><span class="arithmatex">\(R\)</span> 的 super key 是 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(E\)</span></p>
+<ol>
+<li><span class="arithmatex">\(B \rightarrow D\)</span>：不满足 3NF</li>
+<li><span class="arithmatex">\(R_1 = (B, D)\)</span></li>
+<li><span class="arithmatex">\(R_2 = (A, B, C, E)\)</span></li>
+<li><span class="arithmatex">\(CD \Rrightarrow E\)</span>：无法在 <span class="arithmatex">\(R_1, R_2\)</span> 中体现</li>
+<li><span class="arithmatex">\(R_3 = (C,D,E)\)</span></li>
+</ol>
+<p>因此，最终的分解结果为</p>
+<ol>
+<li><span class="arithmatex">\(R_1 = (B, D)\)</span></li>
+<li><span class="arithmatex">\(R_2 = (A, B, C, E)\)</span></li>
+<li><span class="arithmatex">\(R_3 = (C,D,E)\)</span></li>
+</ol>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 7.29</summary>
+<p>Show that the following decomposition of the schema R of Exercise 7.1 is not a lossless decomposition:</p>
+<p>(A, B, C)<br/>
+(C, D, E)</p>
+<p>Hint: Give an example of a relation r(R) such that <span class="arithmatex">\(Π_{A, B, C} (r) ⋈ Π_{C, D, E}(r) ≠ r\)</span></p>
+<details class="success">
+<summary>答案</summary>
+<p>设 <span class="arithmatex">\(R_1 = (A,B,C), R_2 = (C,D,E)\)</span>。<span class="arithmatex">\(R_1\)</span> 和 <span class="arithmatex">\(R_2\)</span> 的公共属性集为 <span class="arithmatex">\(C\)</span>，C 不是 <span class="arithmatex">\(R_1\)</span> 的 super key，也不是 <span class="arithmatex">\(R_2\)</span> 的 super key。例如</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">a1</td>
+<td style="text-align: center;">b1</td>
+<td style="text-align: center;">c1</td>
+<td style="text-align: center;">d1</td>
+<td style="text-align: center;">e1</td>
+</tr>
+<tr>
+<td style="text-align: center;">a2</td>
+<td style="text-align: center;">b1</td>
+<td style="text-align: center;">c1</td>
+<td style="text-align: center;">d2</td>
+<td style="text-align: center;">e1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">A</th>
+<th style="text-align: center;">B</th>
+<th style="text-align: center;">C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">a1</td>
+<td style="text-align: center;">b1</td>
+<td style="text-align: center;">c1</td>
+</tr>
+<tr>
+<td style="text-align: center;">a2</td>
+<td style="text-align: center;">b1</td>
+<td style="text-align: center;">c1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">C</th>
+<th style="text-align: center;">D</th>
+<th style="text-align: center;">E</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">c1</td>
+<td style="text-align: center;">d1</td>
+<td style="text-align: center;">e1</td>
+</tr>
+<tr>
+<td style="text-align: center;">c1</td>
+<td style="text-align: center;">d2</td>
+<td style="text-align: center;">e1</td>
+</tr>
+</tbody>
+</table>
+<p>如果两个子表做自然连接，会得到 4 个 tuple，但是原表只有 2 个。所以该分解不是 lossless decomposition</p>
+</details>
+</details>
 
 
 
@@ -8715,7 +8864,7 @@ t_4[R - \alpha - \beta] = t_1[R - \alpha - \beta]
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月10日 08:12:04">2025年4月10日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月18日 03:25:32">2025年4月18日</span>
   </span>
 
     
