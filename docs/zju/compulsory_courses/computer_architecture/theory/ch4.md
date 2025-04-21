@@ -773,3 +773,50 @@ precise interrupt 实现：
 
 ## 5 Branch Prediction
 
+1. flushing（冲刷）：暂停流水线直到分支结果确定
+2. predict-not-taken（预测不跳转）：
+
+    1. 硬件默认所有分支不跳转，编译器需将高频执行的分支放在“不跳转”路径中
+    2. 若实际不跳转，暂停 0 周期；若实际跳转，暂停 X 周期
+
+3. predict-taken（预测跳转）：
+
+    1. 硬件默认所有分支跳转，需等待分支目标地址计算完成后才能继续。编译器需将高频执行的分支放在“跳转”路径中
+    2. 需等待 Y 周期以获取分支目标地址；若实际不跳转，仍需暂停 X 周期
+
+4. delayed branch（延迟分支）
+
+Static Branch Prediction（静态分支预测）流水线因分支指令导致的性能损失取决于三个因素：
+
+1. branch frequency（分支频率）：程序中分支指令出现的比例
+2. prediction accuracy（预测准确率）：静态预测方法（如默认预测跳转/不跳转）的正确率
+3. misprediction penalty（预测错误惩罚）：预测失败后需清空流水线并重新取指的周期数
+
+### 5.1 1-bit Branch-Prediction Buffer
+
+performance = f(accuracy, cost of misprediction)
+
+branch history table（分支历史表，BHT）：
+
+1. 使用 PC 的低位直接映射到预测表（类似简单哈希），存储 1 位信息（上次是否跳转）
+2. 仅记录分支上一次是否跳转，不检查分支地址（节省硬件，但可能误预测其他分支）
+
+预测逻辑：
+
+1. 如果上次跳转（1），则预测本次跳转
+2. 如果上次不跳转（0），则预测本次不跳转
+
+问题：在循环结构中，1 位 BHT 会导致 2 次预测错误（平均每 n 次迭代出现 2 次错误）
+
+### 5.2 2-bit Branch-Prediction Buffer
+
+引入“弱跳转（10）”“强跳转（11）”等状态，需连续两次错误才改变预测，减少循环末尾的误判
+
+<figure markdown="span">
+    ![Img 14](../../../../img/comp_arch/ch4/ca_ch4_img14.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 15](../../../../img/comp_arch/ch4/ca_ch4_img15.png){ width="600" }
+</figure>
+
