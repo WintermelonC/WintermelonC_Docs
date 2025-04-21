@@ -25,13 +25,13 @@
 ## 提高综合速度
 
 <figure markdown="span">
-    ![Img 2](../../img/Vivado/vivado_img1.png){ width="600" }
+    ![Img 2](../../img/vivado/vivado_img1.png){ width="600" }
 </figure>
 
 右键模块，点击 ^^Set as Out-of-Context for Synthesis...^^
 
 <figure markdown="span">
-    ![Img 3](../../img/Vivado/vivado_img2.png){ width="600" }
+    ![Img 3](../../img/vivado/vivado_img2.png){ width="600" }
 </figure>
 
 > 这个演示图片里 Clock Constraint File 那一栏显示的东西不用管，直接点 OK 就行
@@ -39,7 +39,7 @@
 之后什么都不用动，点击 OK 即可
 
 <figure markdown="span">
-    ![Img 4](../../img/Vivado/vivado_img3.png){ width="400" }
+    ![Img 4](../../img/vivado/vivado_img3.png){ width="400" }
 </figure>
 
 成功以后，模块左侧有一个小黄方块的标识。有些模块不能这样操作，可能是因为它是某些模块的顶层模块等等
@@ -55,16 +55,28 @@
 设置中选择 Text Editor -> Custom Editor
 
 <figure markdown="span">
-    ![Img 4](../../img/Vivado/vivado_img4.png){ width="600" }
+    ![Img 4](../../img/vivado/vivado_img4.png){ width="600" }
 </figure>
 
 输入内容：`cmd /S /k "code -g [file name]:[line number]"`
 
 <figure markdown="span">
-    ![Img 5](../../img/Vivado/vivado_img5.png){ width="400" }
+    ![Img 5](../../img/vivado/vivado_img5.png){ width="400" }
 </figure>
 
 之后在 Vivado 工程内双击文件，便可打开 vscode 进行编辑
+
+!!! tip "文件编码格式"
+
+    Vivado 2020.2 的默认文件编码格式为 Simplified Chinese (GB 2312)，使用 vscode 进行编辑时，注意保存为 GB 2312 的格式，否则文件在 Vivado 中打开，汉字会显示乱码
+
+    vscode 右下角会显示文件编码，点击后选择 ^^Save with Encoding^^（通过编码保存），选择 ^^Simplified Chinese (GB 2312)^^ 即可以 GB 2312 的格式保存文件
+
+    选择 ^^Reopen with Encoding^^（通过编码重新打开），选择 ^^Simplified Chinese (GB 2312)^^ 即可以 GB 2312 的格式打开文件
+
+    <figure markdown="span">
+        ![Img 8](../../img/vivado/vivado_img8.png){ width="300" }
+    </figure>
 
 注意：
 
@@ -74,13 +86,13 @@
 打开任务管理器 -> 资源监视器
 
 <figure markdown="span">
-    ![Img 6](../../img/Vivado/vivado_img6.png){ width="600" }
+    ![Img 6](../../img/vivado/vivado_img6.png){ width="600" }
 </figure>
 
 在 CPU -> 关联的句柄下，搜索 simulate，删除所有 code.exe 结果
 
 <figure markdown="span">
-    ![Img 7](../../img/Vivado/vivado_img7.png){ width="600" }
+    ![Img 7](../../img/vivado/vivado_img7.png){ width="600" }
 </figure>
 
 之后重新仿真即可

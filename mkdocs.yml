@@ -46,6 +46,7 @@ nav:
         - 6 数据的聚类和降维技术: zju/computer/AI_basic/ch6.md
         - 7 深度网络基础组件: zju/computer/AI_basic/ch7.md
         - 8 卷积神经网络: zju/computer/AI_basic/ch8.md
+        - 9 循环神经网络: zju/computer/AI_basic/ch9.md
         - 习题整理: zju/computer/AI_basic/exercise.md
     - 自然科学通识类:
       - zju/natural_science/index.md
@@ -148,6 +149,7 @@ nav:
         - 5 Entity-Relationship Model: zju/compulsory_courses/database_system/ch5.md
         - 6 Relational Database Design: zju/compulsory_courses/database_system/ch6.md
         - 7 Storage and File Structure: zju/compulsory_courses/database_system/ch7.md
+        - 8 Indexing and Hashing: zju/compulsory_courses/database_system/ch8.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:
@@ -202,7 +204,7 @@ nav:
       - 其他:
         - 物体阴影: application/ae/other/shadow.md
     - Vivado: 
-      - application/Vivado/index.md
+      - application/vivado/index.md
     - VS Code:
       - application/vscode/index.md
       - Github Copilot: application/vscode/copilot.md

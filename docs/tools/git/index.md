@@ -205,7 +205,7 @@
 
 **1.直接匹配文件名**
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有名为 "temp.txt" 的文件
 temp.txt
 ```
@@ -214,21 +214,21 @@ temp.txt
 
 - 以 `/` 结尾表示匹配目录
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有名为 "logs" 的目录
 logs/
 ```
 
 - 不以 `/` 结尾表示匹配文件和目录
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有名为 "build" 的文件和目录
 build
 ```
 
 **3.通配符匹配**
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有 .log 文件
 *.log
 
@@ -245,7 +245,7 @@ build/*.o
 
 **4.`**` 递归匹配任意子目录**
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有子目录下的 .DS_Store 文件
 **/.DS_Store
 
@@ -255,7 +255,7 @@ docs/**/*.txt
 
 **5.`!` 排除（取反）**
 
-```gitignore linenums
+```gitignore linenums="1"
 # 忽略所有 .txt 文件，但除了 important.txt
 *.txt
 !important.txt

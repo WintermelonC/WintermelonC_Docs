@@ -39,9 +39,11 @@ yk老师
 
 [RISC-V 运行模拟](https://venus.cs61c.org){:target="_blank"}
 
-## 个人笔记
+## 笔记
 
-### 理论部分及课本部分习题详解
+### 个人笔记
+
+#### 理论部分及课本部分习题详解
 
 [1 Computer Abstractions and Technology](./theory/ch1.md)<br/>
 [2 Instructions: Language of the Computer](./theory/ch2.md)<br/>
@@ -50,7 +52,7 @@ yk老师
 [5 Large and Fast: Exploiting Memory Hierarchy](./theory/ch5.md)<br/>
 [6 Storage and Other I/O Topics](./theory/ch6.md)
 
-### [实验部分](./lab/index.md)
+#### [实验部分](./lab/index.md)
 
 [Lab 0: Vivado 介绍与模块封装](./lab/lab0.md)<br/>
 [Lab 1: ALU、Regfiles 设计与有限状态机](./lab/lab1.md)<br/>
@@ -59,7 +61,7 @@ yk老师
 [Lab 4: 单周期 CPU](./lab/lab4.md)<br/>
 [Lab 5: 流水线 CPU](./lab/lab5.md)
 
-## 其他
+### 其他
 
 [咸鱼喧的代码空间 - 计算机组成](https://xuan-insr.github.io/computer_organization/){:target="_blank"}
 

@@ -1,8 +1,8 @@
 # 7 Storage and File Structure
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -768,7 +768,7 @@ data-dictionary（或 system catalog）存储 metadata：
 
 ## Homework
 
-<!-- ???+ question "课本 12.13"
+???+ question "课本 12.13"
 
     Suppose you have data that should not be lost on disk failure, and the application is write-intensive. How would you store the data?
 
@@ -809,4 +809,4 @@ data-dictionary（或 system catalog）存储 metadata：
               2. 整体管理简便：因为多个表都在同一个文件当中，因此需要备份等操作时，只需要处理单个文件，事务管理更简单
         - 缺点：
               1. 维护数据难度大：单个文件损坏可能导致整个数据库不可用
-              2. 存在并发限制：所有表共享相同的 I/O 通道，大量并发写入时容易出现问题 -->
+              2. 存在并发限制：所有表共享相同的 I/O 通道，大量并发写入时容易出现问题

@@ -13,7 +13,7 @@
 
 ## Vivado 相关操作
 
-详见 [Vivado](../../../../application/Vivado/index.md){:target="_blank"}
+详见 [Vivado](../../../../application/vivado/index.md){:target="_blank"}
 
 ## 实验内容
 

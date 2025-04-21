@@ -674,7 +674,25 @@ ADDD f6, f8, f2
     ![Img 11](../../../../img/comp_arch/ch4/ca_ch4_img11.png){ width="800" }
 </figure>
 
+优势：
+
+1. The distribution of the hazard detection logic：传统集中式风险检测被替换为由保留站（Reservation Stations）和公共数据总线（CDB）组成的分布式系统。当多条指令等待同一计算结果时（但已具备其他操作数），CDB 广播机制可以同时唤醒所有相关指令，提高并行性。对比集中式寄存器文件需要排队等待寄存器总线的情况，这种设计显著提高了效率
+2. 消除 WAW/WAR 冒险：Tomasulo 算法通过寄存器重命名和指令动态调度消除了这两类数据冒险导致的流水线停顿
+
+缺点：
+
+1. 实现复杂性：Tomasulo 算法需要复杂的硬件支持，包括保留站（Reservation Stations）、公共数据总线（CDB）和动态调度逻辑
+2. 高速关联存储器的需求：CDB（公共数据总线）需要支持多路广播，导致高电容负载和布线拥挤，影响时序和功耗
+3. CDB 成为性能瓶颈：单 CDB 设计下，每个周期只能有一个功能单元（FU）广播结果，限制了并行性。增加多个 CDB 可以缓解问题，但需要额外的硬件逻辑（如并行关联比较电路），进一步增加设计复杂度
+4. Non-precise interrupts（非精确中断）：由于指令是乱序执行的，当中断发生时，处理器的状态可能不符合程序的原始顺序，导致调试和错误恢复困难
+
 ### 4.1 Tomasulo's Algorithm: A Loop-Based Example
+
+Tomasulo 算法如何通过硬件机制实现循环迭代的并行执行（即循环重叠）：
+
+1. Register Renaming：动态分配不同的物理寄存器（或保留站）存储不同迭代的结果，消除名称依赖。例如，第 1 次迭代的 R1 实际写入物理寄存器 P1，第 2 次迭代的 R1 写入 P2，互不冲突。效果类似硬件自动实现的循环展开
+2. Reservation Stations：允许指令乱序发射，即使前方有未解决的分支（控制依赖）。缓存操作数的旧值，避免 WAR 冒险（例如：先读后写的冲突）
+3. Data Flow Dependency Graph（动态数据流依赖图）：Tomasulo 算法在运行时实时分析指令间的真实数据依赖（而非固定顺序），仅当操作数就绪时才执行指令。这种机制天然支持循环迭代的并行化，因为不同迭代的指令只要数据就绪即可执行，无需等待前一次迭代完成
 
 考虑以下指令序列：
 
@@ -699,10 +717,59 @@ BNEZ r1, loop
 
 假设 mult 花费 4 个时钟周期，第一次 load 花费 8 个（因为有 cahce miss），第二次 load 花费 4 个
 
-> 好累，不想画流程图了，但是 ppt 上有
+<figure markdown="span">
+    ![Img 12](../../../../img/comp_arch/ch4/ca_ch4_img12.png){ width="800" }
+</figure>
 
 ### 4.2 Summary of Tomasulo's Algorithm
 
+1. Reservations stations：implicit register renaming（隐式寄存器重命名）+ 扩展寄存器集合 + buggering souce operands（缓存源操作数）
+2. not limited to basic blocks
+
+关于 precise interrupt 的问题：
+
+Tomasulo 算法具有：
+
+1. in-order issue：按序发射
+2. out-of-order execution：乱序执行
+3. out-of-order completion：乱序完成
+
+需要“修正”乱序完成这一特性，以便我们能在指令流中找到精确的断点位置
+
+解决方法：speculation（推测执行） 和 reorder buffer（重排序缓冲区）
+
 ### 4.3 Explicit Renaming
 
+基本原理：
+
+1. 使用比程序可见（ISA）更多的物理寄存器
+2. 为每条写指令动态分配新物理寄存器（类似 SSA 形式）
+3. 通过映射表维护逻辑-物理寄存器关系
+
+优势：
+
+1. 完全消除 WAR/WAW 冒险（类似 Tomasulo 但更直接）
+2. 硬件自动实现类似编译器 SSA 的优化
+3. 重命名与调度解耦，提供更大设计灵活性
+
+实现机制：
+
+1. 维护逻辑-物理寄存器映射表
+2. 使用空闲列表管理物理寄存器分配
+3. 通过引用计数确定寄存器释放时机
+
+future file（未来文件）：创新性地将 ROB 与寄存器映射表结合，执行结果直接写入物理寄存器（不同于传统 ROB 先缓冲再提交），通过映射表回滚实现精确中断，减少数据移动开销
+
+precise interrupt 实现：
+
+1. 通过检查点机制：每个周期保存映射表快照，中断时回滚到最后完整提交指令的检查点
+2. 结合 ROB 确保按序释放寄存器名称
+
+#### 4.3.1 Scoreboard With Explicit Renaming
+
+<figure markdown="span">
+    ![Img 13](../../../../img/comp_arch/ch4/ca_ch4_img13.png){ width="800" }
+</figure>
+
 ## 5 Branch Prediction
+
