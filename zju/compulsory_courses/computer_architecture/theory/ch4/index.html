@@ -1094,6 +1094,8 @@
       
         
       
+        
+      
     
     
     
@@ -1313,6 +1315,29 @@
   
   <span class="md-ellipsis">
     8 卷积神经网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../computer/AI_basic/ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 循环神经网络
     
   </span>
   
@@ -4010,6 +4035,8 @@
       
         
       
+        
+      
     
     
     
@@ -4206,6 +4233,29 @@
   
   <span class="md-ellipsis">
     7 Storage and File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../database_system/ch8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Indexing and Hashing
     
   </span>
   
@@ -4682,6 +4732,21 @@
       4.3 Explicit Renaming
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="4.3 Explicit Renaming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-scoreboard-with-explicit-renaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 Scoreboard With Explicit Renaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -6127,8 +6192,6 @@
     
       
         
-          
-        
       
     
     
@@ -6146,9 +6209,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../../../application/Vivado/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -6157,9 +6219,8 @@
   </span>
   
 
-            </a>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_6">
@@ -6168,6 +6229,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/vivado/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -7895,6 +7977,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4.3 Explicit Renaming">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-scoreboard-with-explicit-renaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3.1 Scoreboard With Explicit Renaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -8584,7 +8681,25 @@
 <figure>
     <img alt="Img 11" src="../../../../../img/comp_arch/ch4/ca_ch4_img11.png" width="800" />
 </figure>
+<p>优势：</p>
+<ol>
+<li>The distribution of the hazard detection logic：传统集中式风险检测被替换为由保留站（Reservation Stations）和公共数据总线（CDB）组成的分布式系统。当多条指令等待同一计算结果时（但已具备其他操作数），CDB 广播机制可以同时唤醒所有相关指令，提高并行性。对比集中式寄存器文件需要排队等待寄存器总线的情况，这种设计显著提高了效率</li>
+<li>消除 WAW/WAR 冒险：Tomasulo 算法通过寄存器重命名和指令动态调度消除了这两类数据冒险导致的流水线停顿</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>实现复杂性：Tomasulo 算法需要复杂的硬件支持，包括保留站（Reservation Stations）、公共数据总线（CDB）和动态调度逻辑</li>
+<li>高速关联存储器的需求：CDB（公共数据总线）需要支持多路广播，导致高电容负载和布线拥挤，影响时序和功耗</li>
+<li>CDB 成为性能瓶颈：单 CDB 设计下，每个周期只能有一个功能单元（FU）广播结果，限制了并行性。增加多个 CDB 可以缓解问题，但需要额外的硬件逻辑（如并行关联比较电路），进一步增加设计复杂度</li>
+<li>Non-precise interrupts（非精确中断）：由于指令是乱序执行的，当中断发生时，处理器的状态可能不符合程序的原始顺序，导致调试和错误恢复困难</li>
+</ol>
 <h3 id="41-tomasulos-algorithm-a-loop-based-example">4.1 Tomasulo's Algorithm: A Loop-Based Example<a class="headerlink" href="#41-tomasulos-algorithm-a-loop-based-example" title="Permanent link">&para;</a></h3>
+<p>Tomasulo 算法如何通过硬件机制实现循环迭代的并行执行（即循环重叠）：</p>
+<ol>
+<li>Register Renaming：动态分配不同的物理寄存器（或保留站）存储不同迭代的结果，消除名称依赖。例如，第 1 次迭代的 R1 实际写入物理寄存器 P1，第 2 次迭代的 R1 写入 P2，互不冲突。效果类似硬件自动实现的循环展开</li>
+<li>Reservation Stations：允许指令乱序发射，即使前方有未解决的分支（控制依赖）。缓存操作数的旧值，避免 WAR 冒险（例如：先读后写的冲突）</li>
+<li>Data Flow Dependency Graph（动态数据流依赖图）：Tomasulo 算法在运行时实时分析指令间的真实数据依赖（而非固定顺序），仅当操作数就绪时才执行指令。这种机制天然支持循环迭代的并行化，因为不同迭代的指令只要数据就绪即可执行，无需等待前一次迭代完成</li>
+</ol>
 <p>考虑以下指令序列：</p>
 <div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-21-1">1</a></span>
 <span class="normal"><a href="#__codelineno-21-2">2</a></span>
@@ -8610,11 +8725,52 @@
 </span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="mh">2</span><span class="w"> </span><span class="n">SD</span><span class="w"> </span><span class="n">f4</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">r1</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
 <p>假设 mult 花费 4 个时钟周期，第一次 load 花费 8 个（因为有 cahce miss），第二次 load 花费 4 个</p>
-<blockquote>
-<p>好累，不想画流程图了，但是 ppt 上有</p>
-</blockquote>
+<figure>
+    <img alt="Img 12" src="../../../../../img/comp_arch/ch4/ca_ch4_img12.png" width="800" />
+</figure>
 <h3 id="42-summary-of-tomasulos-algorithm">4.2 Summary of Tomasulo's Algorithm<a class="headerlink" href="#42-summary-of-tomasulos-algorithm" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Reservations stations：implicit register renaming（隐式寄存器重命名）+ 扩展寄存器集合 + buggering souce operands（缓存源操作数）</li>
+<li>not limited to basic blocks</li>
+</ol>
+<p>关于 precise interrupt 的问题：</p>
+<p>Tomasulo 算法具有：</p>
+<ol>
+<li>in-order issue：按序发射</li>
+<li>out-of-order execution：乱序执行</li>
+<li>out-of-order completion：乱序完成</li>
+</ol>
+<p>需要“修正”乱序完成这一特性，以便我们能在指令流中找到精确的断点位置</p>
+<p>解决方法：speculation（推测执行） 和 reorder buffer（重排序缓冲区）</p>
 <h3 id="43-explicit-renaming">4.3 Explicit Renaming<a class="headerlink" href="#43-explicit-renaming" title="Permanent link">&para;</a></h3>
+<p>基本原理：</p>
+<ol>
+<li>使用比程序可见（ISA）更多的物理寄存器</li>
+<li>为每条写指令动态分配新物理寄存器（类似 SSA 形式）</li>
+<li>通过映射表维护逻辑-物理寄存器关系</li>
+</ol>
+<p>优势：</p>
+<ol>
+<li>完全消除 WAR/WAW 冒险（类似 Tomasulo 但更直接）</li>
+<li>硬件自动实现类似编译器 SSA 的优化</li>
+<li>重命名与调度解耦，提供更大设计灵活性</li>
+</ol>
+<p>实现机制：</p>
+<ol>
+<li>维护逻辑-物理寄存器映射表</li>
+<li>使用空闲列表管理物理寄存器分配</li>
+<li>通过引用计数确定寄存器释放时机</li>
+</ol>
+<p>future file（未来文件）：创新性地将 ROB 与寄存器映射表结合，执行结果直接写入物理寄存器（不同于传统 ROB 先缓冲再提交），通过映射表回滚实现精确中断，减少数据移动开销</p>
+<p>precise interrupt 实现：</p>
+<ol>
+<li>通过检查点机制：每个周期保存映射表快照，中断时回滚到最后完整提交指令的检查点</li>
+<li>结合 ROB 确保按序释放寄存器名称</li>
+</ol>
+<h4 id="431-scoreboard-with-explicit-renaming">4.3.1 Scoreboard With Explicit Renaming<a class="headerlink" href="#431-scoreboard-with-explicit-renaming" title="Permanent link">&para;</a></h4>
+<figure>
+    <img alt="Img 13" src="../../../../../img/comp_arch/ch4/ca_ch4_img13.png" width="800" />
+</figure>
 <h2 id="5-branch-prediction">5 Branch Prediction<a class="headerlink" href="#5-branch-prediction" title="Permanent link">&para;</a></h2>
 
 
@@ -8638,7 +8794,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月17日 12:55:17">2025年4月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月21日 10:53:33">2025年4月21日</span>
   </span>
 
     

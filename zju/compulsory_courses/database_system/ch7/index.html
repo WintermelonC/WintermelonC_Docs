@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch6/">
       
       
-        <link rel="next" href="../../computer_architecture/">
+        <link rel="next" href="../ch8/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -1094,6 +1094,8 @@
       
         
       
+        
+      
     
     
     
@@ -1313,6 +1315,29 @@
   
   <span class="md-ellipsis">
     8 卷积神经网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../computer/AI_basic/ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 循环神经网络
     
   </span>
   
@@ -4012,6 +4037,8 @@
       
         
       
+        
+      
     
     
     
@@ -4651,6 +4678,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Indexing and Hashing
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -6290,8 +6340,6 @@
     
       
         
-          
-        
       
     
     
@@ -6309,9 +6357,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/Vivado/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -6320,9 +6367,8 @@
   </span>
   
 
-            </a>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_6">
@@ -6331,6 +6377,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../application/vivado/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -8277,10 +8344,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="7-storage-and-file-structure">7 Storage and File Structure<a class="headerlink" href="#7-storage-and-file-structure" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -9023,48 +9090,56 @@
   <img alt="Img 19" src="../../../../img/database/ch7/database_ch7_img19.png" width="400" />
 </figure>
 <h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
-<!-- ???+ question "课本 12.13"
-
-    Suppose you have data that should not be lost on disk failure, and the application is write-intensive. How would you store the data?
-
-    ??? success "答案"
-
-        由于是写入密集型的数据库应用，我会优先选择 RAID 1
-
-        RAID 1 的优势：
-
-        1. 直接镜像写入，只需同时写入 2 份数据
-        2. 无校验计算开销，延迟更低
-        3. 特别适合写入密集型负载
-
-        同时 RAID 1 是 100 % 冗余，拥有高可靠性，可在一定程度上防止磁盘故障而导致的数据丢失问题（允许单盘故障）
-
-???+ question "课本 13.11"
-
-    List two advantages and two disadvantages of each of the following strategies for storing a relational database:
-
-    a. Store each relation in one file.<br/>
-    b. Store multiple relations (perhaps even the entire database) in one file.
-
-    ??? success "答案"
-
-        a. store each relation in one file.
-
-        - 优点：
-              1. 文件管理简单方便：每个表对应一个独立文件，备份、迁移单个表等操作比较容易
-              2. 不同表可以并行访问：在多用户同时访问不同表的场景下，不同表的 I/O 操作可以并行化
-        - 缺点：
-              1. 跨表查询性能较低：如果需要跨表查询的话，需要频繁打开或关闭多个文件，增加系统开销
-              2. 存储空间利用率低：如某一个表的内容相较于其他表内容很少，但也需要占用一个最小分配单元，存在浪费空间的问题
-
-        b. Store multiple relations (perhaps even the entire database) in one file.
-
-        - 优点：
-              1. 跨表操作高效：表连接操作可以在同一个文件内完成，减少 I/O 开销
-              2. 整体管理简便：因为多个表都在同一个文件当中，因此需要备份等操作时，只需要处理单个文件，事务管理更简单
-        - 缺点：
-              1. 维护数据难度大：单个文件损坏可能导致整个数据库不可用
-              2. 存在并发限制：所有表共享相同的 I/O 通道，大量并发写入时容易出现问题 -->
+<details class="question" open="open">
+<summary>课本 12.13</summary>
+<p>Suppose you have data that should not be lost on disk failure, and the application is write-intensive. How would you store the data?</p>
+<details class="success">
+<summary>答案</summary>
+<p>由于是写入密集型的数据库应用，我会优先选择 RAID 1</p>
+<p>RAID 1 的优势：</p>
+<ol>
+<li>直接镜像写入，只需同时写入 2 份数据</li>
+<li>无校验计算开销，延迟更低</li>
+<li>特别适合写入密集型负载</li>
+</ol>
+<p>同时 RAID 1 是 100 % 冗余，拥有高可靠性，可在一定程度上防止磁盘故障而导致的数据丢失问题（允许单盘故障）</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 13.11</summary>
+<p>List two advantages and two disadvantages of each of the following strategies for storing a relational database:</p>
+<p>a. Store each relation in one file.<br/>
+b. Store multiple relations (perhaps even the entire database) in one file.</p>
+<details class="success">
+<summary>答案</summary>
+<p>a. store each relation in one file.</p>
+<ul>
+<li>优点：<ol>
+<li>文件管理简单方便：每个表对应一个独立文件，备份、迁移单个表等操作比较容易</li>
+<li>不同表可以并行访问：在多用户同时访问不同表的场景下，不同表的 I/O 操作可以并行化</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>跨表查询性能较低：如果需要跨表查询的话，需要频繁打开或关闭多个文件，增加系统开销</li>
+<li>存储空间利用率低：如某一个表的内容相较于其他表内容很少，但也需要占用一个最小分配单元，存在浪费空间的问题</li>
+</ol>
+</li>
+</ul>
+<p>b. Store multiple relations (perhaps even the entire database) in one file.</p>
+<ul>
+<li>优点：<ol>
+<li>跨表操作高效：表连接操作可以在同一个文件内完成，减少 I/O 开销</li>
+<li>整体管理简便：因为多个表都在同一个文件当中，因此需要备份等操作时，只需要处理单个文件，事务管理更简单</li>
+</ol>
+</li>
+<li>缺点：<ol>
+<li>维护数据难度大：单个文件损坏可能导致整个数据库不可用</li>
+<li>存在并发限制：所有表共享相同的 I/O 通道，大量并发写入时容易出现问题</li>
+</ol>
+</li>
+</ul>
+</details>
+</details>
 
 
 
@@ -9087,7 +9162,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月18日 10:03:41">2025年4月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月21日 10:53:33">2025年4月21日</span>
   </span>
 
     
@@ -9219,13 +9294,13 @@
         
         
           
-          <a href="../../computer_architecture/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构">
+          <a href="../ch8/" class="md-footer__link md-footer__link--next" aria-label="下一页: 8 Indexing and Hashing">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机体系结构
+                8 Indexing and Hashing
               </div>
             </div>
             <div class="md-footer__button md-icon">

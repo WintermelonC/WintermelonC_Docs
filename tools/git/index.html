@@ -1080,6 +1080,8 @@
       
         
       
+        
+      
     
     
     
@@ -1299,6 +1301,29 @@
   
   <span class="md-ellipsis">
     8 卷积神经网络
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zju/computer/AI_basic/ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 循环神经网络
     
   </span>
   
@@ -3979,6 +4004,8 @@
       
         
       
+        
+      
     
     
     
@@ -4175,6 +4202,29 @@
   
   <span class="md-ellipsis">
     7 Storage and File Structure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../zju/compulsory_courses/database_system/ch8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8 Indexing and Hashing
     
   </span>
   
@@ -5810,8 +5860,6 @@
     
       
         
-          
-        
       
     
     
@@ -5829,9 +5877,8 @@
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
         
           
-          <div class="md-nav__link md-nav__container">
-            <a href="../../application/Vivado/" class="md-nav__link ">
-              
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
   
   
   <span class="md-ellipsis">
@@ -5840,9 +5887,8 @@
   </span>
   
 
-            </a>
-            
-          </div>
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_6">
@@ -5851,6 +5897,27 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../application/vivado/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
           </ul>
@@ -7682,52 +7749,68 @@
 </li>
 </ol>
 <p><strong>1.直接匹配文件名</strong></p>
-<p>```gitignore linenums</p>
-<h1 id="忽略所有名为-temptxt-的文件">忽略所有名为 "temp.txt" 的文件<a class="headerlink" href="#忽略所有名为-temptxt-的文件" title="Permanent link">&para;</a></h1>
-<p>temp.txt
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>**2.匹配目录**
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>- 以 `/` 结尾表示匹配目录
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>```gitignore linenums
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a># 忽略所有名为 &quot;logs&quot; 的目录
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>logs/
-</span></code></pre></div></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a># 忽略所有名为 &quot;temp.txt&quot; 的文件
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>temp.txt
+</span></code></pre></div></td></tr></table></div>
+<p><strong>2.匹配目录</strong></p>
+<ul>
+<li>以 <code>/</code> 结尾表示匹配目录</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a># 忽略所有名为 &quot;logs&quot; 的目录
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>logs/
+</span></code></pre></div></td></tr></table></div>
 <ul>
 <li>不以 <code>/</code> 结尾表示匹配文件和目录</li>
 </ul>
-<p>```gitignore linenums</p>
-<h1 id="忽略所有名为-build-的文件和目录">忽略所有名为 "build" 的文件和目录<a class="headerlink" href="#忽略所有名为-build-的文件和目录" title="Permanent link">&para;</a></h1>
-<p>build
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>**3.通配符匹配**
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>```gitignore linenums
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a># 忽略所有 .log 文件
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>*.log
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a># 忽略 node_modules 目录及其所有内容
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>node_modules/
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a># 忽略所有 .tmp 和 .temp 文件
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>*.tmp
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>*.temp
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a># 忽略 build 目录下的所有 .o 文件
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>build/*.o
-</span></code></pre></div></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a># 忽略所有名为 &quot;build&quot; 的文件和目录
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>build
+</span></code></pre></div></td></tr></table></div>
+<p><strong>3.通配符匹配</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a># 忽略所有 .log 文件
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>*.log
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a># 忽略 node_modules 目录及其所有内容
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>node_modules/
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a># 忽略所有 .tmp 和 .temp 文件
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>*.tmp
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>*.temp
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a># 忽略 build 目录下的所有 .o 文件
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a>build/*.o
+</span></code></pre></div></td></tr></table></div>
 <p><strong>4.<code>**</code> 递归匹配任意子目录</strong></p>
-<p>```gitignore linenums</p>
-<h1 id="忽略所有子目录下的-ds_store-文件">忽略所有子目录下的 .DS_Store 文件<a class="headerlink" href="#忽略所有子目录下的-ds_store-文件" title="Permanent link">&para;</a></h1>
-<p>**/.DS_Store</p>
-<h1 id="忽略-docs-目录及其所有子目录下的-txt-文件">忽略 docs 目录及其所有子目录下的 .txt 文件<a class="headerlink" href="#忽略-docs-目录及其所有子目录下的-txt-文件" title="Permanent link">&para;</a></h1>
-<p>docs/**/*.txt
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>**5.`!` 排除（取反）**
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>```gitignore linenums
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a># 忽略所有 .txt 文件，但除了 important.txt
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>*.txt
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>!important.txt
-</span></code></pre></div></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a># 忽略所有子目录下的 .DS_Store 文件
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>**/.DS_Store
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a># 忽略 docs 目录及其所有子目录下的 .txt 文件
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a>docs/**/*.txt
+</span></code></pre></div></td></tr></table></div>
+<p><strong>5.<code>!</code> 排除（取反）</strong></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a># 忽略所有 .txt 文件，但除了 important.txt
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>*.txt
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>!important.txt
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -7750,7 +7833,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月18日 10:03:41">2025年4月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月21日 10:53:33">2025年4月21日</span>
   </span>
 
     
