@@ -30,4 +30,5 @@ wk老师
 [5 Inside Class](./ch5.md)<br/>
 [6 Composition](./ch6.md)<br/>
 [7 Inheritance](./ch7.md)<br/>
-[8 Polymorphism](./ch8.md)
+[8 Polymorphism](./ch8.md)<br/>
+[9 Copy and Move](./ch9.md)
