@@ -12,28 +12,28 @@
         <meta name="author" content="WintermelonC">
       
       
-        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/zju/computer/AI_basic/ch6/">
+        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/application/vivado/">
       
       
-        <link rel="prev" href="../ch5/">
+        <link rel="prev" href="../ae/other/shadow/">
       
       
-        <link rel="next" href="../ch7/">
+        <link rel="next" href="../vscode/">
       
       
-      <link rel="icon" href="../../../../img/logo.png">
+      <link rel="icon" href="../../img/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.12">
     
     
       
-        <title>6 数据的聚类和降维技术 - WintermelonC Docs</title>
+        <title>Vivado - WintermelonC Docs</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.2afb09e1.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2afb09e1.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -60,13 +60,13 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/extra.css?v=1.0.2">
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css?v=1.0.2">
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/hqcard.css?v=1.0.0">
+      <link rel="stylesheet" href="../../assets/stylesheets/hqcard.css?v=1.0.0">
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/bootstrap.css?v=1.0.0">
+      <link rel="stylesheet" href="../../assets/stylesheets/bootstrap.css?v=1.0.0">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#6-数据的聚类和降维技术" class="md-skip">
+        <a href="#vivado" class="md-skip">
           跳转至
         </a>
       
@@ -106,9 +106,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="页眉">
-    <a href="../../../.." title="WintermelonC Docs" class="md-header__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
+    <a href="../.." title="WintermelonC Docs" class="md-header__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
       
-  <img src="../../../../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6 数据的聚类和降维技术
+              Vivado
             
           </span>
         </div>
@@ -243,7 +243,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../.." class="md-tabs__link">
+      <a href="../.." class="md-tabs__link">
         
   
   
@@ -260,13 +260,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../zju/" class="md-tabs__link">
           
   
   
@@ -288,7 +286,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../common_sense/" class="md-tabs__link">
+        <a href="../../common_sense/" class="md-tabs__link">
           
   
   
@@ -306,11 +304,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../../application/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -332,7 +332,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../knowledge/" class="md-tabs__link">
+        <a href="../../knowledge/" class="md-tabs__link">
           
   
   
@@ -354,7 +354,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../tools/" class="md-tabs__link">
+        <a href="../../tools/" class="md-tabs__link">
           
   
   
@@ -390,9 +390,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="WintermelonC Docs" class="md-nav__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
+    <a href="../.." title="WintermelonC Docs" class="md-nav__button md-logo" aria-label="WintermelonC Docs" data-md-component="logo">
       
-  <img src="../../../../img/logo.png" alt="logo">
+  <img src="../../img/logo.png" alt="logo">
 
     </a>
     WintermelonC Docs
@@ -419,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../.." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -438,8 +438,6 @@
       
   
   
-    
-  
   
   
     
@@ -475,23 +473,20 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../zju/" class="md-nav__link ">
               
   
   
@@ -504,13 +499,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             ZJU
@@ -546,13 +541,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -560,7 +552,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../political/" class="md-nav__link ">
+            <a href="../../zju/political/" class="md-nav__link ">
               
   
   
@@ -573,7 +565,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -595,7 +587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/history_of_modern_china/" class="md-nav__link">
+      <a href="../../zju/political/history_of_modern_china/" class="md-nav__link">
         
   
   
@@ -649,7 +641,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../political/marxist_principles/" class="md-nav__link ">
+            <a href="../../zju/political/marxist_principles/" class="md-nav__link ">
               
   
   
@@ -684,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/marxist_principles/ch0/" class="md-nav__link">
+      <a href="../../zju/political/marxist_principles/ch0/" class="md-nav__link">
         
   
   
@@ -707,7 +699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/marxist_principles/ch1/" class="md-nav__link">
+      <a href="../../zju/political/marxist_principles/ch1/" class="md-nav__link">
         
   
   
@@ -730,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/marxist_principles/ch2/" class="md-nav__link">
+      <a href="../../zju/political/marxist_principles/ch2/" class="md-nav__link">
         
   
   
@@ -753,7 +745,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/marxist_principles/ch3/" class="md-nav__link">
+      <a href="../../zju/political/marxist_principles/ch3/" class="md-nav__link">
         
   
   
@@ -784,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/xi_jinping_thought/" class="md-nav__link">
+      <a href="../../zju/political/xi_jinping_thought/" class="md-nav__link">
         
   
   
@@ -807,7 +799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../political/history_of_CPC/" class="md-nav__link">
+      <a href="../../zju/political/history_of_CPC/" class="md-nav__link">
         
   
   
@@ -858,13 +850,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -872,7 +861,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../military_PE/" class="md-nav__link ">
+            <a href="../../zju/military_PE/" class="md-nav__link ">
               
   
   
@@ -885,7 +874,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -907,7 +896,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../military_PE/radio_direction_finding/" class="md-nav__link">
+      <a href="../../zju/military_PE/radio_direction_finding/" class="md-nav__link">
         
   
   
@@ -930,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../military_PE/badminton/" class="md-nav__link">
+      <a href="../../zju/military_PE/badminton/" class="md-nav__link">
         
   
   
@@ -953,7 +942,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../military_PE/swimming/" class="md-nav__link">
+      <a href="../../zju/military_PE/swimming/" class="md-nav__link">
         
   
   
@@ -976,7 +965,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../military_PE/military_theory/" class="md-nav__link">
+      <a href="../../zju/military_PE/military_theory/" class="md-nav__link">
         
   
   
@@ -1004,8 +993,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1023,21 +1010,18 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../../zju/computer/" class="md-nav__link ">
               
   
   
@@ -1050,13 +1034,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4">
             <span class="md-nav__icon md-icon"></span>
             计算机类
@@ -1069,8 +1053,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1109,15 +1091,15 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4_2" >
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../" class="md-nav__link ">
+            <a href="../../zju/computer/AI_basic/" class="md-nav__link ">
               
   
   
@@ -1136,7 +1118,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_4_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_4_2">
             <span class="md-nav__icon md-icon"></span>
             人工智能基础（A）
@@ -1152,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch1/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch1/" class="md-nav__link">
         
   
   
@@ -1175,7 +1157,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch2/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch2/" class="md-nav__link">
         
   
   
@@ -1198,7 +1180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch3/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch3/" class="md-nav__link">
         
   
   
@@ -1221,7 +1203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch4/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch4/" class="md-nav__link">
         
   
   
@@ -1244,7 +1226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch5/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch5/" class="md-nav__link">
         
   
   
@@ -1264,32 +1246,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    6 数据的聚类和降维技术
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../zju/computer/AI_basic/ch6/" class="md-nav__link">
         
   
   
@@ -1300,110 +1260,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#61-无监督学习方法概述" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.1 无监督学习方法概述
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#62-聚类分析技术" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.2 聚类分析技术
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6.2 聚类分析技术">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#622-k-means-算法" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.2.2 K-means 算法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#623-鸢尾花案例" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.2.3 鸢尾花案例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#63-数据降维技术" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3 数据降维技术
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="6.3 数据降维技术">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#631-数据降维技术的用途" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.1 数据降维技术的用途
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#632-主成分分析" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.2 主成分分析
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#633-鸢尾花案例" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.3 鸢尾花案例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1416,7 +1272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch7/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch7/" class="md-nav__link">
         
   
   
@@ -1439,7 +1295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch8/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch8/" class="md-nav__link">
         
   
   
@@ -1462,7 +1318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ch9/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/ch9/" class="md-nav__link">
         
   
   
@@ -1485,7 +1341,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../exercise/" class="md-nav__link">
+      <a href="../../zju/computer/AI_basic/exercise/" class="md-nav__link">
         
   
   
@@ -1540,13 +1396,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1554,7 +1407,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../natural_science/" class="md-nav__link ">
+            <a href="../../zju/natural_science/" class="md-nav__link ">
               
   
   
@@ -1567,7 +1420,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1614,7 +1467,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../natural_science/phy_2/" class="md-nav__link ">
+            <a href="../../zju/natural_science/phy_2/" class="md-nav__link ">
               
   
   
@@ -1649,7 +1502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../natural_science/phy_2/phy_2_doc/" class="md-nav__link">
+      <a href="../../zju/natural_science/phy_2/phy_2_doc/" class="md-nav__link">
         
   
   
@@ -1680,7 +1533,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../natural_science/phy_exp/" class="md-nav__link">
+      <a href="../../zju/natural_science/phy_exp/" class="md-nav__link">
         
   
   
@@ -1725,13 +1578,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1739,7 +1589,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../innovation_entrepreneurship/" class="md-nav__link ">
+            <a href="../../zju/innovation_entrepreneurship/" class="md-nav__link ">
               
   
   
@@ -1752,7 +1602,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1774,7 +1624,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../innovation_entrepreneurship/entrepreneurship/" class="md-nav__link">
+      <a href="../../zju/innovation_entrepreneurship/entrepreneurship/" class="md-nav__link">
         
   
   
@@ -1831,13 +1681,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -1845,7 +1692,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../general_courses/" class="md-nav__link ">
+            <a href="../../zju/general_courses/" class="md-nav__link ">
               
   
   
@@ -1858,7 +1705,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -1880,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/tea_culture/" class="md-nav__link">
+      <a href="../../zju/general_courses/tea_culture/" class="md-nav__link">
         
   
   
@@ -1903,7 +1750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/economic_law/" class="md-nav__link">
+      <a href="../../zju/general_courses/economic_law/" class="md-nav__link">
         
   
   
@@ -1951,7 +1798,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../general_courses/bio_evolution_and_design/" class="md-nav__link ">
+            <a href="../../zju/general_courses/bio_evolution_and_design/" class="md-nav__link ">
               
   
   
@@ -1986,7 +1833,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/bio_evolution_and_design/doc/" class="md-nav__link">
+      <a href="../../zju/general_courses/bio_evolution_and_design/doc/" class="md-nav__link">
         
   
   
@@ -2017,7 +1864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/digital_audio_video/" class="md-nav__link">
+      <a href="../../zju/general_courses/digital_audio_video/" class="md-nav__link">
         
   
   
@@ -2069,7 +1916,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../general_courses/life_science/" class="md-nav__link ">
+            <a href="../../zju/general_courses/life_science/" class="md-nav__link ">
               
   
   
@@ -2104,7 +1951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/life_science/doc/" class="md-nav__link">
+      <a href="../../zju/general_courses/life_science/doc/" class="md-nav__link">
         
   
   
@@ -2127,7 +1974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/life_science/ch1/" class="md-nav__link">
+      <a href="../../zju/general_courses/life_science/ch1/" class="md-nav__link">
         
   
   
@@ -2150,7 +1997,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/life_science/ch2/" class="md-nav__link">
+      <a href="../../zju/general_courses/life_science/ch2/" class="md-nav__link">
         
   
   
@@ -2181,7 +2028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/life_science_exp/" class="md-nav__link">
+      <a href="../../zju/general_courses/life_science_exp/" class="md-nav__link">
         
   
   
@@ -2229,7 +2076,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../general_courses/wireless_network/" class="md-nav__link ">
+            <a href="../../zju/general_courses/wireless_network/" class="md-nav__link ">
               
   
   
@@ -2264,7 +2111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../general_courses/wireless_network/ch1/" class="md-nav__link">
+      <a href="../../zju/general_courses/wireless_network/ch1/" class="md-nav__link">
         
   
   
@@ -2325,13 +2172,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -2339,7 +2183,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../basic_courses/" class="md-nav__link ">
+            <a href="../../zju/basic_courses/" class="md-nav__link ">
               
   
   
@@ -2352,7 +2196,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2374,7 +2218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/discrete_math/" class="md-nav__link">
+      <a href="../../zju/basic_courses/discrete_math/" class="md-nav__link">
         
   
   
@@ -2397,7 +2241,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/data_structure/" class="md-nav__link">
+      <a href="../../zju/basic_courses/data_structure/" class="md-nav__link">
         
   
   
@@ -2445,7 +2289,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../basic_courses/digital_logic_design/" class="md-nav__link ">
+            <a href="../../zju/basic_courses/digital_logic_design/" class="md-nav__link ">
               
   
   
@@ -2505,7 +2349,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../basic_courses/digital_logic_design/lab/" class="md-nav__link ">
+            <a href="../../zju/basic_courses/digital_logic_design/lab/" class="md-nav__link ">
               
   
   
@@ -2540,7 +2384,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/digital_logic_design/lab/final/" class="md-nav__link">
+      <a href="../../zju/basic_courses/digital_logic_design/lab/final/" class="md-nav__link">
         
   
   
@@ -2618,7 +2462,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../basic_courses/prob_theo_and_math_stat/" class="md-nav__link ">
+            <a href="../../zju/basic_courses/prob_theo_and_math_stat/" class="md-nav__link ">
               
   
   
@@ -2653,7 +2497,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_1/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_1/" class="md-nav__link">
         
   
   
@@ -2676,7 +2520,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_2/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_2/" class="md-nav__link">
         
   
   
@@ -2699,7 +2543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_3/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_3/" class="md-nav__link">
         
   
   
@@ -2722,7 +2566,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_4/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_4/" class="md-nav__link">
         
   
   
@@ -2745,7 +2589,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_5/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_5/" class="md-nav__link">
         
   
   
@@ -2768,7 +2612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_6/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_6/" class="md-nav__link">
         
   
   
@@ -2791,7 +2635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_7/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_7/" class="md-nav__link">
         
   
   
@@ -2814,7 +2658,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/prob_theo_and_math_stat/chapter_8/" class="md-nav__link">
+      <a href="../../zju/basic_courses/prob_theo_and_math_stat/chapter_8/" class="md-nav__link">
         
   
   
@@ -2888,7 +2732,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../basic_courses/OOP/" class="md-nav__link ">
+            <a href="../../zju/basic_courses/OOP/" class="md-nav__link ">
               
   
   
@@ -2923,7 +2767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch0/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch0/" class="md-nav__link">
         
   
   
@@ -2946,7 +2790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch1/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch1/" class="md-nav__link">
         
   
   
@@ -2969,7 +2813,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch2/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch2/" class="md-nav__link">
         
   
   
@@ -2992,7 +2836,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch3/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch3/" class="md-nav__link">
         
   
   
@@ -3015,7 +2859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch4/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch4/" class="md-nav__link">
         
   
   
@@ -3038,7 +2882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch5/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch5/" class="md-nav__link">
         
   
   
@@ -3061,7 +2905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch6/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch6/" class="md-nav__link">
         
   
   
@@ -3084,7 +2928,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch7/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch7/" class="md-nav__link">
         
   
   
@@ -3107,7 +2951,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch8/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch8/" class="md-nav__link">
         
   
   
@@ -3130,7 +2974,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../basic_courses/OOP/ch9/" class="md-nav__link">
+      <a href="../../zju/basic_courses/OOP/ch9/" class="md-nav__link">
         
   
   
@@ -3189,13 +3033,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -3203,7 +3044,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/" class="md-nav__link ">
               
   
   
@@ -3216,7 +3057,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -3291,7 +3132,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/ADS/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/ADS/" class="md-nav__link ">
               
   
   
@@ -3326,7 +3167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch1/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch1/" class="md-nav__link">
         
   
   
@@ -3349,7 +3190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch2/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch2/" class="md-nav__link">
         
   
   
@@ -3372,7 +3213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch3/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch3/" class="md-nav__link">
         
   
   
@@ -3395,7 +3236,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch4/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch4/" class="md-nav__link">
         
   
   
@@ -3418,7 +3259,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch5/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch5/" class="md-nav__link">
         
   
   
@@ -3441,7 +3282,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch6/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch6/" class="md-nav__link">
         
   
   
@@ -3464,7 +3305,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch7/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch7/" class="md-nav__link">
         
   
   
@@ -3487,7 +3328,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch8/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch8/" class="md-nav__link">
         
   
   
@@ -3510,7 +3351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch9/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch9/" class="md-nav__link">
         
   
   
@@ -3533,7 +3374,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch10/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch10/" class="md-nav__link">
         
   
   
@@ -3556,7 +3397,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch11/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch11/" class="md-nav__link">
         
   
   
@@ -3579,7 +3420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch12/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch12/" class="md-nav__link">
         
   
   
@@ -3602,7 +3443,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch13/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch13/" class="md-nav__link">
         
   
   
@@ -3625,7 +3466,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch14/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch14/" class="md-nav__link">
         
   
   
@@ -3648,7 +3489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/ADS/ch15/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/ADS/ch15/" class="md-nav__link">
         
   
   
@@ -3706,7 +3547,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/computer_organization/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/computer_organization/" class="md-nav__link ">
               
   
   
@@ -3798,7 +3639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch1/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch1/" class="md-nav__link">
         
   
   
@@ -3821,7 +3662,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch2/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch2/" class="md-nav__link">
         
   
   
@@ -3844,7 +3685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch3/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch3/" class="md-nav__link">
         
   
   
@@ -3867,7 +3708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch4/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch4/" class="md-nav__link">
         
   
   
@@ -3890,7 +3731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch5/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch5/" class="md-nav__link">
         
   
   
@@ -3913,7 +3754,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/theory/ch6/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/theory/ch6/" class="md-nav__link">
         
   
   
@@ -3979,7 +3820,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/computer_organization/lab/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/computer_organization/lab/" class="md-nav__link ">
               
   
   
@@ -4014,7 +3855,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab0/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab0/" class="md-nav__link">
         
   
   
@@ -4037,7 +3878,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab1/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab1/" class="md-nav__link">
         
   
   
@@ -4060,7 +3901,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab2/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab2/" class="md-nav__link">
         
   
   
@@ -4083,7 +3924,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab3/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab3/" class="md-nav__link">
         
   
   
@@ -4106,7 +3947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab4/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab4/" class="md-nav__link">
         
   
   
@@ -4129,7 +3970,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_organization/lab/lab5/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_organization/lab/lab5/" class="md-nav__link">
         
   
   
@@ -4207,7 +4048,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/database_system/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/database_system/" class="md-nav__link ">
               
   
   
@@ -4242,7 +4083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch1/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch1/" class="md-nav__link">
         
   
   
@@ -4265,7 +4106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch2/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch2/" class="md-nav__link">
         
   
   
@@ -4288,7 +4129,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch3/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch3/" class="md-nav__link">
         
   
   
@@ -4311,7 +4152,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch4/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch4/" class="md-nav__link">
         
   
   
@@ -4334,7 +4175,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch5/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch5/" class="md-nav__link">
         
   
   
@@ -4357,7 +4198,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch6/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch6/" class="md-nav__link">
         
   
   
@@ -4380,7 +4221,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch7/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch7/" class="md-nav__link">
         
   
   
@@ -4403,7 +4244,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/database_system/ch8/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/database_system/ch8/" class="md-nav__link">
         
   
   
@@ -4461,7 +4302,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/computer_architecture/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/computer_architecture/" class="md-nav__link ">
               
   
   
@@ -4549,7 +4390,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_architecture/theory/ch1/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_architecture/theory/ch1/" class="md-nav__link">
         
   
   
@@ -4572,7 +4413,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_architecture/theory/ch2/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_architecture/theory/ch2/" class="md-nav__link">
         
   
   
@@ -4595,7 +4436,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_architecture/theory/ch3/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_architecture/theory/ch3/" class="md-nav__link">
         
   
   
@@ -4618,7 +4459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../compulsory_courses/computer_architecture/theory/ch4/" class="md-nav__link">
+      <a href="../../zju/compulsory_courses/computer_architecture/theory/ch4/" class="md-nav__link">
         
   
   
@@ -4672,7 +4513,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../compulsory_courses/computer_architecture/lab/" class="md-nav__link ">
+            <a href="../../zju/compulsory_courses/computer_architecture/lab/" class="md-nav__link ">
               
   
   
@@ -4740,13 +4581,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -4754,7 +4592,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../module_courses/" class="md-nav__link ">
+            <a href="../../zju/module_courses/" class="md-nav__link ">
               
   
   
@@ -4767,7 +4605,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_10" id="__nav_2_10_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -4822,7 +4660,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../module_courses/cryptography/" class="md-nav__link ">
+            <a href="../../zju/module_courses/cryptography/" class="md-nav__link ">
               
   
   
@@ -4857,7 +4695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../module_courses/cryptography/ch1.md" class="md-nav__link">
+      <a href="../../zju/module_courses/cryptography/ch1.md" class="md-nav__link">
         
   
   
@@ -4880,7 +4718,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../module_courses/cryptography/ch2.md" class="md-nav__link">
+      <a href="../../zju/module_courses/cryptography/ch2.md" class="md-nav__link">
         
   
   
@@ -4903,7 +4741,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../module_courses/cryptography/ch3.md" class="md-nav__link">
+      <a href="../../zju/module_courses/cryptography/ch3.md" class="md-nav__link">
         
   
   
@@ -4926,7 +4764,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../module_courses/cryptography/ch4.md" class="md-nav__link">
+      <a href="../../zju/module_courses/cryptography/ch4.md" class="md-nav__link">
         
   
   
@@ -4949,7 +4787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../module_courses/cryptography/ch5.md" class="md-nav__link">
+      <a href="../../zju/module_courses/cryptography/ch5.md" class="md-nav__link">
         
   
   
@@ -5002,13 +4840,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -5016,7 +4851,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../practical_teaching/" class="md-nav__link ">
+            <a href="../../zju/practical_teaching/" class="md-nav__link ">
               
   
   
@@ -5029,7 +4864,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_11" id="__nav_2_11_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5051,7 +4886,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../practical_teaching/practical_course_1/" class="md-nav__link">
+      <a href="../../zju/practical_teaching/practical_course_1/" class="md-nav__link">
         
   
   
@@ -5096,13 +4931,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -5110,7 +4942,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../personal_courses/" class="md-nav__link ">
+            <a href="../../zju/personal_courses/" class="md-nav__link ">
               
   
   
@@ -5123,7 +4955,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_12" id="__nav_2_12_label" tabindex="">
+              <label class="md-nav__link " for="__nav_2_12" id="__nav_2_12_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5172,7 +5004,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../personal_courses/organic_chemistry/" class="md-nav__link ">
+            <a href="../../zju/personal_courses/organic_chemistry/" class="md-nav__link ">
               
   
   
@@ -5207,7 +5039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../personal_courses/organic_chemistry/ch1/" class="md-nav__link">
+      <a href="../../zju/personal_courses/organic_chemistry/ch1/" class="md-nav__link">
         
   
   
@@ -5230,7 +5062,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../personal_courses/organic_chemistry/ch2/" class="md-nav__link">
+      <a href="../../zju/personal_courses/organic_chemistry/ch2/" class="md-nav__link">
         
   
   
@@ -5313,7 +5145,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../common_sense/" class="md-nav__link ">
+            <a href="../../common_sense/" class="md-nav__link ">
               
   
   
@@ -5348,7 +5180,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/hospital/" class="md-nav__link">
+      <a href="../../common_sense/hospital/" class="md-nav__link">
         
   
   
@@ -5371,7 +5203,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/medical_insurance/" class="md-nav__link">
+      <a href="../../common_sense/medical_insurance/" class="md-nav__link">
         
   
   
@@ -5394,7 +5226,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/transportation/" class="md-nav__link">
+      <a href="../../common_sense/transportation/" class="md-nav__link">
         
   
   
@@ -5417,7 +5249,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/rent/" class="md-nav__link">
+      <a href="../../common_sense/rent/" class="md-nav__link">
         
   
   
@@ -5440,7 +5272,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/cooking/" class="md-nav__link">
+      <a href="../../common_sense/cooking/" class="md-nav__link">
         
   
   
@@ -5463,7 +5295,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/administrative_service/" class="md-nav__link">
+      <a href="../../common_sense/administrative_service/" class="md-nav__link">
         
   
   
@@ -5486,7 +5318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../common_sense/resume/" class="md-nav__link">
+      <a href="../../common_sense/resume/" class="md-nav__link">
         
   
   
@@ -5513,6 +5345,8 @@
       
   
   
+    
+  
   
   
     
@@ -5538,20 +5372,23 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   
@@ -5564,13 +5401,13 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             软件
@@ -5604,10 +5441,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5615,7 +5455,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/br/" class="md-nav__link ">
+            <a href="../br/" class="md-nav__link ">
               
   
   
@@ -5628,7 +5468,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_2" id="__nav_4_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5650,7 +5490,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/br/ch1/" class="md-nav__link">
+      <a href="../br/ch1/" class="md-nav__link">
         
   
   
@@ -5673,7 +5513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/br/ch2/" class="md-nav__link">
+      <a href="../br/ch2/" class="md-nav__link">
         
   
   
@@ -5696,7 +5536,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/br/ch3/" class="md-nav__link">
+      <a href="../br/ch3/" class="md-nav__link">
         
   
   
@@ -5739,10 +5579,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5750,7 +5593,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/ps/" class="md-nav__link ">
+            <a href="../ps/" class="md-nav__link ">
               
   
   
@@ -5802,10 +5645,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5813,7 +5659,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/pr/" class="md-nav__link ">
+            <a href="../pr/" class="md-nav__link ">
               
   
   
@@ -5826,7 +5672,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_4" id="__nav_4_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5848,7 +5694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/pr/plugins/" class="md-nav__link">
+      <a href="../pr/plugins/" class="md-nav__link">
         
   
   
@@ -5895,10 +5741,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5906,7 +5755,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/ae/" class="md-nav__link ">
+            <a href="../ae/" class="md-nav__link ">
               
   
   
@@ -5919,7 +5768,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_5" id="__nav_4_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5941,7 +5790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/ae/plugins/" class="md-nav__link">
+      <a href="../ae/plugins/" class="md-nav__link">
         
   
   
@@ -6011,7 +5860,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/ae/other/shadow/" class="md-nav__link">
+      <a href="../ae/other/shadow/" class="md-nav__link">
         
   
   
@@ -6047,6 +5896,8 @@
                 
   
   
+    
+  
   
   
     
@@ -6062,18 +5913,21 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" checked>
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/vivado/" class="md-nav__link ">
+            <a href="./" class="md-nav__link md-nav__link--active">
               
   
   
@@ -6087,7 +5941,7 @@
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_6">
             <span class="md-nav__icon md-icon"></span>
             Vivado
@@ -6125,10 +5979,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -6136,7 +5993,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../application/vscode/" class="md-nav__link ">
+            <a href="../vscode/" class="md-nav__link ">
               
   
   
@@ -6149,7 +6006,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4_7" id="__nav_4_7_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -6171,7 +6028,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../application/vscode/copilot/" class="md-nav__link">
+      <a href="../vscode/copilot/" class="md-nav__link">
         
   
   
@@ -6238,7 +6095,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/" class="md-nav__link ">
+            <a href="../../knowledge/" class="md-nav__link ">
               
   
   
@@ -6302,7 +6159,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/python/" class="md-nav__link ">
+            <a href="../../knowledge/python/" class="md-nav__link ">
               
   
   
@@ -6372,7 +6229,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/python/basic/" class="md-nav__link ">
+            <a href="../../knowledge/python/basic/" class="md-nav__link ">
               
   
   
@@ -6407,7 +6264,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch0/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch0/" class="md-nav__link">
         
   
   
@@ -6430,7 +6287,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch1/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch1/" class="md-nav__link">
         
   
   
@@ -6453,7 +6310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch2/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch2/" class="md-nav__link">
         
   
   
@@ -6476,7 +6333,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch3/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch3/" class="md-nav__link">
         
   
   
@@ -6499,7 +6356,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch4/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch4/" class="md-nav__link">
         
   
   
@@ -6522,7 +6379,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/basic/ch5/" class="md-nav__link">
+      <a href="../../knowledge/python/basic/ch5/" class="md-nav__link">
         
   
   
@@ -6580,7 +6437,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/python/pytorch/" class="md-nav__link ">
+            <a href="../../knowledge/python/pytorch/" class="md-nav__link ">
               
   
   
@@ -6674,7 +6531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_1/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_1/" class="md-nav__link">
         
   
   
@@ -6697,7 +6554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_2/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_2/" class="md-nav__link">
         
   
   
@@ -6720,7 +6577,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_3/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_3/" class="md-nav__link">
         
   
   
@@ -6743,7 +6600,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_4/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_4/" class="md-nav__link">
         
   
   
@@ -6766,7 +6623,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_5/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_5/" class="md-nav__link">
         
   
   
@@ -6789,7 +6646,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_6/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_6/" class="md-nav__link">
         
   
   
@@ -6812,7 +6669,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch7/ch7_7/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch7/ch7_7/" class="md-nav__link">
         
   
   
@@ -6896,7 +6753,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch8/ch8_1/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch8/ch8_1/" class="md-nav__link">
         
   
   
@@ -6919,7 +6776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch8/ch8_2/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch8/ch8_2/" class="md-nav__link">
         
   
   
@@ -6942,7 +6799,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch8/ch8_3/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch8/ch8_3/" class="md-nav__link">
         
   
   
@@ -6965,7 +6822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/pytorch/ch8/ch8_4/" class="md-nav__link">
+      <a href="../../knowledge/python/pytorch/ch8/ch8_4/" class="md-nav__link">
         
   
   
@@ -7051,7 +6908,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/python/other/anaconda/" class="md-nav__link">
+      <a href="../../knowledge/python/other/anaconda/" class="md-nav__link">
         
   
   
@@ -7113,7 +6970,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/C_Cpp/" class="md-nav__link ">
+            <a href="../../knowledge/C_Cpp/" class="md-nav__link ">
               
   
   
@@ -7176,7 +7033,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../knowledge/data_stru_algorithm/" class="md-nav__link ">
+            <a href="../../knowledge/data_stru_algorithm/" class="md-nav__link ">
               
   
   
@@ -7258,7 +7115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../knowledge/data_stru_algorithm/other/sieve_of_eratosthenes/" class="md-nav__link">
+      <a href="../../knowledge/data_stru_algorithm/other/sieve_of_eratosthenes/" class="md-nav__link">
         
   
   
@@ -7329,7 +7186,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../tools/" class="md-nav__link ">
+            <a href="../../tools/" class="md-nav__link ">
               
   
   
@@ -7399,7 +7256,7 @@
         
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../tools/git/" class="md-nav__link ">
+            <a href="../../tools/git/" class="md-nav__link ">
               
   
   
@@ -7434,7 +7291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/ch1/" class="md-nav__link">
+      <a href="../../tools/git/ch1/" class="md-nav__link">
         
   
   
@@ -7457,7 +7314,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/ch2/" class="md-nav__link">
+      <a href="../../tools/git/ch2/" class="md-nav__link">
         
   
   
@@ -7480,7 +7337,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/ch3/" class="md-nav__link">
+      <a href="../../tools/git/ch3/" class="md-nav__link">
         
   
   
@@ -7503,7 +7360,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/ch4/" class="md-nav__link">
+      <a href="../../tools/git/ch4/" class="md-nav__link">
         
   
   
@@ -7526,7 +7383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/ch5/" class="md-nav__link">
+      <a href="../../tools/git/ch5/" class="md-nav__link">
         
   
   
@@ -7549,7 +7406,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../tools/git/other/" class="md-nav__link">
+      <a href="../../tools/git/other/" class="md-nav__link">
         
   
   
@@ -7607,86 +7464,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#61-无监督学习方法概述" class="md-nav__link">
+  <a href="#下载" class="md-nav__link">
     <span class="md-ellipsis">
-      6.1 无监督学习方法概述
+      下载
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#62-聚类分析技术" class="md-nav__link">
+  <a href="#提高综合速度" class="md-nav__link">
     <span class="md-ellipsis">
-      6.2 聚类分析技术
+      提高综合速度
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="6.2 聚类分析技术">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#622-k-means-算法" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.2.2 K-means 算法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#623-鸢尾花案例" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.2.3 鸢尾花案例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#63-数据降维技术" class="md-nav__link">
+  <a href="#关联-vscode" class="md-nav__link">
     <span class="md-ellipsis">
-      6.3 数据降维技术
+      关联 vscode
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="6.3 数据降维技术">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#631-数据降维技术的用途" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.1 数据降维技术的用途
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#632-主成分分析" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.2 主成分分析
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#633-鸢尾花案例" class="md-nav__link">
-    <span class="md-ellipsis">
-      6.3.3 鸢尾花案例
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -7709,7 +7509,7 @@
 
   <!-- 若 meta 中 edit 为 false，则不加 edit 按钮 -->
 	
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/zju/computer/AI_basic/ch6.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/application/vivado/index.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -7719,7 +7519,7 @@
     
       
     
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/zju/computer/AI_basic/ch6.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/application/vivado/index.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -7727,285 +7527,80 @@
 
 <!-- 如果页面为首页，则不加 <h1> -->
 
-<h1 id="6-数据的聚类和降维技术">6 数据的聚类和降维技术<a class="headerlink" href="#6-数据的聚类和降维技术" title="Permanent link">&para;</a></h1>
-<!-- !!! tip "说明"
-
-    本文档正在更新中…… -->
-
+<h1 id="vivado">Vivado<a class="headerlink" href="#vivado" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
-<p class="admonition-title">说明</p>
-<p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
+<p class="admonition-title">AI 介绍</p>
+<p>Vivado 是由 Xilinx（现在是 AMD 的一部分，自 2022 年收购以来）开发的一种集成设计环境 (IDE)，主要用于 FPGA（现场可编程门阵列）的设计、仿真、实现和调试。它提供了一个全面的工具集，支持从概念到硬件实现的整个设计流程。Vivado 包括了几个关键组件：</p>
+<ol>
+<li><strong>设计输入</strong>：用户可以通过 VHDL、Verilog 或 SystemVerilog 等硬件描述语言输入设计，或者使用高层次综合(HLS)直接从 C/C++/SystemC 代码生成硬件</li>
+<li><strong>逻辑综合</strong>：将高级语言描述转换为针对特定 FPGA 架构优化的网表</li>
+<li><strong>布局布线</strong>：自动地在选定的 FPGA 芯片上放置和连接逻辑单元，以满足性能要求</li>
+<li><strong>时序分析</strong>：检查设计是否符合时钟速度和其他时序约束</li>
+<li><strong>模拟与验证</strong>：允许用户通过仿真来测试设计的功能正确性</li>
+<li><strong>IP Integrator</strong>：帮助用户快速集成 IP 核心，简化复杂系统的设计过程</li>
+<li><strong>调试工具</strong>：包括在线逻辑分析仪等工具，帮助用户在实际硬件上调试设计</li>
+</ol>
+<p>Vivado 提供了两种主要版本：Vivado Design Suite 和 Vivado WebPACK Edition。后者是一个免费版本，适用于部分 Xilinx 器件，非常适合教育和个人项目使用；而前者则提供了更全面的功能集，适用于商业产品开发。Vivado 在电子工程领域特别是数字电路设计中被广泛使用</p>
 </div>
-<h2 id="61-无监督学习方法概述">6.1 无监督学习方法概述<a class="headerlink" href="#61-无监督学习方法概述" title="Permanent link">&para;</a></h2>
+<h2 id="下载">下载<a class="headerlink" href="#下载" title="Permanent link">&para;</a></h2>
+<p>连接校网，打开文件资源管理器，地址栏输入 <code>ftp://10.78.18.205/</code>。里面有 Vivado 2020.2 软件安装等资料</p>
 <figure>
-  <img alt="Img 1" src="../../../../img/AI_basic/ch6/ai_ch6_img1.png" width="600" />
+    <img alt="Img 1" src="../../img/digital_logic_design/lab/lab_img1.png" width="600" />
 </figure>
-<p>异常检测：既可以是有监督学习，也可以是无监督学习</p>
-<p>无监督学习的两大类方法</p>
-<ol>
-<li>聚类：目标是将相似的数据点分组在一起，形成簇（cluster）</li>
-<li>降维：降维将高维数据转换为低维表示，减少数据的复杂度，同时巧妙地保留了原始数据中最重要的信息</li>
-</ol>
-<h2 id="62-聚类分析技术">6.2 聚类分析技术<a class="headerlink" href="#62-聚类分析技术" title="Permanent link">&para;</a></h2>
-<p>聚类是一种无监督学习技术，旨在将数据集分成若干组（K 个组），使得同组内的样本相似度高，而不同组间的样本相似度低</p>
-<h3 id="622-k-means-算法">6.2.2 K-means 算法<a class="headerlink" href="#622-k-means-算法" title="Permanent link">&para;</a></h3>
-<p>K-means 是最常用的聚类算法之一</p>
-<ol>
-<li>随机初始化若干个中心点，周围散布着未分类的数据点</li>
-<li>将每个数据点分配给最近的中心，形成初步的簇</li>
-<li>重新计算每个簇的中心点</li>
-<li>最终达到一个局部最优的划分结果</li>
-</ol>
+<h2 id="提高综合速度">提高综合速度<a class="headerlink" href="#提高综合速度" title="Permanent link">&para;</a></h2>
 <figure>
-  <img alt="Img 2" src="../../../../img/AI_basic/ch6/ai_ch6_img2.png" width="600" />
+    <img alt="Img 2" src="../../img/vivado/vivado_img1.png" width="600" />
 </figure>
-<h3 id="623-鸢尾花案例">6.2.3 鸢尾花案例<a class="headerlink" href="#623-鸢尾花案例" title="Permanent link">&para;</a></h3>
-<p>在鸢尾花案例中，聚类就像是在没有任何先验知识的情况下，仅仅根据花的特征（花萼和花瓣的长度和宽度）来将它们分类</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-0-10">10</a></span>
-<span class="normal"><a href="#__codelineno-0-11">11</a></span>
-<span class="normal"><a href="#__codelineno-0-12">12</a></span>
-<span class="normal"><a href="#__codelineno-0-13">13</a></span>
-<span class="normal"><a href="#__codelineno-0-14">14</a></span>
-<span class="normal"><a href="#__codelineno-0-15">15</a></span>
-<span class="normal"><a href="#__codelineno-0-16">16</a></span>
-<span class="normal"><a href="#__codelineno-0-17">17</a></span>
-<span class="normal"><a href="#__codelineno-0-18">18</a></span>
-<span class="normal"><a href="#__codelineno-0-19">19</a></span>
-<span class="normal"><a href="#__codelineno-0-20">20</a></span>
-<span class="normal"><a href="#__codelineno-0-21">21</a></span>
-<span class="normal"><a href="#__codelineno-0-22">22</a></span>
-<span class="normal"><a href="#__codelineno-0-23">23</a></span>
-<span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span>
-<span class="normal"><a href="#__codelineno-0-27">27</a></span>
-<span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span>
-<span class="normal"><a href="#__codelineno-0-31">31</a></span>
-<span class="normal"><a href="#__codelineno-0-32">32</a></span>
-<span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span>
-<span class="normal"><a href="#__codelineno-0-36">36</a></span>
-<span class="normal"><a href="#__codelineno-0-37">37</a></span>
-<span class="normal"><a href="#__codelineno-0-38">38</a></span>
-<span class="normal"><a href="#__codelineno-0-39">39</a></span>
-<span class="normal"><a href="#__codelineno-0-40">40</a></span>
-<span class="normal"><a href="#__codelineno-0-41">41</a></span>
-<span class="normal"><a href="#__codelineno-0-42">42</a></span>
-<span class="normal"><a href="#__codelineno-0-43">43</a></span>
-<span class="normal"><a href="#__codelineno-0-44">44</a></span>
-<span class="normal"><a href="#__codelineno-0-45">45</a></span>
-<span class="normal"><a href="#__codelineno-0-46">46</a></span>
-<span class="normal"><a href="#__codelineno-0-47">47</a></span>
-<span class="normal"><a href="#__codelineno-0-48">48</a></span>
-<span class="normal"><a href="#__codelineno-0-49">49</a></span>
-<span class="normal"><a href="#__codelineno-0-50">50</a></span>
-<span class="normal"><a href="#__codelineno-0-51">51</a></span>
-<span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span>
-<span class="normal"><a href="#__codelineno-0-54">54</a></span>
-<span class="normal"><a href="#__codelineno-0-55">55</a></span>
-<span class="normal"><a href="#__codelineno-0-56">56</a></span>
-<span class="normal"><a href="#__codelineno-0-57">57</a></span>
-<span class="normal"><a href="#__codelineno-0-58">58</a></span>
-<span class="normal"><a href="#__codelineno-0-59">59</a></span>
-<span class="normal"><a href="#__codelineno-0-60">60</a></span>
-<span class="normal"><a href="#__codelineno-0-61">61</a></span>
-<span class="normal"><a href="#__codelineno-0-62">62</a></span>
-<span class="normal"><a href="#__codelineno-0-63">63</a></span>
-<span class="normal"><a href="#__codelineno-0-64">64</a></span>
-<span class="normal"><a href="#__codelineno-0-65">65</a></span>
-<span class="normal"><a href="#__codelineno-0-66">66</a></span>
-<span class="normal"><a href="#__codelineno-0-67">67</a></span>
-<span class="normal"><a href="#__codelineno-0-68">68</a></span>
-<span class="normal"><a href="#__codelineno-0-69">69</a></span>
-<span class="normal"><a href="#__codelineno-0-70">70</a></span>
-<span class="normal"><a href="#__codelineno-0-71">71</a></span>
-<span class="normal"><a href="#__codelineno-0-72">72</a></span>
-<span class="normal"><a href="#__codelineno-0-73">73</a></span>
-<span class="normal"><a href="#__codelineno-0-74">74</a></span>
-<span class="normal"><a href="#__codelineno-0-75">75</a></span>
-<span class="normal"><a href="#__codelineno-0-76">76</a></span>
-<span class="normal"><a href="#__codelineno-0-77">77</a></span>
-<span class="normal"><a href="#__codelineno-0-78">78</a></span>
-<span class="normal"><a href="#__codelineno-0-79">79</a></span>
-<span class="normal"><a href="#__codelineno-0-80">80</a></span>
-<span class="normal"><a href="#__codelineno-0-81">81</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.cluster</span><span class="w"> </span><span class="kn">import</span> <span class="n">KMeans</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="c1"># 加载数据集</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1"># 标准化数据</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="c1"># 标准化的目的是将所有特征调整到相同的尺度</span>
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="c1"># 这对 K-means 算法很重要，因为它基于距离计算</span>
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="c1"># fit_transform 用于拟合数据并进行转换</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="c1"># random_state=42 确保结果的可重复性</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="n">kmeans</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="n">kmeans</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="n">y_kmeans</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="c1"># 将聚类中心反标准化</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="n">centers_original</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">)</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="c1"># 原始数据的真实类别</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;True Labels&#39;</span><span class="p">)</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sepal Length (cm)&#39;</span><span class="p">)</span>
-</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sepal Width (cm)&#39;</span><span class="p">)</span>
-</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37"></a>
-</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="c1"># K-means 聚类的结果</span>
-</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39"></a><span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
-</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_kmeans</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
-</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centers_original</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centers_original</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> 
-</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a>            <span class="n">s</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Centroids&#39;</span><span class="p">)</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;K-means Clustering Results&#39;</span><span class="p">)</span>
-</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Sepal Length (cm)&#39;</span><span class="p">)</span>
-</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Sepal Width (cm)&#39;</span><span class="p">)</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a>
-</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a>
-</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_score</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_kmeans</span><span class="p">)</span>
-</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Clustering Accuracy: </span><span class="si">{</span><span class="n">accuracy</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a>    <span class="n">cluster</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">y_kmeans</span> <span class="o">==</span> <span class="n">i</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Composition of Cluster </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">:&#39;</span><span class="p">)</span>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a>    <span class="k">for</span> <span class="n">iris_type</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a>        <span class="c1"># 计算每个预测的聚类中每个真实类别的数量</span>
-</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a>        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">cluster</span><span class="p">]</span> <span class="o">==</span> <span class="n">iris_type</span><span class="p">)</span>
-</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">iris_type</span><span class="p">]</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60"></a>
-</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61"></a><span class="sd">&quot;&quot;&quot;Output:</span>
-</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62"></a><span class="sd">Composition of Cluster 0:</span>
-</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63"></a><span class="sd"> setosa: 0</span>
-</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64"></a><span class="sd"> versicolor: 46</span>
-</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65"></a><span class="sd"> virginica: 50</span>
-</span><span id="__span-0-66"><a id="__codelineno-0-66" name="__codelineno-0-66"></a>
-</span><span id="__span-0-67"><a id="__codelineno-0-67" name="__codelineno-0-67"></a><span class="sd">Composition of Cluster 1:</span>
-</span><span id="__span-0-68"><a id="__codelineno-0-68" name="__codelineno-0-68"></a><span class="sd"> setosa: 33</span>
-</span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69"></a><span class="sd"> versicolor: 0</span>
-</span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd"> virginica: 0</span>
-</span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">Composition of Cluster 2:</span>
-</span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd"> setosa: 17</span>
-</span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd"> versicolor: 4</span>
-</span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd"> virginica: 0</span>
-</span><span id="__span-0-76"><a id="__codelineno-0-76" name="__codelineno-0-76"></a>
-</span><span id="__span-0-77"><a id="__codelineno-0-77" name="__codelineno-0-77"></a><span class="sd">说明：</span>
-</span><span id="__span-0-78"><a id="__codelineno-0-78" name="__codelineno-0-78"></a>
-</span><span id="__span-0-79"><a id="__codelineno-0-79" name="__codelineno-0-79"></a><span class="sd">1. Cluster 1 只包含 setosa 类别的样本，说明 K-means 成功地将 setosa 类别分开，但只是部分</span>
-</span><span id="__span-0-80"><a id="__codelineno-0-80" name="__codelineno-0-80"></a><span class="sd">2. Cluster 0 的结果最不理想，包含了很多 versicolor 和 virginica 的样本，未能很好地区分它们</span>
-</span><span id="__span-0-81"><a id="__codelineno-0-81" name="__codelineno-0-81"></a><span class="sd">&quot;&quot;&quot;</span>
-</span></code></pre></div></td></tr></table></div>
-<h2 id="63-数据降维技术">6.3 数据降维技术<a class="headerlink" href="#63-数据降维技术" title="Permanent link">&para;</a></h2>
-<p>降维是将高维数据转换为低维表示的过程，以简化数据集并降低计算复杂性</p>
-<h3 id="631-数据降维技术的用途">6.3.1 数据降维技术的用途<a class="headerlink" href="#631-数据降维技术的用途" title="Permanent link">&para;</a></h3>
-<ol>
-<li>数据可视化（二维绘图）</li>
-<li>降低计算复杂度</li>
-<li>数据去噪，去除系统性伪影</li>
-<li>数据压缩（图像，音频）</li>
-<li>加速监督学习</li>
-</ol>
-<h3 id="632-主成分分析">6.3.2 主成分分析<a class="headerlink" href="#632-主成分分析" title="Permanent link">&para;</a></h3>
-<p>PCA（Principal Component Analysis）是最常用的降维技术之一</p>
-<ol>
-<li>数据中心化</li>
-<li>计算协方差矩阵</li>
-<li>计算特征向量和特征值</li>
-<li>选择主成分</li>
-</ol>
-<p>寻找到原始空间中的一个方向，将数据降维到这个方向中，可以保留最多的信息，使得数据在新坐标系下的方差最大化，同时保持不同维度之间的正交性</p>
+<p>右键模块，点击 <ins>Set as Out-of-Context for Synthesis...</ins></p>
 <figure>
-  <img alt="Img 3" src="../../../../img/AI_basic/ch6/ai_ch6_img3.png" width="600" />
+    <img alt="Img 3" src="../../img/vivado/vivado_img2.png" width="600" />
 </figure>
-<h3 id="633-鸢尾花案例">6.3.3 鸢尾花案例<a class="headerlink" href="#633-鸢尾花案例" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-1-10">10</a></span>
-<span class="normal"><a href="#__codelineno-1-11">11</a></span>
-<span class="normal"><a href="#__codelineno-1-12">12</a></span>
-<span class="normal"><a href="#__codelineno-1-13">13</a></span>
-<span class="normal"><a href="#__codelineno-1-14">14</a></span>
-<span class="normal"><a href="#__codelineno-1-15">15</a></span>
-<span class="normal"><a href="#__codelineno-1-16">16</a></span>
-<span class="normal"><a href="#__codelineno-1-17">17</a></span>
-<span class="normal"><a href="#__codelineno-1-18">18</a></span>
-<span class="normal"><a href="#__codelineno-1-19">19</a></span>
-<span class="normal"><a href="#__codelineno-1-20">20</a></span>
-<span class="normal"><a href="#__codelineno-1-21">21</a></span>
-<span class="normal"><a href="#__codelineno-1-22">22</a></span>
-<span class="normal"><a href="#__codelineno-1-23">23</a></span>
-<span class="normal"><a href="#__codelineno-1-24">24</a></span>
-<span class="normal"><a href="#__codelineno-1-25">25</a></span>
-<span class="normal"><a href="#__codelineno-1-26">26</a></span>
-<span class="normal"><a href="#__codelineno-1-27">27</a></span>
-<span class="normal"><a href="#__codelineno-1-28">28</a></span>
-<span class="normal"><a href="#__codelineno-1-29">29</a></span>
-<span class="normal"><a href="#__codelineno-1-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn</span><span class="w"> </span><span class="kn">import</span> <span class="n">datasets</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1"># 加载数据集</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17"></a>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="n">explained_variance_ratio</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Explained Variance Ratio: </span><span class="si">{</span><span class="n">explained_variance_ratio</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20"></a>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;主成分的特征向量：&#39;</span><span class="p">)</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">):</span>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">component</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24"></a>
-</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">原始特征与主成分的相关性：&#39;</span><span class="p">)</span>
-</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">component</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">components_</span><span class="p">):</span>
-</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27"></a>    <span class="n">correlations</span> <span class="o">=</span> <span class="n">component</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;PC</span><span class="si">{</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s1">: &#39;</span><span class="p">)</span>
-</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29"></a>    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">corr</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">correlations</span><span class="p">):</span>
-</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="si">}</span><span class="s1">: </span><span class="si">{</span><span class="n">corr</span><span class="si">:</span><span class="s1">.3f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>这个演示图片里 Clock Constraint File 那一栏显示的东西不用管，直接点 OK 就行</p>
+</blockquote>
+<p>之后什么都不用动，点击 OK 即可</p>
+<figure>
+    <img alt="Img 4" src="../../img/vivado/vivado_img3.png" width="400" />
+</figure>
+<p>成功以后，模块左侧有一个小黄方块的标识。有些模块不能这样操作，可能是因为它是某些模块的顶层模块等等</p>
+<p>这个东西的意思简单理解就是，文件综合一次之后，只要文件内部的代码不变，下一次综合时，这个文件就不用再综合一遍了，只需要和外部模块做连接就好了，提高综合速度</p>
+<blockquote>
+<p>更详细的解释，互联网自行搜索</p>
+</blockquote>
+<p>很容易发现，我们生成的 IP 核如果是保持默认设置的话，左边也有这个小黄方块标识，因为 IP 核本身内部的东西就不会变（在当前工程文件中，无法直接修改 IP 核内部代码）</p>
+<h2 id="关联-vscode">关联 vscode<a class="headerlink" href="#关联-vscode" title="Permanent link">&para;</a></h2>
+<p>设置中选择 Text Editor -&gt; Custom Editor</p>
+<figure>
+    <img alt="Img 4" src="../../img/vivado/vivado_img4.png" width="600" />
+</figure>
+<p>输入内容：<code>cmd /S /k "code -g [file name]:[line number]"</code></p>
+<figure>
+    <img alt="Img 5" src="../../img/vivado/vivado_img5.png" width="400" />
+</figure>
+<p>之后在 Vivado 工程内双击文件，便可打开 vscode 进行编辑</p>
+<div class="admonition tip">
+<p class="admonition-title">文件编码格式</p>
+<p>Vivado 2020.2 的默认文件编码格式为 Simplified Chinese (GB 2312)，使用 vscode 进行编辑时，注意保存为 GB 2312 的格式，否则文件在 Vivado 中打开，汉字会显示乱码</p>
+<p>vscode 右下角会显示文件编码，点击后选择 <ins>Save with Encoding</ins>（通过编码保存），选择 <ins>Simplified Chinese (GB 2312)</ins> 即可以 GB 2312 的格式保存文件</p>
+<p>选择 <ins>Reopen with Encoding</ins>（通过编码重新打开），选择 <ins>Simplified Chinese (GB 2312)</ins> 即可以 GB 2312 的格式打开文件</p>
+<p><figure markdown="span">
+    <img alt="Img 8" src="../../img/vivado/vivado_img8.png" width="300" />
+</figure></p>
+</div>
+<p>注意：</p>
+<ol>
+<li>Vivado 仿真之前建议将 Text Editor 切换为默认选项，否则容易报错，报错大意“其他进程正在使用 simulate”</li>
+<li>若遇到此类报错，如下操作：</li>
+</ol>
+<p>打开任务管理器 -&gt; 资源监视器</p>
+<figure>
+    <img alt="Img 6" src="../../img/vivado/vivado_img6.png" width="600" />
+</figure>
+<p>在 CPU -&gt; 关联的句柄下，搜索 simulate，删除所有 code.exe 结果</p>
+<figure>
+    <img alt="Img 7" src="../../img/vivado/vivado_img7.png" width="600" />
+</figure>
+<p>之后重新仿真即可</p>
 
 
 
@@ -8028,7 +7623,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月11日 12:37:41">2025年4月11日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月22日 12:24:16">2025年4月22日</span>
   </span>
 
     
@@ -8038,7 +7633,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月1日 13:15:29">2025年4月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月22日 12:24:16">2025年4月22日</span>
   </span>
 
     
@@ -8143,7 +7738,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../ch5/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 5 回归与分类模型">
+          <a href="../ae/other/shadow/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 物体阴影">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -8153,20 +7748,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                5 回归与分类模型
+                物体阴影
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ch7/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 深度网络基础组件">
+          <a href="../vscode/" class="md-footer__link md-footer__link--next" aria-label="下一页: VS Code">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                7 深度网络基础组件
+                VS Code
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -8238,12 +7833,12 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
       
-        <script src="../../../../assets/javascripts/katex.js"></script>
+        <script src="../../assets/javascripts/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
