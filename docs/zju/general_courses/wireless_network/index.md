@@ -43,3 +43,10 @@ zy老师、sxx老师
 1. 取平时模块组考试最高分：20 分
       - 一共有 6 个，至少参加 1 个
 2. 期末考试：20 分
+
+## 个人笔记
+
+> 笔记内容参考：Cisco Networking Academy - Introduction to Networks
+
+[1 当今网络](./ch1.md)<br/>
+[3 协议和模型](./ch3.md)

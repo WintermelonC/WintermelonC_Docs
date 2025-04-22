@@ -73,7 +73,8 @@ nav:
       - 生命科学导论实验: zju/general_courses/life_science_exp.md
       - 无线网络应用:
         - zju/general_courses/wireless_network/index.md
-        - Lecture 1: zju/general_courses/wireless_network/ch1.md
+        - 1 当今网络: zju/general_courses/wireless_network/ch1.md
+        - 3 协议和模型: zju/general_courses/wireless_network/ch3.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md
