@@ -429,3 +429,136 @@ int main() {
 
 ## 8.6 Multiple Inheritance
 
+!!! tip "建议"
+
+    不要使用多继承（MI）
+
+多继承是指一个类可以同时继承多个基类，从而获得多个基类的成员和功能
+
+```cpp linenums="1"
+class Derived : public Base1, public Base2 {
+    // Derived 类的定义
+};
+```
+
+- 可以通过逗号分隔多个基类
+- 每个基类可以有自己的访问控制符（`public`、`protected` 或 `private`）
+
+**二义性问题**：当多个基类中有同名成员时，子类会遇到二义性问题，需要通过作用域解析符来解决
+
+```cpp linenums="1"
+class Base1 {
+public:
+    void func() { cout << "Base1::func" << endl; }
+};
+
+class Base2 {
+public:
+    void func() { cout << "Base2::func" << endl; }
+};
+
+class Derived : public Base1, public Base2 {
+    // Derived 类继承了 Base1 和 Base2
+};
+
+int main() {
+    Derived d;
+    // d.func(); // 错误：二义性
+    d.Base1::func(); // 正确：调用 Base1 的 func
+    d.Base2::func(); // 正确：调用 Base2 的 func
+    return 0;
+}
+```
+
+### 8.6.1 菱形继承问题
+
+当一个类通过多个路径继承同一个基类时，会导致基类的成员被多次继承，造成冗余和二义性
+
+```cpp linenums="1"
+class B1 { int m_i; };          // 基类
+class D1 : public B1 {};        // D1 继承 B1
+class D2 : public B1 {};        // D2 继承 B1
+class M : public D1, public D2 {}; // M 多重继承 D1 和 D2
+
+void main() {
+    M m;           // OK：创建 M 对象，合法
+    B1* p = new M; // ERROR：歧义，无法确定是 D1::B1 还是 D2::B1
+    B1* p2 = dynamic_cast<D1*>(new M); // OK：明确指定 D1 路径的 B1
+
+    m.m_i++; // 错误：是 D1::B1.m_i 还是 D2::B1.m_i？
+}
+```
+
+通过虚继承可以避免菱形继承问题，使得基类的成员只保留一份
+
+==虚基类的构造函数需要在派生类中显式调用==
+
+```cpp linenums="1"
+class A {
+public:
+    A(int x) { cout << "A Constructor: " << x << endl; }
+};
+
+class B : virtual public A {
+public:
+    B() : A(0) { cout << "B Constructor" << endl; }
+};
+
+class C : virtual public A {
+public:
+    C() : A(0) { cout << "C Constructor" << endl; }
+};
+
+class D : public B, public C {
+public:
+    D() : A(42) { cout << "D Constructor" << endl; }
+};
+
+int main() {
+    D d;
+    // 输出：
+    // A Constructor: 42
+    // B Constructor
+    // C Constructor
+    // D Constructor
+    return 0;
+}
+```
+
+对 C++ 而言，“virtual” 表示间接访问：
+
+- 虚成员函数 → 通过虚函数表（vtable）动态绑定
+- 虚基类 → 通过指针间接定位基类子对象（编译器插入隐藏指针）
+
+### 8.6.2 Protocol / Interface Class
+
+**协议类 / 接口类**
+
+1. 抽象基类
+
+    1. 纯虚函数：所有非静态成员函数必须声明为纯虚函数，强制派生类实现这些函数
+    2. 虚析构函数：必须提供虚析构函数（确保通过基类指针删除派生类对象时能正确调用派生类的析构函数），但函数体为空（因接口类通常无资源需要释放）
+
+2. 禁止非静态成员变量
+
+    1. 接口类 **不应包含任何非静态成员变量**（包括继承的成员变量），因为它的职责是定义行为（方法），而非状态（数据）
+    2. **允许静态成员**（如静态常量或静态函数），因为它们属于类级别而非对象级别
+
+```cpp linenums="1"
+class Interface1 {
+public:
+    virtual void func1() = 0;
+};
+
+class Interface2 {
+public:
+    virtual void func2() = 0;
+};
+
+class Derived : public Interface1, public Interface2 {
+public:
+    void func1() override { /* 实现 func1 */ }
+    void func2() override { /* 实现 func2 */ }
+};
+```
+

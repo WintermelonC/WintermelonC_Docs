@@ -773,6 +773,10 @@ precise interrupt 实现：
 
 ## 5 Branch Prediction
 
+### 5.1 Static Branch Prediction
+
+**静态分支预测**
+
 1. flushing（冲刷）：暂停流水线直到分支结果确定
 2. predict-not-taken（预测不跳转）：
 
@@ -792,7 +796,11 @@ Static Branch Prediction（静态分支预测）流水线因分支指令导致�
 2. prediction accuracy（预测准确率）：静态预测方法（如默认预测跳转/不跳转）的正确率
 3. misprediction penalty（预测错误惩罚）：预测失败后需清空流水线并重新取指的周期数
 
-### 5.1 1-bit Branch-Prediction Buffer
+### 5.2 Dynamic Branch Prediction
+
+**动态分支预测**
+
+**1.1-bit Branch-Prediction Buffer**
 
 performance = f(accuracy, cost of misprediction)
 
@@ -808,7 +816,7 @@ branch history table（分支历史表，BHT）：
 
 问题：在循环结构中，1 位 BHT 会导致 2 次预测错误（平均每 n 次迭代出现 2 次错误）
 
-### 5.2 2-bit Branch-Prediction Buffer
+**2.2-bit Branch-Prediction Buffer**
 
 引入“弱跳转（10）”“强跳转（11）”等状态，需连续两次错误才改变预测，减少循环末尾的误判
 
@@ -819,4 +827,16 @@ branch history table（分支历史表，BHT）：
 <figure markdown="span">
     ![Img 15](../../../../img/comp_arch/ch4/ca_ch4_img15.png){ width="600" }
 </figure>
+
+**3.Correlating Branch Prediction Buffer**
+
+**4.Tournament Branch Predictor**
+
+**5.Branch Target Buffer**
+
+**6.Integrated Instruction Fetch Units Branch**
+
+**7.Return Address Predictors**
+
+## 6 Hardware-Based Speculation
 
