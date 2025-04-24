@@ -3247,8 +3247,44 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#12-copy-assignment-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Copy Assignment Operator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-shallow-copy-vs-deep-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Shallow Copy vs Deep Copy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-禁止拷贝" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 禁止拷贝
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-函数参数和返回值类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 函数参数和返回值类型
+    </span>
+  </a>
   
 </li>
       
@@ -7740,8 +7776,44 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#12-copy-assignment-operator" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Copy Assignment Operator
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-shallow-copy-vs-deep-copy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Shallow Copy vs Deep Copy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-禁止拷贝" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 禁止拷贝
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-函数参数和返回值类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 函数参数和返回值类型
+    </span>
+  </a>
   
 </li>
       
@@ -7793,6 +7865,323 @@
 </div>
 <h2 id="1-copy">1 Copy<a class="headerlink" href="#1-copy" title="Permanent link">&para;</a></h2>
 <h3 id="11-copy-constructor">1.1 Copy Constructor<a class="headerlink" href="#11-copy-constructor" title="Permanent link">&para;</a></h3>
+<p><strong>拷贝构造函数</strong></p>
+<ul>
+<li>用一个已有对象初始化一个新对象</li>
+<li>函数签名：<code>T(const T&amp; other)</code></li>
+</ul>
+<p>调用时机：</p>
+<ol>
+<li>对象初始化时传递另一个对象</li>
+<li>函数 <strong>按值传参</strong> 或 <strong>返回对象</strong>（某些情况下可能被优化为移动语义）</li>
+</ol>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">MyClass</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="n">MyClass</span><span class="w"> </span><span class="nf">obj2</span><span class="p">(</span><span class="n">obj1</span><span class="p">);</span><span class="w"> </span><span class="c1">// 调用拷贝构造函数</span>
+</span></code></pre></div></td></tr></table></div>
+<p>默认行为：如果未显式定义，编译器会生成一个 <strong>默认拷贝构造函数</strong>，执行 <strong>成员逐个拷贝（浅拷贝）</strong></p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyString</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size</span><span class="p">;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="c1">// 拷贝构造函数（深拷贝）</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="n">MyString</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MyString</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">size</span><span class="p">];</span><span class="w"> </span><span class="c1">// 分配新内存</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">// 复制数据</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>编译器优化拷贝</strong>（Copy Elision）</p>
+<p>现代 C++ 编译器（如 GCC、Clang）会在保证程序行为正确的前提下，自动优化掉不必要的拷贝操作（例如 返回值优化 RVO/NRVO）</p>
+<p>程序员职责：</p>
+<ol>
+<li>即使编译器可能优化，仍需按 “最坏情况”（无优化）编写代码，确保逻辑正确</li>
+<li>主动识别可优化场景</li>
+</ol>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">Person</span><span class="w"> </span><span class="nf">copy_func</span><span class="p">(</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">who</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="n">Person</span><span class="w"> </span><span class="n">local</span><span class="p">(</span><span class="w"> </span><span class="n">who</span><span class="w"> </span><span class="p">);</span><span class="w">  </span><span class="c1">// 局部对象</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="n">local</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">local</span><span class="p">;</span><span class="w">         </span><span class="c1">// 可能调用拷贝构造函数（若未优化）</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="p">}</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">Person</span><span class="w"> </span><span class="nf">nocopy_func</span><span class="p">(</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">who</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="w"> </span><span class="n">who</span><span class="w"> </span><span class="p">);</span><span class="w"> </span><span class="c1">// 直接构造返回值</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">场景</th>
+<th style="text-align: center;"><code>copy_func</code></th>
+<th style="text-align: center;"><code>nocopy_func</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">对象创建方式</td>
+<td style="text-align: center;">先构造局部对象，再返回</td>
+<td style="text-align: center;">直接构造返回值</td>
+</tr>
+<tr>
+<td style="text-align: center;">是否依赖优化</td>
+<td style="text-align: center;">是（NRVO）</td>
+<td style="text-align: center;">否（RVO 必然优化）</td>
+</tr>
+<tr>
+<td style="text-align: center;">代码可靠性</td>
+<td style="text-align: center;">需考虑未优化时的拷贝开销</td>
+<td style="text-align: center;">始终高效</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">拷贝构造函数的设计原则</p>
+<ol>
+<li>何时不需要自定义拷贝构造函数：无指针成员的简单类</li>
+<li>何时需要显式定义拷贝构造函数：类包含指针或动态资源时。必须自定义拷贝构造函数实现 深拷贝，避免多个对象共享同一资源（如内存、文件句柄）</li>
+<li>
+<p>如何禁止拷贝：将拷贝构造函数声明为 <code>private</code>。适用于不可复制的类（如单例、线程池）。调用拷贝操作会直接触发编译错误</p>
+<ul>
+<li>更优做法：使用 <code>= delete</code> 显式删除（更清晰）</li>
+</ul>
+</li>
+</ol>
+</div>
+<h3 id="12-copy-assignment-operator">1.2 Copy Assignment Operator<a class="headerlink" href="#12-copy-assignment-operator" title="Permanent link">&para;</a></h3>
+<p><strong>拷贝赋值运算符</strong></p>
+<ul>
+<li>将一个对象的值赋给另一个已存在的对象</li>
+<li>函数签名：<code>T&amp; operator=(const T&amp; other)</code></li>
+</ul>
+<p>调用时机：</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">MyClass</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">MyClass</span><span class="w"> </span><span class="n">obj2</span><span class="p">;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">obj1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 调用拷贝赋值运算符</span>
+</span></code></pre></div></td></tr></table></div>
+<p>默认行为：如果未显式定义，编译器会生成一个 <strong>默认拷贝赋值运算符</strong>，执行 <strong>成员逐个赋值（浅拷贝）</strong></p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyString</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="c1">// 拷贝赋值运算符（深拷贝）</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="n">MyString</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MyString</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">this</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="o">&amp;</span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"> </span><span class="c1">// 防止自赋值</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">        </span><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"> </span><span class="c1">// 释放旧内存</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">        </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">size</span><span class="p">;</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="n">size</span><span class="p">];</span><span class="w"> </span><span class="c1">// 分配新内存</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">.</span><span class="n">data</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">// 复制数据</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">*</span><span class="k">this</span><span class="p">;</span><span class="w"> </span><span class="c1">// 返回当前对象</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="13-shallow-copy-vs-deep-copy">1.3 Shallow Copy vs Deep Copy<a class="headerlink" href="#13-shallow-copy-vs-deep-copy" title="Permanent link">&para;</a></h3>
+<p><strong>浅拷贝 vs 深拷贝</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">特性</th>
+<th style="text-align: center;">Shallow Copy</th>
+<th style="text-align: center;">Deep Copy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">拷贝方式</td>
+<td style="text-align: center;">直接复制指针（共享内存）</td>
+<td style="text-align: center;">复制指针指向的数据（独立内存）</td>
+</tr>
+<tr>
+<td style="text-align: center;">默认行为</td>
+<td style="text-align: center;">编译器默认生成</td>
+<td style="text-align: center;">需要手动实现</td>
+</tr>
+<tr>
+<td style="text-align: center;">适用场景</td>
+<td style="text-align: center;">无动态内存管理的简单类</td>
+<td style="text-align: center;">涉及动态内存或资源的类</td>
+</tr>
+<tr>
+<td style="text-align: center;">风险</td>
+<td style="text-align: center;">双重释放（Double Free）</td>
+<td style="text-align: center;">无内存共享问题</td>
+</tr>
+</tbody>
+</table>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span>
+<span class="normal"><a href="#__codelineno-5-19">19</a></span>
+<span class="normal"><a href="#__codelineno-5-20">20</a></span>
+<span class="normal"><a href="#__codelineno-5-21">21</a></span>
+<span class="normal"><a href="#__codelineno-5-22">22</a></span>
+<span class="normal"><a href="#__codelineno-5-23">23</a></span>
+<span class="normal"><a href="#__codelineno-5-24">24</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">// 浅拷贝（默认行为）</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">ShallowCopy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="n">ShallowCopy</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">val</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="o">~</span><span class="n">ShallowCopy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="p">};</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="n">ShallowCopy</span><span class="w"> </span><span class="nf">a</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">ShallowCopy</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"> </span><span class="c1">// 浅拷贝，a.ptr 和 b.ptr 指向同一块内存</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="c1">// 析构时会导致双重释放（UB）！</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1">// 深拷贝（手动实现）</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="k">class</span><span class="w"> </span><span class="nc">DeepCopy</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">    </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="w">    </span><span class="n">DeepCopy</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">val</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="w">    </span><span class="n">DeepCopy</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">DeepCopy</span><span class="o">&amp;</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="o">*</span><span class="n">other</span><span class="p">.</span><span class="n">ptr</span><span class="p">);</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="c1">// 深拷贝构造函数</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19"></a><span class="w">    </span><span class="o">~</span><span class="n">DeepCopy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="p">};</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21"></a>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22"></a><span class="n">DeepCopy</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23"></a><span class="n">DeepCopy</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span><span class="c1">// 深拷贝，c.ptr 和 d.ptr 指向不同内存</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24"></a><span class="c1">// 析构时安全</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="14-禁止拷贝">1.4 禁止拷贝<a class="headerlink" href="#14-禁止拷贝" title="Permanent link">&para;</a></h3>
+<ul>
+<li>某些类（如单例、文件句柄类）<strong>不应允许拷贝</strong>，否则可能导致资源泄漏或逻辑错误</li>
+<li>使用 <code>= delete</code> 显式禁止拷贝构造函数和拷贝赋值运算符</li>
+</ul>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">NonCopyable</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="n">NonCopyable</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">default</span><span class="p">;</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w">    </span><span class="n">NonCopyable</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">NonCopyable</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w">            </span><span class="c1">// 禁止拷贝构造</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="n">NonCopyable</span><span class="o">&amp;</span><span class="w"> </span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">NonCopyable</span><span class="o">&amp;</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">delete</span><span class="p">;</span><span class="w"> </span><span class="c1">// 禁止拷贝赋值</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="2-函数参数和返回值类型">2 函数参数和返回值类型<a class="headerlink" href="#2-函数参数和返回值类型" title="Permanent link">&para;</a></h2>
+<p>参数传递（Way in）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方式</th>
+<th style="text-align: center;">示例</th>
+<th style="text-align: center;">特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">按值传递</td>
+<td style="text-align: center;"><code>void f(Student i);</code></td>
+<td style="text-align: center;">触发拷贝构造，适合需要独立副本的小对象（但可能有性能开销）</td>
+</tr>
+<tr>
+<td style="text-align: center;">指针传递</td>
+<td style="text-align: center;"><code>void f(Student *p);</code></td>
+<td style="text-align: center;">避免拷贝，但需处理 <code>nullptr</code>；若无需修改对象，应加 <code>const</code>（如 <code>const Student*</code>）</td>
+</tr>
+<tr>
+<td style="text-align: center;">引用传递</td>
+<td style="text-align: center;"><code>void f(Student&amp; i);</code></td>
+<td style="text-align: center;">避免拷贝，直接操作原对象；若无需修改，用 <code>const Student&amp;</code> 更安全</td>
+</tr>
+</tbody>
+</table>
+<p>建议：</p>
+<ol>
+<li>优先使用 <code>const</code> 引用（<code>const T&amp;</code>），除非需要修改原对象或传递简单类型（如 <code>int</code>）</li>
+<li>按值传递仅用于需要副本的场景（如函数内需修改参数但不影响外部）</li>
+</ol>
+<p>返回值设计（Way out）</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">方式</th>
+<th style="text-align: center;">示例</th>
+<th style="text-align: center;">注意事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">返回值（副本）</td>
+<td style="text-align: center;"><code>Student f();</code></td>
+<td style="text-align: center;">可能触发拷贝，但编译器会优化（RVO/NRVO）；适合返回新构造的对象</td>
+</tr>
+<tr>
+<td style="text-align: center;">返回指针</td>
+<td style="text-align: center;"><code>Student* f();</code></td>
+<td style="text-align: center;">需明确指针生命周期（如指向堆对象、静态变量或全局变量），避免悬空指针</td>
+</tr>
+<tr>
+<td style="text-align: center;">返回引用</td>
+<td style="text-align: center;"><code>Student&amp; f();</code></td>
+<td style="text-align: center;">必须确保引用对象在函数外有效（如返回成员变量或静态对象）</td>
+</tr>
+</tbody>
+</table>
+<p>建议：</p>
+<ol>
+<li>优先返回 <strong>值类型</strong>（依赖编译器优化）</li>
+<li>返回指针/引用时，必须 <strong>明确所有权和生命周期</strong>（易引发内存问题）</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">建议</p>
+<ol>
+<li><strong>需要存储对象时</strong>：按值传入（触发拷贝）</li>
+<li><strong>仅需读取对象时</strong>：使用 <code>const</code> 指针或引用传入</li>
+<li><strong>需要修改对象时</strong>：使用指针或引用传入</li>
+<li><strong>返回函数内创建的对象时</strong>：直接返回值（依赖编译器优化）</li>
+<li><strong>返回传入的对象时</strong>：仅返回其指针或引用</li>
+<li><strong>绝对不要</strong>：在函数内 <code>new</code> 对象并返回其裸指针</li>
+</ol>
+</div>
 
 
 
@@ -7815,7 +8204,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月22日 12:22:14">2025年4月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月24日 14:16:12">2025年4月24日</span>
   </span>
 
     

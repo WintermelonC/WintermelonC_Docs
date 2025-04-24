@@ -4966,18 +4966,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-1-bit-branch-prediction-buffer" class="md-nav__link">
+  <a href="#51-static-branch-prediction" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 1-bit Branch-Prediction Buffer
+      5.1 Static Branch Prediction
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#52-2-bit-branch-prediction-buffer" class="md-nav__link">
+  <a href="#52-dynamic-branch-prediction" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2 2-bit Branch-Prediction Buffer
+      5.2 Dynamic Branch Prediction
     </span>
   </a>
   
@@ -4985,6 +4985,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hardware-based-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Hardware-Based Speculation
+    </span>
+  </a>
   
 </li>
       
@@ -8217,18 +8226,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-1-bit-branch-prediction-buffer" class="md-nav__link">
+  <a href="#51-static-branch-prediction" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 1-bit Branch-Prediction Buffer
+      5.1 Static Branch Prediction
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#52-2-bit-branch-prediction-buffer" class="md-nav__link">
+  <a href="#52-dynamic-branch-prediction" class="md-nav__link">
     <span class="md-ellipsis">
-      5.2 2-bit Branch-Prediction Buffer
+      5.2 Dynamic Branch Prediction
     </span>
   </a>
   
@@ -8236,6 +8245,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-hardware-based-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Hardware-Based Speculation
+    </span>
+  </a>
   
 </li>
       
@@ -9003,6 +9021,8 @@
     <img alt="Img 13" src="../../../../../img/comp_arch/ch4/ca_ch4_img13.png" width="800" />
 </figure>
 <h2 id="5-branch-prediction">5 Branch Prediction<a class="headerlink" href="#5-branch-prediction" title="Permanent link">&para;</a></h2>
+<h3 id="51-static-branch-prediction">5.1 Static Branch Prediction<a class="headerlink" href="#51-static-branch-prediction" title="Permanent link">&para;</a></h3>
+<p><strong>静态分支预测</strong></p>
 <ol>
 <li>flushing（冲刷）：暂停流水线直到分支结果确定</li>
 <li>
@@ -9029,7 +9049,9 @@
 <li>prediction accuracy（预测准确率）：静态预测方法（如默认预测跳转/不跳转）的正确率</li>
 <li>misprediction penalty（预测错误惩罚）：预测失败后需清空流水线并重新取指的周期数</li>
 </ol>
-<h3 id="51-1-bit-branch-prediction-buffer">5.1 1-bit Branch-Prediction Buffer<a class="headerlink" href="#51-1-bit-branch-prediction-buffer" title="Permanent link">&para;</a></h3>
+<h3 id="52-dynamic-branch-prediction">5.2 Dynamic Branch Prediction<a class="headerlink" href="#52-dynamic-branch-prediction" title="Permanent link">&para;</a></h3>
+<p><strong>动态分支预测</strong></p>
+<p><strong>1.1-bit Branch-Prediction Buffer</strong></p>
 <p>performance = f(accuracy, cost of misprediction)</p>
 <p>branch history table（分支历史表，BHT）：</p>
 <ol>
@@ -9042,7 +9064,7 @@
 <li>如果上次不跳转（0），则预测本次不跳转</li>
 </ol>
 <p>问题：在循环结构中，1 位 BHT 会导致 2 次预测错误（平均每 n 次迭代出现 2 次错误）</p>
-<h3 id="52-2-bit-branch-prediction-buffer">5.2 2-bit Branch-Prediction Buffer<a class="headerlink" href="#52-2-bit-branch-prediction-buffer" title="Permanent link">&para;</a></h3>
+<p><strong>2.2-bit Branch-Prediction Buffer</strong></p>
 <p>引入“弱跳转（10）”“强跳转（11）”等状态，需连续两次错误才改变预测，减少循环末尾的误判</p>
 <figure>
     <img alt="Img 14" src="../../../../../img/comp_arch/ch4/ca_ch4_img14.png" width="600" />
@@ -9050,6 +9072,12 @@
 <figure>
     <img alt="Img 15" src="../../../../../img/comp_arch/ch4/ca_ch4_img15.png" width="600" />
 </figure>
+<p><strong>3.Correlating Branch Prediction Buffer</strong></p>
+<p><strong>4.Tournament Branch Predictor</strong></p>
+<p><strong>5.Branch Target Buffer</strong></p>
+<p><strong>6.Integrated Instruction Fetch Units Branch</strong></p>
+<p><strong>7.Return Address Predictors</strong></p>
+<h2 id="6-hardware-based-speculation">6 Hardware-Based Speculation<a class="headerlink" href="#6-hardware-based-speculation" title="Permanent link">&para;</a></h2>
 
 
 
@@ -9072,7 +9100,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月21日 14:08:58">2025年4月21日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月24日 14:16:12">2025年4月24日</span>
   </span>
 
     

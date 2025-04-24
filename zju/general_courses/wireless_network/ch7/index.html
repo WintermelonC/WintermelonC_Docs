@@ -2276,6 +2276,19 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    7 以太网交换
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -2287,6 +2300,67 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#72-以太网-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 以太网 MAC 地址
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 以太网 MAC 地址">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#722-以太网-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.2 以太网 MAC 地址
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#723-帧处理" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.3 帧处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#725-广播-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.5 广播 MAC 地址
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -7659,6 +7733,56 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#72-以太网-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 以太网 MAC 地址
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.2 以太网 MAC 地址">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#722-以太网-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.2 以太网 MAC 地址
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#723-帧处理" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.3 帧处理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#725-广播-mac-地址" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2.5 广播 MAC 地址
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -7703,6 +7827,26 @@
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
+<h2 id="72-以太网-mac-地址">7.2 以太网 MAC 地址<a class="headerlink" href="#72-以太网-mac-地址" title="Permanent link">&para;</a></h2>
+<h3 id="722-以太网-mac-地址">7.2.2 以太网 MAC 地址<a class="headerlink" href="#722-以太网-mac-地址" title="Permanent link">&para;</a></h3>
+<p>在以太网中，每台网络设备都连接到同一个共享介质。MAC 地址用于标识本地网段上的物理源和目的设备。MAC 编址为 OSI 模型的数据链路层提供了设备识别方法</p>
+<p>以太网 MAC 地址是使用 12 个十六进制数字表示的 48 位地址，6 个字节</p>
+<p>所有 MAC 地址对于以太网设备或以太网接口必须是唯一的。为了确保这一点，所有销售以太网设备的供应商必须向 IEEE 注册才能获得唯一的 6个十六进制（即 24 位或 3 字节）代码，称为组织唯一标识符 (OUI)</p>
+<p>当供应商为设备或以太网接口分配 MAC 地址时，供应商必须执行以下操作：</p>
+<ol>
+<li>使用其分配的 OUI 作为前 6 个十六进制数字</li>
+<li>为后 6 个十六进制数字分配唯一值</li>
+</ol>
+<p>因此，以太网 MAC 地址由 6 个十六进制供应商 OUI 代码和 6 个十六进制供应商分配的值组成</p>
+<h3 id="723-帧处理">7.2.3 帧处理<a class="headerlink" href="#723-帧处理" title="Permanent link">&para;</a></h3>
+<p>MAC 地址通常称为烧录地址 (BIA)，因为传统上该地址被烧录到网卡的只读存储器（ROM）中。这意味着该地址会永久编码到 ROM 芯片中</p>
+<h3 id="725-广播-mac-地址">7.2.5 广播 MAC 地址<a class="headerlink" href="#725-广播-mac-地址" title="Permanent link">&para;</a></h3>
+<p>以太网广播帧由以太网 LAN 上的每个设备接收和处理。以太网广播的功能如下：</p>
+<ol>
+<li>它有一个十六进制（在二进制中是 48 个 1）FF-FF-FF-FF-FF-FF 的目的 MAC 地址</li>
+<li>它向除输入端口以外的所有以太网交换机端口泛洪</li>
+<li>路由器不会转发该帧</li>
+</ol>
 
 
 
@@ -7725,7 +7869,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月23日 08:20:49">2025年4月23日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月24日 14:16:12">2025年4月24日</span>
   </span>
 
     
