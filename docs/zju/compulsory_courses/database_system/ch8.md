@@ -1,8 +1,8 @@
 # 8 Indexing and Hashing
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -481,3 +481,81 @@ Stepped-merge index（阶梯式合并索引）
 更新操作通过插入 + 删除组合实现
 
 LSM 树最初为磁盘索引设计，但对减少闪存擦除操作同样有效，阶梯式合并变体被广泛应用于大数据存储系统
+
+## Homework
+
+???+ question "课本 14.3"
+
+    Construct a B+-tree for the following set of key values: (2, 3, 5, 7, 11, 17, 19, 23, 29, 31)
+
+    Assume that the tree is initially empty and values are added in ascending order. Construct B+-trees for the cases where the number of pointers that will fit in one node is as follows:
+
+    a. Four<br/>
+    c. Eight
+
+    ??? success "答案"
+
+        a.
+
+        <figure markdown="span">
+          ![Img 22](../../../img/database/ch8/database_ch8_img22.png){ width="700" }
+        </figure>
+
+        ---
+
+        c.
+
+        <figure markdown="span">
+          ![Img 23](../../../img/database/ch8/database_ch8_img23.png){ width="700" }
+        </figure>
+
+???+ question "课本 14.4"
+
+    For each B+-tree of Exercise 14.3, show the form of the tree after each of the following series of operations:
+
+    a. Insert 9.<br/>
+    b. Insert 10.<br/>
+    c. Insert 8.<br/>
+    d. Delete 23.<br/>
+    e. Delete 19.<br/>
+
+    ??? success "答案"
+
+        a.
+
+        <figure markdown="span">
+          ![Img 24](../../../img/database/ch8/database_ch8_img24.png){ width="700" }
+        </figure>
+
+        ---
+
+        c.
+
+        <figure markdown="span">
+          ![Img 25](../../../img/database/ch8/database_ch8_img25.png){ width="700" }
+        </figure>
+
+???+ question "课本 14.11"
+
+    In write-optimized trees such as the LSM tree or the stepped-merge index, entries in one level are merged into the next level only when the level is full. Suggest how this policy can be changed to improve read performance during periods when there are many reads but no updates.
+
+    ??? success "答案"
+
+        可以设置一个阈值，当当前层级的文件数达到某个比例时，提前进行合并操作。这样可以减少读取时需要扫描的小文件数量，降低 I/O 开销
+
+???+ question "课本 24.10"
+
+    The steppedmerge variant of the LSM tree allows multiple trees per level. What are the tradeoffs in having more trees per level?
+
+    ??? success "答案"
+
+        优点：
+
+        1. 每层拥有多棵树时，每次合并操作所需要处理的数据量会变小
+        2. 多棵树的存在，可以实现并行操作，例如并行地对不同的树执行读取、写入、合并操作
+
+        缺点：
+
+        3. 每层要维护多个树的话，可能会增大空间开销
+        4. 合并多棵树的逻辑要比合并一棵树的逻辑复杂很多
+        5. 如果需要查找某个特定的键的话，多棵树就需要访问更多的文件，增加了 I/O 开销

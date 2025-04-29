@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     '/zju/module_courses/cryptography/ch3.md',
     '/zju/module_courses/cryptography/ch4.md',
     '/zju/module_courses/cryptography/ch5.md',
+    '/zju/module_courses/cryptography/ch6.md',
   ];
 
   var isPrivateUrl = privateUrls.some(function(privateUrl) {

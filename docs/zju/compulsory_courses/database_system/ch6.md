@@ -1,8 +1,8 @@
 # 6 Relational Database Design
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -799,7 +799,7 @@ while (!done) {
         1. $B \rightarrow D$：不满足 3NF
            1. $R_1 = (B, D)$
            2. $R_2 = (A, B, C, E)$
-        2. $CD \Rrightarrow E$：无法在 $R_1, R_2$ 中体现
+        2. $CD \rightarrow E$：无法在 $R_1, R_2$ 中体现
            1. $R_3 = (C,D,E)$
         
         因此，最终的分解结果为

@@ -29,4 +29,5 @@ cg老师
 [5 Entity-Relationship Model](./ch5.md)<br/>
 [6 Relational Database Design](./ch6.md)<br/>
 [7 Storage and File Structure](./ch7.md)<br/>
-[8 Indexing and Hashing](./ch8.md)
+[8 Indexing and Hashing](./ch8.md)<br/>
+[9 Query Processing](./ch9.md)

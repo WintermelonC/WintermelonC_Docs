@@ -80,6 +80,12 @@ $$
 $$\lfloor(n_h-k_h+p_h+s_h)/s_h\rfloor \times \lfloor(n_w-k_w+p_w+s_w)/s_w\rfloor
 $$
 
+当 stride 设置为 0 时：
+
+$$
+(n_h - k_h + p_h + 1) \times (n_w - k_w + p_w + 1)
+$$
+
 ### 8.3.2 池化
 
 池化（pooling）也称下采样，其作用是缩小特征图的尺寸以减少计算量
