@@ -1,8 +1,8 @@
 # 9 Copy and Move
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -203,3 +203,327 @@ public:
 
 ## 3 移动语义
 
+移动语义是 C++11 引入的一种优化机制，用于避免不必要的深拷贝操作，通过“转移资源所有权”来提高程序性能
+
+- 拷贝语义： 创建一个对象的副本（深拷贝或浅拷贝）
+- 移动语义： 将资源从一个对象转移到另一个对象，避免资源的重复分配和释放
+
+### 3.1 Move Constructor
+
+**移动构造函数**
+
+移动构造函数用于通过“移动”已有对象的资源来初始化新对象
+
+函数签名：`T(T&& other);`
+
+- 参数类型为右值引用（`T&&`）
+- `other` 是一个右值引用，表示可以安全地“窃取”其资源
+
+调用时机：
+
+1. 对象初始化时，传递一个右值对象
+2. 函数返回临时对象时（如返回值优化未生效）
+
+```cpp linenums="1"
+#include <iostream>
+#include <utility> // std::move
+using namespace std;
+
+class MyString {
+public:
+    char* data;
+    size_t size;
+
+    // 构造函数
+    MyString(const char* str) {
+        size = strlen(str) + 1;
+        data = new char[size];
+        strcpy(data, str);
+        cout << "Constructed: " << data << endl;
+    }
+
+    // 移动构造函数
+    MyString(MyString&& other) noexcept : data(nullptr), size(0) {
+        data = other.data;  // 转移资源
+        size = other.size;
+        other.data = nullptr; // 置空源对象
+        other.size = 0;
+        cout << "Moved: " << data << endl;
+    }
+
+    // 析构函数
+    ~MyString() {
+        if (data) {
+            cout << "Destroyed: " << data << endl;
+            delete[] data;
+        }
+    }
+};
+
+int main() {
+    MyString str1("Hello");
+    MyString str2(std::move(str1)); // 调用移动构造函数
+    return 0;
+}
+```
+
+```cpp linenums="1" title="output"
+Constructed: Hello
+Moved: Hello
+Destroyed: 
+```
+
+### 3.2 Move Assignment Operator
+
+移动赋值运算符用于将一个对象的资源转移到另一个已存在的对象
+
+函数签名：`T& operator=(T&& other);`
+
+- 参数类型为右值引用（`T&&`）
+- 返回当前对象的引用（`*this`）
+
+```cpp linenums="1"
+class MyString {
+public:
+    char* data;
+    size_t size;
+
+    // 移动赋值运算符
+    MyString& operator=(MyString&& other) noexcept {
+        if (this == &other) return *this; // 防止自赋值
+
+        delete[] data; // 释放当前对象的旧资源
+
+        data = other.data;  // 转移资源
+        size = other.size;
+        other.data = nullptr; // 置空源对象
+        other.size = 0;
+
+        cout << "Move Assigned: " << data << endl;
+        return *this;
+    }
+};
+```
+
+!!! tip "noexcept"
+
+    `noexcept` 是一个关键字，用于指定某个函数不会抛出异常
+
+    移动操作（移动构造/移动赋值）通常要加 `noexcept`
+
+    1. 标准库优化（如 `std::vector` 扩容）：
+
+        1. 如果移动构造函数是 `noexcept`，`std::vector` 在扩容时会优先使用移动而非拷贝（因为移动失败会导致数据丢失）
+        2. 如果移动构造函数可能抛出异常，`std::vector` 会回退到拷贝以保证强异常安全（strong exception safety）
+
+    2. 避免意外终止：如果移动操作可能抛出异常，而标准库假设它是 `noexcept`，程序会直接崩溃（调用 `std::terminate`）
+
+### 3.3 `std::move`
+
+`std::move` 是一个标准库函数，用于将一个左值显式转换为右值引用，从而触发移动语义
+
+注意：`std::move` 并不移动对象，它只是将对象标记为右值引用
+
+```cpp linenums="1"
+#include <iostream>
+#include <utility> // std::move
+using namespace std;
+
+class MyString {
+public:
+    MyString(const char* str) { /* ... */ }
+    MyString(MyString&& other) { /* ... */ }
+};
+
+int main() {
+    MyString str1("Hello");
+    MyString str2 = std::move(str1); // 显式触发移动构造
+    return 0;
+}
+```
+
+### 3.4 禁止移动语义
+
+某些类可能不希望支持移动语义，可以通过 `= delete` 禁止移动构造函数和移动赋值运算符
+
+```cpp linenums="1"
+class NonMovable {
+public:
+    NonMovable() = default;
+    NonMovable(NonMovable&&) = delete;            // 禁止移动构造
+    NonMovable& operator=(NonMovable&&) = delete; // 禁止移动赋值
+};
+```
+
+!!! tip "Rule of Five"
+
+    如果一个类需要自定义 **析构函数**、**拷贝构造函数**、**拷贝赋值函数**、**移动构造函数** 或 **移动赋值函数** 中的任何一个，那么它通常需要显式定义或删除所有五个
+
+    因为：
+
+    1. 用户自定义 **析构函数**、**拷贝构造** 或 **拷贝赋值** 会抑制 **移动构造** 和 **移动赋值** 的自动生成（编译器不再默认提供）
+    2. 用户自定义 **移动构造** 或 **移动赋值** 会抑制 **拷贝构造** 和 **拷贝赋值** 的自动生成（编译器将它们设为` = delete`）
+
+## 4 完美转发
+
+完美转发是 C++11 引入的一种技术，用于将函数参数“完美地”传递给另一个函数。它可以保留参数的所有属性（如左值/右值、`const`、`volatile` 等），从而避免不必要的拷贝或移动操作
+
+- 核心目标：保留参数的原始类型和值类别（左值或右值）
+- 实现方式：使用模板参数推导和右值引用（`T&&`）
+
+完美转发通常通过模板函数和 `std::forward` 实现
+
+### 4.1 完美转发的实现
+
+`std::forward` 是一个标准库函数，用于在模板中实现完美转发
+
+`std::forward<T>(arg);`
+
+- `T` 是模板参数，表示参数的原始类型
+- `arg` 是要转发的参数
+
+作用：
+
+- 如果参数是左值，则转发为左值
+- 如果参数是右值，则转发为右值
+
+```cpp linenums="1"
+#include <iostream>
+#include <utility> // std::forward
+using namespace std;
+
+// 接收左值的函数
+void process(int& x) {
+    cout << "Lvalue: " << x << endl;
+}
+
+// 接收右值的函数
+void process(int&& x) {
+    cout << "Rvalue: " << x << endl;
+}
+
+// 完美转发函数
+template <typename T>
+void forwarder(T&& arg) {
+    process(std::forward<T>(arg)); // 保留参数的值类别
+}
+
+int main() {
+    int a = 10;
+
+    forwarder(a);        // 转发左值
+    forwarder(20);       // 转发右值
+
+    return 0;
+}
+```
+
+```cpp linenums="1" title="output"
+Lvalue: 10
+Rvalue: 20
+```
+
+1. 模板参数推导：
+
+    1. 当参数是左值时，`T` 被推导为 `int&`，`T&&` 实际上是 `int& &&`，根据引用折叠规则，最终为 `int&`
+    2. 当参数是右值时，`T` 被推导为 `int`，`T&&` 实际上是 `int&&`
+
+2. `std::forward` 的作用：`std::forward<T>(arg)` 会根据 `T` 的类型决定是否将参数转发为左值或右值
+3. 引用折叠规则：
+
+    1. `T& &`、`T& &&` 和 `T&& &` 都会折叠为 `T&`
+    2. 只有 `T&& &&` 会折叠为 `T&&`
+
+### 4.2 应用场景
+
+#### 4.2.1 构造函数的转发
+
+完美转发常用于类的构造函数中，将参数转发给基类或成员对象的构造函数
+
+```cpp linenums="1"
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+public:
+    template <typename T>
+    Person(T&& name) : name_(std::forward<T>(name)) {
+        cout << "Constructed: " << name_ << endl;
+    }
+
+private:
+    string name_;
+};
+
+int main() {
+    string name = "Alice";
+    Person p1(name);           // 转发左值
+    Person p2("Bob");          // 转发右值
+    return 0;
+}
+```
+
+```cpp linenums="1" title="output"
+Constructed: Alice
+Constructed: Bob
+```
+
+#### 4.2.2 工厂函数
+
+完美转发可以用于工厂函数中，动态创建对象并转发参数
+
+```cpp linenums="1"
+#include <iostream>
+#include <memory>
+#include <utility>
+using namespace std;
+
+class Widget {
+public:
+    Widget(int x) { cout << "Widget: " << x << endl; }
+};
+
+template <typename T, typename... Args>
+std::unique_ptr<T> make_unique(Args&&... args) {
+    return std::unique_ptr<T>(new T(std::forward<Args>(args)...));
+}
+
+int main() {
+    auto w = make_unique<Widget>(42); // 转发参数
+    return 0;
+}
+```
+
+```cpp linenums="1" title="output"
+Widget: 42
+```
+
+#### 4.2.3 函数适配器
+
+完美转发可以用于实现通用的函数适配器，将参数转发给目标函数
+
+```cpp linenums="1"
+#include <iostream>
+#include <functional>
+#include <utility>
+using namespace std;
+
+template <typename Func, typename... Args>
+void invoke(Func&& func, Args&&... args) {
+    std::forward<Func>(func)(std::forward<Args>(args)...);
+}
+
+void print(int x, const string& msg) {
+    cout << msg << ": " << x << endl;
+}
+
+int main() {
+    invoke(print, 42, "Value"); // 转发参数
+    return 0;
+}
+```
+
+```cpp linenums="1" title="output"
+Value: 42
+```
