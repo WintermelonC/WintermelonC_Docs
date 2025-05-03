@@ -83,6 +83,8 @@ nav:
         - 7 以太网交换: zju/general_courses/wireless_network/ch7.md
         - 8 网络层: zju/general_courses/wireless_network/ch8.md
         - 9 地址解析: zju/general_courses/wireless_network/ch9.md
+        - 11 IPv4 编址: zju/general_courses/wireless_network/ch11.md
+        - 12 IPv6 编址: zju/general_courses/wireless_network/ch12.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md

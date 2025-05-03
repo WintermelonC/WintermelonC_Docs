@@ -16,7 +16,7 @@
 
 ## 1 Overview
 
-### 1.1 Basic Steps in QQuery Processing
+### 1.1 Basic Steps in Query Processing
 
 1. parsing and translation：语法分析与翻译
 
@@ -251,7 +251,7 @@ $r \Join_\theta s$
 1. 块传输次数：$n_r \times b_s + b_r$（$n_r$ 为外部关系元组数，$b_s$ 和 $b_r$ 为内部/外部关系的块数）
 2. 磁盘寻道次数：$n_r + b_r$（每次外层循环需重新定位内部关系的数据块）
 
-> 1. 对于外部关系 r 的每一个元组 $t_r$，数据据库需要：扫描整个内部关系 s（即读取 $b_s$ 次块），因此，总块传输次数为 $n_r \times b_s$，最后还要完整读取一次外部关系 r（$b_r$ 次块）
+> 1. 对于外部关系 r 的每一个元组 $t_r$，数据库需要：扫描整个内部关系 s（即读取 $b_s$ 次块），因此，总块传输次数为 $n_r \times b_s$，最后还要完整读取一次外部关系 r（$b_r$ 次块）
 > 2. 每次处理外部关系的一个元组 $t_r$ 时，可能需要：寻道到内部关系 s 的第一个块（1 次寻道），最坏情况下，认为每次外层循环都要重新寻道，因此 $n_r$ 次寻道。读取整个 r 需要 $b_r$ 次寻道（每块一次）
 
 如果较小的关系能完全放入内存，则将其作为内部关系使用：代价降低至 $b_r + b_s$ 次块传输和 2 次磁盘寻道
@@ -356,6 +356,8 @@ Hybrid merge-join（混合归并连接）：若一个关系已排序，另一个
 1. 分区阶段（partitioning phase）：使用哈希函数 h 对两个关系的元组进行分区：h 将连接属性（JoinAttrs）的值映射到 {0, 1, ..., n}，其中 JoinAttrs 是自然连接中 r 和 s 的共同属性
 2. 探测阶段（probing phase）：对每一对分区 (ri, si) 将 ri 的元组与 si 的元组进行匹配。例如，将 ri 的所有元组加载到内存的哈希表中，然后扫描 si 的元组并查找匹配
 
+> r 称为 probe input，s 称为 build input
+
 <figure markdown="span">
   ![Img 2](../../../img/database/ch9/database_ch9_img2.png){ width="600" }
 </figure>
@@ -373,6 +375,10 @@ recursive partitioning（递归分区）：若分区数 n 超过内存页数 M�
 3. 对关系 r 采用相同的分区方法
 
 无需递归分区时的成本公式：$3(b_r + b_s) + 4n_h$ 传输 + $2(\lceil \dfrac{b_r}{b_b} \rceil+\lceil \dfrac{b_s}{b_b} \rceil) + 2n_h$ 寻道
+
+> 分区阶段，读取和写入每个关系一次，探测阶段：读取分区一次，所以是 $3(b_r + b_s)$
+>
+> $n_h$：溢出分区数量（需递归处理的次数）（没见做题的时候用过）
 
 需要递归分区时：
 
@@ -409,6 +415,170 @@ recursive partitioning（递归分区）：若分区数 n 超过内存页数 M�
 
 ### 5.6 Complex Join
 
+Join with a conjunctive condition：$r \Join_{\theta_1 \land \theta_2 \land \cdots \land \theta_n} S$
+
+1. 直接使用嵌套循环或块嵌套循环算法处理整个复杂条件
+2. 先处理其中一个简单条件得到中间结果，然后筛选满足剩余条件的元组
+
+Join with a disjunctive condition：$r \Join_{\theta_1 \lor \theta_2 \lor \cdots \lor \theta_n} S$
+
+1. 直接使用嵌套循环或块嵌套循环算法处理整个复杂条件
+2. 将复杂连接分解为多个简单连接的并集
+
 ## * 6 Other Operations
 
+duplicate elimination（去重）：
+
+1. 排序法：先对数据进行排序，使重复项相邻，便于一次性移除
+
+    - 优化：在外部排序（数据量过大无法全部装入内存时使用的排序算法）的初始阶段和归并阶段即可提前去重，减少后续计算量
+
+2. 哈希法：利用哈希函数将相同值映射到同一桶中，只需检查桶内是否有重复，无需全局排序
+
+---
+
+projection（投影）：对每个元组执行投影运算，对投影结果进行去重
+
+---
+
+aggregation（聚合）：与去重类似，可以使用排序或哈希将同一分组的元组聚集在一起，然后对每个分组应用聚合函数
+
+优化：在外部排序-合并（external sort-merge）过程中，可以提前计算部分聚合值，减少后续计算量：
+
+1. 简单聚合函数（count/min/max/sum）：在排序的初始阶段（run generation）和归并阶段（intermediate merges），直接累积聚合值（如累加 count 或 sum，比较 min/max）
+2. 平均值（avg）：需分别维护 sum 和 count，避免丢失信息（因 avg 不可直接合并）
+
+---
+
+set operations（集合操作）：对排序后的关系使用变种的归并连接（merge-join），或使用变种的哈希连接（hash-join）
+
+基于哈希的集合操作实现步骤：
+
+1. 分区：用相同哈希函数将两个关系（表）划分为对应的小分区，确保同一键值的元组必然落在同一分区编号中
+2. 构建内存哈希索引：对每个分区 $r_i$ 构建内存哈希索引，加速查找操作（如判断元组是否存在）
+3. 按操作类型处理分区：
+
+    1. 并集：结果需包含所有来自 r 和 s 的唯一元组。通过哈希索引去重，合并两分区的数据
+    2. 交集：结果仅包含同时存在于 r 和 s 的元组。通过检查 $s_i$ 的元组是否在 $r_i$ 的哈希索引中实现
+    3. 差集：结果包含存在于 r 但不在 s 的元组。通过从 $r_i$ 的哈希索引中删除 $s_i$ 的元组实现
+
+---
+
+outer join（外连接）：
+
+1. 先执行普通连接，再补充未匹配的元组（用空值填充）
+2. 通过修改连接算法直接实现。
+
+修改归并连接（merge join）：在归并过程中，若左表 r 的元组 $t_r$ 无匹配的右表 s 元组，则输出 $t_r$ 并补 `NULL`
+
+修改哈希连接（hash join）：
+
+1. 若 r 是探测关系（probe relation）：直接输出 r 中未匹配的元组，并用空值填充
+2. 若 r 是构建关系（build relation）：在探测阶段记录 r 中匹配的元组；处理完分区 $s_i$ 后，输出 r 中未匹配的元组并用空值填充
+
 ## * 7 Evaluation of Expressions
+
+**表达式求值**
+
+现在考虑多个操作的情况
+
+$\Pi_{\text{customer-name}}((\sigma_{balance < 2500}(account)) \Join depositor)$
+
+表达式求值策略：
+
+1. 物化（Materialization）：逐步计算每个子表达式的结果，并将中间结果临时存储到磁盘，供后续操作使用
+2. 流水线（Pipelining）：无需等待子操作完全执行完毕，直接将生成的元组实时传递给父操作
+
+### 7.1 Materialization
+
+Materialized evaluation：每次只计算一个操作，从最底层的操作开始。将中间结果物化为临时关系，用于计算下一层操作
+
+先计算：$\sigma_{balance < 2500}(account)$ 并存储到 temp 中，然后读取存储的结果与 depositor 表进行连接，最后计算 customer-name 上的投影
+
+<figure markdown="span">
+  ![Img 3](../../../img/database/ch9/database_ch9_img3.png){ width="600" }
+</figure>
+
+物化求值方法具有普适性，可应用于所有场景
+
+将结果写入磁盘再读回的成本可能很高，之前的操作成本计算公式忽略了结果写入磁盘的开销，因此总成本 = 各独立操作成本之和 + 中间结果写入磁盘的成本
+
+double buffering（双缓冲技术）：为每个操作分配两个输出缓冲区，当一个缓冲区填满时写入磁盘，同时另一个缓冲区继续接收数据，实现磁盘写入与计算的并行处理，减少总执行时间
+
+### 7.2 Pipelining
+
+Pipelined evaluation：同时执行多个操作，将一个操作的输出结果直接传递给下一个操作
+
+不存储选择操作（σ）的结果，而是将元组直接传递给连接操作（⋈）。同样，不存储连接操作的结果，直接将元组传递给投影操作（∏）
+
+- 比物化执行成本低得多：不需要将临时关系存储到磁盘
+- 流水线并非总是可行（取决于后续操作的类型，以及输出是否有序等因素）
+- 要使流水线有效，需要使用能在接收输入元组的同时就生成输出元组的求值算法
+- 流水线可以通过两种方式执行：demand driven（需求驱动型）和 producer driven（生产者驱动型）
+
+#### 7.2.1 Demand Driven
+
+1. 查询执行引擎从查询树的最顶层开始驱动，像多米诺骨牌一样逐级向下触发元组请求，最终传导到最底层的表扫描操作
+2. 在两次请求之间，操作需要维护"状态"以记住接下来应该返回什么
+
+每个操作都实现为一个 iterator（迭代器），需要支持以下操作：
+
+1. Open：
+
+    1. file scan（文件扫描）：初始化文件扫描，将文件起始位置指针保存为状态
+    2. merge join（归并连接）：对关系进行排序，并将已排序关系的起始指针保存为状态
+
+2. Next：
+
+    1. file scan（文件扫描）：输出下一个元组，推进并保存文件指针
+    2. merge join（归并连接）：从之前保存的状态继续归并过程，直到找到下一个输出元组，保存指针作为迭代器状态
+
+3. Close：资源释放
+
+#### 7.2.2 Producer Driven
+
+操作符主动生成元组并向上传递给父操作符
+
+1. 操作符之间维护缓冲区，子操作符将元组放入缓冲区，父操作符从中取出元组
+2. 若缓冲区满，子操作符将等待直到缓冲区有空位，再继续生成元组
+
+系统会调度那些输出缓冲区有空位且能处理更多输入元组的操作
+
+#### 7.2.3 Evaluation Algorithms for Pipelining
+
+部分算法无法在接收输入元组时即时输出结果：例如，归并连接（merge join）或哈希连接（hash join）。这些操作总是需要将中间结果写入磁盘后再读取
+
+可通过算法变体实现实时生成（至少部分）结果：在读取输入元组的同时即时输出处理结果
+
+改进算法可实现部分流水化执行：
+
+1. 例如混合哈希连接（hybrid hash join）可以实时处理内存分区（分区 0）中的探测关系元组
+2. Double-pipelined join technique（双管道连接技术）：改进版混合哈希连接，将两个关系的分区 0 元组都缓冲在内存中，一旦数据可用就立即处理：当发现新的 r₀ 元组时，立即与现有 s₀ 元组匹配并输出结果，同时保存该 r₀ 元组。对 s₀ 元组执行对称处理
+
+#### 7.2.4 Complex Joins
+
+三表连接示例：loan ⋈ depositor ⋈ customer
+
+Strategy 1：
+
+1. 先计算 depositor ⋈ customer
+2. 将结果与 loan 表连接：loan ⋈ (depositor ⋈ customer)
+
+Strategy 2：
+
+1. 先计算 loan ⋈ depositor
+2. 将结果与 customer 表连接：(loan ⋈ depositor) ⋈ customer
+
+Strategy 3：
+
+1. 同时执行两个连接操作：
+
+    1. 在 loan 表的 loan-number 上建立索引
+    2. 在 customer 表的 customer-name 上建立索引
+    3. 对 depositor 表的每个元组 t：
+
+        1. 通过 customer-name 查找匹配的 customer 元组
+        2. 通过 loan-number 查找匹配的 loan 元组
+
+2. 每个 depositor 元组仅需检查一次
+3. 将两个连接操作合并为一个专用操作，效率高于分别执行两个二表连接

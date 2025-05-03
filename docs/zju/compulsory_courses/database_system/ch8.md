@@ -257,6 +257,20 @@ B⁺ 树的​​优点远大于缺点​​，因此被​​广泛应用​​
 
 B+ Tree 的插入和删除操作见[ADS 中的 B+ Tree](../ADS/ch2.md#2-b-trees){:target="_blank"}
 
+B+ Tree Node Structure：
+
+<figure markdown="span">
+  ![Img 26](../../../img/database/ch8/database_ch8_img26.png){ width="600" }
+</figure>
+
+1. Ki 是 search key 的值
+2. Pi 是指向子树或记录或桶的指针
+3. 通常，一个节点对应一个 block
+
+如果文件中包含 K 个搜索键值，那么树的高度不超过 $\log_{\frac{n}{2}}K$
+
+一个节点的大小通常与磁盘块相同，一般为 4 KB。且 n（每个节点的最大指针数）通常约为 100（每个索引条目占 40 字节）
+
 ### 3.2 Non-Unique Search Keys
 
 **非唯一搜索键**

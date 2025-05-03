@@ -193,6 +193,7 @@ $\Pi_{customer\text{-}name}(\sigma_{borrower.loan\text{-}number = loan.loan\text
 **Example 7**: Find the largest account balance (self-comparison)
 
 1.Rename *account* relation as *d*
+
 2.Find the relation including all balances except the largest one
 
 $\Pi_{account.balance}(\sigma_{account.balance < d.balance}(account \times \rho_{d}(account)))$
@@ -304,8 +305,7 @@ $\Pi_{customer\text{-}name, limit - credit\text{-}balance}(credit\text{-}info)$
   ![Img 22](../../../img/database/ch2/database_ch2_img22.png){ width="600" }
 </figure>
 
-$_{branch\text{-}name} g_{sum(balance)\ as\ sum\text{-}balance}(account)
-$
+$_{branch\text{-}name} g_{sum(balance)\ as\ sum\text{-}balance}(account)$
 
 <figure markdown="span">
   ![Img 23](../../../img/database/ch2/database_ch2_img23.png){ width="600" }

@@ -45,10 +45,11 @@ zy老师、sxx老师
 
 #### 考试（40 分）
 
-<ul>
-<li>线上考试</li>
-<li>开卷考试</li>
-</ul>
+##### 考试类型
+
+线上考试，开卷考试
+
+##### 考试组成
 
 1. 取平时模块组考试最高分：20 分
       - 一共有 6 个，至少参加 1 个
@@ -56,7 +57,7 @@ zy老师、sxx老师
 
 ## 个人笔记
 
-> 笔记内容参考：Cisco Networking Academy - Introduction to Networks
+> 笔记内容来源：Cisco Networking Academy - Introduction to Networks
 
 [1 当今网络](./ch1.md)<br/>
 [3 协议和模型](./ch3.md)<br/>
@@ -65,4 +66,6 @@ zy老师、sxx老师
 [6 数据链路](./ch6.md)<br/>
 [7 以太网交换](./ch7.md)<br/>
 [8 网络层](./ch8.md)<br/>
-[9 地址解析](./ch9.md)
+[9 地址解析](./ch9.md)<br/>
+[11 IPv4 编址](./ch11.md)<br/>
+[12 IPv6 编址](./ch12.md)
