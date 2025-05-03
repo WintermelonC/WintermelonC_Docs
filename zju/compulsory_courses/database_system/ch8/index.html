@@ -2146,6 +2146,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2365,6 +2369,52 @@
   
   <span class="md-ellipsis">
     9 地址解析
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../general_courses/wireless_network/ch11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11 IPv4 编址
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../general_courses/wireless_network/ch12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12 IPv6 编址
     
   </span>
   
@@ -8661,6 +8711,17 @@
 <li>对主文件的插入和删除操作也能高效处理，因为索引可以在对数时间内完成重组</li>
 </ul>
 <p>B+ Tree 的插入和删除操作见<a href="../../ADS/ch2/#2-b-trees" target="_blank">ADS 中的 B+ Tree</a></p>
+<p>B+ Tree Node Structure：</p>
+<figure>
+  <img alt="Img 26" src="../../../../img/database/ch8/database_ch8_img26.png" width="600" />
+</figure>
+<ol>
+<li>Ki 是 search key 的值</li>
+<li>Pi 是指向子树或记录或桶的指针</li>
+<li>通常，一个节点对应一个 block</li>
+</ol>
+<p>如果文件中包含 K 个搜索键值，那么树的高度不超过 <span class="arithmatex">\(\log_{\frac{n}{2}}K\)</span></p>
+<p>一个节点的大小通常与磁盘块相同，一般为 4 KB。且 n（每个节点的最大指针数）通常约为 100（每个索引条目占 40 字节）</p>
 <h3 id="32-non-unique-search-keys">3.2 Non-Unique Search Keys<a class="headerlink" href="#32-non-unique-search-keys" title="Permanent link">&para;</a></h3>
 <p><strong>非唯一搜索键</strong></p>
 <ol>
@@ -9000,7 +9061,7 @@ e. Delete 19.<br/></p>
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月29日 09:05:34">2025年4月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月3日 08:24:42">2025年5月3日</span>
   </span>
 
     
