@@ -12,13 +12,13 @@
         <meta name="author" content="WintermelonC">
       
       
-        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/zju/compulsory_courses/database_system/ch9/">
+        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/zju/compulsory_courses/database_system/ch10/">
       
       
-        <link rel="prev" href="../ch8/">
+        <link rel="prev" href="../ch9/">
       
       
-        <link rel="next" href="../ch10/">
+        <link rel="next" href="../../computer_architecture/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>9 Query Processing - WintermelonC Docs</title>
+        <title>10 Query optimization - WintermelonC Docs</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#9-query-processing" class="md-skip">
+        <a href="#10-query-optimization" class="md-skip">
           跳转至
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              9 Query Processing
+              10 Query optimization
             
           </span>
         </div>
@@ -4601,6 +4601,29 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9 Query Processing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -4618,7 +4641,7 @@
   
   
   <span class="md-ellipsis">
-    9 Query Processing
+    10 Query optimization
     
   </span>
   
@@ -4631,7 +4654,7 @@
   
   
   <span class="md-ellipsis">
-    9 Query Processing
+    10 Query optimization
     
   </span>
   
@@ -4654,28 +4677,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-overview" class="md-nav__link">
+  <a href="#1-introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      1 Overview
+      1 Introduction
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1 Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transformation-of-relational-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Transformation of Relational Expressions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Transformation of Relational Expressions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-basic-steps-in-query-processing" class="md-nav__link">
+  <a href="#21-equivalence-rules" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 Basic Steps in Query Processing
+      2.1 Equivalence Rules
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-basic-steps-optimization" class="md-nav__link">
+  <a href="#22-enumeration-of-equivalent-expressions" class="md-nav__link">
     <span class="md-ellipsis">
-      1.2 Basic Steps: Optimization
+      2.2 Enumeration of Equivalent Expressions
     </span>
   </a>
   
@@ -4687,143 +4719,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-measures-of-query-cost" class="md-nav__link">
+  <a href="#3-statistics-for-cost-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2 Measures of Query Cost
+      3 Statistics for Cost Estimation
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-selection-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 Selection Operation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Selection Operation">
+    <nav class="md-nav" aria-label="3 Statistics for Cost Estimation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-basic-algorithms" class="md-nav__link">
+  <a href="#31-histograms" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1 Basic Algorithms
+      3.1 Histograms
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-using-indices-and-equality" class="md-nav__link">
+  <a href="#32-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      3.2 Using Indices and Equality
+      3.2 Selection Size Estimation
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-involving-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Involving Comparisons
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-complex-selections" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Complex Selections
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-4-sorting" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 4 Sorting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-join-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 Join Operation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5 Join Operation">
+    <nav class="md-nav" aria-label="3.2 Selection Size Estimation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-nested-loop-join" class="md-nav__link">
+  <a href="#321-size-estimation-of-complex-selections" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-block-nested-loop-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.2 Block Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-indexed-nested-loop-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.3 Indexed Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#54-merge-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.4 Merge Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#55-hash-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.5 Hash Join
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5.5 Hash Join">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-551-handling-of-overflows" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 5.5.1 Handling of Overflows
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-552-hybrid-hash-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 5.5.2 Hybrid Hash Join
+      3.2.1 Size Estimation of Complex Selections
     </span>
   </a>
   
@@ -4835,88 +4762,46 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#56-complex-join" class="md-nav__link">
+  <a href="#33-estimation-of-the-size-of-joins" class="md-nav__link">
     <span class="md-ellipsis">
-      5.6 Complex Join
+      3.3 Estimation of the Size of Joins
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-6-other-operations" class="md-nav__link">
+          <li class="md-nav__item">
+  <a href="#34-size-estimation-for-other-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      * 6 Other Operations
+      3.4 Size Estimation for Other Operations
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#-7-evaluation-of-expressions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#35-estimation-of-number-of-distinct-values" class="md-nav__link">
     <span class="md-ellipsis">
-      * 7 Evaluation of Expressions
+      3.5 Estimation of Number of Distinct Values
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="* 7 Evaluation of Expressions">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-evaluation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Evaluation plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Evaluation plan">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#71-materialization" class="md-nav__link">
+  <a href="#361-cost-based-optimization" class="md-nav__link">
     <span class="md-ellipsis">
-      7.1 Materialization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#72-pipelining" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2 Pipelining
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.2 Pipelining">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#721-demand-driven" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.1 Demand Driven
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#722-producer-driven" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.2 Producer Driven
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#723-evaluation-algorithms-for-pipelining" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.3 Evaluation Algorithms for Pipelining
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#724-complex-joins" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.4 Complex Joins
+      3.6.1 Cost-Based Optimization
     </span>
   </a>
   
@@ -4929,6 +4814,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-4-dynamic-programming-for-choosing-evaluation-plans" class="md-nav__link">
+    <span class="md-ellipsis">
+      * 4 Dynamic Programming for Choosing Evaluation Plans
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-5-additional-optimization-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      * 5 Additional Optimization Techniques
+    </span>
+  </a>
   
 </li>
       
@@ -4936,29 +4839,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ch10/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    10 Query optimization
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -8177,28 +8057,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-overview" class="md-nav__link">
+  <a href="#1-introduction" class="md-nav__link">
     <span class="md-ellipsis">
-      1 Overview
+      1 Introduction
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1 Overview">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-transformation-of-relational-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Transformation of Relational Expressions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Transformation of Relational Expressions">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-basic-steps-in-query-processing" class="md-nav__link">
+  <a href="#21-equivalence-rules" class="md-nav__link">
     <span class="md-ellipsis">
-      1.1 Basic Steps in Query Processing
+      2.1 Equivalence Rules
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-basic-steps-optimization" class="md-nav__link">
+  <a href="#22-enumeration-of-equivalent-expressions" class="md-nav__link">
     <span class="md-ellipsis">
-      1.2 Basic Steps: Optimization
+      2.2 Enumeration of Equivalent Expressions
     </span>
   </a>
   
@@ -8210,143 +8099,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-measures-of-query-cost" class="md-nav__link">
+  <a href="#3-statistics-for-cost-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      2 Measures of Query Cost
+      3 Statistics for Cost Estimation
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-selection-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 Selection Operation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3 Selection Operation">
+    <nav class="md-nav" aria-label="3 Statistics for Cost Estimation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#31-basic-algorithms" class="md-nav__link">
+  <a href="#31-histograms" class="md-nav__link">
     <span class="md-ellipsis">
-      3.1 Basic Algorithms
+      3.1 Histograms
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#32-using-indices-and-equality" class="md-nav__link">
+  <a href="#32-selection-size-estimation" class="md-nav__link">
     <span class="md-ellipsis">
-      3.2 Using Indices and Equality
+      3.2 Selection Size Estimation
     </span>
   </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#33-involving-comparisons" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.3 Involving Comparisons
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#34-complex-selections" class="md-nav__link">
-    <span class="md-ellipsis">
-      3.4 Complex Selections
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-4-sorting" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 4 Sorting
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-join-operation" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 Join Operation
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5 Join Operation">
+    <nav class="md-nav" aria-label="3.2 Selection Size Estimation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#51-nested-loop-join" class="md-nav__link">
+  <a href="#321-size-estimation-of-complex-selections" class="md-nav__link">
     <span class="md-ellipsis">
-      5.1 Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-block-nested-loop-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.2 Block Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-indexed-nested-loop-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.3 Indexed Nested-Loop Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#54-merge-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.4 Merge Join
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#55-hash-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.5 Hash Join
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5.5 Hash Join">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#-551-handling-of-overflows" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 5.5.1 Handling of Overflows
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-552-hybrid-hash-join" class="md-nav__link">
-    <span class="md-ellipsis">
-      * 5.5.2 Hybrid Hash Join
+      3.2.1 Size Estimation of Complex Selections
     </span>
   </a>
   
@@ -8358,88 +8142,46 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#56-complex-join" class="md-nav__link">
+  <a href="#33-estimation-of-the-size-of-joins" class="md-nav__link">
     <span class="md-ellipsis">
-      5.6 Complex Join
+      3.3 Estimation of the Size of Joins
     </span>
   </a>
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#-6-other-operations" class="md-nav__link">
+          <li class="md-nav__item">
+  <a href="#34-size-estimation-for-other-operations" class="md-nav__link">
     <span class="md-ellipsis">
-      * 6 Other Operations
+      3.4 Size Estimation for Other Operations
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#-7-evaluation-of-expressions" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#35-estimation-of-number-of-distinct-values" class="md-nav__link">
     <span class="md-ellipsis">
-      * 7 Evaluation of Expressions
+      3.5 Estimation of Number of Distinct Values
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="* 7 Evaluation of Expressions">
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36-evaluation-plan" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Evaluation plan
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.6 Evaluation plan">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#71-materialization" class="md-nav__link">
+  <a href="#361-cost-based-optimization" class="md-nav__link">
     <span class="md-ellipsis">
-      7.1 Materialization
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#72-pipelining" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2 Pipelining
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="7.2 Pipelining">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#721-demand-driven" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.1 Demand Driven
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#722-producer-driven" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.2 Producer Driven
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#723-evaluation-algorithms-for-pipelining" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.3 Evaluation Algorithms for Pipelining
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#724-complex-joins" class="md-nav__link">
-    <span class="md-ellipsis">
-      7.2.4 Complex Joins
+      3.6.1 Cost-Based Optimization
     </span>
   </a>
   
@@ -8452,6 +8194,24 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-4-dynamic-programming-for-choosing-evaluation-plans" class="md-nav__link">
+    <span class="md-ellipsis">
+      * 4 Dynamic Programming for Choosing Evaluation Plans
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-5-additional-optimization-techniques" class="md-nav__link">
+    <span class="md-ellipsis">
+      * 5 Additional Optimization Techniques
+    </span>
+  </a>
   
 </li>
       
@@ -8474,7 +8234,7 @@
 
   <!-- 若 meta 中 edit 为 false，则不加 edit 按钮 -->
 	
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/zju/compulsory_courses/database_system/ch9.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/zju/compulsory_courses/database_system/ch10.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -8484,7 +8244,7 @@
     
       
     
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/zju/compulsory_courses/database_system/ch9.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/zju/compulsory_courses/database_system/ch10.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -8492,539 +8252,264 @@
 
 <!-- 如果页面为首页，则不加 <h1> -->
 
-<h1 id="9-query-processing">9 Query Processing<a class="headerlink" href="#9-query-processing" title="Permanent link">&para;</a></h1>
-<!-- !!! tip "说明"
-
-    本文档正在更新中…… -->
-
+<h1 id="10-query-optimization">10 Query optimization<a class="headerlink" href="#10-query-optimization" title="Permanent link">&para;</a></h1>
+<div class="admonition tip">
+<p class="admonition-title">说明</p>
+<p>本文档正在更新中……</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
-<blockquote>
-<p>哦，神圣的史，完全不知道这节在干嘛</p>
-</blockquote>
 </div>
+<h2 id="1-introduction">1 Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
+<p>evaluation plan（评估计划）明确定义了每个操作使用什么算法，以及如何协调操作的执行</p>
+<p>cost-based query optimization（基于成本的查询优化）步骤：</p>
 <ol>
-<li>CPU 无法直接处理磁盘中的数据</li>
-<li>磁盘数据读取速度的增长速度要比磁盘大小的增长速度慢</li>
-<li>磁盘寻道速度的增长速度比磁盘数据传输速度的增长速度慢得多</li>
+<li>使用等价规则生成逻辑上等价的表达式</li>
+<li>注释结果表达式以获得替代查询计划</li>
+<li>基于估计成本选择最经济的计划</li>
 </ol>
-<h2 id="1-overview">1 Overview<a class="headerlink" href="#1-overview" title="Permanent link">&para;</a></h2>
-<h3 id="11-basic-steps-in-query-processing">1.1 Basic Steps in Query Processing<a class="headerlink" href="#11-basic-steps-in-query-processing" title="Permanent link">&para;</a></h3>
+<p>成本估算基础：</p>
 <ol>
-<li>
-<p>parsing and translation：语法分析与翻译</p>
-<ol>
-<li>类似于编译器的工作流程，首先解析 SQL 查询语句</li>
-<li>解析器会检查 SQL 语句的语法是否正确</li>
-<li>验证查询中涉及的关系（表）是否存在</li>
-<li>将 SQL 查询转换为内部表示形式 —— extended relational algebra 扩展关系代数（ERA）</li>
+<li>关系统计信息（如记录数、属性不同值数量）</li>
+<li>中间结果统计</li>
+<li>算法成本公式</li>
 </ol>
-</li>
-<li>
-<p>optimization：优化</p>
-<ol>
-<li>对于同一个 SQL 查询，可能存在多个等价的 relational algebra expressions（关系代数表达式）</li>
-<li>每个关系代数操作可以使用不同的算法来执行</li>
-<li>
-<p>数据库优化器会生成一个 evaluation plan（评估计划），明确指定</p>
-<ol>
-<li>使用哪些关系代数表达式</li>
-<li>每个操作采用什么算法（如使用索引还是全表扫描）</li>
-<li>操作的执行顺序和数据传递方式</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>evaluation：评估</p>
-<ol>
-<li>查询执行引擎接收经过翻译的查询计划</li>
-<li>执行这个 evaluation plan 并返回查询结果</li>
-</ol>
-</li>
-</ol>
-<h3 id="12-basic-steps-optimization">1.2 Basic Steps: Optimization<a class="headerlink" href="#12-basic-steps-optimization" title="Permanent link">&para;</a></h3>
-<ol>
-<li>找出各种等价的关系代数表达式</li>
-<li>一系列指定详细执行策略的基本操作，称为查询执行计划（query execution plan）或查询评估计划（query evaluation plan）</li>
-<li>
-<p>query optimization：在所有等价的评估计划中选择成本最低的方案。成本估算基于两个因素：</p>
-<ol>
-<li>成本取决于具体执行算法的选择</li>
-<li>成本估算需要使用数据库目录中的统计信息。例如：每个关系的元组数量、元组大小等</li>
-</ol>
-</li>
-</ol>
-<h2 id="2-measures-of-query-cost">2 Measures of Query Cost<a class="headerlink" href="#2-measures-of-query-cost" title="Permanent link">&para;</a></h2>
-<p>成本通常以查询 total elapsed time（总响应时间）衡量。影响时间成本的多重因素：disk access + CPU + network communication（网络通信）</p>
-<p>通常磁盘访问是主要成本因素（相对容易估算），具体通过以下指标衡量：</p>
-<ol>
-<li>执行的寻道操作次数</li>
-<li>读取的块数 × 单块读取平均成本</li>
-<li>写入的块数 × 单块写入平均成本</li>
-</ol>
-<p>写入块的成本高于读取块。写入后需要回读数据以确保写入成功</p>
-<p>简单起见，我们仅使用以下两个指标作为成本度量标准：</p>
-<ol>
-<li><span class="arithmatex">\(t_T\)</span>：传输一个数据块的时间（time to transfer one block）</li>
-<li><span class="arithmatex">\(t_S\)</span>：执行一次磁盘寻道的时间（time for one seek）</li>
-</ol>
-<p>完成 b 次块传输加 S 次寻道的总成本：<span class="arithmatex">\(b \times t_T + S \times t_S\)</span></p>
+<h2 id="2-transformation-of-relational-expressions">2 Transformation of Relational Expressions<a class="headerlink" href="#2-transformation-of-relational-expressions" title="Permanent link">&para;</a></h2>
+<p>两个关系代数表达式等价，当且仅当它们在所有符合数据库约束的实例上产生完全相同的元组集合（顺序无关）</p>
 <blockquote>
-<ol>
-<li>为简化模型，暂不考虑 CPU 计算成本（但实际系统会考虑）</li>
-<li>结果数据写回磁盘的成本也不包含在本公式中</li>
-</ol>
+<p>如果数据库违反完整性约束导致结果不同，我们不予考虑</p>
 </blockquote>
-<p>内存缓冲区与查询成本的关系：</p>
+<p>在 SQL 中，输入和输出是元组的多重集（允许重复元组）。在多重集关系代数中，若两个表达式在所有合法数据库实例上生成相同的多重集元组，则称它们等价</p>
+<p>equivalence rule（等价规则）：两种形式的表达式可以相互替换</p>
+<h3 id="21-equivalence-rules">2.1 Equivalence Rules<a class="headerlink" href="#21-equivalence-rules" title="Permanent link">&para;</a></h3>
 <ol>
-<li>查询成本取决于主内存缓冲区大小：内存越大，磁盘访问需求越少</li>
-<li>实际可用内存受以下因素影响： 操作系统其他并发进程的内存占用；难以在执行前准确预判</li>
-<li>常用评估方法：采用最坏情况估计（假设仅满足操作最低内存需求），同时考虑最佳情况估计</li>
-<li>数据缓存的影响：所需数据可能已驻留缓冲区（避免磁盘 I/O），但这一因素难以在成本预估中量化考虑</li>
+<li>conjunctive selection 操作可分解为一系列单个选择操作的序列：<span class="arithmatex">\(\sigma_{\theta_1 \land \theta_2}(E) = \sigma_{\theta_1}(\sigma_{\theta_2}(E))\)</span></li>
+<li>selection 是 commutative（可交换的）：<span class="arithmatex">\(\sigma_{\theta_1}(\sigma_{\theta_2}(E)) = \sigma_{\theta_2}(\sigma_{\theta_1}(E))\)</span></li>
+<li>projection 操作序列中仅需保留最后一个，其余可省略：<span class="arithmatex">\(\Pi_{L_1}(\Pi_{L_2}(...(\Pi_{L_n}(E))...)) = \Pi_{L_1}(E)\)</span></li>
+<li>
+<p>selection 操作可以与 cartesian products 和 theta 连接结合</p>
+<ol>
+<li><span class="arithmatex">\(\sigma_{\theta}(E_1 \times E_2) = E_1 \Join_{\theta} E_2\)</span></li>
+<li><span class="arithmatex">\(\sigma_{\theta_1}(E_1 \Join_{\theta_2} E_2) = E_1 \Join_{\theta_1 \land \theta_2} E_2\)</span></li>
 </ol>
-<h2 id="3-selection-operation">3 Selection Operation<a class="headerlink" href="#3-selection-operation" title="Permanent link">&para;</a></h2>
-<h3 id="31-basic-algorithms">3.1 Basic Algorithms<a class="headerlink" href="#31-basic-algorithms" title="Permanent link">&para;</a></h3>
-<p><strong>file scan</strong>（文件扫描）：不使用索引，通过搜索算法定位并检索满足选择条件的记录</p>
-<p><strong>A1: linear search</strong>（线性搜索）：扫描每个文件块并测试所有记录是否满足选择条件</p>
-<p>成本估算：<span class="arithmatex">\(b_r\)</span> 次块 transfer + 1 次 seek。<span class="arithmatex">\(b_r\)</span> 表示包含关系 r 记录的块数量。如果是对键属性的选择，找到记录后可立即停止，成本 = <span class="arithmatex">\(\dfrac{b_r}{2}\)</span> 次块 transfer + 1 次 seek</p>
-<blockquote>
-<p>初始化寻道：磁头移动到块头位置（1 次 seek）；连续传输：依次读取所有数据块（<span class="arithmatex">\(b_r\)</span> 次传输）</p>
-<p>当搜索键属性（可提前终止）时：平均只需扫描一半块数 <span class="arithmatex">\(\dfrac{b_r}{2}\)</span></p>
-</blockquote>
-<p>线性搜索的适用性：</p>
+</li>
+<li>
+<p>theta 连接操作（及 natural join）是 commutative：<span class="arithmatex">\(E_1 \Join_{\theta} E_2 = E_2 \Join_{\theta} E_1\)</span></p>
+</li>
+<li>
+<p>连接操作的可结合性</p>
 <ol>
-<li>不受选择条件类型影响</li>
-<li>不受记录存储顺序影响</li>
-<li>不依赖索引可用性</li>
+<li>natural join 是 associative（可结合的）：<span class="arithmatex">\((E_1 \Join E_2) \Join E_3 = E_1 \Join (E_2 \Join E_3)\)</span></li>
+<li>theta join 在以下情况下是可结合的：<span class="arithmatex">\((E_1 \Join_{\theta_1} E_2) \Join_{\theta_2 \land \theta_3} E_3 = E_1 \Join_{\theta_1 \land \theta_3} (E_2 \Join_{\theta_2} E_3)\)</span>，其中 <span class="arithmatex">\(\theta_2\)</span> 仅涉及 <span class="arithmatex">\(E_2\)</span> 和 <span class="arithmatex">\(E_3\)</span> 的属性</li>
 </ol>
-<p>binary search 通常不适用，因为数据不是连续存储的。除非有可用索引，而且二分查找比索引搜索需要更多的寻道操作</p>
-<hr />
-<p><strong>A2: binary search</strong>（二分搜索）：当选择条件是针对已排序文件的属性进行等值比较时适用</p>
-<p>假设关系的所有块是连续存储的。成本 = <span class="arithmatex">\(⌈log₂(b_r)⌉\)</span> 次块传输 + <span class="arithmatex">\(⌈log₂(b_r)⌉\)</span> 次寻道。如果选择的不是键属性，还需加上包含满足条件记录的所有块数量</p>
-<p>块传输次数 = <span class="arithmatex">\(⌈log₂(b_r)⌉ + ⌈sc(A, r) / f_r⌉ - 1\)</span></p>
-<ul>
-<li><span class="arithmatex">\(sc(A, r)\)</span>：满足选择条件的记录数</li>
-<li><span class="arithmatex">\(f_r\)</span>：每个块包含的记录数</li>
-</ul>
-<h3 id="32-using-indices-and-equality">3.2 Using Indices and Equality<a class="headerlink" href="#32-using-indices-and-equality" title="Permanent link">&para;</a></h3>
-<p><strong>Index scan</strong>（索引扫描）：使用索引的搜索算法。选择条件必须是索引的搜索键</p>
-<p><strong>A3: (primary index, equality on key)</strong>：检索满足等值条件的单条记录。成本 = <span class="arithmatex">\((h_i + 1) × (t_T + t_S)\)</span>，其中 <span class="arithmatex">\(h_i\)</span> 为索引树高度</p>
-<blockquote>
+</li>
+<li>
+<p>selection 操作在以下情况下可分配到 theta 连接操作中（先连接后选择 → 先选择后连接）</p>
 <ol>
-<li>索引树遍历阶段（<span class="arithmatex">\(h_i\)</span> 次）需要从根节点逐层向下访问到叶子节点。每次层级跳转都需要：1 次 seek + 1 次 transfer</li>
-<li>数据获取阶段（+ 1 次）</li>
+<li>当选择条件 <span class="arithmatex">\(\theta_0\)</span> 仅涉及连接表达式之一 <span class="arithmatex">\(E_1\)</span> 的属性时：<span class="arithmatex">\(\sigma_{\theta_0}(E_1 \Join_{\theta}E_2) = (\sigma_{\theta_0}(E_1)) \Join_{\theta}E_2\)</span></li>
+<li>当选择条件 <span class="arithmatex">\(\theta_1\)</span> 仅涉及 <span class="arithmatex">\(E_1\)</span> 的属性，且 <span class="arithmatex">\(\theta_2\)</span> 仅涉及 <span class="arithmatex">\(E_2\)</span> 的属性时：<span class="arithmatex">\(\sigma_{\theta_1 \land \theta_2}(E_1 \Join_{\theta} E_2) = (\sigma_{\theta_1}(E_1)) \Join_{\theta} (\sigma_{\theta_2}(E_2))\)</span></li>
 </ol>
-</blockquote>
-<hr />
-<p><strong>A4: (primary index, equality on nonkey)</strong>：检索多条记录。记录将存储在连续的块中。设 b 为包含匹配记录的块数。成本 = <span class="arithmatex">\(h_i × (t_T + t_S) + t_S + t_T × b\)</span></p>
-<blockquote>
+</li>
+<li>
+<p>projection 操作在 theta join 运算中的分配律（先连接后投影 → 先投影后连接）</p>
 <ol>
-<li>索引遍历阶段：<span class="arithmatex">\(h_i × (t_T + t_S)\)</span></li>
-<li>数据定位阶段：<span class="arithmatex">\(+ t_S\)</span></li>
-<li>数据读取阶段：<span class="arithmatex">\(+ t_T × b\)</span></li>
+<li>如果连接条件 <span class="arithmatex">\(\theta\)</span> 仅涉及 <span class="arithmatex">\(L_1 \cup L_2\)</span> 中的属性：<span class="arithmatex">\(\Pi_{L_1 \cup L_2}(E_1 \Join_{\theta} E_2) = (\Pi_{L_1}(E_1)) \Join_{\theta} (\Pi_{L_2}(E_2))\)</span></li>
+<li>
+<p>对于连接 <span class="arithmatex">\(E_1 \Join_{\theta} E_2\)</span></p>
+<ol>
+<li>设 <span class="arithmatex">\(L_1\)</span> <span class="arithmatex">\(L_2\)</span> 分别来自 <span class="arithmatex">\(E_1\)</span> <span class="arithmatex">\(E_2\)</span> 的属性集</li>
+<li>设 <span class="arithmatex">\(L_3\)</span> 是 <span class="arithmatex">\(E_1\)</span> 中参与连接条件 <span class="arithmatex">\(\theta\)</span> 但不在 <span class="arithmatex">\(L_1 \cup L_2\)</span> 中的属性</li>
+<li>设 <span class="arithmatex">\(L_4\)</span> 是 <span class="arithmatex">\(E_2\)</span> 中参与连接条件 <span class="arithmatex">\(\theta\)</span> 但不在 <span class="arithmatex">\(L_1 \cup L_2\)</span> 中的属性</li>
+<li><span class="arithmatex">\(\Pi_{L_1 \cup L_2}(E_1 \Join_{\theta} E_2) = \Pi_{L_1 \cup L_2}((\Pi_{L_1 \cup L_3}(E_1)) \Join_{\theta} (\Pi_{L_2 \cup L_4})(E_2))\)</span></li>
 </ol>
-</blockquote>
-<hr />
-<p><strong>A5: (secondary index, equality on nonkey)</strong></p>
-<ol>
-<li>当搜索键是候选键时：检索单条记录。成本 = <span class="arithmatex">\((h_i + 1) × (t_T + t_S)\)</span></li>
-<li>当搜索键不是候选键时：检索多条记录。每条匹配记录可能位于不同数据块。成本 = <span class="arithmatex">\((h_i + n) × (t_T + t_S)\)</span></li>
+</li>
 </ol>
-<h3 id="33-involving-comparisons">3.3 Involving Comparisons<a class="headerlink" href="#33-involving-comparisons" title="Permanent link">&para;</a></h3>
-<p>实现比较查询：</p>
+</li>
+<li>
+<p>集合 union 和 intersection 是 commutative</p>
+</li>
+<li>集合 union 和 intersection 是 associative</li>
+<li>
+<p>selection 对并、交、差集具有分配律</p>
 <ol>
-<li>linear file scan</li>
-<li>binary search</li>
-<li>using indices</li>
+<li><span class="arithmatex">\(\sigma_{\theta}(E_1 - E_2) = \sigma_{\theta}(E_1) - \sigma_{\theta}(E_2)\)</span>，对并集和交集同样成立</li>
+<li>特殊情况：<span class="arithmatex">\(\sigma_{\theta}(E_1 - E_2) = \sigma_{\theta}(E_1) - E_2\)</span>，对交集同样成立，但对并集不成立</li>
 </ol>
-<p><strong>A6: (primary index, comparison)</strong>：基于主索引的比较</p>
-<ol>
-<li>对于 <span class="arithmatex">\(\sigma_{A \geqslant V}(r)\)</span> 的查询，使用 index 定位到第一个 tuple，然后顺序读取即可</li>
-<li>对于 <span class="arithmatex">\(\sigma_{A \leqslant V}(r)\)</span> 的查询，顺序读取直到遇到不满足条件的 tuple。不使用 index</li>
-</ol>
-<hr />
-<p><strong>A7: (secondary index, comparison)</strong>：基于辅助索引的比较</p>
-<ol>
-<li>对于 <span class="arithmatex">\(\sigma_{A \geqslant V}(r)\)</span> 的查询，使用 index 定位到第一个 tuple，然后顺序扫描索引获取记录指针</li>
-<li>对于 <span class="arithmatex">\(\sigma_{A \leqslant V}(r)\)</span> 的查询，顺序读取指针直到遇到不满足条件的 tuple</li>
-</ol>
-<p>两种情况下都需要获取指针指向的记录：每条记录都需要一次 I/O 操作，可能比线性文件扫描成本更高</p>
-<h3 id="34-complex-selections">3.4 Complex Selections<a class="headerlink" href="#34-complex-selections" title="Permanent link">&para;</a></h3>
-<p><span class="arithmatex">\(\sigma_{\theta_1 \land \theta_2 \land \cdots \land \theta_n}(r)\)</span></p>
-<p><strong>A8: (conjunctive selection using one index)</strong>：使用单一索引的合取选择</p>
-<p>从条件 θ₁ 到 θₙ 中选择执行成本最低的 θᵢ（使用算法 A1-A7），将结果元组存入内存缓冲区。在内存中对这些元组检查其他条件</p>
-<hr />
-<p><strong>A9: (conjunctive selection using composite index)</strong>：使用复合索引的合取选择</p>
-<p>如果有可用的复合（多键）索引则使用</p>
-<hr />
-<p><strong>A10: (conjunctive selection by intersection of identifiers)</strong>：通过标识符交集的合取选择</p>
-<ol>
-<li>需要带有记录指针的索引</li>
-<li>对每个条件使用相应索引，获取记录指针集合并求交集</li>
-<li>然后从文件中获取记录</li>
-<li>如果某些条件没有合适索引，则在内存中检查</li>
-</ol>
-<hr />
-<p><span class="arithmatex">\(\sigma_{\theta_1 \lor \theta_2 \lor \cdots \lor \theta_n}(r)\)</span></p>
-<p><strong>A10: (disjunctive selection by union of identifiers)</strong>：通过标识符并集的析取选择</p>
-<p>适用条件：所有子条件都有可用索引。否则使用线性扫描</p>
-<p>对每个条件使用相应索引，获取记录指针集合并取并集。最后从文件中获取记录</p>
-<hr />
-<p><span class="arithmatex">\(\sigma_{\neg \theta}(r)\)</span></p>
-<p>默认使用线性文件扫描</p>
-<p>例外情况：若满足 ¬θ 的记录极少，且 θ 有可用索引。先通过索引找出满足 θ 的记录，再反向筛选</p>
-<h2 id="-4-sorting">* 4 Sorting<a class="headerlink" href="#-4-sorting" title="Permanent link">&para;</a></h2>
-<p>为什么需要 sort：</p>
-<ol>
-<li>输出需求</li>
-<li>连接操作可以快速实现</li>
-</ol>
-<p>我们可以在关系上建立索引，然后使用该索引按排序顺序读取关系。但这只是在逻辑上而非物理上对关系进行排序，并且可能导致每个元组都需要访问一个磁盘块</p>
-<p>排序方法：</p>
-<ol>
-<li>内存排序：若数据能完全装入内存，使用高效的内部排序算法（如快速排序）</li>
-<li><a href="../../ADS/ch15/" target="_blank">external sorting</a>：若数据量超过内存容量，需使用外部排序归并算法（分块排序后归并），适合大规模数据</li>
+</li>
+<li>
+<p>projection 对并集具有分配律：<span class="arithmatex">\(\Pi_{L}(E_1 \cup E_2) = (\Pi_{L}(E_1)) \cup (\Pi_L(E_2))\)</span></p>
+</li>
 </ol>
 <figure>
-  <img alt="Img 1" src="../../../../img/database/ch9/database_ch9_img1.png" width="600" />
+  <img alt="Img 1" src="../../../../img/database/ch10/database_ch10_img1.png" width="600" />
 </figure>
-<h2 id="5-join-operation">5 Join Operation<a class="headerlink" href="#5-join-operation" title="Permanent link">&para;</a></h2>
-<p>处理 join 的不同算法：</p>
-<ol>
-<li>Nested-loop join</li>
-<li>Block nested-loop join</li>
-<li>Indexed nested-loop join</li>
-<li>Merge-join</li>
-<li>Hash-join</li>
-</ol>
-<h3 id="51-nested-loop-join">5.1 Nested-Loop Join<a class="headerlink" href="#51-nested-loop-join" title="Permanent link">&para;</a></h3>
-<p><strong>嵌套循环连接</strong></p>
-<p><span class="arithmatex">\(r \Join_\theta s\)</span></p>
-<p>算法流程：</p>
-<ol>
-<li>通过双重循环实现连接：外层循环遍历外部关系 r 的每个元组 <span class="arithmatex">\(t_r\)</span>，内层循环遍历内部关系 s 的每个元组 <span class="arithmatex">\(t_s\)</span></li>
-<li>对每一对元组 <span class="arithmatex">\((t_r, t_s)\)</span> 检查是否满足连接条件 θ，若满足则组合两元组并输出结果</li>
-</ol>
-<p>关键术语：</p>
-<ol>
-<li>Outer Relation（外部关系）：外层循环的关系 r，通常选择数据量较小的表以减少循环次数</li>
-<li>Inner Relation（内部关系）：内层循环的关系 s</li>
-</ol>
-<p>优点：无需依赖索引，适用于任意连接条件（灵活性高）</p>
-<p>缺点：时间复杂度为 <span class="arithmatex">\(O(n \times m)\)</span> （n 和 m 为两表的元组数），性能较差，尤其适合小表连接或作为其他连接算法的备用方案</p>
-<p>最坏情况代价：当内存仅能缓存每个表的一个数据块时</p>
-<ol>
-<li>块传输次数：<span class="arithmatex">\(n_r \times b_s + b_r\)</span>（<span class="arithmatex">\(n_r\)</span> 为外部关系元组数，<span class="arithmatex">\(b_s\)</span> 和 <span class="arithmatex">\(b_r\)</span> 为内部/外部关系的块数）</li>
-<li>磁盘寻道次数：<span class="arithmatex">\(n_r + b_r\)</span>（每次外层循环需重新定位内部关系的数据块）</li>
-</ol>
-<blockquote>
-<ol>
-<li>对于外部关系 r 的每一个元组 <span class="arithmatex">\(t_r\)</span>，数据库需要：扫描整个内部关系 s（即读取 <span class="arithmatex">\(b_s\)</span> 次块），因此，总块传输次数为 <span class="arithmatex">\(n_r \times b_s\)</span>，最后还要完整读取一次外部关系 r（<span class="arithmatex">\(b_r\)</span> 次块）</li>
-<li>每次处理外部关系的一个元组 <span class="arithmatex">\(t_r\)</span> 时，可能需要：寻道到内部关系 s 的第一个块（1 次寻道），最坏情况下，认为每次外层循环都要重新寻道，因此 <span class="arithmatex">\(n_r\)</span> 次寻道。读取整个 r 需要 <span class="arithmatex">\(b_r\)</span> 次寻道（每块一次）</li>
-</ol>
-</blockquote>
-<p>如果较小的关系能完全放入内存，则将其作为内部关系使用：代价降低至 <span class="arithmatex">\(b_r + b_s\)</span> 次块传输和 2 次磁盘寻道</p>
-<h3 id="52-block-nested-loop-join">5.2 Block Nested-Loop Join<a class="headerlink" href="#52-block-nested-loop-join" title="Permanent link">&para;</a></h3>
-<p><strong>块嵌套循环连接</strong></p>
-<p>四层循环结构：</p>
-<ol>
-<li>外层循环遍历外关系 r 的每个块</li>
-<li>次外层循环遍历内关系 s 的每个块</li>
-<li>内层两个循环分别处理当前两个块中的元组</li>
-</ol>
-<p>最坏情况代价：</p>
-<ol>
-<li>传输次数：<span class="arithmatex">\(b_r \times b_s + b_r\)</span> </li>
-<li>寻道次数：<span class="arithmatex">\(2 \times b_r\)</span></li>
-</ol>
-<p>最佳情况代价：</p>
-<ol>
-<li>传输次数：<span class="arithmatex">\(b_r + b_s\)</span> </li>
-<li>寻道次数：<span class="arithmatex">\(2\)</span></li>
-</ol>
-<p>优化策略：</p>
-<ol>
-<li>内存利用：使用 M - 2 个磁盘块作为外关系的缓冲单元（M 是内存的块大小），剩下的 2 个块用于缓冲内关系和输出结果</li>
-<li>提前终止内循环：如果连接属性是主键或内关系具有唯一性，可以在第一次匹配后立即停止内循环扫描</li>
-<li>交替扫描内关系：交替正向和反向扫描内关系，以利用缓冲区的剩余块（采用 LRU 替换策略）</li>
-<li>利用索引：如果内关系上有索引，可以使用索引加速连接</li>
-</ol>
-<h3 id="53-indexed-nested-loop-join">5.3 Indexed Nested-Loop Join<a class="headerlink" href="#53-indexed-nested-loop-join" title="Permanent link">&para;</a></h3>
-<p><strong>索引嵌套循环连接</strong></p>
-<p>适用条件：</p>
-<ol>
-<li>连接是等值连接（equi-join）或自然连接（natural join）</li>
-<li>内关系的连接属性上存在索引</li>
-</ol>
-<p>可以临时构建索引来优化连接计算</p>
-<p>算法流程：对于外关系 r 中的每个元组 <span class="arithmatex">\(t_r\)</span>，使用索引查找内关系 s 中满足连接条件的元组</p>
-<p>最坏情况：缓冲区只能容纳 r 的一个页，并且对于 r 的每个元组，都需要在 s 上执行一次索引查找</p>
-<p><span class="arithmatex">\(b_r + n \times c\)</span></p>
-<ul>
-<li>n：匹配的元组数量</li>
-<li>c：单次索引查找的成本</li>
-</ul>
-<p>索引查找成本 c 的估算：可以近似看作在 s 上执行一次基于连接条件的单点查询的成本</p>
-<p>优化策略：如果两个关系的连接属性上都有索引，则选择元组较少的关系作为外关系，以减少索引查找次数</p>
-<div class="admonition example">
-<p class="admonition-title">例子</p>
-<p>计算 <span class="arithmatex">\(student \Join takes\)</span>，student 作为 outer relation。takes 在 ID 属性上有一个 B+ 树索引，每个 node 包含 20 项。takes 有 10000 个元组，树高 4，需要额外的 1 次访问来获取真实数据。student 有 5000 个元组</p>
-<p>block nested loop join：<span class="arithmatex">\(100 \times 400 + 100 = 40100\)</span> 传输次数，<span class="arithmatex">\(2 \times 100 = 200\)</span> 寻道次数</p>
-<p>indexed nested loop join：<span class="arithmatex">\(100 + 5000 \times 5 = 25100\)</span>，<span class="arithmatex">\(c = 4 + 1 = 5\)</span></p>
-</div>
-<h3 id="54-merge-join">5.4 Merge Join<a class="headerlink" href="#54-merge-join" title="Permanent link">&para;</a></h3>
-<p><strong>排序归并连接</strong></p>
-<ol>
-<li>排序阶段（sort phase）：如果输入关系 pr 和 ps 未按连接属性（如 a₁）排序，则需先对它们进行排序（通常使用外部排序算法，如多路归并排序）。排序后的数据可以按连接属性顺序访问，为归并阶段做准备</li>
-<li>
-<p>归并阶段（merge phase）</p>
-<ol>
-<li>
-<p>同时扫描两个已排序的关系，按连接属性值进行匹配：</p>
-<ol>
-<li>如果 pr.a₁ == ps.a₁，则输出匹配的元组对（如 (a,3,A)）</li>
-<li>如果 pr.a₁ &lt; ps.a₁，则移动 pr 的指针到下一个更大的值</li>
-<li>如果 pr.a₁ &gt; ps.a₁，则移动 ps 的指针</li>
-</ol>
-</li>
-<li>
-<p>重复值处理：如果连接属性有重复（如 pr 中的 d 出现两次），需匹配所有组合（如 (d,8,N) 和 (d,13,N)）</p>
-</li>
-</ol>
-</li>
-</ol>
-<p>仅适用于等值连接和自然连接</p>
-<p>每个数据块只需读取一次（假设内存可容纳连接属性的所有匹配元组）</p>
-<ul>
-<li>传输次数：<span class="arithmatex">\(b_r + b_s\)</span></li>
-<li>寻道次数：<span class="arithmatex">\(\lceil \dfrac{b_r}{b_b} \rceil+\lceil \dfrac{b_s}{b_b} \rceil\)</span></li>
-</ul>
-<p>若关系未排序，需额外加上排序成本</p>
-<blockquote>
-<p><span class="arithmatex">\(b_b\)</span> 表示块缓冲大小</p>
-</blockquote>
-<p>Hybrid merge-join（混合归并连接）：若一个关系已排序，另一个关系在连接属性上有辅助 B+ 树索引</p>
-<ol>
-<li>归并阶段：已排序关系直接与 B+ 树索引的叶节点（存储键值和地址）匹配</li>
-<li>地址排序：将匹配结果的元组地址按物理存储顺序排序（减少随机访问）</li>
-<li>元组填充：按地址顺序扫描未排序关系，高效获取实际数据</li>
-</ol>
-<h3 id="55-hash-join">5.5 Hash Join<a class="headerlink" href="#55-hash-join" title="Permanent link">&para;</a></h3>
-<p><strong>哈希连接</strong></p>
-<p>仅适用于等值连接和自然连接</p>
-<ol>
-<li>分区阶段（partitioning phase）：使用哈希函数 h 对两个关系的元组进行分区：h 将连接属性（JoinAttrs）的值映射到 {0, 1, ..., n}，其中 JoinAttrs 是自然连接中 r 和 s 的共同属性</li>
-<li>探测阶段（probing phase）：对每一对分区 (ri, si) 将 ri 的元组与 si 的元组进行匹配。例如，将 ri 的所有元组加载到内存的哈希表中，然后扫描 si 的元组并查找匹配</li>
-</ol>
-<blockquote>
-<p>s 称为 probe input，r 称为 build input</p>
-</blockquote>
+<p><strong>Example</strong>：find the names of all instructors in the Music department, along with the titles of the courses that they teach</p>
+<p><span class="arithmatex">\(\Pi_{name, title}(\sigma_{dept\_name = "Music"}(instructor \Join (teaches \Join \Pi_{course\_id, title}(course))))\)</span></p>
+<p>根据 7a，<span class="arithmatex">\(\Pi_{name, title}((\sigma_{dept\_name = "Music"}(instructor) \Join (teaches \Join \Pi_{course\_id, title}(course))))\)</span></p>
+<p><mark>尽早地进行 selection 操作可以减少连接时 relation 的大小</mark></p>
+<hr />
+<p><strong>Example</strong>：Find the names of all instructors in the Music department who have taught a course in 2009, along with the titles of the courses that they taught</p>
+<p><span class="arithmatex">\(\Pi_{name, title}(\sigma_{dept\_name = "Music" \land year = 2009}(instructor \Join (teaches \Join \Pi_{course\_id, title}(course))))\)</span></p>
+<p>根据 6a，<span class="arithmatex">\(\Pi_{name, title}(\sigma_{dept\_name = "Music" \land year = 2009}((instructor \Join teaches) \Join \Pi_{course\_id, title}(course)))\)</span></p>
+<p>接着又可以拆分 <span class="arithmatex">\(\sigma_{dept\_name = "Music"}(instructor) \Join \sigma_{year = 2009}(teaches)\)</span></p>
 <figure>
-  <img alt="Img 2" src="../../../../img/database/ch9/database_ch9_img2.png" width="600" />
+  <img alt="Img 2" src="../../../../img/database/ch10/database_ch10_img2.png" width="600" />
 </figure>
-<p>分区数 n 和哈希函数 h 的选择：</p>
-<ol>
-<li>需确保每个分区 si 能放入内存</li>
-<li>通常 <span class="arithmatex">\(n = \lceil \dfrac{b_s}{M} \rceil \times f\)</span>，其中 f 为 fudge factor（缓冲因子），通常取 1.2 左右</li>
-<li>探测关系的分区 si 无需全部装入内存</li>
-</ol>
-<p>recursive partitioning（递归分区）：若分区数 n 超过内存页数 M，则需递归分区</p>
-<ol>
-<li>首次分区时，对关系 s 使用 M - 1 个分区</li>
-<li>对每个 M - 1 分区进一步用不同哈希函数分区</li>
-<li>对关系 r 采用相同的分区方法</li>
-</ol>
-<p>无需递归分区时的成本公式：<span class="arithmatex">\(3(b_r + b_s) + 4n_h\)</span> 传输 + <span class="arithmatex">\(2(\lceil \dfrac{b_r}{b_b} \rceil+\lceil \dfrac{b_s}{b_b} \rceil) + 2n_h\)</span> 寻道</p>
-<blockquote>
-<p>分区阶段，读取和写入每个关系一次，探测阶段：读取分区一次，所以是 <span class="arithmatex">\(3(b_r + b_s)\)</span></p>
-<p><span class="arithmatex">\(n_h\)</span>：溢出分区数量（需递归处理的次数）（没见做题的时候用过）</p>
-</blockquote>
-<p>需要递归分区时：</p>
-<ol>
-<li>分区趟数（passes）由构建关系决定：<span class="arithmatex">\(pass = \lceil \log_{M-1}(b_s)-1 \rceil\)</span></li>
-<li><span class="arithmatex">\(2(b_r + b_s)\lceil \log_{M-1}(b_s)-1 \rceil + b_r + b_s\)</span> 传输 + <span class="arithmatex">\(2(\lceil \dfrac{b_r}{b_b} \rceil+\lceil \dfrac{b_s}{b_b} \rceil)\lceil \log_{M-1}(b_s)-1 \rceil\)</span> 寻道</li>
-</ol>
-<p>最佳情况（构建关系可完全放入内存）：无需分区，成本降至：<span class="arithmatex">\(b_r + b_s\)</span> 次传输</p>
-<h4 id="-551-handling-of-overflows">* 5.5.1 Handling of Overflows<a class="headerlink" href="#-551-handling-of-overflows" title="Permanent link">&para;</a></h4>
-<p>哈希表溢出发生在分区 si 无法装入内存时，可能原因包括：</p>
-<ol>
-<li>关系 s 中存在大量连接属性值相同的元组（数据分布不均）</li>
-<li>哈希函数设计不合理</li>
-</ol>
-<p>若某些分区的元组数量显著多于其他分区，称为分区倾斜（skewed partitioning）</p>
-<p>解决方案：</p>
-<ol>
-<li>常规选择分区数：<span class="arithmatex">\(n = \lceil \dfrac{b_s}{M} \rceil \times f\)</span>，其中 f 为 fudge factor（缓冲因子），通常取 1.2 左右</li>
-<li>构建阶段溢出处理：使用不同哈希函数对溢出分区 si 进行二次分区。必须同步对 ri 执行相同操作</li>
-</ol>
-<p>溢出预防：通过精细分区避免构建阶段溢出</p>
-<h4 id="-552-hybrid-hash-join">* 5.5.2 Hybrid Hash Join<a class="headerlink" href="#-552-hybrid-hash-join" title="Permanent link">&para;</a></h4>
-<p>适用场景：当内存较大且构建关系（build input）超过内存容量时使用</p>
-<p>核心特性：将构建关系的第一个分区始终保留在内存中</p>
-<p>示例：内存 25 块时，将 instructor 表（100 块）划分为 5 个分区（每区 20 块）。第一个分区占 20 块内存，1 块用于输入缓冲，剩余 4 块分别缓冲其他 4 个分区；teaches 表同样划分为 5 个分区（每区 80 块），第一个分区立即用于探测（无需写磁盘）</p>
-<p>最佳效能条件：当内存大小 <span class="arithmatex">\(M ≫ \sqrt{b_s}\)</span></p>
-<h3 id="56-complex-join">5.6 Complex Join<a class="headerlink" href="#56-complex-join" title="Permanent link">&para;</a></h3>
-<p>Join with a conjunctive condition：<span class="arithmatex">\(r \Join_{\theta_1 \land \theta_2 \land \cdots \land \theta_n} S\)</span></p>
-<ol>
-<li>直接使用嵌套循环或块嵌套循环算法处理整个复杂条件</li>
-<li>先处理其中一个简单条件得到中间结果，然后筛选满足剩余条件的元组</li>
-</ol>
-<p>Join with a disjunctive condition：<span class="arithmatex">\(r \Join_{\theta_1 \lor \theta_2 \lor \cdots \lor \theta_n} S\)</span></p>
-<ol>
-<li>直接使用嵌套循环或块嵌套循环算法处理整个复杂条件</li>
-<li>将复杂连接分解为多个简单连接的并集</li>
-</ol>
-<h2 id="-6-other-operations">* 6 Other Operations<a class="headerlink" href="#-6-other-operations" title="Permanent link">&para;</a></h2>
-<p>duplicate elimination（去重）：</p>
+<hr />
+<p><strong>Example</strong>：<span class="arithmatex">\(\Pi_{name, title}(\sigma_{dept\_name = "Music"}(instructor) \Join teaches) \Join \Pi_{course\_id, title}(course)\)</span></p>
+<p>根据 8a 和 8b，<span class="arithmatex">\(\Pi_{name, title}(\Pi_{name, course\_id}(\sigma_{dept\_name = "Music"}(instructor) \Join teaches)) \Join \Pi_{course\_id, title}(course)\)</span></p>
+<p><mark>尽早地进行 projection 操作可以减少连接时 relation 的大小</mark></p>
+<hr />
+<p><strong>Example</strong>：如果 <span class="arithmatex">\(r_2 \Join r_3\)</span> 非常大而 <span class="arithmatex">\(r_1 \Join r_2\)</span> 小，我们选择 <span class="arithmatex">\((r_1 \Join r_2) \Join r_3\)</span></p>
+<p><mark>连接的顺序对于减少临时变量有影响</mark></p>
+<hr />
+<p><strong>Example</strong>：<span class="arithmatex">\(\Pi_{name, title}(\sigma_{dept\_name = "Music"}(instructor) \Join teaches) \Join \Pi_{course\_id, title}(course)\)</span></p>
+<p>最好先进行 <span class="arithmatex">\(\sigma_{dept\_name = "Music"}(instructor) \Join teaches\)</span></p>
+<h3 id="22-enumeration-of-equivalent-expressions">2.2 Enumeration of Equivalent Expressions<a class="headerlink" href="#22-enumeration-of-equivalent-expressions" title="Permanent link">&para;</a></h3>
+<p>查询优化器使用等价规则系统性地生成与给定表达式等价的表达式</p>
+<p>生成所有等价表达式的方法如下：</p>
 <ol>
 <li>
-<p>排序法：先对数据进行排序，使重复项相邻，便于一次性移除</p>
+<p>重复以下步骤：</p>
+<ol>
+<li>对所有已发现的等价表达式中的每个子表达式，应用所有适用的等价规则</li>
+<li>将新生成的表达式添加到等价表达式集合中</li>
+</ol>
+</li>
+<li>
+<p>直到不再产生新的等价表达式为止</p>
+</li>
+</ol>
+<p>上述方法在空间和时间上的开销非常大，两种优化方法：</p>
+<ol>
+<li>基于转换规则的优化计划生成</li>
+<li>针对仅包含选择、投影和连接查询的特殊情况处理方法</li>
+</ol>
+<h2 id="3-statistics-for-cost-estimation">3 Statistics for Cost Estimation<a class="headerlink" href="#3-statistics-for-cost-estimation" title="Permanent link">&para;</a></h2>
+<p>基本关系统计量：</p>
+<ol>
+<li><span class="arithmatex">\(n_r\)</span>：关系 r 中的元组数量</li>
+<li><span class="arithmatex">\(b_r\)</span>：包含关系 r 元组的磁盘块数量</li>
+<li><span class="arithmatex">\(l_r\)</span>：关系 r 中单个元组的大小（字节数）</li>
+<li><span class="arithmatex">\(f_r\)</span>：关系 r 的块因子，即一个磁盘块能容纳的 r 的元组数量</li>
+</ol>
+<p>属性级统计量：<span class="arithmatex">\(V(A, r)\)</span> 关系 r 中属性 A 的不同取值数量，等同于 ∏ₐ&reg; 的大小</p>
+<p>存储计算公式：当关系 r 的元组物理上连续存储时：<span class="arithmatex">\(b_r = \lceil \dfrac{n_r}{f_r} \rceil\)</span></p>
+<h3 id="31-histograms">3.1 Histograms<a class="headerlink" href="#31-histograms" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Equi-width 直方图</li>
+<li>Equi-depth 直方图</li>
+</ol>
+<h3 id="32-selection-size-estimation">3.2 Selection Size Estimation<a class="headerlink" href="#32-selection-size-estimation" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(\sigma_{A=v}(r)\)</span>：</p>
+<ol>
+<li>满足条件的记录数估计：<span class="arithmatex">\(\dfrac{n_r}{V(A, r)}\)</span></li>
+<li>如果是主键属性上的等值条件：结果大小估计 = 1</li>
+</ol>
+<p><span class="arithmatex">\(\sigma_{A\leqslant v}(r)\)</span></p>
+<ol>
+<li>设 c 为满足条件的元组估计数</li>
+<li>
+<p>若目录中有 <span class="arithmatex">\(min(A, r)\)</span> 和 <span class="arithmatex">\(max(A, r)\)</span></p>
+<ol>
+<li>当 <span class="arithmatex">\(v &lt; min(A, r)\)</span> 时，c = 0</li>
+<li>否则：<span class="arithmatex">\(c = n_r \dfrac{v - min(A, r)}{max(A, r) - min(A, r)}\)</span></li>
+</ol>
+</li>
+</ol>
+<h4 id="321-size-estimation-of-complex-selections">3.2.1 Size Estimation of Complex Selections<a class="headerlink" href="#321-size-estimation-of-complex-selections" title="Permanent link">&para;</a></h4>
+<p><strong>selectivity</strong>（选择度）：指关系中元组满足某个条件的概率。如果关系 r 中有 <span class="arithmatex">\(sᵢ\)</span> 个元组满足条件 <span class="arithmatex">\(θᵢ\)</span>，则该条件的选择度为 <span class="arithmatex">\(sᵢ/nᵣ\)</span></p>
+<ol>
+<li>conjunction：假设条件间独立，估计公式为 <span class="arithmatex">\(n_r \dfrac{s_1 s_2 \cdots s_n}{n_r^n}\)</span></li>
+<li>disjunction：<span class="arithmatex">\(n_r (1 - (1 - \dfrac{s_1}{n_r})(1 - \dfrac{s_2}{n_r})\cdots(1 - \dfrac{s_n}{n_r}))\)</span></li>
+<li>negation：<span class="arithmatex">\(n_r - size(\sigma_{\theta}(r))\)</span></li>
+</ol>
+<h3 id="33-estimation-of-the-size-of-joins">3.3 Estimation of the Size of Joins<a class="headerlink" href="#33-estimation-of-the-size-of-joins" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Cartesian product r x s：包含 <span class="arithmatex">\(n_r \times n_s\)</span> 个元组，每个元组占 <span class="arithmatex">\(l_r + l_s\)</span> 字节</li>
+<li>当 <span class="arithmatex">\(R∩S=∅\)</span> 时，<span class="arithmatex">\(r \Join s\)</span> 等价于 r x s</li>
+<li>若 <span class="arithmatex">\(R∩S\)</span> 是关系 R 的主键：关系 s 的每个元组最多匹配关系 r 的一个元组，连接结果元组数 ≤ s 的元组数</li>
+<li>若 <span class="arithmatex">\(R∩S\)</span> 是关系 S 的外键且引用关系 R：连接结果元组数 = s 的元组数</li>
+<li>
+<p>当 <span class="arithmatex">\(R∩S=\{A\}\)</span> 且 A 不是 R 或 S 的键时</p>
+<ol>
+<li>假设 R 的每个元组都会与 S 的元组连接，结果大小估计为：<span class="arithmatex">\(\dfrac{n_r \times n_s}{V(A, s)}\)</span></li>
+<li>若反过来假设 S 的每个元组与 R 连接，则估计为：<span class="arithmatex">\(\dfrac{n_r \times n_s}{V(A, r)}\)</span></li>
+<li>取两个估计值中较小的一个通常更准确</li>
+</ol>
+</li>
+</ol>
+<h3 id="34-size-estimation-for-other-operations">3.4 Size Estimation for Other Operations<a class="headerlink" href="#34-size-estimation-for-other-operations" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Projection：<span class="arithmatex">\(\Pi_A(r) = V(A, r)\)</span></li>
+<li>Aggregation：<span class="arithmatex">\(A_gf(r) = V(A, r)\)</span></li>
+<li>
+<p>outer join</p>
+<ol>
+<li>左外连接 = 内连接部分 + 左表中未匹配部分</li>
+<li>全外连接 = 内连接部分 + 左表未匹配部分 + 右表未匹配部分</li>
+</ol>
+</li>
+<li>
+<p>set 运算</p>
+<ol>
+<li>同一关系的选择操作可以合并条件</li>
+<li>
+<p>不同关系的运算：</p>
+<ol>
+<li>估计 r ∪ s 的大小 = r 的大小 + s 的大小</li>
+<li>估计 r ∩ s 的大小 = r 和 s 大小的最小值</li>
+<li>估计 r - s 的大小 = r 的大小</li>
+<li>这三种估计可能不太准确，但提供了大小的上界</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="35-estimation-of-number-of-distinct-values">3.5 Estimation of Number of Distinct Values<a class="headerlink" href="#35-estimation-of-number-of-distinct-values" title="Permanent link">&para;</a></h3>
+<p>Selections：<span class="arithmatex">\(\sigma_{\theta}(r)\)</span></p>
+<ol>
+<li>当条件强制属性 A 等于某个特定值 (如 A = 3) 时：结果中该属性只有一个唯一值，所以 <span class="arithmatex">\(V(A, σ_θ(r)) = 1\)</span></li>
+<li>当条件限定属性 A 为一组离散值 (如 A = 1 或 3 或 4) 时：不同值数量就是条件中指定的不同值的数量</li>
+<li>当条件是A与某值的比较 (如 A &gt; 5，A ≠ 10等) 时：估计不同值数量为原关系的不同值数量乘以选择性，<span class="arithmatex">\(V(A, σ_θ(r)) = V(A, r) * s\)</span>（选择性 s 表示满足条件的元组比例 (0 ≤ s ≤ 1)）</li>
+<li>其他情况：采用保守估计：取原关系不同值数量和结果集大小的较小值，<span class="arithmatex">\(min(V(A, r), n_{σ_θ(r)})\)</span></li>
+</ol>
+<p>Join：<span class="arithmatex">\(r \Join s\)</span></p>
+<ol>
+<li>如果属性集 A 中的属性全部来自关系 r：<span class="arithmatex">\(V(A, r ⋈ s) = min(V(A, r), n_{r ⋈ s})\)</span></li>
+<li>如果属性集 A 包含来自 r 的属性 A1 和来自 s 的属性 A2：<span class="arithmatex">\(V(A, r ⋈ s) = min(V(A1, r)*V(A2-A1, s), V(A1-A2, r)*V(A2, s), n_{r ⋈ s})\)</span></li>
+</ol>
+<p>Projection：<span class="arithmatex">\(∏A(r)\)</span> 中属性的不同值数量与 r 中相同</p>
+<p>Aggregation：与投影操作相同</p>
+<ol>
+<li>对于 min(A) 和 max(A)：估计为 <span class="arithmatex">\(min(V(A, r), V(G, r))\)</span>，其中 G 表示分组属性</li>
+<li>对于其他聚合函数（如 sum, avg, count 等）：假设所有值都不同，使用 <span class="arithmatex">\(V(G, r)\)</span> 作为估计值</li>
+</ol>
+<h3 id="36-evaluation-plan">3.6 Evaluation plan<a class="headerlink" href="#36-evaluation-plan" title="Permanent link">&para;</a></h3>
+<p>执行计划的选择：</p>
+<ol>
+<li>
+<p>选择执行计划时必须考虑不同评估技术之间的相互作用：独立为每个操作选择最便宜的算法可能无法得到最佳整体方案，例如：</p>
 <ul>
-<li>优化：在外部排序（数据量过大无法全部装入内存时使用的排序算法）的初始阶段和归并阶段即可提前去重，减少后续计算量</li>
+<li>归并连接 (Merge-join) 可能比哈希连接 (Hash-join) 代价更高，但能产生有序输出，从而降低外层聚合操作的成本</li>
+<li>嵌套循环连接 (Nested-loop join) 可能支持流水线操作</li>
 </ul>
 </li>
 <li>
-<p>哈希法：利用哈希函数将相同值映射到同一桶中，只需检查桶内是否有重复，无需全局排序</p>
-</li>
-</ol>
-<hr />
-<p>projection（投影）：对每个元组执行投影运算，对投影结果进行去重</p>
-<hr />
-<p>aggregation（聚合）：与去重类似，可以使用排序或哈希将同一分组的元组聚集在一起，然后对每个分组应用聚合函数</p>
-<p>优化：在外部排序-合并（external sort-merge）过程中，可以提前计算部分聚合值，减少后续计算量：</p>
+<p>实际的查询优化器通常结合以下两种主要方法：</p>
 <ol>
-<li>简单聚合函数（count/min/max/sum）：在排序的初始阶段（run generation）和归并阶段（intermediate merges），直接累积聚合值（如累加 count 或 sum，比较 min/max）</li>
-<li>平均值（avg）：需分别维护 sum 和 count，避免丢失信息（因 avg 不可直接合并）</li>
-</ol>
-<hr />
-<p>set operations（集合操作）：对排序后的关系使用变种的归并连接（merge-join），或使用变种的哈希连接（hash-join）</p>
-<p>基于哈希的集合操作实现步骤：</p>
-<ol>
-<li>分区：用相同哈希函数将两个关系（表）划分为对应的小分区，确保同一键值的元组必然落在同一分区编号中</li>
-<li>构建内存哈希索引：对每个分区 <span class="arithmatex">\(r_i\)</span> 构建内存哈希索引，加速查找操作（如判断元组是否存在）</li>
-<li>
-<p>按操作类型处理分区：</p>
-<ol>
-<li>并集：结果需包含所有来自 r 和 s 的唯一元组。通过哈希索引去重，合并两分区的数据</li>
-<li>交集：结果仅包含同时存在于 r 和 s 的元组。通过检查 <span class="arithmatex">\(s_i\)</span> 的元组是否在 <span class="arithmatex">\(r_i\)</span> 的哈希索引中实现</li>
-<li>差集：结果包含存在于 r 但不在 s 的元组。通过从 <span class="arithmatex">\(r_i\)</span> 的哈希索引中删除 <span class="arithmatex">\(s_i\)</span> 的元组实现</li>
+<li>基于成本的搜索：搜索所有可能的计划并选择成本最低的方案</li>
+<li>启发式方法：使用启发式规则选择执行计划</li>
 </ol>
 </li>
 </ol>
-<hr />
-<p>outer join（外连接）：</p>
-<ol>
-<li>先执行普通连接，再补充未匹配的元组（用空值填充）</li>
-<li>通过修改连接算法直接实现。</li>
-</ol>
-<p>修改归并连接（merge join）：在归并过程中，若左表 r 的元组 <span class="arithmatex">\(t_r\)</span> 无匹配的右表 s 元组，则输出 <span class="arithmatex">\(t_r\)</span> 并补 <code>NULL</code></p>
-<p>修改哈希连接（hash join）：</p>
-<ol>
-<li>若 r 是探测关系（probe relation）：直接输出 r 中未匹配的元组，并用空值填充</li>
-<li>若 r 是构建关系（build relation）：在探测阶段记录 r 中匹配的元组；处理完分区 <span class="arithmatex">\(s_i\)</span> 后，输出 r 中未匹配的元组并用空值填充</li>
-</ol>
-<h2 id="-7-evaluation-of-expressions">* 7 Evaluation of Expressions<a class="headerlink" href="#-7-evaluation-of-expressions" title="Permanent link">&para;</a></h2>
-<p><strong>表达式求值</strong></p>
-<p>现在考虑多个操作的情况</p>
-<p><span class="arithmatex">\(\Pi_{\text{customer-name}}((\sigma_{balance &lt; 2500}(account)) \Join depositor)\)</span></p>
-<p>表达式求值策略：</p>
-<ol>
-<li>物化（Materialization）：逐步计算每个子表达式的结果，并将中间结果临时存储到磁盘，供后续操作使用</li>
-<li>流水线（Pipelining）：无需等待子操作完全执行完毕，直接将生成的元组实时传递给父操作</li>
-</ol>
-<h3 id="71-materialization">7.1 Materialization<a class="headerlink" href="#71-materialization" title="Permanent link">&para;</a></h3>
-<p>Materialized evaluation：每次只计算一个操作，从最底层的操作开始。将中间结果物化为临时关系，用于计算下一层操作</p>
-<p>先计算：<span class="arithmatex">\(\sigma_{balance &lt; 2500}(account)\)</span> 并存储到 temp 中，然后读取存储的结果与 depositor 表进行连接，最后计算 customer-name 上的投影</p>
-<figure>
-  <img alt="Img 3" src="../../../../img/database/ch9/database_ch9_img3.png" width="600" />
-</figure>
-<p>物化求值方法具有普适性，可应用于所有场景</p>
-<p>将结果写入磁盘再读回的成本可能很高，之前的操作成本计算公式忽略了结果写入磁盘的开销，因此总成本 = 各独立操作成本之和 + 中间结果写入磁盘的成本</p>
-<p>double buffering（双缓冲技术）：为每个操作分配两个输出缓冲区，当一个缓冲区填满时写入磁盘，同时另一个缓冲区继续接收数据，实现磁盘写入与计算的并行处理，减少总执行时间</p>
-<h3 id="72-pipelining">7.2 Pipelining<a class="headerlink" href="#72-pipelining" title="Permanent link">&para;</a></h3>
-<p>Pipelined evaluation：同时执行多个操作，将一个操作的输出结果直接传递给下一个操作</p>
-<p>不存储选择操作（σ）的结果，而是将元组直接传递给连接操作（⋈）。同样，不存储连接操作的结果，直接将元组传递给投影操作（∏）</p>
-<ul>
-<li>比物化执行成本低得多：不需要将临时关系存储到磁盘</li>
-<li>流水线并非总是可行（取决于后续操作的类型，以及输出是否有序等因素）</li>
-<li>要使流水线有效，需要使用能在接收输入元组的同时就生成输出元组的求值算法</li>
-<li>流水线可以通过两种方式执行：demand driven（需求驱动型）和 producer driven（生产者驱动型）</li>
-</ul>
-<h4 id="721-demand-driven">7.2.1 Demand Driven<a class="headerlink" href="#721-demand-driven" title="Permanent link">&para;</a></h4>
-<ol>
-<li>查询执行引擎从查询树的最顶层开始驱动，像多米诺骨牌一样逐级向下触发元组请求，最终传导到最底层的表扫描操作</li>
-<li>在两次请求之间，操作需要维护"状态"以记住接下来应该返回什么</li>
-</ol>
-<p>每个操作都实现为一个 iterator（迭代器），需要支持以下操作：</p>
-<ol>
-<li>
-<p>Open：</p>
-<ol>
-<li>file scan（文件扫描）：初始化文件扫描，将文件起始位置指针保存为状态</li>
-<li>merge join（归并连接）：对关系进行排序，并将已排序关系的起始指针保存为状态</li>
-</ol>
-</li>
-<li>
-<p>Next：</p>
-<ol>
-<li>file scan（文件扫描）：输出下一个元组，推进并保存文件指针</li>
-<li>merge join（归并连接）：从之前保存的状态继续归并过程，直到找到下一个输出元组，保存指针作为迭代器状态</li>
-</ol>
-</li>
-<li>
-<p>Close：资源释放</p>
-</li>
-</ol>
-<h4 id="722-producer-driven">7.2.2 Producer Driven<a class="headerlink" href="#722-producer-driven" title="Permanent link">&para;</a></h4>
-<p>操作符主动生成元组并向上传递给父操作符</p>
-<ol>
-<li>操作符之间维护缓冲区，子操作符将元组放入缓冲区，父操作符从中取出元组</li>
-<li>若缓冲区满，子操作符将等待直到缓冲区有空位，再继续生成元组</li>
-</ol>
-<p>系统会调度那些输出缓冲区有空位且能处理更多输入元组的操作</p>
-<h4 id="723-evaluation-algorithms-for-pipelining">7.2.3 Evaluation Algorithms for Pipelining<a class="headerlink" href="#723-evaluation-algorithms-for-pipelining" title="Permanent link">&para;</a></h4>
-<p>部分算法无法在接收输入元组时即时输出结果：例如，归并连接（merge join）或哈希连接（hash join）。这些操作总是需要将中间结果写入磁盘后再读取</p>
-<p>可通过算法变体实现实时生成（至少部分）结果：在读取输入元组的同时即时输出处理结果</p>
-<p>改进算法可实现部分流水化执行：</p>
-<ol>
-<li>例如混合哈希连接（hybrid hash join）可以实时处理内存分区（分区 0）中的探测关系元组</li>
-<li>Double-pipelined join technique（双管道连接技术）：改进版混合哈希连接，将两个关系的分区 0 元组都缓冲在内存中，一旦数据可用就立即处理：当发现新的 r₀ 元组时，立即与现有 s₀ 元组匹配并输出结果，同时保存该 r₀ 元组。对 s₀ 元组执行对称处理</li>
-</ol>
-<h4 id="724-complex-joins">7.2.4 Complex Joins<a class="headerlink" href="#724-complex-joins" title="Permanent link">&para;</a></h4>
-<p>三表连接示例：loan ⋈ depositor ⋈ customer</p>
-<p>Strategy 1：</p>
-<ol>
-<li>先计算 depositor ⋈ customer</li>
-<li>将结果与 loan 表连接：loan ⋈ (depositor ⋈ customer)</li>
-</ol>
-<p>Strategy 2：</p>
-<ol>
-<li>先计算 loan ⋈ depositor</li>
-<li>将结果与 customer 表连接：(loan ⋈ depositor) ⋈ customer</li>
-</ol>
-<p>Strategy 3：</p>
-<ol>
-<li>
-<p>同时执行两个连接操作：</p>
-<ol>
-<li>在 loan 表的 loan-number 上建立索引</li>
-<li>在 customer 表的 customer-name 上建立索引</li>
-<li>
-<p>对 depositor 表的每个元组 t：</p>
-<ol>
-<li>通过 customer-name 查找匹配的 customer 元组</li>
-<li>通过 loan-number 查找匹配的 loan 元组</li>
-</ol>
-</li>
-</ol>
-</li>
-<li>
-<p>每个 depositor 元组仅需检查一次</p>
-</li>
-<li>将两个连接操作合并为一个专用操作，效率高于分别执行两个二表连接</li>
-</ol>
+<h4 id="361-cost-based-optimization">3.6.1 Cost-Based Optimization<a class="headerlink" href="#361-cost-based-optimization" title="Permanent link">&para;</a></h4>
+<p>考虑为关系表达式 <span class="arithmatex">\(r_1 \times r_2 \times \cdots \times r_n\)</span> 寻找最优连接顺序的问题</p>
+<p>该表达式存在 <span class="arithmatex">\(\dfrac{2(n - 1)!}{(n - 1)!}\)</span> 种不同的连接顺序</p>
+<p>解决方案：无需生成所有连接顺序。采用动态规划方法：对任何子集只需计算一次最低成本连接顺序，存储计算结果供后续使用</p>
+<h2 id="-4-dynamic-programming-for-choosing-evaluation-plans">* 4 Dynamic Programming for Choosing Evaluation Plans<a class="headerlink" href="#-4-dynamic-programming-for-choosing-evaluation-plans" title="Permanent link">&para;</a></h2>
+<h2 id="-5-additional-optimization-techniques">* 5 Additional Optimization Techniques<a class="headerlink" href="#-5-additional-optimization-techniques" title="Permanent link">&para;</a></h2>
 
 
 
@@ -9057,7 +8542,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月29日 09:05:34">2025年4月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月5日 08:24:32">2025年5月5日</span>
   </span>
 
     
@@ -9162,7 +8647,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../ch8/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 8 Indexing and Hashing">
+          <a href="../ch9/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 9 Query Processing">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -9172,20 +8657,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                8 Indexing and Hashing
+                9 Query Processing
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ch10/" class="md-footer__link md-footer__link--next" aria-label="下一页: 10 Query optimization">
+          <a href="../../computer_architecture/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                10 Query optimization
+                计算机体系结构
               </div>
             </div>
             <div class="md-footer__button md-icon">
