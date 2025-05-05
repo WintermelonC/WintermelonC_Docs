@@ -30,4 +30,5 @@ cg老师
 [6 Relational Database Design](./ch6.md)<br/>
 [7 Storage and File Structure](./ch7.md)<br/>
 [8 Indexing and Hashing](./ch8.md)<br/>
-[9 Query Processing](./ch9.md)
+[9 Query Processing](./ch9.md)<br/>
+[10 Query optimization](./ch10.md)

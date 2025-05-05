@@ -1,8 +1,8 @@
 # 9 Query Processing
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -356,7 +356,7 @@ Hybrid merge-join（混合归并连接）：若一个关系已排序，另一个
 1. 分区阶段（partitioning phase）：使用哈希函数 h 对两个关系的元组进行分区：h 将连接属性（JoinAttrs）的值映射到 {0, 1, ..., n}，其中 JoinAttrs 是自然连接中 r 和 s 的共同属性
 2. 探测阶段（probing phase）：对每一对分区 (ri, si) 将 ri 的元组与 si 的元组进行匹配。例如，将 ri 的所有元组加载到内存的哈希表中，然后扫描 si 的元组并查找匹配
 
-> r 称为 probe input，s 称为 build input
+> s 称为 probe input，r 称为 build input
 
 <figure markdown="span">
   ![Img 2](../../../img/database/ch9/database_ch9_img2.png){ width="600" }

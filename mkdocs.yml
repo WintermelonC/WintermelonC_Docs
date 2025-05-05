@@ -164,6 +164,7 @@ nav:
         - 7 Storage and File Structure: zju/compulsory_courses/database_system/ch7.md
         - 8 Indexing and Hashing: zju/compulsory_courses/database_system/ch8.md
         - 9 Query Processing: zju/compulsory_courses/database_system/ch9.md
+        - 10 Query optimization: zju/compulsory_courses/database_system/ch10.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:
