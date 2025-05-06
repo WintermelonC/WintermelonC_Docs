@@ -256,6 +256,11 @@ nav:
         - Anaconda: knowledge/python/other/anaconda.md
     - C/C++:
       - knowledge/C_Cpp/index.md
+    - Web:
+      - knowledge/web/index.md
+      - HTML: knowledge/web/html.md
+      - CSS: knowledge/web/css.md
+      - JavaScript: knowledge/web/javascript.md
     - 数据结构与算法:
       - knowledge/data_stru_algorithm/index.md
       - 其他:
@@ -270,6 +275,19 @@ nav:
       - 4 Git 远程操作: tools/git/ch4.md
       - 5 Git 多人协作: tools/git/ch5.md
       - 其他: tools/git/other.md
+    - Github:
+      - tools/github/index.md
+      - Github Pages:
+        - tools/github/github_pages/index.md
+    - MkDocs:
+      - tools/mkdocs/index.md
+      - Material for MkDocs:
+        - tools/mkdocs/material/index.md
+        - 1 预备工作: tools/mkdocs/material/ch1.md
+        - 2 简单使用: tools/mkdocs/material/ch2.md
+        - 3 发布网站: tools/mkdocs/material/ch3.md
+        - 4 探索配置: tools/mkdocs/material/ch4.md
+        - 5 深度理解: tools/mkdocs/material/ch5.md
 
 # 主题设置
 theme:

@@ -27,10 +27,15 @@
    1. Python 编程基础
    2. PyTorch 深度学习
 2. C/C++
-3. 数据结构与算法
+3. Web（HTML、css、JavaScript）
+4. 数据结构与算法
 
 ## 工具
 
 你可以找到一些实用的工具
 
 1. Git
+2. Github
+   1. Github Pages
+3. MkDocs
+   1. Material for MkDocs
