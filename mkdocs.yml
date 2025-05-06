@@ -117,6 +117,7 @@ nav:
         - 8 Polymorphism: zju/basic_courses/OOP/ch8.md
         - 9 Copy and Move: zju/basic_courses/OOP/ch9.md
         - 10 Overloaded Operator: zju/basic_courses/OOP/ch10.md
+        - 11 Template: zju/basic_courses/OOP/ch11.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
