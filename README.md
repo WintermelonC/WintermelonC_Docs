@@ -18,6 +18,7 @@
 4. Ae
 5. Vivado
 6. VS Code
+7. Watt Toolkit
 
 ## 知识
 
@@ -28,7 +29,8 @@
    2. PyTorch 深度学习
 2. C/C++
 3. Web（HTML、css、JavaScript）
-4. 数据结构与算法
+4. Markdown
+5. 数据结构与算法
 
 ## 工具
 

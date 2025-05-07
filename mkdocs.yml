@@ -76,6 +76,7 @@ nav:
       - 无线网络应用:
         - zju/general_courses/wireless_network/index.md
         - 1 当今网络: zju/general_courses/wireless_network/ch1.md
+        - 2 交换机和终端设备的基本配置: zju/general_courses/wireless_network/ch2.md
         - 3 协议和模型: zju/general_courses/wireless_network/ch3.md
         - 4 物理层: zju/general_courses/wireless_network/ch4.md
         - 5 数制系统: zju/general_courses/wireless_network/ch5.md
@@ -83,8 +84,11 @@ nav:
         - 7 以太网交换: zju/general_courses/wireless_network/ch7.md
         - 8 网络层: zju/general_courses/wireless_network/ch8.md
         - 9 地址解析: zju/general_courses/wireless_network/ch9.md
+        - 10 路由器基本配置: zju/general_courses/wireless_network/ch10.md
         - 11 IPv4 编址: zju/general_courses/wireless_network/ch11.md
         - 12 IPv6 编址: zju/general_courses/wireless_network/ch12.md
+        - 14 传输层: zju/general_courses/wireless_network/ch14.md
+        - 15 应用层: zju/general_courses/wireless_network/ch15.md
     - 专业基础课程:
       - zju/basic_courses/index.md
       - 离散数学及其应用: zju/basic_courses/discrete_math.md
@@ -301,11 +305,11 @@ theme:
     - scheme: default
       toggle:
         icon: material/brightness-7
-        name: 切换至黑夜模式
+        name: 切换至深色主题
     - scheme: slate
       toggle:
         icon: material/brightness-4
-        name: 切换至白天模式
+        name: 切换至浅色主题
   language: zh
   logo: ./img/logo.png
   favicon: ./img/logo.png

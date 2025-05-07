@@ -55,6 +55,6 @@
 1. pip 安装
 2. conda 安装（需安装 Anaconda）
 
-最好是根据你要安装的那个库来搜索教程，例如要安装 matplotlib 库，就搜索“matplotlib安装”等关键词即可
+最好是根据你要安装的那个库来搜索教程，例如要安装 matplotlib 库，就搜索“matplotlib 安装”等关键词即可
 
 另外，如果你使用 Anaconda 的话，还是这个文档：[最省心的Python版本和第三方库管理——初探Anaconda](https://zhuanlan.zhihu.com/p/25198543){:target="_blank"}
