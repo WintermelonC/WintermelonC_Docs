@@ -26,4 +26,8 @@
     | Jekyll     | Ruby   | GitHub 原生支持、博客友好       | 博客、个人网站    |
     | Docusaurus | JavaScript | React 驱动、多语言支持      | 大型开源项目文档  |
 
+虽然 MkDocs 是一个用 Python 编写的静态网站生成器，但用户无需学习 Python 相关的知识，只需要安装 Python 即可
+
+MkDocs 支持很多主题，以 Material for MkDocs 主题为例，进行讲解
+
 详细教程见：[Material for MkDocs](./material/index.md)

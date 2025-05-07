@@ -225,6 +225,8 @@ nav:
     - VS Code:
       - application/vscode/index.md
       - Github Copilot: application/vscode/copilot.md
+    - Watt Toolkit:
+      - application/watt_toolkit/index.md
   - 知识:
     - knowledge/index.md
     - Python:
@@ -261,6 +263,8 @@ nav:
       - HTML: knowledge/web/html.md
       - CSS: knowledge/web/css.md
       - JavaScript: knowledge/web/javascript.md
+    - Markdown: 
+      - knowledge/markdown/index.md
     - 数据结构与算法:
       - knowledge/data_stru_algorithm/index.md
       - 其他:
