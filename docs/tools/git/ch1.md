@@ -10,7 +10,8 @@
 
 !!! info "说明"
 
-    以 Windows 系统为例
+    1. 本文档使用 Windows 系统进行演示
+    2. 本文档使用 Git 2.49.0 版本进行演示
 
 下载 git：访问[Git - Downloading Package](https://git-scm.com/downloads/win){:target="_blank"}
 
@@ -40,8 +41,7 @@
 
 !!! info "说明"
 
-    1. 本文档使用 Git 2.49.0 版本进行演示
-    2. 安装过程中，会有很多需要选择的配置选项，其中大多数的配置选项都是可以后面自行修改的，所以不要太过纠结啦。有不懂的配置选项可以直接问 AI
+    安装过程中，会有很多需要选择的配置选项，其中大多数的配置选项都是可以后面自行修改的，所以不要太过纠结啦。有不懂的配置选项可以直接问 AI
 
 <figure markdown="span">
     ![Img 4](../../img/git/ch1/git_ch1_img4.png){ width="600" }
@@ -57,7 +57,7 @@
 
 !!! info "说明"
 
-    本文档使用 Windows 虚拟机进行演示，就不更改安装位置了
+    本节使用 Windows 虚拟机进行演示，就不更改安装位置了
 
 <figure markdown="span">
     ![Img 6](../../img/git/ch1/git_ch1_img6.png){ width="600" }
@@ -89,13 +89,13 @@
     ![Img 8](../../img/git/ch1/git_ch1_img8.png){ width="600" }
 </figure>
 
-选择 Git 默认编辑器，我这里选择 VS code。选择完成后，点击 Next
+选择 Git 默认编辑器，我这里选择 VS Code。选择完成后，点击 Next
 
 !!! info "说明"
 
-    1. 演示用的虚拟机没有安装 VS code，所以 Next 按钮是不可点击的
-    2. 如果想使用 VS code 但还没有安装的话，选择默认的 Vim 编辑器即可，后面我们可以自行更改 Git 的默认编辑器的
-    3. 下载 VS code：[Visual Studio Code](https://code.visualstudio.com/){:target="_blank"}
+    1. 演示用的虚拟机没有安装 VS Code，所以 Next 按钮是不可点击的
+    2. 如果想使用 VS Code 但还没有安装的话，选择默认的 Vim 编辑器即可，后面我们可以自行更改 Git 的默认编辑器的
+    3. [VS Code 教程](../../application/vscode/index.md){:target="_blank"}
 
 <figure markdown="span">
     ![Img 9](../../img/git/ch1/git_ch1_img9.png){ width="600" }

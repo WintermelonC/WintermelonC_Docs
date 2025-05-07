@@ -78,7 +78,7 @@ hide:
 
     - [ ] 编写大学生生活常识 - 如何写简历文档
     - [ ] 编写 Material for MkDocs 文档
-        - [ ] 编写 Python 环境安装文档
+        - [x] 编写 Python 环境安装文档
         - [ ] 编写 VSCode 文档
         - [ ] 编写 Git 文档
             - [ ] ch 1

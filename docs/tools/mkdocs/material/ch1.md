@@ -39,7 +39,7 @@
 
 1. 了解 VSCode 各个面板的功能
 2. 在 VSCode 中编辑文件
-3. 在 VSCode 中安装并使用插件
+3. 在 VSCode 中安装并使用扩展
 4. 了解 VSCode 设置
 
 ## 3 简单了解 Git 的使用
