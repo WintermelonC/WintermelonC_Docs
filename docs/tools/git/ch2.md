@@ -6,10 +6,12 @@
 
 ## 1 Git 仓库
 
-## 2 Git 提交
+## 2 GUI 工具
 
-## 3 Git 回退
+## 3 Git 提交
 
-## 4 Git 删除
+## 4 Git 回退
 
-## 5 `.gitignore` 文件
+## 5 Git 删除
+
+## 6 `.gitignore` 文件

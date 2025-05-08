@@ -14,7 +14,7 @@
     
     Vivado 提供了两种主要版本：Vivado Design Suite 和 Vivado WebPACK Edition。后者是一个免费版本，适用于部分 Xilinx 器件，非常适合教育和个人项目使用；而前者则提供了更全面的功能集，适用于商业产品开发。Vivado 在电子工程领域特别是数字电路设计中被广泛使用
 
-## 下载
+## 1 下载
 
 连接校网，打开文件资源管理器，地址栏输入 `ftp://10.78.18.205/`。里面有 Vivado 2020.2 软件安装等资料
 
@@ -22,7 +22,7 @@
     ![Img 1](../../img/digital_logic_design/lab/lab_img1.png){ width="600" }
 </figure>
 
-## 提高综合速度
+## 2 提高综合速度
 
 <figure markdown="span">
     ![Img 2](../../img/vivado/vivado_img1.png){ width="600" }
@@ -50,7 +50,7 @@
 
 很容易发现，我们生成的 IP 核如果是保持默认设置的话，左边也有这个小黄方块标识，因为 IP 核本身内部的东西就不会变（在当前工程文件中，无法直接修改 IP 核内部代码）
 
-## 关联 vscode
+## 3 关联 vscode
 
 设置中选择 Text Editor -> Custom Editor
 

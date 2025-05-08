@@ -95,7 +95,7 @@
 
     1. 演示用的虚拟机没有安装 VS Code，所以 Next 按钮是不可点击的
     2. 如果想使用 VS Code 但还没有安装的话，选择默认的 Vim 编辑器即可，后面我们可以自行更改 Git 的默认编辑器的
-    3. [VS Code 教程](../../application/vscode/index.md){:target="_blank"}
+    3. VS Code 的使用，我们后文会介绍
 
 <figure markdown="span">
     ![Img 9](../../img/git/ch1/git_ch1_img9.png){ width="600" }
