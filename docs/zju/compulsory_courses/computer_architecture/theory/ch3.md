@@ -1292,7 +1292,7 @@ buffer（变换缓冲区）
 
 主存储器的下一级包含旋转磁盘，其访问会耗时数百万个时钟周期。因此总是采用 write back 策略。由于对低一级的非必需访问会带来如此之高的成本，所以虚拟存储器系统通常会包含一个 dirty bit（重写位）。利用这一重写位，可以仅将上次读取磁盘之后经过修改的块写至磁盘
 
-## 5.2 Techniques for Fast Address Translation
+### 5.2 Techniques for Fast Address Translation
 
 分页表通常很大，从而存储在主存储器中，有时它们本身就是分页的。分页意味着每次存储器访问在逻辑上至少要分两次进行，第一次存储器访问是为了获得物理地址，第二次访问是为了获得数据。第2章曾经提到，我们使用局域性来避免增加存储器访问次数。将地址变换局限在一个特殊缓存中，存储器访问就很少再需要第二次访问来转换数据。这一特殊地址变换缓存被称为变换旁视缓冲区（translation look aside buffer，TLB），有时也称为变换缓冲区（translation buffer，TB）
 
@@ -1302,7 +1302,7 @@ TLB 项就像是一个缓存项目，其中的标志保存了虚拟地址部分�
     ![Img 32](../../../../img/comp_arch/ch3/ca_ch3_img32.png){ width="600" }
 </figure>
 
-## 5.3 Selecting a Page Size
+### 5.3 Selecting a Page Size
 
 最显而易见的体系结构参数是页大小。页大小的选择实际就是在偏向较大页与偏向较小页的力量之间进行平衡的问题。以下因素偏向较大尺寸
 
@@ -1315,10 +1315,10 @@ TLB 项就像是一个缓存项目，其中的标志保存了虚拟地址部分�
 
 采用较小分页的主要动机是节省存储。当虚拟内存的相邻区域不等于页大小的整数倍时，采用较小页可以减少存储的浪费空间。页面中这种未使用存储器的术语名称为 internal fragmentation（内部碎片）。假定每个进程有三个主要段（文本、堆和栈），每个进程的平均浪费存储量为页大小的 1.5 倍。对于有数百 M 存储器、页大小为 4KB 至 8KB 的计算机来说，这点数量是可以忽略的。当然，当页大小非常大（超过 32KB）时，那就可能浪费存储（主存储器和辅助存储器）和 IO 带宽了。最后一项关注是进程启动时间；许多进程都很小，较大的页面可能会延长调用一个进程的时间
 
-## 5.4 Summary of Virtual Memory and Caches
+### 5.4 Summary of Virtual Memory and Caches
 
 <figure markdown="span">
-    ![Img 33](../../../../img/comp_arch/ch3/ca_ch3_img33.png){ width="600" }
+    ![Img 33](../../../../img/comp_arch/ch3/ca_ch3_img33.png){ width="800" }
 </figure>
 
 ## 6 Protection and Examples of Virtual Memory
