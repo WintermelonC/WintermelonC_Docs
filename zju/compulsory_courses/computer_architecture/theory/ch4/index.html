@@ -5298,11 +5298,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-exploiting-ilp-using-multiple-issue" class="md-nav__link">
+  <a href="#7-exploiting-ilp-using-multiple-issue-and-static-scheduling" class="md-nav__link">
     <span class="md-ellipsis">
-      7 Exploiting ILP Using Multiple Issue
+      7 Exploiting ILP Using Multiple Issue and Static Scheduling
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="7 Exploiting ILP Using Multiple Issue and Static Scheduling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Superscalar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 Superscalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-statically-scheduled-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1.1 Statically Scheduled Superscalar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-dynamic-scheduled-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Dynamic Scheduled Superscalar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-multiple-issue-with-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Multiple Issue with Speculation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -9253,11 +9316,74 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#7-exploiting-ilp-using-multiple-issue" class="md-nav__link">
+  <a href="#7-exploiting-ilp-using-multiple-issue-and-static-scheduling" class="md-nav__link">
     <span class="md-ellipsis">
-      7 Exploiting ILP Using Multiple Issue
+      7 Exploiting ILP Using Multiple Issue and Static Scheduling
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="7 Exploiting ILP Using Multiple Issue and Static Scheduling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Superscalar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7.1 Superscalar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#711-statically-scheduled-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1.1 Statically Scheduled Superscalar
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-dynamic-scheduled-superscalar" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Dynamic Scheduled Superscalar
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-multiple-issue-with-speculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Multiple Issue with Speculation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -10233,7 +10359,89 @@
 <li>精确异常保证：只有到达 ROB 头部的指令能触发异常，确保异常发生时之前所有指令已提交</li>
 <li>推测执行支持：错误预测时直接丢弃 ROB 尾部条目，无需复杂的状态回滚机制</li>
 </ol>
-<h2 id="7-exploiting-ilp-using-multiple-issue">7 Exploiting ILP Using Multiple Issue<a class="headerlink" href="#7-exploiting-ilp-using-multiple-issue" title="Permanent link">&para;</a></h2>
+<h2 id="7-exploiting-ilp-using-multiple-issue-and-static-scheduling">7 Exploiting ILP Using Multiple Issue and Static Scheduling<a class="headerlink" href="#7-exploiting-ilp-using-multiple-issue-and-static-scheduling" title="Permanent link">&para;</a></h2>
+<p>Multiple Issue Processors：使得 CPI &lt; 1</p>
+<ol>
+<li>vector processing（向量处理）：适用于数据并行场景（如多媒体计算），通过单指令流处理大量数据</li>
+<li>superscalar（超标量架构）：动态调度多指令并行执行，依赖硬件复杂度提升性能</li>
+<li>long instruction words LIW（长指令字 LIW）：将并行指令显式编码为长指令字，由编译器静态调度，减少硬件动态调度开销</li>
+</ol>
+<h3 id="71-superscalar">7.1 Superscalar<a class="headerlink" href="#71-superscalar" title="Permanent link">&para;</a></h3>
+<p>通过每周期发射多条指令（多发射），利用处理器内多个功能单元的并行性，提升性能。目标是最大化硬件利用率，避免功能单元闲置</p>
+<ol>
+<li>
+<p>Statically scheduled（静态调度）：</p>
+<ol>
+<li>由编译器在编译阶段分析指令依赖关系，重新排列指令顺序以优化并行性</li>
+<li>硬件按编译器排好的顺序 <strong>按序执行</strong>，适合确定性高的场景（如嵌入式系统）</li>
+</ol>
+</li>
+<li>
+<p>Dynamically scheduled（动态调度）：</p>
+<ol>
+<li>硬件在运行时通过 Tomasulo 算法动态分析指令依赖，允许 <strong>乱序执行</strong> 非依赖指令</li>
+<li>可处理运行时不确定性（如缓存未命中），但硬件复杂度高</li>
+</ol>
+</li>
+</ol>
+<h4 id="711-statically-scheduled-superscalar">7.1.1 Statically Scheduled Superscalar<a class="headerlink" href="#711-statically-scheduled-superscalar" title="Permanent link">&para;</a></h4>
+<ol>
+<li>静态调度：依赖编译器在代码生成时排布指令顺序，硬件按序发射，无需动态重排序</li>
+<li>多指令发射：每周期尝试发射多条指令（最多 8 条），但实际数量受限于冲突检测结果</li>
+</ol>
+<p>Issue Packet（发射包）：一组预取指令，硬件在单个周期内分析其并行性。类似 VLIW 的指令束，但由硬件动态决策而非编译器显式指定</p>
+<p>发射阶段被拆分并流水化：</p>
+<ol>
+<li><strong>包内分析</strong>：判断发射包中哪些指令可并行（如无数据依赖或结构冲突）</li>
+<li><strong>包间分析</strong>：确保新指令与已发射未完成的指令无冲突</li>
+</ol>
+<figure>
+    <img alt="Img 18" src="../../../../../img/comp_arch/ch4/ca_ch4_img18.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 19" src="../../../../../img/comp_arch/ch4/ca_ch4_img19.png" width="600" />
+</figure>
+<h5 id="multiple-issues">Multiple Issues<a class="headerlink" href="#multiple-issues" title="Permanent link">&para;</a></h5>
+<p>Issue Packet（发射包）：从取指单元获取的一组指令，这些指令可能在一个时钟周期内被发射</p>
+<p>约束条件：</p>
+<ol>
+<li>如果某条指令因结构冲突（如功能单元占用）或数据冲突（与执行中或同发射包内的前序指令相关）而无法执行，则该指令不会被发射</li>
+<li>对于 N - 发射（N-issue）处理器，每周期实际发射的指令数可能为 0 到 N 条</li>
+</ol>
+<p>挑战：单周期内完成冲突检测可能导致时钟周期过长：需进行 <span class="arithmatex">\(O(n^2 - n)\)</span> 次比较（n 为发射包大小）</p>
+<h2 id="8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation">8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation<a class="headerlink" href="#8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation" title="Permanent link">&para;</a></h2>
+<h3 id="81-dynamic-scheduled-superscalar">8.1 Dynamic Scheduled Superscalar<a class="headerlink" href="#81-dynamic-scheduled-superscalar" title="Permanent link">&para;</a></h3>
+<p>通过硬件实时分析指令依赖性和资源冲突（如 Tomasulo 算法），实现乱序执行（Out-of-Order Execution），最大化指令级并行性（ILP），从而突破静态编译调度的局限性</p>
+<p>两种多指令发射技术：</p>
+<ol>
+<li>Pipeline（流水化发射阶段）：将发射逻辑拆分为更短的流水级（如半周期），通过提高流水线吞吐率支持多指令发射</li>
+<li>Widen issue logic（拓宽发射逻辑）：直接设计支持多指令并行分析的硬件（如增加比较器、依赖检测单元）</li>
+<li>混合方案：结合流水化与拓宽逻辑，在控制硬件复杂度的同时实现高吞吐</li>
+</ol>
+<p>Example：</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-24-1">1</a></span>
+<span class="normal"><a href="#__codelineno-24-2">2</a></span>
+<span class="normal"><a href="#__codelineno-24-3">3</a></span>
+<span class="normal"><a href="#__codelineno-24-4">4</a></span>
+<span class="normal"><a href="#__codelineno-24-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="n">L</span><span class="p">.</span><span class="n">D</span><span class="w"> </span><span class="n">F0</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">)</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><span class="n">ADD</span><span class="p">.</span><span class="n">D</span><span class="w"> </span><span class="n">F4</span><span class="p">,</span><span class="w"> </span><span class="n">F0</span><span class="p">,</span><span class="w"> </span><span class="n">F2</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><span class="n">S</span><span class="p">.</span><span class="n">D</span><span class="w"> </span><span class="n">F4</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">)</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><span class="n">DADDIU</span><span class="w"> </span><span class="n">R1</span><span class="p">,</span><span class="w"> </span><span class="n">R1</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="o">-</span><span class="mh">8</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a><span class="n">BNE</span><span class="w"> </span><span class="n">R1</span><span class="p">,</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">Loop</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>1 cycle for integer ALU</li>
+<li>2 cycles for load</li>
+<li>3 cycles for FP add</li>
+</ul>
+<figure>
+    <img alt="Img 20" src="../../../../../img/comp_arch/ch4/ca_ch4_img20.png" width="600" />
+</figure>
+<p>增加一个 ALU 用于地址计算</p>
+<figure>
+    <img alt="Img 21" src="../../../../../img/comp_arch/ch4/ca_ch4_img21.png" width="600" />
+</figure>
+<h3 id="82-multiple-issue-with-speculation">8.2 Multiple Issue with Speculation<a class="headerlink" href="#82-multiple-issue-with-speculation" title="Permanent link">&para;</a></h3>
 
 
 
@@ -10256,7 +10464,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月8日 09:47:36">2025年5月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月9日 06:27:23">2025年5月9日</span>
   </span>
 
     
