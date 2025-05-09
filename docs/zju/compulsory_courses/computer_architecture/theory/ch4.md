@@ -986,5 +986,94 @@ LOAD  R4, [R3]  ; R3 = 简单计算
 3. 精确异常保证：只有到达 ROB 头部的指令能触发异常，确保异常发生时之前所有指令已提交
 4. 推测执行支持：错误预测时直接丢弃 ROB 尾部条目，无需复杂的状态回滚机制
 
-## 7 Exploiting ILP Using Multiple Issue
+## 7 Exploiting ILP Using Multiple Issue and Static Scheduling
+
+Multiple Issue Processors：使得 CPI < 1
+
+1. vector processing（向量处理）：适用于数据并行场景（如多媒体计算），通过单指令流处理大量数据
+2. superscalar（超标量架构）：动态调度多指令并行执行，依赖硬件复杂度提升性能
+3. long instruction words LIW（长指令字 LIW）：将并行指令显式编码为长指令字，由编译器静态调度，减少硬件动态调度开销
+
+### 7.1 Superscalar
+
+通过每周期发射多条指令（多发射），利用处理器内多个功能单元的并行性，提升性能。目标是最大化硬件利用率，避免功能单元闲置
+
+1. Statically scheduled（静态调度）：
+
+    1. 由编译器在编译阶段分析指令依赖关系，重新排列指令顺序以优化并行性
+    2. 硬件按编译器排好的顺序 **按序执行**，适合确定性高的场景（如嵌入式系统）
+
+2. Dynamically scheduled（动态调度）：
+
+    1. 硬件在运行时通过 Tomasulo 算法动态分析指令依赖，允许 **乱序执行** 非依赖指令
+    2. 可处理运行时不确定性（如缓存未命中），但硬件复杂度高
+
+#### 7.1.1 Statically Scheduled Superscalar
+
+1. 静态调度：依赖编译器在代码生成时排布指令顺序，硬件按序发射，无需动态重排序
+2. 多指令发射：每周期尝试发射多条指令（最多 8 条），但实际数量受限于冲突检测结果
+
+Issue Packet（发射包）：一组预取指令，硬件在单个周期内分析其并行性。类似 VLIW 的指令束，但由硬件动态决策而非编译器显式指定
+
+发射阶段被拆分并流水化：
+
+1. **包内分析**：判断发射包中哪些指令可并行（如无数据依赖或结构冲突）
+2. **包间分析**：确保新指令与已发射未完成的指令无冲突
+
+<figure markdown="span">
+    ![Img 18](../../../../img/comp_arch/ch4/ca_ch4_img18.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 19](../../../../img/comp_arch/ch4/ca_ch4_img19.png){ width="600" }
+</figure>
+
+##### Multiple Issues
+
+Issue Packet（发射包）：从取指单元获取的一组指令，这些指令可能在一个时钟周期内被发射
+
+约束条件：
+
+1. 如果某条指令因结构冲突（如功能单元占用）或数据冲突（与执行中或同发射包内的前序指令相关）而无法执行，则该指令不会被发射
+2. 对于 N - 发射（N-issue）处理器，每周期实际发射的指令数可能为 0 到 N 条
+
+挑战：单周期内完成冲突检测可能导致时钟周期过长：需进行 $O(n^2 - n)$ 次比较（n 为发射包大小）
+
+## 8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
+
+### 8.1 Dynamic Scheduled Superscalar
+
+通过硬件实时分析指令依赖性和资源冲突（如 Tomasulo 算法），实现乱序执行（Out-of-Order Execution），最大化指令级并行性（ILP），从而突破静态编译调度的局限性
+
+两种多指令发射技术：
+
+1. Pipeline（流水化发射阶段）：将发射逻辑拆分为更短的流水级（如半周期），通过提高流水线吞吐率支持多指令发射
+2. Widen issue logic（拓宽发射逻辑）：直接设计支持多指令并行分析的硬件（如增加比较器、依赖检测单元）
+3. 混合方案：结合流水化与拓宽逻辑，在控制硬件复杂度的同时实现高吞吐
+
+Example：
+
+```verilog linenums="1"
+L.D F0, 0(R1)
+ADD.D F4, F0, F2
+S.D F4, 0(R1)
+DADDIU R1, R1, #-8
+BNE R1, R2, Loop
+```
+
+- 1 cycle for integer ALU
+- 2 cycles for load
+- 3 cycles for FP add
+
+<figure markdown="span">
+    ![Img 20](../../../../img/comp_arch/ch4/ca_ch4_img20.png){ width="600" }
+</figure>
+
+增加一个 ALU 用于地址计算
+
+<figure markdown="span">
+    ![Img 21](../../../../img/comp_arch/ch4/ca_ch4_img21.png){ width="600" }
+</figure>
+
+### 8.2 Multiple Issue with Speculation
 
