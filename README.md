@@ -25,10 +25,14 @@
 你可以找到一些有用的知识
 
 1. Python
-   1. Python 编程基础
-   2. PyTorch 深度学习
+   1. Anaconda
+   2. Python 编程基础
+   3. PyTorch 深度学习
 2. C/C++
-3. Web（HTML、css、JavaScript）
+3. Web
+   1. HTML
+   2. css
+   3. JavaScript
 4. Markdown
 5. 数据结构与算法
 

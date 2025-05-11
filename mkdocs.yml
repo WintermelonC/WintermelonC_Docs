@@ -235,6 +235,7 @@ nav:
     - knowledge/index.md
     - Python:
       - knowledge/python/index.md
+      - Anaconda: knowledge/python/anaconda.md
       - Python 编程基础:
         - knowledge/python/basic/index.md
         - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
@@ -258,8 +259,6 @@ nav:
           - 8.2 文本预处理: knowledge/python/pytorch/ch8/ch8_2.md
           - 8.3 语言模型和数据集: knowledge/python/pytorch/ch8/ch8_3.md
           - 8.4 循环神经网络: knowledge/python/pytorch/ch8/ch8_4.md
-      - 其他:
-        - Anaconda: knowledge/python/other/anaconda.md
     - C/C++:
       - knowledge/C_Cpp/index.md
     - Web:

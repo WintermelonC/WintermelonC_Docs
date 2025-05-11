@@ -29,7 +29,7 @@
     查看上面的文档：
 
     1. 只需学习 [0.1 Python 环境](../../../knowledge/python/basic/ch0.md#01-python-环境){:target="_blank"}
-    2. 只安装 Python，不安装 Anaconda
+    2. 如果你没有学习 Python 的想法，就只安装 Python，不安装 Anaconda
 
 ## 2 学习 VSCode 的使用
 

@@ -1,8 +1,8 @@
 # Material for MkDocs
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "AI 介绍"
 
@@ -46,7 +46,7 @@
 
 ## 教程
 
-官方教程：[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"}
+官方文档：[Material for MkDocs](https://squidfunk.github.io/mkdocs-material/){:target="_blank"}
 
 [1 预备工作](./ch1.md)<br/>
 [2 简单使用](./ch2.md)<br/>

@@ -22,6 +22,8 @@
     If the implementation is easy to explain, it may be a good idea.<br/>
     Namespaces are one honking great idea -- let's do more of those!<br/>
 
+## [Anaconda](./anaconda.md)
+
 ## [Python 编程基础](./basic/index.md)
 
 [0 Python 环境及编辑器](./basic/ch0.md)<br/>
@@ -35,7 +37,3 @@
 
 [7 现代卷积神经网络](./pytorch/ch7/ch7_1.md)<br/>
 [8 循环神经网络](./pytorch/ch8/ch8_1.md)
-
-## 其他
-
-[Anaconde](./other/anaconda.md)

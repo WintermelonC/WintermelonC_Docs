@@ -6,11 +6,11 @@
 
 ## 0.1 Python 环境
 
-想要学习 Python 的同学，建议去了解并使用 Anaconda，参考文档：[最省心的Python版本和第三方库管理——初探Anaconda](https://zhuanlan.zhihu.com/p/25198543){:target="_blank"}
+想要学习 Python 的同学，建议去了解并使用 Anaconda
+
+[Anaconda 是什么](../anaconda.md){:target="_blank"}
 
 !!! tip "下载 Python 还是 Anaconda"
-
-    [Anaconda 是什么](../other/anaconda.md){:target="_blank"}
 
     有选择困难症？==只要你想学习 Python，那就安装 Anaconda，否则安装 Python==
 
@@ -89,7 +89,7 @@
 
 ### VS Code
 
-参考文档：[VSCode安装配置使用教程（最新版超详细保姆级含插件）一文就够了](https://blog.csdn.net/msdcp/article/details/127033151){:target="_blank"}
+[VS Code 教程](../../../application/vscode/index.md){:target="_blank"}
 
 在 vscode 中编辑并运行 Python 文件：[使用vscode编写、运行Python程序](https://blog.csdn.net/zhangkai950121/article/details/117395333){:target="_blank"}
 
@@ -99,5 +99,3 @@
 2. conda 安装（需安装 Anaconda）
 
 最好是根据你要安装的那个库来搜索教程，例如要安装 matplotlib 库，就搜索“matplotlib 安装”等关键词即可
-
-另外，如果你使用 Anaconda 的话，还是这个文档：[最省心的Python版本和第三方库管理——初探Anaconda](https://zhuanlan.zhihu.com/p/25198543){:target="_blank"}
