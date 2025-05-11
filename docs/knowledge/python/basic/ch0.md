@@ -8,7 +8,7 @@
 
 想要学习 Python 的同学，建议去了解并使用 Anaconda
 
-[Anaconda 是什么](../anaconda.md){:target="_blank"}
+[Anaconda 教程](../anaconda.md){:target="_blank"}
 
 !!! tip "下载 Python 还是 Anaconda"
 
@@ -67,7 +67,7 @@
 
 验证 Python 能够正常运行：
 
-1. 快捷键 ++ctrl+r++ 打开运行窗口
+1. 快捷键 ++win+r++ 打开运行窗口
 2. 输入 `cmd`，按回车 ++enter++，打开命令行窗口
 3. 输入 `python`，按回车 ++enter++
 4. 应该能够显示如下图所示的信息
