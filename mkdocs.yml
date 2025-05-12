@@ -49,6 +49,7 @@ nav:
         - 9 循环神经网络: zju/computer/AI_basic/ch9.md
         - 10 完整的人工智能应用开发实践: zju/computer/AI_basic/ch10.md
         - 11 自然语言处理建模: zju/computer/AI_basic/ch11.md
+        - 12 大语言模型与生成式人工智能: zju/computer/AI_basic/ch12.md
         - 习题整理: zju/computer/AI_basic/exercise.md
     - 自然科学通识类:
       - zju/natural_science/index.md
@@ -170,6 +171,8 @@ nav:
         - 8 Indexing and Hashing: zju/compulsory_courses/database_system/ch8.md
         - 9 Query Processing: zju/compulsory_courses/database_system/ch9.md
         - 10 Query optimization: zju/compulsory_courses/database_system/ch10.md
+        - 11 Transactions: zju/compulsory_courses/database_system/ch11.md
+        - 12 Concurrency Control: zju/compulsory_courses/database_system/ch12.md
       - 计算机体系结构:
         - zju/compulsory_courses/computer_architecture/index.md
         - 理论部分:

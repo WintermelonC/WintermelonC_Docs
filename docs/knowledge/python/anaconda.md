@@ -180,11 +180,43 @@ Anaconda 集成了 Jupyter，点击 Next
 1. `conda activate my_env`：先启动对应的环境
 2. `pip install ...` 或 `conda install ...`：在这个环境中安装对应的库，使用 `pip` 或 `conda` 都是可以的
 
-!!! tip "安装过程很慢？"
+!!! tip "pip 安装很慢"
 
-    我们可以修改包管理镜像为国内源，在 `cmd` 中运行这两行命令
+    我们可以增加国内源到 pip 的包源（pip 默认从 PyPI 下载包，但也可以配置使用其他的包源），在 `cmd` 中运行以下命令
+
+    ```powershell linenums="1" title="升级 pip 到最新的版本"
+    python -m pip install --upgrade pip
+    ```
+
+    如果升级的时候安装也很慢
+
+    ```powershell linenums="1" title="临时使用国内镜像站来升级 pip"
+    python -m pip install -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple --upgrade pip
+    ```
+
+    配置国内镜像站为默认
+
+    ```powershell linenums="1"
+    pip config set global.index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+    ```
+
+!!! tip "conda 安装很慢"
+
+    我们可以增加国内源到 conda 的通道（通道是 conda 用来查找和安装软件包的仓库），在 `cmd` 中运行这两行命令
 
     ```powershell linenums="1"
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
     conda config --set show_channel_urls yes
     ```
+
+    此后，conda 优先使用 `https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/` 来下载库
+
+    ```powershell linenums="1" title="显示当前 conda 配置中设置的所有通道"
+    C:\Users\admin> conda config --show channels
+    channels:
+      - https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+      - defaults
+      - ...
+    ```
+
+    conda 会从上到下逐一尝试这些通道来下载库

@@ -31,4 +31,6 @@ cg老师
 [7 Storage and File Structure](./ch7.md)<br/>
 [8 Indexing and Hashing](./ch8.md)<br/>
 [9 Query Processing](./ch9.md)<br/>
-[10 Query optimization](./ch10.md)
+[10 Query optimization](./ch10.md)<br/>
+[11 Transactions](./ch11.md)<br/>
+[12 Concurrency Control](./ch12.md)
