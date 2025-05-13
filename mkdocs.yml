@@ -123,6 +123,7 @@ nav:
         - 9 Copy and Move: zju/basic_courses/OOP/ch9.md
         - 10 Overloaded Operator: zju/basic_courses/OOP/ch10.md
         - 11 Template: zju/basic_courses/OOP/ch11.md
+        - 12 Exception: zju/basic_courses/OOP/ch12.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -284,7 +285,6 @@ nav:
       - 3 Git 分支操作: tools/git/ch3.md
       - 4 Git 远程操作: tools/git/ch4.md
       - 5 Git 多人协作: tools/git/ch5.md
-      - 其他: tools/git/other.md
     - Github:
       - tools/github/index.md
       - Github Pages:

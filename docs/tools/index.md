@@ -9,7 +9,6 @@
     3. [Git 分支操作](./git/ch3.md)
     4. [Git 远程操作](./git/ch4.md)
     5. [Git 多人协作](./git/ch5.md)
-    6. [其他](./git/other.md)
 
 2. [Github](./github/index.md)
 

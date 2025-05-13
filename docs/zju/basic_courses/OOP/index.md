@@ -33,4 +33,5 @@ wk老师
 [8 Polymorphism](./ch8.md)<br/>
 [9 Copy and Move](./ch9.md)<br/>
 [10 Overloaded Operator](./ch10.md)<br/>
-[11 Template](./ch11.md)
+[11 Template](./ch11.md)<br/>
+[12 Exception](./ch12.md)

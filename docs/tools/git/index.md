@@ -38,13 +38,9 @@
 [4 Git 远程操作](ch4.md)<br/>
 [5 Git 多人协作](./ch5.md)
 
-## 2 其他
+## 2 Git 规则
 
-[停止跟踪文件](./other.md#停止跟踪文件)
-
-## 3 Git 规则
-
-### 3.1 提交信息
+### 2.1 提交信息
 
 基本格式：
 
@@ -119,7 +115,7 @@
     BREAKING CHANGE: 旧版 config.yml 需迁移至 config.toml
     ```
 
-### 3.2 标签
+### 2.2 标签
 
 1. 版本标签：推荐使用语义化版本控制（SemVer）格式：
       1. `v<major>.<minor>.<patch>`，例如：`v1.0.0`, `v2.3.1`
@@ -189,7 +185,7 @@
     6. 新增兼容功能 → v1.1.0
     7. 破坏性变更 → v2.0.0
 
-### 3.3 `.gitignore` 文件
+### 2.3 `.gitignore` 文件
 
 常用 `.gitignore` 模板：[github/gitignore](https://github.com/github/gitignore){:target="_blank"}
 
