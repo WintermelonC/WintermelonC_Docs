@@ -1039,6 +1039,8 @@ Issue Packet（发射包）：从取指单元获取的一组指令，这些指�
 
 挑战：单周期内完成冲突检测可能导致时钟周期过长：需进行 $O(n^2 - n)$ 次比较（n 为发射包大小）
 
+### 7.2 The Basic VLIW Approach
+
 ## 8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
 
 ### 8.1 Dynamic Scheduled Superscalar

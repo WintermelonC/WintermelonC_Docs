@@ -62,7 +62,7 @@ zy老师、sxx老师
 3. 完成实践 PT 技能评估（PTSA）
 4. 完成 ITN 期末技能考试（PTSA）
 
-## 个人笔记
+## 笔记
 
 > 笔记内容来源：Cisco Networking Academy - Introduction to Networks
 
@@ -78,5 +78,8 @@ zy老师、sxx老师
 [10 路由器基本配置](./ch10.md)<br/>
 [11 IPv4 编址](./ch11.md)<br/>
 [12 IPv6 编址](./ch12.md)<br/>
+[13 ICMP](./ch13.md)<br/>
 [14 传输层](./ch14.md)<br/>
-[15 应用层](./ch15.md)
+[15 应用层](./ch15.md)<br/>
+[16 网络安全基础知识](./ch16.md)<br/>
+[17 构建小型网络](./ch17.md)
