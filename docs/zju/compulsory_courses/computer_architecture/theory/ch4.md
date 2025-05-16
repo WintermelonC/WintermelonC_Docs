@@ -1,8 +1,8 @@
 # 4 Instruction-Level Parallelism and Its Exploitation
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -392,7 +392,7 @@ CDC 6600 拥有 16 个独立的功能单元，包括 4 个浮点单元、5 个�
 每条指令需要经历 4 个执行步骤（由于我们现在主要考虑浮点运算，所以不考虑存储器访问步骤）。我们先粗略地查看一下这些步骤，然后再详细研究记分卡如何记录一些必要信息，用于判断执行过程何时由一个步骤进行到下一个步骤。这四个步骤代替了标准 MIPS 流水线中的 ID、EX 和 WB 步骤，如下所示：
 
 1. Issue（IS 发射）：如果指令的一个功能单元空闲，没有其他活动指令以同一寄存器为目标寄存器，则记分卡向功能单元发射指令，并更新其内部数据结构。这一步代替了MIPS 流水线中 ID 步骤的一部分。只要确保没有其他活动功能单元希望将自己的结果写入目标寄存器，就能保证不会出现 WAW 冒险。如果存在结构性冒险或 WAW 冒险，则指令发射停顿，在清除这些冒险之前，不会再发射其他指令。当发射级停顿时，会导致指令提取与发射之间的缓冲区填满；如果缓冲区只是一项，则指令提取立即停顿。如果缓冲区是拥有多条指令的队列，则在队列填满后停顿
-2. Read operands（RO 读取操作数）：记分卡监视源操作数的可用性。如果先前发射的活动指令都不再写入源操作数，而该源操作数可用。当源操作数可用时，记分卡告诉功能单元继续从寄存器读取操作数，并开始执行。记分卡在这一步动态解决 RAW 冒险，可以发送指令以进行乱序执行。这一步和发射步骤一起，完成了简单 MIPS 流水线中 ID 步骤的功能。
+2. Read operands（RO 读取操作数）：记分卡监视源操作数的可用性。如果先前发射的活动指令都不再写入源操作数，而该源操作数可用。当源操作数可用时，记分卡告诉功能单元继续从寄存器读取操作数，并开始执行。记分卡在这一步动态解决 RAW 冒险，可以发送指令以进行乱序执行。这一步和发射步骤一起，完成了简单 MIPS 流水线中 ID 步骤的功能
 3. Execution（EX 执行）：功能单元接收到操作数后开始执行。结果准备就绪后，它通知记分卡已经完成执行。这一步代替了 MIPS 流水线中的 EX 步骤，在 MIPS 浮点流水线中耗用多个周期
 4. Write result（WB 写结果）：一旦记分卡知道功能单元已经完成执行，则检查 WAR 冒险，并在必要时停顿正在完成的指令
 
@@ -1041,6 +1041,32 @@ Issue Packet（发射包）：从取指单元获取的一组指令，这些指�
 
 ### 7.2 The Basic VLIW Approach
 
+Very long instruction word（超长指令字，VLIW）：VLIW 是一种静态多发射技术，通过将多个独立操作打包到一个超长指令中实现并行执行，与动态调度处理器不同，VLIW 的并行性由编译器显式指定
+
+单条 VLIW 指令包含多个操作字段。Intel 的 EPIC 架构称其为"数据包"（packet），Transmeta 称其为"分子/原子"（molecule/atoms）
+
+Tradeoff instruction space for simple decoding：
+
+1. 超长指令字有足够空间容纳多个操作
+2. 编译器放入超长指令字的所有操作都是独立的 => 可以并行执行
+3. 编译器必须能识别独立操作并进行静态调度
+4. 需要支持跨基本块 branch 的调度
+
+<figure markdown="span">
+    ![Img 24](../../../../img/comp_arch/ch4/ca_ch4_img24.png){ width="600" }
+</figure>
+
+VLIW 架构的问题：
+
+1. increase in code size：
+
+    1. 由于需要填充长指令字的所有槽位，编译器常采用循环展开来增加并行机会，导致代码膨胀
+    2. 当没有足够独立操作时，必须用 NOP 填充剩余槽位，浪费指令空间
+
+2. limitations of lockstep operation（锁步执行限制）：VLIW 处理器要求打包在同一指令中的所有操作必须同时完成，如果任一操作（如内存访问）发生延迟，整个指令包都会停顿，降低效率
+3. binary code compatibility（二进制兼容问题）：VLIW 程序的性能高度依赖具体硬件配置（如功能单元数量），同一程序在不同配置的 VLIW 处理器上可能需要重新编译
+4. major challenge for 所有的 multiple-issue 处理器：开发足够的指令级并行（ILP）是所有多发射架构的难点，特别是对于非数值计算类的不规则代码，难以找到足够的独立指令
+
 ## 8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation
 
 ### 8.1 Dynamic Scheduled Superscalar
@@ -1079,3 +1105,20 @@ BNE R1, R2, Loop
 
 ### 8.2 Multiple Issue with Speculation
 
+推测执行的处理器可以拓展多发射功能
+
+假设一下独立的功能单元：
+
+1. 地址计算
+2. ALU
+3. 分支条件判断
+
+<figure markdown="span">
+    ![Img 22](../../../../img/comp_arch/ch4/ca_ch4_img22.png){ width="600" }
+    <figcaption>Dual-issue without speculation</figcaption>
+</figure>
+
+<figure markdown="span">
+    ![Img 23](../../../../img/comp_arch/ch4/ca_ch4_img23.png){ width="600" }
+    <figcaption>Dual-issue with speculation</figcaption>
+</figure>
