@@ -2183,6 +2183,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2511,6 +2517,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../general_courses/wireless_network/ch13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 ICMP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../general_courses/wireless_network/ch14/" class="md-nav__link">
         
   
@@ -2540,6 +2569,52 @@
   
   <span class="md-ellipsis">
     15 应用层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../general_courses/wireless_network/ch16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16 网络安全基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../general_courses/wireless_network/ch17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17 构建小型网络
     
   </span>
   
@@ -5126,6 +5201,8 @@
       
         
       
+        
+      
     
     
     
@@ -5244,6 +5321,29 @@
   
   <span class="md-ellipsis">
     4 Instruction-Level Parallelism and Its Exploitation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_architecture/theory/ch5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
     
   </span>
   
@@ -8300,7 +8400,7 @@
   
   
   <span class="md-ellipsis">
-    1 Git 安装与配置
+    1 安装与配置
     
   </span>
   
@@ -8323,7 +8423,7 @@
   
   
   <span class="md-ellipsis">
-    2 Git 基本操作
+    2 基本操作
     
   </span>
   
@@ -8346,7 +8446,7 @@
   
   
   <span class="md-ellipsis">
-    3 Git 分支操作
+    3 分支操作
     
   </span>
   
@@ -8369,7 +8469,7 @@
   
   
   <span class="md-ellipsis">
-    4 Git 远程操作
+    4 远程操作
     
   </span>
   
@@ -8392,7 +8492,7 @@
   
   
   <span class="md-ellipsis">
-    5 Git 多人协作
+    5 多人协作
     
   </span>
   
@@ -9008,9 +9108,43 @@
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
 <h2 id="1-lock-based-protocols">1 Lock-Based Protocols<a class="headerlink" href="#1-lock-based-protocols" title="Permanent link">&para;</a></h2>
+<p>数据项可以通过两种模式加锁：</p>
+<ol>
+<li>exclusive mode（排他锁，X 锁）：当一个事务需要修改数据时使用，它会阻止其他事务同时读取或修改相同数据</li>
+<li>shared mode（共享锁，S 锁）：当多个事务只需要读取数据时使用，允许多个事务同时获取读锁，但会阻止任何事务获取写锁</li>
+</ol>
+<p>锁管理机制：系统有一个专门的并发控制管理器负责接收和处理锁请求，事务必须等待直到获得所需锁才能继续操作</p>
+<p>Lock-compatibility matrix：</p>
+<figure>
+  <img alt="Img 1" src="../../../../img/database/ch12/database_ch12_img1.png" width="400" />
+</figure>
+<ol>
+<li>如果一个数据项上的请求锁与其他事务已持有的锁兼容，则该事务可以获取该锁</li>
+<li>多个事务可以同时持有 S 锁；但如果任一事务持有 X 锁，则其他事务不能再获取任何类型的锁（无论是 S 锁还是 X 锁）</li>
+<li>如果锁无法立即授予（由于不兼容），请求锁的事务必须等待，直到其他事务释放所有不兼容的锁，然后才能获取该锁</li>
+</ol>
+<p>locking protocol（锁协议）：所有事务在请求和释放锁时必须遵循的一组规则。锁协议通过限制可能的调度方式来确保并发执行的正确性</p>
 <h3 id="11-pitfalls-of-lock-based-protocols">1.1 Pitfalls of Lock-Based Protocols<a class="headerlink" href="#11-pitfalls-of-lock-based-protocols" title="Permanent link">&para;</a></h3>
+<figure>
+  <img alt="Img 2" src="../../../../img/database/ch12/database_ch12_img2.png" width="400" />
+</figure>
+<p>上述情况称为 deadlock（死锁）</p>
+<ol>
+<li>互斥条件：锁的排他性导致资源独占</li>
+<li>占有并等待：事务持有锁的同时请求新锁</li>
+<li>非抢占条件：已获得的锁不能被强制剥夺</li>
+<li>循环等待：形成等待环路</li>
+</ol>
+<p>处理死锁需要回滚其中一个事务并释放其持有的锁</p>
+<p>大多数锁协议都存在死锁的可能性。死锁是一种难以避免的弊端</p>
+<p>如果并发控制管理器设计不当，还可能发生 starvation（饥饿现象）：</p>
+<ol>
+<li>某个事务可能正在等待获取数据项上的 X 锁，而同时其他一系列事务却不断获取该数据项上的 S 锁</li>
+<li>同一事务因反复陷入死锁而被多次回滚</li>
+</ol>
+<p>通过合理设计，并发控制管理器（concurrency control manager）可以预防饥饿现象的发生</p>
 <h3 id="12-the-two-phase-locking-protocol">1.2 The Two-Phase Locking Protocol<a class="headerlink" href="#12-the-two-phase-locking-protocol" title="Permanent link">&para;</a></h3>
-<p>保证 conflict-serializable schedules</p>
+<p>保证 conflict-serializable schedules 的锁协议</p>
 <ol>
 <li>
 <p>Growing Phase：transaction 获得锁而不释放锁</p>
@@ -9029,9 +9163,48 @@
 </ol>
 </li>
 </ol>
+<p>两阶段锁协议不能完全避免死锁</p>
+<p>在两阶段锁协议下可能出现级联回滚。为避免这种情况，可以采用改进版的 strict two-phase locking（严格两阶段锁协议），要求事务持有的所有 <strong>排他锁</strong> 必须保持到事务提交或中止时才释放</p>
+<p>Rigorous two-phase locking（严谨两阶段锁协议）更为严格：要求所有锁（包括 <strong>共享锁</strong>）都保持到事务提交或中止。该协议下事务可按提交顺序实现串行化</p>
 <h3 id="13-implementation-of-locking">1.3 Implementation of Locking<a class="headerlink" href="#13-implementation-of-locking" title="Permanent link">&para;</a></h3>
+<ol>
+<li>lock manager 可作为独立进程实现，事务向其发送加锁和解锁请求</li>
+<li>锁管理器通过发送授权消息响应请求（若发生死锁则发送回滚消息）</li>
+<li>请求事务将等待直至收到响应</li>
+<li>锁管理器维护称为 lock table 的数据结构，记录已授权锁和待处理请求</li>
+<li>锁表通常实现为内存哈希表，以被锁数据项名称作为索引键</li>
+</ol>
+<figure>
+  <img alt="Img 3" src="../../../../img/database/ch12/database_ch12_img3.png" width="600" />
+</figure>
 <h3 id="14-graph-based-protocols">1.4 Graph-Based Protocols<a class="headerlink" href="#14-graph-based-protocols" title="Permanent link">&para;</a></h3>
+<p>Graph-based protocols 是两阶段锁协议的替代方案</p>
+<p>tree protocol 是最简单的 graph protocol</p>
+<p>核心优势：</p>
+<ol>
+<li>死锁免疫：通过树形访问顺序自然避免循环等待</li>
+<li>弹性锁释放：事务可以在使用完父节点后立即释放其锁，而不必像 2PL 那样保持到事务结束</li>
+<li>高并发性：早期锁释放减少了资源占用时间</li>
+</ol>
+<p>主要局限：</p>
+<ol>
+<li>恢复难题：由于允许早期解锁，可能出现事务 T2 读取了 T1 修改但未提交的数据，若 T1 最终中止会导致不可恢复的情况</li>
+<li>过度加锁：为访问节点 D，事务必须按 A → C → D 路径加锁，即使只需要访问 D</li>
+<li>协议互斥性：与 2PL 存在调度能力差异</li>
+</ol>
 <h4 id="141-tree-protocol">1.4.1 Tree Protocol<a class="headerlink" href="#141-tree-protocol" title="Permanent link">&para;</a></h4>
+<figure>
+  <img alt="Img 4" src="../../../../img/database/ch12/database_ch12_img4.png" width="600" />
+</figure>
+<ol>
+<li>只允许使用排他锁（X 锁）</li>
+<li>事务 Ti 的第一个锁可以加在任何数据项上。后续对数据项 Q 加锁的前提是：Ti 当前正持有 Q 的父节点的锁（也就是遵循父到子的路径）</li>
+<li>数据项可以在任何时候解锁</li>
+<li>如果数据项已被 Ti 加锁并解锁，则 Ti 后续不能再重新对其加锁</li>
+</ol>
+<figure>
+  <img alt="Img 5" src="../../../../img/database/ch12/database_ch12_img5.png" width="800" />
+</figure>
 <h2 id="-2-timestamp-based-protocols">* 2 Timestamp-Based Protocols<a class="headerlink" href="#-2-timestamp-based-protocols" title="Permanent link">&para;</a></h2>
 <h2 id="-3-validation-based-protocols">* 3 Validation-Based Protocols<a class="headerlink" href="#-3-validation-based-protocols" title="Permanent link">&para;</a></h2>
 <h2 id="4-multiple-granularity">4 Multiple Granularity<a class="headerlink" href="#4-multiple-granularity" title="Permanent link">&para;</a></h2>
@@ -9061,7 +9234,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月12日 09:38:18">2025年5月12日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月17日 09:51:08">2025年5月17日</span>
   </span>
 
     

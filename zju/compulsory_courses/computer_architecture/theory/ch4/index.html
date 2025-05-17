@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch3/">
       
       
-        <link rel="next" href="../../lab/">
+        <link rel="next" href="../ch5/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -2183,6 +2183,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -2511,6 +2517,29 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../general_courses/wireless_network/ch13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13 ICMP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../general_courses/wireless_network/ch14/" class="md-nav__link">
         
   
@@ -2540,6 +2569,52 @@
   
   <span class="md-ellipsis">
     15 应用层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general_courses/wireless_network/ch16/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16 网络安全基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../general_courses/wireless_network/ch17/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17 构建小型网络
     
   </span>
   
@@ -4957,6 +5032,8 @@
       
         
       
+        
+      
     
     
     
@@ -5431,6 +5508,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#72-the-basic-vliw-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 The Basic VLIW Approach
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5473,6 +5559,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -8524,7 +8633,7 @@
   
   
   <span class="md-ellipsis">
-    1 Git 安装与配置
+    1 安装与配置
     
   </span>
   
@@ -8547,7 +8656,7 @@
   
   
   <span class="md-ellipsis">
-    2 Git 基本操作
+    2 基本操作
     
   </span>
   
@@ -8570,7 +8679,7 @@
   
   
   <span class="md-ellipsis">
-    3 Git 分支操作
+    3 分支操作
     
   </span>
   
@@ -8593,7 +8702,7 @@
   
   
   <span class="md-ellipsis">
-    4 Git 远程操作
+    4 远程操作
     
   </span>
   
@@ -8616,7 +8725,7 @@
   
   
   <span class="md-ellipsis">
-    5 Git 多人协作
+    5 多人协作
     
   </span>
   
@@ -9369,6 +9478,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#72-the-basic-vliw-approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 The Basic VLIW Approach
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9445,10 +9563,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="4-instruction-level-parallelism-and-its-exploitation">4 Instruction-Level Parallelism and Its Exploitation<a class="headerlink" href="#4-instruction-level-parallelism-and-its-exploitation" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <ol>
@@ -9802,7 +9920,7 @@
 <p>每条指令需要经历 4 个执行步骤（由于我们现在主要考虑浮点运算，所以不考虑存储器访问步骤）。我们先粗略地查看一下这些步骤，然后再详细研究记分卡如何记录一些必要信息，用于判断执行过程何时由一个步骤进行到下一个步骤。这四个步骤代替了标准 MIPS 流水线中的 ID、EX 和 WB 步骤，如下所示：</p>
 <ol>
 <li>Issue（IS 发射）：如果指令的一个功能单元空闲，没有其他活动指令以同一寄存器为目标寄存器，则记分卡向功能单元发射指令，并更新其内部数据结构。这一步代替了MIPS 流水线中 ID 步骤的一部分。只要确保没有其他活动功能单元希望将自己的结果写入目标寄存器，就能保证不会出现 WAW 冒险。如果存在结构性冒险或 WAW 冒险，则指令发射停顿，在清除这些冒险之前，不会再发射其他指令。当发射级停顿时，会导致指令提取与发射之间的缓冲区填满；如果缓冲区只是一项，则指令提取立即停顿。如果缓冲区是拥有多条指令的队列，则在队列填满后停顿</li>
-<li>Read operands（RO 读取操作数）：记分卡监视源操作数的可用性。如果先前发射的活动指令都不再写入源操作数，而该源操作数可用。当源操作数可用时，记分卡告诉功能单元继续从寄存器读取操作数，并开始执行。记分卡在这一步动态解决 RAW 冒险，可以发送指令以进行乱序执行。这一步和发射步骤一起，完成了简单 MIPS 流水线中 ID 步骤的功能。</li>
+<li>Read operands（RO 读取操作数）：记分卡监视源操作数的可用性。如果先前发射的活动指令都不再写入源操作数，而该源操作数可用。当源操作数可用时，记分卡告诉功能单元继续从寄存器读取操作数，并开始执行。记分卡在这一步动态解决 RAW 冒险，可以发送指令以进行乱序执行。这一步和发射步骤一起，完成了简单 MIPS 流水线中 ID 步骤的功能</li>
 <li>Execution（EX 执行）：功能单元接收到操作数后开始执行。结果准备就绪后，它通知记分卡已经完成执行。这一步代替了 MIPS 流水线中的 EX 步骤，在 MIPS 浮点流水线中耗用多个周期</li>
 <li>Write result（WB 写结果）：一旦记分卡知道功能单元已经完成执行，则检查 WAR 冒险，并在必要时停顿正在完成的指令</li>
 </ol>
@@ -10429,6 +10547,34 @@
 <li>对于 N - 发射（N-issue）处理器，每周期实际发射的指令数可能为 0 到 N 条</li>
 </ol>
 <p>挑战：单周期内完成冲突检测可能导致时钟周期过长：需进行 <span class="arithmatex">\(O(n^2 - n)\)</span> 次比较（n 为发射包大小）</p>
+<h3 id="72-the-basic-vliw-approach">7.2 The Basic VLIW Approach<a class="headerlink" href="#72-the-basic-vliw-approach" title="Permanent link">&para;</a></h3>
+<p>Very long instruction word（超长指令字，VLIW）：VLIW 是一种静态多发射技术，通过将多个独立操作打包到一个超长指令中实现并行执行，与动态调度处理器不同，VLIW 的并行性由编译器显式指定</p>
+<p>单条 VLIW 指令包含多个操作字段。Intel 的 EPIC 架构称其为"数据包"（packet），Transmeta 称其为"分子/原子"（molecule/atoms）</p>
+<p>Tradeoff instruction space for simple decoding：</p>
+<ol>
+<li>超长指令字有足够空间容纳多个操作</li>
+<li>编译器放入超长指令字的所有操作都是独立的 =&gt; 可以并行执行</li>
+<li>编译器必须能识别独立操作并进行静态调度</li>
+<li>需要支持跨基本块 branch 的调度</li>
+</ol>
+<figure>
+    <img alt="Img 24" src="../../../../../img/comp_arch/ch4/ca_ch4_img24.png" width="600" />
+</figure>
+<p>VLIW 架构的问题：</p>
+<ol>
+<li>
+<p>increase in code size：</p>
+<ol>
+<li>由于需要填充长指令字的所有槽位，编译器常采用循环展开来增加并行机会，导致代码膨胀</li>
+<li>当没有足够独立操作时，必须用 NOP 填充剩余槽位，浪费指令空间</li>
+</ol>
+</li>
+<li>
+<p>limitations of lockstep operation（锁步执行限制）：VLIW 处理器要求打包在同一指令中的所有操作必须同时完成，如果任一操作（如内存访问）发生延迟，整个指令包都会停顿，降低效率</p>
+</li>
+<li>binary code compatibility（二进制兼容问题）：VLIW 程序的性能高度依赖具体硬件配置（如功能单元数量），同一程序在不同配置的 VLIW 处理器上可能需要重新编译</li>
+<li>major challenge for 所有的 multiple-issue 处理器：开发足够的指令级并行（ILP）是所有多发射架构的难点，特别是对于非数值计算类的不规则代码，难以找到足够的独立指令</li>
+</ol>
 <h2 id="8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation">8 Exploiting ILP Using Dynamic Scheduling, Multiple Issue, and Speculation<a class="headerlink" href="#8-exploiting-ilp-using-dynamic-scheduling-multiple-issue-and-speculation" title="Permanent link">&para;</a></h2>
 <h3 id="81-dynamic-scheduled-superscalar">8.1 Dynamic Scheduled Superscalar<a class="headerlink" href="#81-dynamic-scheduled-superscalar" title="Permanent link">&para;</a></h3>
 <p>通过硬件实时分析指令依赖性和资源冲突（如 Tomasulo 算法），实现乱序执行（Out-of-Order Execution），最大化指令级并行性（ILP），从而突破静态编译调度的局限性</p>
@@ -10462,6 +10608,21 @@
     <img alt="Img 21" src="../../../../../img/comp_arch/ch4/ca_ch4_img21.png" width="600" />
 </figure>
 <h3 id="82-multiple-issue-with-speculation">8.2 Multiple Issue with Speculation<a class="headerlink" href="#82-multiple-issue-with-speculation" title="Permanent link">&para;</a></h3>
+<p>推测执行的处理器可以拓展多发射功能</p>
+<p>假设一下独立的功能单元：</p>
+<ol>
+<li>地址计算</li>
+<li>ALU</li>
+<li>分支条件判断</li>
+</ol>
+<figure>
+    <img alt="Img 22" src="../../../../../img/comp_arch/ch4/ca_ch4_img22.png" width="600" />
+    <figcaption>Dual-issue without speculation</figcaption>
+</figure>
+<figure>
+    <img alt="Img 23" src="../../../../../img/comp_arch/ch4/ca_ch4_img23.png" width="600" />
+    <figcaption>Dual-issue with speculation</figcaption>
+</figure>
 
 
 
@@ -10484,7 +10645,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月9日 06:27:23">2025年5月9日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月16日 06:33:14">2025年5月16日</span>
   </span>
 
     
@@ -10616,13 +10777,13 @@
         
         
           
-          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构 - 实验部分">
+          <a href="../ch5/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机体系结构 - 实验部分
+                5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
               </div>
             </div>
             <div class="md-footer__button md-icon">
