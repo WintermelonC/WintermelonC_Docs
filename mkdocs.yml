@@ -184,7 +184,7 @@ nav:
           - '2 Pipelining: Basic and Intermediate Concepts': zju/compulsory_courses/computer_architecture/theory/ch2.md
           - 3 Memory Hierarchy Design: zju/compulsory_courses/computer_architecture/theory/ch3.md
           - 4 Instruction-Level Parallelism and Its Exploitation: zju/compulsory_courses/computer_architecture/theory/ch4.md
-          - 5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures: zju/compulsory_courses/computer_architecture/theory/ch5.md
+          - 5 Thread-Level Parallelism: zju/compulsory_courses/computer_architecture/theory/ch5.md
         - 实验部分:
           - zju/compulsory_courses/computer_architecture/lab/index.md
     - 专业模块课程:

@@ -40,6 +40,6 @@ wzh老师
 [2 Pipelining: Basic and Intermediate Concepts](./theory/ch2.md)<br/>
 [3 Memory Hierarchy Design](./theory/ch3.md)<br/>
 [4 Instruction-Level Parallelism and Its Exploitation](./theory/ch4.md)<br/>
-[5 Data-Level Parallelism in Vector, SIMD, and GPU Architectures](./theory/ch5.md)
+[5 Thread-Level Parallelism](./theory/ch5.md)
 
 ### [实验部分](./lab/index.md)
