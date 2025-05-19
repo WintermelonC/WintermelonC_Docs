@@ -34,7 +34,7 @@
     ![Img 29](../../../../img/digital_logic_design/lab/final/lab_final_img24.png){width="800"}
 </figure>
 
-## 2 VGA设计思路
+## 2 VGA 设计思路
 
 > 参考：<br/>
 > 1. [基于rom的vga图像显示](https://doc.embedfire.com/fpga/altera/ep4ce10_pro/zh/latest/code/rom_vga.html){:target="_blank"}
@@ -45,7 +45,7 @@
     ![Img 16](../../../../img/digital_logic_design/lab/final/lab_final_img16.png){width="600"}
 </figure>
 
-### 2.1 clk_gen模块
+### 2.1 clk_gen 模块
 
 此模块助教已提供，产生 $25MHz$ 的 $clk$ 信号，用于 $VGA$ 的运作
 
@@ -63,7 +63,7 @@ module clk_gen(
 endmodule
 ```
 
-### 2.2 vga_ctrl模块
+### 2.2 vga_ctrl 模块
 
 此模块助教已提供。接收像素点的色彩信息（$Din$），输出当前像素点的坐标（$row,col$）和 $VGA$ 有关的变量（$R,G,B,HS,VS$）
 
@@ -132,11 +132,11 @@ endmodule
     
     更加详细严谨的内容，浏览器搜索 rgb332
 
-### 2.3 vga_screen_pic模块
+### 2.3 vga_screen_pic 模块
 
 核心模块，输出当前像素点的色彩信息并提供给 $vga\_ctrl$ 模块
 
-#### 2.3.1 IP核的生成
+#### 2.3.1 IP 核的生成
 
 ##### 图片制作
 
@@ -213,10 +213,9 @@ endmodule
 > 参考：<br/>
 > 1. [VGA显示图像 详细总结](https://blog.csdn.net/weixin_44406200/article/details/103823607){:target="_blank"}，原文部分有误，本文档已修正
 
-所有图片导出为24位 $.bmp$ 文件，并使用 $Matlab$ 将其转换为符合格式的 $.coe$ 文件。
+所有图片导出为 24 位 $.bmp$ 文件，并使用 $Matlab$ 将其转换为符合格式的 $.coe$ 文件。
 
 > Matlab 下载：[浙江大学校园正版化软件平台](http://ms.zju.edu.cn/matlab/download.html){:target="_blank"}
-
 
 ??? tip "PS 导出为 .bmp 文件" 
 
@@ -341,31 +340,39 @@ c71,
     ![Img 6](../../../../img/digital_logic_design/lab/final/lab_final_img6.png){width="500"}
 </figure>
 
-##### 生成IP核
+##### 生成 IP 核
 
-利用 $vivado$ 生成IP核，导入 $.coe$ 文件，选择生成 $ROM$
+利用 $vivado$ 生成 IP 核，导入 $.coe$ 文件，选择生成 $ROM$
 
 <div class="annotate" markdown>
 
-??? tip "vivado 生成 ROM"
+???+ tip "vivado 生成 ROM"
 
-    打开项目工程文件，点击左侧的 ^^IP Catalog^^，搜索 ROM，双击 ^^Distributed Memory Generator^^
+    打开项目工程文件，点击左侧的 ^^IP Catalog^^，搜索 ROM，双击 ^^Block Memory Generator^^
 
-    > ^^Distributed Memory Generator^^ 会生成不包含时钟信号的存储器，^^Block Memory Generator^^ 会生成包含时钟信号的存储器 (1) ，我们组的实现方案不需要时钟信号，因此选择生成 ^^Distributed Memory Generator^^
+    > ^^Distributed Memory Generator^^ 会生成不包含时钟信号的存储器，^^Block Memory Generator^^ 会生成包含时钟信号的存储器 (1) ，我们组的实现方案不需要时钟信号，本应该选择生成 ^^Distributed Memory Generator^^，但是由于 ^^Distributed Memory Generator^^ 支持的 Depth 上限值小于 307200（大图片 640 x 480），因此只能选择 ^^Block Memory Generator^^，影响不大
 
     <figure markdown="span">
         ![Img 7](../../../../img/digital_logic_design/lab/final/lab_final_img7.png)
     </figure>
 
-    > 图中的工程文件是我随便找的，用来截图做示范的，所以图中的源文件不需要关注
+    可以重命名模块名称，设置 Interface Type 为 Native，设置 Memory Type 为 Single Port ROM
 
-    可以重命名模块名称，设置 Depth 为 256（因为此图片共 256 个像素点），设置 Data Width 为 12（因为每个像素点的颜色数据为 12 bit）。类似的，如果是 game_start 这张图片，Depth 应设置为 640 x 480 = 307200，Data Width 仍为 12。Memory Type 选择 ROM
+    <figure markdown="span">
+        ![Img 47](../../../../img/digital_logic_design/lab/final/lab_final_img47.jpg)
+    </figure>
+
+    上方选项卡选择 Port A Options，设置 Depth 为 256（因为小图片 16 x 16 共 256 个像素点），设置 Data Width 为 12（因为每个像素点的颜色数据为 12 bit）。类似的，如果是 game_start 这种大图片，Depth 应设置为 640 x 480 = 307200，Data Width 仍为 12
+
+    设置 Enable Port Type 为 Always Enabled
+
+    > 当时我实现的时候勾选了 Primitives Output Register，但是现在看来，应该不需要勾选。不过问题不大，对最后结果的影响可忽略不计
 
     <figure markdown="span">
         ![Img 8](../../../../img/digital_logic_design/lab/final/lab_final_img8.png)
     </figure>
 
-    上方选项卡选择 RST & Initialization，点击红框中的按钮加载 .coe 文件
+    上方选项卡选择 Other Options，勾选 Load Init File，点击红框中的按钮加载 .coe 文件
 
     <figure markdown="span">
         ![Img 9](../../../../img/digital_logic_design/lab/final/lab_final_img9.png)
@@ -395,13 +402,11 @@ c71,
         ![Img 13](../../../../img/digital_logic_design/lab/final/lab_final_img13.png){width="400"}
     </figure>
 
-    > 图中的工程文件是我随便找的，用来截图做示范的，所以图中的源文件不需要关注
-
 </div>
 
 1. 有无时钟信号确实是一个区别，但是主要区别并不是有无时钟信号
 
-#### 2.3.2 IP核的调用
+#### 2.3.2 IP 核的调用
 
 模块接口以及变量定义与初始化：
 
@@ -472,15 +477,17 @@ IP 核的调用：
 ```verilog linenums="1" title="vga_screen_pic.v"
 
 food_l food_l0(
-    .a(pic_romaddr0),  // 注意此图片（16 x 16）使用 pic_romaddr0
-    .spo(food_l_data)
+    .addra(pic_romaddr0),  // 注意此图片（16 x 16）使用 pic_romaddr0
+    .clka(clk),  // 传入 clk 信号
+    .douta(food_l_data)
 );
 
 -- snip --
 
 game_start game_start0(
-    .a(pic_romaddr1),  // 注意此图片（640 x 480）使用 pic_romaddr1
-    .spo(game_start_data)
+    .addra(pic_romaddr1),  // 注意此图片（640 x 480）使用 pic_romaddr1
+    .clka(clk),  // 传入 clk 信号
+    .douta(game_start_data)
 );
 
 -- snip --
@@ -494,16 +501,12 @@ game_start game_start0(
     <figure markdown="span">
         ![Img 14](../../../../img/digital_logic_design/lab/final/lab_final_img14.png){width="400"}
     </figure>
-    
-    > 图中的工程文件是我随便找的，用来截图做示范的，所以图中的源文件不需要关注
 
     这里给出了调用代码示例，可以直接复制粘贴使用
 
     <figure markdown="span">
         ![Img 15](../../../../img/digital_logic_design/lab/final/lab_final_img15.png){width="400"}
     </figure>
-
-    > 图中的工程文件是我随便找的，用来截图做示范的，所以图中的源文件不需要关注
 
 计算正确的色彩信息：
 
