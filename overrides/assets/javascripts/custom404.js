@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
   var errorTitle = document.getElementById('error-title');
 
   var privateUrls = [
-    '/zju/module_courses/cryptography/ch1.md',
-    '/zju/module_courses/cryptography/ch2.md',
-    '/zju/module_courses/cryptography/ch3.md',
-    '/zju/module_courses/cryptography/ch4.md',
-    '/zju/module_courses/cryptography/ch5.md',
-    '/zju/module_courses/cryptography/ch6.md',
+    'zju/module_courses/cryptography/ch1',
+    'zju/module_courses/cryptography/ch2',
+    'zju/module_courses/cryptography/ch3',
+    'zju/module_courses/cryptography/ch4',
+    'zju/module_courses/cryptography/ch5',
+    'zju/module_courses/cryptography/ch6',
+    'zju/module_courses/cryptography/ch7',
   ];
 
   var isPrivateUrl = privateUrls.some(function(privateUrl) {

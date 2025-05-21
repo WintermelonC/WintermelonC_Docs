@@ -128,6 +128,7 @@ nav:
         - 10 Overloaded Operator: zju/basic_courses/OOP/ch10.md
         - 11 Template: zju/basic_courses/OOP/ch11.md
         - 12 Exception: zju/basic_courses/OOP/ch12.md
+        - 13 Smart Pointer: zju/basic_courses/OOP/ch13.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -199,6 +200,7 @@ nav:
         - 4 分组密码工作模式与流密码: zju/module_courses/cryptography/ch4.md
         - 5 DES 算法和 AES 算法: zju/module_courses/cryptography/ch5.md
         - 6 RSA 算法: zju/module_courses/cryptography/ch6.md
+        - 7 椭圆曲线算法: zju/module_courses/cryptography/ch7.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
