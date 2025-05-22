@@ -12,13 +12,9 @@
 
 你可以找到一些软件的使用教程或小技巧
 
-1. Br
-2. Ps
-3. Pr
-4. Ae
-5. Vivado
-6. VS Code
-7. Watt Toolkit
+1. Vivado
+2. VS Code
+3. Watt Toolkit
 
 ## 知识
 
@@ -34,7 +30,6 @@
    2. css
    3. JavaScript
 4. Markdown
-5. 数据结构与算法
 
 ## 工具
 

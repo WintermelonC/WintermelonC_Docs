@@ -15,6 +15,4 @@
     2. [css](./web/css.md)
     3. [JavaScript](./web/javascript.md)
 
-4. [数据结构与算法](./data_stru_algorithm/index.md)
-
-    1. [其他](./data_stru_algorithm/other/sieve_of_eratosthenes.md)
+4. [Markdown](./markdown/index.md)
