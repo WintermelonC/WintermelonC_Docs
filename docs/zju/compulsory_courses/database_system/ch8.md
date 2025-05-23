@@ -557,7 +557,7 @@ LSM 树最初为磁盘索引设计，但对减少闪存擦除操作同样有效�
 
         可以设置一个阈值，当当前层级的文件数达到某个比例时，提前进行合并操作。这样可以减少读取时需要扫描的小文件数量，降低 I/O 开销
 
-???+ question "课本 24.10"
+???+ question "课本 14.10"
 
     The steppedmerge variant of the LSM tree allows multiple trees per level. What are the tradeoffs in having more trees per level?
 
