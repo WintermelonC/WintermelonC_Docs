@@ -35,4 +35,6 @@ wk老师
 [10 Overloaded Operator](./ch10.md)<br/>
 [11 Template](./ch11.md)<br/>
 [12 Exception](./ch12.md)<br/>
-[13 Smart Pointer](./ch13.md)
+[13 Smart Pointer](./ch13.md)<br/>
+[14 Stream](./ch14.md)<br/>
+[15 Design Concept](./ch15.md)

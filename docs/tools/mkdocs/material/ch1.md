@@ -101,11 +101,9 @@
     1. 了解 JavaScript 的作用
     2. 了解 JavaScript 的结构
 
-4. [Web 框架](../../../knowledge/web/index.md#2-web-框架){:target="_blank"}
-
-    1. 了解 Web 框架的作用
-
-5. 理解 HTML、css、JavaScript 之间的关系
+4. 理解 HTML、css、JavaScript 之间的关系
+5. [Web 框架](../../../knowledge/web/index.md#2-web-框架){:target="_blank"}：了解 Web 框架的作用
+6. [浏览器调试工具](../../../knowledge/web/index.md#3-浏览器调试工具){:target="_blank"}：能够简单使用浏览器调试工具
 
 ## 6 简单了解 Github Pages 的使用
 
