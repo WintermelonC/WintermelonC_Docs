@@ -3249,6 +3249,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3606,6 +3610,52 @@
   
   <span class="md-ellipsis">
     13 Smart Pointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basic_courses/OOP/ch14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Stream
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basic_courses/OOP/ch15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 Design Concept
     
   </span>
   
@@ -8252,11 +8302,35 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#课程内容" class="md-nav__link">
+    <span class="md-ellipsis">
+      课程内容
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#考核方式" class="md-nav__link">
     <span class="md-ellipsis">
       考核方式
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="考核方式">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#期末考试" class="md-nav__link">
+    <span class="md-ellipsis">
+      期末考试
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -8269,6 +8343,15 @@
   <a href="#笔记" class="md-nav__link">
     <span class="md-ellipsis">
       笔记
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#个人感受" class="md-nav__link">
+    <span class="md-ellipsis">
+      个人感受
     </span>
   </a>
   
@@ -8322,10 +8405,58 @@
 <p>此为 2024-2025 春夏学期课程安排，仅供参考</p>
 </div>
 <p>bhh老师</p>
+<h3 id="课程内容">课程内容<a class="headerlink" href="#课程内容" title="Permanent link">&para;</a></h3>
+<ol>
+<li>密码学涉及到的数学基础</li>
+<li>古典密码</li>
+<li>
+<p>Hash 函数</p>
+<ol>
+<li>MD5</li>
+<li>SHA</li>
+</ol>
+</li>
+<li>
+<p>分组密码工作模式与流密码</p>
+</li>
+<li>DES 算法和 AES 算法</li>
+<li>RSA 算法</li>
+<li>椭圆曲线算法</li>
+</ol>
 <h3 id="考核方式">考核方式<a class="headerlink" href="#考核方式" title="Permanent link">&para;</a></h3>
 <p>期末总评 = 50 % 卷面 + 50 % 平时作业</p>
+<p>平时作业布置频率很低，但是作业难度还是有的，需要动脑子</p>
+<h4 id="期末考试">期末考试<a class="headerlink" href="#期末考试" title="Permanent link">&para;</a></h4>
+<h5 id="考试形式">考试形式<a class="headerlink" href="#考试形式" title="Permanent link">&para;</a></h5>
+<p>闭卷考试</p>
+<h5 id="考试内容">考试内容<a class="headerlink" href="#考试内容" title="Permanent link">&para;</a></h5>
+<ul>
+<li>理论部分（50 分钟）：单选题共 60 分，包含选择程序填空（从算法源代码中选取片段）</li>
+<li>实验部分（80 分钟）：函数题 + 程序填空题，共 4 题，共 40 分</li>
+</ul>
+<p>4 大算法：</p>
+<ol>
+<li>des：sbox</li>
+<li>aes</li>
+<li>rsa：加密，解密，签名，验证</li>
+<li>ecc</li>
+</ol>
+<p>数学基础：加法逆元，乘法逆元（扩展欧几里得法）</p>
+<p>古典密码算法：单表，多表，enigma</p>
+<p>Hash 算法：md5（填充规则），sha-1</p>
+<p>流密码算法：rc4</p>
+<p>分组加密模式：ecb，cbc，cfb</p>
 <h2 id="笔记">笔记<a class="headerlink" href="#笔记" title="Permanent link">&para;</a></h2>
 <p><a href="http://cc.zju.edu.cn/bhh/" target="_blank">bhh老师的个人网页</a></p>
+<h2 id="个人感受">个人感受<a class="headerlink" href="#个人感受" title="Permanent link">&para;</a></h2>
+<p>选课的时候，我看了一下教务网上的课程介绍，发现有什么 rsa 算法之类的东西，刚好之前学习 git，配置 SSH key 的时候用到了 rsa，我就想着选上这门课来了解一下。不过现在看来，我个人对密码学不是很感兴趣，但是也不排斥学习这么一个新知识</p>
+<p>这门课用的编辑器是 VC6 或者 Dev C++（包括期末考试的时候），比较老了</p>
+<details class="quote">
+<summary>碎碎念</summary>
+<p>现在比较主流的 C 语言编辑器是 VS Code 或者 CLion，我看周围的同学包括我自己，用 VS Code 比较多，这门课用上 VC6 会比较不习惯</p>
+<p>那老师平时可能用 VC6 比较多，接触 VS Code 会不习惯，可能也不会深入了解 VS Code 的功能。但是我还是挺希望这门课（包括别的涉及编程的课）能与时俱进一下，使用目前比较主流的编辑器</p>
+<p>老师之前上课说，VS Code 功能没有 VC6 多，但老师可能不是很了解 VS Code。VS Code 本身只是一个文本编辑器，不下载扩展甚至运行不了代码文件，只要下载了对应的扩展，支持的功能肯定是比 VC6 要多得多的</p>
+</details>
 
 
 
@@ -8348,7 +8479,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年3月3日 06:00:49">2025年3月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月27日 08:54:17 UTC">2025年5月27日</span>
   </span>
 
     
@@ -8358,7 +8489,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年1月17日 12:29:23">2025年1月17日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年1月17日 12:29:23 UTC">2025年1月17日</span>
   </span>
 
     

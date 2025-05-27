@@ -3249,6 +3249,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3606,6 +3610,52 @@
   
   <span class="md-ellipsis">
     13 Smart Pointer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/OOP/ch14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14 Stream
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../basic_courses/OOP/ch15/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15 Design Concept
     
   </span>
   
@@ -5311,6 +5361,15 @@
   <a href="#-8-concurrency-in-index-structures" class="md-nav__link">
     <span class="md-ellipsis">
       * 8 Concurrency in Index Structures
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework
     </span>
   </a>
   
@@ -8859,6 +8918,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#homework" class="md-nav__link">
+    <span class="md-ellipsis">
+      Homework
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8973,7 +9041,7 @@
 <li>锁表通常实现为内存哈希表，以被锁数据项名称作为索引键</li>
 </ol>
 <figure>
-  <img alt="Img 3" src="../../../../img/database/ch12/database_ch12_img3.png" width="600" />
+  <img alt="Img 3" src="../../../../img/database/ch12/database_ch12_img3.png" width="500" />
 </figure>
 <h3 id="14-graph-based-protocols">1.4 Graph-Based Protocols<a class="headerlink" href="#14-graph-based-protocols" title="Permanent link">&para;</a></h3>
 <p>Graph-based protocols 是两阶段锁协议的替代方案</p>
@@ -9214,7 +9282,7 @@
 </ol>
 <h2 id="6-deadlock-handling">6 Deadlock Handling<a class="headerlink" href="#6-deadlock-handling" title="Permanent link">&para;</a></h2>
 <figure>
-  <img alt="Img 8" src="../../../../img/database/ch12/database_ch12_img8.png" width="600" />
+  <img alt="Img 8" src="../../../../img/database/ch12/database_ch12_img8.png" width="500" />
 <br />
 <figcaption>死锁示例</figcaption>
 </figure>
@@ -9367,6 +9435,139 @@
 </ol>
 <p>解决：牺牲搜索事务（因其无副作用），重启后树结构可能已更新，需重新遍历</p>
 <p>更优协议：B-link 树协议。核心思想：在获取子节点锁之前释放父节点锁，并处理锁释放与获取之间可能发生的结构变更</p>
+<h2 id="homework">Homework<a class="headerlink" href="#homework" title="Permanent link">&para;</a></h2>
+<details class="question" open="open">
+<summary>课本 18.1</summary>
+<p>Show that the two-phase locking protocol ensures conflict serializability and that transactions can be serialized according to their lock points.</p>
+<details class="success">
+<summary>答案</summary>
+<p>Tow-Phase Locking 将事务分为两个阶段：</p>
+<ol>
+<li>Growing Phase：事务只能获取锁，不能释放锁</li>
+<li>Shrinking Phase：事务只能释放锁，不能获取锁</li>
+</ol>
+<p>由于事务在释放任何锁之后不能再获取新的锁，因此事务之间的锁获取顺序形成了一个偏序关系。这种偏序关系确保了事务的调度是冲突可串行化的，即存在一个等价的事务串行顺序</p>
+<p>Lock Point 是事务获取最后一个锁的时间点。将事务按照它们的锁定点顺序串行化，可以保证调度的冲突可串行性。因为锁定点反映了事务对数据项的访问顺序，从而避免了冲突操作的交叉</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 18.2</summary>
+<p>Consider the following two transactions:</p>
+<div class="grid" markdown>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">T34</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>read(A);
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>read(B);
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>if A = 0 then B := B + 1;
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>write(B).
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">T35</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>read(B);
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>read(A);
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>if B = 0 then A := A + 1;
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>write(A).
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>Add lock and unlock instructions to transactions T34 and T35 so that they observe the two-phase locking protocol. Can the execution of these transactions result in a deadlock?</p>
+<details class="success">
+<summary>答案</summary>
+<p><span class="arithmatex">\(T_{34}\)</span></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>lock-S(A);
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>read(A);
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>lock-S(B);
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>read(B);
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>if A = 0 then
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    upgrade(B);
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>    B := B + 1;
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    write(B);
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>unlock(A);
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>unlock(B);
+</span></code></pre></div>
+<p><span class="arithmatex">\(T_{35}\)</span></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>lock-S(B);
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>read(B);
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>lock-S(A);
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>read(A);
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>if B = 0 then
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    upgrade(A);
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    A := A + 1;
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    write(A);
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>unlock(B);
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>unlock(A);
+</span></code></pre></div>
+<p>这两个事务有可能导致 deadlock：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;"><span class="arithmatex">\(T_{34}\)</span></th>
+<th style="text-align: center;"><span class="arithmatex">\(T_{35}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">lock-S(A);<br/>read(A);</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;">lock-S(B);<br/>read(B);</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">lock-S(B);<br/>read(B);</td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">lock-S(A);<br/>read(A);</td>
+</tr>
+<tr>
+<td style="text-align: center;">if A = 0 then<br/>    upgrade(B);<br/><span class="arithmatex">\(T_{35}\)</span> 拥有 B 的 S 锁，等待</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">if B = 0 then<br/> upgrade(A);<br/><span class="arithmatex">\(T_{34}\)</span> 拥有 A 的 S 锁，等待</td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(T_{34}\)</span> 等待 <span class="arithmatex">\(T_{35}\)</span> 释放 B 的锁，而 <span class="arithmatex">\(T_{35}\)</span> 等待 <span class="arithmatex">\(T_{34}\)</span> 释放 A 的锁，形成循环等待，即 deadlock</p>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 18.7</summary>
+<p>Consider a database system that includes an atomic increment operation, in addition to the read and write operations. Let V be the value of data item X. The operation <code>increment(X) by C</code> sets the value of X to V + C in an atomic step. The value of X is not available to the transaction unless the latter executes a read(X).</p>
+<p>Assume that increment operations lock the item in increment mode using the compatibility matrix in Figure below.</p>
+<p><figure markdown="span">
+  <img alt="Img 11" src="../../../../img/database/ch12/database_ch12_img11.png" width="400" />
+</figure></p>
+<p>a. Show that, if all transactions lock the data that they access in the corresponding mode, then two-phase locking ensures serializability.</p>
+<p>b. Show that the inclusion of increment mode locks allows for increased concurrency.</p>
+<details class="success">
+<summary>答案</summary>
+<p>a. 如果所有事务按兼容性矩阵正确加锁，则事务的锁请求顺序会形成一个偏序关系，避免冲突操作交叉。最终调度等价于按锁获取顺序的串行执行，从而保证可串行化</p>
+<p>b.</p>
+<ol>
+<li>没有 I 锁：<code>increment(X)</code> 操作需要用到 X 锁，根据兼容性矩阵，这会阻碍其他所有操作</li>
+<li>有 I 锁：多个 <code>increment(X)</code> 操作就可以并发执行，因为 I 锁之间相互兼容</li>
+</ol>
+</details>
+</details>
+<details class="question" open="open">
+<summary>课本 18.18</summary>
+<p>Most implementations of database systems use strict two-phase locking. Suggest three reasons for the popularity of this protocol.</p>
+<details class="success">
+<summary>答案</summary>
+<p>strict tow-phase locking：要求事务持有的所有排他锁必须保持到事务提交或中止时才释放</p>
+<ol>
+<li><strong>简化恢复过程</strong>：由于事务持有的排他锁直到提交后才释放，其他事务无法读取或修改未提交的数据。因此，系统无需处理脏读或级联回滚，故障恢复时只需回滚未提交的事务即可</li>
+<li><strong>避免级联回滚</strong>：在普通 2PL 中，事务可能读取其他事务未提交的数据（如果锁被提前释放）。若后者回滚，前者也必须回滚，导致级联问题。而 Strict 2PL 要求事务持有的所有排他锁必须保持到事务提交或中止时才释放，彻底避免了这一现象</li>
+<li><strong>实现简单且高效</strong>：锁管理开销低，事务只需在提交时一次性释放所有锁，无需跟踪锁的释放时机</li>
+</ol>
+</details>
+</details>
 
 
 
@@ -9389,7 +9590,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月23日 14:35:30">2025年5月23日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月27日 08:54:17 UTC">2025年5月27日</span>
   </span>
 
     
@@ -9399,7 +9600,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月12日 09:38:18">2025年5月12日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月12日 09:38:18 UTC">2025年5月12日</span>
   </span>
 
     
