@@ -346,7 +346,7 @@ c71,
 
 <div class="annotate" markdown>
 
-???+ tip "vivado 生成 ROM"
+??? tip "vivado 生成 ROM"
 
     打开项目工程文件，点击左侧的 ^^IP Catalog^^，搜索 ROM，双击 ^^Block Memory Generator^^
 

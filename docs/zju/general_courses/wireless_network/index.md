@@ -64,6 +64,8 @@ zy老师、sxx老师
 
 ## 笔记
 
+### 个人笔记
+
 > 笔记内容来源：Cisco Networking Academy - Introduction to Networks
 
 [1 当今网络](./ch1.md)<br/>
@@ -83,3 +85,19 @@ zy老师、sxx老师
 [15 应用层](./ch15.md)<br/>
 [16 网络安全基础知识](./ch16.md)<br/>
 [17 构建小型网络](./ch17.md)
+
+### 其他
+
+[CCNA 1 v7 Answers](https://itexamanswers.net/ccna-1-v7-modules-1-3-basic-network-connectivity-and-communications-exam-answers.html){:target="_blank"}
+
+## 个人感受
+
+很有用的一门课，各种专业名词（IPv4、IPv6、子网掩码、DNS、TCP 等等）的概念以及设备之间如何在网络中通信（路由器、交换器等等），这门课都能学到。而且这些知识也很有意思，不是很难
+
+> 之前在 ADS 这门课做 Hadoop 项目的时候，配置虚拟机需要设置网络参数，当时什么子网掩码、DNS 都不知道啥意思，稀里糊涂的，遇到好多网络问题，弄半天才把环境配置好。现在终于知道是干嘛的了
+
+考核方式里面的要求也很简单，很容易完成
+
+6 个基本实验，实验指导文档中的操作步骤都很详细，跟着一步一步做就能成功完成实验内容
+
+这门课有很多 Bonus，但是不一定要全做，因为实在太多了。有时间就做一做，没时间就不做呗
