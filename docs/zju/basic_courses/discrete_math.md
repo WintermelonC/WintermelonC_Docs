@@ -34,7 +34,7 @@ wyl老师
 
 ## 历年题整理
 
-[浙江大学课程攻略共享计划](https://qsctech.github.io/zju-icicles/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/){:target="_blank"}
+[浙江大学课程攻略共享计划 - 离散数学及其应用](https://qsctech.github.io/zju-icicles/%E7%A6%BB%E6%95%A3%E6%95%B0%E5%AD%A6%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/){:target="_blank"}
 
 ### 2023-2024 春夏 期中
 

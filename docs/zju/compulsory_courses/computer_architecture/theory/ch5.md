@@ -8,6 +8,7 @@
 
     1. 本文档仅涉及部分内容，仅可用于复习重点知识
     2. 本文档内容对应课本 Chapter 5
+    3. 本章内容看明白具体例子以后，再返回来看前面的表格、状态图就好理解多了
 
 ## 1 Introduction
 
@@ -316,6 +317,10 @@ MOESI 向 MESI 协议中添加了 “拥有” (Owned) 状态，用于表示相�
 
 #### 2.6.1 MESI
 
+<figure markdown="span">
+  ![Img 20](../../../../img/comp_arch/ch5/ca_ch5_img20.png){ width="600" }
+</figure>
+
 ## 4 Distributed Shared-Memory and Directory-Based Coherence
 
 **分布式共享存储器和目录式一致性**
@@ -398,3 +403,20 @@ MOESI 向 MESI 协议中添加了 “拥有” (Owned) 状态，用于表示相�
   ![Img 19](../../../../img/comp_arch/ch5/ca_ch5_img19.png){ width="600" }
 </figure>
 
+**Example 3：**
+
+<figure markdown="span">
+  ![Img 21](../../../../img/comp_arch/ch5/ca_ch5_img21.png){ width="800" }
+</figure>
+
+### 4.3 Implementation of Directory-Base Coherence
+
+## 5 Synchronization: The Basics
+
+### 5.1 Basic Hardware Primitives
+
+**基本硬件原语**
+
+### 5.2 Implementing Locks Using Coherence
+
+**使用一致性实现锁**

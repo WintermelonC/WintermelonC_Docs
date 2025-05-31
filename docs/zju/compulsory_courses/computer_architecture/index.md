@@ -30,9 +30,13 @@ wzh老师
   ![Img 4](../../../img/comp_arch/ca_img4.png){ width="600" }
 </figure>
 
-## 个人笔记
+Bonus：实现动态分支预测（使用 AI 进行协作）
 
-### 理论部分及课本部分习题详解
+## 笔记
+
+### 个人笔记
+
+#### 理论部分及课本部分习题详解
 
 > 习题答案仅供参考
 
@@ -42,4 +46,28 @@ wzh老师
 [4 Instruction-Level Parallelism and Its Exploitation](./theory/ch4.md)<br/>
 [5 Thread-Level Parallelism](./theory/ch5.md)
 
-### [实验部分](./lab/index.md)
+#### [实验部分](./lab.md)
+
+这门课实验部分的 ppt 还是挺清楚的
+
+### 其他
+
+[浙江大学课程攻略共享计划 - 计算机体系结构](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/){:target="_blank"}
+
+[计算机体系结构(CA)复习资源分享](https://www.cc98.org/topic/5532574){:target="_blank"}
+
+## 历年题整理
+
+### 2023-2024
+
+[23-24 计算机体系结构回忆卷](https://www.cc98.org/topic/5800194){:target="_blank"}
+
+### 2022-2023
+
+[22-23计算机体系结构回忆卷](https://www.cc98.org/topic/5504808){:target="_blank"}
+
+### 2020-2021 秋冬
+
+[2020-2021 秋冬 计算机体系结构 回忆](https://www.cc98.org/topic/5026696){:target="_blank"}
+
+## 个人感受

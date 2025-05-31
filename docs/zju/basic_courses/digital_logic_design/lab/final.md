@@ -1399,7 +1399,11 @@ always @(posedge game_clk) begin
             state[19][6] = 3'b010;
             state[18][6] = 3'b010;
             state[fruit_x][fruit_y] = 3'b011;
-
+        end
+        -- snip --
+    end
+    -- snip --
+end
 ```
 
 `state_pos <= {state_pos[0], game_state[0]};`，当game_state维持在 1 时，state_pos 稳定为 2'b11；每当game_state从 0 变化为 1 时，所有游戏数据会被重置，回到初始设置
@@ -1411,7 +1415,9 @@ always @(posedge game_clk) begin
 #### 6.5.1 方向控制
 
 ```verilog linenums="1" title="run_module.v"
-else if (game_clk) begin
+if (state_pos == 2'b01) begin
+    -- snip --
+end else if (game_clk) begin
     if (game_state[0]) begin
         case(current_dir)
             2'd0:begin
@@ -1432,12 +1438,14 @@ else if (game_clk) begin
             end
         endcase
 
-case(dir)
-    2'd0: if (current_dir != 2'd1) current_dir <= 2'd0;
-    2'd1: if (current_dir != 2'd0) current_dir <= 2'd1;
-    2'd2: if (current_dir != 2'd3) current_dir <= 2'd2;
-    2'd3: if (current_dir != 2'd2) current_dir <= 2'd3;
-endcase
+        case(dir)
+            2'd0: if (current_dir != 2'd1) current_dir <= 2'd0;
+            2'd1: if (current_dir != 2'd0) current_dir <= 2'd1;
+            2'd2: if (current_dir != 2'd3) current_dir <= 2'd2;
+            2'd3: if (current_dir != 2'd2) current_dir <= 2'd3;
+        endcase
+    end
+end
 ```
 
 - 处理`current_dir`信号，然后0-3分别映射上下左右控制下一刻蛇头位置；
@@ -1446,8 +1454,11 @@ endcase
 #### 6.5.2 触碰障碍或身体
 
 ```verilog linenums="1" title="run_module.v"
-if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
-    gameover <= 1'b1;
+if (game_state[0]) begin
+    -- snip --
+    if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
+        gameover <= 1'b1;
+    end
 end
 ```
 
@@ -1456,7 +1467,9 @@ end
 #### 6.5.3 移动到空白格
 
 ```verilog linenums="1" title="run_module.v"
-else if (state[next_head_x][next_head_y] == 3'b000) begin
+if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
+    -- snip --
+end else if (state[next_head_x][next_head_y] == 3'b000) begin
     state[next_head_x][next_head_y] = 3'b001; //下一格变为蛇头
     state[head_x][head_y] = 3'b010;//原蛇头处变为蛇身
     state[body_x[length]][body_y[length]] = 3'b000;//
@@ -1479,7 +1492,11 @@ end
 #### 6.5.4 吃到食物
 
 ```verilog linenums="1" title="run_module.v"
-else begin
+if (state[next_head_x][next_head_y] == 3'b110 || state[next_head_x][next_head_y] == 3'b010) begin
+    -- snip --
+end else if (state[next_head_x][next_head_y] == 3'b000) begin
+    -- snip --
+end else begin
     case (state[next_head_x][next_head_y])
         3'b011: score = score + 16'd1;
         3'b100: score = score + 16'd2;
@@ -1515,7 +1532,7 @@ else begin
         3'd4: state[fruit_x][fruit_y] = 3'b100; //生成Medium_Food的相对概率为1/3
         3'd5: state[fruit_x][fruit_y] = 3'b101; //state = 5为大食物，生成Large_Food的相对概率为1/6
     endcase
-
+end
 ```
 
 1. 判断下一时刻蛇头移动到的位置的状态，以获得不同的得分(`3'b011`为小果实，1分；`3'b100`为中果实，2分；`3'b101`为大果实，3分)
