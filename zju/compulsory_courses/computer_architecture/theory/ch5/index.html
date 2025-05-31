@@ -5539,6 +5539,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-implementation-of-directory-base-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Implementation of Directory-Base Coherence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-synchronization-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Synchronization: The Basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Synchronization: The Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-basic-hardware-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Basic Hardware Primitives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-implementing-locks-using-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Implementing Locks Using Coherence
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5567,32 +5609,9 @@
   
   
   
-    
-    
-      
+    <li class="md-nav__item">
+      <a href="../../lab/" class="md-nav__link">
         
-          
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9_5_3" >
-        
-          
-          <div class="md-nav__link md-nav__container">
-            <a href="../../lab/" class="md-nav__link ">
-              
   
   
   <span class="md-ellipsis">
@@ -5601,22 +5620,7 @@
   </span>
   
 
-            </a>
-            
-          </div>
-        
-        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_9_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_9_5_3">
-            <span class="md-nav__icon md-icon"></span>
-            实验部分
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-            
-          </ul>
-        </nav>
-      
+      </a>
     </li>
   
 
@@ -8732,6 +8736,48 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#43-implementation-of-directory-base-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Implementation of Directory-Base Coherence
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-synchronization-the-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 Synchronization: The Basics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Synchronization: The Basics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-basic-hardware-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Basic Hardware Primitives
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-implementing-locks-using-coherence" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Implementing Locks Using Coherence
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8784,6 +8830,7 @@
 <ol>
 <li>本文档仅涉及部分内容，仅可用于复习重点知识</li>
 <li>本文档内容对应课本 Chapter 5</li>
+<li>本章内容看明白具体例子以后，再返回来看前面的表格、状态图就好理解多了</li>
 </ol>
 </div>
 <h2 id="1-introduction">1 Introduction<a class="headerlink" href="#1-introduction" title="Permanent link">&para;</a></h2>
@@ -9050,6 +9097,9 @@
 <p>MESI 向基本的 MSI 协议中添加了 “独占” (Exclusive) 状态，用于表示缓存块仅驻存在一个缓存中，而且是清洁的。如果块处于独占状态，就可以对其进行写入而不会产生任何失效操作，当一个块由单个缓存读取，然后再由同一缓存写入时，可以通过这一独占状态得以优化。当然，处于独占状态的块产生读取缺失时，必须将这个块改为共享状态，以保持一致性。因为所有后续访问都会被监听，所以有可能保持这一状态的准确性。具体来说，如果另一个处理器发射一个读取缺失，则状态会由独占改为共享。添加这一状态的好处在于：在由同一核心对处于独占状态的块进行后续写入时，不需要访问总线，也不会生成失效操作，因为处理器知道这个块在这个本地缓存中是独占的；处理器只是将状态改为已修改。添加这一状态非常简单，只需要使用 1 个位对这个一致状态进行编码，表示为独占状态，并使用重写标志位表示这个块已被修改。流行的 MESI 协议就采用了这一结构，这一协议是用它所包含的 4 种状态命名的，即已修改 (Modified)、独占 (Exclusive)、共享 (Shared) 和无效 (Invalid)。Intel i7 使用了 MESI 协议的一种变体，称为 MESIF，它添加了一个状态 (Forward)，用于表示应当由哪个共享处理器对请求作出回应。这种协议设计用来提高分布式存储器组成结构的性能</p>
 <p>MOESI 向 MESI 协议中添加了 “拥有” (Owned) 状态，用于表示相关块由该缓存拥有在存储器中已经过时。在 MSI 和 MESI 协议中，如果尝试共享处于“已修改”状态的块，会将其状态改为“共享” (在原共享缓存和新共享缓存中都会做此修改)，必须将这个块写回存储器中。而在 MOESI 协议中，会在原缓存中将这个块的状态由“已修改”改为“拥有”，不再将其写到存储器中。(新共享这个块的) 其他缓存使这个块保持共享状态：只有原缓存保持“拥有”状态，表示主存储器副本已经过期，指定缓存成为其拥有者。这个块的拥有者必须在发生缺失时提供该块，因为存储器中没有最新内容，如果替换了这个块，则必须将其写回存储器中</p>
 <h4 id="261-mesi">2.6.1 MESI<a class="headerlink" href="#261-mesi" title="Permanent link">&para;</a></h4>
+<figure>
+  <img alt="Img 20" src="../../../../../img/comp_arch/ch5/ca_ch5_img20.png" width="600" />
+</figure>
 <h2 id="4-distributed-shared-memory-and-directory-based-coherence">4 Distributed Shared-Memory and Directory-Based Coherence<a class="headerlink" href="#4-distributed-shared-memory-and-directory-based-coherence" title="Permanent link">&para;</a></h2>
 <p><strong>分布式共享存储器和目录式一致性</strong></p>
 <p>如前所述，监听式一致性协议的替代方法是 <strong>directory protocol</strong>（目录式协议）。<strong>目录</strong> 中保存了每个可缓存块的状态。这个目录中的信息包括哪些缓存 (或缓存集合) 拥有这个块的副本，它是否需要更新，等等</p>
@@ -9116,6 +9166,16 @@
 <figure>
   <img alt="Img 19" src="../../../../../img/comp_arch/ch5/ca_ch5_img19.png" width="600" />
 </figure>
+<p><strong>Example 3：</strong></p>
+<figure>
+  <img alt="Img 21" src="../../../../../img/comp_arch/ch5/ca_ch5_img21.png" width="800" />
+</figure>
+<h3 id="43-implementation-of-directory-base-coherence">4.3 Implementation of Directory-Base Coherence<a class="headerlink" href="#43-implementation-of-directory-base-coherence" title="Permanent link">&para;</a></h3>
+<h2 id="5-synchronization-the-basics">5 Synchronization: The Basics<a class="headerlink" href="#5-synchronization-the-basics" title="Permanent link">&para;</a></h2>
+<h3 id="51-basic-hardware-primitives">5.1 Basic Hardware Primitives<a class="headerlink" href="#51-basic-hardware-primitives" title="Permanent link">&para;</a></h3>
+<p><strong>基本硬件原语</strong></p>
+<h3 id="52-implementing-locks-using-coherence">5.2 Implementing Locks Using Coherence<a class="headerlink" href="#52-implementing-locks-using-coherence" title="Permanent link">&para;</a></h3>
+<p><strong>使用一致性实现锁</strong></p>
 
 
 
@@ -9138,7 +9198,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月22日 11:13:12 UTC">2025年5月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月31日 07:18:35 UTC">2025年5月31日</span>
   </span>
 
     
@@ -9270,13 +9330,13 @@
         
         
           
-          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 计算机体系结构 - 实验部分">
+          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 实验部分">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                计算机体系结构 - 实验部分
+                实验部分
               </div>
             </div>
             <div class="md-footer__button md-icon">
