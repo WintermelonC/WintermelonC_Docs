@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var customMessage = document.getElementById('custom-message');
   var errorTitle = document.getElementById('error-title');
 
-  var privateUrls = [
+  var cryptographyUrls = [
     'zju/module_courses/cryptography/ch1',
     'zju/module_courses/cryptography/ch2',
     'zju/module_courses/cryptography/ch3',
@@ -13,13 +13,22 @@ document.addEventListener('DOMContentLoaded', function() {
     'zju/module_courses/cryptography/ch7',
   ];
 
-  var isPrivateUrl = privateUrls.some(function(privateUrl) {
-    return url.includes(privateUrl);
+  var tempPrivateUrls = [
+    'zju/module_courses/cryptography/doc',
+  ];
+
+  var isCryptographyUrl = cryptographyUrls.some(function(cryptographyUrls) {
+    return url.includes(cryptographyUrls);
   });
 
-  if (isPrivateUrl) {
-    errorTitle.innerText = '本文档内容不对外开放，敬请谅解';
+  var isTempPrivateUrls = tempPrivateUrls.some(function(tempPrivateUrls) {
+    return url.includes(tempPrivateUrls);
+  });
+
+  if (isCryptographyUrl) {
     customMessage.innerHTML = '<p>应课程老师要求，本文档内容不对外开放，敬请谅解</p>';
+  } else if (isTempPrivateUrls) {
+    customMessage.innerHTML = '<p>本文档内容暂时不对外开放，敬请谅解</p>';
   } else {
     customMessage.innerHTML = '<p>您尝试访问的页面不存在，请检查链接是否正确</p>';
   }

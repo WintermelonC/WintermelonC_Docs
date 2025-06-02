@@ -628,10 +628,6 @@
       
         
       
-        
-      
-        
-      
     
     
     
@@ -713,52 +709,6 @@
   
   <span class="md-ellipsis">
     1 世界的物质性及发展规律
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../political/marxist_principles/ch2/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    2 实践与认识及其发展规律
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../political/marxist_principles/ch3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    3 人类社会及其发展规律
     
   </span>
   
@@ -5581,6 +5531,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#53-barrier-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Barrier Synchronization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Barrier Synchronization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#541-queuing-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.1 Queuing Lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#542-barrier-using-fetch--increment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.2 Barrier Using Fetch &amp; Increment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5732,6 +5715,8 @@
       
         
       
+        
+      
     
     
     
@@ -5775,6 +5760,29 @@
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../module_courses/cryptography/doc.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    整理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -8778,6 +8786,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#53-barrier-synchronization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Barrier Synchronization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.3 Barrier Synchronization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#541-queuing-lock" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.1 Queuing Lock
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#542-barrier-using-fetch--increment" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4.2 Barrier Using Fetch &amp; Increment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9171,11 +9212,349 @@
   <img alt="Img 21" src="../../../../../img/comp_arch/ch5/ca_ch5_img21.png" width="800" />
 </figure>
 <h3 id="43-implementation-of-directory-base-coherence">4.3 Implementation of Directory-Base Coherence<a class="headerlink" href="#43-implementation-of-directory-base-coherence" title="Permanent link">&para;</a></h3>
+<p>为实现简化所做的假设：</p>
+<ol>
+<li>点对点有序传输：消息不会乱序或丢失，确保可靠性</li>
+<li>无限缓冲：忽略网络拥塞或缓冲区溢出的问题，简化流量控制</li>
+<li>有限时延：消息最终必达，排除无限延迟或丢包情况</li>
+<li>控制器冗余：每个缓存块有独立控制器，避免共享资源冲突</li>
+<li>同步完成条件：状态转换需严格依赖消息交互的完成，确保一致性</li>
+<li>省略 pending 状态：可能指忽略中间等待状态，简化状态机设计</li>
+<li>异步消息处理：允许发送与接收操作解耦，提升并发性</li>
+</ol>
+<p><strong>1.Deadlock</strong></p>
+<p>假设 P1 和 P2 分别独占持有缓存块 X1 和 X2 的副本，且这些块属于不同的主目录</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">由 P1 活动引发的事件</th>
+<th style="text-align: center;">由 P2 活动引发的事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">P1 对 X2 发生读缺失（read miss）</td>
+<td style="text-align: center;">P2 对 X1 发生读缺失（read miss）</td>
+</tr>
+<tr>
+<td style="text-align: center;">X2 的主目录收到读缺失请求，生成一个获取（fetch）请求并发送给 P2</td>
+<td style="text-align: center;">X1 的主目录收到读缺失请求，生成一个获取（fetch）请求并发送给 P1</td>
+</tr>
+<tr>
+<td style="text-align: center;">获取请求到达 P1，等待其原子性读缺失操作完成</td>
+<td style="text-align: center;">获取请求到达 P2，等待其原子性读缺失操作完成</td>
+</tr>
+</tbody>
+</table>
+<p>死锁过程：</p>
+<ol>
+<li>步骤 1：P1 尝试读取 P2 持有的 X2，触发读缺失，向 X2 的主目录请求数据</li>
+<li>步骤 2：X2 的主目录要求 P2 返回 X2 的数据（发送 Fetch 请求）</li>
+<li>同时：P2 尝试读取 P1 持有的 X1，同样触发读缺失，向 X1 的主目录请求数据</li>
+<li>步骤 3：X1 的主目录要求 P1 返回 X1 的数据（发送 Fetch 请求）</li>
+<li>僵局：P1 和 P2 均在等待对方响应自己的 Fetch 请求，但双方又因处理对方的 Fetch 请求而阻塞，形成循环依赖，导致死锁</li>
+</ol>
+<p>解决方案：duplicate coherence controller（复制一致性控制器）：为每个缓存块分配独立的一致性控制器，解除控制器资源的共享依赖。这样，P1 和 P2 可以并行处理不同块的 Fetch 请求，避免相互阻塞</p>
+<p><strong>2.How to Assure Write Serialization</strong></p>
+<p><strong>如何确保写入序列化</strong></p>
+<p>通过主目录（Home Directory）实现序列化独占访问</p>
+<ol>
+<li>缓冲所有请求（写缺失/无效化请求）</li>
+<li>按顺序处理请求</li>
+<li>只有在完成前一个请求后，才开始处理新请求</li>
+</ol>
+<p><strong>3.How to Solve the Race</strong></p>
+<p><strong>如何解决“竞争”问题</strong></p>
+<ol>
+<li>
+<p>确定竞争获胜者：当多个处理器同时请求修改同一数据时（如写缺失或无效化操作）主目录（Home Directory）作为仲裁者，通过以下消息通知获胜者：</p>
+<ol>
+<li>Data Reply：针对写缺失请求，返回最新数据，表示该处理器获得写入权限</li>
+<li>Explicit ACK：针对无效化请求，发送显式确认，表示无效化操作已被接受</li>
+</ol>
+</li>
+<li>
+<p>处理失败者：主目录向竞争失败的处理器发送 NAK（Negative Acknowledgement），通知其请求被拒绝，需退避或重试</p>
+</li>
+<li>
+<p>确认无效化完成：在广播无效化请求（如 MESI 协议中的 Invalidate）后，系统需确保所有副本均被无效化，两种实现方式：</p>
+<ol>
+<li>目录收集法：目录节点汇总所有远程节点的 ACK，再通知请求者操作完成</li>
+<li>主节点直接收集法：主节点（数据所有者）直接统计 ACK，减少目录的参与</li>
+</ol>
+</li>
+</ol>
+<p><strong>4.Buffer Requirement</strong></p>
+<ol>
+<li>大量缓冲区需求：在缓存一致性协议中，处理写缺失或无效化操作时需要大量缓冲区来存储消息</li>
+<li>写缺失的连锁反应：一次写缺失可能触发大量无效化消息（例如广播无效化其他缓存副本），进一步增加缓冲区压力</li>
+<li>预取机制：通过预取数据减少缺失次数，间接缓解缓冲区压力</li>
+<li>未处理的缺失：系统中可能存在多个未完成的缓存缺失请求，需要缓冲区支持并行处理</li>
+<li>实际限制：硬件资源有限，缓冲区不能无限扩展，需优化设计</li>
+</ol>
+<p><strong>5.Avoid Deadlock with Limited Buffering</strong></p>
+<p>死锁的三个根源：</p>
+<ol>
+<li>多资源依赖：单个事务（如缓存一致性操作）需要多个资源（如请求缓冲区、回复缓冲区等）。需为不同消息类型（请求、回复、接收）分配独立缓冲区</li>
+<li>非原子事务：资源会一直被占用，直到事务完成（例如等待远程节点的 ACK）</li>
+<li>无全局顺序：资源的获取没有固定顺序，可能导致循环等待（如A 等 B，B 等 A）</li>
+</ol>
+<p>解决方法：</p>
+<ol>
+<li>资源隔离策略：独立网络通道：将请求和响应消息通过物理或逻辑上分离的通道传输，避免因共享资源（如缓冲区）导致的拥塞或死锁</li>
+<li>
+<p>资源预留机制：</p>
+<ol>
+<li>预先分配响应空间：在发送请求时，立即为对应的响应分配缓冲区，确保响应不会被丢弃（即使系统繁忙）</li>
+<li>响应方释放缓冲：响应方（如目录节点）在完成响应后可回收缓冲区，提高资源利用率</li>
+</ol>
+</li>
+<li>
+<p>NAK（否定应答）规则：</p>
+<ol>
+<li>请求可被拒绝：控制器可对无法立即处理的请求发送NAK（如缓冲区不足），但必须保证响应（如Data Reply）永远不被拒绝</li>
+<li>自动重试：收到NAK的请求方直接重试，无需复杂回滚逻辑，简化设计</li>
+</ol>
+</li>
+</ol>
+<p><strong>6.Multithreaded Directory to Handle Multiple Blocks</strong></p>
+<p><strong>多线程目录处理多数据块</strong></p>
+<ol>
+<li>可重入（reentrant）目录控制器：支持并发处理针对不同缓存块的请求，即使前一个请求尚未完成（例如等待远程节点响应）。类似多线程编程中的可重入函数，需避免全局状态冲突</li>
+<li>状态保存与恢复：在处理未完成的 fetch 或 fetch/invalidate 操作时，需保存当前控制状态（如块状态、请求者信息），以便后续恢复并继续处理其他请求。确保中断后能正确恢复上下文</li>
+<li>优化数据传递路径：直连请求者：所有者节点（当前持有数据的节点）可直接将数据发送给请求者，同时通知主目录（Home Directory）更新状态，减少主目录的带宽压力并降低延迟</li>
+<li>流量控制机制：通过 NAK（否定应答）拒绝新请求，限制系统中未完成事务的数量，防止缓冲区溢出或资源耗尽</li>
+</ol>
+<p><strong>7.How to Deal with NAK</strong></p>
+<p>识别原始事务：</p>
+<ol>
+<li>方法 1：处理器维护一个列表，记录所有已发出但未完成的请求（outstanding requests），当收到 NAK 时，根据上下文匹配原始请求</li>
+<li>方法 2：NAK 消息中直接携带原始请求的详细信息（如请求类型、目标地址等），便于处理器直接解析并重试</li>
+<li>方法 3：为每个请求预留的返回缓冲区中不仅存储返回数据，还保存请求的元数据（如事务ID），实现快速匹配</li>
+</ol>
+<p>自动恢复机制：通过上述方法，处理器在收到 NAK 后能明确需要重试的请求，无需复杂的状态回滚或超时机制</p>
 <h2 id="5-synchronization-the-basics">5 Synchronization: The Basics<a class="headerlink" href="#5-synchronization-the-basics" title="Permanent link">&para;</a></h2>
+<p>定义：同步是指协调多个并发执行的线程或进程，确保它们按照正确的顺序执行，避免因无序访问共享资源导致的"竞争条件"（即多个线程同时修改数据引发的错误）</p>
+<ol>
+<li>forks and joins（分支与合并）：这是并行编程中的基本模式。一个主进程可以"分叉"(fork)出多个子进程并行执行，然后通过"合并"(join)等待所有子进程完成后再继续</li>
+<li>producer-consumer（生产者-消费者）：经典的同步问题模型。生产者生成数据放入缓冲区，消费者从缓冲区取数据，两者需要同步以避免消费者读取空缓冲区或生产者覆盖未消费的数据</li>
+<li>exclusive use of a resource（资源独占）：操作系统通过同步机制（如锁、信号量等）确保关键资源（如打印机、文件等）一次只被一个进程使用，防止冲突</li>
+</ol>
 <h3 id="51-basic-hardware-primitives">5.1 Basic Hardware Primitives<a class="headerlink" href="#51-basic-hardware-primitives" title="Permanent link">&para;</a></h3>
 <p><strong>基本硬件原语</strong></p>
+<p>在多处理器中实施同步时所需要的关键功能就是一组能够以原子方式读取和修改存储器位置的硬件原语。没有这一功能，构建基本同步原语的成本就会过高，并随着处理器数目的增大而增大。基本硬件原语有许多替代方式，所有这些方式都能够以原子形式读取和修改一个位置，还有某种方法可以判断读取和写入是否以原子形式执行。这些硬件原语是一些基本构建模块，用于构建各种用户级别的同步操作，包括诸如锁和屏障之类的内容。一般情况下，架构师不希望用户利用基本硬件原语，而是希望这些原语由系统程序员用来构建同步库，这个过程通常比较复杂，需要一些技巧。我们首先来看这样一个硬件原语，说明如何用它来构建某些基本的同步操作</p>
+<p>一种用于构建同步操作的典型操作就是 atomic exchange（原子交换），它会将寄存器中的一个值与存储器的一个值进行交换。为了明白如何利用这一操作来构建基本的同步操作，假定我们希望构建一个简单锁，数值 0 表示这个锁可以占用，数值 1 表示这个锁不可用。处理器尝试对这个锁进行置位，具体做法是将寄存器中的 1 与这个锁的相应存储器地址进行交换。如果其他某个处理器已经申请了访问权，则这一交换指令将返回 1，否则返回 0。在后一种情况下，这个值也被改变为 1，以防止任意进行竞争的交换指令也返回 0</p>
+<p>例如，考虑两个处理器，每个处理器都尝试同时进行交换：只有一个处理器将会首先执行交换操作，并返回数值 0，第二个处理器进行交换时将会返回 1，所以不会存在竞争问题。使用交换原语来实现同步的关键是这个操作具有原子性：这一交换是不可分的，两个同时交换将由写入串行化机制进行排序。如果两个处理器尝试以这种方式对同步变量进行置位，它们不可能认为自己同时对这个变量进行了置位</p>
+<p>还有大量其他原子原语可用于实现同步。它们都拥有一个关键特性：它们读取和更新存储器值的方式可以让我们判断这两种操作是不是以原子形式执行的。在许多较旧的多处理器中存在一种名为 test-and-set（测试并置位）的操作，它会测试一个值，如果这个值通过测试则对其进行置位。比如，我们可以定义一个操作，它会检测 0，并将其值设定为 1，其使用方式与使用原子交换的方式类似。另一个原子同步原语是 fetch-and-increment（提取并递增）；它返回存储器位置的值，并以原子方式使其递增。我们用 0 值来表示同步变量未被声明，可以像使用交换一样使用提取与递增。稍后将会看到，还有其他一些类似于“提取并递增”的操作用法</p>
+<p>实现单个原子存储器操作会引入一些挑战，因为它需要在单个不可中断的指令中进行存储器读取与写入操作。这一要求增加了一致性实施的复杂性，因为硬件不允许在读取与写入之间插入任何其他操作，而且不能死锁</p>
+<p>替代方法是利用一对指令，其中第二条指令可以返回一个值，根据这个值，可以判断这一对指令是否以原子形式执行。如果任一处理器执行的所有其他指令要么在这对指令之前执行，要么在这对指令之后执行，那就可以认为这对指令具有原子性。因此，如果一个指令对具有原子特性，那所有其他处理器都不能在这个指令对之间改变取值</p>
+<p>这种指令对包含一种名为 load reserved（链接载入）或 load locked（锁定载入）的特殊载入指令和一种名为 store conditional（条件存储）的特殊存储指令。这些指令是按顺序使用的：对于链接载入指令指定的存储器位置，如果其内容在对同一位置执行条件存储之前发生了改变，那条件存储就会失败。如果在两条指令之间进行了上下文切换，那么存储条件也会失败。条件存储的定义是在成功时返回 1，失败时返回 0。由于链接载入返回了初始值，而条件存储仅在成功时才会返回 1，所以以下序列对 R1 内容指定的存储器位置实现了一次原子交换</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nl">try:</span><span class="w"> </span><span class="n">MOV</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R4</span><span class="p">;</span><span class="w">  </span><span class="c1">// 将 R4 的值移动到 R3（R3 = R4，准备交换的值）</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">// 从内存地址 (R1 + 0) 加载值到 R2，并标记该地址为“被监视”（由硬件记录）</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1">// 如果其他线程/进程修改了该地址，后续的 SC 会失败</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">LL</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1">// 尝试将 R3 的值存储到 (R1 + 0)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1">// 如果从上次 LL 后该地址未被修改（即“监视”未被触发），则存储成功，R3 = 1，并更新内存</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1">// 如果地址被修改过（例如其他线程写入），则存储失败，R3 = 0，内存不变</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="n">SC</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="n">BEQZ</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">try</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R3 == 0（存储失败），跳转回 try 重试</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="n">MOV</span><span class="w"> </span><span class="n">R4</span><span class="p">,</span><span class="w"> </span><span class="n">R2</span><span class="p">;</span><span class="w">  </span><span class="c1">// 将之前加载的旧值（R2）存入 R4，完成交换（R4 = *R1 的旧值）</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这段代码实现了原子交换：</p>
+<ol>
+<li>将 R4 的值（新值）写入内存地址 (R1 + 0)</li>
+<li>将内存地址 (R1 + 0) 的旧值读入 R4</li>
+<li>整个过程是原子的：如果中途被其他线程修改，操作会重试，直到成功</li>
+</ol>
+<p>链接载入/条件存储机制的益处之一就是它能用于构建其他同步原语。例如，下面是原子的“提取并递增”：</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1">// 从内存地址 (R1 + 0) 加载值到 R2，并标记该地址为“被监视”（由硬件记录）</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1">// 如果其他线程/进程修改了该地址，后续的 SC 会失败</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nl">try:</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R3 = R2 + 1（递增操作）</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1">// 尝试将 R3 的值存储回 (R1 + 0)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="c1">// 如果从上次 LL 后该地址未被修改（即“监视”未被触发），则存储成功，R3 = 1，并更新内存</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1">// 如果地址被修改过（例如其他线程写入），则存储失败，R3 = 0，内存不变</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="n">SC</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="n">BEQZ</span><span class="w"> </span><span class="n">R3</span><span class="p">,</span><span class="w"> </span><span class="n">try</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R3 == 0（存储失败），跳转回try重试</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这些指令通常是通过在寄存器中跟踪 LL 指令指定的地址来实现的，这个寄存器称为 reserved register（链接寄存器）。如果发生了中断，或者与链接寄存器中地址匹配的缓存块失效（比如，另一条 SC 使其失效），链接寄存器将被清除。SC 指令只是核查它的地址与链接寄存器中的地址是否匹配。如果匹配，SC 将会成功；否则就会失败。在再次尝试向链接载入地址进行存储之后，或者在任何异常之后，条件存储将会失败，所以在选择向两条指令之间插入的指令时必须非常小心。具体来说，只有寄存器-寄存器指令才是安全的；否则，就有可能造成死锁情景，处理器永远无法完成 SC。此外，链接载入和条件存储之间的指令数应当很小，以尽可能减少无关事件或竞争处理器导致条件存储频繁失败的情景</p>
 <h3 id="52-implementing-locks-using-coherence">5.2 Implementing Locks Using Coherence<a class="headerlink" href="#52-implementing-locks-using-coherence" title="Permanent link">&para;</a></h3>
 <p><strong>使用一致性实现锁</strong></p>
+<p>在拥有原子操作之后，就可以使用多处理器的一致性机制来实施自旋锁（spin lock）—— 处理器持续用循环来尝试获取锁，直到成功为止。在两种情况下会用到自旋锁，一种是程序员希望短时间拥有这个锁，另一种情况是程序员希望当这个锁可用时，锁定过程的延迟较低。因为自旋锁会阻塞处理器，在循环中等待锁被释放，所以在某些情况下不适合采用</p>
+<p>最简单的实施方法是在存储器中保存锁变量，在没有缓存一致性时将会使用这种实施方式。处理器可能使用原子操作持续尝试获得锁，测试这一交换过程是否返回了可用锁。为释放锁，处理器只需要在锁中存储数值 0 即可。下面的代码序列使用原子交换来锁定自旋锁，其地址在 R1 中：</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">R0</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R2 = 1（R0 是零寄存器，DADDUI 是无符号立即数加法）</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// 原子交换指令，将 R2 的值与内存地址 (R1 + 0) 的值交换</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">// 这是一个原子操作，不会被其他线程中断</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">// 如果 *R1 = 0（锁空闲），交换后 R2 = 0，*R1 = 1（锁被占用）</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">// 如果 *R1 = 1（锁已被占用），交换后 R2 = 1，*R1 = 1（锁状态不变）</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="nl">lockit:</span><span class="w"> </span><span class="n">EXCH</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">BNEZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// // 如果 R2 ≠ 0，跳回 lockit 继续尝试</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果多处理器支持缓存一致性，就可以使用一致性机制将锁放在缓存中，保持锁值的一致性。将锁放在缓存中有两个好处</p>
+<ol>
+<li>它允许采用一种实施方式，允许针对本地缓存副本完成“自旋”过程（在一个紧凑循环中尝试测试和获取锁），不需要在每次尝试获取锁时都请求全局存储器访问</li>
+<li>第二个好处来自以下观察结果：锁访问中经常存在局域性；也就是说，上次使用了一个锁的处理器，很可能会在不远的将来再次用到它。在此类情况下，锁值可以驻存在这个处理器的缓存中，大幅缩短获取锁所需要的时间</li>
+</ol>
+<p>要实现第一个好处（能够针对本地缓存副本进行循环，不需要在每次尝试获取锁时都生成存储器请求），需要对这个简单的自旋过程进行一点修改。上述循环中每次尝试进行交换时都需要一次写入操作。如果多个处理器尝试获取这个锁，会分别生成这一写入操作。这些写入操作大多会导致写入缺失，因为每个处理器都是尝试获取处于独占状态的锁变量</p>
+<p>因此，应当修改自旋锁过程，使其在自旋过程中读取这个锁的本地副本，直到看到该锁可用为止。然后它尝试通过交换操作来获取这个锁。处理器首先读取锁变量，以检测其状态。处理器不断地读取和检测，直到读取的值表明这个锁未锁定为止。这个处理器随后与所有其他正在进行“自旋等待”的处理器展开竞赛，看谁能首先锁定这个变量。所有进程都使用一条交换指令，这条指令读取旧值，并将数值 1 存储到锁变量中。唯一的获胜者将会看到 0，而失败者将会看到由获胜者放在里面的 1（失败者会继续将这个变量设置到锁定值，但这已经无关紧要了）。获胜的处理器在锁定之后执行代码，完成后将 0 存储到锁定变量中，以释放这个锁，然后再从头开始竞赛。下面的代码执行这一自旋锁（别忘了，0 是未锁定，1 是锁定）：</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nl">lockit:</span><span class="w"> </span><span class="n">LD</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 加载内存地址 (R1 + 0) 的值到 R2（R2 = *R1）</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1">// 如果 R2 != 0（锁已被占用），跳回 lockit 继续等待</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="c1">// 优化点：这一步是非原子的检查，可能与其他线程产生竞态条件</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="n">BNEZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">R0</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R2 = 1（R0 是零寄存器）</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">EXCH</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 原子交换：R2 ↔ *R1（尝试获取锁）</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">BNEZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R2 != 0（交换失败，锁被抢占），跳回 lockit 重试</span>
+</span></code></pre></div></td></tr></table></div>
+<p>让我们看看这一“自旋锁”机制是如何使用缓存一致性机制的。下表显示了当多个进程尝试使用原子交换来锁定一个变量时的处理器和总线（或目录）操作。一旦拥有锁的处理器将 0 存储到锁中，所有其他缓存都将失效，必须提取新值以更新它们保存的锁副本。这种缓存首先获取未定值（0）的一个副本，并执行交换。在满足其他处理器的缓存缺失之后，它们发现这个变量已经被锁定，所以必须回过头来进行检测和自旋</p>
+<figure>
+  <img alt="Img 22" src="../../../../../img/comp_arch/ch5/ca_ch5_img22.png" width="800" />
+</figure>
+<p>这个例子显示了链接载入/条件存储原语的另一个好处：读取操作与写入操作是明确独立的。链接载入不一定导致任何总线通信。这一事实允许采用以下简单代码序列，它的特性与使用交换的优化版本一样（R1 拥有锁的地址，LL 代替了 LD，SC 代替了 EXCH）：</p>
+<div class="language-verilog highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nl">lockit:</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 原子加载: R2 = *R1，并标记内存地址 (R1+0) 为&quot;被监视&quot;</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">BNEZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R2 != 0（锁已被占用），跳回 lockit 继续自旋等待</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">R0</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R2 = 1（R0 是零寄存器，准备写入锁的&quot;占用&quot;状态）</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">SC</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 尝试原子存储: 若 *R1 未被其他线程修改，则 *R1 = R2 = 1，R2 = 1（成功）；否则 R2 = 0（失败）</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">BEQZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R2 == 0（存储失败），跳回 lockit 重试</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第一个分支构成了自旋循环，第二个分支化解当两个处理器同时看到锁可用时的竞赛</p>
+<h3 id="53-barrier-synchronization">5.3 Barrier Synchronization<a class="headerlink" href="#53-barrier-synchronization" title="Permanent link">&para;</a></h3>
+<p><strong>屏障同步</strong></p>
+<p>屏障：强制所有进程等待，直到所有进程都到达屏障后，才释放所有进程继续执行</p>
+<ol>
+<li>在并行计算中，屏障是一种同步机制，用于确保所有并行任务（线程/进程）在某个关键点同步</li>
+<li>所有任务必须到达屏障后才能继续执行后续代码，避免某些任务提前进入下一阶段而导致数据不一致</li>
+</ol>
+<p>实现方式：</p>
+<ol>
+<li>
+<p>shared counter：共享计数器</p>
+<ol>
+<li>使用一个共享变量（计数器）记录已到达屏障的任务数量</li>
+<li>每个任务到达屏障时，原子性地递增计数器，并检查是否所有任务都已到达（如 <code>count == N</code>）</li>
+<li>如果未全部到达，则等待；否则，释放所有任务</li>
+</ol>
+</li>
+<li>
+<p>spin waiting for release signal：自旋等待</p>
+<ol>
+<li>任务在屏障处循环检查释放信号（如 <code>while (!release_signal)</code>），直到所有任务到达后才继续</li>
+<li>适用于短时间等待的场景，避免线程切换的开销</li>
+</ol>
+</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">lock</span><span class="p">(</span><span class="n">counter_lock</span><span class="p">);</span><span class="w">  </span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 第一个任务重置 release  </span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="w">  </span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="n">release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 最后一个任务设置 release  </span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">    </span><span class="c1">// 重置计数器  </span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="n">unlock</span><span class="p">(</span><span class="n">counter_lock</span><span class="p">);</span><span class="w">  </span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  </span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="n">unlock</span><span class="p">(</span><span class="n">counter_lock</span><span class="p">);</span><span class="w">  </span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w">    </span><span class="n">spin</span><span class="p">(</span><span class="n">release</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 其他任务等待  </span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="p">}</span><span class="w">  </span>
+</span></code></pre></div></td></tr></table></div>
+<p>改进屏障同步的替代方案</p>
+<ol>
+<li>
+<p>离开屏障时重新计数</p>
+<ol>
+<li>设置另一个共享计数器来递减计算仍在屏障中的进程数</li>
+<li>禁止任何进程在所有进程离开前屏障前重新进入</li>
+<li>缺点：会引入额外的长延迟</li>
+</ol>
+</li>
+<li>
+<p>感知反转屏障 (Sense-reversing barrier)：使用私有变量 <code>Local_sense</code></p>
+</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">Local_sense</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">Local_sense</span><span class="p">;</span><span class="w"> </span><span class="c1">// 反转 local_sense</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">lock</span><span class="w"> </span><span class="p">(</span><span class="n">counterlock</span><span class="p">);</span><span class="w"> </span><span class="c1">// 确保原子更新</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="c1">// 统计到达数</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 全部到达</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a><span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 重置计数器</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="w">    </span><span class="n">release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_sense</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用 local_sense 值释放进程</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">}</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="n">unlock</span><span class="w"> </span><span class="p">(</span><span class="n">counterlock</span><span class="p">);</span><span class="w"> </span><span class="c1">// 释放锁</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="n">spin</span><span class="p">(</span><span class="n">release</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">local_sense</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等待信号</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="541-queuing-lock">5.4.1 Queuing Lock<a class="headerlink" href="#541-queuing-lock" title="Permanent link">&para;</a></h4>
+<p>显式地将锁所有权从一个等待处理器传递给下一个。同步机制与内存控制器或目录控制器集成</p>
+<p>工作原理：</p>
+<ol>
+<li>首次缓存未命中时，请求被发送至同步控制器</li>
+<li>若锁空闲：直接返回给请求处理器</li>
+<li>若锁被占用：创建节点请求记录，返回锁的当前占用值</li>
+</ol>
+<p>当锁可用时，选择一个处理器并更新/使其缓存中的锁变量失效</p>
+<h4 id="542-barrier-using-fetch--increment">5.4.2 Barrier Using Fetch &amp; Increment<a class="headerlink" href="#542-barrier-using-fetch--increment" title="Permanent link">&para;</a></h4>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span>
+<span class="normal"><a href="#__codelineno-7-7">7</a></span>
+<span class="normal"><a href="#__codelineno-7-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="n">Local_sense</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">Local_sense</span><span class="p">;</span><span class="w"> </span><span class="c1">// 反转 local_sense</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="n">fetch_and_increment</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">total</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 全部到达</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// 重置计数器</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="n">release</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">local_sense</span><span class="p">;</span><span class="w"> </span><span class="c1">// 用 local_sense 值释放进程</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="n">spin</span><span class="p">(</span><span class="n">release</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">local_sense</span><span class="p">);</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -9198,7 +9577,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月31日 07:18:35 UTC">2025年5月31日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月2日 12:47:37 UTC">2025年6月2日</span>
   </span>
 
     
