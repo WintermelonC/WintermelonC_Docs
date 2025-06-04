@@ -8570,13 +8570,20 @@ h(n) = (f · g)(n) = \sum\limits_{m=-\infty}^{+\infty}f(m)g(n-m)
 <h3 id="831-卷积运算">8.3.1 卷积运算<a class="headerlink" href="#831-卷积运算" title="Permanent link">&para;</a></h3>
 <p>卷积运算就是通过设计一系列大小适中的卷积核（感受野），对数字图像的各个通道分量进行加权求和，并提取特征值的过程</p>
 <h4 id="运算过程">运算过程<a class="headerlink" href="#运算过程" title="Permanent link">&para;</a></h4>
-<p>1.补齐（padding）</p>
-<p>在输入图像的四边补上一定宽度的像素，值设置为 0</p>
-<p>当卷积核的大小为 3x3，步长为 1 时，如果在四边补齐 1 个像素宽度的 0，就可以保证输出特征图的大小与输入图像相同</p>
-<p>2.卷积运算</p>
-<p>3.计算其他颜色通道</p>
-<p>4.用新的卷积核</p>
-<p>5.生成 n 组特征向量</p>
+<ol>
+<li>
+<p>补齐（padding）：在输入图像的四边补上一定宽度的像素，值设置为 0</p>
+<ul>
+<li>当卷积核的大小为 3x3，步长为 1 时，如果在四边补齐 1 个像素宽度的 0，就可以保证输出特征图的大小与输入图像相同</li>
+</ul>
+</li>
+<li>
+<p>卷积运算</p>
+</li>
+<li>计算其他颜色通道</li>
+<li>用新的卷积核</li>
+<li>生成 n 组特征向量</li>
+</ol>
 <h4 id="主要参数">主要参数<a class="headerlink" href="#主要参数" title="Permanent link">&para;</a></h4>
 <ol>
 <li>卷积核的形状</li>
@@ -8605,7 +8612,7 @@ h(n) = (f · g)(n) = \sum\limits_{m=-\infty}^{+\infty}f(m)g(n-m)
 <p>池化（pooling）也称下采样，其作用是缩小特征图的尺寸以减少计算量</p>
 <ol>
 <li>最大池化</li>
-<li>随即池化</li>
+<li>随机池化</li>
 <li>平均池化</li>
 <li>L2 范数池化</li>
 </ol>
@@ -8640,7 +8647,7 @@ h(n) = (f · g)(n) = \sum\limits_{m=-\infty}^{+\infty}f(m)g(n-m)
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月29日 09:05:34 UTC">2025年4月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月4日 04:31:55 UTC">2025年6月4日</span>
   </span>
 
     

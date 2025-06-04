@@ -1404,6 +1404,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#923-lstm-的局限" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2.3 LSTM 的局限
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8439,6 +8448,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#923-lstm-的局限" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2.3 LSTM 的局限
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -8534,7 +8552,11 @@
 </div>
 <p>Recurrent Neural Network（RNN）</p>
 <h2 id="91-循环神经网络概述">9.1 循环神经网络概述<a class="headerlink" href="#91-循环神经网络概述" title="Permanent link">&para;</a></h2>
-<p>一种特殊类型的反馈神经网络，专门用于处理序列数据</p>
+<ol>
+<li>前馈型神经网络（FNN）</li>
+<li>反馈型神经网络：每个神经元不仅接收来自其他神经元的信号，还接收自己的反馈信号</li>
+</ol>
+<p>RNN 是一种特殊类型的反馈神经网络，专门用于处理序列数据</p>
 <h3 id="911-rnn-基本结构">9.1.1 RNN 基本结构<a class="headerlink" href="#911-rnn-基本结构" title="Permanent link">&para;</a></h3>
 <figure>
   <img alt="Img 1" src="../../../../img/AI_basic/ch9/ai_ch9_img1.png" width="600" />
@@ -8562,7 +8584,7 @@
 <li>异步多对多</li>
 </ol>
 <figure>
-  <img alt="Img 2" src="../../../../img/AI_basic/ch9/ai_ch9_img2.png" width="600" />
+  <img alt="Img 2" src="../../../../img/AI_basic/ch9/ai_ch9_img2.png" width="800" />
 </figure>
 <h2 id="92-lstm">9.2 LSTM<a class="headerlink" href="#92-lstm" title="Permanent link">&para;</a></h2>
 <p>Long Short-Term Memory（长短期记忆网络）</p>
@@ -8664,6 +8686,8 @@
 <li>音乐生成</li>
 <li>动作识别</li>
 </ol>
+<h3 id="923-lstm-的局限">9.2.3 LSTM 的局限<a class="headerlink" href="#923-lstm-的局限" title="Permanent link">&para;</a></h3>
+<p>计算的复杂性和训练时间太长是 LSTM 最大的局限</p>
 <h2 id="93-其他循环神经网络">9.3 其他循环神经网络<a class="headerlink" href="#93-其他循环神经网络" title="Permanent link">&para;</a></h2>
 <h3 id="931-gru">9.3.1 GRU<a class="headerlink" href="#931-gru" title="Permanent link">&para;</a></h3>
 <p>Gated Recurrent Unit（门控循环单元）是对 LSTM 的一种简化</p>
@@ -8671,6 +8695,7 @@
 <li>更新门：将遗忘门与输入门结合，更新门调控着用候选信息来更新当前的隐式编码信息的程度值，该值越大，保留的信息越多</li>
 <li>重置门：调控着忘记以前的状态的程度值，该值越小，被忽略的信息越多</li>
 </ol>
+<p>GRU 去掉了记忆状态，结构得到简化后，大大加快了训练速度</p>
 <figure>
   <img alt="Img 4" src="../../../../img/AI_basic/ch9/ai_ch9_img4.png" width="600" />
 </figure>
@@ -8706,7 +8731,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月29日 09:05:34 UTC">2025年4月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月4日 04:31:55 UTC">2025年6月4日</span>
   </span>
 
     

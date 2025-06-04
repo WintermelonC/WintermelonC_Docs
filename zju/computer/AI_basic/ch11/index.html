@@ -8657,19 +8657,19 @@
 <h3 id="1111-nlp-任务分类">11.1.1 NLP 任务分类<a class="headerlink" href="#1111-nlp-任务分类" title="Permanent link">&para;</a></h3>
 <ol>
 <li>语音识别</li>
-<li>文本分析理解</li>
+<li>文本分析理解：NLP 最基本的任务</li>
 <li>文本转换</li>
-<li>文本生成</li>
+<li>文本生成：通过自回归技术迭代生成的</li>
 </ol>
 <h3 id="1112-技术演变">11.1.2 技术演变<a class="headerlink" href="#1112-技术演变" title="Permanent link">&para;</a></h3>
 <ol>
 <li>基于规则的算法</li>
-<li>统计语言模型</li>
-<li>序列生成模型</li>
+<li>统计语言模型：弗雷德里克·贾里尼克团队第一次把 NLP 问题转换成一个数学问题</li>
+<li>序列生成模型：编码器 - 解码器神经网络、注意力机制</li>
 <li>预训练大模型</li>
 </ol>
 <p>预训练：在大量无标注的数据上进行模型的训练</p>
-<p>预训练 - 微调模式</p>
+<p>预训练 - 微调模式使得人类无须对海量语料进行标注即可进行模型的训练，因此模型参数可以设计得非常大，无须担心过拟合得问题。模型参数得急速膨胀使得模型性能不断攀升，研究人员也在试图找到一个参数数量寄点，当越过这个寄点，AI 能实现真正意义上的 AGI（通用人工智能）</p>
 <figure>
   <img alt="Img 1" src="../../../../img/AI_basic/ch11/ai_ch11_img1.png" width="600" />
 </figure>
@@ -8694,7 +8694,7 @@
 <h3 id="1123-文本相似度">11.2.3 文本相似度<a class="headerlink" href="#1123-文本相似度" title="Permanent link">&para;</a></h3>
 <p><strong>1.余弦相似度</strong>：衡量两个向量在方向上相似程度的度量方法</p>
 <p><span class="arithmatex">\(\text{Cosine Similarity} = \cos \theta = \dfrac{A · B}{||A||\ ||B||}\)</span></p>
-<p><strong>2.欧氏距离</strong>：空房间中两点间的直线距离</p>
+<p><strong>2.欧氏距离</strong>：空间中两点间的直线距离</p>
 <p><span class="arithmatex">\(d = \sqrt{\sum\limits_{i=1}^n(x_i - y_i)^2}\)</span></p>
 <p><strong>3.Jaccard 相似度</strong>：用于比较两个集合之间相似性和多样性</p>
 <p><span class="arithmatex">\(J(A, B) = \dfrac{|A \cap B|}{|A \cup B|}\)</span></p>
@@ -8713,11 +8713,12 @@
 </ol>
 <p>常用统计量：</p>
 <ol>
-<li>TF</li>
-<li>IDF</li>
-<li>TF-IDF</li>
+<li>TF：衡量词语在文档中出现频率得统计量</li>
+<li>IDF：如果某个关键词在一篇文章中出现的频率很高，并且在其他文章中很少出现，则认为这个关键词具有很好的类别区分能力，适合用来分类</li>
+<li>TF-IDF：评估一个词对于一个文档或一个语料库的重要性</li>
 </ol>
 <h3 id="1132-word2vec">11.3.2 Word2Vec<a class="headerlink" href="#1132-word2vec" title="Permanent link">&para;</a></h3>
+<p>将离散的单词（字）映射到连续的向量空间中，向量的每个维度表示一个特征（属性）</p>
 <p>将词汇表中的每个词用固定长度的向量来表示，这个固定的长度就叫维度</p>
 <p>构造变换矩阵对输入矩阵进行降维</p>
 <figure>
@@ -8729,7 +8730,7 @@
 <li>Skip-Gram：通过给定的中心词，来学习预测上下文词</li>
 </ol>
 <figure>
-  <img alt="Img 5" src="../../../../img/AI_basic/ch11/ai_ch11_img5.png" width="600" />
+  <img alt="Img 5" src="../../../../img/AI_basic/ch11/ai_ch11_img5.png" width="400" />
 </figure>
 <h3 id="1133-seq2seq">11.3.3 Seq2Seq<a class="headerlink" href="#1133-seq2seq" title="Permanent link">&para;</a></h3>
 <p>其核心思想是使用一个编码器网络将输入序列（如源语言句子）编码为一个固定维度的向量或一系列隐状态，然后使用一个解码器网络从这个向量或隐状态出发，逐词生成目标序列（如目标语言句子）。整个过程无须人工设计复杂的语言规则，而是让神经网络自行学习如何进行有效的序列转换</p>
@@ -8740,7 +8741,7 @@
 <p>输入的文本（自然语言）通过编码器将词嵌入逐层变换传递，而解码器则再将词嵌入逐层变换传递翻译成文本（自然语言）输出</p>
 <p>词嵌入对人类而言就像黑盒子一样，难以解释，但这恰恰就是 AI 的分析和理解过程</p>
 <h2 id="114-transformer-结构">11.4 Transformer 结构<a class="headerlink" href="#114-transformer-结构" title="Permanent link">&para;</a></h2>
-<p>Transformer 是一种基于注意力机制的序列模型，是一种特殊的 Seq2Seq 编码器 - 解码器结构</p>
+<p>Transformer 是一种基于注意力机制的序列模型，是一种特殊的 Seq2Seq 编码器 - 解码器结构。它引入了自注意力机制使得模型可以并行地处理序列中的每个 Token，解决了 RNN 只能一个个串行处理的问题</p>
 <figure>
   <img alt="Img 7" src="../../../../img/AI_basic/ch11/ai_ch11_img7.png" width="600" />
 </figure>
@@ -8754,7 +8755,7 @@
 <li>增加位置序列：<code>P = [1, 2, 3, 4, 5, 6, 7]</code></li>
 <li>编码：在嵌入层网络，完成对 S 和 P 的编码工作，然后将 S 与 P 进行拼接，输出向量 X</li>
 <li>词嵌入 X 经过多头注意力运算输出词嵌入 Z</li>
-<li>跨层连接与归一化处理</li>
+<li>跨层连接与归一化处理：通过加入参差连接和层归一化，使得网络训练更加稳定，收敛效果更好</li>
 <li>完成输出：输出词嵌入 E</li>
 </ol>
 <figure>
@@ -8766,7 +8767,7 @@
 <figure>
   <img alt="Img 11" src="../../../../img/AI_basic/ch11/ai_ch11_img11.png" width="600" />
 </figure>
-<p><strong>逐位置前馈网络</strong>：是一个两层的前馈神经网络，每个位置的词向量都独立地经过这个网络进行变换，而不是通常的将多维输入向量平铺展开成一维的向量。在上图中展示的是采用两个一维卷积网络</p>
+<p><strong>逐位置前馈网络</strong>：是一个两层的前馈神经网络，每个位置的词向量都独立地经过这个网络进行变换，而不是通常的将多维输入向量平铺展开成一维的向量。在上图中展示的是采用两个一维卷积网络进行运算的过程，第一个卷积层将输入变换到高维度空间，第二个卷积层再降维到原始的维度</p>
 <h3 id="1142-解码器">11.4.2 解码器<a class="headerlink" href="#1142-解码器" title="Permanent link">&para;</a></h3>
 <figure>
   <img alt="Img 12" src="../../../../img/AI_basic/ch11/ai_ch11_img12.png" width="600" />
@@ -8795,8 +8796,8 @@
 <p><strong>自注意力机制</strong></p>
 <ol>
 <li>线性变换</li>
-<li>计算注意力分数</li>
-<li>归一化注意力分数</li>
+<li>计算注意力分数：<span class="arithmatex">\(score = QK^T\)</span></li>
+<li>归一化注意力分数：通过 softmax 函数对注意力分数进行归一化</li>
 <li>最终的注意力分数</li>
 </ol>
 <figure>
@@ -8835,7 +8836,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月29日 09:05:34 UTC">2025年4月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月4日 04:31:55 UTC">2025年6月4日</span>
   </span>
 
     
