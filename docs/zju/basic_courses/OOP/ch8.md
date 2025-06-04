@@ -62,7 +62,7 @@
 
 当通过基类指针调用虚函数时，程序会根据虚函数指针动态查找实际调用的函数
 
-## 8.1 Up-casting
+## 1 Up-casting
 
 Upcasting（向上转型）是指将派生类指针或引用转换为基类指针或引用的过程。这是 C++ 中多态性的基础
 
@@ -112,7 +112,7 @@ if (dp) {
 
     只有公有继承时才能进行 Upcasting
 
-## 8.2 Static Type and Dynamic Type
+## 2 Static Type and Dynamic Type
 
 1. Static type：变量或表达式在编译时已知的类型
       1. 由变量声明或表达式决定
@@ -164,7 +164,17 @@ Base* b = new Derived();
 b->foo();  // 调用Base::foo (static type决定，无多态)
 ```
 
-## 8.3 Virtual
+### 2.1 Cast Operators
+
+#### 2.1.1 `static_cast`
+
+#### 2.1.2 `dynamic_cast`
+
+#### 2.1.3 `const_cast`
+
+#### 2.1.4 `reinterpret_cast`
+
+## 3 Virtual
 
 1. non-virtual function
       1. static binding（静态绑定）：函数调用在编译时确定
@@ -181,7 +191,7 @@ b->foo();  // 调用Base::foo (static type决定，无多态)
 2. 构造函数不能被声明为虚函数
 3. 构造函数中调用的虚函数是 static binding：在构造函数执行期间，对象的虚表（vtable）可能尚未完全初始化（尤其是基类构造函数运行时，派生类部分尚未构造），因此，构造函数中调用的虚函数会静态绑定（即直接调用当前类的版本，而非派生类的覆盖版本），这是 C++ 的明确规定，避免未定义行为
 
-### 8.3.1 工作原理
+### 3.1 工作原理
 
 C++ 通过虚函数表（vtable）和虚函数指针（vptr）实现运行时多态，这是虚函数工作的底层基础。当类包含虚函数时，编译器会为该类创建一个虚函数表，并在每个对象中嵌入一个指向该表的指针
 
@@ -235,7 +245,7 @@ C++ 通过虚函数表（vtable）和虚函数指针（vptr）实现运行时多
         ![Img 3](../../../img/OOP/ch8/oop_ch8_img3.png){ width="600" }
     </figure>
 
-## 8.4 Override
+## 4 Override
 
 1. 只有虚函数（virtual）才能被重写
 2. 函数签名（名称、参数列表、返回类型）必须完全相同
@@ -365,7 +375,7 @@ public:
     2. 永远不要重新定义继承的默认参数值
           - 默认参数也是静态绑定的
 
-## 8.5 Abstract Class
+## 5 Abstract Class
 
 抽象类是面向对象编程中的一个重要概念，用于定义一个通用的接口或基类，供派生类实现具体功能。抽象类的主要特征是包含至少一个纯虚函数
 
@@ -427,7 +437,7 @@ int main() {
 2. 实现多态：抽象类通过虚函数支持运行时多态，允许通过基类指针或引用调用派生类的实现
 3. 代码复用：抽象类可以包含通用的实现，供派生类复用
 
-## 8.6 Multiple Inheritance
+## 6 Multiple Inheritance
 
 !!! tip "建议"
 
@@ -470,7 +480,7 @@ int main() {
 }
 ```
 
-### 8.6.1 菱形继承问题
+### 6.1 菱形继承问题
 
 当一个类通过多个路径继承同一个基类时，会导致基类的成员被多次继承，造成冗余和二义性
 
@@ -530,7 +540,7 @@ int main() {
 - 虚成员函数 → 通过虚函数表（vtable）动态绑定
 - 虚基类 → 通过指针间接定位基类子对象（编译器插入隐藏指针）
 
-### 8.6.2 Protocol / Interface Class
+### 6.2 Protocol / Interface Class
 
 **协议类 / 接口类**
 

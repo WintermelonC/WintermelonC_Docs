@@ -712,4 +712,3 @@ if (count == total) { // 全部到达
     spin(release == local_sense);
 }
 ```
-
