@@ -14,7 +14,15 @@ document.addEventListener('DOMContentLoaded', function() {
   ];
 
   var tempPrivateUrls = [
-    'zju/module_courses/cryptography/doc',
+    'zju/module_courses/cryptography/doc/doc1',
+    'zju/module_courses/cryptography/doc/doc2',
+    'zju/module_courses/cryptography/doc/doc3',
+    'zju/module_courses/cryptography/doc/doc4',
+    'zju/module_courses/cryptography/doc/doc5',
+    'zju/module_courses/cryptography/doc/doc6',
+    'zju/module_courses/cryptography/doc/doc7',
+    'zju/module_courses/cryptography/doc/doc8',
+    'zju/module_courses/cryptography/doc/doc9',
   ];
 
   var isCryptographyUrl = cryptographyUrls.some(function(cryptographyUrls) {
