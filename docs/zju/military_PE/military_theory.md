@@ -32,22 +32,6 @@ slp老师
 - 单选题：20 x 1 分
 - 不定项选择题：30 x 2 分
 
-## 历年题整理
-
-### 2024-2025 秋冬
-
-回忆题的帖子：[【已完成】军事理论 2024-2025 秋冬历年题（回忆题）](https://www.cc98.org/topic/6084580){:target="_blank"}
-
-<!-- > 完整的文档预计 2025.1.9 上传至此页面 -->
-
-<embed src="../../../file/military_theory/military_doc19.pdf" type="application/pdf" width="100%" height="500" />
-
-### 2023-2024 春夏
-
-[【军事理论/军理】2022-2023春夏回忆卷](https://www.cc98.org/topic/6084206){:target="_blank"}
-
-[2023-2024春夏《军事理论》期末回忆卷（含经验总结，军理）](https://www.cc98.org/topic/5922335){:target="_blank"}
-
 ## 个人笔记
 
 ### 思维导图
@@ -86,6 +70,22 @@ Xmind 原文件：
 2. “A 是 B” “B 是 A” 两种句式均有整理，如：首字母 B 下有“兵贵精不贵多是精兵的原则”，首字母 J 下有“精兵的原则是兵贵精不贵多”
 
 <embed src="../../../file/military_theory/military_doc18.pdf" type="application/pdf" width="100%" height="500" />
+
+## 历年题整理
+
+### 2024-2025 秋冬
+
+回忆题的帖子：[【已完成】军事理论 2024-2025 秋冬历年题（回忆题）](https://www.cc98.org/topic/6084580){:target="_blank"}
+
+<!-- > 完整的文档预计 2025.1.9 上传至此页面 -->
+
+<embed src="../../../file/military_theory/military_doc19.pdf" type="application/pdf" width="100%" height="500" />
+
+### 2023-2024 春夏
+
+[【军事理论/军理】2022-2023春夏回忆卷](https://www.cc98.org/topic/6084206){:target="_blank"}
+
+[2023-2024春夏《军事理论》期末回忆卷（含经验总结，军理）](https://www.cc98.org/topic/5922335){:target="_blank"}
 
 ## 个人感受
 

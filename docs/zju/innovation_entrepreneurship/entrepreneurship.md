@@ -117,13 +117,7 @@ lh老师
 
 只有一次答题机会
 
-测试题答案：
-
-!!! info "说明"
-
-    来源于 [浙江大学cc98论坛](https://www.cc98.org/){:target="_blank"}
-
-<embed src="../../../file/entrepreneurship/entre_ship_document2.pdf" type="application/pdf" width="100%" height="500" />
+测试题答案：[创业启程资料整理](https://www.cc98.org/topic/5801369){:target="_blank"}
 
 ##### 讨论（20%）
 
@@ -187,17 +181,13 @@ lh老师
 
 ## 历年题整理
 
-!!! info "注意"
-
-    历年题整理资料均来自于 [浙江大学cc98论坛](https://www.cc98.org/){:target="_blank"}
-
 ### 2022-2023 夏
 
 [2022—2023夏学期创业启程回忆卷](https://www.cc98.org/topic/5644733){:target="_blank"}
 
 ### 2022-2023 冬
 
-<embed src="../../../file/entrepreneurship/entre_ship_document3.pdf" type="application/pdf" width="100%" height="500" />
+[22冬创业启程回忆卷](https://www.cc98.org/topic/5509272){:target="_blank"}
 
 ### 2021-2022 夏
 
@@ -205,11 +195,11 @@ lh老师
 
 ### 2019-2020 夏
 
-<embed src="../../../file/entrepreneurship/entre_ship_document5.pdf" type="application/pdf" width="100%" height="500" />
+[2019-2020夏学期创业启程回忆卷](https://www.cc98.org/topic/4936585){:target="_blank"}
 
 ### 2019-2020 秋
 
-<embed src="../../../file/entrepreneurship/entre_ship_document4.pdf" type="application/pdf" width="100%" height="500" />
+[2019-2020秋学期创业启程回忆卷](https://www.cc98.org/topic/4934910){:target="_blank"}
 
 ## 个人感受
 

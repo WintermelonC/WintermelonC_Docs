@@ -712,3 +712,8 @@ if (count == total) { // 全部到达
     spin(release == local_sense);
 }
 ```
+
+## 6 Models of Memory Consistency: An Introduction
+
+**存储器连贯性模型：简介**
+
