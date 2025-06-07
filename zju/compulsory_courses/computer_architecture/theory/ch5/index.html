@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch4/">
       
       
-        <link rel="next" href="../../lab/">
+        <link rel="next" href="../ch6/">
       
       
       <link rel="icon" href="../../../../../img/logo.png">
@@ -5109,6 +5109,8 @@
       
         
       
+        
+      
     
     
     
@@ -5576,12 +5578,101 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6 Models of Memory Consistency: An Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-the-programmers-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 The Programmer’s View
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-relaxed-consistency-models-the-basics-and-release-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Relaxed Consistency Models: The Basics and Release Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Relaxed Consistency Models: The Basics and Release Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-total-store-ordering-tso" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.1 Total Store Ordering (TSO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-partial-store-order-pso" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.2 Partial Store Order (PSO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-weak-ordering-wo" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.3 Weak Ordering (WO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-release-consistency-rc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.4 Release Consistency (RC)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -9095,6 +9186,72 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6 Models of Memory Consistency: An Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-the-programmers-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 The Programmer’s View
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-relaxed-consistency-models-the-basics-and-release-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Relaxed Consistency Models: The Basics and Release Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Relaxed Consistency Models: The Basics and Release Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-total-store-ordering-tso" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.1 Total Store Ordering (TSO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-partial-store-order-pso" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.2 Partial Store Order (PSO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#623-weak-ordering-wo" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.3 Weak Ordering (WO)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#624-release-consistency-rc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2.4 Release Consistency (RC)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9830,6 +9987,170 @@
 </span></code></pre></div></td></tr></table></div>
 <h2 id="6-models-of-memory-consistency-an-introduction">6 Models of Memory Consistency: An Introduction<a class="headerlink" href="#6-models-of-memory-consistency-an-introduction" title="Permanent link">&para;</a></h2>
 <p><strong>存储器连贯性模型：简介</strong></p>
+<p>缓存一致性保证了多个处理器看到的存储器内容是一致的。但它并没有回答这些存储器内容应当保持何种程度的一致性。我们问“何种程度的一致性”时，实际是在问一个处理器必须在什么时候看到另一个处理器更新过的值？由于处理器通过共享变量进行通信（用于数据值和同步两种目的），于是这个问题便简化为：处理器必须以何种顺序来观测另一个处理器的数据写入？由于“观测另一处理器写入操作”的唯一方法就是通过读取操作，所以问题现在变为：在不同处理器对不同位置执行读取和写入操作时，必须保持哪些特性？</p>
+<p>“保持何种程度的一致性”这一问题看起来非常简单，实际上却非常复杂，我们通过一个简单例子来了解一下。下面是来自处理器 P1 和 P2 的两段代码，并排列出如下：</p>
+<div class="grid">
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nl">P1</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="nl">L1</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">B</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)...</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span>
+<span class="normal"><a href="#__codelineno-9-2">2</a></span>
+<span class="normal"><a href="#__codelineno-9-3">3</a></span>
+<span class="normal"><a href="#__codelineno-9-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="nl">P2</span><span class="p">:</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="n">B</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="nl">L2</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)...</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>假定这些进程运行在不同处理器上，位置 A 和 B 最初由两个处理器进行缓存，初始值为 0。如果写入操作总是立刻生效，而且马上会被其他处理器看到，那两个 IF 语句（标有 L1 和 L2）不可能将其条件计算为真，因为能够到达 IF 语句，说明 A 或 B 中必然已经被指定了数值 1。我们假定写入失效被延迟，处理器可以在这一延迟期间继续执行。因此，P1 和 P2 在它们尝试读取数值之前，可能还没有（分别）看到 B 和 A 的失效。现在的问题是，是否应当允许这一行为？如果应当允许，在何种条件下允许？</p>
+<p>存储器连贯性的最简单模型称为 sequential consistency（顺序连贯性模型）。顺序连贯性要求任何程序每次执行的结果都是一样的，就像每个处理器是按顺序执行存储器访问操作的，而且不同处理器之间的访问任意交错在一起。有了顺序连贯性，就不可能再出现上述示例中的某些不明执行情况，因为必须完成赋值操作之后才能启动 IF 语句</p>
+<p>实现顺序连贯性模型的最简单方法是要求处理器推迟完成所有存储器访问，直到该访问操作所导致的全部失效均告知完成为止。当然，如果推迟下一个存储器访问操作，直到前一访问操作完成为止，这种做法同样有效。别忘了，存储器连贯性涉及不同变量之间的操作：两个必须保持顺序的访问操作实际上访问的是不同的存储器位置。在我们的例子中，必须延迟对 A 或 B 的读取（<code>A == 0</code> 或 <code>B == 0</code>），直到上一次写入操作完成为止（<code>B = 1</code> 或 <code>A = 1</code>）。比如，根据顺序连贯性，我们不能简单地将写入操作放在写入缓冲区中，然后继续执行读取操作</p>
+<p>尽管顺序连贯性模型给出了一种简单的编程范例，但它可能会降低性能，特别是当多处理器的处理器数目很大或者互连延迟很长时尤为如此，如下例所示</p>
+<div class="admonition example">
+<p class="admonition-title">例题</p>
+<p>假定有一个处理器，一次写入缺失需要 50 个时钟周期来确定拥有权，在确定拥有权之后发射每个失效操作需要 10 个时钟周期，在发射之后，失效操作的完成与确认需要 80 个时钟周期。假定其他 4 个处理器共享一个缓存块，如果处理器保持顺序连贯性，一次写入缺失会使执行写入操作的处理器停顿多长时间（假定必须明确确认失效操作之后，一致性控制器才能知道它们已经完成）？假定在为写入缺失获得拥有者之后可以继续执行，不需要等待失效，该写入操作需要多长时间？</p>
+<details class="question">
+<summary>AI 解答</summary>
+<p>我们有一个多处理器系统，其中多个处理器共享缓存块。具体来说，一个处理器在执行写入操作时，如果发生缓存缺失（write miss），需要经历以下步骤：</p>
+<ol>
+<li>确定拥有权（Obtaining Ownership）：需要 50 个时钟周期</li>
+<li>发射失效操作（Invalidation Operations）：在确定拥有权之后，向其他共享该缓存块的处理器发射失效操作（即通知其他处理器该缓存块已无效）。每个失效操作的发射需要 10 个时钟周期</li>
+<li>完成与确认失效操作（Completion and Acknowledgment of Invalidations）：在所有失效操作发射之后，需要80个时钟周期来完成这些操作并收到确认</li>
+</ol>
+<p>假设有其他4个处理器共享这个缓存块（即共有5个处理器，包括当前执行写入的处理器），并且系统保持顺序连贯性（sequential consistency）。我们需要回答两个问题：</p>
+<ol>
+<li>如果处理器必须等待所有失效操作明确确认之后才能继续（即严格顺序连贯性），那么一次写入缺失会使执行写入操作的处理器停顿多长时间？</li>
+<li>如果在获得拥有权之后可以继续执行，不需要等待失效操作完成（即宽松的连贯性模型），那么该写入操作需要多长时间？</li>
+</ol>
+<hr />
+<p>在严格顺序连贯性下，处理器必须等待所有一致性操作（包括失效操作的发射和确认）完成后才能继续执行。因此，写入停顿时间是所有阶段的总和：50 + 4 x 10 + 80 = 170 个时钟周期</p>
+<p>如果处理器在获得拥有权后即可继续执行，不需要等待失效操作完成，那么写入操作的延迟仅仅是获得拥有权的时间，即：50 个时钟周期</p>
+</details>
+</div>
+<h3 id="61-the-programmers-view">6.1 The Programmer’s View<a class="headerlink" href="#61-the-programmers-view" title="Permanent link">&para;</a></h3>
+<p>尽管顺序连贯性模型有性能方面的不足，但从程序员的角度来看，它拥有简单性这一优点。挑战在于，要开发一种编程模型，既便于解释，又支持高性能实施方式</p>
+<p>有这样一种支持更高效实施方式的编程模型，它假定程序是 synchronized（同步的）。如果对共享数据的所有访问都由同步操作进行排序，那就说这个程序同步的。如果满足以下条件，就说数据引用是由同步操作进行排序的：在所有可能的执行情景中，一个处理器对某一变量的写入操作与另一个处理器对这个变量的访问（或者为读取，或者为写入）之间由一对同步操作隔离开来，其中一个同步操作在写入处理器执行写入操作之后执行，另一个同步操作在第二个处理器执行访问操作之前执行。如果变量可以在未由同步操作进行排序的情况下更新，此类情景称为 data races（数据竞赛），因为操作的执行结果取决于处理器的相对速度，和硬件设计中的竞赛相似，其输出是不可预测的，由此给出另一种同步程序的名字：data-race-free（无数据竞赛）</p>
+<p>给出一个简单的例子，变量由两个不同处理器读取和更新。每个处理器用锁定和解锁操作将读取和更新操作包围起来，这两种操作是为了确保更新的互斥和读取操作的连贯性。显然，每个写入操作与另一个处理器的读取操作之间现在都由一对同步操作隔离开来：一个是解锁（在写入操作之后），一个是锁定（在读取操作之前）。当然，如果两个处理器正在写入一个变量，中间没有插入读取操作，那这些写入操作之间也必须由同步操作隔离开</p>
+<p>人们普遍认同“大多数程序都是同步的”这一事实。这一观察结果之所以正确，主要是因为：如果这些访问是非同步的，那么到底哪个处理器赢得数据竞赛就由执行速度决定，从而会影响到程序结果，那程序的行为就可能是不可预测的。即使有了顺序连贯性，也很难理清此类程序</p>
+<p>程序员可能尝试通过构造自己的同步机制来确保排序，但这种做法需要很强的技巧性，可能导致充满漏洞的程序，而且在体系结构上可能不受支持，也就是说在以后各代多处理器中可能无法工作。因此，几乎所有的程序员都选择使用同步库，这些库正确无误，而且针对多处理器和同步类型进行了优化</p>
+<p>最后，标准同步原语的使用可以确保：即使体系结构实现了一种比顺序连贯性模型更宽松的连贯性模型，同步程序也会像硬件实施了顺序连贯性一样运行</p>
+<h3 id="62-relaxed-consistency-models-the-basics-and-release-consistency">6.2 Relaxed Consistency Models: The Basics and Release Consistency<a class="headerlink" href="#62-relaxed-consistency-models-the-basics-and-release-consistency" title="Permanent link">&para;</a></h3>
+<p><strong>宽松连贯性模型：基础知识</strong></p>
+<p>宽松连贯性模型的关键思想是允许乱序执行读取和写入操作，但使用同步操作来实施排序，因此，同步程序的表现就像处理器具备顺序连贯性一样。这些宽松模型是多种多样的，可以根据它们放松了哪种读取和写入顺序来进行分类。我们利用一组规则来指定顺序，其形式为 X → Y，也就是说必须在完成操作 X 之后才能执行操作 Y。顺序连贯性模型需要保持所有 4 种可能顺序：R → W、R → R、W → R 和 W → W。宽松模型的确切是看它们放松了这 4 种顺序中的哪一种</p>
+<ol>
+<li>放松 W → R 顺序，将会得到一种称为 total store ordering（完全存储排序，TSO）或 processor consistency（处理器连贯性）的模型。由于这种排序保持了写入操作之间的顺序，所以许多根据顺序连贯性运行的程序也能在这一模型下运行，不用添加同步</li>
+<li>放松 W → W 顺序，将会得到一种称为 partial store order（部分存储顺序的模型，PSO）</li>
+<li>放松 R → W 和 R → R 顺序，将会得到许多模型，包括 weak ordering（弱排序，WO）、PowerPC 连贯性模型和 release consistency（释放连贯性，RC），具体取决于排序约束条件的细节和同步操作实施排序的方式</li>
+</ol>
+<p>通过放松这些排序，处理器有可能获得显著的性能提升。但是，在描述宽松连贯性模型时存在许多复杂性，包括放松不同顺序的好处与复杂性、准确定义写入完成的含义、决定处理器什么时候看到它自己写入的值</p>
+<h4 id="621-total-store-ordering-tso">6.2.1 Total Store Ordering (TSO)<a class="headerlink" href="#621-total-store-ordering-tso" title="Permanent link">&para;</a></h4>
+<p>定义：</p>
+<ul>
+<li>所有存储（Store）操作对所有处理器保持全局顺序一致，但允许处理器本地写缓冲区（Write Buffer）优化，即读操作可能绕过未提交的写操作（Store → Load乱序）</li>
+<li>Load → Load 和 Load → Store 必须保持顺序</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>类似 顺序一致性（SC），但性能更高（允许写缓冲区优化）</li>
+<li>x86架构（如 Intel/AMD CPU）默认使用 TSO</li>
+</ul>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1">1</a></span>
+<span class="normal"><a href="#__codelineno-10-2">2</a></span>
+<span class="normal"><a href="#__codelineno-10-3">3</a></span>
+<span class="normal"><a href="#__codelineno-10-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">// 初始值: x=0, y=0</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="n">Processor</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w">        </span><span class="n">Processor</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">             </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w">  </span><span class="c1">// 循环等待</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">             </span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">       </span><span class="c1">// 可能输出0（因Store→Load乱序）</span>
+</span></code></pre></div></td></tr></table></div>
+<p>在 TSO 下，Processor 2 可能看到 <code>y = 1</code> 但 <code>x = 0</code>（因 <code>x = 1</code> 还在 Processor 1 的写缓冲区中）</p>
+<h4 id="622-partial-store-order-pso">6.2.2 Partial Store Order (PSO)<a class="headerlink" href="#622-partial-store-order-pso" title="Permanent link">&para;</a></h4>
+<p>定义：</p>
+<ul>
+<li>同一处理器的 Store 操作对不同地址可能乱序执行（Store → Store 乱序），但 Load 操作仍按顺序执行</li>
+<li>需要显式屏障（Memory Barrier）保证 Store 顺序</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>比 TSO 更宽松，性能更高</li>
+<li>SPARC 架构支持 PSO</li>
+</ul>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1">1</a></span>
+<span class="normal"><a href="#__codelineno-11-2">2</a></span>
+<span class="normal"><a href="#__codelineno-11-3">3</a></span>
+<span class="normal"><a href="#__codelineno-11-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1">// 初始值: x=0, y=0</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><span class="n">Processor</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w">        </span><span class="n">Processor</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">             </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">y</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">             </span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">       </span><span class="c1">// 可能输出0（Store→Store乱序）</span>
+</span></code></pre></div></td></tr></table></div>
+<p>若没有屏障，<code>y = 1</code> 可能先于 <code>x = 1</code> 提交到内存，导致 Processor 2 看到 <code>y = 1</code> 但 <code>x = 0</code></p>
+<h4 id="623-weak-ordering-wo">6.2.3 Weak Ordering (WO)<a class="headerlink" href="#623-weak-ordering-wo" title="Permanent link">&para;</a></h4>
+<p>定义：</p>
+<ul>
+<li>所有内存操作分为同步（Synchronization）和非同步（Data）操作</li>
+<li>非同步操作（普通 Load/Store）可以任意乱序，但同步操作（如锁、屏障）会强制排序</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>编程需显式同步，性能极高，但易出错</li>
+<li>GPU（如 CUDA/OpenCL）常用此模型</li>
+</ul>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-12-1">1</a></span>
+<span class="normal"><a href="#__codelineno-12-2">2</a></span>
+<span class="normal"><a href="#__codelineno-12-3">3</a></span>
+<span class="normal"><a href="#__codelineno-12-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="c1">// 初始值: x=0, flag=0</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="n">Processor</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="w">        </span><span class="n">Processor</span><span class="w"> </span><span class="mi">2</span><span class="o">:</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">flag</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><span class="n">flag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">          </span><span class="n">print</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="w">      </span><span class="c1">// 可能输出0或42</span>
+</span></code></pre></div></td></tr></table></div>
+<p>若 <code>flag = 1</code> 和 <code>x = 42</code> 乱序执行，Processor 2 可能读到未更新的 x。需用同步操作（如 <code>__syncthreads()</code>）强制顺序</p>
+<h4 id="624-release-consistency-rc">6.2.4 Release Consistency (RC)<a class="headerlink" href="#624-release-consistency-rc" title="Permanent link">&para;</a></h4>
+<p>定义：</p>
+<ul>
+<li>
+<p>同步操作分为 Acquire（获取）和 Release（释放）：</p>
+<ul>
+<li>Acquire（如锁获取）：确保之后的所有操作不会被重排到它之前</li>
+<li>Release（如锁释放）：确保之前的所有操作不会被重排到它之后</li>
+</ul>
+</li>
+<li>
+<p>非同步操作仍可乱序</p>
+</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>平衡性能和易用性，现代多核 CPU（如 ARM/POWER）常用</li>
+<li>C++11 的 <code>std::atomic</code> 和 Java 的 <code>volatile</code> 实现类似语义</li>
+</ul>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-13-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-13-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-13-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-13-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-13-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-13-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-13-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-13-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1">// C++11示例，使用atomic实现RC</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="n">std</span><span class="o">::</span><span class="n">atomic</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="w"> </span><span class="n">flag</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><span class="c1">// Processor 1:</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><span class="n">x</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span><span class="w">  </span><span class="c1">// 非同步操作（可乱序）</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><span class="n">flag</span><span class="p">.</span><span class="n">store</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_release</span><span class="p">);</span><span class="w"> </span><span class="c1">// Release：保证x=42在此前完成</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><span class="c1">// Processor 2:</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">flag</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_acquire</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Acquire：保证之后的操作看到Processor 1的修改</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">memory_order_relaxed</span><span class="p">);</span><span class="w">    </span><span class="c1">// 必输出42</span>
+</span></code></pre></div></td></tr></table></div>
+<p><code>Release</code> 和 <code>Acquire</code> 配对确保 <code>x = 42</code> 对 Processor 2 可见</p>
+<blockquote>
+<p>嗯 ~ o(*￣▽￣*)o，AI 真好用，但是依旧看不明白 －_－b</p>
+</blockquote>
 
 
 
@@ -9852,7 +10173,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月5日 05:45:39 UTC">2025年6月5日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月5日 06:32:45 UTC">2025年6月5日</span>
   </span>
 
     
@@ -9984,13 +10305,13 @@
         
         
           
-          <a href="../../lab/" class="md-footer__link md-footer__link--next" aria-label="下一页: 实验部分">
+          <a href="../ch6/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 Data-Level Parallelism in Vector, SIMD, and GPU Architectures">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                实验部分
+                6 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
               </div>
             </div>
             <div class="md-footer__button md-icon">
