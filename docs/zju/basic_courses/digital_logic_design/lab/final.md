@@ -1262,7 +1262,7 @@ initial begin
     state[20][6] = 3'b001;
     state[19][6] = 3'b010;
     state[18][6] = 3'b010;
-    state[fruit_x][fruit_y] = 3'b011;
+    state[29][6] = 3'b011;
 end
 ```
 
@@ -1395,10 +1395,10 @@ always @(posedge game_clk) begin
                 state[j][i] <= 3'b110;
             end
             // 设置蛇的位置
-            state[20][6] = 3'b001;
-            state[19][6] = 3'b010;
-            state[18][6] = 3'b010;
-            state[fruit_x][fruit_y] = 3'b011;
+            state[20][6] <= 3'b001;
+            state[19][6] <= 3'b010;
+            state[18][6] <= 3'b010;
+            state[29][6] <= 3'b011;
         end
         -- snip --
     end
