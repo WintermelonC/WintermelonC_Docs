@@ -99,7 +99,7 @@ create domain degree_level varchar(10)
       2. 如果更新涉及主键值的修改，必须确保没有其他表中的元组引用该主键，或者进行级联更新，即同时更新所有引用该主键的元组
 
 ```sql linenums="1"
-Create table account (
+create table account (
     account_number char(10), 
     branch_n	char(15), 
     balance	integer, 
@@ -108,7 +108,7 @@ Create table account (
     foreign key (branch_n) references branch(branch_name)
 ); 
 
-Create table account (
+create table account (
     -- 简写
     account_number char(10) references branch,  
     branch_name	char(15), 

@@ -102,7 +102,7 @@ from loan;
 </figure>
 
 ```sql linenums="1"
-select * form loan;  -- * 表示全部
+select * from loan;  -- * 表示全部
 
 select loan_number, branch_name, amount * 100  -- 可包含运算符
 from loan;
@@ -314,7 +314,7 @@ where B.loan_number = L.loan_number and
 ```sql linenums="1"
 select account_number AN, balance
 from account A
-where balance >= (select man(balance)
+where balance >= (select max(balance)
                 from account B
                 where A.branch_name = B.branch_name)
 order by balance

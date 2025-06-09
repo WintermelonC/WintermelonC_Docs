@@ -64,7 +64,7 @@ bhh老师
 
 [1 数学基础](./doc/doc1.md)<br/>
 [2 古典密码](./doc/doc2.md)<br/>
-[3 Hash 函数 MD5](./doc/doc3.md)<br/>
+[3 Hash 函数：MD5 / SHA](./doc/doc3.md)<br/>
 [4 分组密码工作模式](./doc/doc4.md)<br/>
 [5 流密码算法 RC4](./doc/doc5.md)<br/>
 [6 DES](./doc/doc6.md)<br/>
