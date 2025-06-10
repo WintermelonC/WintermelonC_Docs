@@ -1,35 +1,30 @@
-/* 源代码来源：https://getbootstrap.com/ */
-:root,
-[data-md-color-scheme="default"] {
-  --bs-heading-color: inherit;
+/* material 元素修改 */
+
+/* begin 增加 admonition heart 图标 */
+:root {
+  --md-admonition-icon--heart: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12 21.35-1.45-1.32C5.4 15.36 2 12.27 2 8.5 2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>');
+}
+.md-typeset .admonition.heart,
+.md-typeset details.heart {
+  border-color: rgb(240, 50, 50);
+}
+.md-typeset .heart > .admonition-title,
+.md-typeset .heart > summary {
+  background-color: rgba(240, 50, 50, 0.1);
+}
+.md-typeset .heart > .admonition-title::before,
+.md-typeset .heart > summary::before {
+  background-color: rgb(240, 50, 50);
+  -webkit-mask-image: var(--md-admonition-icon--heart);
+          mask-image: var(--md-admonition-icon--heart);
 }
 
-[data-md-color-scheme="slate"] {
-  --bs-heading-color: #eeeeee;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: 'almmdfdk';
-  src: url('../fonts/almmdfdk_REGULAR.TTF') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-/* 
- * class 选择器 
- * class=""
- */
- 
+/* 修改主内容部分的宽度 */
 .md-grid {
   max-width: 1440px;
 }
 
+/* 修改五级标题 */
 .md-typeset h5 {
   color: #212121;
   text-transform: none;
@@ -39,57 +34,20 @@
   color: #c1c4c9;
 }
 
-.md-typeset h4 {
-  font-size: 1.125em;
-}
-
+/* 修改分割线 */
 .md-typeset hr {
   border-bottom-width: 0.1rem;
 }
 
-.home-page {
-  width: 80%;
-  margin: 0 auto;
-}
+/* end 增加 admonition heart 图标 */
 
-.my-card-text {
-  margin-bottom: 1.5rem;
-  text-shadow: 1px 1px 2px white;
-}
-
-[data-md-color-scheme="slate"] .my-card-text {
-  text-shadow: 1px 1px 2px #000000;
-}
-
-.home-content {
-  width: 100%;
-  margin: auto;
-}
-
-@media (min-width: 425px) {
-  .home-content {
-    width: 75%
-  }
-}
-
-.sub-text {
-  text-shadow: 1px 1px 2px white;
-}
-
-[data-md-color-scheme="slate"] .sub-text {
-  text-shadow: 1px 1px 2px #000000;
-}
-
-
-/* 
- * ID 选择器 
- * id=""
- */
+/* 表格水平、垂直居中 */
 #tab-both-mid {
   text-align: center;
   vertical-align: middle;
 }
 
+/* 表格强调部分 */
 #tab-bg-both-mid {
   background-color: #f3f3f3;
   text-align: center;
@@ -100,97 +58,12 @@
   background-color: #2d2f38;
 }
 
+/* grid 元素居中 */
 #grid-mid {
   align-items: center;
 }
 
+/* 文字居中 */
 #txt-mid {
   text-align: center;
-}
-
-#home-title {
-  font-size: calc(1.5rem + 1.25vw);
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: 0.5rem;
-  font-family: Georgia, "Times New Roman", serif;
-  color: #212121;
-  text-align: center;
-  text-shadow: 1px 0px #eff6ff, 2px 1px #eff6ff, 3px 2px #eff6ff, 4px 3px #535353;
-}
-
-[data-md-color-scheme="slate"] #home-title {
-  color: #f1f9ff;
-  text-shadow: 1px 0px #212121, 2px 1px #212121, 3px 2px #212121, 4px 3px #bfbfbf;
-}
-
-@media (max-width: 550px) {
-  #home-title {
-    font-size: 1.375rem;
-    text-shadow: 0.5px 0px #eff6ff, 1px 0.5px #eff6ff, 1.5px 1px #eff6ff, 2px 1.5px #535353;
-  }
-  [data-md-color-scheme="slate"] #home-title {
-    text-shadow: 0.5px 0px #212121, 1px 0.5px #212121, 1.5px 1px #212121, 2px 1px #bfbfbf;
-  }
-  #poem_sentence {
-    font-size: 1rem;
-  }
-}
-
-@media (max-width: 425px) {
-  #home-title {
-    font-size: 1.25rem;
-  }
-  #poem_sentence {
-    font-size: 0.825rem;
-  }
-}
-
-@media (max-width: 375px) {
-  #home-title {
-    font-size: 1rem;
-  }
-  #poem_sentence {
-    font-size: 0.75rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  #home-title {
-    font-size: 3rem;
-  }
-}
-
-#poem_sentence {
-  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
-  color: #212121;
-  text-align: center;
-  margin-bottom: 0rem !important;
-}
-
-[data-md-color-scheme="slate"] #poem_sentence {
-  color: #f1f7fa;
-}
-
-#bs-card-title {
-  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
-  margin-top: 0;
-  margin-bottom: 0 !important;
-  font-weight: 500;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  color: var(--bs-heading-color);
-  text-shadow: 3px 3px 3px rgb(177 177 177 / 80%);
-}
-
-[data-md-color-scheme="slate"] #bs-card-title {
-  text-shadow: 3px 3px 3px rgb(75 75 75 / 80%);
-}
-
-#button-text {
-  color: #f3f3f3;
-}
-
-#button-text:hover {
-  color: #f3f3f3;
 }
