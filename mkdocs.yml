@@ -22,6 +22,7 @@ nav:
       - 中国近现代史纲要: zju/political/history_of_modern_china.md
       - 马克思主义基本原理:
         - zju/political/marxist_principles/index.md
+        - 主观题整理: zju/political/marxist_principles/subjective_questions.md
         - 0 导论: zju/political/marxist_principles/ch0.md
         - 1 世界的物质性及发展规律: zju/political/marxist_principles/ch1.md
       - 习近平新时代中国特色社会主义思想概论: zju/political/xi_jinping_thought.md

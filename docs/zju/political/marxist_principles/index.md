@@ -45,8 +45,9 @@ lj老师
 
     [思维导图](../../../file/marxist_principles/marxist_doc1.pdf){:target="_blank"}
 
+[主观题整理](./subjective_questions.md)<br/>
 [0 导论](./ch0.md)<br/>
-[1 世界的物质性及发展规律](./ch1.md)<br/>
+[1 世界的物质性及发展规律](./ch1.md)
 
 ### 其他
 
@@ -57,6 +58,8 @@ lj老师
 ### 2024-2025 秋冬
 
 [24-25秋冬 马克思主义基本原理期末选择题回忆（马原）&历年卷汇总](https://www.cc98.org/topic/6084453){:target="_blank"}
+
+[24-25马原大题回忆](https://www.cc98.org/topic/6084427){:target="_blank"}
 
 ### 2023-2024 春夏
 
