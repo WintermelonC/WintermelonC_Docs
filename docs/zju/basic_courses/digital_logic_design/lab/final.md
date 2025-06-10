@@ -1,5 +1,12 @@
 # final
 
+!!! heart "感谢"
+
+    感谢评论区对本文档的修正
+
+    - [@HuangCgit](https://github.com/HuangCgit){:target="_blank"}
+    - [@LXL-eter](https://github.com/LXL-eter){:target="_blank"}
+
 <!-- !!! tip "说明"
 
     本文档正在更新中…… -->

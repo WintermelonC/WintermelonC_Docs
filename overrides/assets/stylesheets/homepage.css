@@ -1,3 +1,4 @@
+/* 设置背景图片 */
 [data-md-color-scheme="default"] {
 	background-attachment: fixed;
 	background-repeat: no-repeat;
@@ -12,4 +13,135 @@
 	background-position: center center;
 	background-size: cover;
 	background-image: url('../images/2023SkyDesktopEden4K.jpg');
+}
+
+/* 部分代码源代码来源：https://getbootstrap.com/ https://getbootstrap.com/docs/5.3/examples/ */
+
+/* 增加“阿里妈妈东方大楷”字体 */
+@font-face {
+  font-family: 'almmdfdk';
+  src: url('../fonts/almmdfdk_REGULAR.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.home-page {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.my-card-text {
+  margin-bottom: 1.5rem;
+  text-shadow: 1px 1px 2px white;
+}
+
+[data-md-color-scheme="slate"] .my-card-text {
+  text-shadow: 1px 1px 2px #000000;
+}
+
+.home-content {
+  width: 100%;
+  margin: auto;
+}
+
+@media (min-width: 425px) {
+  .home-content {
+    width: 75%
+  }
+}
+
+#home-title {
+  font-size: calc(1.5rem + 1.25vw);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #212121;
+  text-align: center;
+  text-shadow: 1px 0px #eff6ff, 2px 1px #eff6ff, 3px 2px #eff6ff, 4px 3px #535353;
+}
+
+[data-md-color-scheme="slate"] #home-title {
+  color: #f1f9ff;
+  text-shadow: 1px 0px #212121, 2px 1px #212121, 3px 2px #212121, 4px 3px #bfbfbf;
+}
+
+#poem_sentence {
+  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
+  color: #212121;
+  text-align: center;
+  margin-bottom: 0rem !important;
+}
+
+[data-md-color-scheme="slate"] #poem_sentence {
+  color: #f1f7fa;
+}
+
+@media (max-width: 550px) {
+  #home-title {
+    font-size: 1.375rem;
+    text-shadow: 0.5px 0px #eff6ff, 1px 0.5px #eff6ff, 1.5px 1px #eff6ff, 2px 1.5px #535353;
+  }
+  [data-md-color-scheme="slate"] #home-title {
+    text-shadow: 0.5px 0px #212121, 1px 0.5px #212121, 1.5px 1px #212121, 2px 1px #bfbfbf;
+  }
+  #poem_sentence {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 425px) {
+  #home-title {
+    font-size: 1.25rem;
+  }
+  #poem_sentence {
+    font-size: 0.825rem;
+  }
+}
+
+@media (max-width: 375px) {
+  #home-title {
+    font-size: 1rem;
+  }
+  #poem_sentence {
+    font-size: 0.75rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  #home-title {
+    font-size: 3rem;
+  }
+}
+
+/* 设置 bs-card-title 的颜色 */
+[data-md-color-scheme="default"] {
+  --bs-heading-color: inherit;
+}
+
+[data-md-color-scheme="slate"] {
+  --bs-heading-color: #eeeeee;
+}
+
+#bs-card-title {
+  font-family: "almmdfdk" ,"Roboto", "Microsoft YaHei", sans-serif;
+  margin-top: 0;
+  margin-bottom: 0 !important;
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+  text-shadow: 3px 3px 3px rgb(177 177 177 / 80%);
+}
+
+[data-md-color-scheme="slate"] #bs-card-title {
+  text-shadow: 3px 3px 3px rgb(75 75 75 / 80%);
+}
+
+#button-text {
+  color: #f3f3f3;
+}
+
+#button-text:hover {
+  color: #f3f3f3;
 }

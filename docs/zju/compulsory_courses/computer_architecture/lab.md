@@ -13,7 +13,7 @@
 </figure>
 
 1. 开发板型号：xc7k325tffg676-2L
-2. [xdc 引脚约束文件](../../file/comp_arch/xc7k325tffg676-2L.xdc){:target="_blank"}
+2. [xdc 引脚约束文件](../../../file/comp_arch/xc7k325tffg676-2L.xdc){:target="_blank"}
 
 ## Vivado 相关操作
 
