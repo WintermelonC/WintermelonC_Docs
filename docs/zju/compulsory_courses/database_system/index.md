@@ -44,6 +44,42 @@ cg老师
 
 [【数据库系统】【计算机组成】【A4纸】【计算机学院】23-24学年春夏](https://www.cc98.org/topic/5935059){:target="_blank"}
 
+<div class="hq-card hq-file-block" markdown="1">
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
+<div class="hq-file-body">
+<div class="hq-file-title">期末复习题 1</div>
+<div class="hq-file-meta">591 KB | 12 Page</div>
+</div>
+<a class="hq-down-button" target="_blank" href="../../../file/database_system/database_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="hq-card hq-file-block" markdown="1">
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
+<div class="hq-file-body">
+<div class="hq-file-title">期末复习题 1 答案</div>
+<div class="hq-file-meta">383 KB | 6 Page</div>
+</div>
+<a class="hq-down-button" target="_blank" href="../../../file/database_system/database_doc2.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="hq-card hq-file-block" markdown="1">
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
+<div class="hq-file-body">
+<div class="hq-file-title">期末复习题 2</div>
+<div class="hq-file-meta">394 KB | 10 Page</div>
+</div>
+<a class="hq-down-button" target="_blank" href="../../../file/database_system/database_doc3.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
+<div class="hq-card hq-file-block" markdown="1">
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
+<div class="hq-file-body">
+<div class="hq-file-title">期末复习题 2 答案</div>
+<div class="hq-file-meta">388 KB | 7 Page</div>
+</div>
+<a class="hq-down-button" target="_blank" href="../../../file/database_system/database_doc4.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+</div>
+
 ## 历年题整理
 
 ### 2023-2024 春夏
