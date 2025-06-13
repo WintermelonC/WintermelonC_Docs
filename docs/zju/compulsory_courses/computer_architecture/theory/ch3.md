@@ -14,8 +14,9 @@
 memory hierarchy（存储器层次结构）：
 
 principle of locality of reference（局部性原理）：程序在任意时刻通常只访问地址空间的一小部分。为了提高访问速度，可以将最近访问的数据项保存在快速存储器中。这通常通过使用缓存（cache）来实现，缓存是一种小而快速的存储器，用于存储最近或频繁访问的数据，以减少访问较慢的主存储器的次数
-      1. temporal locality（时间局部性）：最近访问过的数据很可能在不久的将来再次被访问
-      2. spatial locality（空间局部性）：如果一个数据被访问，那么它附近的数据也可能很快被访问
+
+1. temporal locality（时间局部性）：最近访问过的数据很可能在不久的将来再次被访问
+2. spatial locality（空间局部性）：如果一个数据被访问，那么它附近的数据也可能很快被访问
 
 ### 1.1 4 个存储器层次结构问题
 
@@ -184,7 +185,7 @@ $CPU\ time = IC\times (\dfrac{AluOps}{Inst}\times CPI_{AluOps} + \dfrac{MemAcces
 
 重新定义存储器停顿，得到 miss penalty 的一种新定义，将其表示为 non-overlapped latency
 
-$\dfrac{memory stall cycles}{instruction} = \dfrac{misses}{instruction} \times (total miss latency - overlapped miss latency)$
+$\dfrac{memory\ stall\ cycles}{instruction} = \dfrac{misses}{instruction} \times (total\ miss\ latency - overlapped\ miss\ latency)$
 
 与此类似，由于一些乱序处理器会拉长命中时间，所以性能公式的这一部分可以除以总命中延迟减去重叠命中延迟之差。可以对这一公式进一步扩展，将总缺失延迟分解为没有争用时的延迟和因为争用导致的延迟，以考虑乱序处理器中的存储器资源。我们仅关注缺失延迟
 

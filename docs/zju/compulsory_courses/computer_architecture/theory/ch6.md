@@ -1,8 +1,8 @@
 # 6 Data-Level Parallelism in Vector, SIMD, and GPU Architectures
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
