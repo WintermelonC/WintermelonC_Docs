@@ -26,6 +26,7 @@ nav:
         - 0 导论: zju/political/marxist_principles/ch0.md
         - 1 世界的物质性及发展规律: zju/political/marxist_principles/ch1.md
       - 习近平新时代中国特色社会主义思想概论: zju/political/xi_jinping_thought.md
+      - 毛泽东思想和中国特色社会主义理论体系概论: zju/political/mao_and_socialism_theory.md
       - 中国共产党历史: zju/political/history_of_CPC.md
     - 军体类:
       - zju/military_PE/index.md
@@ -64,6 +65,7 @@ nav:
       - zju/general_courses/index.md
       - 茶文化与茶健康: zju/general_courses/tea_culture.md
       - 经济法理论与实务: zju/general_courses/economic_law.md
+      - 外国音乐欣赏: zju/general_courses/foreign_music.md
       - 生物进化与设计: 
         - zju/general_courses/bio_evolution_and_design/index.md
         - 整理: zju/general_courses/bio_evolution_and_design/doc.md
@@ -191,8 +193,18 @@ nav:
           - 5 Thread-Level Parallelism: zju/compulsory_courses/computer_architecture/theory/ch5.md
           - 6 Data-Level Parallelism in Vector, SIMD, and GPU Architectures: zju/compulsory_courses/computer_architecture/theory/ch6.md
         - 实验部分: zju/compulsory_courses/computer_architecture/lab.md
+      - 计算理论:
+        - zju/compulsory_courses/computational_theory/index.md
+      - 操作系统:
+        - zju/compulsory_courses/operating_system/index.md
+      - 计算机网络:
+        - zju/compulsory_courses/computer_network/index.md
     - 专业模块课程:
       - zju/module_courses/index.md
+      - Java 应用技术:
+        - zju/module_courses/java_application/index.md
+      - B/S 体系软件设计:
+        - zju/module_courses/BS_software_design/index.md
       - 密码学:
         - zju/module_courses/cryptography/index.md
         - 整理:

@@ -12,6 +12,10 @@
 
 [经济法理论与实务](./economic_law.md)
 
+## 文艺审美
+
+[外国音乐欣赏](./foreign_music.md)
+
 ## 科技创新
 
 [生物进化与设计](./bio_evolution_and_design/index.md)<br/>

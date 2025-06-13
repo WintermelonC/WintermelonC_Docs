@@ -10,7 +10,8 @@
 
 [中国近现代史纲要](./political/history_of_modern_china.md)<br/>
 [马克思主义基本原理](./political/marxist_principles/index.md)<br/>
-[习近平新时代中国特色社会主义思想概论](./political/xi_jinping_thought.md)
+[习近平新时代中国特色社会主义思想概论](./political/xi_jinping_thought.md)<br/>
+[毛泽东思想和中国特色社会主义理论体系概论](./political/mao_and_socialism_theory.md)
 
 #### 选修课程
 
@@ -50,6 +51,10 @@
 
 [经济法理论与实务](./general_courses/economic_law.md)
 
+#### 文艺审美
+
+[外国音乐欣赏](./general_courses/foreign_music.md)
+
 #### 科技创新
 
 [生物进化与设计](./general_courses/bio_evolution_and_design/index.md)<br/>
@@ -79,15 +84,17 @@
 [高级数据结构与算法分析](./compulsory_courses/ADS/index.md)<br/>
 [计算机组成](./compulsory_courses/computer_organization/index.md)<br/>
 [数据库系统](./compulsory_courses/database_system/index.md)<br/>
-[计算机体系结构](./compulsory_courses/computer_architecture/index.md)
+[计算机体系结构](./compulsory_courses/computer_architecture/index.md)<br/>
+[计算理论](./compulsory_courses/computational_theory/index.md)<br/>
+[操作系统](./compulsory_courses/operating_system/index.md)<br/>
+[计算机网络](./compulsory_courses/computer_network/index.md)
 
 ### 专业模块课程
 
-#### 计算机科学
-
-#### 计算机系统
-
 #### 计算机软件技术
+
+[Java 应用技术](./module_courses/java_application/index.md)<br/>
+[B/S 体系软件设计](./module_courses/BS_software_design/index.md)
 
 #### 信息安全技术
 
