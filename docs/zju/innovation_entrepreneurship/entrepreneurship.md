@@ -175,7 +175,7 @@ lh老师
     
 <embed src="../../../file/entrepreneurship/entre_ship_document1.pdf" type="application/pdf" width="100%" height="500" />
 
-### 其它
+### 其他
 
 [浙江大学课程攻略共享计划 - 创业启程](https://qsctech.github.io/zju-icicles/%E5%88%9B%E4%B8%9A%E5%90%AF%E7%A8%8B/){:target="_blank"}
 

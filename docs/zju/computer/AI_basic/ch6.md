@@ -49,7 +49,6 @@ from sklearn.cluster import KMeans
 from sklearn.metrics import accuracy_score
 import matplotlib.pyplot as plt
 
-
 # 加载数据集
 iris = datasets.load_iris()
 X = iris.data
@@ -62,10 +61,26 @@ scaler = StandardScaler()
 # fit_transform 用于拟合数据并进行转换
 X_scaled = scaler.fit_transform(X)
 
-# random_state=42 确保结果的可重复性
+"""
+创建模型
+
+:param n_clusters: 指定簇的数量
+:param random_state: 伪随机数生成器的种子值
+    设置这个参数后，可以确保每次运行代码时，
+    数据的划分结果都是一样的，即具有可重复性
+
+为什么是 random_state = 42：
+
+这其实是一个程序员圈子里的梗，
+源自科幻小说《银河系漫游指南》中“生命、宇宙以及一切的终极答案”是 42。
+它只是一个常见的默认值，并没有特殊意义。
+你可以使用任何整数值作为随机种子，比如 0, 123, 999 等
+"""
 kmeans = KMeans(n_clusters=3, random_state=42)
+# 训练模型
 kmeans.fit(X_scaled)
 
+# 模型预测
 y_kmeans = kmeans.predict(X_scaled)
 
 # 将聚类中心反标准化
@@ -103,7 +118,7 @@ for i in range(3):
         count = np.sum(y[cluster] == iris_type)
         print(f' {iris.target_names[iris_type]}: {count}')
 
-"""Output:
+"""output:
 Composition of Cluster 0:
  setosa: 0
  versicolor: 46
@@ -173,6 +188,7 @@ X_scaled = scaler.fit_transform(X)
 pca = PCA()
 X_pca = pca.fit_transform(X_scaled)
 
+# 每个主成分解释了多少比例的方差。这个比例反映了每个主成分的重要性
 explained_variance_ratio = pca.explained_variance_ratio_
 print(f'Explained Variance Ratio: {explained_variance_ratio}')
 
@@ -186,4 +202,41 @@ for i, component in enumerate(pca.components_):
     print(f'PC{i + 1}: ')
     for j, corr in enumerate(correlations):
         print(f'{iris.feature_names[j]}: {corr:.3f}')
+
+"""output
+Explained Variance Ratio: [0.72962445 0.22850762 0.03668922 0.00517871]
+
+说明：
+
+1. 第一主成分（PC1）就解释了超过 70% 的总方差
+2. 前两个主成分加起来解释了约 95.8%，说明我们可以用前两个主成分来可视化整个数据集，同时保留大部分信息
+
+主成分的特征向量（表示原始特征在新主成分上的投影权重）：
+PC1: [ 0.52106591 -0.26934744  0.5804131   0.56485654]
+PC2: [0.37741762 0.92329566 0.02449161 0.06694199]
+PC3: [ 0.71956635 -0.24438178 -0.14212637 -0.63427274]
+PC4: [-0.26128628  0.12350962  0.80144925 -0.52359713]
+
+原始特征与主成分的相关性：
+PC1: 
+sepal length (cm): 0.893
+sepal width (cm): -0.462
+petal length (cm): 0.995
+petal width (cm): 0.968
+PC2: 
+sepal length (cm): 0.362
+sepal width (cm): 0.886
+petal length (cm): 0.023
+petal width (cm): 0.064
+PC3:
+sepal length (cm): 0.277
+sepal width (cm): -0.094
+petal length (cm): -0.055
+petal width (cm): -0.244
+PC4:
+sepal length (cm): -0.038
+sepal width (cm): 0.018
+petal length (cm): 0.116
+petal width (cm): -0.076
+"""
 ```

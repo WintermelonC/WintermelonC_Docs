@@ -169,10 +169,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random
 # 查看数据形状
 print(X_train.shape)
 
-# 创建并训练 MLP 分类器
-# hidden_layer_sizes 隐藏层的数量和每层的神经元数量
-# max_iter 迭代次数
-# random_state 随机数种子，用于训练的可重复性
+"""
+创建并训练 MLP 分类器
+
+:param hidden_layer_sizes: 隐藏层的数量和每层的神经元数量
+:param max_iter: 最大迭代次数
+:param solver: 权重优化算法的选择
+    'sgd' 'adam'
+:param activation: 应用于隐藏层的激活函数
+    'logistic' 'tanh' 'relu'
+:param alpha: L2 惩罚（正则化项）参数，用来防止过拟合
+"""
 my_MLP = MLPClassifier(hidden_layer_sizes=(100, ), max_iter=100, random_state=42)
 # 模型训练
 my_MLP.fit(X_train, y_train)
@@ -201,16 +208,16 @@ print(f'Model accuracy: {score:.2f}')
 
 ### 7.5.2 损失函数的选择
 
-常用损失函数：
+常用损失函数（$T_i$ 是模型输出的结果，$Y_i$ 是训练样本的结果）：
 
 1. 回归损失函数：用于衡量回归系统的误差
-      1. 均方误差（MSE）
-      2. 平均绝对误差（MAE）
-      3. 平均绝对百分比误差（MAPE）
-      4. 均方根对数误差（MSLE）
+      1. 均方误差 $MSE = \dfrac{\sum\limits_{i=1}^N(T_i - Y_i)^2}{N}$
+      2. 平均绝对误差 $MAE = \dfrac{\sum\limits_{i=1}^N|T_i - Y_i|}{N}$
+      3. 平均绝对百分比误差 $MAPE = \dfrac{\sum\limits_{i=1}^N|\dfrac{Y_i - T_i}{Y_i}|}{N} \times 100$
+      4. 均方根对数误差 $MSLE = \dfrac{\sum\limits_{i=1}^N[\log(T_i + 1) - \log(Y_i + 1)]^2}{N}$
 2. 分类损失函数
-      1. 二进制交叉熵
-      2. 多分类交叉熵
+      1. 二进制交叉熵，对应激活函数 sigmoid
+      2. 多分类交叉熵，对应激活函数 softmax
 
 ### 7.5.3 优化器的选择
 
