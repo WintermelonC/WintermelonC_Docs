@@ -53,11 +53,15 @@ Bonus：实现动态分支预测（使用 AI 进行协作）
 
 ### 其他
 
-[浙江大学课程攻略共享计划 - 计算机体系结构](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/){:target="_blank"}
+电子版教材：[浙江大学课程攻略共享计划 - 计算机体系结构](https://qsctech.github.io/zju-icicles/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/){:target="_blank"}
 
 [计算机体系结构(CA)复习资源分享](https://www.cc98.org/topic/5532574){:target="_blank"}
 
 ## 历年题整理
+
+### 2024-2025 秋冬
+
+[2024-2025秋冬 计算机体系结构 期末回忆卷（体系结构）](https://www.cc98.org/topic/6082405){:target="_blank"}
 
 ### 2023-2024
 
@@ -66,6 +70,10 @@ Bonus：实现动态分支预测（使用 AI 进行协作）
 ### 2022-2023
 
 [22-23计算机体系结构回忆卷](https://www.cc98.org/topic/5504808){:target="_blank"}
+
+### 2021-2022
+
+[2021-2022 计算机体系结构 CA 期末试卷 （回忆版）](https://www.cc98.org/topic/5232479){:target="_blank"}
 
 ### 2020-2021 秋冬
 
