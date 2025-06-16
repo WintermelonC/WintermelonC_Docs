@@ -206,3 +206,133 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 - $S_2 = \dfrac{e^{x_2}}{sum} = 0.20$
 - $S_3 = \dfrac{e^{x_3}}{sum} = 0.02$
 - $S_4 = \dfrac{e^{x_4}}{sum} = 0.04$
+
+## 8 卷积神经网络
+
+### 7.1 MLP
+
+```python linenums="1"
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
+
+# 数据预处理
+transforms = transforms.Compose([
+    transforms.ToTensor(),
+    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))
+])
+
+# 加载数据集
+train_dataset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transforms)
+test_dataset = datasets.CIFAR10(root='./data', train=False, download=True, transform=transforms)
+
+# 创建数据加载器，shuffle=True 打乱训练数据
+train_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
+test_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
+
+class MLP(nn.Module):
+    def __init__(self):
+        super(MLP, self).__init__()
+        # 输入层节点数：3 * 32 * 32（图片尺寸）
+        self.fc1 = nn.Linear(3 * 32 * 32, 500)
+        self.relu = nn.ReLU()
+        self.fc2 = nn.Linear(400, 100)
+        # 输出层节点数：10（类别数）
+        self.fc3 = nn.Linear(100, 10)
+
+    def forward(self, x):
+        # 展平图片，降维到一维
+        x = x.view(-1, 3 * 32 * 32)
+        x = self.relu(self.fc1(x))
+        x = self.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+    
+model = MLP()
+
+# 设置超参数
+learning_rate = 0.001
+epochs = 10
+
+# 损失函数和优化器
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+# 训练模型
+for epoch in range(epochs):
+    for images, labels in train_loader:
+        # 误差不累积，置零
+        optimizer.zero_grad()
+        # 前向计算
+        outputs = model(images)
+        # 计算损失
+        loss = criterion(outputs, labels)
+        # 误差反向传播
+        loss.backward()
+        # 用选定的优化器更新模型参数
+        optimizer.step()
+    
+    print(f'Epoch [{epoch+1}/{epochs}], Loss: {loss.item():.4f}')
+
+# 评估模型
+model.eval()
+with torch.no_grad():
+    correct = 0
+    total = 0
+    for images, labels in test_loader:
+        outputs = model(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+    print(f'Accuracy of the model on the 10000 test images: {100 * correct / total}%')
+```
+
+## 9 循环神经网络
+
+### 9.1 计算 RNN 输出
+
+已知拓扑结构为同步多对多 RNN，输入层、隐含层（一层）、输出层的神经元均为一个，激活函数均为 ReLU，$W = [0.5, 0.1, 0.2], H = [1], V = [3], S_0 = 0, \alpha = 0, \beta = 0$。对 $X = \begin{bmatrix}
+    1 & 1& 1 \\ 2 & 2 & 2 \\ 3 & 3 & 3
+\end{bmatrix}$ 的输入序列，计算其输出序列 $Y$
+
+解：
+
+$X_1 = [1,1,1], X_2=[2,2,2], X_3=[3,3,3]$<br/>
+$S_1 = f(WX_1^T + HS_0) = f(0.8) = 0.8$<br/>
+$Y_1 = h(VS_1) = h(2.4) = 2.4$<br/>
+$S_2 = f(WX_2^T + HS_1) = f(2.4) = 2.4$<br/>
+$Y_2 = h(VS_2) = h(7.2) = 7.2$<br/>
+$S_3 = f(WX_3^T + HS_2) = f(4.8) = 4.8$<br/>
+$Y_3 = h(VS_3) = h(14.4) = 14.4$<br/>
+
+$\therefore Y = [2.4, 7.2, 14.4]$
+
+## 11 自然语言处理建模
+
+### 11.1 计算文本相似度
+
+词向量 $A = [0.02, 0.093, 0.095, 0.01], B = [0.96, 0.77, 0.85, 0.15]$，计算 $A, B$ 的余弦相似度和广义 Jaccard 相似度
+
+解：
+
+$cos\theta = \dfrac{A \cdot B}{||A||\ ||B||} = \dfrac{1.5443}{1.3296 \times 1.5032} = 0.7727$
+
+$EJ(A,B) = \dfrac{A \cdot B}{||A||^2 + ||B||^2 - A \cdot B} = \dfrac{1.5443}{1.7679 + 2.2595 - 1.5443} = 0.6219$
+
+---
+
+计算以下两个文本的 Jaccard 相似度，文本 1：“我爱北京天安门”，文本 2：“天安门雄伟壮阔让人不得不爱”（不考虑词频）
+
+解：
+
+文本 1 的集合 $A = {我，爱，北，京，天，安，门}$
+
+文本 2 的集合 $B = {天，安，门，雄，伟，壮，阔，让，人，不，得，爱}$
+
+$A ∩ B = {爱，天，安，门}$<br/>
+$A ∪ B = {我，爱，北，京，天，安，门，雄，伟，壮，阔，让，人，不，得}$
+
+Jaccard 相似度：$J(A, B) = \dfrac{|A ∩ B|}{|A ∪ B|}= \dfrac{4}{15} = 0.2667$
