@@ -9381,10 +9381,13 @@
 </ol>
 <p>常用统计量：</p>
 <ol>
-<li>TF：衡量词语在文档中出现频率得统计量</li>
+<li>TF：衡量词语在文档中出现频率的统计量</li>
 <li>IDF：如果某个关键词在一篇文章中出现的频率很高，并且在其他文章中很少出现，则认为这个关键词具有很好的类别区分能力，适合用来分类</li>
 <li>TF-IDF：评估一个词对于一个文档或一个语料库的重要性</li>
 </ol>
+<p><span class="arithmatex">\(TF(w) = \dfrac{某个词 w 在该文档中出现的个数}{该文档中所有词的总数}\)</span><br/>
+<span class="arithmatex">\(IDF(w) = \log\dfrac{语料库文档的总数}{语料库中包含关键词 w 的文档数 + 1}\)</span><br/>
+<span class="arithmatex">\(TF\text{-}IDF = TF \times IDF\)</span></p>
 <h3 id="1132-word2vec">11.3.2 Word2Vec<a class="headerlink" href="#1132-word2vec" title="Permanent link">&para;</a></h3>
 <p>将离散的单词（字）映射到连续的向量空间中，向量的每个维度表示一个特征（属性）</p>
 <p>将词汇表中的每个词用固定长度的向量来表示，这个固定的长度就叫维度</p>
@@ -9465,8 +9468,8 @@
 <ol>
 <li>线性变换</li>
 <li>计算注意力分数：<span class="arithmatex">\(score = QK^T\)</span></li>
-<li>归一化注意力分数：通过 softmax 函数对注意力分数进行归一化</li>
-<li>最终的注意力分数</li>
+<li>归一化注意力分数：通过 softmax 函数对注意力分数进行归一化，<span class="arithmatex">\(attention\_weight=softmax(\dfrac{score}{\sqrt{D}})\)</span>（<span class="arithmatex">\(D\)</span> 是向量的维度）</li>
+<li>最终的注意力分数 <span class="arithmatex">\(Z = attention\_weight \cdot V\)</span></li>
 </ol>
 <figure>
   <img alt="Img 15" src="../../../../img/AI_basic/ch11/ai_ch11_img15.png" width="600" />
@@ -9478,9 +9481,30 @@
 </figure>
 <h3 id="1144-3-种类型的-transformer-模型">11.4.4 3 种类型的 Transformer 模型<a class="headerlink" href="#1144-3-种类型的-transformer-模型" title="Permanent link">&para;</a></h3>
 <ol>
-<li>BERT：仅使用编码器</li>
-<li>GPT：仅使用解码器</li>
-<li>T5：编码器和解码器都使用</li>
+<li>
+<p>BERT：仅使用编码器</p>
+<ul>
+<li>强项：语义的理解能力，通过注意力机制，可同时考虑单词的上下文信息，多任务训练方式</li>
+<li>弱项：自然语言生成能力。因此需要搭配其他语言模型或进行微调</li>
+<li>应用：阅读理解、完形填空、命名实体识别、QA、机器翻译、情感分类等</li>
+</ul>
+</li>
+<li>
+<p>GPT：仅使用解码器</p>
+<ul>
+<li>强项：自然语言生成能力，通过自回归技术生成对话</li>
+<li>弱项：语义的理解能力，因此需要搭配其他语言模型或进行微调</li>
+<li>应用：内容生成、问答系统、机器翻译、代码补全等</li>
+</ul>
+</li>
+<li>
+<p>T5：编码器和解码器都使用</p>
+<ul>
+<li>强项：将 NLP 任务统一到一个框架（序列到序列）下进行训练，能力比较平衡</li>
+<li>弱项：参数规模小，模型结构复杂，计算资源需求高，特定任务表现差</li>
+<li>应用：翻译、摘要、问答等</li>
+</ul>
+</li>
 </ol>
 
 
@@ -9504,7 +9528,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月4日 04:31:55 UTC">2025年6月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月16日 10:10:38 UTC">2025年6月16日</span>
   </span>
 
     

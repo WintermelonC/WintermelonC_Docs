@@ -1514,6 +1514,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="13.2 多模态大语言模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-ai-绘画" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2.1 AI 绘画
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-扩散模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2.2 扩散模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9002,6 +9026,30 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="13.2 多模态大语言模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1321-ai-绘画" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2.1 AI 绘画
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1322-扩散模型" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2.2 扩散模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9069,6 +9117,30 @@
 <li>预训练的大型语言模型（LLM）</li>
 <li>连接它们的模态接口</li>
 </ol>
+<p>MLLM 是通往 AGI 的必由之路</p>
+<h3 id="1321-ai-绘画">13.2.1 AI 绘画<a class="headerlink" href="#1321-ai-绘画" title="Permanent link">&para;</a></h3>
+<p>AI 绘画鼻祖：AARON</p>
+<p>20 世纪 70 年代，艺术家哈罗德 · 科恩发明了 AARON。AARON 能通过机械臂进行作画。控制机械臂的是一套计算机程序算法，是一种基于规则的算法</p>
+<p>生成式对抗网络（Generative Adversarial Networks，GAN）通过生成器和判别器的对抗过程来生成图像。其基本原理如下：</p>
+<ul>
+<li>生成器：目的是让生成器的图能够骗过判别器，让它认为这张图就是原始数据库中的真实图片而非模型生成的。输出结果越趋近于 1 就能说明生成模型效果越好</li>
+<li>判别器：目的是有效地辨别出生成器生成的图片。输出结果越趋近于 0 就能说明生成模型效果越好</li>
+<li>生成器和判别器不断进行对抗，当输出的结果 无限趋近于 0.5（纳什均衡时，模型训练完成</li>
+</ul>
+<hr />
+<p>Deep Dream 是谷歌于 2015 年推出的图像生成工具，该模型通过不断优化输入的图像来实现目标图像的生成</p>
+<hr />
+<p>AARON 到 Deep Dream，无论是基于规则还是基于深度学习的 AI 绘画，都还是单模态的，都没实现文字 → 图片的效果。直到 2021 年 OpenAI 推出 DALL-E 才真正实现文字 → 图片的多
+模态生成方式。只要用户输入提示词，DALL-E 就能生成文字对应的图片</p>
+<p>CLIP（视觉语言预训练模型）：文本信息通过文本编码器进行编码，图像信息通过图像编码器进行编码，二者的编码信息存入多模态的隐空间中。所谓的隐空间就是数据的一种表示和存储方式，即将现实世界的实体（如本文中的图像、文本）编码为计算机算法可运算的数据格式。文本编码器和图像编码器的参数经过模型训练获得最优值，以实现文本与图像的匹配</p>
+<h3 id="1322-扩散模型">13.2.2 扩散模型<a class="headerlink" href="#1322-扩散模型" title="Permanent link">&para;</a></h3>
+<p>扩散模型（Diffusion Models）能够让 AI 生成以假乱真的图片、视频和音乐。它们的名字来源于自然界的扩散现象，就像水里的墨水慢慢散开一样。扩散模型通过逆转扩散过程来生成新数据，也就是说，它通过在数据中添加随机噪声，然后再逆转这个过程，从而从噪声数据中恢复原始数据分布，这样就能创造出新的数据</p>
+<ol>
+<li>前向（扩散）过程：原始图像 G0 经过不断的加入高斯噪声生成模糊图像（即打马赛克），经过 n 步，最终生成一副不再扩散的稳定图像 Gn</li>
+<li>反向（去噪）过程：从图像 Mn=Gn 出发，通过带参数的模型 U-Net 一步步实现去噪过程恢复图像的原始状态，经过 n 步，最终获得去噪后的图像 M0 。这个模型 U-Net 就是扩散模型</li>
+<li>模型优化：通过训练模型 U-Net 的参数，满足前向噪声和反向预测噪声的分布残差 E 最小化，就获得了所需建立的扩散模型</li>
+<li>图像特征：扩散模型假设最终那副稳定的图像就是该图的特征值。AI 将这个特征图与文字的词向量关联，AI 绘画的生成过程就是从文字的词向量映射到图像的特征向量，再从特征向量出发进行反复去噪，恢复出原始的图像，由于去噪的过程带有随机性，因此能生成不同的图像，但高级特征不会变，人还是人，只是外貌发生了改变</li>
+</ol>
 
 
 
@@ -9091,7 +9163,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月27日 08:54:17 UTC">2025年5月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年6月16日 10:10:38 UTC">2025年6月16日</span>
   </span>
 
     
