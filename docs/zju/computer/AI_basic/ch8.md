@@ -44,7 +44,7 @@ $$
 
 #### 运算过程
 
-1. 补齐（padding）：在输入图像的四边补上一定宽度的像素，值设置为 0
+1. 补齐/填充（padding）：在输入图像的四边补上一定宽度的像素，值设置为 0
 
     - 当卷积核的大小为 3x3，步长为 1 时，如果在四边补齐 1 个像素宽度的 0，就可以保证输出特征图的大小与输入图像相同
 
@@ -52,6 +52,37 @@ $$
 3. 计算其他颜色通道
 4. 用新的卷积核
 5. 生成 n 组特征向量
+
+<div class="grid" markdown>
+
+<div>
+
+<figure markdown="span">
+  ![Img 1](../../../img/AI_basic/ch8/ai_ch8_img1.png){ width="400" }
+  <figcaption>阴影部分：0 x 0 + 1 x 1 + 3 x 2 + 4 x 3 = 19</figcaption>
+</figure>
+
+> 图片来源：https://zh.d2l.ai/chapter_convolutional-neural-networks/conv-layer.html
+
+</div>
+<div>
+
+<figure markdown="span">
+  ![Img 2](../../../img/AI_basic/ch8/ai_ch8_img2.png){ width="400" }
+  <figcaption>带填充的卷积运算</figcaption>
+</figure>
+
+> 图片来源：https://zh.d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html
+
+</div>
+</div>
+
+<figure markdown="span">
+  ![Img 3](../../../img/AI_basic/ch8/ai_ch8_img3.png){ width="400" }
+  <figcaption>垂直步幅为 3，水平步幅为 2 的卷积运算</figcaption>
+</figure>
+
+> 图片来源：https://zh.d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html
 
 #### 主要参数
 
@@ -83,6 +114,10 @@ $$
 2. 随机池化
 3. 平均池化
 4. L2 范数池化
+
+<figure markdown="span">
+  ![Img 4](../../../img/AI_basic/ch8/ai_ch8_img4.png){ width="600" }
+</figure>
 
 ### 8.3.3 归一化
 

@@ -81,7 +81,7 @@ LSTM 是一种优化的 RNN，由输入门、遗忘门、输出门及记忆状�
 | 遗忘门 | 决定什么时候把以前的状态遗忘 | $f_t = sigmoid(Net1)$ |
 | 输入门 | 决定什么时候加入新的状态 | $i_t = sigmoid(Net2)$ |
 | 输出门 | 决定什么时候把状态和输入叠加输出 | $o_t = sigmoid(Net4)$ |
-| 记忆状态 | 累计历史信息，调控 $h_t$ 输出内容 | $C_t = f_t \otimes C_{t-1} + i_t \otimes \tanh(Net3)$ |
+| 记忆状态 | 累计历史信息，调控 $h_t$ 输出内容 | $C_t = f_t \otimes C_{t-1} \oplus i_t \otimes \tanh(Net3)$ |
 | 隐式编码 | 与下一次的输入一起参与计算 | $h_t = o_t \otimes \tanh(C_t)$ |
 | Net1 | 遗忘门的拓扑结构 | $Net1 = W_{h1} · h_{t-1} + W_{X_1} · X_t + b_1$ |
 | Net2 | 输入门的拓扑结构 | $Net2 = W_{h2} · h_{t-1} + W_{X_2} · X_t + b_2$ |

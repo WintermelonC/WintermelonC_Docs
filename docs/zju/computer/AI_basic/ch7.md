@@ -206,6 +206,22 @@ print(f'Model accuracy: {score:.2f}')
 \end{cases}$
 5. softmax：$\dfrac{e^{x_i}}{\sum_j e^{x_j}}$
 
+<div class="grid" markdown>
+
+<figure markdown="span">
+  ![Img 5](../../../img/AI_basic/ch7/ai_ch7_img5.png){ width="400" }
+</figure>
+
+<figure markdown="span">
+  ![Img 6](../../../img/AI_basic/ch7/ai_ch7_img6.png){ width="400" }
+</figure>
+
+</div>
+
+<figure markdown="span">
+  ![Img 7](../../../img/AI_basic/ch7/ai_ch7_img6.png){ width="400" }
+</figure>
+
 ### 7.5.2 损失函数的选择
 
 常用损失函数（$T_i$ 是模型输出的结果，$Y_i$ 是训练样本的结果）：

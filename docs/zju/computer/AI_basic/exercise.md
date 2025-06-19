@@ -1,8 +1,8 @@
 # 习题整理
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -336,3 +336,50 @@ $A ∩ B = \{爱，天，安，门\}$<br/>
 $A ∪ B = \{我，爱，北，京，天，安，门，雄，伟，壮，阔，让，人，不，得\}$
 
 Jaccard 相似度：$J(A, B) = \dfrac{|A ∩ B|}{|A ∪ B|}= \dfrac{4}{15} = 0.2667$
+
+## 11 自然语言处理建模
+
+```python
+import math
+
+
+txt1 = "大不自多，海纳江河"
+txt2 = "惟学无际，际于天地"
+
+# 按字分词
+set1 = set(txt1)
+set2 = set(txt2)
+
+# 构建词汇表
+vocab = set1 | set2
+vocab = list(vocab)
+print("词汇表：", vocab)
+
+# 计算词频
+N = len(vocab)
+fre1 = [0 for _ in range(N)]
+fre2 = [0 for _ in range(N)]
+
+for i in range(N):
+    count = txt1.count(vocab[i])
+    fre1[i] = count
+    count = txt2.count(vocab[i])
+    fre2[i] = count
+
+# 计算余弦相似度
+A = 0
+mod1 = 0
+mod2 = 0
+
+for i in range(N):
+    A = A + fre1[i] * fre2[i]
+    mod1 = mod1 + fre1[i] * fre1[i]
+    mod2 = mod2 + fre2[i] * fre2[i]
+mod1 = math.sqrt(mod1)
+mod2 = math.sqrt(mod2)
+cos = A / (mod1 * mod2)
+
+print("句子 1 的词频向量：", fre1)
+print("句子 2 的词频向量：", fre2)
+print("余弦相似度"， cos)
+```
