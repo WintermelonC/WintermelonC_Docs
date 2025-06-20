@@ -406,8 +406,8 @@ int main()
 | -- | -- | -- |
 | `void insert(const pair<const Key, T>& value)` | 插入一个键值对 | |
 | `iterator erase(const_iterator position)` | 删除指定位置的元素 | 返回一个迭代器，它指向被删除元素之后的元素。如果被删除的是最后一个元素，则返回 `end()` 迭代器 |
-| `size_type erase(const key_type& key)` | 删除指定键的元素 | 返回删除的元素数量，如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
-| `size_type count(const key_type& key) const` | 检查是否存在以指定键 `key` 作为键的元素 | 返回匹配的元素数量，如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
+| `size_type erase(const key_type& key)` | 删除指定键的元素 | 如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
+| `size_type count(const key_type& key) const` | 检查是否存在以指定键 `key` 作为键的元素 | 如果该键对应的元素存在，则返回 1；如果不存在，则返回 0 |
 | `iterator find(const Key& key)` | 查找指定键的元素 | 返回指向找到的元素的迭代器，如果未找到则返回 `end()` |
 | `size_t size() const` | 获取 `map` 中元素的数量 | |
 | `bool empty() const` | 检查 `map` 是否为空 | 如果 `map` 为空，返回 `true`，否则返回 `false` |

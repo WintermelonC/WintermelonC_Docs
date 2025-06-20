@@ -1,8 +1,8 @@
 # 8 Polymorphism
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -166,13 +166,111 @@ b->foo();  // 调用Base::foo (static type决定，无多态)
 
 ### 2.1 Cast Operators
 
+C++ 提供了四种类型转换操作符：`static_cast`, `dynamic_cast`, `const_cast` 和 `reinterpret_cast`。这些操作符比 C 风格的强制类型转换更安全、更明确
+
 #### 2.1.1 `static_cast`
+
+- 用于相关类型之间的转换（如基本类型、指针/引用的上行/下行转换、`void*` 和其他指针类型之间的转换）
+- 编译期检查，安全性较高
+
+```cpp linenums="1"
+// int 转 double
+int a = 10;
+double b = static_cast<double>(a);
+
+class Base {};
+class Derived : public Base {};
+Derived d;
+Base* b = static_cast<Base*>(&d);  // 向上转换，安全
+
+// void 指针与具体类型指针间的转换
+void* p = malloc(sizeof(int));
+int* ip = static_cast<int*>(p);
+
+// 显式调用构造函数或转换函数
+class MyClass {
+public:
+    explicit MyClass(int) {}
+};
+
+MyClass obj = static_cast<MyClass>(10);
+```
 
 #### 2.1.2 `dynamic_cast`
 
+- 主要用于类层次结构中的向下转换（从基类到派生类）
+- 运行时检查类型安全性
+- 需要基类至少有一个虚函数（多态类型）
+- 失败时返回 `nullptr`（指针）或抛出 `std::bad_cast`（引用）
+
+```cpp linenums="1"
+class Base { virtual void foo() {} };
+class Derived : public Base {};
+Base* b = new Derived;
+Derived* d = dynamic_cast<Derived*>(b);  // 成功
+Base* b2 = new Base;
+Derived* d2 = dynamic_cast<Derived*>(b2); // 返回 nullptr
+
+Base* pb = new Derived();
+Base& rb = *pb;
+try {
+    Derived& rd = dynamic_cast<Derived&>(rb); // 成功则转换，失败抛出 std::bad_cast
+} catch (std::bad_cast& e) {
+    // 处理异常
+}
+
+// 交叉转换（cross cast）
+class A { virtual void foo() {} };
+class B { virtual void bar() {} };
+class C : public A, public B {};
+
+A* a = new C;
+B* b = dynamic_cast<B*>(a);  // 成功，交叉转换
+```
+
 #### 2.1.3 `const_cast`
 
+- 唯一能添加或移除 `const` 和 `volatile` 属性的转换
+- 不能改变实际类型，不能用于不同类型之间的转换
+- 主要用于与旧代码接口或特定 API 调用
+
+```cpp linenums="1"
+// 移除 const 属性
+const int ci = 10;
+int* modifiable = const_cast<int*>(&ci);
+*modifiable = 20;
+
+void print(char* str);  // 旧 API，不修改 str
+const char* msg = "hello";
+print(const_cast<char*>(msg));  // 安全使用
+
+// 添加 const 属性
+int x = 10;
+const int* cx = const_cast<const int*>(&x);
+```
+
 #### 2.1.4 `reinterpret_cast`
+
+- 最低级别的类型转换：重新解释同一块内存的二进制数据，将其视为另一种类型
+- 不进行任何类型检查
+- 可能导致未定义行为
+- 应尽量避免使用，除非绝对必要
+
+```cpp linenums="1"
+int a = 10;
+void* p = reinterpret_cast<void*>(&a); // int* 转 void*
+int* q = reinterpret_cast<int*>(p);    // void* 转 int*
+long addr = reinterpret_cast<long>(p); // 指针转整数
+
+// 不同类型指针间的转换
+struct Data { int a; float b; };
+Data d = {10, 3.14f};
+char* raw = reinterpret_cast<char*>(&d);  // 原始字节访问
+
+// 函数指针转换
+typedef void (*FuncPtr)();
+FuncPtr fp = reinterpret_cast<FuncPtr>(&someFunction);
+```
 
 ## 3 Virtual
 
@@ -345,7 +443,7 @@ class BinaryExpr : public Expr {
 public:
     virtual BinaryExpr* newExpr();  // ok
     virtual BinaryExpr& clone();  // ok
-    virtual BinaryExpr self();  // error!
+    // virtual BinaryExpr self();  // error!
 }
 ```
 

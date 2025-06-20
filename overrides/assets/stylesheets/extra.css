@@ -24,10 +24,16 @@
   max-width: 1440px;
 }
 
+/* 修改四级标题 */
+.md-typeset h4 {
+  font-size: 0.9rem;
+}
+
 /* 修改五级标题 */
 .md-typeset h5 {
   color: #212121;
   text-transform: none;
+  font-size: 0.75rem;
 }
 
 [data-md-color-scheme="slate"] .md-typeset h5 {

@@ -312,8 +312,6 @@ int main() {
 
 ---
 
-<div class="grid" markdown>
-
 ```cpp linenums="1"
 #include <iostream>
 using namespace std;
@@ -377,8 +375,6 @@ int main() {
 (6) Current value of privateField: 13
 (2) Destructor called. privateField is 13
 ```
-
-</div>
 
 ### 2.2 Global Object
 
@@ -934,18 +930,18 @@ int y = 20;
 
 // 指针本身是常量，即指针的值（地址）不能改变
 int* const p1 = &x;
-p1 = &y; // 错误：p1 是常量指针，不能修改指向的地址
+// p1 = &y; // 错误：p1 是常量指针，不能修改指向的地址
 *p1 = 30; // 正确：可以修改指针指向的值
 
 // 指针指向的值是常量，即指针指向的值不能改变
 const int* p2 = &x;
 p2 = &y; // 正确：可以修改指针指向的地址
-*p2 = 30; // 错误：不能修改指针指向的值
+// *p2 = 30; // 错误：不能修改指针指向的值
 
 // 指针本身和指向的值都是常量
 const int* const p3 = &x;
-p3 = &y; // 错误：不能修改指针指向的地址
-*p3 = 30; // 错误：不能修改指针指向的值
+// p3 = &y; // 错误：不能修改指针指向的地址
+// *p3 = 30; // 错误：不能修改指针指向的值
 ```
 
 **字符串字面量**（string literals）

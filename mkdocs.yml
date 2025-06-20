@@ -131,7 +131,6 @@ nav:
         - 12 Exception: zju/basic_courses/OOP/ch12.md
         - 13 Smart Pointer: zju/basic_courses/OOP/ch13.md
         - 14 Stream: zju/basic_courses/OOP/ch14.md
-        - 15 Design Concept: zju/basic_courses/OOP/ch15.md
     - 专业必修课程:
       - zju/compulsory_courses/index.md
       - 高级数据结构与算法分析:
@@ -419,7 +418,7 @@ extra_javascript:
 # 额外 css
 extra_css:
   - https://unpkg.com/katex@0/dist/katex.min.css
-  - assets/stylesheets/extra.css?v=2.0.0
+  - assets/stylesheets/extra.css?v=2.0.1
   - assets/stylesheets/hqcard.css?v=1.0.0
 
 # 插件
