@@ -54,22 +54,21 @@ $$
 5. 生成 n 组特征向量
 
 <div class="grid" markdown>
-
-<div>
+<div markdown>
 
 <figure markdown="span">
-  ![Img 1](../../../img/AI_basic/ch8/ai_ch8_img1.png){ width="400" }
-  <figcaption>阴影部分：0 x 0 + 1 x 1 + 3 x 2 + 4 x 3 = 19</figcaption>
+![Img 1](../../../img/AI_basic/ch8/ai_ch8_img1.png){ width="400" }
+<figcaption>阴影部分：0 x 0 + 1 x 1 + 3 x 2 + 4 x 3 = 19</figcaption>
 </figure>
 
 > 图片来源：https://zh.d2l.ai/chapter_convolutional-neural-networks/conv-layer.html
 
 </div>
-<div>
+<div markdown>
 
 <figure markdown="span">
-  ![Img 2](../../../img/AI_basic/ch8/ai_ch8_img2.png){ width="400" }
-  <figcaption>带填充的卷积运算</figcaption>
+![Img 2](../../../img/AI_basic/ch8/ai_ch8_img2.png){ width="400" }
+<figcaption>带填充的卷积运算</figcaption>
 </figure>
 
 > 图片来源：https://zh.d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html
