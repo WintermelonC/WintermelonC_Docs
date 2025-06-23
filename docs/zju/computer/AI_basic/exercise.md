@@ -209,7 +209,7 @@ print(f"Accuracy: {accuracy * 100:.2f}%")
 
 ## 8 卷积神经网络
 
-### 7.1 MLP
+### 8.1 MLP
 
 ```python linenums="1"
 import torch
@@ -337,7 +337,7 @@ $A ∪ B = \{我，爱，北，京，天，安，门，雄，伟，壮，阔，�
 
 Jaccard 相似度：$J(A, B) = \dfrac{|A ∩ B|}{|A ∪ B|}= \dfrac{4}{15} = 0.2667$
 
-## 11 自然语言处理建模
+### 11.2 代码实现
 
 ```python
 import math
