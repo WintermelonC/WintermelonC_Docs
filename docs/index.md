@@ -82,7 +82,7 @@ hide:
         - [x] 编写 Anaconda 文档
         - [x] 编写 VSCode 文档
         - [ ] 编写 Git 文档
-            - [ ] ch 1
+            - [x] ch 1
             - [ ] ch 2
             - [ ] ch 3
             - [ ] ch 4

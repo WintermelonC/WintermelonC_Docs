@@ -1,8 +1,8 @@
 # 1 安装与配置
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 ## 1 Git 安装
 
@@ -163,3 +163,81 @@
 点击 Finish 完成安装
 
 ## 2 Git 配置
+
+接下来我们配置 git 的全局信息
+
+可以直接在桌面或其他文件夹内右键，点击 ^^Open Git Bash here^^，打开 git bash 命令行工具，我们将在这里面输入相关 git 配置命令。或者在 cmd 中输入这些命令也可以
+
+<div class="grid" markdown>
+
+<figure markdown="span">
+    ![Img 19](../../img/git/ch1/git_ch1_img19.png){ width="400" }
+</figure>
+
+<figure markdown="span">
+    ![Img 20](../../img/git/ch1/git_ch1_img20.png){ width="400" }
+</figure>
+
+</div>
+
+```bash linenums="1"
+$ git -v
+git version 2.49.0.windows.1
+```
+
+输入 `git -v`，按 ++enter++，可以查看 git 的版本信息，可以验证 git 已经正确安装
+
+```bash linenums="1"
+$ git config --global user.name "admin"
+$ git config --global user.email "admin@qq.com"
+```
+
+1. `git config --global user.name "{username}"`：配置用户名
+2. `git config --global user.email "{username@example.com}"`：配置用户邮箱
+
+!!! tip "提示"
+
+    `git config --global user.name "{username}"` 中用花括号括起来的这个 `{username}`，表示需要用自定义字符去替换它
+
+    > 为什么这样表示，因为学 python 学的
+
+    如果你使用的是 QQ 邮箱，建议去 QQ 邮箱那里设置 **英文别名**，避免直接用 `{QQ 号}@qq.com`，造成信息泄露
+
+    > 具体如何设置，可以上网搜索解决
+
+```bash linenums="1"
+$ git config --global init.defaultBranch main
+```
+
+`git config --global init.defaultBranch main`：全局修改主分支名称为 `main`，建议修改为 `main`
+
+> 至于主分支是什么，后面会介绍
+
+```bash linenums="1"
+$ git config --global --list
+user.name=admin
+user.email=admin@qq.com
+init.defaultbranch=main
+```
+
+`git config --global --list`：查看全局配置信息
+
+也可以直接打开配置文件进行查看，配置文件默认位置在 `$USERPROFILE$\.gitconfig`
+
+```text linenums="1" title=".gitconfig"
+[user]
+	name = admin
+	email = admin@qq.com
+[init]
+	defaultBranch = main
+```
+
+!!! tip "提示"
+
+    `$USERPROFILE$`：用户目录，比如 `C:\Users\admin`
+
+    建议在文件资源管理器中勾选这两个选项
+
+    <figure markdown="span">
+        ![Img 21](../../img/git/ch1/git_ch1_img21.png){ width="600" }
+    </figure>
