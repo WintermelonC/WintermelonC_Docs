@@ -4,26 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var errorTitle = document.getElementById('error-title');
 
   var cryptographyUrls = [
-    'zju/module_courses/cryptography/ch1',
-    'zju/module_courses/cryptography/ch2',
-    'zju/module_courses/cryptography/ch3',
-    'zju/module_courses/cryptography/ch4',
-    'zju/module_courses/cryptography/ch5',
-    'zju/module_courses/cryptography/ch6',
-    'zju/module_courses/cryptography/ch7',
+    'zju/module_courses/cryptography/doc1',
+    'zju/module_courses/cryptography/doc2',
+    'zju/module_courses/cryptography/doc3',
+    'zju/module_courses/cryptography/doc4',
+    'zju/module_courses/cryptography/doc5',
+    'zju/module_courses/cryptography/doc6',
+    'zju/module_courses/cryptography/doc7',
+    'zju/module_courses/cryptography/doc8',
+    'zju/module_courses/cryptography/doc9',
   ];
 
-  var tempPrivateUrls = [
-    'zju/module_courses/cryptography/doc/doc1',
-    'zju/module_courses/cryptography/doc/doc2',
-    'zju/module_courses/cryptography/doc/doc3',
-    'zju/module_courses/cryptography/doc/doc4',
-    'zju/module_courses/cryptography/doc/doc5',
-    'zju/module_courses/cryptography/doc/doc6',
-    'zju/module_courses/cryptography/doc/doc7',
-    'zju/module_courses/cryptography/doc/doc8',
-    'zju/module_courses/cryptography/doc/doc9',
-  ];
+  var tempPrivateUrls = [];
 
   var isCryptographyUrl = cryptographyUrls.some(function(cryptographyUrls) {
     return url.includes(cryptographyUrls);
