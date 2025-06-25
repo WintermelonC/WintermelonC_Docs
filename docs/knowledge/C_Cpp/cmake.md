@@ -44,6 +44,8 @@
 
 官网下载并安装：[Download CMake](https://cmake.org/download/){:target="_blank"}
 
+将可执行文件所在的目录添加到系统环境变量 `PATH`
+
 ## 2 在 VS Code 中
 
 [VS Code 教程](../../application/vscode/index.md){:target="_blank"}
@@ -66,6 +68,16 @@
 4. 调试 / 运行可执行文件
 
 ## 3 CMakeLists.txt
+
+`CMakeLists.txt` 是 CMake 构建系统的配置文件，用于描述如何编译和链接你的项目
+
+主要作用：
+
+1. 指定项目名称、版本、所需的 CMake 最低版本
+2. 查找和配置依赖库
+3. 添加源码文件、头文件
+4. 设置编译选项、宏定义等
+5. 定义可执行文件、库文件的生成方式
 
 ```text linenums="1"
 cmake_minimum_required(VERSION 3.10)
@@ -191,6 +203,82 @@ enable_testing()
 add_test(NAME my_test COMMAND test_my_library)
 ```
 
-#### 3.2.1 例子
+#### 3.2.1 示例
 
 详见 [vcpkg 4.1.1](./vcpkg.md#411-例子){:target="_blank"}
+
+## 4 CMakePresets.json
+
+`CMakePresets.json` 是 CMake 3.19 及以上版本引入的一个配置文件，用于集中管理和简化 CMake 项目的构建配置
+
+主要作用：
+
+1. 统一构建参数：集中定义编译器、构建类型、工具链、缓存变量等参数，避免每次手动输入
+2. 多平台支持：可以为不同平台、不同开发环境预设多套构建方案
+3. 团队协作：团队成员可以共享同一套构建预设，保证构建环境一致
+
+### 4.1 示例
+
+当使用 debug 模式时，构建到 build-debug 文件夹中；当使用 release 模式时，构建到 build-release 文件夹中
+
+使用 CMake + MinGW + vcpkg + Ninja
+
+> [Ninja 文档](./ninja.md){:target="_blank"}
+
+```json linenums="1" title="CMakePresets.json"
+{
+  "version": 3,
+  "configurePresets": [
+    {
+      "name": "mingw-debug-ninja",  // 配置名称
+      "displayName": "MinGW Ninja Debug",  // 配置显示的名称
+      "binaryDir": "${sourceDir}/build-debug-mingw-ninja",  // 指定 build 文件夹
+      "generator": "Ninja",  // 指定生成器为 Ninja
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",  // debug 模式
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        // 指定工具链文件
+        "CMAKE_TOOLCHAIN_FILE": "G:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        // 指定目标平台和编译方式，使用 MinGW
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+      },
+      "environment": {
+        // 指定 MinGW 和 Ninja 的路径
+        // Ninja 已经添加到了系统环境变量中，因此为 $penv{PATH}
+        // 如果 MinGW 也添加到了系统环境变量中，可以直接写成
+        // "PATH": "$penv{PATH}"
+        "PATH": "C:/Program Files/mingw64/bin;$penv{PATH}"
+      }
+    },
+    {
+      "name": "mingw-release-ninja",
+      "displayName": "MinGW Ninja Release",
+      "binaryDir": "${sourceDir}/build-release-mingw-ninja",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",  // release 模式
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_MAKE_PROGRAM": "ninja",
+        "CMAKE_TOOLCHAIN_FILE": "G:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+      },
+      "environment": {
+        "PATH": "C:/Program Files/mingw64/bin;$penv{PATH}"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug-mingw",  // 生成显示的名称
+      "configurePreset": "mingw-debug-ninja"  // 对应的配置名称
+    },
+    {
+      "name": "release-mingw",
+      "configurePreset": "mingw-release-ninja"
+    }
+  ]
+}
+```

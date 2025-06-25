@@ -25,6 +25,9 @@
    2. Python 编程基础
    3. PyTorch 深度学习
 2. C/C++
+   1. CMake
+   2. vcpkg
+   3. Ninja
 3. Web
    1. HTML
    2. css

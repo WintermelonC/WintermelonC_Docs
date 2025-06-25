@@ -62,9 +62,11 @@ git clone https://github.com/microsoft/vcpkg
 
 运行脚本文件
 
-```bash linenums="1" title="Windows"
+```powershell linenums="1" title="Windows"
 .\bootstrap-vcpkg.bat
 ```
+
+将可执行文件所在的目录添加到系统环境变量 `PATH`
 
 ## 2 命令
 
@@ -181,7 +183,7 @@ git clone https://github.com/microsoft/vcpkg
     ![img 1](../../img/vcpkg/vcpkg_img1.png){ width="600" }
 </figure>
 
-#### 4.1.1 例子
+#### 4.1.1 示例
 
 ```text linenums="1"
 test/
@@ -228,7 +230,7 @@ add_executable(HelloWorld main.cpp)
 target_link_libraries(HelloWorld PRIVATE fmt::fmt)
 ```
 
-```cpp linenums="1" title="main.cpp"
+```cpp linenums="1" title="code/main.cpp"
 #include <fmt/core.h>
 
 int main()

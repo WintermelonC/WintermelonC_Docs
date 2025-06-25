@@ -1,5 +1,11 @@
 # C/C++
 
+## 工具
+
+1. [CMake](./cmake.md)
+2. [vcpkg](./vcpkg.md)
+3. [Ninja](./ninja.md)
+
 ## C/C++ 规则
 
 ### 命名规则

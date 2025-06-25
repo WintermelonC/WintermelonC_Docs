@@ -275,6 +275,7 @@ nav:
       - knowledge/C_Cpp/index.md
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
+      - Ninja: knowledge/C_Cpp/ninja.md
     - Web:
       - knowledge/web/index.md
       - HTML: knowledge/web/html.md

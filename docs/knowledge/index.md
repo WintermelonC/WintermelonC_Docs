@@ -9,6 +9,11 @@
     3. [PyTorch 深度学习](./python/pytorch/index.md)
 
 2. [C/C++](./C_Cpp/index.md)
+
+    1. [CMake](./C_Cpp/cmake.md)
+    2. [vcpkg](./C_Cpp/vcpkg.md)
+    3. [Ninja](./C_Cpp/ninja.md)
+
 3. [Web](./web/index.md)
 
     1. [HTML](./web/html.md)
