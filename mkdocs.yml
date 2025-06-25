@@ -273,6 +273,8 @@ nav:
           - 8.4 循环神经网络: knowledge/python/pytorch/ch8/ch8_4.md
     - C/C++:
       - knowledge/C_Cpp/index.md
+      - CMake: knowledge/C_Cpp/cmake.md
+      - vcpkg: knowledge/C_Cpp/vcpkg.md
     - Web:
       - knowledge/web/index.md
       - HTML: knowledge/web/html.md
