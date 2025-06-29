@@ -84,6 +84,14 @@ git clone https://github.com/microsoft/vcpkg
 
 ## 3 配置文件
 
+生成默认的配置文件：
+
+```bash linenums="1"
+vcpkg new --application
+```
+
+这会在当前目录下添加 `vcpkg.json` 文件和 `vcpkg-configuration.json` 文件
+
 ### 3.1 vcpkg.json
 
 作用：
