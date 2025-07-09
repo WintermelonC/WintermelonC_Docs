@@ -9363,15 +9363,17 @@
 <p>所以，我们刚才 checkout 到第 1 次的提交，就是把 HEAD 指针移动到第 1 次提交的位置</p>
 <p>另外，我们把每次提交的那个位置称作一个 <strong>提交节点</strong>。那么，目前我们有 3 个提交节点，HEAD 正处于第 1 个提交节点上</p>
 </div>
-<p>想要回到最新的版本状态，同样输入</p>
+<p>想要回到最新的版本状态，输入</p>
 <div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
 <span class="normal"><a href="#__codelineno-13-2">2</a></span>
-<span class="normal"><a href="#__codelineno-13-3">3</a></span>
-<span class="normal"><a href="#__codelineno-13-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="c1"># eb84d9d 是第 3 次提交的 Hash 码的前 7 位</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>eb84d9d
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>Previous<span class="w"> </span>HEAD<span class="w"> </span>position<span class="w"> </span>was<span class="w"> </span>0c78939<span class="w"> </span>commit<span class="w"> </span><span class="c1">#1 on main</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a>HEAD<span class="w"> </span>is<span class="w"> </span>now<span class="w"> </span>at<span class="w"> </span>eb84d9d<span class="w"> </span>commit<span class="w"> </span><span class="c1">#3 on main</span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>$<span class="w"> </span>git<span class="w"> </span>checkout<span class="w"> </span>main
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a>Previous<span class="w"> </span>HEAD<span class="w"> </span>position<span class="w"> </span>was<span class="w"> </span>0c78939<span class="w"> </span>commit<span class="w"> </span><span class="c1">#1 on main</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;main&#39;</span>
 </span></code></pre></div></td></tr></table></div>
+<div class="admonition question">
+<p class="admonition-title">为什么不是 <code>git checkout eb84d9d</code></p>
+<p>如果输入 <code>git checkout eb84d9d</code>，也能回到最新的版本状态，但此时 HEAD 指针处于悬空状态，即不在任何分支上。如果在这种状态下提交信息，会发现 main 分支并没有更新，而这个新的提交节点由于处于悬空状态，git 只是临时保存它，很容易丢失</p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">VS Code</p>
 <p>使用 Git Graph 可以在不输入 <code>git checkout</code> 的情况下，查看某个版本的文件内容</p>
@@ -9404,7 +9406,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月9日 09:52:27 UTC">2025年7月9日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月9日 10:25:57 UTC">2025年7月9日</span>
   </span>
 
     
