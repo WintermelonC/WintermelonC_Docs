@@ -205,7 +205,7 @@ add_test(NAME my_test COMMAND test_my_library)
 
 #### 3.2.1 示例
 
-详见 [vcpkg 4.1.1](./vcpkg.md#411-例子){:target="_blank"}
+详见 [vcpkg 4.1.1](./vcpkg.md#411-示例){:target="_blank"}
 
 ## 4 CMakePresets.json
 

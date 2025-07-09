@@ -179,15 +179,16 @@ $ git commit -m "commit #1 on main"
     也可以使用 VS Code 的 GUI 来进行操作，某些操作与特定的 git 命令等效
 
     <div class="grid" markdown>
-    
+    <div markdown>
     <figure markdown="span">
-        ![Img 4](../../img/git/ch2/git_ch2_img4.png){ width="400" }
+    ![Img 4](../../img/git/ch2/git_ch2_img4.png){ width="400" }
     </figure>
-
+    </div>
+    <div markdown>
     <figure markdown="span">
-        ![Img 5](../../img/git/ch2/git_ch2_img5.png){ width="400" }
+    ![Img 5](../../img/git/ch2/git_ch2_img5.png){ width="400" }
     </figure>
-
+    </div>
     </div>
 
 这样我们就得到了一个提交版本，记录了这个版本整个项目的状态
@@ -248,7 +249,7 @@ $ git commit -m "commit #3 on main"
 
 ```bash linenums="1"
 $ git log
-# 后面一串字符是提交 Hash 码，一个 Hash 码对应一个提交，因此，可以根据 Hash 码来找到某次体骄傲
+# 后面一串字符是提交 Hash 码，一个 Hash 码对应一个提交，因此，可以根据 Hash 码来找到某次提交记录
 commit eb84d9d5893dc1179b02a05682458ce07923e5e4 (HEAD -> main)
 # 这里显示了提交者的信息
 Author: WintermelonC <145361960+WintermelonC@users.noreply.github.com>
@@ -320,6 +321,16 @@ HEAD is now at 0c78939 commit #1 on main
 </figure>
 
 > 此时，可以对项目进行修改。但以我们现在所学的东西，不建议这样做，因为这通常会涉及到分支操作
+
+!!! tip "HEAD 指针"
+
+    在 Git 中，HEAD 是一个特殊的指针，它指向当前所在的提交（commit），也就是你的工作目录所基于的版本。可以把它理解为你“正在查看的位置”或“当前的工作点”
+
+    在 Git Graph 中，提交信息前面的蓝色圆圈就代表 HEAD 指针所在的位置
+
+    所以，我们刚才 checkout 到第 1 次的提交，就是把 HEAD 指针移动到第 1 次提交的位置
+
+    另外，我们把每次提交的那个位置称作一个 **提交节点**。那么，目前我们有 3 个提交节点，HEAD 正处于第 1 个提交节点上
 
 想要回到最新的版本状态，同样输入
 
