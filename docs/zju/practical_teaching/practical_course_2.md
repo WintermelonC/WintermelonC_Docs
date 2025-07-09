@@ -19,7 +19,7 @@
 ### 课程内容与考核方式
 
 <div class="hq-card hq-file-block" markdown="1">
-<div class="file-icon"><img src="../../img/pdf.svg" style="height: 3em;"></div>
+<div class="file-icon"><img src="../../../img/pdf.svg" style="height: 3em;"></div>
 <div class="hq-file-body">
 <div class="hq-file-title">C++ 项目管理及工程实践</div>
 <div class="hq-file-meta">495 KB | 7 Page</div>
@@ -27,11 +27,11 @@
 <a class="hq-down-button" target="_blank" href="file/pdf.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
-这门课只需要写一个 C++ 项目就行。需要用到的工具（课上会讲一些）：
+这门课只需要写一个 C++ 项目就行。需要用到的工具（课上会提到）：
 
-1. [vcpkg](../../knowledge/C_Cpp/vcpkg.md)
-2. [CMake](../../knowledge/C_Cpp/cmake.md)
-3. [git](../../tools/git/index.md)
+1. [vcpkg](../../knowledge/C_Cpp/vcpkg.md){:target="_blank"}
+2. [CMake](../../knowledge/C_Cpp/cmake.md){:target="_blank"}
+3. [git](../../tools/git/index.md){:target="_blank"}
 
 代码架构 **必须** 要使用 MVVM 架构，因此选题的时候要注意选择适合 MVVM 架构的
 
