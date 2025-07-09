@@ -332,14 +332,17 @@ HEAD is now at 0c78939 commit #1 on main
 
     另外，我们把每次提交的那个位置称作一个 **提交节点**。那么，目前我们有 3 个提交节点，HEAD 正处于第 1 个提交节点上
 
-想要回到最新的版本状态，同样输入
+想要回到最新的版本状态，输入
 
 ```bash linenums="1"
-# eb84d9d 是第 3 次提交的 Hash 码的前 7 位
-$ git checkout eb84d9d
+$ git checkout main
 Previous HEAD position was 0c78939 commit #1 on main
-HEAD is now at eb84d9d commit #3 on main
+Switched to branch 'main'
 ```
+
+!!! question "为什么不是 `git checkout eb84d9d`"
+
+    如果输入 `git checkout eb84d9d`，也能回到最新的版本状态，但此时 HEAD 指针处于悬空状态，即不在任何分支上。如果在这种状态下提交信息，会发现 main 分支并没有更新，而这个新的提交节点由于处于悬空状态，git 只是临时保存它，很容易丢失
 
 !!! tip "VS Code"
 
