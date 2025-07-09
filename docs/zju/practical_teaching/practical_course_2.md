@@ -24,7 +24,7 @@
 <div class="hq-file-title">C++ 项目管理及工程实践</div>
 <div class="hq-file-meta">495 KB | 7 Page</div>
 </div>
-<a class="hq-down-button" target="_blank" href="file/pdf.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+<a class="hq-down-button" target="_blank" href="../../../file/practical_teaching_doc1.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
 </div>
 
 这门课只需要写一个 C++ 项目就行。需要用到的工具（课上会提到）：
