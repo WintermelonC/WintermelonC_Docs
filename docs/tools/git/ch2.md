@@ -1,8 +1,12 @@
 # 2 基本操作
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
+
+!!! tip "建议"
+
+    git 其实很简单，多多实操就会了。建议跟着本文档实操一遍
 
 ## 1 GUI 工具
 
@@ -115,7 +119,7 @@ git 仓库的类型：
         2. 示例：刚克隆仓库或刚提交后的文件状态
         3. 触发变化：编辑文件 → 变为 Modified；删除文件 → 变为 Untracked
 
-> 暂时不理解没关系，本文档会给出状态转移图
+> 暂时不理解没关系，本文档后续会解释并给出状态转移图
 
 使用以下命令来查看 git 仓库的状态
 
@@ -352,8 +356,459 @@ Switched to branch 'main'
         ![Img 9](../../img/git/ch2/git_ch2_img9.png){ width="600" }
     </figure>
 
-## 5 Git 回退
+## 5 Git 差异
 
-## Git 删除
+假如我们对 `file1.txt` 和 `file2.txt` 做了如下修改：
 
-## `.gitignore` 文件
+```text linenums="1" title="file1.txt"
+修改第 1 行，删除第 2 行
+这是 file1 的第 3 行
+新增第 4 行
+```
+
+```text linenums="1" title="file2.txt"
+这是 file2 的第 1 行
+新增第 2 行
+```
+
+现在这些修改还未暂存，也未提交。如果我们想知道这次修改了哪些内容，就可以使用 `git diff` 来查看
+
+`git diff` 是 Git 的一个常用命令，用于显示工作目录、暂存区（索引）或不同提交之间的文件差异。它会对比文件内容的变化，并以文本形式展示具体的修改内容
+
+### 5.1 工作区 vs 暂存区
+
+现在我们查看工作区与暂存区之间的差异
+
+```bash linenums="1"
+$ git diff
+diff --git a/file1.txt b/file1.txt
+index aa4353d..e16d955 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1,3 +1,3 @@
+-这是 file1 的第 1 行
+-这是 file1 的第 2 行
+-这是 file1 的第 3 行
+\ No newline at end of file
++修改第 1 行，删除第 2 行
++这是 file1 的第 3 行
++新增第 4 行
+\ No newline at end of file
+diff --git a/file2.txt b/file2.txt
+index 3705395..c11ac0b 100644
+--- a/file2.txt
++++ b/file2.txt
+@@ -1 +1,2 @@
+-这是 file2 的第 1 行
+\ No newline at end of file
++这是 file2 的第 1 行
++新增第 2 行
+\ No newline at end of file
+```
+
+从输出的信息可以查看现在我们修改了哪些文件和对应的内容
+
+!!! question "输出信息怎么看"
+
+    具体输出信息的解读本文档不介绍（因为我很少用命令行查看差异），可以自行搜索
+
+也可以指定查看某个文件
+
+```bash linenums="1"
+$ git diff file1.txt
+diff --git a/file1.txt b/file1.txt
+index aa4353d..e16d955 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1,3 +1,3 @@
+-这是 file1 的第 1 行
+-这是 file1 的第 2 行
+-这是 file1 的第 3 行
+\ No newline at end of file
++修改第 1 行，删除第 2 行
++这是 file1 的第 3 行
++新增第 4 行
+\ No newline at end of file
+```
+
+!!! tip "VS Code"
+
+    在 VS Code 当中，可以很方便地查看文件差异。直接点击某个文件的那一行
+
+    <figure markdown="span">
+        ![Img 10](../../img/git/ch2/git_ch2_img10.png){ width="600" }
+    </figure>
+
+    能够很直观的看到，git 将我们的修改理解为：删除原来的第 1、2 行，新增一行内容为“修改第 1 行，删除第 2 行” 的文字；新增一行内容为“新增第 4 行”的文字
+
+    <figure markdown="span">
+        ![Img 11](../../img/git/ch2/git_ch2_img11.png){ width="600" }
+    </figure>
+
+    同时可以通过点击按钮，很方便地暂存特定的修改，可以实现只暂存部分修改（之前介绍的命令是暂存全部的修改。当然，只暂存部分修改也有对应的 git 命令，但本文档不介绍）
+
+    <figure markdown="span">
+        ![Img 12](../../img/git/ch2/git_ch2_img12.png){ width="600" }
+    </figure>
+
+    也可以正常打开文件，点击被修改的行的左侧的带有颜色的竖杠，查看这一块区域的修改内容
+
+### 5.2 比较两个提交
+
+查看某两次提交的差异：
+
+```bash linenums="1"
+# eb84d9d5 是第 3 次提交的 Hash 码前 8 位
+# 1321c629 是第 2 次提交的 Hash 码前 8 位
+# 所以这个命令是比较第 2 次提交和第 3 次提交之前的差异
+$ git diff eb84d9d5 1321c629
+diff --git a/file1.txt b/file1.txt
+index aa4353d..0e81b66 100644
+--- a/file1.txt
++++ b/file1.txt
+@@ -1,3 +1,2 @@
+ 这是 file1 的第 1 行
+-这是 file1 的第 2 行
+-这是 file1 的第 3 行
+\ No newline at end of file
++这是 file1 的第 2 行
+\ No newline at end of file
+diff --git a/file2.txt b/file2.txt
+deleted file mode 100644
+index 3705395..0000000
+--- a/file2.txt
++++ /dev/null
+@@ -1 +0,0 @@
+-这是 file2 的第 1 行
+\ No newline at end of file
+```
+
+!!! tip "VS Code"
+
+    <figure markdown="span">
+        ![Img 13](../../img/git/ch2/git_ch2_img13.png){ width="600" }
+    </figure>
+
+    可以使用 Git Graph 来查看提交之间的差异。展开第 3 次提交，点击某个文件。会打开如下内容
+
+    <figure markdown="span">
+        ![Img 14](../../img/git/ch2/git_ch2_img14.png){ width="600" }
+    </figure>
+
+    可以看到这一标签页的标题包含“eb84d9d5^ ↔ eb84d9d5”，其中“eb84d9d5^”中的 `^` 符号，表示此提交的上一个提交。所以这和 `git diff eb84d9d5 1321c629` 的效果是一样的
+
+### 5.3 比较两个分支
+
+此外，`git diff` 还可以比较分支之间的差异，格式为：
+
+```bash linenums="1"
+$ git diff {branch_1} {branch_2}
+```
+
+## 6 Git 恢复
+
+续接第 5 节的修改，即
+
+```text linenums="1" title="file1.txt"
+修改第 1 行，删除第 2 行
+这是 file1 的第 3 行
+新增第 4 行
+```
+
+```text linenums="1" title="file2.txt"
+这是 file2 的第 1 行
+新增第 2 行
+```
+
+我们现在只暂存 `file1.txt`
+
+### 6.1 放弃已暂存的修改
+
+将 `file1.txt` 从暂存区中移除，但保留我们之前修改的内容
+
+```bash linenums="1"
+$ git restore --staged file1.txt
+# 移除所有文件
+$ git restore --staged *
+```
+
+### 6.2 放弃工作区的修改
+
+也就是将我们之前对 `file1.txt` 文件所做的修改全部撤销
+
+```bash linenums="1"
+$ git restore file1.txt
+# 还原所有文件
+$ git restore *
+```
+
+执行后，`file1.txt` 和 `file2.txt` 恢复成了原来的样子
+
+!!! tip "VS Code"
+
+    可以在 VS Code 中很方便地执行恢复操作
+
+    <figure markdown="span">
+        ![Img 15](../../img/git/ch2/git_ch2_img15.png){ width="600" }
+    </figure>
+
+    在查看文件差异时，左侧也有还原按钮，可以实现还原部分的修改
+
+    <figure markdown="span">
+        ![Img 16](../../img/git/ch2/git_ch2_img16.png){ width="600" }
+    </figure>
+
+## 7 Git 回退
+
+续接第 5 节的修改，即
+
+```text linenums="1" title="file1.txt"
+修改第 1 行，删除第 2 行
+这是 file1 的第 3 行
+新增第 4 行
+```
+
+```text linenums="1" title="file2.txt"
+这是 file2 的第 1 行
+新增第 2 行
+```
+
+现在我们把这些修改都提交一下
+
+<figure markdown="span">
+    ![Img 17](../../img/git/ch2/git_ch2_img17.png){ width="600" }
+</figure>
+
+`git reset` 有三种模式：
+
+1. `--soft`：仅移动 HEAD 指针，不修改暂存区和工作目录
+2. `--mixed`（默认）：移动 HEAD 指针并重置暂存区，但不影响工作目录
+3. `--hard`：彻底回退，移动 HEAD、重置暂存区和工作目录（会丢失未提交的修改）
+
+### 7.1 `--soft`
+
+`git reset --soft` 仅移动 HEAD 指针，保留暂存区和工作目录
+
+我们输入以下命令
+
+```bash linenums="1"
+$ git reset --soft eb84d9d5
+```
+
+项目状态变为
+
+<figure markdown="span">
+    ![Img 18](../../img/git/ch2/git_ch2_img18.png){ width="600" }
+</figure>
+
+`file1.txt` `file2.txt` 的修改全部保留了，并且处在暂存区中；第 4 次提交被撤销了
+
+因此，该模式其中一个适用场景是：撤销最近的提交，但保留修改（可用于重新提交）
+
+我们可以重新提交一次，这次换一个提交信息
+
+<figure markdown="span">
+    ![Img 19](../../img/git/ch2/git_ch2_img19.png){ width="600" }
+</figure>
+
+### 7.2 `--mixed`
+
+`git reset --mixed` 移动 HEAD 指针并重置暂存区，但不影响工作目录
+
+如果不指定模式，则默认 `--mixed` 模式
+
+我们输入以下命令
+
+```bash linenums="1"
+$ git reset eb84d9d5
+```
+
+项目状态变为
+
+<figure markdown="span">
+    ![Img 20](../../img/git/ch2/git_ch2_img20.png){ width="600" }
+</figure>
+
+`file1.txt` `file2.txt` 的修改全部保留了，并且不在暂存区当中；第 4 次提交被撤销了
+
+适用场景：撤销提交和暂存，但保留工作目录的修改（可重新 `git add`）
+
+### 7.3 `--hard`
+
+> 续接第 7.1 节的项目状态
+
+`git reset --hard` 彻底回退，移动 HEAD、重置暂存区和工作目录（会丢失未提交的修改）
+
+我们输入以下命令
+
+```bash linenums="1"
+$ git reset --hard eb84d9d5
+```
+
+项目状态变为
+
+<figure markdown="span">
+    ![Img 21](../../img/git/ch2/git_ch2_img21.png){ width="600" }
+</figure>
+
+可以看到，`file1.txt` `file2.txt` 的修改被撤销了，第 4 次提交也被撤销了。这意味着我们无法找回之前第 4 次提交所做的修改了……吗？
+
+!!! tip "git 的历史记录"
+
+    如果误用 `git reset --hard` 删除了提交，可以通过 `git reflog` 找回，恢复误删的提交
+
+    ```bash linenums="1" hl_lines="5"
+    $ git reflog
+    eb84d9d (HEAD -> main) HEAD@{0}: reset: moving to eb84d9d5
+    40e3565 HEAD@{1}: reset: moving to 40e3565
+    eb84d9d (HEAD -> main) HEAD@{2}: reset: moving to eb84d9d5
+    40e3565 HEAD@{3}: commit: commit again #4 on main
+    -- snip --
+    ```
+
+    > 由于我写文档时用到了这个操作来回退项目状态，因此输出信息会和大家的不太一样，不过具体情况具体分析就可以了
+
+    根据输出信息，我们需要回退到 `40e3565` 这一版本。因此，输入
+
+    ```bash linenums="1" hl_lines="5"
+    $ git reset --hard 40e3565
+    HEAD is now at 40e3565 commit again #4 on main
+    ```
+
+    此时，项目的状态就恢复了
+
+    <figure markdown="span">
+        ![Img 22](../../img/git/ch2/git_ch2_img22.png){ width="600" }
+    </figure>
+
+    !!! tip ""
+
+        仔细看一看 `git reflog` 的输出，会发现 git 也有自己的历史记录，记录着每次执行 git 命令后项目的状态
+        
+        通过 `git reflog` 中的 Hash 码回退项目时，是回退到指定 Hash 码对应的指令执行后的状态
+
+## 8 Git 删除
+
+如果我们现在要删除某个文件，比如 `file2.txt`。正常就是直接在文件资源管理器中删掉它，也就是删除工作区中的文件。但别忘了，git 会跟踪这个文件的，因此这个文件的删除操作也会被 git 记录下来。所以，我们还需要暂存更改，然后提交，提交信息可以是“delete file2.txt”
+
+那么“从工作区中删除文件” + “暂存更改”就相当于 `git rm`
+
+我们现在使用这个指令来删除 `file2.txt` 这个文件
+
+```bash linenums="1"
+$ git rm file2.txt
+rm 'file2.txt'
+```
+
+此时项目的状态变为
+
+<figure markdown="span">
+    ![Img 23](../../img/git/ch2/git_ch2_img23.png){ width="400" }
+</figure>
+
+然后执行一次提交就可以了
+
+<figure markdown="span">
+    ![Img 24](../../img/git/ch2/git_ch2_img24.png){ width="600" }
+</figure>
+
+## 9 `.gitignore` 文件
+
+有时，项目当中的某些文件没必要让 git 跟踪，或者不能让 git 跟踪。那么，这就需要一个 `.gitignore` 文件来记录那些不需要 git 来跟踪的文件
+
+!!! tip "`.gitignore` 应该忽略哪些文件"
+
+    1. 操作系统/IDE 生成的临时文件
+    2. 语言/框架相关的忽略项
+    3. 构建工具和包管理器
+    4. 本地开发配置文件
+    5. 日志和缓存文件
+    6. 测试和覆盖率报告
+    7. 系统/用户特定文件
+    8. 其他常见忽略项
+
+`.gitignore` 文件编写规则：[2.3 `.gitignore` 文件](./index.md#23-gitignore-文件){:target="_blank"}
+
+---
+
+我们创建一个 `.gitignore` 文件
+
+```text linenums="1" title=".gitignore"
+# 也可以忽略 .gitignore 自己
+.gitignore
+
+# 忽略所有 .exe 文件
+*.exe
+```
+
+现在写一个简单的 C 代码
+
+```c linenums="1" title="hello.c"
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\n");
+    return 0;
+}
+```
+
+编译出 `.exe` 文件
+
+现在项目的状态：
+
+<figure markdown="span">
+    ![Img 25](../../img/git/ch2/git_ch2_img25.png){ width="600" }
+</figure>
+
+`.gitignore` 和 `a.exe` 在左侧都是灰色的，这意味着它们被 git 忽略了。但是 `hello.c` 文件仍可以被 git 跟踪
+
+现在我们做一次提交
+
+<figure markdown="span">
+    ![Img 26](../../img/git/ch2/git_ch2_img26.png){ width="600" }
+</figure>
+
+---
+
+这时候我们修改 `.gitignore` 文件，将 `.c` 文件忽略掉
+
+```text linenums="1" title=".gitignore"
+# 也可以忽略 .gitignore 自己
+.gitignore
+
+# 忽略所有 .exe 文件
+*.exe
+*.c
+```
+
+但是，此时能够发现，`hello.c` 文件并没有忽略掉。这是因为 `hello.c` 已经在暂存区当中了，如果需要忽略，就需要将其从暂存区当中删除
+
+```bash linenums="1"
+$ git rm --cached hello.c
+rm 'hello.c'
+```
+
+然后记得执行一次提交。因为将某个文件从暂存区当中删除，也视为一种更改
+
+<figure markdown="span">
+    ![Img 27](../../img/git/ch2/git_ch2_img27.png){ width="600" }
+</figure>
+
+之后，`hello.c` 文件的修改就会正常被 git 忽略掉了
+
+## 10 总结
+
+<figure markdown="span">
+    ![Img 28](../../img/git/ch2/git_ch2_img28.png){ width="600" }
+</figure>
+
+相信在实操的过程当中，你会发现 VS Code 当中也会标注出文件的状态
+
+| 状态 | 颜色 | 标记 | 说明 |
+| :--: | :--: | :--: | :--: |
+| 未修改 | 白色 | 无 | 文件与最新提交一致，无更改 |
+| 已修改 | 黄色 | M | 文件内容被修改（Modified）|
+| 未跟踪 | 绿色 | U | 新文件未纳入 Git 版本控制（Untracked） |
+| 已删除 | 红色 | D | 文件从工作目录或暂存区中删除 |
+| 冲突 | 红色 | ! | 合并或变基时发生冲突（Conflict），需手动解决 |
+| 已忽略 | 灰色 | 无 | 文件被 `.gitignore` 忽略，不显示标记（除非开启 `git.showUntracked` 配置） |
