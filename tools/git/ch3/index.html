@@ -8282,9 +8282,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-合并冲突" class="md-nav__link">
+  <a href="#2-新建分支" class="md-nav__link">
     <span class="md-ellipsis">
-      2 合并冲突
+      2 新建分支
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-合并分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 合并分支
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 合并分支">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-合并冲突" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 合并冲突
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-其他分支操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 其他分支操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-分支流" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 分支流
     </span>
   </a>
   
@@ -8790,9 +8832,51 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-合并冲突" class="md-nav__link">
+  <a href="#2-新建分支" class="md-nav__link">
     <span class="md-ellipsis">
-      2 合并冲突
+      2 新建分支
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-合并分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 合并分支
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 合并分支">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-合并冲突" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 合并冲突
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-其他分支操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 其他分支操作
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-分支流" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 分支流
     </span>
   </a>
   
@@ -8836,12 +8920,167 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="3-分支操作">3 分支操作<a class="headerlink" href="#3-分支操作" title="Permanent link">&para;</a></h1>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
+<p class="admonition-title">建议</p>
+<p>git 其实很简单，多多实操就会了。建议跟着本文档实操一遍</p>
+<p>有关 git 分支的使用，等到需要小组代码协作的时候，用着用着就会了。不过通常会涉及到 <a href="../ch4/" target="_blank">4 远程操作</a> 和 <a href="../ch5/" target="_blank">5 多人协作</a></p>
 </div>
 <h2 id="1-git-分支">1 Git 分支<a class="headerlink" href="#1-git-分支" title="Permanent link">&para;</a></h2>
-<h2 id="2-合并冲突">2 合并冲突<a class="headerlink" href="#2-合并冲突" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">AI 解释</p>
+<p>Git 分支是 Git 版本控制系统中的一个核心概念，它允许开发者在同一个代码库中并行开发不同的功能或修复不同的问题</p>
+<ol>
+<li>分支是指向提交对象（commit）的可变指针，它代表了一条独立的开发线</li>
+<li>默认分支：通常命名为 <code>main</code> 或 <code>master</code>（在较新版本中默认使用 <code>main</code>）</li>
+<li>
+<p>分支特性：</p>
+<ol>
+<li>创建和切换分支非常快速且轻量</li>
+<li>不同分支可以完全隔离开发</li>
+<li>最终可以合并到主分支或其他分支</li>
+</ol>
+</li>
+</ol>
+</div>
+<p>大致可以这样理解：</p>
+<p>例如，你在开发一个游戏程序，可以有一个主分支作为 release 版本（就是最后呈现给玩家的），有一个 debug 分支（内部人员调试用的分支，可能显示碰撞箱等等的信息），还有一个 develop 分支，用于增加新的功能，完成后再 merge（合并）到主分支或 debug 分支上（就是将增加的内容同步到主分支上）</p>
+<h2 id="2-新建分支">2 新建分支<a class="headerlink" href="#2-新建分支" title="Permanent link">&para;</a></h2>
+<p>续接 <ins>2 基本操作 - 第 9 节</ins> 的项目状态，现在 main 分支上只有一个 <code>file1.txt</code> 文件（其他文件被 <code>.gitignore</code> 忽略了哦）</p>
+<p>我们从 main 分支的最新提交节点这里新建一个名为 <code>develop</code> 的分支</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>develop
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 1" src="../../../img/git/ch3/git_ch3_img1.png" width="600" />
+</figure>
+<p>接下来我们将 HEAD 指针切换到 <code>develop</code> 分支上</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>develop
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;develop&#39;</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 2" src="../../../img/git/ch3/git_ch3_img2.png" width="600" />
+</figure>
+<p>之后就可以在这个 <code>develop</code> 分支上操作了，比如提交之类的</p>
+<p>我们对项目做如下修改，并做一次提交</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">file1.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>修改第 1 行，删除第 2 行
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>这是 file1 的第 3 行 on develop
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>新增第 4 行
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">file2.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>这是 file2 的第 1 行 on develop
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 3" src="../../../img/git/ch3/git_ch3_img3.png" width="600" />
+</figure>
+<p>接下来我们切换到 main 分支</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>main<span class="w">   </span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;main&#39;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以看到工作区自动切换到了 main 分支上的状态（<code>file1.txt</code> 是 main 分支上最后一次提交的状态，同时 <code>file2.txt</code> 也不存在）</p>
+<p>接下来在 main 分支上新建一个 <code>file3.txt</code> 文件</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">file3.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>这是 file3 的第 1 行
+</span></code></pre></div></td></tr></table></div>
+<p>修改 <code>file1.txt</code> 文件</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">file1.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>修改第 1 行，删除第 2 行
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>这是 file1 的第 3 行 on main
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>新增第 4 行
+</span></code></pre></div></td></tr></table></div>
+<p>并做一次提交</p>
+<figure>
+  <img alt="Img 4" src="../../../img/git/ch3/git_ch3_img4.png" width="600" />
+</figure>
+<p>这下可以清楚地看到分支的样子了，<code>develop</code> 分支就是从 main 分支上的某个节点分出来的</p>
+<h2 id="3-合并分支">3 合并分支<a class="headerlink" href="#3-合并分支" title="Permanent link">&para;</a></h2>
+<p>接下来我们可以把 develop 分支上的修改合并到 main 分支上。相关 git 命令是 <code>git merge</code></p>
+<p><code>git merge {other_branch}</code> 是将名为 <code>other_branch</code> 的分支合并到当前所在的分支上的</p>
+<p>因此，如果要把 develop 分支上的修改合并到 main 分支上，就要现处于 main 分支上，然后输入 <code>git merge develop</code></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>merge<span class="w"> </span>develop
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Auto-merging<span class="w"> </span>file1.txt
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>CONFLICT<span class="w"> </span><span class="o">(</span>content<span class="o">)</span>:<span class="w"> </span>Merge<span class="w"> </span>conflict<span class="w"> </span><span class="k">in</span><span class="w"> </span>file1.txt
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>Automatic<span class="w"> </span>merge<span class="w"> </span>failed<span class="p">;</span><span class="w"> </span>fix<span class="w"> </span>conflicts<span class="w"> </span>and<span class="w"> </span><span class="k">then</span><span class="w"> </span>commit<span class="w"> </span>the<span class="w"> </span>result.
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 5" src="../../../img/git/ch3/git_ch3_img5.png" width="600" />
+</figure>
+<p>可以看到，develop 分支上的 <code>file2.txt</code> 文件已经合并到了 main 分支上了，但是输出信息提示说 <code>file1.txt</code> 发生了合并冲突，这是因为 main 分支和 develop 分支对 <code>file1.txt</code> 的某个地方的修改产生了歧义（冲突），git 不知道应该保留哪个版本。这个时候我们就需要手动处理冲突</p>
+<h3 id="31-合并冲突">3.1 合并冲突<a class="headerlink" href="#31-合并冲突" title="Permanent link">&para;</a></h3>
+<p>点击左侧的 <code>file1.txt</code>，可以在 VS Code 当中处理冲突</p>
+<figure>
+  <img alt="Img 6" src="../../../img/git/ch3/git_ch3_img6.png" width="600" />
+</figure>
+<p>可以看到 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> 和 <code>=======</code> 之间的内容是当前 main 分支上的修改，<code>=======</code> 和 <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> 之间的内容是传入的 develop 分支上的修改。冲突点就发生在这里，我们可以选择保留哪一方的更改或者保留双方的更改</p>
+<p>这里我们保留 develop 分支的更改</p>
+<figure>
+  <img alt="Img 7" src="../../../img/git/ch3/git_ch3_img7.png" width="600" />
+</figure>
+<p>然后保存并提交到暂存区</p>
+<figure>
+  <img alt="Img 8" src="../../../img/git/ch3/git_ch3_img8.png" width="600" />
+</figure>
+<p>然后做一次提交即可</p>
+<figure>
+  <img alt="Img 9" src="../../../img/git/ch3/git_ch3_img9.png" width="600" />
+</figure>
+<p>可以看到 git graph 上对 merge 操作的图形化绘制，是比较清楚的</p>
+<h2 id="4-其他分支操作">4 其他分支操作<a class="headerlink" href="#4-其他分支操作" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>git branch -a</code>：查看所有分支</li>
+<li><code>git switch -c {branch_name}</code>：创建分支并切换到此新分支上</li>
+<li><code>git branch -d {branch_name}</code>：安全删除（已合并）</li>
+<li><code>git branch -D {branch_name}</code>：强制删除（未合并）</li>
+</ul>
+<blockquote>
+<p>有关分支 rebase（变基）等其他比较进阶的操作，本文档不介绍，因为我自己也没用过 😂</p>
+</blockquote>
+<h2 id="5-分支流">5 分支流<a class="headerlink" href="#5-分支流" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">AI 解释</p>
+<ol>
+<li>
+<p>功能分支工作流：</p>
+<ol>
+<li>每个新功能在独立分支开发</li>
+<li>完成后合并回主分支</li>
+</ol>
+</li>
+<li>
+<p>Git Flow：</p>
+<ol>
+<li>main - 稳定版本</li>
+<li>develop - 开发主线</li>
+<li>feature/xxx - 功能开发</li>
+<li>release/xxx - 发布准备</li>
+<li>hotfix/xxx - 紧急修复</li>
+</ol>
+</li>
+<li>
+<p>GitHub Flow：</p>
+<ol>
+<li>更简单，只有 main 和功能分支</li>
+<li>通过 Pull Request 进行代码审查和合并</li>
+</ol>
+</li>
+<li>
+<p>Trunk-Based Development：</p>
+<ol>
+<li>更激进，开发者直接向 main 提交小改动</li>
+<li>通过功能开关控制未完成功能的可见性</li>
+</ol>
+</li>
+</ol>
+</div>
+<p>在 <a href="../ch5/" target="_blank">5 多人协作</a> 会简单介绍一下 GitHub Flow</p>
 
 
 
@@ -8864,7 +9103,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月15日 05:51:44 UTC">2025年5月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月25日 14:38:19 UTC">2025年7月25日</span>
   </span>
 
     
