@@ -1,8 +1,8 @@
 # Github
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "AI 介绍"
 
@@ -59,6 +59,58 @@
 
 ## 1 注册
 
+国内用户访问 GitHub 较慢，解决方法是使用一些加速器或者科学上网工具
+
+加速器推荐：[Watt Toolkit](../../application/watt_toolkit/index.md){:target="_blank"}
+
+访问 GitHub 并注册账号：[GitHub](https://github.com/){:target="_blank"}
+
+> 注册账号时，如果你使用的是 QQ 邮箱，建议去 QQ 邮箱那里设置 **英文别名**，避免直接用 `{QQ 号}@qq.com`，造成信息泄露
+
+注册完毕后，点击右上角头像，可以先自行探索一下这些菜单
+
+<figure markdown="span">
+  ![Img 1](../../img/github/github_img1.png){ width="600" }
+</figure>
+
 ## 2 设置
 
-### 2.1 邮箱
+点击右上角头像，打开设置
+
+<figure markdown="span">
+  ![Img 2](../../img/github/github_img2.png){ width="600" }
+</figure>
+
+### 2.1 Public profile
+
+公开展示的一些信息
+
+### 2.2 Emails
+
+这里可以对邮箱进行设置
+
+<figure markdown="span">
+  ![Img 3](../../img/github/github_img3.png){ width="600" }
+</figure>
+
+可以开启 ^^Keep my email addresses private^^ 功能，开启后
+
+1. 个人邮箱会隐藏，转而使用格式类似于 `223077261+WintermelonB@users.noreply.github.com` 的邮箱
+2. 同时，需要修改电脑上的 git 配置。比如我就需要修改 `user.email` 为 `223077261+WintermelonB@users.noreply.github.com` 即可
+3. 可以开启 ^^Block command line pushes that expose my email^^：如果 git 提交信息里包含了个人邮箱，github 会拒绝掉这次提交，保护个人邮箱
+
+### 2.3 Password and authentication
+
+这里可以修改密码，添加 Passkeys，启用 Two-factor authentication
+
+如果想要申请 Github 学生认证，就需要启用 Two-factor authentication，详见 [2FA](../../application/vscode/copilot.md#2fa){:target="_blank"}
+
+## 3 仓库
+
+可以访问一下大名鼎鼎的 linux 项目，可以在上方搜索框中搜索
+
+<figure markdown="span">
+  ![Img 4](../../img/github/github_img4.png){ width="600" }
+</figure>
+
+可以自行探索一下 Github 的仓库页面，具体详见 [git 远程操作](../git/ch4.md){:target="_blank"}

@@ -83,11 +83,11 @@ hide:
         - [x] 编写 VSCode 文档
         - [ ] 编写 Git 文档
             - [x] ch 1
-            - [ ] ch 2
-            - [ ] ch 3
+            - [x] ch 2
+            - [x] ch 3
             - [ ] ch 4
             - [ ] ch 5
-        - [ ] 编写 Github 文档
+        - [x] 编写 Github 文档
         - [ ] 编写 Web 文档
         - [ ] 编写 Github Pages 文档
         - [ ] 编写 Markdown 文档

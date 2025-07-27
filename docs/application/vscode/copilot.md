@@ -22,9 +22,29 @@
     ![img 1](../../img/copilot/copilot_img1.png){width="800"}
 </figure>
 
-启用 2FA 验证，可以在手机上下载微软的 Authenticator 软件，免费的
+点击按钮启用 2FA 验证
 
-> 详细的教程可以自行搜索
+**1.Setup authenticator app**
+
+<figure markdown="span">
+    ![img 7](../../img/copilot/copilot_img7.png){width="800"}
+</figure>
+
+可以在手机上下载微软的 Authenticator 软件，免费的
+
+扫描电脑上的 QR code，Authenticator 会添加一个验证，然后点进去有一串每隔 30 秒切换一次的 ^^一次性密码代码^^，在电脑上的 ^^Verify the code from the app^^ 输入框中输入这个一次性密码代码即可
+
+**2.Download your recovery codes**
+
+可以下载一下这个恢复密钥，并保存到不易泄露的地方
+
+**3.Don't get locked out, configure additional authentication methods**
+
+然后就设置完成了
+
+---
+
+可以返回刚才的设置页面，看一下变化
 
 ### 材料认证
 
