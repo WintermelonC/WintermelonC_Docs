@@ -8311,12 +8311,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 SSH 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-本地电脑配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 本地电脑配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-github-配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Github 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-验证连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 验证连接
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-远程操作" class="md-nav__link">
+  <a href="#3-git-远程操作" class="md-nav__link">
     <span class="md-ellipsis">
-      Git 远程操作
+      3 Git 远程操作
     </span>
   </a>
   
@@ -8805,12 +8838,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 SSH 配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-本地电脑配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 本地电脑配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-github-配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Github 配置
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-验证连接" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 验证连接
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#git-远程操作" class="md-nav__link">
+  <a href="#3-git-远程操作" class="md-nav__link">
     <span class="md-ellipsis">
-      Git 远程操作
+      3 Git 远程操作
     </span>
   </a>
   
@@ -8866,7 +8932,114 @@
 <h2 id="1-github">1 Github<a class="headerlink" href="#1-github" title="Permanent link">&para;</a></h2>
 <p>详见 <a href="../../github/" target="_blank">Github</a></p>
 <h2 id="2-ssh-配置">2 SSH 配置<a class="headerlink" href="#2-ssh-配置" title="Permanent link">&para;</a></h2>
-<h2 id="git-远程操作">Git 远程操作<a class="headerlink" href="#git-远程操作" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">AI 解释</p>
+<p>SSH（Secure Shell）是一种加密的网络协议，用于安全地访问和管理远程计算机或服务器。它通过加密通信通道，防止数据在传输过程中被窃听或篡改，是替代传统不安全的Telnet、FTP等协议的主流方案</p>
+</div>
+<p>推荐使用 SSH 与 github 远程仓库建立连接并通信</p>
+<h3 id="21-本地电脑配置">2.1 本地电脑配置<a class="headerlink" href="#21-本地电脑配置" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">提示</p>
+<p>本文档使用 Windows 系统进行演示</p>
+</div>
+<p>打开用户目录 <code>%USERPROFILE%</code>（例如 <code>C:\Users\example\</code>），找到名为 <code>.ssh</code> 的文件夹并打开（若没有自行新建文件夹即可）</p>
+<p>在此目录下打开终端，输入命令创建 SSH 密钥</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a>C:<span class="se">\U</span>sers<span class="se">\e</span>xample<span class="se">\.</span>ssh&gt;ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-b<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a>Generating<span class="w"> </span>public/private<span class="w"> </span>rsa<span class="w"> </span>key<span class="w"> </span>pair.
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>Enter<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span>which<span class="w"> </span>to<span class="w"> </span>save<span class="w"> </span>the<span class="w"> </span>key<span class="w"> </span><span class="o">(</span>C:<span class="se">\U</span>sers<span class="se">\e</span>xample/.ssh/id_rsa<span class="o">)</span>:<span class="w"> </span>id_test
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>Enter<span class="w"> </span>passphrase<span class="w"> </span><span class="o">(</span>empty<span class="w"> </span><span class="k">for</span><span class="w"> </span>no<span class="w"> </span>passphrase<span class="o">)</span>:
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a>Enter<span class="w"> </span>same<span class="w"> </span>passphrase<span class="w"> </span>again:
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>Your<span class="w"> </span>identification<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>saved<span class="w"> </span><span class="k">in</span><span class="w"> </span>id_test
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>Your<span class="w"> </span>public<span class="w"> </span>key<span class="w"> </span>has<span class="w"> </span>been<span class="w"> </span>saved<span class="w"> </span><span class="k">in</span><span class="w"> </span>id_test.pub
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a>--<span class="w"> </span>snip<span class="w"> </span>--
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><code>ssh-keygen -t rsa -b 4096</code>：</p>
+<ul>
+<li><code>-t</code>：指定密钥类型（type）</li>
+<li><code>rsa</code>：rsa 是一种加密算法，用于生成密钥</li>
+<li><code>-b</code>：指定密钥长度（bits）</li>
+<li><code>4096</code>：密钥长度为 4096 位</li>
+</ul>
+</li>
+<li>
+<p><code>Enter file in which to save the key (C:\Users\example/.ssh/id_rsa):</code>：输入存储密钥的文件名称，若不输入，默认名称为 id_rsa（如果需要多个 SSH 密钥的话，必须自定义名称，不然新的会覆盖掉旧的）</p>
+</li>
+<li><code>Enter passphrase (empty for no passphrase):</code>：设置密码，可不设置。即使不设置密码，rsa 算法每次生成的密钥内容也不相同</li>
+</ul>
+<p>之后，生成一个公钥文件 <code>id_test.pub</code> 和私钥文件 <code>id_test</code>，其中公钥文件可以公开，而 <mark>私钥文件万万不可公开</mark></p>
+<hr />
+<p>新建一个名为 <code>config</code> 的文件，打开编辑</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a># github
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>Host github.com
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>HostName github.com
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>PreferredAuthentications publickey
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>IdentityFile ~/.ssh/id_test
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code># github</code>：注释行</li>
+<li><code>Host github.com</code>：定义主机的别名</li>
+<li><code>HostName github.com</code>：指定实际连接的主机名（这里是 GitHub 的真实域名）</li>
+<li><code>PreferredAuthentications publickey</code>：优先使用 publickey 方式认证（即 SSH 密钥登录）</li>
+<li><code>IdentityFile ~/.ssh/id_test</code>：指定用于认证的私钥文件路径，<code>id_test</code> 根据实际私钥文件的名称进行修改</li>
+</ul>
+<p>这个文件的作用简单来说就是，当我们访问 github 时，会使用 <code>id_test</code> 这个私钥文件进行验证</p>
+<h3 id="22-github-配置">2.2 Github 配置<a class="headerlink" href="#22-github-配置" title="Permanent link">&para;</a></h3>
+<p>打开 github 设置 <ins>SSH and GPG keys</ins>，新建一个 SSH key</p>
+<figure>
+  <img alt="Img 1" src="../../../img/git/ch4/git_ch4_img1.png" width="800" />
+</figure>
+<p>复制公钥文件 <code>id_test.pub</code> 中的所有内容到 Key 栏中，Title 栏相当于起个名字</p>
+<figure>
+  <img alt="Img 2" src="../../../img/git/ch4/git_ch4_img2.png" width="800" />
+</figure>
+<p>之后点击 <ins>Add SSH key</ins> 按钮即可</p>
+<h3 id="23-验证连接">2.3 验证连接<a class="headerlink" href="#23-验证连接" title="Permanent link">&para;</a></h3>
+<p>设置完成后，打开终端，输入命令验证连接</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>$<span class="w"> </span>ssh<span class="w"> </span>-T<span class="w"> </span>git@github.com
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>The<span class="w"> </span>authenticity<span class="w"> </span>of<span class="w"> </span>host<span class="w"> </span><span class="s1">&#39;github.com (20.205.243.166)&#39;</span><span class="w"> </span>can<span class="s1">&#39;t be established.</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="s1">-- snip --</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="s1">This key is not known by any other names.</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="s1">Are you sure you want to continue connecting (yes/no/[fingerprint])? yes</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="s1">Warning: Permanently added &#39;</span>github.com<span class="s1">&#39; (ED25519) to the list of known hosts.</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="s1">Hi WintermelonC! You&#39;</span>ve<span class="w"> </span>successfully<span class="w"> </span>authenticated,<span class="w"> </span>but<span class="w"> </span>GitHub<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>provide<span class="w"> </span>shell<span class="w"> </span>access.
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>ssh -T git@github.com</code>：此命令中的 <code>github.com</code> 字段实际上就是我们在 <code>config</code> 文件中配置的主机别名</li>
+<li><code>Are you sure you want to continue connecting (yes/no/[fingerprint])?</code>：输入 <code>yes</code> 确认</li>
+<li><code>Hi WintermelonC! You've successfully authenticated, but GitHub does not provide shell access.</code>：出现此行，说明 SSH 连接成功</li>
+</ul>
+<p>之后 <code>.ssh</code> 文件夹中会多出 <code>known_hosts</code> 和 <code>known_hosts.old</code> 两个文件，不用去管</p>
+<div class="admonition tip">
+<p class="admonition-title">多账户配置</p>
+<p>如果想在同一台电脑上使用两个 github 账号，但这两个账号使用不同的 SSH 密钥，该如何配置呢。这就需要修改 <code>config</code> 文件当中的主机别名了，以及需要修改 git 本地仓库的本地配置等等。具体方法本文档不涉及，感兴趣或有需要请自行搜索</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">网络问题</p>
+<p>关于 SSH 的各种奇奇怪怪的网络问题，分享一个我的经验</p>
+<p>我平常用 github 的时候，会开启加速器，如果需要使用 SSH 连接的话（如使用 git 的远程操作命令），我会关闭加速器。我这样用起来没有什么问题</p>
+<p>但有时候使用 git 的远程操作命令时，会报错（具体报错信息忘了，后面遇到再补充）。这时候换一个 WIFI 就好了</p>
+<p>之前我遇到其他报错信息时，我尝试过上网搜索，但是网上的方法我都试过，在我这里都不适用，很奇怪</p>
+</div>
+<h2 id="3-git-远程操作">3 Git 远程操作<a class="headerlink" href="#3-git-远程操作" title="Permanent link">&para;</a></h2>
 
 
 
@@ -8889,7 +9062,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年7月27日 08:28:03 UTC">2025年7月27日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月11日 13:28:06 UTC">2025年8月11日</span>
   </span>
 
     
