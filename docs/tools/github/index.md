@@ -70,7 +70,7 @@
 注册完毕后，点击右上角头像，可以先自行探索一下这些菜单
 
 <figure markdown="span">
-  ![Img 1](../../img/github/github_img1.png){ width="600" }
+  ![Img 1](../../img/github/github_img1.png){ width="800" }
 </figure>
 
 ## 2 设置
@@ -78,7 +78,7 @@
 点击右上角头像，打开设置
 
 <figure markdown="span">
-  ![Img 2](../../img/github/github_img2.png){ width="600" }
+  ![Img 2](../../img/github/github_img2.png){ width="800" }
 </figure>
 
 ### 2.1 Public profile
@@ -90,7 +90,7 @@
 这里可以对邮箱进行设置
 
 <figure markdown="span">
-  ![Img 3](../../img/github/github_img3.png){ width="600" }
+  ![Img 3](../../img/github/github_img3.png){ width="800" }
 </figure>
 
 可以开启 ^^Keep my email addresses private^^ 功能，开启后
@@ -110,7 +110,7 @@
 可以访问一下大名鼎鼎的 linux 项目，可以在上方搜索框中搜索
 
 <figure markdown="span">
-  ![Img 4](../../img/github/github_img4.png){ width="600" }
+  ![Img 4](../../img/github/github_img4.png){ width="800" }
 </figure>
 
 可以自行探索一下 Github 的仓库页面，具体详见 [git 远程操作](../git/ch4.md){:target="_blank"}
