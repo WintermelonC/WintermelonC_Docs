@@ -1,5 +1,9 @@
 # 2 控制流
 
+!!! info "说明"
+
+    本文档为个人整理的复习概要，内容侧重重点提炼而非详细讲解，不适合零基础的同学
+
 <!-- !!! tip "说明"
 
     本文档正在更新中…… -->
@@ -58,7 +62,7 @@ True
 
 ### 2.3.1 二元布尔操作符
 
-`and` 和 `or` 操作符总是接收两个布尔值（或表达式），所以被称为“二元”操作符。如果两个布尔值都为 `True`，`and` 操作符就将表达式求值为 `True`；否则求值为 `False`
+`and` 和 `or` 操作符总是接收两个布尔值（或表达式），所以被称为“二元”操作符
 
 ```python
 >>> True and True
@@ -76,8 +80,6 @@ False
 
 > `and` 操作符真值表
 
-只要有一个布尔值为真，`or` 操作符就将表达式求值为 `True`。如果都是 `False` 则求值为 `False`
-
 | 表达式 | 求值为 |
 | :--: | :--: |
 | `True or True` | True |
@@ -89,7 +91,7 @@ False
 
 ### 2.3.2 `not` 操作符
 
-`not` 操作符只作用于一个布尔值（或表达式），称为“一元”操作符。`not` 操作符求值为相反的布尔值
+`not` 操作符只作用于一个布尔值（或表达式），称为“一元”操作符
 
 ```python
 >>> not not not True
@@ -121,7 +123,7 @@ True
 True
 ```
 
-布尔操作符也有操作顺序。在所有算术和比较操作符求值后，Python 先求值 `not` 操作符，然后求值 `and` 操作符，最后求值 `or` 操作符。
+布尔操作符也有操作顺序
 
 算术操作符 -> 比较操作符 -> `not` -> `and` -> `or`
 
@@ -160,16 +162,7 @@ Python 一条一条从上往下执行代码。但是，并非所有的程序都�
 
 ### 2.7.1 `if` 语句
 
-最常见地控制流语句是 `if` 语句。`if` 语句的子句，将在语句的 条件为 `True` 时执行。如果条件为 `False`，将跳过子句
-
-`if` 语句包含以下部分：
-
-1. `if` 关键字
-2. 条件
-3. 冒号
-4. 在下一行开始，缩进的代码块（称为 `if` 子句）
-
-以下代码用于检查某人的名字是否为 Alice，假设此前曾为 `name` 赋值
+最常见地控制流语句是 `if` 语句
 
 ```python linenums="1"
 if name == 'Alice':
@@ -178,23 +171,9 @@ if name == 'Alice':
 
 所有控制流语句都以冒号结尾，后面跟着一个新的代码块（子句）
 
-控制流可以用流程图来表示：
-
-```mermaid
-graph TD
-A([开始]) --> B{name == 'Alice'}
-B -->|真| C["print('Hi, Alice.')"]
-B -->|假| D([结束])
-C --> D
-```
-
 ### 2.7.2 `else` 语句
 
-`if` 语句后面有时候也可以跟着 `else` 语句。只有 `if` 语句的条件为 `False` 时，`else` 子句才会执行。`else` 语句不包含条件，`else` 语句包含以下部分：
-
-1. `else` 关键字
-2. 冒号
-3. 在下一行开始，缩进的代码块（称为 `else` 子句）
+`if` 语句后面有时候也可以跟着 `else` 语句
 
 ```python linenums="1"
 if name == 'Alice':
@@ -203,23 +182,9 @@ else:
     print('Hello, stranger.')  # 在名字不是 Alice 时，发出不一样的问候
 ```
 
-```mermaid
-graph TD
-A([开始]) --> B{name == 'Alice'}
-B -->|真| C["print('Hi, Alice.')"]
-B -->|假| E["print('Hello, stranger.')"]
-C --> D([结束])
-E --> D
-```
-
 ### 2.7.3 `elif` 语句
 
-有时候希望“许多”可能的子句中有一个被执行。`elif` 语句是“否则如果”，总是跟在 `if` 或另一条 `elif` 语句后面。它提供了另一个条件，仅在前面的条件为 `False` 时才检查该条件。`elif` 语句总是包含以下部分：
-
-1. `elif` 关键字
-2. 条件
-3. 冒号
-4. 在下一行开始，缩进的代码块（称为 `elif` 子句）
+有时候希望“许多”可能的子句中有一个被执行。`elif` 语句是“否则如果”，总是跟在 `if` 或另一条 `elif` 语句后面
 
 ```python linenums="1"
 if name == 'Alice':
@@ -228,50 +193,9 @@ elif age < 12:
     print('You are not Alice, kiddo.')  # kiddo 意为“小朋友”
 ```
 
-```mermaid
-graph TD
-A([开始]) --> B{name == 'Alice'}
-B -->|真| C["print('Hi, Alice.')"]
-B -->|假| E{age < 12}
-C --> D([结束])
-E -->|真| F["print('You are not Alice, kiddo.')"]
-E -->|假| D
-F --> D
-```
-
 如果有一系列的 `elif` 语句，仅有一条或零条子句被执行，一旦一个语句的条件为 `True`，会自动跳过剩下的 `elif` 子句
 
-因此，`elif` 语句的次序很重要，例如：
-
-<div class="grid" markdown>
-
-```python linenums="1"
-name = 'Carol'
-age = 3000
-if name == 'Alice':
-    print('Hi, Alice.')
-elif age < 12:
-    print('You are not Alice, kiddo.')
-elif age > 2000:  # 条件为真
-    print('Unlike you, Alice is not an undead, immortal vampire.')  # 执行此行代码
-elif age > 100:
-    print('You are not Alice, grannie.')
-```
-
-```python linenums="1"
-name = 'Carol'
-age = 3000
-if name == 'Alice':
-    print('Hi, Alice.')
-elif age < 12:
-    print('You are not Alice, kiddo.')
-elif age > 100:  # 条件为真
-    print('You are not Alice, grannie.')  # 执行此行代码
-elif age > 2000:
-    print('Unlike you, Alice is not an undead, immortal vampire.')
-```
-
-</div>
+因此，`elif` 语句的次序很重要
 
 当然，可以选择在最后的 `elif` 语句后面加上 `else` 语句。如果每个 `if` 和 `elif` 语句中的条件都为 `False`，就执行 `else` 子句
 
@@ -288,23 +212,7 @@ else:
 
 ### 2.7.4 `while` 循环语句
 
-利用 `while` 循环语句，可以让一个代码块一遍又一遍地执行。只要 `while` 循环语句的条件为 `True`，`while` 子句中的代码就会执行。`while` 循环语句总是包含以下部分：
-
-1. `while` 关键字
-2. 条件
-3. 冒号
-4. 从下一行开始，缩进的代码块（称为 `while` 子句）
-
-`while` 循环语句看起来和 `if` 语句类似。不同之处是它们的行为，例如：
-
-<div class="grid" markdown>
-
-```python linenums="1"
-spam = 0
-if spam < 5:
-    print('Hello, world.')
-    spam = spam + 1
-```
+利用 `while` 循环语句，可以让一个代码块一遍又一遍地执行。只要 `while` 循环语句的条件为 `True`，`while` 子句中的代码就会执行
 
 ```python linenums="1"
 spam = 0
@@ -313,57 +221,9 @@ while spam < 5:
     spam = spam + 1
 ```
 
-```mermaid
-graph TD
-A([开始]) --> B{spam < 5}
-B -->|真| C["print('Hello, world.')"]
-C --> E["spam = spam + 1"]
-B -->|假| D([结束])
-E --> D
-```
-
-```mermaid
-graph TD
-A([开始]) --> B{spam < 5}
-B -->|真| C["print('Hello, world.')"]
-C --> E["spam = spam + 1"]
-B -->|假| D([结束])
-E --> B
-```
-
-<div class="card" markdown>
-`if` 语句的代码，如果条件为 `True`，就输出一次 "Hello, world."
-</div>
-
-<div class="card" markdown>
-`while` 循环的代码则不同，会输出 5 次
-</div>
-
-</div>
-
-在 `while` 循环中，条件总是在每次 “迭代” 开始时检查（也就是每次循环执行时）。如果条件为 `True`，子句就会执行，然后再次检查条件；当条件第一次为 `False` 时，就跳过 `while` 子句
-
----
-
-> 以下内容开始摆烂（
-
-### 2.7.5 恼人的循环
-
-```python linenums="1"
-name = ''
-while name != 'your name':
-    print('Please type your name.')
-    name = input()
-print('Thank you!')
-```
-
 ### 2.7.6 `break` 语句
 
 使用 `break` 语句来马上退出 `while` 子句
-
-!!! tip "陷在无限循环中？"
-
-    按下 ++ctrl+c++ 快捷键，可以停止程序
 
 ### 2.7.7 `continue` 语句
 
@@ -484,36 +344,3 @@ while True:
         sys.exit()
     print(f'You typed {response}.')
 ```
-
-## 2.10 习题
-
-1.自行搜索了解 `abs()` 函数
-
-??? success "答案"
-
-    `abs()` 函数是 Python 的内置函数，用于返回一个数的绝对值。绝对值是指一个数在数轴上与零点的距离，因此无论是正数还是负数，绝对值都是非负数
-
-    `abs(x)`
-    
-    - x：一个数值表达式，可以是整数、浮点数或复数
-
-    示例：
-
-    ```python
-    >>> abs(-5)
-    5
-    >>> abs(3.14)
-    3.14
-    >>> abs(-7.5)
-    7.5
-    >>> abs(0)
-    0
-    ```
-    
-    对于复数，`abs()` 函数返回其模（即复数在复平面上的距离）：
-
-    ```python
-    >>> abs(3 + 4j)
-    5.0
-    ```
-    

@@ -1,5 +1,9 @@
 # 3 函数
 
+!!! info "说明"
+
+    本文档为个人整理的复习概要，内容侧重重点提炼而非详细讲解，不适合零基础的同学
+
 <!-- !!! tip "说明"
 
     本文档正在更新中…… -->
@@ -258,97 +262,3 @@ except ZeroDivisionError:
 3.5
 Error: Invalid argument.
 ```
-
-## 3.9 小程序：Zigzag
-
-```python linenums="1"
-import time, sys
-
-
-indent = 0  # 缩进的空格数
-indent_increasing = True  # 是否增加缩进
-
-try:
-    while True:
-        print(' ' * indent, end='')
-        print('********')
-        time.sleep(0.1)  # 暂停 0.1 秒
-
-        if indent_increasing:  # 增加缩进
-            indent += 1
-            if indent == 20:
-                indent_increasing = False  # 改变方向
-        else:  # 减少缩进
-            indent -= 1
-            if indent == 0:
-                indent_increasing = True  # 改变方向
-except KeyboardInterrupt:  # 捕获 Ctrl + C
-    sys.exit()
-```
-
-## 3.10 实践项目
-
-### 3.10.1 Collatz 序列
-
-编写一个名为 `Collatz()` 的函数，它有一个名为 `number` 的参数。如果参数是偶数，那么 `collatz()` 就输出 `number // 2`，并返回该值。如果 `number` 是奇数，`collatz()` 就输出并返回 `3 * number + 1`
-
-然后编写一个程序，让用户输入一个整数，并不断对这个数调用 `collatz()` 函数，指导函数返回值为 1（令人惊奇的是，这个序列对于任何整数都有效，利用这个序列，你迟早会得到 1）
-
-记得将 `input()` 函数的返回值用 `int()` 函数转换成一个整数
-
-提示：如果 `number % 2 == 0`，整数 `number` 就是偶数；如果 `number % 2 == 1`，它就是奇数
-
-```python title="输出样例"
-Enter number:
-3
-10
-5
-16
-8
-4
-2
-1
-```
-
-??? success "答案"
-
-    ```python linenums="1"
-    def collatz(number):
-        if number % 2 == 0:
-            print(number // 2)
-            return number // 2
-        else:
-            print(3 * number + 1)
-            return 3 * number + 1
-        
-    
-    user_number = int(input('Enter number:\n'))
-    while user_number != 1:
-        user_number = collatz(user_number)
-    ```
-
-### 3.10.2 输入验证
-
-在 3.10.1 的项目中添加 `try` 和 `except` 语句，检测用户是否输入了一个非整数的字符串。在正常情况下，`int()` 函数在传入一个非整数字符串时，会产生 ValueError 的错误。在 `except` 子句中，向用户输入一条信息，告诉他们必须输入一个整数
-
-??? success "答案"
-
-    ```python linenums="1"
-    def collatz(number):
-        if number % 2 == 0:
-            print(number // 2)
-            return number // 2
-        else:
-            print(3 * number + 1)
-            return 3 * number + 1
-    
-    
-    while True:
-        try:
-            user_number = int(input('Enter number:\n'))
-            while user_number != 1:
-                user_number = collatz(user_number)
-            break
-        except ValueError:
-            print('Please enter an integer.')
-    ```

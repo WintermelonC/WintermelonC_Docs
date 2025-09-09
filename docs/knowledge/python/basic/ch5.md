@@ -1,8 +1,12 @@
 # 5 字典和结构化数据
 
-!!! tip "说明"
+!!! info "说明"
 
-    本文档正在更新中……
+    本文档为个人整理的复习概要，内容侧重重点提炼而非详细讲解，不适合零基础的同学
+
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
 
 ## 5.1 字典数据类型
 
@@ -38,7 +42,7 @@ True
 
 因为字典是不排序的，所以不能像列表那样切片
 
-尝试访问字典中不存在的键，将出现 `KetError` 错误信息
+尝试访问字典中不存在的键，将出现 `KeyError` 错误信息
 
 字典可以用任意值作为键，这一点让你能够用强大的方式来组织数据。假定你希望程序保存朋友生日的数据，就可以使用一个字典，用名字作为键，用生日作为值
 
@@ -90,8 +94,8 @@ red
 42
 >>> for i in eggs.items():
 ...    print(i)
-('color': 'red')
-('age': 42)
+('name', 'Zophie')
+('species', 'cat')
 ```
 
 `items()` 方法返回的 `dict_items` 值包含的是键和值的元组
@@ -101,9 +105,9 @@ red
 ```python
 >>> eggs = {'name': 'Zophie', 'species': 'cat'}
 >>> eggs.keys()
-dict_keys(['color', 'age'])
+dict_keys(['name', 'species'])
 >>> list(eggs.keys())
-['color', 'age']
+['name', 'species']
 ```
 
 也可以利用多重赋值的技巧，在 `for` 循环中将键和值赋给不同的变量
@@ -230,81 +234,6 @@ print(pprint.pformat(messages))
 
 ## 5.3 使用数据结构对真实世界建模
 
-### 5.3.1 井字棋盘
-
-要用字典表示井字棋盘，可以为每个格子分配一个字符串键
-
-带有键 `'top_R'` 的字符串表示右上角
-
-这个字典就是井字棋盘的数据结构
-
-```python linenums="1"
-board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
-         'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
-         'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
-```
-
-如果玩家 X 选择了中间的空格，就可以用下面的字典来表示棋盘
-
-```python linenums="1"
-board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
-         'mid-L': ' ', 'mid-M': 'X', 'mid-R': ' ',
-         'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
-```
-
-创建一个函数，将棋盘字典输出到屏幕上
-
-```python linenums="1"
-def print_board(board):
-    print(board['top-L'] + '|' + board['top-M'] + '|' + board['top-R'])
-    print('-+-+-')
-    print(board['mid-L'] + '|' + board['mid-M'] + '|' + board['mid-R'])
-    print('-+-+-')
-    print(board['low-L'] + '|' + board['low-M'] + '|' + board['low-R'])
-
-
-print_board(board)
-```
-
-```python linenums="1" title="output"
- | | 
--+-+-
- | | 
--+-+-
- | | 
-```
-
-现在添加代码，允许玩家输入它们的着法
-
-```python linenums="1"
-def print_board(board):
-    print(board['top-L'] + '|' + board['top-M'] + '|' + board['top-R'])
-    print('-+-+-')
-    print(board['mid-L'] + '|' + board['mid-M'] + '|' + board['mid-R'])
-    print('-+-+-')
-    print(board['low-L'] + '|' + board['low-M'] + '|' + board['low-R'])
-
-
-board = {'top-L': ' ', 'top-M': ' ', 'top-R': ' ',
-         'mid-L': ' ', 'mid-M': ' ', 'mid-R': ' ',
-         'low-L': ' ', 'low-M': ' ', 'low-R': ' '}
-
-turn = 'X'
-for i in range(9):
-    print_board(board)
-    print('Turn for ' + turn + '. Move on which space?')
-    move = input()
-    board[move] = turn
-    if turn == 'X':
-        turn = 'O'
-    else:
-        turn = 'X'
-
-print_board(board)
-```
-
-但这并不是一个完整的井字棋游戏，它并不检查玩家是否获胜，但这已足够展示如何在程序中使用数据结构
-
 ### 5.3.2 嵌套的字典和列表
 
 当你对复杂的事物建模时，可能发现字典和列表中需要包含其他字典和列表。列表适用于包含一组有序的值，字典适用于包含关联的键与值。下面的程序使用字典包含其他字典，用于记录谁为野餐带来的什么事物
@@ -336,91 +265,4 @@ Number of things being brought:
  - Cakes        0
  - Ham sandwiches 3
  - Apple pies   1
-```
-
-## 5.5 习题
-
-1.空字典的代码是什么样的？
-
-??? success "答案"
-
-    只有一个 `{}`
-
-    `empty_dict = {}`
-
-## 5.6 实践项目
-
-### 5.6.1 国际象棋字典验证器
-
-我们用字典 `{'1h': 'bking', '6c': 'wqueen', '2g': 'bbishop', '5h', 'bqueen', '3e', 'wking'}` 代表棋盘
-
-<figure markdown="span">
-  ![img 1](../../../img/python_basic/ch5/basic_ch5_img1.jpg){ width="400" }
-</figure>
-
-编写一个名为 `is_valid_chess_board()` 的函数，该函数接收一个字典作为参数，根据棋盘是否有效，返回 `True` 或 `False`
-
-一个有效的棋盘只有一个黑王和一个白王。每个玩家最多只能有 16 个棋子，最多 8 个兵，并且所有棋子必须位于从 `'1a'` 到 `'8h'` 的有效位置内。棋子名称以 `'w'` 或 `'b'` 开头，代表白色或黑色；然后是 `'pawn', 'knight', 'bishop', 'rook', 'queen', 'king'`
-
-### 5.6.2 好玩游戏的物品清单
-
-创建一个好玩的视频游戏。用于对玩家物品清单建模的数据结构是一个字典。其中键是字符串，用于描述清单中的物品；值是一个整型值，用于说明玩家有多少该物品。例如，字典值 `{rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}` 意味着玩家有 1 条绳索、6 个火把、42 枚金币等
-
-编写一个名为 `displayInventory()` 的函数，它接收任何可能的物品清单，显示如下:
-
-```python
-Inventory:
-12 arrow
-42 gold coin
-1 rope
-6 torch
-1 daggei
-Total number of items: 62
-```
-
-提示：你可以使用 `for` 循环遍历字典中所有的键
-
-```python linenums="1"
-stuff = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
-
-
-def displayInventory(inventory):
-    print("Inventory:")
-    item_total = 0
-    for k,vin inventory.items():
-        # TODO: fill this part in   
-    print("Total number of items: "+ str(item_total))
-
-
-displayInventory(stuff)
-```
-
-### 5.6.3 列表到字典的函数，针对好玩游戏的物品清单
-
-假设征服一条龙的战利品表示为下列的字符串列表：`dragonLoot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']`
-
-编写一个名为 `addToInventory(inventory, addedItems)` 的函数，其中 `inventory` 参数是一个字典，表示玩家的物品清单（像前面项目一样）；`addedItems` 参数是一个列表，就
-像 `dragonLoot`
-
-`addToInventory()` 函数应该返回一个字典，表示更新过的物品清单。请注意，列表可以包含多个同样的项。你的代码看起来可能像这样:
-
-```python linenums="1"
-def addToInventory(inventory, addedItems):
-    # TODO: your code goes here
-
-
-inv = {'gold coin': 42, 'rope': 1}
-dragonLoot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
-inv = addToInventory(inv, dragonLoot)
-displayInventory(inv)
-```
-
-```python linenums="1" title="output"
-Inventory:
-45 gold coin
-1 rope
-1 ruby
-1 dagger
-
-Total number of items: 48
 ```
