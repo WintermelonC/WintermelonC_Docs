@@ -22,7 +22,7 @@
       
       
       <link rel="icon" href="../../../../img/logo.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -7524,66 +7524,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#48-小程序conway-的生命游戏" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.8 小程序：Conway 的生命游戏
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#410-习题" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.10 习题
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#411-实践项目" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11 实践项目
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4.11 实践项目">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#4111-逗号代码" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.1 逗号代码
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4112-掷硬币的连胜" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.2 掷硬币的连胜
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4113-字符图网格" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.3 字符图网格
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -9409,66 +9349,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#48-小程序conway-的生命游戏" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.8 小程序：Conway 的生命游戏
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#410-习题" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.10 习题
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#411-实践项目" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11 实践项目
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4.11 实践项目">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#4111-逗号代码" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.1 逗号代码
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4112-掷硬币的连胜" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.2 掷硬币的连胜
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4113-字符图网格" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.11.3 字符图网格
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -9507,6 +9387,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="4-列表">4 列表<a class="headerlink" href="#4-列表" title="Permanent link">&para;</a></h1>
+<div class="admonition info">
+<p class="admonition-title">说明</p>
+<p>本文档为个人整理的复习概要，内容侧重重点提炼而非详细讲解，不适合零基础的同学</p>
+</div>
 <!-- !!! tip "说明"
 
     本文档正在更新中…… -->
@@ -10032,282 +9916,6 @@
 </span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12" href="#__codelineno-44-12"></a><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 </span></code></pre></div>
 <p>如果要复制的列表中包含了列表，那就使用 <code>copy.deepcopy()</code>，它会同时复制内部的列表</p>
-<h2 id="48-小程序conway-的生命游戏">4.8 小程序：Conway 的生命游戏<a class="headerlink" href="#48-小程序conway-的生命游戏" title="Permanent link">&para;</a></h2>
-<p>该游戏在一个二维网格上进行，每个格子代表一个细胞，可以处于两种状态之一：存活或死亡。细胞的状态根据以下简单规则逐代演化：</p>
-<ol>
-<li>孤独死亡：如果一个存活的细胞周围少于两个存活的邻居细胞，则该细胞在下一代会变成死亡状态</li>
-<li>生存：如果一个存活的细胞周围有两到三个存活的邻居细胞，则该细胞保持存活状态</li>
-<li>过度拥挤死亡：如果一个存活的细胞周围有超过三个存活的邻居细胞，则该细胞在下一代会变成死亡状态</li>
-<li>繁殖：如果一个死亡的细胞周围恰好有三个存活的邻居细胞，则该细胞在下一代会变成存活状态</li>
-</ol>
-<figure>
-  <img alt="img 1" src="../../../../img/python_basic/ch4/basic_ch4_img1.png" width="600" />
-</figure>
-<p>我们可以用列表的列表来表示二维的空间。内部列表表示方块的每一列，对于活的方块，存储一个 <code>'#'</code> 字符串，对于死的方块，存储一个 <code>' '</code> 空格字符串</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">conway.py</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-45-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-45-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-45-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-45-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-45-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-45-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-45-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-45-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-45-10">10</a></span>
-<span class="normal"><a href="#__codelineno-45-11">11</a></span>
-<span class="normal"><a href="#__codelineno-45-12">12</a></span>
-<span class="normal"><a href="#__codelineno-45-13">13</a></span>
-<span class="normal"><a href="#__codelineno-45-14">14</a></span>
-<span class="normal"><a href="#__codelineno-45-15">15</a></span>
-<span class="normal"><a href="#__codelineno-45-16">16</a></span>
-<span class="normal"><a href="#__codelineno-45-17">17</a></span>
-<span class="normal"><a href="#__codelineno-45-18">18</a></span>
-<span class="normal"><a href="#__codelineno-45-19">19</a></span>
-<span class="normal"><a href="#__codelineno-45-20">20</a></span>
-<span class="normal"><a href="#__codelineno-45-21">21</a></span>
-<span class="normal"><a href="#__codelineno-45-22">22</a></span>
-<span class="normal"><a href="#__codelineno-45-23">23</a></span>
-<span class="normal"><a href="#__codelineno-45-24">24</a></span>
-<span class="normal"><a href="#__codelineno-45-25">25</a></span>
-<span class="normal"><a href="#__codelineno-45-26">26</a></span>
-<span class="normal"><a href="#__codelineno-45-27">27</a></span>
-<span class="normal"><a href="#__codelineno-45-28">28</a></span>
-<span class="normal"><a href="#__codelineno-45-29">29</a></span>
-<span class="normal"><a href="#__codelineno-45-30">30</a></span>
-<span class="normal"><a href="#__codelineno-45-31">31</a></span>
-<span class="normal"><a href="#__codelineno-45-32">32</a></span>
-<span class="normal"><a href="#__codelineno-45-33">33</a></span>
-<span class="normal"><a href="#__codelineno-45-34">34</a></span>
-<span class="normal"><a href="#__codelineno-45-35">35</a></span>
-<span class="normal"><a href="#__codelineno-45-36">36</a></span>
-<span class="normal"><a href="#__codelineno-45-37">37</a></span>
-<span class="normal"><a href="#__codelineno-45-38">38</a></span>
-<span class="normal"><a href="#__codelineno-45-39">39</a></span>
-<span class="normal"><a href="#__codelineno-45-40">40</a></span>
-<span class="normal"><a href="#__codelineno-45-41">41</a></span>
-<span class="normal"><a href="#__codelineno-45-42">42</a></span>
-<span class="normal"><a href="#__codelineno-45-43">43</a></span>
-<span class="normal"><a href="#__codelineno-45-44">44</a></span>
-<span class="normal"><a href="#__codelineno-45-45">45</a></span>
-<span class="normal"><a href="#__codelineno-45-46">46</a></span>
-<span class="normal"><a href="#__codelineno-45-47">47</a></span>
-<span class="normal"><a href="#__codelineno-45-48">48</a></span>
-<span class="normal"><a href="#__codelineno-45-49">49</a></span>
-<span class="normal"><a href="#__codelineno-45-50">50</a></span>
-<span class="normal"><a href="#__codelineno-45-51">51</a></span>
-<span class="normal"><a href="#__codelineno-45-52">52</a></span>
-<span class="normal"><a href="#__codelineno-45-53">53</a></span>
-<span class="normal"><a href="#__codelineno-45-54">54</a></span>
-<span class="normal"><a href="#__codelineno-45-55">55</a></span>
-<span class="normal"><a href="#__codelineno-45-56">56</a></span>
-<span class="normal"><a href="#__codelineno-45-57">57</a></span>
-<span class="normal"><a href="#__codelineno-45-58">58</a></span>
-<span class="normal"><a href="#__codelineno-45-59">59</a></span>
-<span class="normal"><a href="#__codelineno-45-60">60</a></span>
-<span class="normal"><a href="#__codelineno-45-61">61</a></span>
-<span class="normal"><a href="#__codelineno-45-62">62</a></span>
-<span class="normal"><a href="#__codelineno-45-63">63</a></span>
-<span class="normal"><a href="#__codelineno-45-64">64</a></span>
-<span class="normal"><a href="#__codelineno-45-65">65</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
-</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
-</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4"></a>
-</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5"></a><span class="c1"># 定义网络的宽度和高度，可以修改这些值以改变网格的大小</span>
-</span><span id="__span-45-6"><a id="__codelineno-45-6" name="__codelineno-45-6"></a><span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">6</span>
-</span><span id="__span-45-7"><a id="__codelineno-45-7" name="__codelineno-45-7"></a><span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">6</span>
-</span><span id="__span-45-8"><a id="__codelineno-45-8" name="__codelineno-45-8"></a>
-</span><span id="__span-45-9"><a id="__codelineno-45-9" name="__codelineno-45-9"></a><span class="n">next_cells</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 二维列表</span>
-</span><span id="__span-45-10"><a id="__codelineno-45-10" name="__codelineno-45-10"></a><span class="c1"># 随机初始化细胞状态</span>
-</span><span id="__span-45-11"><a id="__codelineno-45-11" name="__codelineno-45-11"></a><span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
-</span><span id="__span-45-12"><a id="__codelineno-45-12" name="__codelineno-45-12"></a>    <span class="n">column</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># 创建一个新列</span>
-</span><span id="__span-45-13"><a id="__codelineno-45-13" name="__codelineno-45-13"></a>    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
-</span><span id="__span-45-14"><a id="__codelineno-45-14" name="__codelineno-45-14"></a>        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># 50% 的概率</span>
-</span><span id="__span-45-15"><a id="__codelineno-45-15" name="__codelineno-45-15"></a>            <span class="n">column</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;#&#39;</span><span class="p">)</span>  <span class="c1"># 添加一个活细胞</span>
-</span><span id="__span-45-16"><a id="__codelineno-45-16" name="__codelineno-45-16"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-45-17"><a id="__codelineno-45-17" name="__codelineno-45-17"></a>            <span class="n">column</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">)</span>  <span class="c1"># 添加一个死细胞</span>
-</span><span id="__span-45-18"><a id="__codelineno-45-18" name="__codelineno-45-18"></a>    <span class="n">next_cells</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">column</span><span class="p">)</span>  <span class="c1"># next_cells 是一个包含 WIDTH 个列表的列表</span>
-</span><span id="__span-45-19"><a id="__codelineno-45-19" name="__codelineno-45-19"></a>
-</span><span id="__span-45-20"><a id="__codelineno-45-20" name="__codelineno-45-20"></a><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>  <span class="c1"># 主程序循环</span>
-</span><span id="__span-45-21"><a id="__codelineno-45-21" name="__codelineno-45-21"></a>    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n\n\n\n\n</span><span class="s1">&#39;</span><span class="p">)</span>  <span class="c1"># 分隔每一代</span>
-</span><span id="__span-45-22"><a id="__codelineno-45-22" name="__codelineno-45-22"></a>    <span class="n">current_cells</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">next_cells</span><span class="p">)</span>  <span class="c1"># 复制 next_cells 列表到 current_cells</span>
-</span><span id="__span-45-23"><a id="__codelineno-45-23" name="__codelineno-45-23"></a>    <span class="c1"># 打印 current_cells 列表</span>
-</span><span id="__span-45-24"><a id="__codelineno-45-24" name="__codelineno-45-24"></a>    <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
-</span><span id="__span-45-25"><a id="__codelineno-45-25" name="__codelineno-45-25"></a>        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
-</span><span id="__span-45-26"><a id="__codelineno-45-26" name="__codelineno-45-26"></a>            <span class="nb">print</span><span class="p">(</span><span class="n">current_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span id="__span-45-27"><a id="__codelineno-45-27" name="__codelineno-45-27"></a>        <span class="nb">print</span><span class="p">()</span>  <span class="c1"># 在一行的末尾打印一个换行符</span>
-</span><span id="__span-45-28"><a id="__codelineno-45-28" name="__codelineno-45-28"></a>
-</span><span id="__span-45-29"><a id="__codelineno-45-29" name="__codelineno-45-29"></a>    <span class="c1"># 计算下一代的细胞</span>
-</span><span id="__span-45-30"><a id="__codelineno-45-30" name="__codelineno-45-30"></a>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">WIDTH</span><span class="p">):</span>
-</span><span id="__span-45-31"><a id="__codelineno-45-31" name="__codelineno-45-31"></a>        <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">HEIGHT</span><span class="p">):</span>
-</span><span id="__span-45-32"><a id="__codelineno-45-32" name="__codelineno-45-32"></a>            <span class="c1"># 获取周围细胞的坐标</span>
-</span><span id="__span-45-33"><a id="__codelineno-45-33" name="__codelineno-45-33"></a>            <span class="n">left_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">WIDTH</span>  <span class="c1"># % WIDTH 保证坐标在网格内，即 0 到 WIDTH - 1 之间</span>
-</span><span id="__span-45-34"><a id="__codelineno-45-34" name="__codelineno-45-34"></a>            <span class="n">right_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">WIDTH</span>
-</span><span id="__span-45-35"><a id="__codelineno-45-35" name="__codelineno-45-35"></a>            <span class="n">above_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">HEIGHT</span>
-</span><span id="__span-45-36"><a id="__codelineno-45-36" name="__codelineno-45-36"></a>            <span class="n">below_coord</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">HEIGHT</span>
-</span><span id="__span-45-37"><a id="__codelineno-45-37" name="__codelineno-45-37"></a>
-</span><span id="__span-45-38"><a id="__codelineno-45-38" name="__codelineno-45-38"></a>            <span class="c1"># 计算周围细胞的数量</span>
-</span><span id="__span-45-39"><a id="__codelineno-45-39" name="__codelineno-45-39"></a>            <span class="n">num_neighbors</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-45-40"><a id="__codelineno-45-40" name="__codelineno-45-40"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">left_coord</span><span class="p">][</span><span class="n">above_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 左上角的细胞</span>
-</span><span id="__span-45-41"><a id="__codelineno-45-41" name="__codelineno-45-41"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-42"><a id="__codelineno-45-42" name="__codelineno-45-42"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">above_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 上方的细胞</span>
-</span><span id="__span-45-43"><a id="__codelineno-45-43" name="__codelineno-45-43"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-44"><a id="__codelineno-45-44" name="__codelineno-45-44"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">right_coord</span><span class="p">][</span><span class="n">above_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 右上角的细胞</span>
-</span><span id="__span-45-45"><a id="__codelineno-45-45" name="__codelineno-45-45"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-46"><a id="__codelineno-45-46" name="__codelineno-45-46"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">left_coord</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 左边的细胞</span>
-</span><span id="__span-45-47"><a id="__codelineno-45-47" name="__codelineno-45-47"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-48"><a id="__codelineno-45-48" name="__codelineno-45-48"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">right_coord</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 右边的细胞</span>
-</span><span id="__span-45-49"><a id="__codelineno-45-49" name="__codelineno-45-49"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-50"><a id="__codelineno-45-50" name="__codelineno-45-50"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">left_coord</span><span class="p">][</span><span class="n">below_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 左下角的细胞</span>
-</span><span id="__span-45-51"><a id="__codelineno-45-51" name="__codelineno-45-51"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-52"><a id="__codelineno-45-52" name="__codelineno-45-52"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">below_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 下方的细胞</span>
-</span><span id="__span-45-53"><a id="__codelineno-45-53" name="__codelineno-45-53"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-54"><a id="__codelineno-45-54" name="__codelineno-45-54"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">right_coord</span><span class="p">][</span><span class="n">below_coord</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span><span class="p">:</span>  <span class="c1"># 右下角的细胞</span>
-</span><span id="__span-45-55"><a id="__codelineno-45-55" name="__codelineno-45-55"></a>                <span class="n">num_neighbors</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-45-56"><a id="__codelineno-45-56" name="__codelineno-45-56"></a>
-</span><span id="__span-45-57"><a id="__codelineno-45-57" name="__codelineno-45-57"></a>            <span class="c1"># 根据细胞的数量设置细胞的状态</span>
-</span><span id="__span-45-58"><a id="__codelineno-45-58" name="__codelineno-45-58"></a>            <span class="k">if</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;#&#39;</span> <span class="ow">and</span> <span class="p">(</span><span class="n">num_neighbors</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">num_neighbors</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
-</span><span id="__span-45-59"><a id="__codelineno-45-59" name="__codelineno-45-59"></a>                <span class="n">next_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span>  <span class="c1"># 生存</span>
-</span><span id="__span-45-60"><a id="__codelineno-45-60" name="__codelineno-45-60"></a>            <span class="k">elif</span> <span class="n">current_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39; &#39;</span> <span class="ow">and</span> <span class="n">num_neighbors</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-</span><span id="__span-45-61"><a id="__codelineno-45-61" name="__codelineno-45-61"></a>                <span class="n">next_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;#&#39;</span>  <span class="c1"># 繁殖</span>
-</span><span id="__span-45-62"><a id="__codelineno-45-62" name="__codelineno-45-62"></a>            <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-45-63"><a id="__codelineno-45-63" name="__codelineno-45-63"></a>                <span class="n">next_cells</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span>  <span class="c1"># 死亡</span>
-</span><span id="__span-45-64"><a id="__codelineno-45-64" name="__codelineno-45-64"></a>
-</span><span id="__span-45-65"><a id="__codelineno-45-65" name="__codelineno-45-65"></a>    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># 添加延迟，以便观察</span>
-</span></code></pre></div></td></tr></table></div>
-<h2 id="410-习题">4.10 习题<a class="headerlink" href="#410-习题" title="Permanent link">&para;</a></h2>
-<p>1.假定 <code>spam = ['a', 'b', 'c', 'd']</code>，那么 <code>spam[int('3' * 2) // 1]</code> 求值是多少</p>
-<details class="success">
-<summary>答案</summary>
-<p>IndexError: list index out of range</p>
-<hr />
-<p><code>spam[int('3' * 2) // 1]</code> = <code>spam[int('33') // 1]</code> = <code>spam[33 // 1]</code> = <code>spam[33]</code></p>
-<p>因此会报错</p>
-</details>
-<h2 id="411-实践项目">4.11 实践项目<a class="headerlink" href="#411-实践项目" title="Permanent link">&para;</a></h2>
-<h3 id="4111-逗号代码">4.11.1 逗号代码<a class="headerlink" href="#4111-逗号代码" title="Permanent link">&para;</a></h3>
-<p>假定有列表 <code>spam = ['apples', 'bananas', 'tofu', 'cats']</code></p>
-<p>编写一个函数，它以一个列表值作为参数，返回一个字符串。该字符串包含所有表项，表项之间以逗号和空格分隔，并在最后一个表项之前插入 <code>and</code>。例如，将前面的 <code>spam</code> 列表传递给函数，将返回 <code>apples, bananas, tofu, and cats</code></p>
-<details class="success">
-<summary>答案</summary>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
-<span class="normal"><a href="#__codelineno-46-2">2</a></span>
-<span class="normal"><a href="#__codelineno-46-3">3</a></span>
-<span class="normal"><a href="#__codelineno-46-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">print_list</span><span class="p">(</span><span class="n">list_param</span><span class="p">):</span>
-</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_param</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
-</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">list_param</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;, &#39;</span><span class="p">)</span>
-</span><span id="__span-46-4"><a id="__codelineno-46-4" name="__codelineno-46-4"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;and </span><span class="si">{</span><span class="n">list_param</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-</details>
-<h3 id="4112-掷硬币的连胜">4.11.2 掷硬币的连胜<a class="headerlink" href="#4112-掷硬币的连胜" title="Permanent link">&para;</a></h3>
-<p>如果掷硬币 100 次，并在每次正面时写下“H”，在每次反面时写下“T”，就会创建一个看起来像“TTTTTHHHHTT”这样的列表。有趣的是，我们 <strong>人类</strong> 几乎永远不会写下连续的 6 个正面或 6 个反面</p>
-<p>编写一个程序，查找随机生成的正面和反面列表中出现连续 6 个正面或 6 个反面的频率。你的程序将实验分为两部分：第一部分生成随机选择的“正面”和“反面”值的列表，第二部分检查其中是否有连胜。将所有这些代码放入一个循环中，重复该实验 10000 次，这样我们就可以找出掷硬币中包含连续 6 个正面或反面的百分比</p>
-<details class="success">
-<summary>答案</summary>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-47-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-47-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-47-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-47-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-47-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-47-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-47-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-47-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-47-10">10</a></span>
-<span class="normal"><a href="#__codelineno-47-11">11</a></span>
-<span class="normal"><a href="#__codelineno-47-12">12</a></span>
-<span class="normal"><a href="#__codelineno-47-13">13</a></span>
-<span class="normal"><a href="#__codelineno-47-14">14</a></span>
-<span class="normal"><a href="#__codelineno-47-15">15</a></span>
-<span class="normal"><a href="#__codelineno-47-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
-</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a>
-</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a><span class="n">num_streaks</span> <span class="o">=</span> <span class="mi">0</span>
-</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4"></a>
-</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5"></a><span class="k">for</span> <span class="n">exp_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">):</span>
-</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6"></a>    <span class="n">coin_flips</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
-</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7"></a>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
-</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8"></a>        <span class="k">if</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-</span><span id="__span-47-9"><a id="__codelineno-47-9" name="__codelineno-47-9"></a>            <span class="n">coin_flips</span> <span class="o">+=</span> <span class="s1">&#39;H&#39;</span>  <span class="c1"># 正面</span>
-</span><span id="__span-47-10"><a id="__codelineno-47-10" name="__codelineno-47-10"></a>        <span class="k">else</span><span class="p">:</span>
-</span><span id="__span-47-11"><a id="__codelineno-47-11" name="__codelineno-47-11"></a>            <span class="n">coin_flips</span> <span class="o">+=</span> <span class="s1">&#39;T&#39;</span>  <span class="c1"># 反面</span>
-</span><span id="__span-47-12"><a id="__codelineno-47-12" name="__codelineno-47-12"></a>
-</span><span id="__span-47-13"><a id="__codelineno-47-13" name="__codelineno-47-13"></a>    <span class="k">if</span> <span class="s1">&#39;H&#39;</span> <span class="o">*</span> <span class="mi">6</span> <span class="ow">in</span> <span class="n">coin_flips</span> <span class="ow">or</span> <span class="s1">&#39;T&#39;</span> <span class="o">*</span> <span class="mi">6</span> <span class="ow">in</span> <span class="n">coin_flips</span><span class="p">:</span>
-</span><span id="__span-47-14"><a id="__codelineno-47-14" name="__codelineno-47-14"></a>        <span class="n">num_streaks</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span id="__span-47-15"><a id="__codelineno-47-15" name="__codelineno-47-15"></a>
-</span><span id="__span-47-16"><a id="__codelineno-47-16" name="__codelineno-47-16"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Chance of streak: </span><span class="si">{</span><span class="n">num_streaks</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">100</span><span class="si">}</span><span class="s1">%&#39;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
-<hr />
-<p>虽然题目让我创建列表，但我觉得用字符串应该更简单</p>
-</details>
-<h3 id="4113-字符图网格">4.11.3 字符图网格<a class="headerlink" href="#4113-字符图网格" title="Permanent link">&para;</a></h3>
-<p>假定有一个列表的列表，内层列表的每个值都是包含一个字符的字符串，类似：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
-<span class="normal"><a href="#__codelineno-48-2">2</a></span>
-<span class="normal"><a href="#__codelineno-48-3">3</a></span>
-<span class="normal"><a href="#__codelineno-48-4">4</a></span>
-<span class="normal"><a href="#__codelineno-48-5">5</a></span>
-<span class="normal"><a href="#__codelineno-48-6">6</a></span>
-<span class="normal"><a href="#__codelineno-48-7">7</a></span>
-<span class="normal"><a href="#__codelineno-48-8">8</a></span>
-<span class="normal"><a href="#__codelineno-48-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="n">grid</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">],</span>
-</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-7"><a id="__codelineno-48-7" name="__codelineno-48-7"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-8"><a id="__codelineno-48-8" name="__codelineno-48-8"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-48-9"><a id="__codelineno-48-9" name="__codelineno-48-9"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]]</span>
-</span></code></pre></div></td></tr></table></div>
-<p>复制前面的网络值，编写代码用它输出图像：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1">1</a></span>
-<span class="normal"><a href="#__codelineno-49-2">2</a></span>
-<span class="normal"><a href="#__codelineno-49-3">3</a></span>
-<span class="normal"><a href="#__codelineno-49-4">4</a></span>
-<span class="normal"><a href="#__codelineno-49-5">5</a></span>
-<span class="normal"><a href="#__codelineno-49-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="o">.</span><span class="mf">.00.00</span><span class="o">..</span>
-</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a><span class="mf">.0000000</span><span class="o">.</span>
-</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3"></a><span class="mf">.0000000</span><span class="o">.</span>
-</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4"></a><span class="o">.</span><span class="mf">.00000</span><span class="o">..</span>
-</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5"></a><span class="o">..</span><span class="mf">.000</span><span class="o">...</span>
-</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6"></a><span class="o">...</span><span class="mf">.0</span><span class="o">....</span>
-</span></code></pre></div></td></tr></table></div>
-<details class="success">
-<summary>答案</summary>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-50-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-50-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-50-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-50-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-50-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-50-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-50-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-50-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-50-10">10</a></span>
-<span class="normal"><a href="#__codelineno-50-11">11</a></span>
-<span class="normal"><a href="#__codelineno-50-12">12</a></span>
-<span class="normal"><a href="#__codelineno-50-13">13</a></span>
-<span class="normal"><a href="#__codelineno-50-14">14</a></span>
-<span class="normal"><a href="#__codelineno-50-15">15</a></span>
-<span class="normal"><a href="#__codelineno-50-16">16</a></span>
-<span class="normal"><a href="#__codelineno-50-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><span class="n">grid</span> <span class="o">=</span> <span class="p">[[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">],</span>
-</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7"></a>        <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-8"><a id="__codelineno-50-8" name="__codelineno-50-8"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">],</span>
-</span><span id="__span-50-9"><a id="__codelineno-50-9" name="__codelineno-50-9"></a>        <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">]]</span>
-</span><span id="__span-50-10"><a id="__codelineno-50-10" name="__codelineno-50-10"></a>
-</span><span id="__span-50-11"><a id="__codelineno-50-11" name="__codelineno-50-11"></a><span class="n">width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
-</span><span id="__span-50-12"><a id="__codelineno-50-12" name="__codelineno-50-12"></a><span class="n">height</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</span><span id="__span-50-13"><a id="__codelineno-50-13" name="__codelineno-50-13"></a>
-</span><span id="__span-50-14"><a id="__codelineno-50-14" name="__codelineno-50-14"></a><span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">height</span><span class="p">):</span>
-</span><span id="__span-50-15"><a id="__codelineno-50-15" name="__codelineno-50-15"></a>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">width</span><span class="p">):</span>
-</span><span id="__span-50-16"><a id="__codelineno-50-16" name="__codelineno-50-16"></a>        <span class="nb">print</span><span class="p">(</span><span class="n">grid</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="n">y</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-</span><span id="__span-50-17"><a id="__codelineno-50-17" name="__codelineno-50-17"></a>    <span class="nb">print</span><span class="p">()</span>
-</span></code></pre></div></td></tr></table></div>
-</details>
 
 
 
@@ -10330,7 +9938,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年4月14日 04:22:04 UTC">2025年4月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月9日 10:56:15 UTC">2025年9月9日</span>
   </span>
 
     
@@ -10502,7 +10110,8 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
@@ -10640,10 +10249,10 @@ RK5CYII=" />
     
     
       
-      <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["announce.dismiss", "content.action.edit", "content.action.view", "content.code.annotate", "content.code.copy", "content.tabs.link", "content.tooltips", "navigation.footer", "navigation.indexes", "navigation.path", "navigation.sections", "navigation.tabs", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "search.suggest", "toc.follow"], "search": "../../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.50899def.min.js"></script>
+      <script src="../../../../assets/javascripts/bundle.92b07e13.min.js"></script>
       
         <script src="../../../../assets/javascripts/katex.js"></script>
       
