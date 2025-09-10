@@ -8353,6 +8353,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3 Git 远程操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-github-仓库" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Github 仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-关联仓库" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 关联仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-git-推送分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Git 推送分支
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-git-拉取分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Git 拉取分支
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-合并冲突" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 合并冲突
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -8880,6 +8931,57 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3 Git 远程操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-github-仓库" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Github 仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-关联仓库" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 关联仓库
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-git-推送分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Git 推送分支
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-git-拉取分支" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Git 拉取分支
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-合并冲突" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 合并冲突
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -8920,10 +9022,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="4-远程操作">4 远程操作<a class="headerlink" href="#4-远程操作" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition tip">
 <p class="admonition-title">建议</p>
 <p>git 其实很简单，多多实操就会了。建议跟着本文档实操一遍</p>
@@ -9040,6 +9142,195 @@
 <p>之前我遇到其他报错信息时，我尝试过上网搜索，但是网上的方法我都试过，在我这里都不适用，很奇怪</p>
 </div>
 <h2 id="3-git-远程操作">3 Git 远程操作<a class="headerlink" href="#3-git-远程操作" title="Permanent link">&para;</a></h2>
+<h3 id="31-github-仓库">3.1 Github 仓库<a class="headerlink" href="#31-github-仓库" title="Permanent link">&para;</a></h3>
+<p>我们首先创建一个 github 仓库（repository），点击左侧的 New 按钮</p>
+<figure>
+  <img alt="Img 3" src="../../../img/git/ch4/git_ch4_img3.png" width="400" />
+</figure>
+<p>编辑仓库的信息</p>
+<figure>
+  <img alt="Img 4" src="../../../img/git/ch4/git_ch4_img4.png" width="600" />
+</figure>
+<blockquote>
+<p>关于 <code>README</code> 文件是什么，详见下文</p>
+</blockquote>
+<p>之后会出现该页面，可以看到 github 已经给出了不同情况的具体做法</p>
+<figure>
+  <img alt="Img 5" src="../../../img/git/ch4/git_ch4_img5.png" width="800" />
+</figure>
+<p>我们在第 3 章已经有了一个本地仓库，所以选择下面这种方法即可</p>
+<h3 id="32-关联仓库">3.2 关联仓库<a class="headerlink" href="#32-关联仓库" title="Permanent link">&para;</a></h3>
+<p>打开我们的本地仓库，目前 git 长这样</p>
+<figure>
+  <img alt="Img 6" src="../../../img/git/ch4/git_ch4_img6.png" width="600" />
+</figure>
+<p>在终端中输入</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># 直接复制 github 给的提示即可</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>git@github.com:WintermelonC/git_test_repository.git
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>git remote add {origin_repository_name} {SSH link}</code>：添加远程仓库，远程仓库的名称（远程别名）自定，但一般都用 <code>origin</code>，后面的 SSH 填 github 仓库对应的</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>-v
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>origin<span class="w">  </span>git@github.com:WintermelonC/git_test_repository.git<span class="w"> </span><span class="o">(</span>fetch<span class="o">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>origin<span class="w">  </span>git@github.com:WintermelonC/git_test_repository.git<span class="w"> </span><span class="o">(</span>push<span class="o">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>git remote -v</code>：查看远程仓库信息</li>
+</ul>
+<p>之后 github 提示输入 <code>git branch -M main</code>，意思是将该仓库的主分支名称修改为 <code>main</code>，但由于我们之前已经全局修改过了，所以这里可以不输入</p>
+<h3 id="33-git-推送分支">3.3 Git 推送分支<a class="headerlink" href="#33-git-推送分支" title="Permanent link">&para;</a></h3>
+<p>接下来按照提示，输入</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">30</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">30</span>/30<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a>Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">20</span><span class="w"> </span>threads
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">22</span>/22<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a>Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">30</span>/30<span class="o">)</span>,<span class="w"> </span><span class="m">2</span>.70<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">461</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a>Total<span class="w"> </span><span class="m">30</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">5</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a>remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">5</span>/5<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a>To<span class="w"> </span>github.com:WintermelonC/git_test_repository.git
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="w"> </span>*<span class="w"> </span><span class="o">[</span>new<span class="w"> </span>branch<span class="o">]</span><span class="w">      </span>main<span class="w"> </span>-&gt;<span class="w"> </span>main
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a>branch<span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">&#39;origin/main&#39;</span>.
+</span></code></pre></div></td></tr></table></div>
+<p><code>git push</code>：将本地仓库的提交上传到远程仓库</p>
+<ul>
+<li><code>git push {远程别名} {local_branch}</code>：将本地的 local_branch 分支推送到远程别名所指向的仓库的 local_branch 分支</li>
+<li><code>git push {远程别名} {local_branch}:{remote_branch}</code>：如果希望远程分支的名字和本地不一样，可以使用这个格式。将本地的 local_branch 分支推送到远程，并命名为 remote_branch</li>
+<li><code>git push -u {远程别名} {local_branch}</code>：<code>-u</code> 表示在推送的同时，建立本地分支与远程分支的跟踪关系（tracking）。设置之后，下次在这个分支上直接使用 <code>git push</code> 或 <code>git pull</code> 即可，无需再指定远程和分支名</li>
+</ul>
+<p>现在，我们刷新一下 github 页面，可以看到本地仓库的内容同步到了 github 远程仓库上了</p>
+<figure>
+  <img alt="Img 7" src="../../../img/git/ch4/git_ch4_img7.png" width="800" />
+</figure>
+<details class="question">
+<summary>思考</summary>
+<p>为什么本地仓库的 <code>.gitignore</code> <code>a.exe</code> <code>hello.c</code> 没有出现在 github 上呢</p>
+</details>
+<p>接下来我们修改一下本地仓库，然后推送新的提交到远程仓库</p>
+<p>新建一个文件</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">success.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>成功关联远程仓库
+</span></code></pre></div></td></tr></table></div>
+<p>然后提交修改</p>
+<figure>
+  <img alt="Img 8" src="../../../img/git/ch4/git_ch4_img8.png" width="600" />
+</figure>
+<p>之后终端输入 <code>git push</code></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>push
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a>Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">20</span><span class="w"> </span>threads
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a>Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">321</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">321</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a>remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span>completed<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>object.
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a>To<span class="w"> </span>github.com:WintermelonC/git_test_repository.git
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">   </span>d3a9e04..4275c62<span class="w">  </span>main<span class="w"> </span>-&gt;<span class="w"> </span>main
+</span></code></pre></div></td></tr></table></div>
+<p>刷新一下 github 页面，可以看到新的文件也同步过来了</p>
+<figure>
+  <img alt="Img 10" src="../../../img/git/ch4/git_ch4_img10.png" width="600" />
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">VS Code</p>
+<p><figure markdown="span">
+  <img alt="Img 9" src="../../../img/git/ch4/git_ch4_img9.png" width="400" />
+</figure></p>
+</div>
+<h3 id="34-git-拉取分支">3.4 Git 拉取分支<a class="headerlink" href="#34-git-拉取分支" title="Permanent link">&para;</a></h3>
+<p>推送是指将本地仓库的（新）提交同步到远程仓库，拉取则是指将远程仓库的（新）提交同步到本地仓库</p>
+<p>这里远程仓库的（新）提交来源，一般都是其他协作者的（比如其他协作者做了一个新功能，将新代码同步到了远程仓库上，之后我们进行工作的时候，就需要先把这些新代码从远程仓库同步到我们的本地仓库中）</p>
+<p>这里我们演示一下直接在 github 上改文件，然后如何同步到我们的本地仓库中</p>
+<p>点击页面下方的 <ins>Add a README</ins> 按钮，新建一个 README 文件</p>
+<div class="admonition info">
+<p class="admonition-title">AI 解释</p>
+<p>简单来说，README 是一个项目的“门户”和“说明书”</p>
+<p><strong>1.项目介绍</strong> (Introduction)</p>
+<p>它是什么？用一两句话清晰明了地告诉访客这个项目是做什么的。这是最重要的部分，需要在开头就抓住读者的注意力</p>
+<p>项目目标/愿景：这个项目旨在解决什么问题？它的最终目标是什么？</p>
+<p><strong>2.快速开始</strong> (Getting Started)</p>
+<p>这是技术项目 README 的灵魂。它需要让一个新用户能够以最少的步骤在本地安装、配置和运行你的项目</p>
+<p><strong>3.使用说明</strong> (Usage)</p>
+<p>项目运行起来后，如何使用它？</p>
+<p><strong>4.参与贡献</strong> (Contributing)</p>
+<p>对于开源项目，这部分至关重要。它告诉其他开发者如何为你的项目做贡献</p>
+<p><strong>5.许可证</strong> (License)</p>
+<p>明确项目的法律授权方式。告诉别人他们可以使用、修改和分发你的代码的规则。一个简单的 <code>This project is licensed under the MIT License.</code> 和指向 <code>LICENSE</code> 文件的链接就足够了</p>
+<p><strong>6.常见问题</strong> (FAQ)</p>
+<p>将开发和使用过程中可能遇到的常见问题及其解决方案列出来，可以为他人节省大量工期</p>
+</div>
+<p>编辑一下内容，为 markdown 格式</p>
+<div class="language-md highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">README.md</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>本 <span class="sb">`README.md`</span> 文件用于演示 git 拉取操作
+</span></code></pre></div></td></tr></table></div>
+<p>提交修改</p>
+<figure>
+  <img alt="Img 11" src="../../../img/git/ch4/git_ch4_img11.png" width="600" />
+</figure>
+<p>编辑提交信息，我们这里可以直接提交到 main 分支上</p>
+<figure>
+  <img alt="Img 12" src="../../../img/git/ch4/git_ch4_img12.png" width="400" />
+</figure>
+<blockquote>
+<p>pull request 等操作，<a href="../ch5/" target="_blank">5 多人协作</a> 会涉及</p>
+</blockquote>
+<p>添加了 <code>README</code> 文件后，可以看到其内容就可以直接显示到仓库页面了</p>
+<figure>
+  <img alt="Img 13" src="../../../img/git/ch4/git_ch4_img13.png" width="600" />
+</figure>
+<p>现在打开本地仓库，在终端中输入 <code>git pull</code> 即可拉取远程仓库的内容</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-9-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-9-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-9-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-9-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-9-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-9-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-9-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-9-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-9-10">10</a></span>
+<span class="normal"><a href="#__codelineno-9-11">11</a></span>
+<span class="normal"><a href="#__codelineno-9-12">12</a></span>
+<span class="normal"><a href="#__codelineno-9-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>$<span class="w"> </span>git<span class="w"> </span>pull
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a>Unpacking<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">995</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">62</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a>From<span class="w"> </span>github.com:WintermelonC/git_test_repository
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">   </span>4275c62..f6cb9d3<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>origin/main
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a>Updating<span class="w"> </span>4275c62..f6cb9d3
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10"></a>Fast-forward
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11"></a><span class="w"> </span>README.md<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>README.md
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 14" src="../../../img/git/ch4/git_ch4_img14.png" width="600" />
+</figure>
+<h3 id="35-合并冲突">3.5 合并冲突<a class="headerlink" href="#35-合并冲突" title="Permanent link">&para;</a></h3>
+<p>同样的，推送和拉取操作可能会遇到合并冲突的问题（常见于多人协作），处理方法和 <a href="../ch3/#31-合并冲突" target="_blank">3 分支操作</a> 大差不差，本文档就不详细说明了</p>
 
 
 
@@ -9062,7 +9353,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年8月11日 13:28:06 UTC">2025年8月11日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月10日 09:14:43 UTC">2025年9月10日</span>
   </span>
 
     
