@@ -85,7 +85,7 @@ hide:
             - [x] ch 1
             - [x] ch 2
             - [x] ch 3
-            - [ ] ch 4
+            - [x] ch 4
             - [ ] ch 5
         - [x] 编写 Github 文档
         - [ ] 编写 Web 文档

@@ -113,4 +113,4 @@
   ![Img 4](../../img/github/github_img4.png){ width="800" }
 </figure>
 
-可以自行探索一下 Github 的仓库页面，具体详见 [git 远程操作](../git/ch4.md){:target="_blank"}
+可以自行探索一下 Github 的仓库页面，具体详见 [git 远程操作](../git/ch4.md#31-github-仓库){:target="_blank"}

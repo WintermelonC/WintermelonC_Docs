@@ -1,8 +1,8 @@
 # 4 远程操作
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! tip "建议"
 
@@ -127,3 +127,221 @@ Hi WintermelonC! You've successfully authenticated, but GitHub does not provide 
     之前我遇到其他报错信息时，我尝试过上网搜索，但是网上的方法我都试过，在我这里都不适用，很奇怪
 
 ## 3 Git 远程操作
+
+### 3.1 Github 仓库
+
+我们首先创建一个 github 仓库（repository），点击左侧的 New 按钮
+
+<figure markdown="span">
+  ![Img 3](../../img/git/ch4/git_ch4_img3.png){ width="400" }
+</figure>
+
+编辑仓库的信息
+
+<figure markdown="span">
+  ![Img 4](../../img/git/ch4/git_ch4_img4.png){ width="600" }
+</figure>
+
+> 关于 `README` 文件是什么，详见下文
+
+之后会出现该页面，可以看到 github 已经给出了不同情况的具体做法
+
+<figure markdown="span">
+  ![Img 5](../../img/git/ch4/git_ch4_img5.png){ width="800" }
+</figure>
+
+我们在第 3 章已经有了一个本地仓库，所以选择下面这种方法即可
+
+### 3.2 关联仓库
+
+打开我们的本地仓库，目前 git 长这样
+
+<figure markdown="span">
+  ![Img 6](../../img/git/ch4/git_ch4_img6.png){ width="600" }
+</figure>
+
+在终端中输入
+
+```bash linenums="1"
+# 直接复制 github 给的提示即可
+$ git remote add origin git@github.com:WintermelonC/git_test_repository.git
+```
+
+- `git remote add {origin_repository_name} {SSH link}`：添加远程仓库，远程仓库的名称（远程别名）自定，但一般都用 `origin`，后面的 SSH 填 github 仓库对应的
+
+```bash linenums="1"
+$ git remote -v
+origin  git@github.com:WintermelonC/git_test_repository.git (fetch)
+origin  git@github.com:WintermelonC/git_test_repository.git (push)
+```
+
+- `git remote -v`：查看远程仓库信息
+
+之后 github 提示输入 `git branch -M main`，意思是将该仓库的主分支名称修改为 `main`，但由于我们之前已经全局修改过了，所以这里可以不输入
+
+### 3.3 Git 推送分支
+
+接下来按照提示，输入
+
+```bash linenums="1"
+$ git push -u origin main
+Enumerating objects: 30, done.
+Counting objects: 100% (30/30), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (22/22), done.
+Writing objects: 100% (30/30), 2.70 KiB | 461.00 KiB/s, done.
+Total 30 (delta 5), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (5/5), done.
+To github.com:WintermelonC/git_test_repository.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+```
+
+`git push`：将本地仓库的提交上传到远程仓库
+
+- `git push {远程别名} {local_branch}`：将本地的 local_branch 分支推送到远程别名所指向的仓库的 local_branch 分支
+- `git push {远程别名} {local_branch}:{remote_branch}`：如果希望远程分支的名字和本地不一样，可以使用这个格式。将本地的 local_branch 分支推送到远程，并命名为 remote_branch
+- `git push -u {远程别名} {local_branch}`：`-u` 表示在推送的同时，建立本地分支与远程分支的跟踪关系（tracking）。设置之后，下次在这个分支上直接使用 `git push` 或 `git pull` 即可，无需再指定远程和分支名
+
+现在，我们刷新一下 github 页面，可以看到本地仓库的内容同步到了 github 远程仓库上了
+
+<figure markdown="span">
+  ![Img 7](../../img/git/ch4/git_ch4_img7.png){ width="800" }
+</figure>
+
+??? question "思考"
+
+    为什么本地仓库的 `.gitignore` `a.exe` `hello.c` 没有出现在 github 上呢
+
+接下来我们修改一下本地仓库，然后推送新的提交到远程仓库
+
+新建一个文件
+
+```text linenums="1" title="success.txt"
+成功关联远程仓库
+```
+
+然后提交修改
+
+<figure markdown="span">
+  ![Img 8](../../img/git/ch4/git_ch4_img8.png){ width="600" }
+</figure>
+
+之后终端输入 `git push`
+
+```bash linenums="1"
+$ git push
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 321 bytes | 321.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To github.com:WintermelonC/git_test_repository.git
+   d3a9e04..4275c62  main -> main
+```
+
+刷新一下 github 页面，可以看到新的文件也同步过来了
+
+<figure markdown="span">
+  ![Img 10](../../img/git/ch4/git_ch4_img10.png){ width="600" }
+</figure>
+
+!!! tip "VS Code"
+
+    <figure markdown="span">
+      ![Img 9](../../img/git/ch4/git_ch4_img9.png){ width="400" }
+    </figure>
+
+### 3.4 Git 拉取分支
+
+推送是指将本地仓库的（新）提交同步到远程仓库，拉取则是指将远程仓库的（新）提交同步到本地仓库
+
+这里远程仓库的（新）提交来源，一般都是其他协作者的（比如其他协作者做了一个新功能，将新代码同步到了远程仓库上，之后我们进行工作的时候，就需要先把这些新代码从远程仓库同步到我们的本地仓库中）
+
+这里我们演示一下直接在 github 上改文件，然后如何同步到我们的本地仓库中
+
+点击页面下方的 ^^Add a README^^ 按钮，新建一个 README 文件
+
+!!! info "AI 解释"
+
+    简单来说，README 是一个项目的“门户”和“说明书”
+
+    **1.项目介绍** (Introduction)
+
+    它是什么？用一两句话清晰明了地告诉访客这个项目是做什么的。这是最重要的部分，需要在开头就抓住读者的注意力
+
+    项目目标/愿景：这个项目旨在解决什么问题？它的最终目标是什么？
+
+    **2.快速开始** (Getting Started)
+
+    这是技术项目 README 的灵魂。它需要让一个新用户能够以最少的步骤在本地安装、配置和运行你的项目
+
+    **3.使用说明** (Usage)
+
+    项目运行起来后，如何使用它？
+
+    **4.参与贡献** (Contributing)
+
+    对于开源项目，这部分至关重要。它告诉其他开发者如何为你的项目做贡献
+
+    **5.许可证** (License)
+
+    明确项目的法律授权方式。告诉别人他们可以使用、修改和分发你的代码的规则。一个简单的 `This project is licensed under the MIT License.` 和指向 `LICENSE` 文件的链接就足够了
+
+    **6.常见问题** (FAQ)
+
+    将开发和使用过程中可能遇到的常见问题及其解决方案列出来，可以为他人节省大量工期
+
+编辑一下内容，为 markdown 格式
+
+```md linenums="1" title="README.md"
+本 `README.md` 文件用于演示 git 拉取操作
+```
+
+提交修改
+
+<figure markdown="span">
+  ![Img 11](../../img/git/ch4/git_ch4_img11.png){ width="600" }
+</figure>
+
+编辑提交信息，我们这里可以直接提交到 main 分支上
+
+<figure markdown="span">
+  ![Img 12](../../img/git/ch4/git_ch4_img12.png){ width="400" }
+</figure>
+
+> pull request 等操作，[5 多人协作](./ch5.md){:target="_blank"} 会涉及
+
+添加了 `README` 文件后，可以看到其内容就可以直接显示到仓库页面了
+
+<figure markdown="span">
+  ![Img 13](../../img/git/ch4/git_ch4_img13.png){ width="600" }
+</figure>
+
+现在打开本地仓库，在终端中输入 `git pull` 即可拉取远程仓库的内容
+
+```bash linenums="1"
+$ git pull
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (3/3), 995 bytes | 62.00 KiB/s, done.
+From github.com:WintermelonC/git_test_repository
+   4275c62..f6cb9d3  main       -> origin/main
+Updating 4275c62..f6cb9d3
+Fast-forward
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+```
+
+<figure markdown="span">
+  ![Img 14](../../img/git/ch4/git_ch4_img14.png){ width="600" }
+</figure>
+
+### 3.5 合并冲突
+
+同样的，推送和拉取操作可能会遇到合并冲突的问题（常见于多人协作），处理方法和 [3 分支操作](./ch3.md#31-合并冲突){:target="_blank"} 大差不差，本文档就不详细说明了
