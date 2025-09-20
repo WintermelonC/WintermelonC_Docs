@@ -11,3 +11,20 @@
     此为 2025-2026 秋冬学期课程安排，仅供参考
 
 lxq老师
+
+### 考核方式
+
+1. Homework：15 %
+2. quiz：10 %
+3. experiment：25 %
+4. final exam：50 %
+
+Homework 和 quiz 只要做了就有分数，不管做得怎么样
+
+#### 期末
+
+闭卷考
+
+## 个人笔记
+
+[1 Introduction](./ch1.md){:target="_blank"}

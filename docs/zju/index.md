@@ -22,7 +22,8 @@
 [无线电测向（初级）](./military_PE/radio_direction_finding.md)<br/>
 [羽毛球（初级）](./military_PE/badminton.md)<br/>
 [游泳（初级）](./military_PE/swimming.md)<br/>
-[军事理论](./military_PE/military_theory.md)
+[军事理论](./military_PE/military_theory.md)<br/>
+[普通体育课](./military_PE/general_PE.md)
 
 ### 计算机类
 

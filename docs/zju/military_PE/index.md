@@ -3,7 +3,8 @@
 [无线电测向（初级）](./radio_direction_finding.md)<br/>
 [羽毛球（初级）](./badminton.md)<br/>
 [游泳（初级）](./swimming.md)<br/>
-[军事理论](./military_theory.md)
+[军事理论](./military_theory.md)<br/>
+[普通体育课](./general_PE.md)
 
 ## 体育理论考试通用资料
 

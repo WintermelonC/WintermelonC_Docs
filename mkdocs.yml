@@ -34,6 +34,7 @@ nav:
       - 羽毛球（初级）: zju/military_PE/badminton.md
       - 游泳（初级）: zju/military_PE/swimming.md
       - 军事理论: zju/military_PE/military_theory.md
+      - 普通体育课: zju/military_PE/general_PE.md
     - 计算机类:
       - zju/computer/index.md
       - 人工智能基础（A）: 
@@ -194,14 +195,19 @@ nav:
         - 实验部分: zju/compulsory_courses/computer_architecture/lab.md
       - 计算理论:
         - zju/compulsory_courses/computational_theory/index.md
+        - 1 Sets, Relations, and Languages: zju/compulsory_courses/computational_theory/ch1.md
       - 操作系统:
         - zju/compulsory_courses/operating_system/index.md
+        - 1 Overview: zju/compulsory_courses/operating_system/ch1.md
+        - 2 Operating System Structures: zju/compulsory_courses/operating_system/ch2.md
       - 计算机网络:
         - zju/compulsory_courses/computer_network/index.md
+        - 1 Introduction: zju/compulsory_courses/computer_network/ch1.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - Java 应用技术:
         - zju/module_courses/java_application/index.md
+        - 1 Introduction: zju/module_courses/java_application/ch1.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:
