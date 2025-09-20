@@ -1,8 +1,8 @@
 # 4 远程操作
 
-<!-- !!! tip "说明"
+!!! tip "说明"
 
-    本文档正在更新中…… -->
+    本文档正在更新中……
 
 !!! tip "建议"
 
@@ -345,3 +345,21 @@ Fast-forward
 ### 3.5 合并冲突
 
 同样的，推送和拉取操作可能会遇到合并冲突的问题（常见于多人协作），处理方法和 [3 分支操作](./ch3.md#31-合并冲突){:target="_blank"} 大差不差，本文档就不详细说明了
+
+## 4 Git 克隆
+
+`git clone` 用于将远程仓库复制到本地
+
+```bash linenums="1" title="克隆 HTTPS 协议的仓库"
+# 克隆到当前目录（使用默认文件夹名）
+git clone https://github.com/username/repository.git
+
+# 克隆到指定目录
+git clone https://github.com/username/repository.git my-project
+```
+
+```bash linenums="1" title="克隆 SSH 协议的仓库"
+git clone git@github.com:username/repository.git
+```
+
+具体示例见 [5 多人协作 - 2.2 Clone 仓库](./ch5.md#22-clone-仓库){:target="_blank"}

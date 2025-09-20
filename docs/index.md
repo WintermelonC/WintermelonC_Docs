@@ -81,12 +81,12 @@ hide:
         - [x] 编写 Python 环境安装文档
         - [x] 编写 Anaconda 文档
         - [x] 编写 VSCode 文档
-        - [ ] 编写 Git 文档
+        - [x] 编写 Git 文档
             - [x] ch 1
             - [x] ch 2
             - [x] ch 3
             - [x] ch 4
-            - [ ] ch 5
+            - [x] ch 5
         - [x] 编写 Github 文档
         - [ ] 编写 Web 文档
         - [ ] 编写 Github Pages 文档
