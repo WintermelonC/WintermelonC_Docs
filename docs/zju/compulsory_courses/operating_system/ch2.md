@@ -78,7 +78,7 @@ CLI 允许直接输入命令
 6. protection
 
 <figure markdown="span">
-  ![Img 1](../../../img/operating_system/ch1/os_ch2_img1.png){ width="600" }
+  ![Img 1](../../../img/operating_system/ch2/os_ch2_img1.png){ width="600" }
 </figure>
 
 ### 4.1 System Programs
