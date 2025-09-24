@@ -73,7 +73,7 @@ bootstrap program 在通电或重启时加载：
 3. 中断分发阶段：不同类型中断由特定代码段处理，每种中断类型有独立的处理逻辑
 
 <figure markdown="span">
-  ![Img 1](../../../img/operating_system/ch1/os_ch1_img1.png){ width="600" }
+  ![Img 1](../../../../img/operating_system/ch1/os_ch1_img1.png){ width="600" }
 </figure>
 
 ## 2 I/O Structure
@@ -90,7 +90,7 @@ bootstrap program 在通电或重启时加载：
 异步 I/O 方法使得 CPU 可以在等待 I/O 完成时执行其他任务，从而实现了真正的并发处理
 
 <figure markdown="span">
-  ![Img 2](../../../img/operating_system/ch1/os_ch1_img2.png){ width="600" }
+  ![Img 2](../../../../img/operating_system/ch1/os_ch1_img2.png){ width="600" }
 </figure>
 
 direct memory access structure（DMA 结构）：
@@ -118,7 +118,7 @@ DMA 技术将 CPU 从繁琐的数据搬运工作中解脱出来，CPU 在 I 传�
 - 底层：速度最慢、成本最低、容量最大、通常非易失
 
 <figure markdown="span">
-  ![Img 3](../../../img/operating_system/ch1/os_ch1_img3.png){ width="600" }
+  ![Img 3](../../../../img/operating_system/ch1/os_ch1_img3.png){ width="600" }
 </figure>
 
 caching 解决不同存储层级间的速度差异，将常用数据提前放置到更快存储介质
@@ -132,11 +132,11 @@ Multiprocessor 环境必须在硬件层面提供 cache coherence，使所有 CPU
 SMP：
 
 <figure markdown="span">
-  ![Img 4](../../../img/operating_system/ch1/os_ch1_img4.png){ width="600" }
+  ![Img 4](../../../../img/operating_system/ch1/os_ch1_img4.png){ width="600" }
 </figure>
 
 Multicore：
 
 <figure markdown="span">
-  ![Img 5](../../../img/operating_system/ch1/os_ch1_img5.png){ width="600" }
+  ![Img 5](../../../../img/operating_system/ch1/os_ch1_img5.png){ width="600" }
 </figure>

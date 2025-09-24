@@ -10,10 +10,10 @@
 
     此为 2025-2026 秋冬学期课程安排，仅供参考
 
-sld老师 (1)
+zzk老师 (1)
 { .annotate }
 
-1. 实际上是 zzk老师
+1. 选课系统上写的 sld老师，但是实际上课的是 zzk老师
 
 ### 考核方式
 
@@ -43,5 +43,5 @@ sld老师 (1)
 
 ## 个人笔记
 
-[1 Overview](./ch1.md){:target="_blank"}<br/>
-[2 Operating System Structures](./ch2.md){:target="_blank"}
+[1 Overview](./theory/ch1.md){:target="_blank"}<br/>
+[2 Operating System Structures](./theory/ch2.md){:target="_blank"}
