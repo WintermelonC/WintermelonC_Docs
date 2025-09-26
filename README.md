@@ -28,11 +28,12 @@
    1. CMake
    2. vcpkg
    3. Ninja
-3. Web
+3. Java
+4. Web
    1. HTML
    2. css
    3. JavaScript
-4. Markdown
+5. Markdown
 
 ## 工具
 

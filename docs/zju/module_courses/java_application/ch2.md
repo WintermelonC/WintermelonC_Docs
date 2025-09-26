@@ -22,7 +22,7 @@
 | double | 8 byte | Approximately –1.7E+308 with15 significant digits | Approximately 1.7E+308 with15 significant digits |
 
 - `boolean`: `true`, `false`
-- `char`: 16 bit, Unicode-16
+- `char`: 2 byte, Unicode-16
 
 ```java linenums="1" title="特殊格式"
 145_345.23  // 可以使用下划线来分割位，便于阅读
@@ -30,6 +30,15 @@
 ```
 
 基本数据类型的局部变量存储在 stack 中
+
+!!! tip "`float` 类型"
+
+    初始化 `float` 类型的变量时，必须要在数字后面加上 `f` 后缀，或者显式类型转换。因为如果只是数字的话，其类型是 `double`，将 `double` 赋给 `float` 变量需要显式类型转换
+
+    ```java linenums="1"
+    float a = 2.0f;
+    float b = (float) 2.0;
+    ```
 
 ### 1.2 Wrapper Class
 

@@ -201,6 +201,7 @@ nav:
         - 理论部分:
           - 1 Overview: zju/compulsory_courses/operating_system/theory/ch1.md
           - 2 Operating System Structures: zju/compulsory_courses/operating_system/theory/ch2.md
+          - 3 Processes: zju/compulsory_courses/operating_system/theory/ch3.md
         - 实验部分:
           - 1 Linux: zju/compulsory_courses/operating_system/lab/ch1.md
           - 2 QEMU: zju/compulsory_courses/operating_system/lab/ch2.md
@@ -289,6 +290,7 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
+    - Java: knowledge/java.md
     - Web:
       - knowledge/web/index.md
       - HTML: knowledge/web/html.md

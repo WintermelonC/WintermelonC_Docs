@@ -122,7 +122,15 @@ Hi WintermelonC! You've successfully authenticated, but GitHub does not provide 
 
     我平常用 github 的时候，会开启加速器，如果需要使用 SSH 连接的话（如使用 git 的远程操作命令），我会关闭加速器。我这样用起来没有什么问题
 
-    但有时候使用 git 的远程操作命令时，会报错（具体报错信息忘了，后面遇到再补充）。这时候换一个 WIFI 就好了
+    但有时候使用 git 的远程操作命令时，会报错。这时候换一个 WIFI 就好了
+
+    ```powershell linenums="1" title="我遇到的报错信息"
+    Connection reset by 20.205.243.166 port 22
+    fatal: Could not read from remote repository.
+    
+    Please make sure you have the correct access rights
+    and the repository exists.
+    ```
 
     之前我遇到其他报错信息时，我尝试过上网搜索，但是网上的方法我都试过，在我这里都不适用，很奇怪
 

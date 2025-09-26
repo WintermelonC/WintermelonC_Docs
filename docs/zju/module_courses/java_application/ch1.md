@@ -235,3 +235,23 @@ System.out.printf("a=%d, b=%.2f, s=%s%n", a, b, s);
 String str = String.format("姓名：%s，分数：%.1f", "张三", 95.5);
 System.out.println(str);
 ```
+
+## 5 Java 标识符
+
+Java 标识符规则：
+
+1. 必须以字母、`_`、`$` 开头（在较新版本中，Unicode 字符如中文也可以开头）
+2. 后续字符可以是字母、数字、下划线、`$` 以及某些 Unicode 字符
+3. 不能是 Java 关键字或保留字
+
+```java linenums="1"
+// 是可以编译运行的
+public class Test {
+    public static void main(String[] args) {
+        int 名字 = 10;
+        int $1a = 20;
+        System.out.println(名字);
+        System.out.println($1a);
+    }
+}
+```

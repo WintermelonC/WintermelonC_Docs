@@ -321,3 +321,53 @@ $g(n) \in O(f(n)) \iff$ 存在 $c>0, d>0$，对于所有 $n\in N$，都有 $g(n)
 **empty string** is denoted by $e$
 
 The set of all strings, including the empty string, over an alphabet $\Sigma$ is denoted by $\Sigma^*$
+
+**concatenation**：$x \circ y$ or simply $xy$, is the string $x$ followed by the string $y$
+
+- **suffix**：后缀
+- **prefix**：前缀
+
+$w^i = \begin{cases}
+    w^0 = e\\
+    w^{i+1}=w^i \circ w & \text{for each } i \geqslant 0
+\end{cases}$
+
+the **reversal** of a string $w$, denoted by $w^R$
+
+!!! tip ""
+
+    $w = ua, a \in \Sigma \implies w^R = au^R$<br/>
+    $(wx)^R = x^Rw^R$
+
+any subset of $\Sigma^*$ will be called a **language**
+
+$L = \lbrace w \in \Sigma^*: w \text{ has property } P \rbrace$
+
+$L_1L_2 = \lbrace xy: x \in L_1\ and\ y \in L_2\rbrace$
+
+!!! tip ""
+
+    if $\Sigma$ is a finite alphabet, then $\Sigma^*$ is countably infinite set
+
+    > 因为可以按照 **lexicographic** 进行枚举
+
+the **complement** of $A$: $\bar{A}$
+
+**Kleene star** of a language $L$, denoted by $L^*$
+
+$L^* = \lbrace w\in \Sigma^*: w = w_1 \circ \cdots \circ w_k \text{ for some } k \geqslant 0 \text{ and some } w_1, \cdots , w_k \in L \rbrace = \bigcup^\infin_{i=0} L^i$
+
+例如：$L = \lbrace 01,1,100\rbrace$，$110001110011 \in L^*$
+
+> 之前遇到的 $\Sigma^*$ 也是同样的意思
+
+!!! tip ""
+
+    $\emptyset^* = \lbrace e\rbrace$<br/>
+    $L_1 \subseteq L_2 \implies L_1^* \subseteq L_2^*$<br/>
+    $(L^*)^* = L^*$<br/>
+    $L\emptyset = \emptyset L = \emptyset$
+
+$L^+ = LL^* = \lbrace w\in \Sigma^*: w = w_1 \circ \cdots \circ w_k \text{ for some } k \geqslant 1 \text{ and some } w_1, \cdots , w_k \in L \rbrace = \bigcup^\infin_{i=1} L^i$
+
+在 concatenation 运算下，$L^+$ 可以看作是 $L$ 的 closure。$L^+$ 是最小的包含 $L$ 且包含 $L$ 中任意字符串的所有连接结果的 language
