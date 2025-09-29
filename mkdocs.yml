@@ -196,6 +196,7 @@ nav:
       - 计算理论:
         - zju/compulsory_courses/computational_theory/index.md
         - 1 Sets, Relations, and Languages: zju/compulsory_courses/computational_theory/ch1.md
+        - 2 Finite Automata: zju/compulsory_courses/computational_theory/ch2.md
       - 操作系统:
         - zju/compulsory_courses/operating_system/index.md
         - 理论部分:
@@ -290,7 +291,8 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
-    - Java: knowledge/java.md
+    - Java: 
+      - knowledge/java/index.md
     - Web:
       - knowledge/web/index.md
       - HTML: knowledge/web/html.md

@@ -14,10 +14,11 @@
     2. [vcpkg](./C_Cpp/vcpkg.md)
     3. [Ninja](./C_Cpp/ninja.md)
 
-3. [Web](./web/index.md)
+3. [Java](./java/index.md)
+4. [Web](./web/index.md)
 
     1. [HTML](./web/html.md)
     2. [css](./web/css.md)
     3. [JavaScript](./web/javascript.md)
 
-4. [Markdown](./markdown/index.md)
+5. [Markdown](./markdown/index.md)

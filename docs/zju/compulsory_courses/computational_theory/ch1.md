@@ -1,8 +1,8 @@
 # 1 Sets, Relations, and Languages
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -371,3 +371,48 @@ $L^* = \lbrace w\in \Sigma^*: w = w_1 \circ \cdots \circ w_k \text{ for some } k
 $L^+ = LL^* = \lbrace w\in \Sigma^*: w = w_1 \circ \cdots \circ w_k \text{ for some } k \geqslant 1 \text{ and some } w_1, \cdots , w_k \in L \rbrace = \bigcup^\infin_{i=1} L^i$
 
 在 concatenation 运算下，$L^+$ 可以看作是 $L$ 的 closure。$L^+$ 是最小的包含 $L$ 且包含 $L$ 中任意字符串的所有连接结果的 language
+
+## 8 Finite Representations of Languages
+
+!!! example "regular expression"
+
+    Let $L = \lbrace w \in \lbrace 0,1\rbrace^*: w \text{ has two or three occurrences of 1, the first and second of which are not consecutive} \rbrace$. 这个 language 可以被如下描述：
+    
+    $\lbrace 0\rbrace^* \circ \lbrace 1 \rbrace \circ\lbrace 0\rbrace^* \circ\lbrace 0 \rbrace\circ \lbrace 1 \rbrace\circ\lbrace 0 \rbrace^* \circ ((\lbrace 1\rbrace\circ\lbrace 0\rbrace^*) \cup \emptyset^*)$
+    
+    可以简化为：
+    
+    $L = 0^*10^*010^*(10^* \cup \emptyset^*)$
+
+像这种表示方法称为 **regular expression**（正则表达式）
+
+!!! tip ""
+
+    The regular expressions over an alphabet $\Sigma^*$ are all strings over the alphabet $\Sigma \cup \lbrace (,),\varnothing, \cup, *\rbrace$ that can be obtained as follows:
+
+    1. $\varnothing$ and each member of $\Sigma$ is a regular expression
+    2. if $\alpha$ and $\beta$ are regular expressions, then so is $(\alpha\beta)$
+    3. if $\alpha$ and $\beta$ are regular expressions, then so is $(\alpha\cup\beta)$
+    4. if $\alpha$ is a regular expression, then so is $\alpha^*$
+    5. nothing is a regular expression unless it follows from (1) through (4)
+
+函数 $\mathcal{L}$，它接收一个正则表达式字符串作为输入，输出这个表达式所代表的字符串集合（即语言）
+
+1. $\mathcal{L}(\varnothing) = \emptyset$, and $\mathcal{L}(a) = \lbrace a\rbrace$ for each $a \in \Sigma$
+2. if $\alpha$ and $\beta$ are regular expressions, then $\mathcal{L}((\alpha\beta)) = \mathcal{L}(\alpha)\mathcal{L}(\beta)$
+3. if $\alpha$ and $\beta$ are regular expressions, then $\mathcal{L}((\alpha\cup\beta)) = \mathcal{L}(\alpha)\cup\mathcal{L}(\beta)$
+4. if $\alpha$ is a regular expression, then $\mathcal{L}(\alpha^*) = \mathcal{L}(\alpha)^*$
+
+<figure markdown="span">
+  ![Img 11](../../../img/computational_theory/ch1/computational_ch1_img11.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+  ![Img 12](../../../img/computational_theory/ch1/computational_ch1_img12.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+  ![Img 13](../../../img/computational_theory/ch1/computational_ch1_img13.png){ width="800" }
+</figure>
+
+> 可以简写成 $0^*\cup 0^*(1\cup 11)(00^*(1\cup 11))^*0^*$
