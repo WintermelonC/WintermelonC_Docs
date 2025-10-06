@@ -26,4 +26,5 @@ wk老师
 
 ## 个人笔记
 
-[1 Introduction](./ch1.md){:target="_blank"}
+[1 Introduction](./ch1.md){:target="_blank"}<br/>
+[2 Basic](./ch2.md){:target="_blank"}

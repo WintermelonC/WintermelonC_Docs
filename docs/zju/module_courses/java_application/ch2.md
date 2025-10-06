@@ -1,8 +1,8 @@
-# Basic
+# 2 Basic
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -481,7 +481,7 @@ public class Foo {
 
 1. 创建第一个对象时
 2. 访问静态成员时
-3. `Class.forName()` 显示加载时
+3. `Class.forName()` 显式加载时
 
 类成员初始化顺序：
 
@@ -812,7 +812,7 @@ public class StaticImportExample {
 
 ### 7.4 `CLASSPATH`
 
-`CLASSPATH` 是告诉 Java 虚拟机（JVM）和 Java 编译器（如 ja`v`ac）去哪里查找用户自定义的类、包和资源文件的环境变量或参数
+`CLASSPATH` 是告诉 Java 虚拟机（JVM）和 Java 编译器（如 `javac`）去哪里查找用户自定义的类、包和资源文件的环境变量或参数
 
 当 Java 需要加载一个类时，它就会去 `CLASSPATH` 指定的路径列表里寻找对应的 `.class` 文件或包含该类的 `.jar` 文件
 

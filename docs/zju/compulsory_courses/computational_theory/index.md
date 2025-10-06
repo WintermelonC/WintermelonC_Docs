@@ -20,4 +20,5 @@ yyc老师
 
 ## 个人笔记
 
-[1 Sets, Relations, and Languages](./ch1.md){:target="_blank"}
+[1 Sets, Relations, and Languages](./ch1.md)<br/>
+[2 Finite Automata](./ch2.md)

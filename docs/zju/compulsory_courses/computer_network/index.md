@@ -27,4 +27,6 @@ Homework 和 quiz 只要做了就有分数，不管做得怎么样
 
 ## 个人笔记
 
-[1 Introduction](./ch1.md){:target="_blank"}
+[1 Introduction](./ch1.md)<br/>
+[2 The Physical Layer](./ch2.md)<br/>
+[3 The Data Link Layer](./ch3.md)

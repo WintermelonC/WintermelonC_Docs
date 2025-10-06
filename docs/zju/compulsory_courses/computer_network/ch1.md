@@ -289,7 +289,7 @@ OSI（Open Systems Interconnection，开放系统互连）参考模型
 ##### 6.5 The Model Used in This Book
 
 <figure markdown="span">
-    ![Img 22](../../../img/computer_network/ch1/network_ch1_img22.png){ width="400" }
+    ![Img 22](../../../img/computer_network/ch1/network_ch1_img22.png){ width="200" }
 </figure>
 
 ## 7 Standardization
