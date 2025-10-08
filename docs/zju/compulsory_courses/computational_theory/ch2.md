@@ -100,7 +100,7 @@ tow finite automata $M_1$ and $M_2$ are **equivalent** if and only if $L(M_1) = 
 
 > 这就是子集构造法
 
-现在我们构造一个和 ^^Figure 2-9^^ 等价的 NFA：
+现在我们构造一个和 ^^Figure 2-9^^ 等价的 FA：
 
 **1.定义初始状态 $s'$**
 
@@ -125,7 +125,7 @@ $\delta'(s',b) = E(q_2) \cup E(q_4) = \lbrace q_2,q_3,q_4\rbrace$
 - $C = \lbrace q_3,q_4\rbrace$
 - $\emptyset$
 
-由于原 DFA 的 $q_4$ 是最终状态，所以这里的 NFA 的最终状态有 $A,B,C$
+由于原 NFA 的 $q_4$ 是最终状态，所以这里的 FA 的最终状态有 $A,B,C$
 
 <figure markdown="span">
   ![Img 9](../../../img/computational_theory/ch2/computational_ch2_img9.png){ width="800" }
@@ -211,7 +211,7 @@ $L_1 \cap L_2 = \Sigma^* - ((\Sigma^* - L_1) \cup (\Sigma^* - L_2))$
 $\lbrace w \in\lbrace a,b\rbrace^*: w 包含 3k+1 个 b，其中 k \in N\rbrace$
 
 <figure markdown="span">
-  ![Img 14](../../../img/computational_theory/ch2/computational_ch2_img14.png){ width="200" }
+  ![Img 14](../../../img/computational_theory/ch2/computational_ch2_img14.png){ width="400" }
 </figure>
 
 **简化条件**：
@@ -232,7 +232,7 @@ $\lbrace w \in\lbrace a,b\rbrace^*: w 包含 3k+1 个 b，其中 k \in N\rbrace$
 添加新初始状态 $q_4$，新终态 $q_5$，使满足简化条件
 
 <figure markdown="span">
-  ![Img 15](../../../img/computational_theory/ch2/computational_ch2_img15.png){ width="200" }
+  ![Img 15](../../../img/computational_theory/ch2/computational_ch2_img15.png){ width="400" }
 </figure>
 
 **2.计算 $R(i,j,1)$：消除状态 $q_1$**
@@ -245,7 +245,7 @@ $\lbrace w \in\lbrace a,b\rbrace^*: w 包含 3k+1 个 b，其中 k \in N\rbrace$
 得到：
 
 <figure markdown="span">
-  ![Img 16](../../../img/computational_theory/ch2/computational_ch2_img16.png){ width="200" }
+  ![Img 16](../../../img/computational_theory/ch2/computational_ch2_img16.png){ width="400" }
 </figure>
 
 **3.计算 $R(i,j,2)$：消除状态 $q_2$**
@@ -255,7 +255,7 @@ $q_3 \rightarrow q_2 \rightarrow q_3$: $ba^*ba^*b$
 得到：
 
 <figure markdown="span">
-  ![Img 17](../../../img/computational_theory/ch2/computational_ch2_img17.png){ width="200" }
+  ![Img 17](../../../img/computational_theory/ch2/computational_ch2_img17.png){ width="400" }
 </figure>
 
 **4.消除状态 $q_3$**
@@ -263,7 +263,7 @@ $q_3 \rightarrow q_2 \rightarrow q_3$: $ba^*ba^*b$
 $q_4 \rightarrow q_3 \rightarrow q_5$: $a^*b(a \cup ba^*ba^*b)^*$
 
 <figure markdown="span">
-  ![Img 18](../../../img/computational_theory/ch2/computational_ch2_img18.png){ width="200" }
+  ![Img 18](../../../img/computational_theory/ch2/computational_ch2_img18.png){ width="400" }
 </figure>
 
 最终答案就是 $a^*b(a \cup ba^*ba^*b)^*$
