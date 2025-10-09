@@ -218,6 +218,7 @@ nav:
         - zju/module_courses/java_application/index.md
         - 1 Introduction: zju/module_courses/java_application/ch1.md
         - 2 Basic: zju/module_courses/java_application/ch2.md
+        - 3 Inheritance and Polymorphism: zju/module_courses/java_application/ch3.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:

@@ -468,14 +468,66 @@ public class Foo {
 
 ### 4.4 静态成员
 
-静态成员变量：
+##### 静态成员变量
 
-1. 类所有对象共享
-2. 无需创建对象即可访问静态成员，直接通过类来访问，`{class}.{static_member}`
+特点：
 
-静态成员函数：只能访问静态成员变量，不能访问实例成员
+1. 共享性：所有类的实例共享同一个静态变量。任何一个实例对该变量的修改，都会影响到其他所有实例
+2. 生命周期：随着类的加载而创建，随着类的卸载而销毁。其生命周期长于任何对象
+3. 存储位置：存储在 JVM 的方法区（Method Area）中
 
-### 4.5 初始化顺序
+推荐使用类名访问 `ClassName.variableName`，这能清晰地表明它是一个类变量；不推荐使用对象访问 `object.variableName`，因为这容易让人误解为实例变量
+
+##### 静态成员函数
+
+只能直接访问本类的其他静态成员，不能直接访问本类的实例成员
+
+推荐使用类名调用
+
+##### 静态代码块
+
+执行时机：在类第一次被加载到 JVM 时执行，且只执行一次
+
+```java linenums="1"
+class Config {
+    public static final String DB_URL;
+    public static final String DB_USER;
+
+    // 静态代码块
+    static {
+        System.out.println("Static block is executing...");
+        // 复杂的初始化逻辑
+        DB_URL = "jdbc:mysql://localhost:3306/mydb";
+        DB_USER = "root";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Main method started.");
+        // 第一次访问 Config 类的静态成员时，会触发静态代码块的执行
+        System.out.println("DB URL: " + Config.DB_URL);
+        System.out.println("DB URL again: " + Config.DB_URL); // 静态代码块不会再次执行
+    }
+}
+```
+
+##### 静态内部类
+
+1. 被 `static` 修饰的内部类
+2. 它不持有外部类实例的引用
+3. 可以像普通类一样拥有自己的静态成员和实例成员
+4. 只能访问外部类的静态成员
+
+### 4.5 `Class` 类
+
+> 一个叫 `java.lang.Class` 的类
+
+在 Java 中，每个类在编译后都会生成一个对应的 `Class` 对象。这个 `Class` 对象包含了该类的元数据（如类名、方法、字段、父类等信息），这些信息被存储在磁盘上一个与类同名的 `.class` 文件中
+
+当程序运行时，如果需要创建某个类的实例，Java 虚拟机首先会检查该类的 `Class` 对象是否已经被加载到内存中。如果还没有被加载，JVM 会通过类加载器找到对应的 `.class` 文件，将其加载到内存中，并创建这个 `Class` 对象
+
+### 4.6 初始化顺序
 
 类加载的时机：
 
