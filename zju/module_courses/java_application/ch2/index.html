@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch1/">
       
       
-        <link rel="next" href="../../BS_software_design/">
+        <link rel="next" href="../ch3/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -6076,6 +6076,8 @@
       
         
       
+        
+      
     
     
     
@@ -6388,9 +6390,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#45-初始化顺序" class="md-nav__link">
+  <a href="#45-class-类" class="md-nav__link">
     <span class="md-ellipsis">
-      4.5 初始化顺序
+      4.5 Class 类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-初始化顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 初始化顺序
     </span>
   </a>
   
@@ -6513,6 +6524,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Inheritance and Polymorphism
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -9828,9 +9862,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#45-初始化顺序" class="md-nav__link">
+  <a href="#45-class-类" class="md-nav__link">
     <span class="md-ellipsis">
-      4.5 初始化顺序
+      4.5 Class 类
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#46-初始化顺序" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.6 初始化顺序
     </span>
   </a>
   
@@ -10699,25 +10742,19 @@
 <li>垃圾回收只与内存有关</li>
 </ol>
 <h3 id="44-静态成员">4.4 静态成员<a class="headerlink" href="#44-静态成员" title="Permanent link">&para;</a></h3>
-<p>静态成员变量：</p>
+<h5 id="静态成员变量">静态成员变量<a class="headerlink" href="#静态成员变量" title="Permanent link">&para;</a></h5>
+<p>特点：</p>
 <ol>
-<li>类所有对象共享</li>
-<li>无需创建对象即可访问静态成员，直接通过类来访问，<code>{class}.{static_member}</code></li>
+<li>共享性：所有类的实例共享同一个静态变量。任何一个实例对该变量的修改，都会影响到其他所有实例</li>
+<li>生命周期：随着类的加载而创建，随着类的卸载而销毁。其生命周期长于任何对象</li>
+<li>存储位置：存储在 JVM 的方法区（Method Area）中</li>
 </ol>
-<p>静态成员函数：只能访问静态成员变量，不能访问实例成员</p>
-<h3 id="45-初始化顺序">4.5 初始化顺序<a class="headerlink" href="#45-初始化顺序" title="Permanent link">&para;</a></h3>
-<p>类加载的时机：</p>
-<ol>
-<li>创建第一个对象时</li>
-<li>访问静态成员时</li>
-<li><code>Class.forName()</code> 显式加载时</li>
-</ol>
-<p>类成员初始化顺序：</p>
-<ol>
-<li>静态变量，静态块（类加载时，只一次）</li>
-<li>实例变量，实例初始化块（每次创建对象时）</li>
-<li>构造函数（每次创建对象时）</li>
-</ol>
+<p>推荐使用类名访问 <code>ClassName.variableName</code>，这能清晰地表明它是一个类变量；不推荐使用对象访问 <code>object.variableName</code>，因为这容易让人误解为实例变量</p>
+<h5 id="静态成员函数">静态成员函数<a class="headerlink" href="#静态成员函数" title="Permanent link">&para;</a></h5>
+<p>只能直接访问本类的其他静态成员，不能直接访问本类的实例成员</p>
+<p>推荐使用类名调用</p>
+<h5 id="静态代码块">静态代码块<a class="headerlink" href="#静态代码块" title="Permanent link">&para;</a></h5>
+<p>执行时机：在类第一次被加载到 JVM 时执行，且只执行一次</p>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-30-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-30-3"> 3</a></span>
@@ -10738,113 +10775,55 @@
 <span class="normal"><a href="#__codelineno-30-18">18</a></span>
 <span class="normal"><a href="#__codelineno-30-19">19</a></span>
 <span class="normal"><a href="#__codelineno-30-20">20</a></span>
-<span class="normal"><a href="#__codelineno-30-21">21</a></span>
-<span class="normal"><a href="#__codelineno-30-22">22</a></span>
-<span class="normal"><a href="#__codelineno-30-23">23</a></span>
-<span class="normal"><a href="#__codelineno-30-24">24</a></span>
-<span class="normal"><a href="#__codelineno-30-25">25</a></span>
-<span class="normal"><a href="#__codelineno-30-26">26</a></span>
-<span class="normal"><a href="#__codelineno-30-27">27</a></span>
-<span class="normal"><a href="#__codelineno-30-28">28</a></span>
-<span class="normal"><a href="#__codelineno-30-29">29</a></span>
-<span class="normal"><a href="#__codelineno-30-30">30</a></span>
-<span class="normal"><a href="#__codelineno-30-31">31</a></span>
-<span class="normal"><a href="#__codelineno-30-32">32</a></span>
-<span class="normal"><a href="#__codelineno-30-33">33</a></span>
-<span class="normal"><a href="#__codelineno-30-34">34</a></span>
-<span class="normal"><a href="#__codelineno-30-35">35</a></span>
-<span class="normal"><a href="#__codelineno-30-36">36</a></span>
-<span class="normal"><a href="#__codelineno-30-37">37</a></span>
-<span class="normal"><a href="#__codelineno-30-38">38</a></span>
-<span class="normal"><a href="#__codelineno-30-39">39</a></span>
-<span class="normal"><a href="#__codelineno-30-40">40</a></span>
-<span class="normal"><a href="#__codelineno-30-41">41</a></span>
-<span class="normal"><a href="#__codelineno-30-42">42</a></span>
-<span class="normal"><a href="#__codelineno-30-43">43</a></span>
-<span class="normal"><a href="#__codelineno-30-44">44</a></span>
-<span class="normal"><a href="#__codelineno-30-45">45</a></span>
-<span class="normal"><a href="#__codelineno-30-46">46</a></span>
-<span class="normal"><a href="#__codelineno-30-47">47</a></span>
-<span class="normal"><a href="#__codelineno-30-48">48</a></span>
-<span class="normal"><a href="#__codelineno-30-49">49</a></span>
-<span class="normal"><a href="#__codelineno-30-50">50</a></span>
-<span class="normal"><a href="#__codelineno-30-51">51</a></span>
-<span class="normal"><a href="#__codelineno-30-52">52</a></span>
-<span class="normal"><a href="#__codelineno-30-53">53</a></span>
-<span class="normal"><a href="#__codelineno-30-54">54</a></span>
-<span class="normal"><a href="#__codelineno-30-55">55</a></span>
-<span class="normal"><a href="#__codelineno-30-56">56</a></span>
-<span class="normal"><a href="#__codelineno-30-57">57</a></span>
-<span class="normal"><a href="#__codelineno-30-58">58</a></span>
-<span class="normal"><a href="#__codelineno-30-59">59</a></span>
-<span class="normal"><a href="#__codelineno-30-60">60</a></span>
-<span class="normal"><a href="#__codelineno-30-61">61</a></span>
-<span class="normal"><a href="#__codelineno-30-62">62</a></span>
-<span class="normal"><a href="#__codelineno-30-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="kd">class</span> <span class="nc">Dog</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="w">    </span><span class="c1">// 1. 静态变量</span>
-</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">staticVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initStatic1</span><span class="p">();</span>
-</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">staticVar2</span><span class="p">;</span>
-</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a>
-</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="w">    </span><span class="c1">// 2. 静态初始化块</span>
-</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;静态初始化块执行&quot;</span><span class="p">);</span>
-</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="w">        </span><span class="n">staticVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;静态变量2&quot;</span><span class="p">;</span>
-</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a>
-</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12"></a><span class="w">    </span><span class="c1">// 3. 实例变量</span>
-</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initName</span><span class="p">();</span>
-</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
-</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">breed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;未知品种&quot;</span><span class="p">;</span>
-</span><span id="__span-30-16"><a id="__codelineno-30-16" name="__codelineno-30-16"></a>
-</span><span id="__span-30-17"><a id="__codelineno-30-17" name="__codelineno-30-17"></a><span class="w">    </span><span class="c1">// 4. 实例初始化块</span>
-</span><span id="__span-30-18"><a id="__codelineno-30-18" name="__codelineno-30-18"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-30-19"><a id="__codelineno-30-19" name="__codelineno-30-19"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;实例初始化块执行&quot;</span><span class="p">);</span>
-</span><span id="__span-30-20"><a id="__codelineno-30-20" name="__codelineno-30-20"></a><span class="w">        </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 默认年龄</span>
-</span><span id="__span-30-21"><a id="__codelineno-30-21" name="__codelineno-30-21"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-22"><a id="__codelineno-30-22" name="__codelineno-30-22"></a>
-</span><span id="__span-30-23"><a id="__codelineno-30-23" name="__codelineno-30-23"></a><span class="w">    </span><span class="c1">// 静态方法</span>
-</span><span id="__span-30-24"><a id="__codelineno-30-24" name="__codelineno-30-24"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">initStatic1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-25"><a id="__codelineno-30-25" name="__codelineno-30-25"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;初始化静态变量1&quot;</span><span class="p">);</span>
-</span><span id="__span-30-26"><a id="__codelineno-30-26" name="__codelineno-30-26"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;静态变量1&quot;</span><span class="p">;</span>
-</span><span id="__span-30-27"><a id="__codelineno-30-27" name="__codelineno-30-27"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-28"><a id="__codelineno-30-28" name="__codelineno-30-28"></a>
-</span><span id="__span-30-29"><a id="__codelineno-30-29" name="__codelineno-30-29"></a><span class="w">    </span><span class="c1">// 实例方法</span>
-</span><span id="__span-30-30"><a id="__codelineno-30-30" name="__codelineno-30-30"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">initName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-31"><a id="__codelineno-30-31" name="__codelineno-30-31"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;初始化name字段&quot;</span><span class="p">);</span>
-</span><span id="__span-30-32"><a id="__codelineno-30-32" name="__codelineno-30-32"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;未命名&quot;</span><span class="p">;</span>
-</span><span id="__span-30-33"><a id="__codelineno-30-33" name="__codelineno-30-33"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-34"><a id="__codelineno-30-34" name="__codelineno-30-34"></a>
-</span><span id="__span-30-35"><a id="__codelineno-30-35" name="__codelineno-30-35"></a><span class="w">    </span><span class="c1">// 构造函数</span>
-</span><span id="__span-30-36"><a id="__codelineno-30-36" name="__codelineno-30-36"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-37"><a id="__codelineno-30-37" name="__codelineno-30-37"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;无参构造函数执行&quot;</span><span class="p">);</span>
-</span><span id="__span-30-38"><a id="__codelineno-30-38" name="__codelineno-30-38"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-39"><a id="__codelineno-30-39" name="__codelineno-30-39"></a>
-</span><span id="__span-30-40"><a id="__codelineno-30-40" name="__codelineno-30-40"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">breed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-41"><a id="__codelineno-30-41" name="__codelineno-30-41"></a><span class="w">        </span><span class="k">this</span><span class="p">();</span><span class="w">  </span><span class="c1">// 调用无参构造函数（必须第一句）</span>
-</span><span id="__span-30-42"><a id="__codelineno-30-42" name="__codelineno-30-42"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;有参构造函数执行&quot;</span><span class="p">);</span>
-</span><span id="__span-30-43"><a id="__codelineno-30-43" name="__codelineno-30-43"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
-</span><span id="__span-30-44"><a id="__codelineno-30-44" name="__codelineno-30-44"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">breed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">breed</span><span class="p">;</span>
-</span><span id="__span-30-45"><a id="__codelineno-30-45" name="__codelineno-30-45"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-46"><a id="__codelineno-30-46" name="__codelineno-30-46"></a>
-</span><span id="__span-30-47"><a id="__codelineno-30-47" name="__codelineno-30-47"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">staticMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-48"><a id="__codelineno-30-48" name="__codelineno-30-48"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;静态方法被调用&quot;</span><span class="p">);</span>
-</span><span id="__span-30-49"><a id="__codelineno-30-49" name="__codelineno-30-49"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-50"><a id="__codelineno-30-50" name="__codelineno-30-50"></a><span class="p">}</span>
-</span><span id="__span-30-51"><a id="__codelineno-30-51" name="__codelineno-30-51"></a>
-</span><span id="__span-30-52"><a id="__codelineno-30-52" name="__codelineno-30-52"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestInitializationOrder</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-53"><a id="__codelineno-30-53" name="__codelineno-30-53"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-30-54"><a id="__codelineno-30-54" name="__codelineno-30-54"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 第一次创建对象 ===&quot;</span><span class="p">);</span>
-</span><span id="__span-30-55"><a id="__codelineno-30-55" name="__codelineno-30-55"></a><span class="w">        </span><span class="n">Dog</span><span class="p">.</span><span class="na">staticMethod</span><span class="p">();</span><span class="w">  </span><span class="c1">// 触发类加载和静态初始化</span>
-</span><span id="__span-30-56"><a id="__codelineno-30-56" name="__codelineno-30-56"></a>
-</span><span id="__span-30-57"><a id="__codelineno-30-57" name="__codelineno-30-57"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 创建第一个Dog对象 ===&quot;</span><span class="p">);</span>
-</span><span id="__span-30-58"><a id="__codelineno-30-58" name="__codelineno-30-58"></a><span class="w">        </span><span class="n">Dog</span><span class="w"> </span><span class="n">dog1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&quot;旺财&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;金毛&quot;</span><span class="p">);</span>
-</span><span id="__span-30-59"><a id="__codelineno-30-59" name="__codelineno-30-59"></a>
-</span><span id="__span-30-60"><a id="__codelineno-30-60" name="__codelineno-30-60"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 创建第二个Dog对象 ===&quot;</span><span class="p">);</span>
-</span><span id="__span-30-61"><a id="__codelineno-30-61" name="__codelineno-30-61"></a><span class="w">        </span><span class="n">Dog</span><span class="w"> </span><span class="n">dog2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&quot;小黑&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;拉布拉多&quot;</span><span class="p">);</span>
-</span><span id="__span-30-62"><a id="__codelineno-30-62" name="__codelineno-30-62"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-30-63"><a id="__codelineno-30-63" name="__codelineno-30-63"></a><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-30-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="kd">class</span> <span class="nc">Config</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">DB_URL</span><span class="p">;</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">DB_USER</span><span class="p">;</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="c1">// 静态代码块</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Static block is executing...&quot;</span><span class="p">);</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="w">        </span><span class="c1">// 复杂的初始化逻辑</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><span class="w">        </span><span class="n">DB_URL</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;jdbc:mysql://localhost:3306/mydb&quot;</span><span class="p">;</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a><span class="w">        </span><span class="n">DB_USER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;root&quot;</span><span class="p">;</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12"></a><span class="p">}</span>
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13"></a>
+</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-15"><a id="__codelineno-30-15" name="__codelineno-30-15"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-16"><a id="__codelineno-30-16" name="__codelineno-30-16"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Main method started.&quot;</span><span class="p">);</span>
+</span><span id="__span-30-17"><a id="__codelineno-30-17" name="__codelineno-30-17"></a><span class="w">        </span><span class="c1">// 第一次访问 Config 类的静态成员时，会触发静态代码块的执行</span>
+</span><span id="__span-30-18"><a id="__codelineno-30-18" name="__codelineno-30-18"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;DB URL: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Config</span><span class="p">.</span><span class="na">DB_URL</span><span class="p">);</span>
+</span><span id="__span-30-19"><a id="__codelineno-30-19" name="__codelineno-30-19"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;DB URL again: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Config</span><span class="p">.</span><span class="na">DB_URL</span><span class="p">);</span><span class="w"> </span><span class="c1">// 静态代码块不会再次执行</span>
+</span><span id="__span-30-20"><a id="__codelineno-30-20" name="__codelineno-30-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-30-21"><a id="__codelineno-30-21" name="__codelineno-30-21"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
-<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
+<h5 id="静态内部类">静态内部类<a class="headerlink" href="#静态内部类" title="Permanent link">&para;</a></h5>
+<ol>
+<li>被 <code>static</code> 修饰的内部类</li>
+<li>它不持有外部类实例的引用</li>
+<li>可以像普通类一样拥有自己的静态成员和实例成员</li>
+<li>只能访问外部类的静态成员</li>
+</ol>
+<h3 id="45-class-类">4.5 <code>Class</code> 类<a class="headerlink" href="#45-class-类" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>一个叫 <code>java.lang.Class</code> 的类</p>
+</blockquote>
+<p>在 Java 中，每个类在编译后都会生成一个对应的 <code>Class</code> 对象。这个 <code>Class</code> 对象包含了该类的元数据（如类名、方法、字段、父类等信息），这些信息被存储在磁盘上一个与类同名的 <code>.class</code> 文件中</p>
+<p>当程序运行时，如果需要创建某个类的实例，Java 虚拟机首先会检查该类的 <code>Class</code> 对象是否已经被加载到内存中。如果还没有被加载，JVM 会通过类加载器找到对应的 <code>.class</code> 文件，将其加载到内存中，并创建这个 <code>Class</code> 对象</p>
+<h3 id="46-初始化顺序">4.6 初始化顺序<a class="headerlink" href="#46-初始化顺序" title="Permanent link">&para;</a></h3>
+<p>类加载的时机：</p>
+<ol>
+<li>创建第一个对象时</li>
+<li>访问静态成员时</li>
+<li><code>Class.forName()</code> 显式加载时</li>
+</ol>
+<p>类成员初始化顺序：</p>
+<ol>
+<li>静态变量，静态块（类加载时，只一次）</li>
+<li>实例变量，实例初始化块（每次创建对象时）</li>
+<li>构造函数（每次创建对象时）</li>
+</ol>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-31-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-31-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-31-4"> 4</a></span>
@@ -10857,65 +10836,164 @@
 <span class="normal"><a href="#__codelineno-31-11">11</a></span>
 <span class="normal"><a href="#__codelineno-31-12">12</a></span>
 <span class="normal"><a href="#__codelineno-31-13">13</a></span>
-<span class="normal"><a href="#__codelineno-31-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="o">===</span><span class="w"> </span><span class="n">第一次创建对象</span><span class="w"> </span><span class="o">===</span>
-</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="n">初始化静态变量1</span>
-</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="n">静态初始化块执行</span>
-</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="n">静态方法被调用</span>
-</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="o">===</span><span class="w"> </span><span class="n">创建第一个Dog对象</span><span class="w"> </span><span class="o">===</span>
-</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="n">初始化name字段</span>
-</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="n">实例初始化块执行</span>
-</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="n">无参构造函数执行</span>
-</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="n">有参构造函数执行</span>
-</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="o">===</span><span class="w"> </span><span class="n">创建第二个Dog对象</span><span class="w"> </span><span class="o">===</span>
-</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11"></a><span class="n">初始化name字段</span>
-</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="n">实例初始化块执行</span>
-</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="n">无参构造函数执行</span>
-</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="n">有参构造函数执行</span>
+<span class="normal"><a href="#__codelineno-31-14">14</a></span>
+<span class="normal"><a href="#__codelineno-31-15">15</a></span>
+<span class="normal"><a href="#__codelineno-31-16">16</a></span>
+<span class="normal"><a href="#__codelineno-31-17">17</a></span>
+<span class="normal"><a href="#__codelineno-31-18">18</a></span>
+<span class="normal"><a href="#__codelineno-31-19">19</a></span>
+<span class="normal"><a href="#__codelineno-31-20">20</a></span>
+<span class="normal"><a href="#__codelineno-31-21">21</a></span>
+<span class="normal"><a href="#__codelineno-31-22">22</a></span>
+<span class="normal"><a href="#__codelineno-31-23">23</a></span>
+<span class="normal"><a href="#__codelineno-31-24">24</a></span>
+<span class="normal"><a href="#__codelineno-31-25">25</a></span>
+<span class="normal"><a href="#__codelineno-31-26">26</a></span>
+<span class="normal"><a href="#__codelineno-31-27">27</a></span>
+<span class="normal"><a href="#__codelineno-31-28">28</a></span>
+<span class="normal"><a href="#__codelineno-31-29">29</a></span>
+<span class="normal"><a href="#__codelineno-31-30">30</a></span>
+<span class="normal"><a href="#__codelineno-31-31">31</a></span>
+<span class="normal"><a href="#__codelineno-31-32">32</a></span>
+<span class="normal"><a href="#__codelineno-31-33">33</a></span>
+<span class="normal"><a href="#__codelineno-31-34">34</a></span>
+<span class="normal"><a href="#__codelineno-31-35">35</a></span>
+<span class="normal"><a href="#__codelineno-31-36">36</a></span>
+<span class="normal"><a href="#__codelineno-31-37">37</a></span>
+<span class="normal"><a href="#__codelineno-31-38">38</a></span>
+<span class="normal"><a href="#__codelineno-31-39">39</a></span>
+<span class="normal"><a href="#__codelineno-31-40">40</a></span>
+<span class="normal"><a href="#__codelineno-31-41">41</a></span>
+<span class="normal"><a href="#__codelineno-31-42">42</a></span>
+<span class="normal"><a href="#__codelineno-31-43">43</a></span>
+<span class="normal"><a href="#__codelineno-31-44">44</a></span>
+<span class="normal"><a href="#__codelineno-31-45">45</a></span>
+<span class="normal"><a href="#__codelineno-31-46">46</a></span>
+<span class="normal"><a href="#__codelineno-31-47">47</a></span>
+<span class="normal"><a href="#__codelineno-31-48">48</a></span>
+<span class="normal"><a href="#__codelineno-31-49">49</a></span>
+<span class="normal"><a href="#__codelineno-31-50">50</a></span>
+<span class="normal"><a href="#__codelineno-31-51">51</a></span>
+<span class="normal"><a href="#__codelineno-31-52">52</a></span>
+<span class="normal"><a href="#__codelineno-31-53">53</a></span>
+<span class="normal"><a href="#__codelineno-31-54">54</a></span>
+<span class="normal"><a href="#__codelineno-31-55">55</a></span>
+<span class="normal"><a href="#__codelineno-31-56">56</a></span>
+<span class="normal"><a href="#__codelineno-31-57">57</a></span>
+<span class="normal"><a href="#__codelineno-31-58">58</a></span>
+<span class="normal"><a href="#__codelineno-31-59">59</a></span>
+<span class="normal"><a href="#__codelineno-31-60">60</a></span>
+<span class="normal"><a href="#__codelineno-31-61">61</a></span>
+<span class="normal"><a href="#__codelineno-31-62">62</a></span>
+<span class="normal"><a href="#__codelineno-31-63">63</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="kd">class</span> <span class="nc">Dog</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">    </span><span class="c1">// 1. 静态变量</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">staticVar1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initStatic1</span><span class="p">();</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">staticVar2</span><span class="p">;</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">    </span><span class="c1">// 2. 静态初始化块</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">    </span><span class="kd">static</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;静态初始化块执行&quot;</span><span class="p">);</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a><span class="w">        </span><span class="n">staticVar2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;静态变量2&quot;</span><span class="p">;</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11"></a>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12"></a><span class="w">    </span><span class="c1">// 3. 实例变量</span>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initName</span><span class="p">();</span>
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">breed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;未知品种&quot;</span><span class="p">;</span>
+</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16"></a>
+</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17"></a><span class="w">    </span><span class="c1">// 4. 实例初始化块</span>
+</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;实例初始化块执行&quot;</span><span class="p">);</span>
+</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20"></a><span class="w">        </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// 默认年龄</span>
+</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22"></a>
+</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23"></a><span class="w">    </span><span class="c1">// 静态方法</span>
+</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">initStatic1</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;初始化静态变量1&quot;</span><span class="p">);</span>
+</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;静态变量1&quot;</span><span class="p">;</span>
+</span><span id="__span-31-27"><a id="__codelineno-31-27" name="__codelineno-31-27"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-28"><a id="__codelineno-31-28" name="__codelineno-31-28"></a>
+</span><span id="__span-31-29"><a id="__codelineno-31-29" name="__codelineno-31-29"></a><span class="w">    </span><span class="c1">// 实例方法</span>
+</span><span id="__span-31-30"><a id="__codelineno-31-30" name="__codelineno-31-30"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">initName</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-31"><a id="__codelineno-31-31" name="__codelineno-31-31"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;初始化name字段&quot;</span><span class="p">);</span>
+</span><span id="__span-31-32"><a id="__codelineno-31-32" name="__codelineno-31-32"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;未命名&quot;</span><span class="p">;</span>
+</span><span id="__span-31-33"><a id="__codelineno-31-33" name="__codelineno-31-33"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-34"><a id="__codelineno-31-34" name="__codelineno-31-34"></a>
+</span><span id="__span-31-35"><a id="__codelineno-31-35" name="__codelineno-31-35"></a><span class="w">    </span><span class="c1">// 构造函数</span>
+</span><span id="__span-31-36"><a id="__codelineno-31-36" name="__codelineno-31-36"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-37"><a id="__codelineno-31-37" name="__codelineno-31-37"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;无参构造函数执行&quot;</span><span class="p">);</span>
+</span><span id="__span-31-38"><a id="__codelineno-31-38" name="__codelineno-31-38"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-39"><a id="__codelineno-31-39" name="__codelineno-31-39"></a>
+</span><span id="__span-31-40"><a id="__codelineno-31-40" name="__codelineno-31-40"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">Dog</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">breed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-41"><a id="__codelineno-31-41" name="__codelineno-31-41"></a><span class="w">        </span><span class="k">this</span><span class="p">();</span><span class="w">  </span><span class="c1">// 调用无参构造函数（必须第一句）</span>
+</span><span id="__span-31-42"><a id="__codelineno-31-42" name="__codelineno-31-42"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;有参构造函数执行&quot;</span><span class="p">);</span>
+</span><span id="__span-31-43"><a id="__codelineno-31-43" name="__codelineno-31-43"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span>
+</span><span id="__span-31-44"><a id="__codelineno-31-44" name="__codelineno-31-44"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">breed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">breed</span><span class="p">;</span>
+</span><span id="__span-31-45"><a id="__codelineno-31-45" name="__codelineno-31-45"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-46"><a id="__codelineno-31-46" name="__codelineno-31-46"></a>
+</span><span id="__span-31-47"><a id="__codelineno-31-47" name="__codelineno-31-47"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">staticMethod</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-48"><a id="__codelineno-31-48" name="__codelineno-31-48"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;静态方法被调用&quot;</span><span class="p">);</span>
+</span><span id="__span-31-49"><a id="__codelineno-31-49" name="__codelineno-31-49"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-50"><a id="__codelineno-31-50" name="__codelineno-31-50"></a><span class="p">}</span>
+</span><span id="__span-31-51"><a id="__codelineno-31-51" name="__codelineno-31-51"></a>
+</span><span id="__span-31-52"><a id="__codelineno-31-52" name="__codelineno-31-52"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">TestInitializationOrder</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-53"><a id="__codelineno-31-53" name="__codelineno-31-53"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-54"><a id="__codelineno-31-54" name="__codelineno-31-54"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 第一次创建对象 ===&quot;</span><span class="p">);</span>
+</span><span id="__span-31-55"><a id="__codelineno-31-55" name="__codelineno-31-55"></a><span class="w">        </span><span class="n">Dog</span><span class="p">.</span><span class="na">staticMethod</span><span class="p">();</span><span class="w">  </span><span class="c1">// 触发类加载和静态初始化</span>
+</span><span id="__span-31-56"><a id="__codelineno-31-56" name="__codelineno-31-56"></a>
+</span><span id="__span-31-57"><a id="__codelineno-31-57" name="__codelineno-31-57"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 创建第一个Dog对象 ===&quot;</span><span class="p">);</span>
+</span><span id="__span-31-58"><a id="__codelineno-31-58" name="__codelineno-31-58"></a><span class="w">        </span><span class="n">Dog</span><span class="w"> </span><span class="n">dog1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&quot;旺财&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;金毛&quot;</span><span class="p">);</span>
+</span><span id="__span-31-59"><a id="__codelineno-31-59" name="__codelineno-31-59"></a>
+</span><span id="__span-31-60"><a id="__codelineno-31-60" name="__codelineno-31-60"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;=== 创建第二个Dog对象 ===&quot;</span><span class="p">);</span>
+</span><span id="__span-31-61"><a id="__codelineno-31-61" name="__codelineno-31-61"></a><span class="w">        </span><span class="n">Dog</span><span class="w"> </span><span class="n">dog2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Dog</span><span class="p">(</span><span class="s">&quot;小黑&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;拉布拉多&quot;</span><span class="p">);</span>
+</span><span id="__span-31-62"><a id="__codelineno-31-62" name="__codelineno-31-62"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-63"><a id="__codelineno-31-63" name="__codelineno-31-63"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-32-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-32-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-32-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-32-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-32-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-32-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-32-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-32-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-32-10">10</a></span>
+<span class="normal"><a href="#__codelineno-32-11">11</a></span>
+<span class="normal"><a href="#__codelineno-32-12">12</a></span>
+<span class="normal"><a href="#__codelineno-32-13">13</a></span>
+<span class="normal"><a href="#__codelineno-32-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="o">===</span><span class="w"> </span><span class="n">第一次创建对象</span><span class="w"> </span><span class="o">===</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="n">初始化静态变量1</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="n">静态初始化块执行</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="n">静态方法被调用</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="o">===</span><span class="w"> </span><span class="n">创建第一个Dog对象</span><span class="w"> </span><span class="o">===</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="n">初始化name字段</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a><span class="n">实例初始化块执行</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8"></a><span class="n">无参构造函数执行</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9"></a><span class="n">有参构造函数执行</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10"></a><span class="o">===</span><span class="w"> </span><span class="n">创建第二个Dog对象</span><span class="w"> </span><span class="o">===</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11"></a><span class="n">初始化name字段</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12"></a><span class="n">实例初始化块执行</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13"></a><span class="n">无参构造函数执行</span>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14"></a><span class="n">有参构造函数执行</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="5-数据传递">5 数据传递<a class="headerlink" href="#5-数据传递" title="Permanent link">&para;</a></h2>
 <p>基本数据类型的传递</p>
-<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
-<span class="normal"><a href="#__codelineno-32-2">2</a></span>
-<span class="normal"><a href="#__codelineno-32-3">3</a></span>
-<span class="normal"><a href="#__codelineno-32-4">4</a></span>
-<span class="normal"><a href="#__codelineno-32-5">5</a></span>
-<span class="normal"><a href="#__codelineno-32-6">6</a></span>
-<span class="normal"><a href="#__codelineno-32-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">          </span><span class="c1">// 修改的是副本，不影响原始值</span>
-</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="p">}</span>
-</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a>
-</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
-</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">               </span><span class="c1">// 传递的是k的值的副本</span>
-</span></code></pre></div></td></tr></table></div>
-<p>引用类型的传递</p>
-<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-33-10">10</a></span>
-<span class="normal"><a href="#__codelineno-33-11">11</a></span>
-<span class="normal"><a href="#__codelineno-33-12">12</a></span>
-<span class="normal"><a href="#__codelineno-33-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="kd">class</span> <span class="nc">Number</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">    </span><span class="c1">// 实例变量</span>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1">1</a></span>
+<span class="normal"><a href="#__codelineno-33-2">2</a></span>
+<span class="normal"><a href="#__codelineno-33-3">3</a></span>
+<span class="normal"><a href="#__codelineno-33-4">4</a></span>
+<span class="normal"><a href="#__codelineno-33-5">5</a></span>
+<span class="normal"><a href="#__codelineno-33-6">6</a></span>
+<span class="normal"><a href="#__codelineno-33-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">          </span><span class="c1">// 修改的是副本，不影响原始值</span>
 </span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="p">}</span>
 </span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a>
-</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">Number</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="w">    </span><span class="n">n</span><span class="p">.</span><span class="na">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">         </span><span class="c1">// 通过引用修改对象内容</span>
-</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="p">}</span>
-</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8"></a>
-</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9"></a><span class="n">Number</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Number</span><span class="p">();</span>
-</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="n">k</span><span class="p">.</span><span class="na">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11"></a><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">               </span><span class="c1">// 传递的是对象引用的副本</span>
-</span><span id="__span-33-12"><a id="__codelineno-33-12" name="__codelineno-33-12"></a>
-</span><span id="__span-33-13"><a id="__codelineno-33-13" name="__codelineno-33-13"></a><span class="c1">// 最后 k.i 等于 9</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">               </span><span class="c1">// 传递的是k的值的副本</span>
 </span></code></pre></div></td></tr></table></div>
-<h2 id="6-switch-表达式">6 Switch 表达式<a class="headerlink" href="#6-switch-表达式" title="Permanent link">&para;</a></h2>
+<p>引用类型的传递</p>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-34-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-34-3"> 3</a></span>
@@ -10928,22 +11006,21 @@
 <span class="normal"><a href="#__codelineno-34-10">10</a></span>
 <span class="normal"><a href="#__codelineno-34-11">11</a></span>
 <span class="normal"><a href="#__codelineno-34-12">12</a></span>
-<span class="normal"><a href="#__codelineno-34-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ModernSwitch</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-34-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="kd">class</span> <span class="nc">Number</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">    </span><span class="c1">// 实例变量</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="p">}</span>
 </span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a>
-</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">dayType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;工作日&quot;</span><span class="p">;</span>
-</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;周末&quot;</span><span class="p">;</span>
-</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;无效日期&quot;</span><span class="p">;</span>
-</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="w">        </span><span class="p">};</span>
-</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10"></a>
-</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">dayType</span><span class="p">);</span><span class="w"> </span><span class="c1">// 工作日</span>
-</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13"></a><span class="p">}</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">f</span><span class="p">(</span><span class="n">Number</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="w">    </span><span class="n">n</span><span class="p">.</span><span class="na">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="p">;</span><span class="w">         </span><span class="c1">// 通过引用修改对象内容</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="p">}</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8"></a>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="n">Number</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Number</span><span class="p">();</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10"></a><span class="n">k</span><span class="p">.</span><span class="na">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11"></a><span class="n">f</span><span class="p">(</span><span class="n">k</span><span class="p">);</span><span class="w">               </span><span class="c1">// 传递的是对象引用的副本</span>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12"></a>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13"></a><span class="c1">// 最后 k.i 等于 9</span>
 </span></code></pre></div></td></tr></table></div>
-<p>箭头语法 <code>-&gt;</code>：不需要 <code>break</code></p>
-<p>如果需要写复杂逻辑的返回值，使用 <code>yield</code> 关键字</p>
+<h2 id="6-switch-表达式">6 Switch 表达式<a class="headerlink" href="#6-switch-表达式" title="Permanent link">&para;</a></h2>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-35-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-35-3"> 3</a></span>
@@ -10956,37 +11033,22 @@
 <span class="normal"><a href="#__codelineno-35-10">10</a></span>
 <span class="normal"><a href="#__codelineno-35-11">11</a></span>
 <span class="normal"><a href="#__codelineno-35-12">12</a></span>
-<span class="normal"><a href="#__codelineno-35-13">13</a></span>
-<span class="normal"><a href="#__codelineno-35-14">14</a></span>
-<span class="normal"><a href="#__codelineno-35-15">15</a></span>
-<span class="normal"><a href="#__codelineno-35-16">16</a></span>
-<span class="normal"><a href="#__codelineno-35-17">17</a></span>
-<span class="normal"><a href="#__codelineno-35-18">18</a></span>
-<span class="normal"><a href="#__codelineno-35-19">19</a></span>
-<span class="normal"><a href="#__codelineno-35-20">20</a></span>
-<span class="normal"><a href="#__codelineno-35-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YieldKeyword</span><span class="w"> </span><span class="p">{</span>
+<span class="normal"><a href="#__codelineno-35-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">ModernSwitch</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 </span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a>
-</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">;</span>
-</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">85</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9"></a><span class="w">                    </span><span class="kd">yield</span><span class="w"> </span><span class="s">&quot;B+&quot;</span><span class="p">;</span>
-</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10"></a><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11"></a><span class="w">                    </span><span class="kd">yield</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">;</span>
-</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12"></a><span class="w">                </span><span class="p">}</span>
-</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13"></a><span class="w">            </span><span class="p">}</span>
-</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">;</span>
-</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;D&quot;</span><span class="p">;</span>
-</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">;</span>
-</span><span id="__span-35-17"><a id="__codelineno-35-17" name="__codelineno-35-17"></a><span class="w">        </span><span class="p">};</span>
-</span><span id="__span-35-18"><a id="__codelineno-35-18" name="__codelineno-35-18"></a>
-</span><span id="__span-35-19"><a id="__codelineno-35-19" name="__codelineno-35-19"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;成绩等级: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade</span><span class="p">);</span><span class="w"> </span><span class="c1">// 成绩等级: B+</span>
-</span><span id="__span-35-20"><a id="__codelineno-35-20" name="__codelineno-35-20"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-35-21"><a id="__codelineno-35-21" name="__codelineno-35-21"></a><span class="p">}</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">dayType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;工作日&quot;</span><span class="p">;</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;周末&quot;</span><span class="p">;</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;无效日期&quot;</span><span class="p">;</span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9"></a><span class="w">        </span><span class="p">};</span>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10"></a>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">dayType</span><span class="p">);</span><span class="w"> </span><span class="c1">// 工作日</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
-<p>当然也可以作为语句使用，无返回值</p>
+<p>箭头语法 <code>-&gt;</code>：不需要 <code>break</code></p>
+<p>如果需要写复杂逻辑的返回值，使用 <code>yield</code> 关键字</p>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
@@ -11004,24 +11066,67 @@
 <span class="normal"><a href="#__codelineno-36-15">15</a></span>
 <span class="normal"><a href="#__codelineno-36-16">16</a></span>
 <span class="normal"><a href="#__codelineno-36-17">17</a></span>
-<span class="normal"><a href="#__codelineno-36-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VoidSwitch</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processCommand</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">        </span><span class="c1">// 作为语句使用，不返回值</span>
-</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;start&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;启动系统&quot;</span><span class="p">);</span>
-</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;stop&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;停止系统&quot;</span><span class="p">);</span>
-</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;restart&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;停止系统&quot;</span><span class="p">);</span>
-</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;启动系统&quot;</span><span class="p">);</span>
-</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a><span class="w">            </span><span class="p">}</span>
-</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;未知命令&quot;</span><span class="p">);</span>
-</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14"></a>
-</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16"></a><span class="w">        </span><span class="n">processCommand</span><span class="p">(</span><span class="s">&quot;restart&quot;</span><span class="p">);</span>
-</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18"></a><span class="p">}</span>
+<span class="normal"><a href="#__codelineno-36-18">18</a></span>
+<span class="normal"><a href="#__codelineno-36-19">19</a></span>
+<span class="normal"><a href="#__codelineno-36-20">20</a></span>
+<span class="normal"><a href="#__codelineno-36-21">21</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">YieldKeyword</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">85</span><span class="p">;</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">grade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;A&quot;</span><span class="p">;</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">8</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a><span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">score</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">85</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a><span class="w">                    </span><span class="kd">yield</span><span class="w"> </span><span class="s">&quot;B+&quot;</span><span class="p">;</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a><span class="w">                </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a><span class="w">                    </span><span class="kd">yield</span><span class="w"> </span><span class="s">&quot;B&quot;</span><span class="p">;</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a><span class="w">                </span><span class="p">}</span>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">7</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="p">;</span>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;D&quot;</span><span class="p">;</span>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;F&quot;</span><span class="p">;</span>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17"></a><span class="w">        </span><span class="p">};</span>
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18"></a>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;成绩等级: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">grade</span><span class="p">);</span><span class="w"> </span><span class="c1">// 成绩等级: B+</span>
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>当然也可以作为语句使用，无返回值</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-37-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-37-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-37-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-37-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-37-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-37-10">10</a></span>
+<span class="normal"><a href="#__codelineno-37-11">11</a></span>
+<span class="normal"><a href="#__codelineno-37-12">12</a></span>
+<span class="normal"><a href="#__codelineno-37-13">13</a></span>
+<span class="normal"><a href="#__codelineno-37-14">14</a></span>
+<span class="normal"><a href="#__codelineno-37-15">15</a></span>
+<span class="normal"><a href="#__codelineno-37-16">16</a></span>
+<span class="normal"><a href="#__codelineno-37-17">17</a></span>
+<span class="normal"><a href="#__codelineno-37-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">VoidSwitch</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">processCommand</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="w">        </span><span class="c1">// 作为语句使用，不返回值</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">command</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;start&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;启动系统&quot;</span><span class="p">);</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;stop&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;停止系统&quot;</span><span class="p">);</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="w">            </span><span class="k">case</span><span class="w"> </span><span class="s">&quot;restart&quot;</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;停止系统&quot;</span><span class="p">);</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9"></a><span class="w">                </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;启动系统&quot;</span><span class="p">);</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11"></a><span class="w">            </span><span class="k">default</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;未知命令&quot;</span><span class="p">);</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14"></a>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-16"><a id="__codelineno-37-16" name="__codelineno-37-16"></a><span class="w">        </span><span class="n">processCommand</span><span class="p">(</span><span class="s">&quot;restart&quot;</span><span class="p">);</span>
+</span><span id="__span-37-17"><a id="__codelineno-37-17" name="__codelineno-37-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-37-18"><a id="__codelineno-37-18" name="__codelineno-37-18"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="7-package">7 Package<a class="headerlink" href="#7-package" title="Permanent link">&para;</a></h2>
 <p>Package 是 Java 语言中用于组织和管理类与接口的核心机制</p>
@@ -11063,21 +11168,21 @@
 </ol>
 <h3 id="72-声明">7.2 声明<a class="headerlink" href="#72-声明" title="Permanent link">&para;</a></h3>
 <p>在每个 Java 源文件（<code>.java</code>）的顶部，使用 <code>package</code> 关键字来声明该文件中所有类所属的包</p>
-<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">com/example/math/Calculator.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1">1</a></span>
-<span class="normal"><a href="#__codelineno-37-2">2</a></span>
-<span class="normal"><a href="#__codelineno-37-3">3</a></span>
-<span class="normal"><a href="#__codelineno-37-4">4</a></span>
-<span class="normal"><a href="#__codelineno-37-5">5</a></span>
-<span class="normal"><a href="#__codelineno-37-6">6</a></span>
-<span class="normal"><a href="#__codelineno-37-7">7</a></span>
-<span class="normal"><a href="#__codelineno-37-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="c1">// 声明这个类在 com.example.math 包中</span>
-</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.math</span><span class="p">;</span>
-</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a>
-</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Calculator</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
-</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="p">}</span>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">com/example/math/Calculator.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span>
+<span class="normal"><a href="#__codelineno-38-6">6</a></span>
+<span class="normal"><a href="#__codelineno-38-7">7</a></span>
+<span class="normal"><a href="#__codelineno-38-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="c1">// 声明这个类在 com.example.math 包中</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.math</span><span class="p">;</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Calculator</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <ol>
 <li>一个 <code>.java</code> 文件中最多只能有一条 <code>package</code> 语句（除注释外必须是第一行）</li>
@@ -11085,55 +11190,30 @@
 </ol>
 <h3 id="73-import-语句">7.3 <code>import</code> 语句<a class="headerlink" href="#73-import-语句" title="Permanent link">&para;</a></h3>
 <p>当需要在一个类中使用其他包中的类时，就需要使用 <code>import</code> 语句来引入该类</p>
-<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">com/example/math/Calculator.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
-<span class="normal"><a href="#__codelineno-38-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">包名.类名</span><span class="p">;</span><span class="w">   </span><span class="c1">// 导入单个类</span>
-</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">包名.*</span><span class="p">;</span><span class="w">     </span><span class="c1">// 导入整个包下的所有类（不包含子包）</span>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">com/example/math/Calculator.java</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">包名.类名</span><span class="p">;</span><span class="w">   </span><span class="c1">// 导入单个类</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">包名.*</span><span class="p">;</span><span class="w">     </span><span class="c1">// 导入整个包下的所有类（不包含子包）</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>1.使用完全限定名</strong></p>
-<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
-<span class="normal"><a href="#__codelineno-39-2">2</a></span>
-<span class="normal"><a href="#__codelineno-39-3">3</a></span>
-<span class="normal"><a href="#__codelineno-39-4">4</a></span>
-<span class="normal"><a href="#__codelineno-39-5">5</a></span>
-<span class="normal"><a href="#__codelineno-39-6">6</a></span>
-<span class="normal"><a href="#__codelineno-39-7">7</a></span>
-<span class="normal"><a href="#__codelineno-39-8">8</a></span>
-<span class="normal"><a href="#__codelineno-39-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
-</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a>
-</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a><span class="w">        </span><span class="c1">// 直接使用类的完全限定名</span>
-</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="w">        </span><span class="n">com</span><span class="p">.</span><span class="na">example</span><span class="p">.</span><span class="na">math</span><span class="p">.</span><span class="na">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">example</span><span class="p">.</span><span class="na">math</span><span class="p">.</span><span class="na">Calculator</span><span class="p">();</span>
-</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="p">}</span>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span>
+<span class="normal"><a href="#__codelineno-40-4">4</a></span>
+<span class="normal"><a href="#__codelineno-40-5">5</a></span>
+<span class="normal"><a href="#__codelineno-40-6">6</a></span>
+<span class="normal"><a href="#__codelineno-40-7">7</a></span>
+<span class="normal"><a href="#__codelineno-40-8">8</a></span>
+<span class="normal"><a href="#__codelineno-40-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">        </span><span class="c1">// 直接使用类的完全限定名</span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="w">        </span><span class="n">com</span><span class="p">.</span><span class="na">example</span><span class="p">.</span><span class="na">math</span><span class="p">.</span><span class="na">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">com</span><span class="p">.</span><span class="na">example</span><span class="p">.</span><span class="na">math</span><span class="p">.</span><span class="na">Calculator</span><span class="p">();</span>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>2.使用 <code>import</code> 导入单个类</strong>（推荐）</p>
-<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-40-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-40-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-40-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-40-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-40-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-40-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-40-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-40-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-40-10">10</a></span>
-<span class="normal"><a href="#__codelineno-40-11">11</a></span>
-<span class="normal"><a href="#__codelineno-40-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
-</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>
-</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="c1">// 导入特定的类</span>
-</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.example.math.Calculator</span><span class="p">;</span>
-</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a>
-</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="w">        </span><span class="c1">// 可以直接使用类名</span>
-</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="w">        </span><span class="n">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Calculator</span><span class="p">();</span>
-</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12"></a><span class="p">}</span>
-</span></code></pre></div></td></tr></table></div>
-<p><strong>3.使用 <code>import</code> 导入整个包</strong>（谨慎使用）</p>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-41-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-41-3"> 3</a></span>
@@ -11144,21 +11224,21 @@
 <span class="normal"><a href="#__codelineno-41-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-41-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-41-10">10</a></span>
-<span class="normal"><a href="#__codelineno-41-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-41-11">11</a></span>
+<span class="normal"><a href="#__codelineno-41-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
 </span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a>
-</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="c1">// 导入 com.example.math 包下的所有类</span>
-</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.example.math.*</span><span class="p">;</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="c1">// 导入特定的类</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.example.math.Calculator</span><span class="p">;</span>
 </span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5"></a>
 </span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8"></a><span class="w">        </span><span class="n">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Calculator</span><span class="p">();</span>
-</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
-</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11"></a><span class="p">}</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8"></a><span class="w">        </span><span class="c1">// 可以直接使用类名</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9"></a><span class="w">        </span><span class="n">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Calculator</span><span class="p">();</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
-<h4 id="731-特殊导入">7.3.1 特殊导入<a class="headerlink" href="#731-特殊导入" title="Permanent link">&para;</a></h4>
-<h5 id="静态导入">静态导入<a class="headerlink" href="#静态导入" title="Permanent link">&para;</a></h5>
-<p>用于导入类的静态成员（静态变量和静态方法），之后可以直接使用静态成员名，而无需通过类名调用</p>
+<p><strong>3.使用 <code>import</code> 导入整个包</strong>（谨慎使用）</p>
 <div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-42-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-42-3"> 3</a></span>
@@ -11169,21 +11249,46 @@
 <span class="normal"><a href="#__codelineno-42-8"> 8</a></span>
 <span class="normal"><a href="#__codelineno-42-9"> 9</a></span>
 <span class="normal"><a href="#__codelineno-42-10">10</a></span>
-<span class="normal"><a href="#__codelineno-42-11">11</a></span>
-<span class="normal"><a href="#__codelineno-42-12">12</a></span>
-<span class="normal"><a href="#__codelineno-42-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
+<span class="normal"><a href="#__codelineno-42-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
 </span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a>
-</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="c1">// 静态导入 Math 类的所有静态成员</span>
-</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="kn">import static</span><span class="w"> </span><span class="nn">java.lang.Math.*</span><span class="p">;</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="c1">// 导入 com.example.math 包下的所有类</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">com.example.math.*</span><span class="p">;</span>
 </span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5"></a>
-</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticImportExample</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Main</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8"></a><span class="w">        </span><span class="c1">// 无需写 Math.PI 和 Math.sqrt()</span>
-</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0</span><span class="p">;</span>
-</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
-</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;面积是: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area</span><span class="p">);</span>
-</span><span id="__span-42-12"><a id="__codelineno-42-12" name="__codelineno-42-12"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-42-13"><a id="__codelineno-42-13" name="__codelineno-42-13"></a><span class="p">}</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8"></a><span class="w">        </span><span class="n">Calculator</span><span class="w"> </span><span class="n">calc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Calculator</span><span class="p">();</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">calc</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h4 id="731-特殊导入">7.3.1 特殊导入<a class="headerlink" href="#731-特殊导入" title="Permanent link">&para;</a></h4>
+<h5 id="静态导入">静态导入<a class="headerlink" href="#静态导入" title="Permanent link">&para;</a></h5>
+<p>用于导入类的静态成员（静态变量和静态方法），之后可以直接使用静态成员名，而无需通过类名调用</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-43-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-43-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-43-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-43-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-43-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-43-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-43-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-43-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-43-10">10</a></span>
+<span class="normal"><a href="#__codelineno-43-11">11</a></span>
+<span class="normal"><a href="#__codelineno-43-12">12</a></span>
+<span class="normal"><a href="#__codelineno-43-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">com.example.app</span><span class="p">;</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a><span class="c1">// 静态导入 Math 类的所有静态成员</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a><span class="kn">import static</span><span class="w"> </span><span class="nn">java.lang.Math.*</span><span class="p">;</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">StaticImportExample</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8"></a><span class="w">        </span><span class="c1">// 无需写 Math.PI 和 Math.sqrt()</span>
+</span><span id="__span-43-9"><a id="__codelineno-43-9" name="__codelineno-43-9"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.0</span><span class="p">;</span>
+</span><span id="__span-43-10"><a id="__codelineno-43-10" name="__codelineno-43-10"></a><span class="w">        </span><span class="kt">double</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PI</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+</span><span id="__span-43-11"><a id="__codelineno-43-11" name="__codelineno-43-11"></a><span class="w">        </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;面积是: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">area</span><span class="p">);</span>
+</span><span id="__span-43-12"><a id="__codelineno-43-12" name="__codelineno-43-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-43-13"><a id="__codelineno-43-13" name="__codelineno-43-13"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <p>使用静态导入需谨慎，过度使用会降低代码可读性</p>
 <h5 id="无需-import-的包">无需 <code>import</code> 的包<a class="headerlink" href="#无需-import-的包" title="Permanent link">&para;</a></h5>
@@ -11244,15 +11349,15 @@
 <li>final 方法：主要目的是防止子类重写该方法以改变其行为，保证父类的某些关键逻辑得以保留。早期版本中，<code>final</code> 方法也有助于提高内联调用效率，但现代 JVM 已能自动优化</li>
 <li>final 类：通常出于安全或设计目的，防止他人通过继承来创建子类，从而可能破坏该类的完整性或设计意图。Java 标准库中的 <code>String</code>、<code>Integer</code> 等类都是 <code>final</code> 的</li>
 </ol>
-<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
-<span class="normal"><a href="#__codelineno-43-2">2</a></span>
-<span class="normal"><a href="#__codelineno-43-3">3</a></span>
-<span class="normal"><a href="#__codelineno-43-4">4</a></span>
-<span class="normal"><a href="#__codelineno-43-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
-</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><span class="kd">final</span><span class="w"> </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">);</span>
-</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a><span class="c1">// MAX_VALUE = 200; // 错误：不能修改final基本类型</span>
-</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a><span class="c1">// sb = new StringBuilder(&quot;World&quot;); // 错误：不能修改final引用</span>
-</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot; World&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 正确：可以修改对象内部的状态</span>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span>
+<span class="normal"><a href="#__codelineno-44-2">2</a></span>
+<span class="normal"><a href="#__codelineno-44-3">3</a></span>
+<span class="normal"><a href="#__codelineno-44-4">4</a></span>
+<span class="normal"><a href="#__codelineno-44-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_VALUE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="kd">final</span><span class="w"> </span><span class="n">StringBuilder</span><span class="w"> </span><span class="n">sb</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">StringBuilder</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">);</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a><span class="c1">// MAX_VALUE = 200; // 错误：不能修改final基本类型</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a><span class="c1">// sb = new StringBuilder(&quot;World&quot;); // 错误：不能修改final引用</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5"></a><span class="n">sb</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot; World&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// 正确：可以修改对象内部的状态</span>
 </span></code></pre></div></td></tr></table></div>
 
 
@@ -11276,7 +11381,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月6日 08:39:15 UTC">2025年10月6日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月9日 14:05:54 UTC">2025年10月9日</span>
   </span>
 
     
@@ -11408,13 +11513,13 @@
         
         
           
-          <a href="../../BS_software_design/" class="md-footer__link md-footer__link--next" aria-label="下一页: B/S 体系软件设计">
+          <a href="../ch3/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3 Inheritance and Polymorphism">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                B/S 体系软件设计
+                3 Inheritance and Polymorphism
               </div>
             </div>
             <div class="md-footer__button md-icon">
