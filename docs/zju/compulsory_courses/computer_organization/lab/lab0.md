@@ -323,7 +323,7 @@ module MUX8T1_32 (
     input [31:0] I7, 
     input [2:0] s, 
 
-    output [7:0] o 
+    output [31:0] o 
 ); 
  
     assign o = (s == 3'b000) ? I0 : 
