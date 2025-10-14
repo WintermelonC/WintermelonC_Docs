@@ -270,3 +270,135 @@ $q_4 \rightarrow q_3 \rightarrow q_5$: $a^*b(a \cup ba^*ba^*b)^*$
 
 ## 4 Languages That Are and Are Not Regular
 
+尽管我们现在有很多方法能够证明语言是正则的，但仍然缺乏有效的方法来证明一个语言不是正则的。由于正则表达式的数量是可数无穷的，而语言的总数是不可数无穷的，因此非正则语言是确实存在的
+
+所有正则语言都具备，但某些非正则语言不具备的两个性质：
+
+1. 当一个字符串从左到右被扫描时，为了在最后确定该字符串是否属于某个语言，所需的内存容量必须是有界的、事先固定的，并且仅依赖于语言本身，而不依赖于具体的输入字符串。例如，我们预期语言 $\lbrace a^nb^n | n \geqslant 0 \rbrace$ 不是正则的，因为很难想象一个有限状态设备（如有限自动机）如何在到达 $a$ 和 $b$ 的边界时，准确记住之前看到的 $a$ 的个数，以便于后面的 $b$ 的个数进行比较
+2. 包含无限多个字符串的正则语言，通常由带有循环的自动机或包含 Kleene star 的正则表达式表示。这类语言必然包含具有某种简单重复结构的无限子集，这种结构来源于正则表达式中的 Kleene star，或有限自动机状态图中的循环。因此，我们可以预期，例如语言 $\lbrace a^n | n \geqslant 1 \text{且 } n \text{ 是质数} \rbrace$ 不是正则的，因为在质数集合中不存在简单的周期性规律
+
+> 1. 正则语言能被有限状态自动机识别 → 自动机只有有限个状态 → 记忆能力有限
+> 2. 正则语言的无限部分必须有某种“重复模式”，比如通过循环或 Kleene star 实现
+>
+> 这些都不是严格证明，而是直觉上的理由
+
+!!! tip "Pumping Theorems"
+
+    Let $L$ be a regular language. There is an integer $n \geqslant 1$ such that any string $w \in L$ with $|w| \geqslant n$ can be rewritten as $w = xyz$ such that
+    
+    1. $y \not ={e}$
+    2. $|xy| \leqslant n$
+    3. $xy^iz \in L$ for each $i \geqslant 0$
+    
+    如果一个语言 $L$ 是正则的，那么它的所有足够长的字符串（长度 ≥ 某个常数 $n$）都必须包含一段“可泵”的子串 $y$，可以重复任意次数，结果仍然在 $L$ 中
+
+    > 换句话说：正则语言中的长字符串具有某种“循环结构”
+
+!!! example "proof"
+
+    <figure markdown="span">
+      ![Img 19](../../../img/computational_theory/ch2/computational_ch2_img19.png){ width="800" }
+    </figure>
+
+- 一个语言正则 $\implies$ 满足泵定理
+- 满足泵定理 $\nRightarrow$ 一个语言正则
+
+<figure markdown="span">
+  ![Img 20](../../../img/computational_theory/ch2/computational_ch2_img20.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+  ![Img 21](../../../img/computational_theory/ch2/computational_ch2_img21.png){ width="800" }
+</figure>
+
+## 5 State Minimization
+
+<figure markdown="span">
+  ![Img 22](../../../img/computational_theory/ch2/computational_ch2_img22.png){ width="400" }
+</figure>
+
+考虑上图中的 DFA，它接受语言 $L = (ab \cup ba)^*$。考虑状态 $q_7$，显然，这个状态 unreachable
+
+这是在任何确定性有限自动机上可以进行的最简单的优化：移除所有不可达状态及其相关的输入和输出转移
+
+<figure markdown="span">
+  ![Img 23](../../../img/computational_theory/ch2/computational_ch2_img23.png){ width="400" }
+</figure>
+
+设 $L \subseteq \Sigma^*$ 是一个语言，且 $x,y \in \Sigma^*$。我们说 $x$ 和 $y$ **equivalent with respect to $L$**，记作 $x \approx_L y$，如果对所有 $z \in \Sigma^*$，满足：$xz \in L \text{ 当且仅当 } yz \in L$
+
+> 换句话说：$x \approx_L y$ 当且仅当要么两个字符串都属于 $L$，要么都不属于；并且，向 $x$ 和 $y$ 后面附加任何固定的字符串 $z$，得到的新字符串要么都属于 $L$，要么都不属于
+
+我们用 $[x]$ 表示 $x$ 所属的关于 $L$ 的等价类
+
+对于 ^^Figure 2-20^^ 中的自动机所接受的语言 $L = (ab \cup ba)^*$，有 4 个等价类（或者说，可以分成 4 个等价类）：
+
+1. $[e] = L$：满足 DFA 接受状态的字符串
+2. $[a] = La$：只能通过后接 $bL$ 才能进入 $L$ 的字符串
+3. $[b] = Lb$：只能通过后接 $aL$ 才能进入 $L$ 的字符串
+4. $[aa] = L(aa \cup bb) \Sigma^*$：所有以 $aa$ 或 $bb$ 为前缀的字符串（也就是无法进入 $L$ 的字符串）
+
+设 $M = (K, \Sigma, \delta, s, F)$ 是一个确定性有限自动机。我们说两个字符串 $x,y \in \Sigma^*$ **equivalent with respect to $M$**，记作 $x \sim_M y$，直观上，它们都能从初始状态 $s$ 把自动机带到同一个状态。形式上，$x \sim_M y$ 当且仅当存在某个状态 $q$，使得：$(s,x) \vdash_M^* (q,e) \text{ 且 } (s,y) \vdash_M^* (q,e)$
+
+我们将与状态 $q$ 对应的等价类记为 $E_q$
+
+对于 ^^Figure 2-20^^ 中的自动机，等价类如下：
+
+1. $E_{q_1} = (ba)^*$
+2. $E_{q_2} = La \cup a$
+3. $E_{q_3} = abL$
+4. $E_{q_4} = b(ab)^*$
+5. $E_{q_5} = L(bb \cup aa) \Sigma^*$
+6. $E_{q_6} = abLb$
+
+!!! tip ""
+
+    For any DFA $M = (K, \Sigma, \delta, s, F)$ and any string $x, y \in \Sigma^*$, if $x \sim_M y$, then $x \approx_{L(M)} y$
+
+对于 ^^Figure 2-20^^ 中的自动机
+
+1. $[e]$ 和 $E_{q_1}$ $E_{q_3}$ 对应
+2. $[a]$ 和 $E_{q_2}$
+3. $[b]$ 和 $E_{q_4}$ $E_{q_6}$ 对应
+4. $[aa]$ 和 $E_{q_5}$ 对应
+
+!!! tip "The Myhill-Nerode Theorem"
+
+    设 $L \subseteq \Sigma^*$ 是一个正则语言。那么存在一个确定性有限自动机，其状态数恰好等于 $\approx_L$ 的等价类个数，并且该自动机接受语言 $L$
+
+对于 ^^Figure 2-20^^ 中的自动机，根据定理，其状态数最少有 4 个
+
+<figure markdown="span">
+  ![Img 24](../../../img/computational_theory/ch2/computational_ch2_img24.png){ width="400" }
+</figure>
+
+> 也就是说，状态 $q_4$ $q_6$ 等价，$q_1, q_3$ 等价
+
+!!! tip "The Myhill-Nerode Theorem"
+
+    A language $L$ is regular if and only if $\approx_L$ has finitely many equivalence classes
+
+<figure markdown="span">
+  ![Img 25](../../../img/computational_theory/ch2/computational_ch2_img25.png){ width="800" }
+</figure>
+
+我们称两个状态 $p$ $q$ 是等价的，记作 $p \equiv q$，如果对于所有的 $z \in \Sigma^*$，$z$ 都能驱动自动机从状态 $p$ 或 $q$ 到达某个接受状态或者到达 trap
+
+称 $p \equiv_n q$：对所有长度不超过 $n$ 的字符串 $z$，满足上面的条件
+
+!!! tip ""
+
+    For nay two states $p, q \in K$ and any integer $n \geqslant 1$, $p \equiv_n q$ if and only if
+
+    1. $p \equiv_{n-1} q$
+    2. for all $a \in \Sigma$, $\delta(p,a) \equiv_{n-1}\delta(q,a)$
+
+对于 ^^Figure 2-20^^ 中的自动机
+
+1. $\equiv_0$: $\lbrace q_1, q_3\rbrace$ $\lbrace q_2,q_4,q_5,q_6\rbrace$
+2. $\equiv_1$: $\lbrace q_1, q_3\rbrace$ $\lbrace q_2\rbrace$ $\lbrace q_4,q_6\rbrace$ $\lbrace q_5\rbrace$
+
+接下来没有能够继续分割的了，这样同样能够得到 ^^Figure 2-21^^
+
+## 6 Algorithms For Finite Automata
+

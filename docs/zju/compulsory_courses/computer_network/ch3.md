@@ -383,7 +383,7 @@ CRC 是一种基于二进制多项式除法的、非常强大的差错检测码�
 
 ## 4 Elementary Data Link Protocols
 
-A utopian simplex protocol（乌托邦式单工协议）：理想化通信模型
+**A utopian simplex protocol**（乌托邦式单工协议）：理想化通信模型
 
 1. 单向传输：数据只从一方流向另一方
 2. 始终就绪：假设发送方和接收方的上层（网络层）随时都能立即处理数据
@@ -393,7 +393,7 @@ A utopian simplex protocol（乌托邦式单工协议）：理想化通信模型
 
 ---
 
-A simplex stop-and-wait protocol for an error-free channel（用于无差错信道的单工停止-等待协议）
+**A simplex stop-and-wait protocol for an error-free channel**（用于无差错信道的单工停止-等待协议）
 
 解决流量控制的问题：即使信道是完美的（无差错），如果发送方发送帧的速度快于接收方处理（例如，将数据上传给网络层）的速度，接收方的缓冲区最终会被填满，导致帧被丢弃
 
@@ -405,7 +405,7 @@ A simplex stop-and-wait protocol for an error-free channel（用于无差错信�
 
 ---
 
-A simplex stop-and-wait protocol for a noisy channel（用于噪声信道的单工停止-等待协议）
+**A simplex stop-and-wait protocol for a noisy channel**（用于噪声信道的单工停止-等待协议）
 
 解决信道噪声的问题：信道不是完美的。数据帧可能在传输过程中发生比特错误（损坏） 或完全丢失
 
@@ -416,7 +416,7 @@ A simplex stop-and-wait protocol for a noisy channel（用于噪声信道的单�
 缺陷：**duplicate**，重复帧问题。如果接收方发给发送方的 ACK 丢失了，那么发送方会再次发送一个同样的数据包，导致数据重复
 
 <figure markdown="span">
-    ![Img 13](../../../img/computer_network/ch3/network_ch3_img13.png){ width="200" }
+    ![Img 13](../../../img/computer_network/ch3/network_ch3_img13.png){ width="400" }
 </figure>
 
 !!! question "关于 stop-and-wait 协议的两个问题"
@@ -467,7 +467,7 @@ A simplex stop-and-wait protocol for a noisy channel（用于噪声信道的单�
 
 **滑动窗口协议**：适用于全双工通信，即 A 和 B 可以同时互相发送数据。因此，从 A 到 B 的链路上，既会有 A 发给 B 的数据帧，也会有 B 发给 A 的确认帧。这两个方向的流量是混合在一起的
 
-**Piggybacking**（稍带确认）：当 B 需要向 A 发送数据并且同时需要确认之前从 A 收到的数据时，它不会单独发送一个纯粹的确认帧。相反，它会将确认信息（ACK）放入它要发给 A 的数据帧的头部字段中
+**Piggybacking**（稍带确认，驮运）：当 B 需要向 A 发送数据并且同时需要确认之前从 A 收到的数据时，它不会单独发送一个纯粹的确认帧。相反，它会将确认信息（ACK）放入它要发给 A 的数据帧的头部字段中
 
 B 在准备好要发送给 A 的数据帧后，会稍微等待一个极短的时间（延迟发送）。如果在这段等待时间内，有需要确认的 A 发来的数据帧到达，B 就会将这个确认信息"捎带"在自己即将发出的数据帧里，一起发送给 A
 
@@ -480,5 +480,148 @@ B 在准备好要发送给 A 的数据帧后，会稍微等待一个极短的时
 1. A one-bit sliding window protocol：实质上就是停止-等待协议在全双工场景下的实现。发送窗口大小为 1，效率最低，但实现最简单，缓冲区需求最小
 2. A protocol using go back N：发送窗口大于 1，允许连续发送多个帧。如果某个帧出错，发送方会回退并从出错的帧开始重传所有后续帧。效率高于停止-等待，但重传开销可能较大
 3. A protocol using selective repeat：发送窗口大于 1。它只选择性地重传那些真正出错或丢失的帧。效率最高，但实现最复杂，因为接收方需要更大的缓冲区来缓存乱序到达的帧
+
+在任意时刻，发送方维护一组序列号，这些序列号对应于它被允许发送的数据帧。这些帧被称为落在 the sending window（发送窗口）内
+
+发送窗口指发送方当前可以发送的一组连续帧的序列号范围。这些帧要么已经发出但还没收到确认，要么是还可以发送的新帧
+
+由于当前在发送方窗口内的帧可能在传输过程中丢失或损坏，发送方必须在内存中保留所有这些帧，以便可能进行重传
+
+每一个未被确认的帧都需要占用一个缓冲区空间，如果最大窗口大小为 n，则发送方需要 n 个缓冲区来存放未被确认的帧。如果窗口增长到最大尺寸，发送方数据链路层必须强制关闭网络层，否则会导致缓冲区溢出（也就是发送方暂停从网络层接收新的数据包）。这就是 **flow control**（流量控制）
+
+类似地，接收方也维护一个 receiving window（接收窗口），定义了接收方愿意接受的帧的序列号范围
+
+1. 选择性接受：任何落在窗口内的帧都会被放入接收方的缓冲区，而任何落在窗口外的帧都会被丢弃
+2. 顺序处理：当接收到序列号等于窗口下边界的帧时，该帧会被传递给网络层，同时窗口向前滑动一个位置
+
+如果窗口大小为 1，意味着数据链路层只按顺序接受帧。而如果窗口大小大于 1，可以乱序接受，但需要额外机制保证最终顺序
+
+发送方窗口和接收方窗口的上下边界不需要相同，甚至大小也可以不同。在某些协议中，窗口大小是固定的，但在其他协议中，随着帧的发送和接收，窗口大小可以随时间增长或缩小
+
+<figure markdown="span">
+    ![Img 18](../../../img/computer_network/ch3/network_ch3_img18.png){ width="600" }
+</figure>
+
+### 5.1 One-Bit Sliding Window Protocol
+
+<figure markdown="span">
+    ![Img 20](../../../img/computer_network/ch3/network_ch3_img20.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+    ![Img 21](../../../img/computer_network/ch3/network_ch3_img21.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+    ![Img 19](../../../img/computer_network/ch3/network_ch3_img19.png){ width="800" }
+</figure>
+
+!!! example "示例"
+
+    考虑一个 50 kbps 的卫星信道，其往返传播延迟为 500 毫秒。假设我们尝试使用该协议通过卫星发送 1000 比特的帧
+
+    在 $t = 0$ 时，发送方开始发送第一帧，在 $t = \dfrac{1000\ bit }{50\ kbps} = 20\ ms$ 时，该帧已完全发送。直到 $t = \dfrac{500}{2} + 20 = 270\ ms$ 时，该帧才完全到达接收方，并且在最佳情况下，直到 $t = 520 ms$ 时 ACK 才返回发送方
+
+    而发送方只能在收到 ACK 后才能发送下一帧，但在这 520 ms 中，发送方只用了前 20 ms 发送数据，其余 500 ms 都在等待
+
+因此，该协议在长传输时间、高带宽、短帧长度的情况下效率极低
+
+!!! example "解决问题"
+
+    发送方不再等待每个帧的 ACK 才发下一个，而是可以连续发送多个帧（最多 w 个），直到窗口满为止。发送方只需在收到某个帧的 ACK 后，就可继续发送新帧，从而充分利用信道带宽
+
+    如何计算合适的 w：
+
+    1. 计算 bandwidth-delay product（带宽-延迟积）：链路的带宽 × 单向传播时间，即 $50\ kbps \times 500\ ms / 2 = 12500\ bits$。这个值代表了在单向传播时间内，链路上可以承载的数据量
+    2. 换算成帧数：用总比特数除以每帧比特数，得到帧的数量。$BD = \dfrac{12500\ bits}{1000\ bits/frame} = 12.5\ frames$。在单向传播时间内，可以发送 12.5 个帧进入信道
+    3. 确定窗口大小 w：$w$ 应设为 $2BD + 1$。2BD 表示在往返时间内，最多有 2BD 帧在传输中。而 ACK 是在接收完一整帧后才发出的，所以最后那个 ACK 可能稍晚，为了确保不会出现序号混淆，需要额外 +1。在这个例子中 $w = 26$
+
+### 5.2 A Protocol Using Go Back N
+
+pipelining 是指发送方可以连续发送多个帧，而不需要等待每个帧的确认（ACK），这些帧像流水一样依次在信道上传输。但网络是不可靠的，帧可能因噪声、干扰等原因被损坏或丢失，而该协议的目标是保证无差错、有序交付
+
+面临的问题：
+
+1. 中间帧出错怎么办？
+2. 接收方如何处理后面的正确帧？
+
+因为接收端的数据链路层有义务按顺序将数据包交给网络层
+
+<figure markdown="span">
+    ![Img 22](../../../img/computer_network/ch3/network_ch3_img22.png){ width="600" }
+</figure>
+
+Go Back N 协议的特性：
+
+1. 发送窗口大小为 w
+2. 接收窗口大小为 1（只接受按序到达的帧）
+3. ACK 类型：cumulative ACK（当收到对帧 n 的 ACK 时，帧 n-1，n-2 等也自动被确认），支持 piggybacking
+4. 错误处理：若某帧未收到 ACK 或检测到错误，则从该帧起全部重传
+5. 定时器机制：每个帧发送后启动超时定时器
+
+<figure markdown="span">
+    ![Img 24](../../../img/computer_network/ch3/network_ch3_img24.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+    ![Img 25](../../../img/computer_network/ch3/network_ch3_img25.png){ width="800" }
+</figure>
+
+使用 `MAX_SEQ + 1` 个不同的序列号，未确认的帧数量不能超过 `MAX_SEQ`，因此发送方窗口大小必须小于等于 `MAX_SEQ`
+
+!!! example "假设 `MAX_SEQ = 7`，发送窗口大小为 8"
+
+    1. 发送方发送帧 0 到 7
+    2. 帧 7 的 piggybacking ACK 最终返回给发送方
+    3. 发送方再次发送另外 8 个帧，序列号仍为 0 到 7
+
+        1. case 1：第 2 批次的所有 8 个帧全部丢失
+        2. case 2：第 2 批次的所有 8 个帧都成功到达
+
+    4. 发送方又收到一个帧 7 的 piggybacking ACK，此时会产生歧义：
+
+        1. case 1：接收方发送的 piggybacking ACK 为 7
+        2. case 2：同样发送的 ACK 为 7
+
+    这导致发送方无法判断这个 ACK = 7 是来自第 1 批次还是第 2 批次，无法确认第 2 批次的帧有没有被接收方接收
+
+!!! example "假设 `MAX_SEQ = 7`，发送窗口大小为 7"
+
+    1. 发送方发送帧 0 到 6
+    2. 帧 6 的 piggybacking ACK 最终返回给发送方
+    3. 发送方再次发送另外 7 个帧，序列号为 7 0 1 2 3 4 5
+
+        1. case 1：全部丢失
+        2. case 2：全部成功到达
+
+    4. 发送方收到一个 piggybacking ACK，两种情况不会产生歧义
+
+        1. case 1：ACK = 6
+        2. case 2：ACK = 5
+
+逻辑上来说一个帧需要一个定时器，每个帧的超时事件与其他帧无关
+
+<figure markdown="span">
+    ![Img 26](../../../img/computer_network/ch3/network_ch3_img26.png){ width="600" }
+</figure>
+
+### 5.3 A Protocol Using Selective Repeat
+
+go back N 协议在错误较少时表现良好，但如果信道质量差，它会因为大量重传帧而浪费大量带宽。而 Selective Repeat 协议允许接收方接受并缓存那些在损坏或丢失帧之后到达的帧。也就是接收方可以乱序接收帧，并按顺序将数据包交给网络层
+
+假设条件：
+
+1. 双向传输数据：使用 piggybacking ACK 或者独立的 ACK
+2. 噪声信道
+3. 来自网络层的数据流有限
+4. NACK packets：Negative Acknowledgment。当接收方发现帧丢失或错误时，发送 NACK 给发送方
+
+<figure markdown="span">
+    ![Img 23](../../../img/computer_network/ch3/network_ch3_img23.png){ width="600" }
+</figure>
+
+发送窗口的大小从 0 开始，逐渐增长到某个预定义的最大值。接收窗口的大小始终是固定的，并等于预先设定的最大值。接受方为窗口内每个可能的序列号准备一个独立缓冲区，每个缓冲区有一个标志位 `arrived`，用于标记该缓冲区是否已满。每当一个帧到达时，会使用一个 `between` 函数检查其是否落在接收窗口范围内，如果确实落在范围内，则可以接收并存储
+
+
 
 ## 6 Examples of Data Link Protocols
