@@ -5578,6 +5578,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-state-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 State Minimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-algorithms-for-finite-automata" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Algorithms For Finite Automata
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9453,6 +9471,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-state-minimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 State Minimization
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-algorithms-for-finite-automata" class="md-nav__link">
+    <span class="md-ellipsis">
+      6 Algorithms For Finite Automata
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9696,6 +9732,124 @@
 </figure>
 <p>最终答案就是 <span class="arithmatex">\(a^*b(a \cup ba^*ba^*b)^*\)</span></p>
 <h2 id="4-languages-that-are-and-are-not-regular">4 Languages That Are and Are Not Regular<a class="headerlink" href="#4-languages-that-are-and-are-not-regular" title="Permanent link">&para;</a></h2>
+<p>尽管我们现在有很多方法能够证明语言是正则的，但仍然缺乏有效的方法来证明一个语言不是正则的。由于正则表达式的数量是可数无穷的，而语言的总数是不可数无穷的，因此非正则语言是确实存在的</p>
+<p>所有正则语言都具备，但某些非正则语言不具备的两个性质：</p>
+<ol>
+<li>当一个字符串从左到右被扫描时，为了在最后确定该字符串是否属于某个语言，所需的内存容量必须是有界的、事先固定的，并且仅依赖于语言本身，而不依赖于具体的输入字符串。例如，我们预期语言 <span class="arithmatex">\(\lbrace a^nb^n | n \geqslant 0 \rbrace\)</span> 不是正则的，因为很难想象一个有限状态设备（如有限自动机）如何在到达 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 的边界时，准确记住之前看到的 <span class="arithmatex">\(a\)</span> 的个数，以便于后面的 <span class="arithmatex">\(b\)</span> 的个数进行比较</li>
+<li>包含无限多个字符串的正则语言，通常由带有循环的自动机或包含 Kleene star 的正则表达式表示。这类语言必然包含具有某种简单重复结构的无限子集，这种结构来源于正则表达式中的 Kleene star，或有限自动机状态图中的循环。因此，我们可以预期，例如语言 <span class="arithmatex">\(\lbrace a^n | n \geqslant 1 \text{且 } n \text{ 是质数} \rbrace\)</span> 不是正则的，因为在质数集合中不存在简单的周期性规律</li>
+</ol>
+<blockquote>
+<ol>
+<li>正则语言能被有限状态自动机识别 → 自动机只有有限个状态 → 记忆能力有限</li>
+<li>正则语言的无限部分必须有某种“重复模式”，比如通过循环或 Kleene star 实现</li>
+</ol>
+<p>这些都不是严格证明，而是直觉上的理由</p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">Pumping Theorems</p>
+<p>Let <span class="arithmatex">\(L\)</span> be a regular language. There is an integer <span class="arithmatex">\(n \geqslant 1\)</span> such that any string <span class="arithmatex">\(w \in L\)</span> with <span class="arithmatex">\(|w| \geqslant n\)</span> can be rewritten as <span class="arithmatex">\(w = xyz\)</span> such that</p>
+<ol>
+<li><span class="arithmatex">\(y \not ={e}\)</span></li>
+<li><span class="arithmatex">\(|xy| \leqslant n\)</span></li>
+<li><span class="arithmatex">\(xy^iz \in L\)</span> for each <span class="arithmatex">\(i \geqslant 0\)</span></li>
+</ol>
+<p>如果一个语言 <span class="arithmatex">\(L\)</span> 是正则的，那么它的所有足够长的字符串（长度 ≥ 某个常数 <span class="arithmatex">\(n\)</span>）都必须包含一段“可泵”的子串 <span class="arithmatex">\(y\)</span>，可以重复任意次数，结果仍然在 <span class="arithmatex">\(L\)</span> 中</p>
+<blockquote>
+<p>换句话说：正则语言中的长字符串具有某种“循环结构”</p>
+</blockquote>
+</div>
+<div class="admonition example">
+<p class="admonition-title">proof</p>
+<p><figure markdown="span">
+  <img alt="Img 19" src="../../../../img/computational_theory/ch2/computational_ch2_img19.png" width="800" />
+</figure></p>
+</div>
+<ul>
+<li>一个语言正则 <span class="arithmatex">\(\implies\)</span> 满足泵定理</li>
+<li>满足泵定理 <span class="arithmatex">\(\nRightarrow\)</span> 一个语言正则</li>
+</ul>
+<figure>
+  <img alt="Img 20" src="../../../../img/computational_theory/ch2/computational_ch2_img20.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 21" src="../../../../img/computational_theory/ch2/computational_ch2_img21.png" width="800" />
+</figure>
+<h2 id="5-state-minimization">5 State Minimization<a class="headerlink" href="#5-state-minimization" title="Permanent link">&para;</a></h2>
+<figure>
+  <img alt="Img 22" src="../../../../img/computational_theory/ch2/computational_ch2_img22.png" width="400" />
+</figure>
+<p>考虑上图中的 DFA，它接受语言 <span class="arithmatex">\(L = (ab \cup ba)^*\)</span>。考虑状态 <span class="arithmatex">\(q_7\)</span>，显然，这个状态 unreachable</p>
+<p>这是在任何确定性有限自动机上可以进行的最简单的优化：移除所有不可达状态及其相关的输入和输出转移</p>
+<figure>
+  <img alt="Img 23" src="../../../../img/computational_theory/ch2/computational_ch2_img23.png" width="400" />
+</figure>
+<p>设 <span class="arithmatex">\(L \subseteq \Sigma^*\)</span> 是一个语言，且 <span class="arithmatex">\(x,y \in \Sigma^*\)</span>。我们说 <span class="arithmatex">\(x\)</span> 和 <span class="arithmatex">\(y\)</span> <strong>equivalent with respect to <span class="arithmatex">\(L\)</span></strong>，记作 <span class="arithmatex">\(x \approx_L y\)</span>，如果对所有 <span class="arithmatex">\(z \in \Sigma^*\)</span>，满足：<span class="arithmatex">\(xz \in L \text{ 当且仅当 } yz \in L\)</span></p>
+<blockquote>
+<p>换句话说：<span class="arithmatex">\(x \approx_L y\)</span> 当且仅当要么两个字符串都属于 <span class="arithmatex">\(L\)</span>，要么都不属于；并且，向 <span class="arithmatex">\(x\)</span> 和 <span class="arithmatex">\(y\)</span> 后面附加任何固定的字符串 <span class="arithmatex">\(z\)</span>，得到的新字符串要么都属于 <span class="arithmatex">\(L\)</span>，要么都不属于</p>
+</blockquote>
+<p>我们用 <span class="arithmatex">\([x]\)</span> 表示 <span class="arithmatex">\(x\)</span> 所属的关于 <span class="arithmatex">\(L\)</span> 的等价类</p>
+<p>对于 <ins>Figure 2-20</ins> 中的自动机所接受的语言 <span class="arithmatex">\(L = (ab \cup ba)^*\)</span>，有 4 个等价类（或者说，可以分成 4 个等价类）：</p>
+<ol>
+<li><span class="arithmatex">\([e] = L\)</span>：满足 DFA 接受状态的字符串</li>
+<li><span class="arithmatex">\([a] = La\)</span>：只能通过后接 <span class="arithmatex">\(bL\)</span> 才能进入 <span class="arithmatex">\(L\)</span> 的字符串</li>
+<li><span class="arithmatex">\([b] = Lb\)</span>：只能通过后接 <span class="arithmatex">\(aL\)</span> 才能进入 <span class="arithmatex">\(L\)</span> 的字符串</li>
+<li><span class="arithmatex">\([aa] = L(aa \cup bb) \Sigma^*\)</span>：所有以 <span class="arithmatex">\(aa\)</span> 或 <span class="arithmatex">\(bb\)</span> 为前缀的字符串（也就是无法进入 <span class="arithmatex">\(L\)</span> 的字符串）</li>
+</ol>
+<p>设 <span class="arithmatex">\(M = (K, \Sigma, \delta, s, F)\)</span> 是一个确定性有限自动机。我们说两个字符串 <span class="arithmatex">\(x,y \in \Sigma^*\)</span> <strong>equivalent with respect to <span class="arithmatex">\(M\)</span></strong>，记作 <span class="arithmatex">\(x \sim_M y\)</span>，直观上，它们都能从初始状态 <span class="arithmatex">\(s\)</span> 把自动机带到同一个状态。形式上，<span class="arithmatex">\(x \sim_M y\)</span> 当且仅当存在某个状态 <span class="arithmatex">\(q\)</span>，使得：<span class="arithmatex">\((s,x) \vdash_M^* (q,e) \text{ 且 } (s,y) \vdash_M^* (q,e)\)</span></p>
+<p>我们将与状态 <span class="arithmatex">\(q\)</span> 对应的等价类记为 <span class="arithmatex">\(E_q\)</span></p>
+<p>对于 <ins>Figure 2-20</ins> 中的自动机，等价类如下：</p>
+<ol>
+<li><span class="arithmatex">\(E_{q_1} = (ba)^*\)</span></li>
+<li><span class="arithmatex">\(E_{q_2} = La \cup a\)</span></li>
+<li><span class="arithmatex">\(E_{q_3} = abL\)</span></li>
+<li><span class="arithmatex">\(E_{q_4} = b(ab)^*\)</span></li>
+<li><span class="arithmatex">\(E_{q_5} = L(bb \cup aa) \Sigma^*\)</span></li>
+<li><span class="arithmatex">\(E_{q_6} = abLb\)</span></li>
+</ol>
+<div class="admonition tip">
+<p>For any DFA <span class="arithmatex">\(M = (K, \Sigma, \delta, s, F)\)</span> and any string <span class="arithmatex">\(x, y \in \Sigma^*\)</span>, if <span class="arithmatex">\(x \sim_M y\)</span>, then <span class="arithmatex">\(x \approx_{L(M)} y\)</span></p>
+</div>
+<p>对于 <ins>Figure 2-20</ins> 中的自动机</p>
+<ol>
+<li><span class="arithmatex">\([e]\)</span> 和 <span class="arithmatex">\(E_{q_1}\)</span> <span class="arithmatex">\(E_{q_3}\)</span> 对应</li>
+<li><span class="arithmatex">\([a]\)</span> 和 <span class="arithmatex">\(E_{q_2}\)</span></li>
+<li><span class="arithmatex">\([b]\)</span> 和 <span class="arithmatex">\(E_{q_4}\)</span> <span class="arithmatex">\(E_{q_6}\)</span> 对应</li>
+<li><span class="arithmatex">\([aa]\)</span> 和 <span class="arithmatex">\(E_{q_5}\)</span> 对应</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">The Myhill-Nerode Theorem</p>
+<p>设 <span class="arithmatex">\(L \subseteq \Sigma^*\)</span> 是一个正则语言。那么存在一个确定性有限自动机，其状态数恰好等于 <span class="arithmatex">\(\approx_L\)</span> 的等价类个数，并且该自动机接受语言 <span class="arithmatex">\(L\)</span></p>
+</div>
+<p>对于 <ins>Figure 2-20</ins> 中的自动机，根据定理，其状态数最少有 4 个</p>
+<figure>
+  <img alt="Img 24" src="../../../../img/computational_theory/ch2/computational_ch2_img24.png" width="400" />
+</figure>
+<blockquote>
+<p>也就是说，状态 <span class="arithmatex">\(q_4\)</span> <span class="arithmatex">\(q_6\)</span> 等价，<span class="arithmatex">\(q_1, q_3\)</span> 等价</p>
+</blockquote>
+<div class="admonition tip">
+<p class="admonition-title">The Myhill-Nerode Theorem</p>
+<p>A language <span class="arithmatex">\(L\)</span> is regular if and only if <span class="arithmatex">\(\approx_L\)</span> has finitely many equivalence classes</p>
+</div>
+<figure>
+  <img alt="Img 25" src="../../../../img/computational_theory/ch2/computational_ch2_img25.png" width="800" />
+</figure>
+<p>我们称两个状态 <span class="arithmatex">\(p\)</span> <span class="arithmatex">\(q\)</span> 是等价的，记作 <span class="arithmatex">\(p \equiv q\)</span>，如果对于所有的 <span class="arithmatex">\(z \in \Sigma^*\)</span>，<span class="arithmatex">\(z\)</span> 都能驱动自动机从状态 <span class="arithmatex">\(p\)</span> 或 <span class="arithmatex">\(q\)</span> 到达某个接受状态或者到达 trap</p>
+<p>称 <span class="arithmatex">\(p \equiv_n q\)</span>：对所有长度不超过 <span class="arithmatex">\(n\)</span> 的字符串 <span class="arithmatex">\(z\)</span>，满足上面的条件</p>
+<div class="admonition tip">
+<p>For nay two states <span class="arithmatex">\(p, q \in K\)</span> and any integer <span class="arithmatex">\(n \geqslant 1\)</span>, <span class="arithmatex">\(p \equiv_n q\)</span> if and only if</p>
+<ol>
+<li><span class="arithmatex">\(p \equiv_{n-1} q\)</span></li>
+<li>for all <span class="arithmatex">\(a \in \Sigma\)</span>, <span class="arithmatex">\(\delta(p,a) \equiv_{n-1}\delta(q,a)\)</span></li>
+</ol>
+</div>
+<p>对于 <ins>Figure 2-20</ins> 中的自动机</p>
+<ol>
+<li><span class="arithmatex">\(\equiv_0\)</span>: <span class="arithmatex">\(\lbrace q_1, q_3\rbrace\)</span> <span class="arithmatex">\(\lbrace q_2,q_4,q_5,q_6\rbrace\)</span></li>
+<li><span class="arithmatex">\(\equiv_1\)</span>: <span class="arithmatex">\(\lbrace q_1, q_3\rbrace\)</span> <span class="arithmatex">\(\lbrace q_2\rbrace\)</span> <span class="arithmatex">\(\lbrace q_4,q_6\rbrace\)</span> <span class="arithmatex">\(\lbrace q_5\rbrace\)</span></li>
+</ol>
+<p>接下来没有能够继续分割的了，这样同样能够得到 <ins>Figure 2-21</ins></p>
+<h2 id="6-algorithms-for-finite-automata">6 Algorithms For Finite Automata<a class="headerlink" href="#6-algorithms-for-finite-automata" title="Permanent link">&para;</a></h2>
 
 
 
@@ -9718,7 +9872,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月8日 12:26:16 UTC">2025年10月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月14日 07:49:06 UTC">2025年10月14日</span>
   </span>
 
     
