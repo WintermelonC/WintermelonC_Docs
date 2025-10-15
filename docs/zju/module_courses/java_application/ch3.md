@@ -1,8 +1,8 @@
 # 3 Inheritance and Polymorphism
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 

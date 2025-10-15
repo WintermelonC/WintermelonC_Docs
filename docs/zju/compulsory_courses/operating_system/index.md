@@ -46,4 +46,5 @@ zzk老师 (1)
 [1 Overview](./theory/ch1.md)<br/>
 [2 Operating System Structures](./theory/ch2.md)<br/>
 [3 Processes](./theory/ch3.md)<br/>
+[4 Threads](./theory/ch4.md)<br/>
 [5 CPU Scheduling](./theory/ch5.md)

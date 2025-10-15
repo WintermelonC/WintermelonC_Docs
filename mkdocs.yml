@@ -203,6 +203,7 @@ nav:
           - 1 Overview: zju/compulsory_courses/operating_system/theory/ch1.md
           - 2 Operating System Structures: zju/compulsory_courses/operating_system/theory/ch2.md
           - 3 Processes: zju/compulsory_courses/operating_system/theory/ch3.md
+          - 4 Threads: zju/compulsory_courses/operating_system/theory/ch4.md
           - 5 CPU Scheduling: zju/compulsory_courses/operating_system/theory/ch5.md
         - 实验部分:
           - 1 Linux: zju/compulsory_courses/operating_system/lab/ch1.md
@@ -220,6 +221,7 @@ nav:
         - 1 Introduction: zju/module_courses/java_application/ch1.md
         - 2 Basic: zju/module_courses/java_application/ch2.md
         - 3 Inheritance and Polymorphism: zju/module_courses/java_application/ch3.md
+        - 4 Classes of Other Kinds: zju/module_courses/java_application/ch4.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:
