@@ -10461,6 +10461,11 @@
 <li>目的：实现多重继承</li>
 <li>核心思想：定义做什么，而不关心怎么做，具体实现由实现接口的类来完成</li>
 </ul>
+<p>在 Java 中，接口只能使用 <code>public</code> 或包级私有（默认访问权限）修饰符。不允许使用 <code>private</code> 或 <code>protected</code> 修饰符来修饰顶层的接口</p>
+<ol>
+<li><code>private</code>：如果一个接口被声明为 <code>private</code>，它将无法被任何其他类访问或实现，这完全违背了接口作为"契约"或"规范"的设计目的。接口的存在就是为了被实现，<code>private</code> 访问级别使其失去意义</li>
+<li><code>protected</code>：<code>protected</code> 意味着只有同一包内的类或其子类可以访问。但是接口本身不能被继承（只能被实现），而且接口的"子类"概念不适用于 <code>protected</code> 的语义。因此 <code>protected</code> 修饰符对接口没有意义</li>
+</ol>
 <h3 id="11-基本语法和特性">1.1 基本语法和特性<a class="headerlink" href="#11-基本语法和特性" title="Permanent link">&para;</a></h3>
 <div class="admonition info">
 <p class="admonition-title">Java 版本</p>
@@ -10983,8 +10988,8 @@
 </tr>
 <tr>
 <td style="text-align: center;"><strong>构造方法</strong></td>
-<td style="text-align: center;">**没有**构造方法</td>
-<td style="text-align: center;">**有**构造方法（用于子类初始化）</td>
+<td style="text-align: center;"><strong>没有</strong> 构造方法</td>
+<td style="text-align: center;"><strong>有</strong> 构造方法（用于子类初始化）</td>
 </tr>
 <tr>
 <td style="text-align: center;"><strong>设计理念</strong></td>
@@ -10993,8 +10998,8 @@
 </tr>
 <tr>
 <td style="text-align: center;"><strong>多重继承</strong></td>
-<td style="text-align: center;">一个类可以实现**多个**接口</td>
-<td style="text-align: center;">一个类只能继承**一个**抽象类</td>
+<td style="text-align: center;">一个类可以实现 <strong>多个</strong> 接口</td>
+<td style="text-align: center;">一个类只能继承 <strong>一个</strong> 抽象类</td>
 </tr>
 <tr>
 <td style="text-align: center;"><strong>访问修饰符</strong></td>
@@ -12730,7 +12735,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月15日 09:21:15 UTC">2025年10月15日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月15日 09:48:36 UTC">2025年10月15日</span>
   </span>
 
     
