@@ -1351,6 +1351,11 @@ names.forEach(System.out::println);
 
 3.实现函数式接口
 
+```java linenums="1"
+Predicate<String> isEmpty = s -> s.isEmpty();
+Function<String, Integer> length = s -> s.length();
+```
+
 ### 6.2 方法引用
 
 方法引用是 Lambda 表达式的更简洁写法
@@ -1397,7 +1402,7 @@ public class MethodReferenceExample {
 }
 ```
 
-## 7 Closure
+### 6.3 Closure
 
 闭包是一个函数（或方法）与其引用环境的组合。一个函数“记住”了它被创建时所处的环境（变量、值等），即使它在其原始作用域之外被执行
 
@@ -1412,27 +1417,7 @@ public class MethodReferenceExample {
 2. 词法作用域：函数可以访问其定义时所在的作用域中的变量，而不是执行时的作用域
 3. 环境保持：即使外部函数已经执行完毕，其局部变量仍然被内部函数引用，这些变量的生命周期得以延长
 
-- 通过 Lambda 表达式实现：
-
-```java linenums="1"
-import java.util.function.Supplier;
-
-public class JavaClosure {
-    public static void main(String[] args) {
-        String message = "Hello"; // 必须是 final 或等效 final
-        
-        // Lambda 表达式形成闭包
-        Supplier<String> closure = () -> message + " World!";
-        
-        System.out.println(closure.get()); // 输出: Hello World!
-        
-        // 下面这行会编译错误，因为 message 被闭包引用，不能再修改
-        // message = "Changed";
-    }
-}
-```
-
-- 通过匿名内部类实现：
+闭包可以通过 Lambda 表达式实现，也通过匿名内部类实现：
 
 ```java linenums="1"
 public class JavaClosure {
@@ -1477,7 +1462,7 @@ public class JavaClosureLimitations {
 }
 ```
 
-## 8 Eager Call And Lazy Call
+### 6.4 Eager Call And Lazy Call
 
 Eager Call：
 
@@ -1525,3 +1510,5 @@ Supplier创建完成，但还没计算
 执行昂贵操作...
 惰性调用完成: 计算结果
 ```
+
+Lambda 表达式可以实现 lazy call
