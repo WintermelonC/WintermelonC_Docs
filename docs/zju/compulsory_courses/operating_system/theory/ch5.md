@@ -1,8 +1,8 @@
 # 5 CPU Scheduling
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -52,6 +52,10 @@ Dispatch latency：调度器停止一个进程并启动另一个进程运行所�
 
 <figure markdown="span">
     ![Img 3](../../../../img/operating_system/ch5/os_ch5_img3.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 20](../../../../img/operating_system/ch5/os_ch5_img20.png){ width="600" }
 </figure>
 
 ## 2 Scheduling Criteria
@@ -305,4 +309,24 @@ linux 的 runqueue 被分为两个主要部分：
 
 ## 8 Java Thread Scheduling
 
+JVM 使用一个 preemptive，priority-based 的调度算法。当有很多优先级相同的线程时，使用 FIFO Queue
+
+JVM 在以下情况下调度线程运行：
+
+1. 当前正在运行的线程退出了“可运行”状态：线程可能因为执行完毕、被阻塞或进入 wait 状态等原因退出可运行状态，此时，JVM 会从就绪队列中选择下一个合适的线程来运行
+2. 更高优先级的线程进入了“可运行”状态：如果此时有更高优先级的线程变为“可运行”，JVM 会立即中断当前线程，并调度高优先级线程运行
+
+> JVM 并未规定线程是否采用 time-sliced（时间片轮转）。具体实现取决于底层操作系统和 JVM 实现
+
 ## 9 Algorithm Evaluation
+
+评估计算机算法（尤其是与调度、操作系统或队列管理相关的算法）性能的主要方法：
+
+1. deterministic modeling（确定性建模）：是一种理论分析方法，它假设输入的工作负载是已知且固定的。通过这种模型，我们可以计算出算法在特定场景下的运行时间、资源消耗等性能指标。它的优点是简单、可预测；缺点是缺乏对现实世界中随机性和不确定性的考虑
+2. queueing models（排队模型）：Little's Law：$n = \lambda W$。$n$ 表示系统中客户的平均数量（例如等待或正在被服务的请求数）；$\lambda$ 表示单位时间内到达系统的平均客户数（到达率）；$W$ 表示一个客户从进入系统到离开的平均时间（即响应时间或等待时间）
+3. simulations：是一种实验性方法，通过构建虚拟环境来测试算法。可以处理复杂的、非确定性的场景。优点是可以灵活地测试多种情况；缺点是需要大量时间和计算资源
+4. implementation：是最接近现实的评估方式，可以反映算法在真实硬件和软件环境下的性能。包括性能测试、压力测试、稳定性测试等。缺点是成本高、耗时长，且结果可能受具体实现细节影响
+
+<figure markdown="span">
+    ![Img 19](../../../../img/operating_system/ch5/os_ch5_img19.png){ width="600" }
+</figure>
