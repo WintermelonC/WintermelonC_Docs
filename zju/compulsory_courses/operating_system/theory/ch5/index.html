@@ -9817,10 +9817,10 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="5-cpu-scheduling">5 CPU Scheduling<a class="headerlink" href="#5-cpu-scheduling" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -9859,6 +9859,9 @@
 <p>Dispatch latency：调度器停止一个进程并启动另一个进程运行所需的时间</p>
 <figure>
     <img alt="Img 3" src="../../../../../img/operating_system/ch5/os_ch5_img3.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 20" src="../../../../../img/operating_system/ch5/os_ch5_img20.png" width="600" />
 </figure>
 <h2 id="2-scheduling-criteria">2 Scheduling Criteria<a class="headerlink" href="#2-scheduling-criteria" title="Permanent link">&para;</a></h2>
 <p>调度性能指标：</p>
@@ -10069,7 +10072,26 @@
 <p>这两个数组之间可以互相切换，意味着调度器可以在它们之间来回切换</p>
 <p>每个优先级对应一个链表，存放该优先级的所有就绪任务，每个圆圈则代表一个进程。在 active array 中，调度器会优先从高优先级开始查找是否有任务可运行。所有任务一开始都在 active array 中，时间片用完后，被移到 expired array。当 active array 中所有任务的时间片都耗尽后，调度器会将 active array 和 expired array 互换角色，继续下一轮的运行</p>
 <h2 id="8-java-thread-scheduling">8 Java Thread Scheduling<a class="headerlink" href="#8-java-thread-scheduling" title="Permanent link">&para;</a></h2>
+<p>JVM 使用一个 preemptive，priority-based 的调度算法。当有很多优先级相同的线程时，使用 FIFO Queue</p>
+<p>JVM 在以下情况下调度线程运行：</p>
+<ol>
+<li>当前正在运行的线程退出了“可运行”状态：线程可能因为执行完毕、被阻塞或进入 wait 状态等原因退出可运行状态，此时，JVM 会从就绪队列中选择下一个合适的线程来运行</li>
+<li>更高优先级的线程进入了“可运行”状态：如果此时有更高优先级的线程变为“可运行”，JVM 会立即中断当前线程，并调度高优先级线程运行</li>
+</ol>
+<blockquote>
+<p>JVM 并未规定线程是否采用 time-sliced（时间片轮转）。具体实现取决于底层操作系统和 JVM 实现</p>
+</blockquote>
 <h2 id="9-algorithm-evaluation">9 Algorithm Evaluation<a class="headerlink" href="#9-algorithm-evaluation" title="Permanent link">&para;</a></h2>
+<p>评估计算机算法（尤其是与调度、操作系统或队列管理相关的算法）性能的主要方法：</p>
+<ol>
+<li>deterministic modeling（确定性建模）：是一种理论分析方法，它假设输入的工作负载是已知且固定的。通过这种模型，我们可以计算出算法在特定场景下的运行时间、资源消耗等性能指标。它的优点是简单、可预测；缺点是缺乏对现实世界中随机性和不确定性的考虑</li>
+<li>queueing models（排队模型）：Little's Law：<span class="arithmatex">\(n = \lambda W\)</span>。<span class="arithmatex">\(n\)</span> 表示系统中客户的平均数量（例如等待或正在被服务的请求数）；<span class="arithmatex">\(\lambda\)</span> 表示单位时间内到达系统的平均客户数（到达率）；<span class="arithmatex">\(W\)</span> 表示一个客户从进入系统到离开的平均时间（即响应时间或等待时间）</li>
+<li>simulations：是一种实验性方法，通过构建虚拟环境来测试算法。可以处理复杂的、非确定性的场景。优点是可以灵活地测试多种情况；缺点是需要大量时间和计算资源</li>
+<li>implementation：是最接近现实的评估方式，可以反映算法在真实硬件和软件环境下的性能。包括性能测试、压力测试、稳定性测试等。缺点是成本高、耗时长，且结果可能受具体实现细节影响</li>
+</ol>
+<figure>
+    <img alt="Img 19" src="../../../../../img/operating_system/ch5/os_ch5_img19.png" width="600" />
+</figure>
 
 
 
@@ -10092,7 +10114,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月13日 13:02:10 UTC">2025年10月13日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月15日 02:08:03 UTC">2025年10月15日</span>
   </span>
 
     
