@@ -6267,6 +6267,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6 Examples of Data Link Protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-packet-over-sonet" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Packet Over SONET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Packet Over SONET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-the-ppp-frame-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.1 The PPP Frame Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-ppp-link-up--down" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.2 PPP Link Up &amp; Down
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 ADSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-docsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 DOCSIS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -9849,6 +9906,63 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="6 Examples of Data Link Protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-packet-over-sonet" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Packet Over SONET
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.1 Packet Over SONET">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#611-the-ppp-frame-format" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.1 The PPP Frame Format
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#612-ppp-link-up--down" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1.2 PPP Link Up &amp; Down
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-adsl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 ADSL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-docsis" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.3 DOCSIS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -10326,7 +10440,11 @@
 </div>
 <p>因此，该协议在长传输时间、高带宽、短帧长度的情况下效率极低</p>
 <div class="admonition example">
-<p class="admonition-title">解决问题</p>
+<p class="admonition-title">解决方案</p>
+<blockquote>
+<p>这个解决方案不是 One-Bit Sliding Window Protocol，而是 A Protocol Using Go Back N</p>
+<p>这里是为了引入 A Protocol Using Go Back N</p>
+</blockquote>
 <p>发送方不再等待每个帧的 ACK 才发下一个，而是可以连续发送多个帧（最多 w 个），直到窗口满为止。发送方只需在收到某个帧的 ACK 后，就可继续发送新帧，从而充分利用信道带宽</p>
 <p>如何计算合适的 w：</p>
 <ol>
@@ -10408,6 +10526,9 @@
 <figure>
     <img alt="Img 26" src="../../../../img/computer_network/ch3/network_ch3_img26.png" width="600" />
 </figure>
+<p>发送方为每一个已发送但未确认的帧维护一个缓冲区。每个缓冲区对应一个定时器（或共享一个主定时器）。因此，需要的定时器数量取决于发送方缓冲区的数量（即窗口大小），而不是整个序列号空间的大小</p>
+<p>正常情况下，接收方不会专门发送一个 ACK 帧来确认收到数据，而是将 ACK 信息“捎带”在下一个要发送给发送方的数据帧中。这样可以节省带宽，但如果没有反向流量（即接收方不需要向发送方发数据），就无法发送 ACK</p>
+<p><strong>解决方案</strong>：引入辅助定时器 <code>start_ack_timer</code>。当接收方收到一个按序到达的数据帧时，立即启动一个辅助定时器 <code>start_ack_timer</code>，如果在定时器超时之前，接收方仍然没有机会发送其他数据（即没有反向流量），那么它就会主动发送一个独立的 ACK 帧。而由辅助定时器超时引起的事件叫做 <code>ack_timeout</code></p>
 <h3 id="53-a-protocol-using-selective-repeat">5.3 A Protocol Using Selective Repeat<a class="headerlink" href="#53-a-protocol-using-selective-repeat" title="Permanent link">&para;</a></h3>
 <p>go back N 协议在错误较少时表现良好，但如果信道质量差，它会因为大量重传帧而浪费大量带宽。而 Selective Repeat 协议允许接收方接受并缓存那些在损坏或丢失帧之后到达的帧。也就是接收方可以乱序接收帧，并按顺序将数据包交给网络层</p>
 <p>假设条件：</p>
@@ -10421,7 +10542,176 @@
     <img alt="Img 23" src="../../../../img/computer_network/ch3/network_ch3_img23.png" width="600" />
 </figure>
 <p>发送窗口的大小从 0 开始，逐渐增长到某个预定义的最大值。接收窗口的大小始终是固定的，并等于预先设定的最大值。接受方为窗口内每个可能的序列号准备一个独立缓冲区，每个缓冲区有一个标志位 <code>arrived</code>，用于标记该缓冲区是否已满。每当一个帧到达时，会使用一个 <code>between</code> 函数检查其是否落在接收窗口范围内，如果确实落在范围内，则可以接收并存储</p>
+<p>当收到一个损坏的帧或不是预期中的帧（可能是丢失的帧）时，接收方会向发送方发送一个 negative acknowledgement（NAK）。这个帧的作用是请求发送方重新传输 NAK 中指定的帧</p>
+<p>如果接收方多次检测到同一帧缺失，可能会重复发送 NAK。为了避免浪费带宽和混淆发送方，接收方需要记录是否已发送过 NAK 给某个帧。引入变量 <code>no_ack</code>，当其值为 <code>true</code> 时，表示尚未为此帧发送 NAK；当其值为 <code>false</code> 时，表示已发送过 NAK，就不会重复发送 NAK</p>
+<p>即使 NAK 本身在网络中被损坏或丢失了，也不会导致系统崩溃或数据丢失。因为发送方仍然会在一定时间内等待确认。如果长时间没有收到 ACK 或 NAK，就会触发超时机制，然后自动重传该帧</p>
+<p>那么 A Protocol Using Selective Repeat 的接收窗口的大小应该如何设置呢？</p>
+<p>!!! example 分析"</p>
+<div class="language-text highlight"><pre><span></span><code>假设 `MAXSEQ`，发送窗口和接受窗口（最大）大小均为 7
+
+正常情况：
+
+1. 发送方发送：F₀, F₁, F₂, F₃, F₄, F₅, F₆
+2. 接收方成功接收到所有帧，并发送确认：Ack₆
+3. 接收方将窗口向前滑动，现在它期望下一个帧是 F₇
+4. 它的接收窗口变为：[7, 0, 1, ..., 5]
+
+如果 Ack₆ 在网络中丢失了
+
+1. 发送方没有收到确认，超时后，发送方需要重传之前发送过的帧：F₀⁰ … F₆⁶（上角标表示同一帧的重复）
+2. 而接收方当前窗口是 [7, 0,1,...,5]，它仍然接受序列号为 0~5 的帧。所以当发送方重传 F₀~F₅ 时，接收方会再次接收它们。如果接收方不知道这是重传，它可能会把它们当作“新帧”来处理
+
+核心问题：overlap（序列号空间重叠）。当接收方滑动窗口后，新的有效序列号范围（如 7, 0~5）和原来的范围（如 0~6）产生了重叠区域（0~5）。如果这个重叠区域内有帧被重传，接收方无法判断它是新的还是旧的
+</code></pre></div>
+<p>因此，接收窗口大小应该小于等于 <code>(MAXSEQ + 1) / 2</code></p>
+<p>这样，接收窗口最多占据一半的序列号空间，就不会与旧窗口重叠</p>
 <h2 id="6-examples-of-data-link-protocols">6 Examples of Data Link Protocols<a class="headerlink" href="#6-examples-of-data-link-protocols" title="Permanent link">&para;</a></h2>
+<p>使用数据链路层协议的两种常见场景：</p>
+<ol>
+<li>广域网中的 SONET 光纤链路：主要用于连接互联网服务提供商（ISP）网络中位于不同地理位置的路由器，构建覆盖范围广阔的骨干网络</li>
+<li>互联网边缘的 ADSL 链路：ADSL 是一种利用传统电话线进行宽带上网的技术。其特点是"非对称"，即下载速度通常远高于上传速度。它运行在"本地环路"上，也就是从用户家庭或办公室到电话公司端局的那段线路</li>
+</ol>
+<p>Point-to-Point Protocol（PPP，点对点协议）：它是一个标准的数据链路层协议，用于在点对点链路上直接连接的两个节点之间传输数据包，同时也是一个封装（成帧）机制，可以承载多种网络层协议（如 IP、IPX 等）的数据包，并在多种物理介质上运行</p>
+<p>PPP 的核心功能：</p>
+<ol>
+<li>成帧与差错检测：PPP 定义了数据帧的开始和结束位置，解决了如何在连续的比特流中正确分离出一个个独立的数据帧的问题。同时通过帧内的校验和字段，接收方可以检测数据在传输过程中是否出错</li>
+<li>链路控制协议（LCP）：负责在数据传输前建立、配置和测试数据链路连接（例如，认证用户名密码），并在通信结束后优雅地终止连接</li>
+<li>网络控制协议：PPP 本身不关心网络层用什么协议，它为每种支持的网络层协议提供了一个对应的 NCP。NCP 用于在链路建立后，独立地协商和配置特定网络层协议所需的参数</li>
+</ol>
+<h3 id="61-packet-over-sonet">6.1 Packet Over SONET<a class="headerlink" href="#61-packet-over-sonet" title="Permanent link">&para;</a></h3>
+<p>SONET 是一个物理层协议。这意味着它关注的是如何在物理介质上传输原始的比特流。它是现代通信网络（如互联网骨干网、电话系统）核心高速光纤链路上最常用的技术</p>
+<ol>
+<li>恒定速率比特流：SONET 提供的是一个以非常精确和稳定的速率运行的比特流。这为高速数据传输提供了可靠且可预测的通道</li>
+<li>同步结构：它将比特流组织成一种重复出现的、固定时长（125 微秒）的帧结构。每个帧内包含固定大小的字节作为有效载荷。这个 125 µs 的节奏是绝对固定不变的，无论当前是否有用户数据需要发送。如果某个时刻没有数据，帧内相应的位置就会填充空数据</li>
+</ol>
+<p>PPP 在 IP 路由器上运行以提供传输机制</p>
+<figure>
+    <img alt="Img 27" src="../../../../img/computer_network/ch3/network_ch3_img27.png" width="600" />
+</figure>
+<h4 id="611-the-ppp-frame-format">6.1.1 The PPP Frame Format<a class="headerlink" href="#611-the-ppp-frame-format" title="Permanent link">&para;</a></h4>
+<p>PPP 帧格式：使用 byte stuffing，并且所有帧都是整数字节</p>
+<figure>
+    <img alt="Img 28" src="../../../../img/computer_network/ch3/network_ch3_img28.png" width="600" />
+</figure>
+<p><strong>flag byte</strong>：固定的 0x7E 用于明确标识一个 PPP 帧的开始和结束</p>
+<p>字节填充：为了解决有效载荷数据中可能出现的 0x7E 被误认为是帧边界的问题，PPP 使用了转义机制</p>
+<ol>
+<li>发送端：当有效载荷中出现 0x7E 时，将其转换为两个字节：0x7D 后跟 0x5E。这个 0x5E 是通过将原始的 0x7E 与 0x20 进行异或计算得到的</li>
+<li>接收端：当接收到 0x7D 时，就知道这是一个转义序列。接收方会移除 0x7D，并将其后面的字节与 0x20 进行异或操作，从而恢复出原始数据</li>
+</ol>
+<p><strong>address field</strong>：该字段值固定为 11111111，这是一个广播地址。因为在点对点 链路上只有两个设备（一端发送，另一端接收），不需要复杂的寻址。这个固定值简单地指示"链路上的对端设备请接收此帧"</p>
+<p><strong>control filed</strong>：默认值为 00000011，这表示这是一个 "无编号帧"。在 HDLC 协议族中，"无编号帧"意味着该帧不包含序列号，也不需要接收方进行确认</p>
+<p><strong>protocol field</strong>：这是一个"多路复用"字段，用于标识有效载荷中封装的上层协议类型。接收方根据此字段的值来决定将数据交给哪个上层协议处理</p>
+<ul>
+<li>如果该字段值的最高位是 0，则表示有效载荷是网络层数据包，如 IPv4、IPv6 等</li>
+<li>如果最高位是 1，则表示有效载荷用于 PPP 本身的控制和管理，如用于链路协商的 LCP 包或用于网络层配置的 NCP 包</li>
+</ul>
+<p><strong>payload field</strong>：可变长，默认最大长度与以太网相同，为 1500 字节（可通过协商改变）</p>
+<p>PPP 有效载荷在插入 SONET 有效载荷之前会进行 scrambled（加扰）。在发送前，用一个已知的伪随机序列与 PPP 有效载荷进行异或操作。这能将长串的 0 或 1 "打散"，变成看起来随机的 0/1 序列。接收端再用相同的伪随机序列进行相同的异或操作，即可解扰，恢复原始数据</p>
+<p>目的：加扰不是为了加密，而是为了确保物理链路上的比特流有足够的电平转换（0 和 1 的变化）。像 SONET 这样的物理层接收端需要依赖频繁的 0/1 跳变来恢复时钟信号，保持发送方和接收方的同步。语音信号本身充满变化，但数据通信中，用户可能发送一长串连续的 0（例如，一个全零的数据块或静默期），这会导致物理线路上长时间没有电平变化，从而使接收端时钟失步，最终导致误码</p>
+<p><strong>checksum field</strong>：用于差错检测。接收方会重新计算校验和并与收到的值比较，如果不一致，则丢弃该帧。通常使用 2 字节的 CRC 校验</p>
+<h4 id="612-ppp-link-up--down">6.1.2 PPP Link Up &amp; Down<a class="headerlink" href="#612-ppp-link-up--down" title="Permanent link">&para;</a></h4>
+<figure>
+    <img alt="Img 29" src="../../../../img/computer_network/ch3/network_ch3_img29.png" width="600" />
+</figure>
+<ol>
+<li>初始状态 DEAD：这是链路的起点。表示物理层没有连接（例如，网线没插好，调制解调器未通电或未同步）</li>
+<li>物理连接建立 DEAD → ESTABLISH：在此状态下，通信双方开始使用 LCP 数据包进行对话，协商数据链路层的各种参数</li>
+<li>
+<p>认证阶段 ESTABLISH → AUTHENTICATE：如果 LCP 协商成功，并且协商内容中包含需要认证，则链路进入认证状态。在此状态，双方根据在 LCP 阶段商定的认证协议交换凭证，进行身份验证</p>
+<ol>
+<li>如果认证成功，链路转移到 NETWORK 状态</li>
+<li>如果认证失败，链路会转移到 TERMINATE 状态，准备关闭连接</li>
+</ol>
+</li>
+<li>
+<p>网络状态 NETWORK：PPP 使用网络控制协议来配置和启用网络层协议。NCP 不是单一的协议，而是一个协议族。每个网络层协议都有其对应的 NCP（例如，IP 对应 IPCP，IPv6 对应 IPV6CP）。这些 NCP 负责处理特定网络层协议在点对点链路上所需的配置，例如为接口分配和管理 IP 地址</p>
+</li>
+<li>开放状态 OPEN：这是 PPP 链路的完全操作状态，也是最终目标。当所有 NCP 配置完成后，链路就进入此状态。在此状态下，链路准备就绪，可以开始传输用户数据。具体来说，IP 数据包被封装到 PPP 帧中，然后通过底层的物理介质进行传输</li>
+<li>终止状态 TERMINATE：当通信完成或需要断开连接时，链路进入 TERMINATE 状态。在此状态下，PPP（通常通过交换 LCP 终止数据包）会优雅地关闭数据链路层的连接。之后，随着物理层连接的断开（例如，光信号中断），链路状态最终回归到初始的 DEAD 状态，完成一个完整的生命周期</li>
+</ol>
+<h3 id="62-adsl">6.2 ADSL<a class="headerlink" href="#62-adsl" title="Permanent link">&para;</a></h3>
+<p><strong>Asymmetric Digital Subscriber Loop</strong>（非对称数字用户环路）</p>
+<p>ADSL 物理层：其基础是 OFDM（正交频分复用）数字调制技术。这种技术将信道划分为大量子载波，能有效对抗家庭电话线（双绞线）环境中的干扰，实现高速数据传输</p>
+<p>DSLAM：是安装在电话公司端局的多路复用设备，是所有用户 ADSL 线路的汇聚点。它的关键作用是终结 ADSL 连接，从来自用户的数据流中提取出 IP数 据包，并将其送入 ISP 的骨干网络，最终路由至互联网</p>
+<figure>
+    <img alt="Img 30" src="../../../../img/computer_network/ch3/network_ch3_img30.png" width="600" />
+</figure>
+<ol>
+<li>ADSL（物理层）</li>
+<li>ATM &amp; AAL5（数据链路子层）：在 PPP 层之下，数据先被封装到 ATM 信元中。AAL5 是 ATM 适配层的一种，负责将上层的数据包分割并装入固定长度的 ATM 信元进行传输，并在接收端重新组装</li>
+<li>PPP (数据链路层)：PPP 的功能保持不变。它仍然负责链路的建立、认证、配置，并为 IP 数据包提供成帧机制</li>
+<li>IP（网络层）：最终需要传输的用户数据包</li>
+</ol>
+<p>ATM（Asynchronous Transfer Mode）：</p>
+<ol>
+<li>信元交换：ATM 的基本传输单位是固定长度的 cells（信元）。这与可变长度的"帧"或"包"不同</li>
+<li>异步性：这里的"异步"指信元可以根据需要动态分配带宽，而不像 SONET 那样占用固定的、周期性的时隙。这使其更灵活地适应突发性数据流量</li>
+<li>connection-oriented（面向连接）：在数据传输前，必须首先建立一条 virtual circuit（虚电路）。每个信元都携带标识该电路的 VCI（virtual circuit identifier），网络设备根据 VCI 进行交换和转发，确保了服务质量</li>
+<li>信元结构：固定为 53 字节，其中 5 字节为信元头（包含 VCI 等控制信息），48 字节为有效载荷。这种小尺寸固定长度有助于减少传输延迟和抖动，适合实时业务</li>
+</ol>
+<p>由于上层协议（如 IP/PPP）使用变长的数据包，而 ATM 网络只传输固定 53 字节的信元。就需要 adaptation layer（适配层）来弥合这一差异</p>
+<p>AAL5 适配层：</p>
+<ol>
+<li>发送端（分段）：AAL5 接收来自上层的变长数据包（例如一个完整的 PPP 帧），将其分割成若干个 48 字节的块，并分别加上 ATM 信元头，组装成一系列 ATM 信元进行传输</li>
+<li>接收端（重组）：AAL5 接收 ATM 信元，去掉信元头，将 48 字节的有效载荷重新组合成原始的上层数据包</li>
+</ol>
+<figure>
+    <img alt="Img 31" src="../../../../img/computer_network/ch3/network_ch3_img31.png" width="600" />
+</figure>
+<p>寻址功能由底层 ATM 信元头中的虚电路标识符 完成。每个 ATM 信元都带有 VCI，网络设备根据 VCI 将信元转发到正确的目的地。因此 AAL5 帧本身不需要源和目的地址</p>
+<p>尾部：</p>
+<ol>
+<li>Length：指示 PPP 有效载荷的实际长度（不包括填充和其他字段），以便接收方在重组时能准确提取原始数据</li>
+<li>CRC：用于检测 AAL5 帧在传输过程中是否出现错误</li>
+</ol>
+<p>Pad：为了使整个 AAL5 帧的有效载荷部分（从 PPP 协议字段到 CRC 字段之前）的总长度成为 48 字节的整数倍而添加的空数据。这是关键步骤，因为 ATM 信元的有效载荷是固定的 48 字节，必须确保 AAL5 帧能被精确分割</p>
+<p>PPP protocol：标识封装在后面的 PPP payload 中数据的类型（例如，是 IP 数据包还是 LCP 控制包）</p>
+<h3 id="63-docsis">6.3 DOCSIS<a class="headerlink" href="#63-docsis" title="Permanent link">&para;</a></h3>
+<p><strong>Data Over Cable Service Interface Specification</strong>（电缆数据服务接口规范）</p>
+<p>DOCSIS 协议架构：</p>
+<ol>
+<li>物理层：负责在有线电视电缆这种特定物理介质上传输原始的比特流</li>
+<li>MAC 层：负责控制对共享信道的访问，这是数据链路层的一个关键功能</li>
+</ol>
+<p>在物理层之上，DOCSIS 承担了数据链路层的核心职责，包括：</p>
+<ol>
+<li>带宽分配：由于信道是共享的，DOCSIS 需要一种机制来协调多个用户设备（电缆调制解调器）对上行和下行信道的同时使用，避免冲突并保证服务质量，这实质上是一种流量控制</li>
+<li>framing</li>
+<li>error correction</li>
+</ol>
+<p>当电缆调制解调器（cable modem）加电后，它会自动寻找并与运营商端的 CMTS 设备建立连接。在这个过程中，CMTS 会为它分配通信所需的资源，包括上行/下行信道和加密密钥（以保证通信安全）</p>
+<ul>
+<li>下行信道：从 CMTS 到所有用户调制解调器的信道是广播式的，所有用户都能收到数据，但只提取发送给自己的数据</li>
+<li>上行信道：所有用户调制解调器共享同一个上行信道向 CMTS 发送数据。因此，必须有一套严格的规则（由 MAC 层定义）来协调各个设备的上传时机，防止数据碰撞。这种共享性是有线电缆网络与电话线点对点连接（如 ADSL）的一个根本区别</li>
+</ul>
+<figure>
+    <img alt="Img 32" src="../../../../img/computer_network/ch3/network_ch3_img32.png" width="600" />
+</figure>
+<p>DOCSIS 3.1 之前版本的下行帧结构：</p>
+<ol>
+<li>帧格式：下行数据被封装在 188 字节的 MPEG 帧中</li>
+<li>
+<p>帧构成：</p>
+<ol>
+<li>4 字节头部：包含控制信息</li>
+<li>184 字节有效载荷：用于承载实际的数据内容</li>
+</ol>
+</li>
+</ol>
+<p>除了数据本身，CMTS 还会定期向电缆调制解调器发送管理信息，这些信息包括测距、信道分配以及其他与信道分配相关的任务信息</p>
+<p>modulation profiles（调制配置文件）：定义了如何利用 OFDM 技术的多个子载波。每个子载波可以根据信道质量独立地采用不同的调制阶数</p>
+<p>数据包首先根据其业务流标识和 QoS 参数被分类，convergence layer（汇聚层）将具有相同调制配置文件要求的数据包汇聚到同一个发送缓冲区中。通常，每个配置文件对应一个发送缓冲区，每个缓冲区深度较浅，以避免产生显著的延迟</p>
+<p>随后，码字构建器将每个 DOCSIS 帧映射到相应的 FEC 码字（在发送前，DOCSIS 帧会被码字构建器处理，添加纠错码，形成 FEC 码字）</p>
+<ul>
+<li>下行：结合使用 BCH 码 和 LDPC 码，提供强大的错误保护能力</li>
+<li>上行：使用 LDPC 码 进行错误保护</li>
+</ul>
+<p>CMTS 采用字节填充：如果在下行方向没有可用的 DOCSIS 帧，CMTS 会向 OFDM 符号中插入填充零比特的子载波，或者简单地将一连串的 1 填充到码字中</p>
+<p>从 3.0 版本开始，DOCSIS 支持一种称为 channel bonding（信道绑定）的技术，该技术允许单个用户同时使用多个上行和下行信道</p>
+<figure>
+    <img alt="Img 33" src="../../../../img/computer_network/ch3/network_ch3_img33.png" width="600" />
+</figure>
 
 
 
@@ -10444,7 +10734,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月14日 07:49:06 UTC">2025年10月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月18日 15:16:11 UTC">2025年10月18日</span>
   </span>
 
     
