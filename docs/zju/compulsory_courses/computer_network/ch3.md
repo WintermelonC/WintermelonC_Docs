@@ -1,8 +1,8 @@
 # 3 The Data Link Layer
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -640,7 +640,7 @@ go back N 协议在错误较少时表现良好，但如果信道质量差，它�
 
 那么 A Protocol Using Selective Repeat 的接收窗口的大小应该如何设置呢？
 
-!!! example 分析"
+!!! example "分析"
 
     假设 `MAXSEQ`，发送窗口和接受窗口（最大）大小均为 7
 
