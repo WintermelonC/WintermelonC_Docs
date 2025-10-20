@@ -751,8 +751,8 @@ public class Calculator {
 当需要在一个类中使用其他包中的类时，就需要使用 `import` 语句来引入该类
 
 ```java linenums="1"
-import 包名.类名;   // 导入单个类
-import 包名.*;     // 导入整个包下的所有类（不包含子包）
+import packageName.className;   // 导入单个类
+import packageName.*;     // 导入整个包下的所有类（不包含子包）
 ```
 
 使用外部类的方法：
@@ -844,7 +844,7 @@ public class Main {
     3. 动态调用方法、访问字段
     4. 在运行时做出基于类型的决策
 
-!!! tip `CLASSPATH`
+!!! tip "`CLASSPATH`"
 
     `CLASSPATH` 是告诉 Java 虚拟机（JVM）和 Java 编译器（如 `javac`）去哪里查找用户自定义的类、包和资源文件的环境变量或参数
     
