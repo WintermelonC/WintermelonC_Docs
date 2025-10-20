@@ -10,7 +10,7 @@
 
 ## 1 Java
 
-Java 语言规范明确规定了每种基本数据类型所占用的字节数，并且要求在所有实现 Java 虚拟机（JVM）的平台上都必须严格遵守。这意味着，无论你的程序运行在 Windows、Linux、macOS 系统上，也无论底层是 x86、ARM 还是其他硬件架构，这些数据类型的长度都是固定不变的
+==Java 语言规范明确规定了每种基本数据类型所占用的字节数==，并且要求在所有实现 Java 虚拟机（JVM）的平台上都必须严格遵守。这意味着，无论你的程序运行在 Windows、Linux、macOS 系统上，也无论底层是 x86、ARM 还是其他硬件架构，==这些数据类型的长度都是固定不变的==
 
 ### 1.1 How Java Runs
 
@@ -81,7 +81,7 @@ Java 为了实现自动内存管理（垃圾回收）和语言的简单性，制
 ### 1.7 Root
 
 1. Every class in Java is a descendant of one class: `Object`：在 Java 中，`Object` 类位于类继承树的最顶端。如果你定义一个类时没有用 `extends` 关键字明确指定父类，编译器会自动让它继承自 `Object` 类
-2. So all objects in Java is objects of the class object
+2. So all objects in Java is objects of the class `Object`
 3. In this way, container is an object that can hold objects：这是单根继承带来的巨大优势。因为所有对象都是 `Object`，所以可以设计一个非常通用的容器（或称集合）
 
 > 例如，`ArrayList` 类的内部可以简单地使用一个 `Object[]` 数组来存储元素。它可以存放任何类型的对象，因为任何对象向上转型为 `Object` 引用都是安全的
@@ -89,19 +89,18 @@ Java 为了实现自动内存管理（垃圾回收）和语言的简单性，制
 ## 2 First Java Program
 
 1. 一个 `.java` 源文件中最多只能有一个 `public class`
-2. `.java` 源文件的文件名必须与其中的 `public class` 类名 **完全一致**
+2. `.java` 源文件的文件名必须与其中的 `public class` 类名 ==完全一致==
+3. `main` 函数的声明和签名必须写成 `public static void main(String[] args)`
 
 ```java linenums="1" title="Helloworld.java"
 public class Helloworld {
-    // main 函数必须这样写
     public static void main(String[] args) {
-        // System 是 Java 提供的核心类，代表系统本身
-        // out 是 System 类的一个静态成员变量，类型为 PrintStream，代表标准输出流
-        // println() 是 PrintStream 类的方法，用于输出内容并换行
         System.out.println("Hello, World!");
     }
 }
 ```
+
+编译并运行 `.java` 文件
 
 ```bash linenums="1"
 # 编译 java 文件
@@ -111,130 +110,181 @@ $ java Helloworld
 Hello, World!
 ```
 
-```java linenums="1" title="Helloworld.java"
-public class Helloworld {
+## 3 输出
+
+`System.out` 是 Java 中用于向标准输出打印信息的最常用工具
+
+**`System` 类**：是 `java.lang` 包中的一个 `final` 类（即不可被继承）。它提供了许多与系统相关的有用类字段和方法。它包含了三个重要的静态流对象：
+
+1. `in`：标准输入流，通常对应键盘输入
+2. `out`：标准输出流，通常对应控制台输出
+3. `err`：标准错误输出流，通常也对应控制台，用于显示错误消息
+
+**`out` 对象**：`out` 是 `System` 类中的一个公共的、静态的成员变量。它的数据类型为 `PrintStream`，`PrintStream` 类有一系列方法用于格式化输出各种数据
+
+`PrintStream` 类常用输出方法：
+
+| 方法 | 功能 | 是否换行 |
+| :--: | :--: | :--: |
+| `print()` | 打印内容 | 否 |
+| `println()` | 打印内容并换行 | 是 |
+| `printf()` | 格式化输出 | 否 |
+| `format()` | 格式化输出（与 `printf` 相同） | 否 |
+
+### 3.1 格式化输出
+
+| 说明符 | 用途 | 示例 |
+| :--: | :--: | :--: |
+| `%s` | 字符串 | `"Hello"` |
+| `%d` | 十进制整数 | `123` |
+| `%f` | 浮点数 | `3.14` |
+| `%c` | 字符 | `'A'` |
+| `%b` | 布尔值 | `true` |
+| `%n` | 平台相关的换行符 | （换行） |
+| `%%` | 百分号本身 | `%` |
+
+格式控制：
+
+```java linenums="1"
+%[flags][width][.precision]conversion
+```
+
+!!! example "以 `%f` 为例"
+
+    - `%.2f`：保留 2 位小数
+    - `%10.2f`：总宽度 10 字符，保留 2 位小数，右对齐
+    - `%-10.2f`：总宽度 10 字符，保留 2 位小数，左对齐
+    - `%010.2f`：总宽度 10 字符，保留 2 位小数，右对齐，左侧补 0
+
+??? example "输出示例"
+
+    ```java linenums="1"
+    public class ComparisonExample {
+        public static void main(String[] args) {
+            String item = "Java编程书";
+            double price = 89.5;
+            int stock = 150;
+            
+            System.out.println("=== 使用print/println ===");
+            System.out.print("商品: " + item);
+            System.out.print(", 价格: " + price);
+            System.out.println(", 库存: " + stock);
+            
+            System.out.println("=== 使用printf ===");
+            System.out.printf("商品: %s, 价格: ￥%.2f, 库存: %d%n", item, price, stock);
+            
+            System.out.println("=== 使用format ===");
+            System.out.format("商品: %s, 价格: ￥%.2f, 库存: %d%n", item, price, stock);
+        }
+    }
+    ```
+    
+    ```java linenums="1" title="output"
+    === 使用print/println ===
+    商品: Java编程书, 价格: 89.5, 库存: 150
+    === 使用printf ===
+    商品: Java编程书, 价格: ￥89.50, 库存: 150
+    === 使用format ===
+    商品: Java编程书, 价格: ￥89.50, 库存: 150
+    ```
+
+!!! tip "`String.format()`"
+
+    `String.format()` 是一个静态方法，用于创建一个格式化后的 **字符串**，但不直接输出它。它返回格式化后的字符串，你可以存储这个字符串、进一步处理它，或者在需要的时候输出它
+    
+    > 实际上，`System.out.printf()` 在内部就是调用了 `String.format()`
+    
+    ??? example "示例"
+    
+        ```java linenums="1"
+        public class StringFormatExample {
+            public static void main(String[] args) {
+                String name = "王五";
+                int age = 25;
+                
+                String message1 = String.format("姓名: %s, 年龄: %d", name, age);
+                System.out.println(message1);
+            }
+        }
+        ```
+    
+        ```java linenums="1" title="output"
+        姓名: 王五, 年龄: 25
+        ```
+
+## 4 输入
+
+`Scanner` 是 Java 中最常用的输入工具，它封装了 `System.in`，提供了更简单易用的方法
+
+```java linenums="1"
+import java.util.Scanner;
+
+public class ScannerMethods {
     public static void main(String[] args) {
-        // 输出多个内容（字符串拼接）
-        int age = 20;
-        System.out.println("年龄：" + age);
+        // 创建 scanner 对象
+        Scanner scanner = new Scanner(System.in);
+        
+        // 读取输入
+        
+        // 关闭 scanner
+        scanner.close();
     }
 }
 ```
 
-```java title="输出" linenums="1"
-年龄：20
-```
+常用方法：
 
-!!! tip "其他输出函数"
+| 方法 | 功能 | 返回值 |
+| :--: | :--: | :--: |
+| `next()` | 读取下一个单词（遇到空格停止） | String |
+| `nextLine()` | 读取下一行 | String |
+| `nextInt()` | 读取整数 | int |
+| `nextDouble()` | 读取双精度浮点数 | double |
+| `next...()` | 读取指定的基本类型 | 指定的基本类型 |
+| `hasNext()` | 检查是否还有输入 | boolean |
+| `hasNextInt()` | 检查下一个输入是否是整数 | boolean |
+| `hasNextDouble()` | 检查下一个输入是否是双精度浮点数 | boolean |
+| `hasNext...()` | 检查下一个输入是否是指定的基本类型 | boolean |
 
-    1. `print()`：输出内容后不会换行
-    2. `printf()`：格式化输出。和 C 语言类似
+!!! tip "`next` 陷阱"
 
-## 3 Scanner
+    `nextInt()`, `nextDouble()`, `next()` 等这些方法在读取后，不会消耗输入行末尾的换行符 `\n`。紧接着调用 `nextLine()` 时，它会读取到之前留下的那个换行符，并立即返回一个空字符串
 
-```java linenums="1"
-import java.util.Scanner;
-```
+    **解决方案**：在调用 `nextLine()` 之前，先额外调用一次 `nextLine()` 来消耗掉残留的换行符
 
-`Scanner` 的构造函数可以接收多种类型的输入源
+??? example "示例"
 
-| 输入源 | 构造函数示例 | 说明 |
-| -- | -- | -- |
-| 标准输入（键盘） | `Scanner sc = new Scanner(System.in);` | 最常用，从控制台读取用户输入 |
-| 字符串 | `Scanner sc = new Scanner("Hello World");` | 用于解析给定的字符串 |
-| 文件 | `Scanner sc = new Scanner(new File("myFile.txt"));` | 读取文件内容，需要处理 `FileNotFoundException` |
-
-使用 `close()` 方法关闭 Scanner 对象是一个好习惯，尤其是在读取文件时，可以释放相关的 I/O 资源。关闭后，与之关联的底层流（如 `System.in`）也会被关闭。如果之后还需要使用 `System.in`，关闭 Scanner 会导致无法再从控制台读取输入
-
-### 3.1 Scanner 方法
-
-| 方法 | 功能 |
-| -- | -- |
-| `next()` | 查找并返回下一个完整的令牌（token）（默认以空格/换行符分隔） |
-| `nextLine()` | 读取下一行输入（包括空格，以换行符 `\n` 结束） |
-| `nextInt()` | 将下一个令牌扫描为 `int` 类型 |
-| `nextDouble()` | 将下一个令牌扫描为 `double` 类型 |
-| `nextBoolean()` | 将下一个令牌扫描为 `boolean` 类型 |
-| `...` | 其他基本类型如 `nextByte()`, `nextShort()`, `nextLong()`, `nextFloat()` |
-| `hasNext()` | 判断是否还有下一个令牌（非空） |
-| `hasNextInt()` | 判断下一个令牌是否可解释为 `int` 类型 |
-| `hasNextDouble()` | 判断下一个令牌是否可解释为 `double` 类型 |
-| `...` | 其他类型对应的方法，如 `hasNextBoolean()` 等 |
-
-### 3.2 分隔符
-
-默认情况下，Scanner 使用空白字符（空格、制表符、换行符等）作为分隔符来分割令牌。
-可以使用 `useDelimiter()` 方法来指定自己的分隔符模式（支持正则表达式）
-
-```java linenums="1" title="创建字符串"
-String input = "Apple, Banana, Cherry\nOrange";
-Scanner sc = new Scanner(input);
-sc.useDelimiter(",|\\n"); // 分隔符是“逗号”或“换行符”
-
-while (sc.hasNext()) {
-    System.out.println(sc.next().trim()); // trim()去除首尾空格
-}
-
-sc.close();
-
-// 输出:
-// Apple
-// Banana
-// Cherry
-// Orange
-```
-
-### 3.3 `nextLine()` 与 `next()` 的陷阱
-
-`nextInt()`, `nextDouble()`, `next()` 等这些方法在读取后，不会消耗输入行末尾的换行符 `\n`。紧接着调用 `nextLine()` 时，它会读取到之前留下的那个换行符，并立即返回一个空字符串
-
-解决方案：在调用 `nextLine()` 之前，先额外调用一次 `nextLine()` 来“消耗”掉残留的换行符
-
-```java linenums="1" title="创建字符串"
-Scanner sc = new Scanner(System.in);
-System.out.print("请输入数字: ");
-int num = sc.nextInt();
-sc.nextLine();  // 消耗掉残留的换行符
-
-System.out.print("请输入字符串: ");
-String str = sc.nextLine();
-
-System.out.println("数字: " + num);
-System.out.println("字符串: '" + str + "'");
-```
-
-## 4 格式化输出
-
-使用 `System.out.printf()` 或 `String.format()` 进行格式化输出，语法与 C 语言类似
-
-| 格式符 | 含义 |
-| -- | -- |
-| `%d` | 整数 |
-| `%f` | 浮点数（默认保留 6 位小数）|
-| `%.2f` | 浮点数（保留 2 位小数）|
-| `%s` | 字符串 |
-| `%c` | 字符 |
-| `%ms` | 宽度为 m，右对齐，左侧补空格（字符串）|
-| `%md` | 宽度为 m，右对齐，左侧补空格（整数）|
-| `%-ms` | 宽度为 m，左对齐，右侧补空格|
-| `%0md` | 宽度为 m，左侧补 0（整数）|
-
-> `%` 后加宽度、`-`（左对齐）、`0`（补零）
-
-```java linenums="1"
-int a = 10;
-double b = 3.14159;
-String s = "Java";
-System.out.printf("a=%d, b=%.2f, s=%s%n", a, b, s);
-// 输出：a=10, b=3.14, s=Java
-```
-
-`String.format()` 用于生成格式化字符串，不直接输出：
-
-```java linenums="1"
-String str = String.format("姓名：%s，分数：%.1f", "张三", 95.5);
-System.out.println(str);
-```
+    ```java linenums="1"
+    import java.util.Scanner;
+    
+    public class ScannerMethods {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+            
+            // next() vs nextLine()
+            String word = scanner.next(); // 只读取第一个单词
+            
+            scanner.nextLine(); // 消耗掉剩余的输入（包括换行符）
+            
+            String line = scanner.nextLine(); // 读取整行
+            
+            // 检查输入类型
+            if (scanner.hasNextInt()) {
+                int number = scanner.nextInt();
+            } else {
+                System.out.println("输入的不是整数");
+                scanner.next(); // 清除错误的输入
+            }
+            
+            // 读取多个值
+            int a = scanner.nextInt();
+            int b = scanner.nextInt();
+            int c = scanner.nextInt();
+            
+            scanner.close();
+        }
+    }
+    ```
 
 ## 5 Java 标识符
 
@@ -245,7 +295,7 @@ Java 标识符规则：
 3. 不能是 Java 关键字或保留字
 
 ```java linenums="1"
-// 是可以编译运行的
+// 这是可以编译运行的
 public class Test {
     public static void main(String[] args) {
         int 名字 = 10;
