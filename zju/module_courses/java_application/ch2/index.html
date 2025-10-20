@@ -6529,6 +6529,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#732-与其他语言的区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.2 与其他语言的区别
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -10024,6 +10033,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#732-与其他语言的区别" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3.2 与其他语言的区别
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -11371,6 +11389,33 @@
 <li>同一个包中的类：互相使用无需导入</li>
 <li><code>java.lang</code> 包：这是 Java 最核心的包，编译器会自动导入</li>
 </ol>
+<h4 id="732-与其他语言的区别">7.3.2 与其他语言的区别<a class="headerlink" href="#732-与其他语言的区别" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">编程语言</th>
+<th style="text-align: center;">语法示例</th>
+<th style="text-align: center;">实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>C / C++</strong></td>
+<td style="text-align: center;"><code>#include &lt;stdio.h&gt;</code></td>
+<td style="text-align: center;"><strong>文本插入</strong>：预处理器直接将头文件内容插入源代码<br/>编译时只检查函数/变量的 <strong>声明（原型）</strong>，链接时再结合编译后的二进制代码</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Java</strong></td>
+<td style="text-align: center;"><code>import java.util.Scanner;</code></td>
+<td style="text-align: center;"><strong>装载类</strong>：通过反射（RTTI）机制在运行时获取类的信息<br/>编译和运行时都需要编译后的 <code>.class</code> 二进制文件，且会自动编译依赖项</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>Python</strong></td>
+<td style="text-align: center;"><code>import Pandas</code></td>
+<td style="text-align: center;"><strong>装载并运行模块文件</strong>：直接加载并执行 <code>Pandas.py</code> 文件<br/>需要源代码可见（或已编译的 <code>.pyc</code> 文件），依赖源码或字节码</td>
+</tr>
+</tbody>
+</table>
 <h3 id="74-classpath">7.4 <code>CLASSPATH</code><a class="headerlink" href="#74-classpath" title="Permanent link">&para;</a></h3>
 <p><code>CLASSPATH</code> 是告诉 Java 虚拟机（JVM）和 Java 编译器（如 <code>javac</code>）去哪里查找用户自定义的类、包和资源文件的环境变量或参数</p>
 <p>当 Java 需要加载一个类时，它就会去 <code>CLASSPATH</code> 指定的路径列表里寻找对应的 <code>.class</code> 文件或包含该类的 <code>.jar</code> 文件</p>
@@ -11456,7 +11501,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月9日 14:05:54 UTC">2025年10月9日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月20日 09:52:58 UTC">2025年10月20日</span>
   </span>
 
     
