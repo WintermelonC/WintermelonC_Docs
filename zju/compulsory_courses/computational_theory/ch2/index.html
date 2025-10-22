@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch1/">
       
       
-        <link rel="next" href="../../operating_system/">
+        <link rel="next" href="../ch3/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -5418,6 +5418,8 @@
       
         
       
+        
+      
     
     
     
@@ -5579,18 +5581,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-state-minimization" class="md-nav__link">
+  <a href="#-5-state-minimization" class="md-nav__link">
     <span class="md-ellipsis">
-      5 State Minimization
+      * 5 State Minimization
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-algorithms-for-finite-automata" class="md-nav__link">
+  <a href="#-6-algorithms-for-finite-automata" class="md-nav__link">
     <span class="md-ellipsis">
-      6 Algorithms For Finite Automata
+      * 6 Algorithms For Finite Automata
     </span>
   </a>
   
@@ -5600,6 +5602,29 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3 Context-Free Languages
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -5683,6 +5708,8 @@
   
     
     
+      
+        
       
         
       
@@ -5835,6 +5862,29 @@
   
   <span class="md-ellipsis">
     5 CPU Scheduling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operating_system/theory/ch6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Process Synchronization
     
   </span>
   
@@ -6008,6 +6058,8 @@
       
         
       
+        
+      
     
     
     
@@ -6112,6 +6164,29 @@
   
   <span class="md-ellipsis">
     3 The Data Link Layer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../computer_network/ch4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4 The Medium Access Control Sublayer
     
   </span>
   
@@ -9522,18 +9597,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-state-minimization" class="md-nav__link">
+  <a href="#-5-state-minimization" class="md-nav__link">
     <span class="md-ellipsis">
-      5 State Minimization
+      * 5 State Minimization
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-algorithms-for-finite-automata" class="md-nav__link">
+  <a href="#-6-algorithms-for-finite-automata" class="md-nav__link">
     <span class="md-ellipsis">
-      6 Algorithms For Finite Automata
+      * 6 Algorithms For Finite Automata
     </span>
   </a>
   
@@ -9577,13 +9652,19 @@
 <!-- 如果页面为首页，则不加 <h1> -->
 
 <h1 id="2-finite-automata">2 Finite Automata<a class="headerlink" href="#2-finite-automata" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
-<p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
+<ol>
+<li>本文档仅涉及部分内容，仅可用于复习重点知识</li>
+<li>本章 5、6 节考试不考</li>
+</ol>
+<blockquote>
+<p>呃啊，看了半天原来不考</p>
+</blockquote>
 </div>
 <h2 id="1-deterministic-finite-automata">1 Deterministic Finite Automata<a class="headerlink" href="#1-deterministic-finite-automata" title="Permanent link">&para;</a></h2>
 <p>A <strong>deterministic finite automaton</strong> is a quintuple <span class="arithmatex">\(M = (K,\Sigma, \delta, s, F)\)</span> where</p>
@@ -9824,7 +9905,7 @@
 <figure>
   <img alt="Img 21" src="../../../../img/computational_theory/ch2/computational_ch2_img21.png" width="800" />
 </figure>
-<h2 id="5-state-minimization">5 State Minimization<a class="headerlink" href="#5-state-minimization" title="Permanent link">&para;</a></h2>
+<h2 id="-5-state-minimization">* 5 State Minimization<a class="headerlink" href="#-5-state-minimization" title="Permanent link">&para;</a></h2>
 <figure>
   <img alt="Img 22" src="../../../../img/computational_theory/ch2/computational_ch2_img22.png" width="400" />
 </figure>
@@ -9899,7 +9980,29 @@
 <li><span class="arithmatex">\(\equiv_1\)</span>: <span class="arithmatex">\(\lbrace q_1, q_3\rbrace\)</span> <span class="arithmatex">\(\lbrace q_2\rbrace\)</span> <span class="arithmatex">\(\lbrace q_4,q_6\rbrace\)</span> <span class="arithmatex">\(\lbrace q_5\rbrace\)</span></li>
 </ol>
 <p>接下来没有能够继续分割的了，这样同样能够得到 <ins>Figure 2-21</ins></p>
-<h2 id="6-algorithms-for-finite-automata">6 Algorithms For Finite Automata<a class="headerlink" href="#6-algorithms-for-finite-automata" title="Permanent link">&para;</a></h2>
+<h2 id="-6-algorithms-for-finite-automata">* 6 Algorithms For Finite Automata<a class="headerlink" href="#-6-algorithms-for-finite-automata" title="Permanent link">&para;</a></h2>
+<p>分析将非确定性有限自动机转换为确定性有限自动机的算法的复杂度：</p>
+<p>该算法的输出当中的 <span class="arithmatex">\(\delta'(Q,a) = \bigcup\lbrace E(p): p \in K, (q,a,p) \in \Delta \text{ for some } q \in Q \rbrace\)</span></p>
+<ol>
+<li>计算所有的 <span class="arithmatex">\(E(p)\)</span>，时间复杂度 <span class="arithmatex">\(O(|K|^3)\)</span></li>
+<li>对每个可能的状态子集 <span class="arithmatex">\(Q \subseteq K\)</span>（共 <span class="arithmatex">\(2^{|K|}\)</span> 个），和每个字母 <span class="arithmatex">\(a \in \Sigma\)</span>，计算 <span class="arithmatex">\(\delta'(Q,a)\)</span>。每次计算需要遍历 <span class="arithmatex">\(\Delta\)</span> 中的边，最多 <span class="arithmatex">\(|\Delta|\)</span> 条，每条对应一次 <span class="arithmatex">\(E(p)\)</span> 查询。时间复杂度为 <span class="arithmatex">\(O(2^{|K|}|\Sigma||\Delta||K|^2)\)</span></li>
+</ol>
+<p>整个算法的总复杂度为 <span class="arithmatex">\(O(2^{|K|}|\Sigma||\Delta||K|^5)\)</span></p>
+<p>将正则表达式 <span class="arithmatex">\(R\)</span> 转换为 NFA 是非常高效的。状态数最多 <span class="arithmatex">\(2|R|\)</span>，转移数最多 <span class="arithmatex">\(4|R|^2\)</span>。是一个多项式时间的构造过程</p>
+<p>将有限自动机转换为正则表达式。虽然状态数是多项式，但输出的正则表达式长度可能是指数级的，总长度达 <span class="arithmatex">\(O(3^{|K|})\)</span></p>
+<p>DFA 最小化算法。最多经过 <span class="arithmatex">\(|K| - 1\)</span> 次迭代，总复杂度为 <span class="arithmatex">\(O(|\Sigma||K|^3)\)</span>，多项式时间</p>
+<p>DFA 的等价性判定。先对两个 DFA 分别做最小化，若最小化后的 DFA 完全相同，则等价。由于最小化是多项式时间，所以整体也是多项式时间</p>
+<p>相比之下，我们目前唯一知道的判断两个非确定性有限自动机（NFA）或两个正则表达式是否等价的方法，是先将它们都转换为确定性有限自动机（DFA），然后测试这两个 DFA 是否等价。而这一过程的算法复杂度当然是指数级的</p>
+<div class="admonition tip">
+<ol>
+<li>存在一个指数时间算法，给定一个非确定性有限自动机（NFA），可以构造出一个等价的确定性有限自动机（DFA）</li>
+<li>存在一个多项式时间算法，给定一个正则表达式，可以构造出一个等价的非确定性有限自动机（NFA）</li>
+<li>存在一个指数时间算法，给定一个非确定性有限自动机（NFA），可以构造出一个等价的正则表达式</li>
+<li>存在一个多项式时间算法，给定一个确定性有限自动机（DFA），可以构造出一个状态数最少的等价 DFA</li>
+<li>存在一个多项式时间算法，给定两个确定性有限自动机（DFA），可以判断它们是否等价</li>
+<li>存在一个指数时间算法，给定两个非确定性有限自动机（NFA），可以判断它们是否等价；类似地，也可以用于判断两个正则表达式的等价性</li>
+</ol>
+</div>
 
 
 
@@ -9922,7 +10025,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月14日 07:49:06 UTC">2025年10月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月22日 03:28:12 UTC">2025年10月22日</span>
   </span>
 
     
@@ -10054,13 +10157,13 @@
         
         
           
-          <a href="../../operating_system/" class="md-footer__link md-footer__link--next" aria-label="下一页: 操作系统">
+          <a href="../ch3/" class="md-footer__link md-footer__link--next" aria-label="下一页: 3 Context-Free Languages">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                操作系统
+                3 Context-Free Languages
               </div>
             </div>
             <div class="md-footer__button md-icon">
