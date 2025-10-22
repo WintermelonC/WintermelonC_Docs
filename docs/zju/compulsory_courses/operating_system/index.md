@@ -43,8 +43,17 @@ zzk老师 (1)
 
 ## 个人笔记
 
+### 理论部分
+
 [1 Overview](./theory/ch1.md)<br/>
 [2 Operating System Structures](./theory/ch2.md)<br/>
 [3 Processes](./theory/ch3.md)<br/>
 [4 Threads](./theory/ch4.md)<br/>
-[5 CPU Scheduling](./theory/ch5.md)
+[5 CPU Scheduling](./theory/ch5.md)<br/>
+[6 Process Synchronization](./theory/ch6.md)
+
+### 实验部分
+
+[1 Linux](./lab/ch1.md)<br/>
+[2 QEMU](./lab/ch2.md)<br/>
+[3 GDB](./lab/ch3.md)

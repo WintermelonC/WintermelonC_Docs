@@ -197,6 +197,7 @@ nav:
         - zju/compulsory_courses/computational_theory/index.md
         - 1 Sets, Relations, and Languages: zju/compulsory_courses/computational_theory/ch1.md
         - 2 Finite Automata: zju/compulsory_courses/computational_theory/ch2.md
+        - 3 Context-Free Languages: zju/compulsory_courses/computational_theory/ch3.md
       - 操作系统:
         - zju/compulsory_courses/operating_system/index.md
         - 理论部分:
@@ -205,6 +206,7 @@ nav:
           - 3 Processes: zju/compulsory_courses/operating_system/theory/ch3.md
           - 4 Threads: zju/compulsory_courses/operating_system/theory/ch4.md
           - 5 CPU Scheduling: zju/compulsory_courses/operating_system/theory/ch5.md
+          - 6 Process Synchronization: zju/compulsory_courses/operating_system/theory/ch6.md
         - 实验部分:
           - 1 Linux: zju/compulsory_courses/operating_system/lab/ch1.md
           - 2 QEMU: zju/compulsory_courses/operating_system/lab/ch2.md
@@ -214,6 +216,7 @@ nav:
         - 1 Introduction: zju/compulsory_courses/computer_network/ch1.md
         - 2 The Physical Layer: zju/compulsory_courses/computer_network/ch2.md
         - 3 The Data Link Layer: zju/compulsory_courses/computer_network/ch3.md
+        - 4 The Medium Access Control Sublayer: zju/compulsory_courses/computer_network/ch4.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - Java 应用技术:

@@ -117,8 +117,10 @@ $f: A \mapsto B$
 2. $f(a)$ is called the **image** of $a$ under $f$
 3. $f(a_1, \cdots, a_n) = b$, call $a_i$ the **arguments** of $f$, call $b$ the corresponding **value** of $f$
 
+分类：
+
 - **one-to-one**：单射（这个英文称呼感觉有点歧义）
-- $f: A \mapsto B$ is **onto** $B$ if each element of $B$ is the image under $f$ of some element of $A$. 满射
+- $f: A \mapsto B$ is **onto** if each element of $B$ is the image under $f$ of some element of $A$. 满射
 - $f: A \mapsto B$ is a **bijection** between $A$ and $B$ if it is both one-to-one and onto $B$. 一一对应 / 双射
 
 The **inverse** of a binary relation $R \subseteq A \times B$, denoted $R^{-1} \subseteq B \times A$, is the relation $\lbrace (b,a):(a,b) \in R \rbrace$
@@ -196,7 +198,7 @@ call two sets $A$ and $B$ **equinumerous** 当且仅当存在一个双射 $f: A 
 
 一个 set **infinite** 如果它不 finite
 
-A set is said to be **countably infinite** if ti is equinumerous with $N$
+A set is said to be **countably infinite** if it is equinumerous with $N$
 
 A set is said to be **countable** if it is finite or countably infinite
 
@@ -278,7 +280,7 @@ A set that is not countable is **uncountable**
 
 !!! tip "对角化原理"
 
-    Let $R$ be a binary relation on a set $A$, and let $D$, the diagonal set for $R$, be $\lbrace a:a \in A\ and\ (a,a) \notin R \rbrace$. For each $a \in A$, let $R_n = \lbrace b:b \in A\ and\ (a,b) \in R \rbrace$. Then $D$ is distinct from each $R_a$
+    Let $R$ be a binary relation on a set $A$, and let $D$, the diagonal set for $R$, be $\lbrace a:a \in A\ and\ (a,a) \notin R \rbrace$. For each $a \in A$, let $R_a = \lbrace b:b \in A\ and\ (a,b) \in R \rbrace$. Then $D$ is distinct from each $R_a$
 
 <figure markdown="span">
   ![Img 9](../../../img/computational_theory/ch1/computational_ch1_img9.png){ width="800" }

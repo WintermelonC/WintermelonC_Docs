@@ -1,12 +1,15 @@
 # 2 Finite Automata
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
-    本文档仅涉及部分内容，仅可用于复习重点知识
+    1. 本文档仅涉及部分内容，仅可用于复习重点知识
+    2. 本章 5、6 节考试不考
+
+    > 呃啊，看了半天原来不考
 
 ## 1 Deterministic Finite Automata
 
@@ -311,7 +314,7 @@ $q_4 \rightarrow q_3 \rightarrow q_5$: $a^*b(a \cup ba^*ba^*b)^*$
   ![Img 21](../../../img/computational_theory/ch2/computational_ch2_img21.png){ width="800" }
 </figure>
 
-## 5 State Minimization
+## * 5 State Minimization
 
 <figure markdown="span">
   ![Img 22](../../../img/computational_theory/ch2/computational_ch2_img22.png){ width="400" }
@@ -400,5 +403,32 @@ $q_4 \rightarrow q_3 \rightarrow q_5$: $a^*b(a \cup ba^*ba^*b)^*$
 
 接下来没有能够继续分割的了，这样同样能够得到 ^^Figure 2-21^^
 
-## 6 Algorithms For Finite Automata
+## * 6 Algorithms For Finite Automata
 
+分析将非确定性有限自动机转换为确定性有限自动机的算法的复杂度：
+
+该算法的输出当中的 $\delta'(Q,a) = \bigcup\lbrace E(p): p \in K, (q,a,p) \in \Delta \text{ for some } q \in Q \rbrace$
+
+1. 计算所有的 $E(p)$，时间复杂度 $O(|K|^3)$
+2. 对每个可能的状态子集 $Q \subseteq K$（共 $2^{|K|}$ 个），和每个字母 $a \in \Sigma$，计算 $\delta'(Q,a)$。每次计算需要遍历 $\Delta$ 中的边，最多 $|\Delta|$ 条，每条对应一次 $E(p)$ 查询。时间复杂度为 $O(2^{|K|}|\Sigma||\Delta||K|^2)$
+
+整个算法的总复杂度为 $O(2^{|K|}|\Sigma||\Delta||K|^5)$
+
+将正则表达式 $R$ 转换为 NFA 是非常高效的。状态数最多 $2|R|$，转移数最多 $4|R|^2$。是一个多项式时间的构造过程
+
+将有限自动机转换为正则表达式。虽然状态数是多项式，但输出的正则表达式长度可能是指数级的，总长度达 $O(3^{|K|})$
+
+DFA 最小化算法。最多经过 $|K| - 1$ 次迭代，总复杂度为 $O(|\Sigma||K|^3)$，多项式时间
+
+DFA 的等价性判定。先对两个 DFA 分别做最小化，若最小化后的 DFA 完全相同，则等价。由于最小化是多项式时间，所以整体也是多项式时间
+
+相比之下，我们目前唯一知道的判断两个非确定性有限自动机（NFA）或两个正则表达式是否等价的方法，是先将它们都转换为确定性有限自动机（DFA），然后测试这两个 DFA 是否等价。而这一过程的算法复杂度当然是指数级的
+
+!!! tip ""
+
+    1. 存在一个指数时间算法，给定一个非确定性有限自动机（NFA），可以构造出一个等价的确定性有限自动机（DFA）
+    2. 存在一个多项式时间算法，给定一个正则表达式，可以构造出一个等价的非确定性有限自动机（NFA）
+    3. 存在一个指数时间算法，给定一个非确定性有限自动机（NFA），可以构造出一个等价的正则表达式
+    4. 存在一个多项式时间算法，给定一个确定性有限自动机（DFA），可以构造出一个状态数最少的等价 DFA
+    5. 存在一个多项式时间算法，给定两个确定性有限自动机（DFA），可以判断它们是否等价
+    6. 存在一个指数时间算法，给定两个非确定性有限自动机（NFA），可以判断它们是否等价；类似地，也可以用于判断两个正则表达式的等价性

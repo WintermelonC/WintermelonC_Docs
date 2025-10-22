@@ -1345,7 +1345,7 @@ public class JavaClosureLimitations {
 }
 ```
 
-### 5.5 Eager Call And Lazy Call
+### 5.5 Eager Call and Lazy Call
 
 Eager Call：
 
