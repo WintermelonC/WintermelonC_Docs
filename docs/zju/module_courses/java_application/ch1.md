@@ -18,7 +18,7 @@
 2. 运行期：将 `.class` 字节码文件交给目标平台上的 JVM 来加载、解释或编译并执行
 
 <figure markdown="span">
-  ![Img 1](../../../img/java_application/ch1/java_app_img1.png){ width="600" }
+  ![Img 1](../../../img/java_application/ch1/java_app_ch1_img1.png){ width="600" }
 </figure>
 
 ### 1.2 Stable and KISS

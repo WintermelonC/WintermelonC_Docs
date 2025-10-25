@@ -225,6 +225,7 @@ nav:
         - 2 Basic: zju/module_courses/java_application/ch2.md
         - 3 Inheritance and Polymorphism: zju/module_courses/java_application/ch3.md
         - 4 Classes of Other Kinds: zju/module_courses/java_application/ch4.md
+        - 5 Container and Generics: zju/module_courses/java_application/ch5.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:
