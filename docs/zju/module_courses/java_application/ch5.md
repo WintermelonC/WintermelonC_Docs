@@ -95,25 +95,25 @@ for (var num : arr) {
 
 | 方法 | 说明 | 返回值 |
 | :--: | :--: | :--: |
-| `String toString(array)` | 将数组转换为字符串表示形式 | |
-| `String deepToString(array)` | 将多维数组转换为字符串表示形式  | |
-| `void sort(array)`| 对数组进行升序排序 | |
-| `void sort(array, fromIndex, toIndex)` | 对数组指定范围进行排序| |
-| `int binarySearch(array, key)` | 在已排序数组中二分查找元素 | 找到则返回索引，否则返回负值 |
-| `T[] copyOf(original, newLength)` | 复制数组，可指定新长度 | |
-| `T[] copyOfRange(original, from, to)` | 复制数组的指定范围 | |
-| `boolean equals(array1, array2)`| 比较两个数组是否相等 | |
-| `boolean deepEquals(array1, array2)`| 比较两个多维数组是否相等 | |
-| `void fill(array, value)`| 用指定值填充整个数组 | |
-| `void fill(array, fromIndex, toIndex, value)` | 用指定值填充数组的指定范围 | |
-| `List<T> asList(elements...)` | 将元素列表转换为固定大小的 `List` | |
-| `Stream<T> stream(array)`| 将数组转换为 `Stream` 流 | |
-| `void parallelSort(array)`| 并行排序数组 | 大数据量时更高效 |
-| `void setAll(array, generator)`| 使用生成函数设置所有元素的值 | |
-| `void parallelSetAll(array, generator)`| 并行使用生成函数设置所有元素的值 | |
-| `void parallelPrefix(array, op)`| 并行计算数组的前缀 | |
-| `int mismatch(array1, array2)` | 查找两个数组第一个不匹配的索引 | |
-| `int compare(array1, array2)` | 按字典顺序比较两个数组 | |
+| `String Arrays.toString(array)` | 将数组转换为字符串表示形式 | |
+| `String Arrays.deepToString(array)` | 将多维数组转换为字符串表示形式  | |
+| `void Arrays.sort(array)`| 对数组进行升序排序 | |
+| `void Arrays.sort(array, fromIndex, toIndex)` | 对数组指定范围进行排序| |
+| `int Arrays.binarySearch(array, key)` | 在已排序数组中二分查找元素 | 找到则返回索引，否则返回负值 |
+| `T[] Arrays.copyOf(original, newLength)` | 复制数组，可指定新长度 | |
+| `T[] Arrays.copyOfRange(original, from, to)` | 复制数组的指定范围 | |
+| `boolean Arrays.equals(array1, array2)`| 比较两个数组是否相等 | |
+| `boolean Arrays.deepEquals(array1, array2)`| 比较两个多维数组是否相等 | |
+| `void Arrays.fill(array, value)`| 用指定值填充整个数组 | |
+| `void Arrays.fill(array, fromIndex, toIndex, value)` | 用指定值填充数组的指定范围 | |
+| `List<T> Arrays.asList(elements...)` | 将元素列表转换为固定大小的 `List` | |
+| `Stream<T> Arrays.stream(array)`| 将数组转换为 `Stream` 流 | |
+| `void Arrays.parallelSort(array)`| 并行排序数组 | 大数据量时更高效 |
+| `void Arrays.setAll(array, generator)`| 使用生成函数设置所有元素的值 | |
+| `void Arrays.parallelSetAll(array, generator)`| 并行使用生成函数设置所有元素的值 | |
+| `void Arrays.parallelPrefix(array, op)`| 并行计算数组的前缀 | |
+| `int Arrays.mismatch(array1, array2)` | 查找两个数组第一个不匹配的索引 | |
+| `int Arrays.compare(array1, array2)` | 按字典顺序比较两个数组 | |
 | `void System.arraycopy(...)` | 高效复制数组 | 系统级底层方法 |
 | `Object array.clone()` | 克隆数组 | 浅拷贝 |
 
