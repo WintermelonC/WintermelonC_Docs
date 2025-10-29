@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch4/">
       
       
-        <link rel="next" href="../../BS_software_design/">
+        <link rel="next" href="../ch6/">
       
       
       <link rel="icon" href="../../../../img/logo.png">
@@ -6207,6 +6207,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -6616,10 +6620,122 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Stream
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-创建-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 创建 Stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-中间操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 中间操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-终端操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 终端操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3 终端操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-collectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3.1 Collectors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-并行-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 并行 Stream
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6 Exception and RTTI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7 Optional and IO
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -9963,6 +10079,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#8-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8 Stream
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8 Stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-创建-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 创建 Stream
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-中间操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 中间操作
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-终端操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 终端操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8.3 终端操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#831-collectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3.1 Collectors
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#84-并行-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.4 并行 Stream
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -10100,116 +10282,116 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">方法</th>
-<th style="text-align: center;">说明</th>
-<th style="text-align: center;">返回值</th>
+<th>方法</th>
+<th>说明</th>
+<th>返回值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>String Arrays.toString(array)</code></td>
-<td style="text-align: center;">将数组转换为字符串表示形式</td>
-<td style="text-align: center;"></td>
+<td><code>String Arrays.toString(array)</code></td>
+<td>将数组转换为字符串表示形式</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>String Arrays.deepToString(array)</code></td>
-<td style="text-align: center;">将多维数组转换为字符串表示形式</td>
-<td style="text-align: center;"></td>
+<td><code>String Arrays.deepToString(array)</code></td>
+<td>将多维数组转换为字符串表示形式</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.sort(array)</code></td>
-<td style="text-align: center;">对数组进行升序排序</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.sort(array)</code></td>
+<td>对数组进行升序排序</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.sort(array, fromIndex, toIndex)</code></td>
-<td style="text-align: center;">对数组指定范围进行排序</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.sort(array, fromIndex, toIndex)</code></td>
+<td>对数组指定范围进行排序</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int Arrays.binarySearch(array, key)</code></td>
-<td style="text-align: center;">在已排序数组中二分查找元素</td>
-<td style="text-align: center;">找到则返回索引，否则返回负值</td>
+<td><code>int Arrays.binarySearch(array, key)</code></td>
+<td>在已排序数组中二分查找元素</td>
+<td>找到则返回索引，否则返回负值</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>T[] Arrays.copyOf(original, newLength)</code></td>
-<td style="text-align: center;">复制数组，可指定新长度</td>
-<td style="text-align: center;"></td>
+<td><code>T[] Arrays.copyOf(original, newLength)</code></td>
+<td>复制数组，可指定新长度</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>T[] Arrays.copyOfRange(original, from, to)</code></td>
-<td style="text-align: center;">复制数组的指定范围</td>
-<td style="text-align: center;"></td>
+<td><code>T[] Arrays.copyOfRange(original, from, to)</code></td>
+<td>复制数组的指定范围</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean Arrays.equals(array1, array2)</code></td>
-<td style="text-align: center;">比较两个数组是否相等</td>
-<td style="text-align: center;"></td>
+<td><code>boolean Arrays.equals(array1, array2)</code></td>
+<td>比较两个数组是否相等</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean Arrays.deepEquals(array1, array2)</code></td>
-<td style="text-align: center;">比较两个多维数组是否相等</td>
-<td style="text-align: center;"></td>
+<td><code>boolean Arrays.deepEquals(array1, array2)</code></td>
+<td>比较两个多维数组是否相等</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.fill(array, value)</code></td>
-<td style="text-align: center;">用指定值填充整个数组</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.fill(array, value)</code></td>
+<td>用指定值填充整个数组</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.fill(array, fromIndex, toIndex, value)</code></td>
-<td style="text-align: center;">用指定值填充数组的指定范围</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.fill(array, fromIndex, toIndex, value)</code></td>
+<td>用指定值填充数组的指定范围</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>List&lt;T&gt; Arrays.asList(elements...)</code></td>
-<td style="text-align: center;">将元素列表转换为固定大小的 <code>List</code></td>
-<td style="text-align: center;"></td>
+<td><code>List&lt;T&gt; Arrays.asList(elements...)</code></td>
+<td>将元素列表转换为固定大小的 <code>List</code></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Stream&lt;T&gt; Arrays.stream(array)</code></td>
-<td style="text-align: center;">将数组转换为 <code>Stream</code> 流</td>
-<td style="text-align: center;"></td>
+<td><code>Stream&lt;T&gt; Arrays.stream(array)</code></td>
+<td>将数组转换为 <code>Stream</code> 流</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.parallelSort(array)</code></td>
-<td style="text-align: center;">并行排序数组</td>
-<td style="text-align: center;">大数据量时更高效</td>
+<td><code>void Arrays.parallelSort(array)</code></td>
+<td>并行排序数组</td>
+<td>大数据量时更高效</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.setAll(array, generator)</code></td>
-<td style="text-align: center;">使用生成函数设置所有元素的值</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.setAll(array, generator)</code></td>
+<td>使用生成函数设置所有元素的值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.parallelSetAll(array, generator)</code></td>
-<td style="text-align: center;">并行使用生成函数设置所有元素的值</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.parallelSetAll(array, generator)</code></td>
+<td>并行使用生成函数设置所有元素的值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void Arrays.parallelPrefix(array, op)</code></td>
-<td style="text-align: center;">并行计算数组的前缀</td>
-<td style="text-align: center;"></td>
+<td><code>void Arrays.parallelPrefix(array, op)</code></td>
+<td>并行计算数组的前缀</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int Arrays.mismatch(array1, array2)</code></td>
-<td style="text-align: center;">查找两个数组第一个不匹配的索引</td>
-<td style="text-align: center;"></td>
+<td><code>int Arrays.mismatch(array1, array2)</code></td>
+<td>查找两个数组第一个不匹配的索引</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int Arrays.compare(array1, array2)</code></td>
-<td style="text-align: center;">按字典顺序比较两个数组</td>
-<td style="text-align: center;"></td>
+<td><code>int Arrays.compare(array1, array2)</code></td>
+<td>按字典顺序比较两个数组</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void System.arraycopy(...)</code></td>
-<td style="text-align: center;">高效复制数组</td>
-<td style="text-align: center;">系统级底层方法</td>
+<td><code>void System.arraycopy(...)</code></td>
+<td>高效复制数组</td>
+<td>系统级底层方法</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Object array.clone()</code></td>
-<td style="text-align: center;">克隆数组</td>
-<td style="text-align: center;">浅拷贝</td>
+<td><code>Object array.clone()</code></td>
+<td>克隆数组</td>
+<td>浅拷贝</td>
 </tr>
 </tbody>
 </table>
@@ -10460,221 +10642,221 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">方法</th>
-<th style="text-align: center;">说明</th>
-<th style="text-align: center;">返回值</th>
+<th>方法</th>
+<th>说明</th>
+<th>返回值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>Add</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Add</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean add(E e)</code></td>
-<td style="text-align: center;">将指定元素追加到此列表的末尾</td>
-<td style="text-align: center;">总是返回 <code>true</code></td>
+<td><code>boolean add(E e)</code></td>
+<td>将指定元素追加到此列表的末尾</td>
+<td>总是返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void add(int index, E element)</code></td>
-<td style="text-align: center;">将指定元素插入此列表中的指定位置</td>
-<td style="text-align: center;"></td>
+<td><code>void add(int index, E element)</code></td>
+<td>将指定元素插入此列表中的指定位置</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
-<td style="text-align: center;">将指定集合中的所有元素按顺序追加到此列表的末尾</td>
-<td style="text-align: center;">如果列表更改则返回 <code>true</code></td>
+<td><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td>将指定集合中的所有元素按顺序追加到此列表的末尾</td>
+<td>如果列表更改则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean addAll(int index, Collection&lt;? extends E&gt; c)</code></td>
-<td style="text-align: center;">从指定位置开始，将指定集合中的所有元素插入此列表</td>
-<td style="text-align: center;">如果列表更改则返回 <code>true</code></td>
+<td><code>boolean addAll(int index, Collection&lt;? extends E&gt; c)</code></td>
+<td>从指定位置开始，将指定集合中的所有元素插入此列表</td>
+<td>如果列表更改则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Remove</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Remove</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>E remove(int index)</code></td>
-<td style="text-align: center;">移除此列表中指定位置的元素</td>
-<td style="text-align: center;">被移除的元素 <code>E</code></td>
+<td><code>E remove(int index)</code></td>
+<td>移除此列表中指定位置的元素</td>
+<td>被移除的元素 <code>E</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean remove(Object o)</code></td>
-<td style="text-align: center;">从此列表中移除第一次出现的指定元素（如果存在）</td>
-<td style="text-align: center;">如果列表包含元素则返回 <code>true</code></td>
+<td><code>boolean remove(Object o)</code></td>
+<td>从此列表中移除第一次出现的指定元素（如果存在）</td>
+<td>如果列表包含元素则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean removeAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">移除此列表中所有也包含在指定集合中的元素</td>
-<td style="text-align: center;">如果列表更改则返回 <code>true</code></td>
+<td><code>boolean removeAll(Collection&lt;?&gt; c)</code></td>
+<td>移除此列表中所有也包含在指定集合中的元素</td>
+<td>如果列表更改则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean removeIf(Predicate&lt;? super E&gt; filter)</code></td>
-<td style="text-align: center;">移除此列表中满足给定谓词的所有元素</td>
-<td style="text-align: center;">如果任何元素被移除则返回 <code>true</code></td>
+<td><code>boolean removeIf(Predicate&lt;? super E&gt; filter)</code></td>
+<td>移除此列表中满足给定谓词的所有元素</td>
+<td>如果任何元素被移除则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>protected void removeRange(int fromIndex, int toIndex)</code></td>
-<td style="text-align: center;">移除列表中索引在 <code>fromIndex</code>（含）和 <code>toIndex</code>（不含）之间的所有元素</td>
-<td style="text-align: center;"></td>
+<td><code>protected void removeRange(int fromIndex, int toIndex)</code></td>
+<td>移除列表中索引在 <code>fromIndex</code>（含）和 <code>toIndex</code>（不含）之间的所有元素</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void clear()</code></td>
-<td style="text-align: center;">移除此列表中的所有元素</td>
-<td style="text-align: center;"></td>
+<td><code>void clear()</code></td>
+<td>移除此列表中的所有元素</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean retainAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">仅保留此列表中包含在指定集合中的元素</td>
-<td style="text-align: center;">如果列表更改则返回 <code>true</code></td>
+<td><code>boolean retainAll(Collection&lt;?&gt; c)</code></td>
+<td>仅保留此列表中包含在指定集合中的元素</td>
+<td>如果列表更改则返回 <code>true</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Modify</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Modify</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>E set(int index, E element)</code></td>
-<td style="text-align: center;">将此列表中指定位置的元素替换为指定元素</td>
-<td style="text-align: center;">被替换的旧元素 <code>E</code></td>
+<td><code>E set(int index, E element)</code></td>
+<td>将此列表中指定位置的元素替换为指定元素</td>
+<td>被替换的旧元素 <code>E</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void replaceAll(UnaryOperator&lt;E&gt; operator)</code></td>
-<td style="text-align: center;">将该列表的每个元素替换为将该运算符应用于该元素的结果</td>
-<td style="text-align: center;"></td>
+<td><code>void replaceAll(UnaryOperator&lt;E&gt; operator)</code></td>
+<td>将该列表的每个元素替换为将该运算符应用于该元素的结果</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Search</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Search</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>E get(int index)</code></td>
-<td style="text-align: center;">返回此列表中指定位置的元素</td>
-<td style="text-align: center;">元素 <code>E</code></td>
+<td><code>E get(int index)</code></td>
+<td>返回此列表中指定位置的元素</td>
+<td>元素 <code>E</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int indexOf(Object o)</code></td>
-<td style="text-align: center;">返回此列表中第一次出现的指定元素的索引；如果列表不包含该元素，则返回 -1</td>
-<td style="text-align: center;"></td>
+<td><code>int indexOf(Object o)</code></td>
+<td>返回此列表中第一次出现的指定元素的索引；如果列表不包含该元素，则返回 -1</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int lastIndexOf(Object o)</code></td>
-<td style="text-align: center;">返回此列表中最后一次出现的指定元素的索引；如果列表不包含该元素，则返回 -1</td>
-<td style="text-align: center;"></td>
+<td><code>int lastIndexOf(Object o)</code></td>
+<td>返回此列表中最后一次出现的指定元素的索引；如果列表不包含该元素，则返回 -1</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean contains(Object o)</code></td>
-<td style="text-align: center;">如果此列表包含指定的元素，则返回 <code>true</code></td>
-<td style="text-align: center;"></td>
+<td><code>boolean contains(Object o)</code></td>
+<td>如果此列表包含指定的元素，则返回 <code>true</code></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean containsAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">如果此列表包含指定集合中的所有元素，则返回 <code>true</code></td>
-<td style="text-align: center;"></td>
+<td><code>boolean containsAll(Collection&lt;?&gt; c)</code></td>
+<td>如果此列表包含指定集合中的所有元素，则返回 <code>true</code></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Info</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Info</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean isEmpty()</code></td>
-<td style="text-align: center;">如果此列表不包含任何元素，则返回 true</td>
-<td style="text-align: center;"></td>
+<td><code>boolean isEmpty()</code></td>
+<td>如果此列表不包含任何元素，则返回 true</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int size()</code></td>
-<td style="text-align: center;">返回此列表中的元素数</td>
-<td style="text-align: center;"></td>
+<td><code>int size()</code></td>
+<td>返回此列表中的元素数</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Capacity</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Capacity</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void ensureCapacity(int minCapacity)</code></td>
-<td style="text-align: center;">如有必要，增加此 ArrayList 实例的容量，以确保它至少能够容纳最小容量参数指定的元素数</td>
-<td style="text-align: center;"></td>
+<td><code>void ensureCapacity(int minCapacity)</code></td>
+<td>如有必要，增加此 ArrayList 实例的容量，以确保它至少能够容纳最小容量参数指定的元素数</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void trimToSize()</code></td>
-<td style="text-align: center;">将此 ArrayList 实例的容量修剪为列表的当前大小</td>
-<td style="text-align: center;"></td>
+<td><code>void trimToSize()</code></td>
+<td>将此 ArrayList 实例的容量修剪为列表的当前大小</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Generate</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Generate</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Object[] toArray()</code></td>
-<td style="text-align: center;">返回一个包含此列表中所有元素的数组</td>
-<td style="text-align: center;"></td>
+<td><code>Object[] toArray()</code></td>
+<td>返回一个包含此列表中所有元素的数组</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>&lt;T&gt; T[] toArray(T[] a)</code></td>
-<td style="text-align: center;">返回一个包含此列表中所有元素的数组；返回数组的运行时类型是指定数组的类型</td>
-<td style="text-align: center;"></td>
+<td><code>&lt;T&gt; T[] toArray(T[] a)</code></td>
+<td>返回一个包含此列表中所有元素的数组；返回数组的运行时类型是指定数组的类型</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Object clone()</code></td>
-<td style="text-align: center;">返回此 <code>ArrayList</code> 实例的浅表副本</td>
-<td style="text-align: center;"></td>
+<td><code>Object clone()</code></td>
+<td>返回此 <code>ArrayList</code> 实例的浅表副本</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void sort(Comparator&lt;? super E&gt; c)</code></td>
-<td style="text-align: center;">根据指定比较器产生的顺序对此列表进行排序</td>
-<td style="text-align: center;"></td>
+<td><code>void sort(Comparator&lt;? super E&gt; c)</code></td>
+<td>根据指定比较器产生的顺序对此列表进行排序</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
-<td style="text-align: center;">返回此列表中在 <code>fromIndex</code>（含）和 <code>toIndex</code>（不含）之间的部分的视图</td>
-<td style="text-align: center;"></td>
+<td><code>List&lt;E&gt; subList(int fromIndex, int toIndex)</code></td>
+<td>返回此列表中在 <code>fromIndex</code>（含）和 <code>toIndex</code>（不含）之间的部分的视图</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Iterator</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Iterator</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Iterator&lt;E&gt; iterator()</code></td>
-<td style="text-align: center;">以正确的顺序返回此列表中元素的迭代器</td>
-<td style="text-align: center;"></td>
+<td><code>Iterator&lt;E&gt; iterator()</code></td>
+<td>以正确的顺序返回此列表中元素的迭代器</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>ListIterator&lt;E&gt; listIterator()</code></td>
-<td style="text-align: center;">返回此列表中元素的列表迭代器（按正确顺序）</td>
-<td style="text-align: center;"></td>
+<td><code>ListIterator&lt;E&gt; listIterator()</code></td>
+<td>返回此列表中元素的列表迭代器（按正确顺序）</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>ListIterator&lt;E&gt; listIterator(int index)</code></td>
-<td style="text-align: center;">从列表中的指定位置开始，返回列表中元素的列表迭代器（按正确顺序）</td>
-<td style="text-align: center;"></td>
+<td><code>ListIterator&lt;E&gt; listIterator(int index)</code></td>
+<td>从列表中的指定位置开始，返回列表中元素的列表迭代器（按正确顺序）</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><strong>Stream</strong></td>
-<td style="text-align: center;"></td>
-<td style="text-align: center;"></td>
+<td><strong>Stream</strong></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Stream&lt;E&gt; stream()</code></td>
-<td style="text-align: center;">以此列表作为源返回一个顺序 <code>Stream</code></td>
-<td style="text-align: center;"></td>
+<td><code>Stream&lt;E&gt; stream()</code></td>
+<td>以此列表作为源返回一个顺序 <code>Stream</code></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Stream&lt;E&gt; parallelStream()</code></td>
-<td style="text-align: center;">以此列表作为源返回一个可能并行的 <code>Stream</code></td>
-<td style="text-align: center;"></td>
+<td><code>Stream&lt;E&gt; parallelStream()</code></td>
+<td>以此列表作为源返回一个可能并行的 <code>Stream</code></td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void forEach(Consumer&lt;? super E&gt; action)</code></td>
-<td style="text-align: center;">对 <code>Iterable</code> 的每个元素执行给定的操作，直到所有元素都被处理或操作引发异常</td>
-<td style="text-align: center;"></td>
+<td><code>void forEach(Consumer&lt;? super E&gt; action)</code></td>
+<td>对 <code>Iterable</code> 的每个元素执行给定的操作，直到所有元素都被处理或操作引发异常</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -10816,86 +10998,86 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">方法</th>
-<th style="text-align: center;">说明</th>
+<th>方法</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>boolean add(E e)</code></td>
-<td style="text-align: center;">向集合添加元素，如果元素已存在则返回 <code>false</code></td>
+<td><code>boolean add(E e)</code></td>
+<td>向集合添加元素，如果元素已存在则返回 <code>false</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean remove(Object o)</code></td>
-<td style="text-align: center;">从集合中移除指定元素</td>
+<td><code>boolean remove(Object o)</code></td>
+<td>从集合中移除指定元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean contains(Object o)</code></td>
-<td style="text-align: center;">判断集合是否包含指定元素</td>
+<td><code>boolean contains(Object o)</code></td>
+<td>判断集合是否包含指定元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int size()</code></td>
-<td style="text-align: center;">返回集合中的元素个数</td>
+<td><code>int size()</code></td>
+<td>返回集合中的元素个数</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean isEmpty()</code></td>
-<td style="text-align: center;">判断集合是否为空</td>
+<td><code>boolean isEmpty()</code></td>
+<td>判断集合是否为空</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void clear()</code></td>
-<td style="text-align: center;">清空集合中的所有元素</td>
+<td><code>void clear()</code></td>
+<td>清空集合中的所有元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Iterator&lt;E&gt; iterator()</code></td>
-<td style="text-align: center;">返回集合的迭代器</td>
+<td><code>Iterator&lt;E&gt; iterator()</code></td>
+<td>返回集合的迭代器</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Object[] toArray()</code></td>
-<td style="text-align: center;">将集合转换为数组</td>
+<td><code>Object[] toArray()</code></td>
+<td>将集合转换为数组</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>&lt;T&gt; T[] toArray(T[] a)</code></td>
-<td style="text-align: center;">将集合转换为指定类型的数组</td>
+<td><code>&lt;T&gt; T[] toArray(T[] a)</code></td>
+<td>将集合转换为指定类型的数组</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean containsAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">判断集合是否包含指定集合的所有元素</td>
+<td><code>boolean containsAll(Collection&lt;?&gt; c)</code></td>
+<td>判断集合是否包含指定集合的所有元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
-<td style="text-align: center;">添加指定集合中的所有元素</td>
+<td><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td>添加指定集合中的所有元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean retainAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">仅保留集合中包含在指定集合中的元素</td>
+<td><code>boolean retainAll(Collection&lt;?&gt; c)</code></td>
+<td>仅保留集合中包含在指定集合中的元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean removeAll(Collection&lt;?&gt; c)</code></td>
-<td style="text-align: center;">移除集合中所有包含在指定集合中的元素</td>
+<td><code>boolean removeAll(Collection&lt;?&gt; c)</code></td>
+<td>移除集合中所有包含在指定集合中的元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean equals(Object o)</code></td>
-<td style="text-align: center;">比较集合与指定对象是否相等</td>
+<td><code>boolean equals(Object o)</code></td>
+<td>比较集合与指定对象是否相等</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int hashCode()</code></td>
-<td style="text-align: center;">返回集合的哈希码值</td>
+<td><code>int hashCode()</code></td>
+<td>返回集合的哈希码值</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default boolean removeIf(Predicate&lt;? super E&gt; filter)</code></td>
-<td style="text-align: center;">移除满足条件的元素</td>
+<td><code>default boolean removeIf(Predicate&lt;? super E&gt; filter)</code></td>
+<td>移除满足条件的元素</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default Spliterator&lt;E&gt; spliterator()</code></td>
-<td style="text-align: center;">返回集合的可分割迭代器</td>
+<td><code>default Spliterator&lt;E&gt; spliterator()</code></td>
+<td>返回集合的可分割迭代器</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default Stream&lt;E&gt; stream()</code></td>
-<td style="text-align: center;">返回集合的顺序流</td>
+<td><code>default Stream&lt;E&gt; stream()</code></td>
+<td>返回集合的顺序流</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default Stream&lt;E&gt; parallelStream()</code></td>
-<td style="text-align: center;">返回集合的并行流</td>
+<td><code>default Stream&lt;E&gt; parallelStream()</code></td>
+<td>返回集合的并行流</td>
 </tr>
 </tbody>
 </table>
@@ -11048,136 +11230,136 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">方法</th>
-<th style="text-align: center;">说明</th>
-<th style="text-align: center;">返回值</th>
+<th>方法</th>
+<th>说明</th>
+<th>返回值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>V put(K key, V value)</code></td>
-<td style="text-align: center;">添加键值对，如果键已存在则替换旧值</td>
-<td style="text-align: center;">旧值或 <code>null</code></td>
+<td><code>V put(K key, V value)</code></td>
+<td>添加键值对，如果键已存在则替换旧值</td>
+<td>旧值或 <code>null</code></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>V get(Object key)</code></td>
-<td style="text-align: center;">根据键获取对应的值</td>
-<td style="text-align: center;"></td>
+<td><code>V get(Object key)</code></td>
+<td>根据键获取对应的值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>V remove(Object key)</code></td>
-<td style="text-align: center;">根据键移除键值对</td>
-<td style="text-align: center;">被移除的值</td>
+<td><code>V remove(Object key)</code></td>
+<td>根据键移除键值对</td>
+<td>被移除的值</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean containsKey(Object key)</code></td>
-<td style="text-align: center;">判断是否包含指定键</td>
-<td style="text-align: center;"></td>
+<td><code>boolean containsKey(Object key)</code></td>
+<td>判断是否包含指定键</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean containsValue(Object value)</code></td>
-<td style="text-align: center;">判断是否包含指定值</td>
-<td style="text-align: center;"></td>
+<td><code>boolean containsValue(Object value)</code></td>
+<td>判断是否包含指定值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int size()</code></td>
-<td style="text-align: center;">返回键值对的数量</td>
-<td style="text-align: center;"></td>
+<td><code>int size()</code></td>
+<td>返回键值对的数量</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean isEmpty()</code></td>
-<td style="text-align: center;">判断 Map 是否为空</td>
-<td style="text-align: center;"></td>
+<td><code>boolean isEmpty()</code></td>
+<td>判断 Map 是否为空</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void clear()</code></td>
-<td style="text-align: center;">清空所有键值对</td>
-<td style="text-align: center;"></td>
+<td><code>void clear()</code></td>
+<td>清空所有键值对</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>void putAll(Map&lt;? extends K,? extends V&gt; m)</code></td>
-<td style="text-align: center;">添加另一个 Map 的所有键值对</td>
-<td style="text-align: center;"></td>
+<td><code>void putAll(Map&lt;? extends K,? extends V&gt; m)</code></td>
+<td>添加另一个 Map 的所有键值对</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Set&lt;K&gt; keySet()</code></td>
-<td style="text-align: center;">返回所有键的 Set 视图</td>
-<td style="text-align: center;"></td>
+<td><code>Set&lt;K&gt; keySet()</code></td>
+<td>返回所有键的 Set 视图</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Collection&lt;V&gt; values()</code></td>
-<td style="text-align: center;">返回所有值的 Collection 视图</td>
-<td style="text-align: center;"></td>
+<td><code>Collection&lt;V&gt; values()</code></td>
+<td>返回所有值的 Collection 视图</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</code></td>
-<td style="text-align: center;">返回所有键值对的 Set 视图</td>
-<td style="text-align: center;"></td>
+<td><code>Set&lt;Map.Entry&lt;K,V&gt;&gt; entrySet()</code></td>
+<td>返回所有键值对的 Set 视图</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean equals(Object o)</code></td>
-<td style="text-align: center;">比较 Map 与指定对象是否相等</td>
-<td style="text-align: center;"></td>
+<td><code>boolean equals(Object o)</code></td>
+<td>比较 Map 与指定对象是否相等</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int hashCode()</code></td>
-<td style="text-align: center;">返回 Map 的哈希码值</td>
-<td style="text-align: center;"></td>
+<td><code>int hashCode()</code></td>
+<td>返回 Map 的哈希码值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V getOrDefault(Object key, V defaultValue)</code></td>
-<td style="text-align: center;">获取值，如果键不存在返回默认值</td>
-<td style="text-align: center;"></td>
+<td><code>default V getOrDefault(Object key, V defaultValue)</code></td>
+<td>获取值，如果键不存在返回默认值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default void forEach(BiConsumer&lt;? super K,? super V&gt; action)</code></td>
-<td style="text-align: center;">对每个键值对执行操作</td>
-<td style="text-align: center;"></td>
+<td><code>default void forEach(BiConsumer&lt;? super K,? super V&gt; action)</code></td>
+<td>对每个键值对执行操作</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default void replaceAll(BiFunction&lt;? super K,? super V,? extends V&gt; function)</code></td>
-<td style="text-align: center;">替换所有值</td>
-<td style="text-align: center;"></td>
+<td><code>default void replaceAll(BiFunction&lt;? super K,? super V,? extends V&gt; function)</code></td>
+<td>替换所有值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V putIfAbsent(K key, V value)</code></td>
-<td style="text-align: center;">键不存在时才放入值</td>
-<td style="text-align: center;"></td>
+<td><code>default V putIfAbsent(K key, V value)</code></td>
+<td>键不存在时才放入值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default boolean remove(Object key, Object value)</code></td>
-<td style="text-align: center;">键值都匹配时才删除</td>
-<td style="text-align: center;"></td>
+<td><code>default boolean remove(Object key, Object value)</code></td>
+<td>键值都匹配时才删除</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default boolean replace(K key, V oldValue, V newValue)</code></td>
-<td style="text-align: center;">键值都匹配时才替换</td>
-<td style="text-align: center;"></td>
+<td><code>default boolean replace(K key, V oldValue, V newValue)</code></td>
+<td>键值都匹配时才替换</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V replace(K key, V value)</code></td>
-<td style="text-align: center;">键存在时替换值</td>
-<td style="text-align: center;"></td>
+<td><code>default V replace(K key, V value)</code></td>
+<td>键存在时替换值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V computeIfAbsent(K key, Function&lt;? super K,? extends V&gt; mappingFunction)</code></td>
-<td style="text-align: center;">键不存在时计算新值</td>
-<td style="text-align: center;"></td>
+<td><code>default V computeIfAbsent(K key, Function&lt;? super K,? extends V&gt; mappingFunction)</code></td>
+<td>键不存在时计算新值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V computeIfPresent(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code></td>
-<td style="text-align: center;">键存在时重新计算值</td>
-<td style="text-align: center;"></td>
+<td><code>default V computeIfPresent(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code></td>
+<td>键存在时重新计算值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V compute(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code></td>
-<td style="text-align: center;">计算指定键的新值</td>
-<td style="text-align: center;"></td>
+<td><code>default V compute(K key, BiFunction&lt;? super K,? super V,? extends V&gt; remappingFunction)</code></td>
+<td>计算指定键的新值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>default V merge(K key, V value, BiFunction&lt;? super V,? super V,? extends V&gt; remappingFunction)</code></td>
-<td style="text-align: center;">合并指定键的值</td>
-<td style="text-align: center;"></td>
+<td><code>default V merge(K key, V value, BiFunction&lt;? super V,? super V,? extends V&gt; remappingFunction)</code></td>
+<td>合并指定键的值</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -11185,61 +11367,61 @@
 <table>
 <thead>
 <tr>
-<th style="text-align: center;">方法</th>
-<th style="text-align: center;">说明</th>
-<th style="text-align: center;">返回值</th>
+<th>方法</th>
+<th>说明</th>
+<th>返回值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: center;"><code>K getKey()</code></td>
-<td style="text-align: center;">返回条目的键</td>
-<td style="text-align: center;"></td>
+<td><code>K getKey()</code></td>
+<td>返回条目的键</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>V getValue()</code></td>
-<td style="text-align: center;">返回条目的值</td>
-<td style="text-align: center;"></td>
+<td><code>V getValue()</code></td>
+<td>返回条目的值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>V setValue(V value)</code></td>
-<td style="text-align: center;">设置条目的值</td>
-<td style="text-align: center;">旧值</td>
+<td><code>V setValue(V value)</code></td>
+<td>设置条目的值</td>
+<td>旧值</td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>boolean equals(Object o)</code></td>
-<td style="text-align: center;">比较条目与指定对象是否相等</td>
-<td style="text-align: center;"></td>
+<td><code>boolean equals(Object o)</code></td>
+<td>比较条目与指定对象是否相等</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>int hashCode()</code></td>
-<td style="text-align: center;">返回条目的哈希码值</td>
-<td style="text-align: center;"></td>
+<td><code>int hashCode()</code></td>
+<td>返回条目的哈希码值</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>static &lt;K,V&gt; Map.Entry&lt;K,V&gt; copyOf(Map.Entry&lt;? extends K,? extends V&gt; e)</code></td>
-<td style="text-align: center;">创建条目的不可变副本</td>
-<td style="text-align: center;"></td>
+<td><code>static &lt;K,V&gt; Map.Entry&lt;K,V&gt; copyOf(Map.Entry&lt;? extends K,? extends V&gt; e)</code></td>
+<td>创建条目的不可变副本</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey()</code></td>
-<td style="text-align: center;">返回按键比较的比较器</td>
-<td style="text-align: center;"></td>
+<td><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey()</code></td>
+<td>返回按键比较的比较器</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue()</code></td>
-<td style="text-align: center;">返回按值比较的比较器</td>
-<td style="text-align: center;"></td>
+<td><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue()</code></td>
+<td>返回按值比较的比较器</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey(Comparator&lt;? super K&gt; cmp)</code></td>
-<td style="text-align: center;">返回使用指定比较器按键比较的比较器</td>
-<td style="text-align: center;"></td>
+<td><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByKey(Comparator&lt;? super K&gt; cmp)</code></td>
+<td>返回使用指定比较器按键比较的比较器</td>
+<td></td>
 </tr>
 <tr>
-<td style="text-align: center;"><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue(Comparator&lt;? super V&gt; cmp)</code></td>
-<td style="text-align: center;">返回使用指定比较器按值比较的比较器</td>
-<td style="text-align: center;"></td>
+<td><code>static &lt;K,V&gt; Comparator&lt;Map.Entry&lt;K,V&gt;&gt; comparingByValue(Comparator&lt;? super V&gt; cmp)</code></td>
+<td>返回使用指定比较器按值比较的比较器</td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -11742,6 +11924,572 @@
 </span><span id="__span-33-19"><a id="__codelineno-33-19" name="__codelineno-33-19"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-33-20"><a id="__codelineno-33-20" name="__codelineno-33-20"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
+<h2 id="8-stream">8 Stream<a class="headerlink" href="#8-stream" title="Permanent link">&para;</a></h2>
+<p>Stream（流）是一个来自数据源的元素队列，并支持聚合操作。它本身不存储数据，而是对数据源（如集合、数组、I/O channel等）进行计算处理</p>
+<ol>
+<li>不是数据结构：它不存储数据，而是通过管道操作源数据</li>
+<li>函数式编程：它的操作不会修改源数据。例如，对 Stream 的过滤操作会生成一个新的 Stream，而不是删除源集合中的元素</li>
+<li>惰性执行：许多操作（如 <code>filter</code>, <code>map</code>）是惰性的，只有在终端操作执行时，中间操作才会开始</li>
+<li>可消费性：<mark>Stream 在终端操作执行后就被消费掉了，不能再被使用</mark>。你必须重新创建 Stream 才能再次操作</li>
+</ol>
+<p>Java 提供了三套专门的基本类型流：</p>
+<table>
+<thead>
+<tr>
+<th>流类型</th>
+<th>元素类型</th>
+<th>对应的包装类流</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IntStream</code></td>
+<td><code>int</code></td>
+<td><code>Stream&lt;Integer&gt;</code></td>
+</tr>
+<tr>
+<td><code>LongStream</code></td>
+<td><code>long</code></td>
+<td><code>Stream&lt;Long&gt;</code></td>
+</tr>
+<tr>
+<td><code>DoubleStream</code></td>
+<td><code>double</code></td>
+<td><code>Stream&lt;Double&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<p>这些流实现 <code>BaseStream</code> 接口，与 <code>Stream&lt;T&gt;</code> 并列，有着专用的终端操作</p>
+<div class="admonition tip">
+<p class="admonition-title">其他基本类型</p>
+<ol>
+<li><code>float</code>：使用 <code>DoubleStream</code></li>
+<li><code>char</code>：使用 <code>IntStream</code></li>
+<li><code>boolean</code>：使用 <code>IntStream</code> 或 <code>Stream&lt;Boolean&gt;</code></li>
+</ol>
+</div>
+<p>Stream 的操作遵循一个标准流程：创建流 → 中间操作 → 终端操作</p>
+<h3 id="81-创建-stream">8.1 创建 Stream<a class="headerlink" href="#81-创建-stream" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">创建方式</th>
+<th>方法</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">从集合</td>
+<td><code>Collection.stream()</code> / <code>parallelStream()</code></td>
+<td><code>list.stream()</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">从数组</td>
+<td><code>Arrays.stream(T[] array)</code></td>
+<td><code>Arrays.stream(new String[]{"a", "b"})</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">静态工厂</td>
+<td><code>Stream.of(T... values)</code></td>
+<td><code>Stream.of("a", "b", "c")</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">无限流</td>
+<td><code>Stream.iterate()</code> / <code>Stream.generate()</code></td>
+<td><code>Stream.iterate(0, n -&gt; n + 2)</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">空流</td>
+<td><code>Stream.empty()</code></td>
+<td><code>Stream.empty()</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">文件行流</td>
+<td><code>Files.lines(Path path)</code></td>
+<td><code>Files.lines(Paths.get("file.txt"))</code></td>
+</tr>
+</tbody>
+</table>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-34-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-34-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-34-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-34-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-34-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-34-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-34-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-34-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-34-10">10</a></span>
+<span class="normal"><a href="#__codelineno-34-11">11</a></span>
+<span class="normal"><a href="#__codelineno-34-12">12</a></span>
+<span class="normal"><a href="#__codelineno-34-13">13</a></span>
+<span class="normal"><a href="#__codelineno-34-14">14</a></span>
+<span class="normal"><a href="#__codelineno-34-15">15</a></span>
+<span class="normal"><a href="#__codelineno-34-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="c1">// 从集合创建</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">);</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">streamFromList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">();</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="c1">// 从数组创建</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="n">String</span><span class="o">[]</span><span class="w"> </span><span class="n">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">};</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">streamFromArray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">array</span><span class="p">);</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8"></a>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9"></a><span class="c1">// 使用 Stream.of</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10"></a><span class="n">Stream</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">streamOf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">);</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11"></a>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12"></a><span class="c1">// 创建无限流</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13"></a><span class="c1">// iterate: 从种子开始，通过函数迭代生成</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14"></a><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">evenNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stream</span><span class="p">.</span><span class="na">iterate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// 0, 2, 4, 6...</span>
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15"></a><span class="c1">// generate: 通过 Supplier 不断生成</span>
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16"></a><span class="n">Stream</span><span class="o">&lt;</span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">randomNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stream</span><span class="p">.</span><span class="na">generate</span><span class="p">(</span><span class="n">Math</span><span class="p">::</span><span class="n">random</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title"><code>IntStream.range()</code></p>
+<ol>
+<li><code>IntStream.range(start, end)</code>：不包含结束值</li>
+<li><code>IntStream.rangeClosed(start, end)</code>：包含结束值</li>
+</ol>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span>
+<span class="normal"><a href="#__codelineno-35-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="c1">// 生成 1 到 4 (不包含 5)</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="n">IntStream</span><span class="p">.</span><span class="na">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">    </span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">print</span><span class="p">);</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a><span class="c1">// 输出: 1234</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<h3 id="82-中间操作">8.2 中间操作<a class="headerlink" href="#82-中间操作" title="Permanent link">&para;</a></h3>
+<p>中间操作返回一个新的 Stream，<mark>是惰性的</mark>，它们不会立即执行，而是等到终端操作时一起执行</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">操作</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">过滤</td>
+<td><code>filter(Predicate&lt;T&gt;)</code></td>
+<td>排除不满足条件的元素</td>
+</tr>
+<tr>
+<td style="text-align: center;">映射</td>
+<td><code>map(Function&lt;T, R&gt;)</code></td>
+<td>将元素转换成其他形式或提取信息</td>
+</tr>
+<tr>
+<td style="text-align: center;">扁平化映射</td>
+<td><code>flatMap(Function&lt;T, Stream&lt;R&gt;&gt;)</code></td>
+<td>将每个元素转换成一个流，然后把所有流连接成一个流</td>
+</tr>
+<tr>
+<td style="text-align: center;">去重</td>
+<td><code>distinct()</code></td>
+<td>通过 <code>hashCode()</code> 和 <code>equals()</code> 去重</td>
+</tr>
+<tr>
+<td style="text-align: center;">排序</td>
+<td><code>sorted()</code> / <code>sorted(Comparator)</code></td>
+<td>产生一个按自然顺序或比较器排序的新流</td>
+</tr>
+<tr>
+<td style="text-align: center;">截取</td>
+<td><code>limit(long maxSize)</code></td>
+<td>截取流的前 N 个元素</td>
+</tr>
+<tr>
+<td style="text-align: center;">跳过</td>
+<td><code>skip(long n)</code></td>
+<td>跳过流的前 N 个元素</td>
+</tr>
+<tr>
+<td style="text-align: center;">遍历</td>
+<td><code>peek(Consumer&lt;T&gt;)</code></td>
+<td>对每个元素执行操作，主要用于调试</td>
+</tr>
+</tbody>
+</table>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-36-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-36-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-36-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-36-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-36-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-36-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-36-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-36-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-36-10">10</a></span>
+<span class="normal"><a href="#__codelineno-36-11">11</a></span>
+<span class="normal"><a href="#__codelineno-36-12">12</a></span>
+<span class="normal"><a href="#__codelineno-36-13">13</a></span>
+<span class="normal"><a href="#__codelineno-36-14">14</a></span>
+<span class="normal"><a href="#__codelineno-36-15">15</a></span>
+<span class="normal"><a href="#__codelineno-36-16">16</a></span>
+<span class="normal"><a href="#__codelineno-36-17">17</a></span>
+<span class="normal"><a href="#__codelineno-36-18">18</a></span>
+<span class="normal"><a href="#__codelineno-36-19">19</a></span>
+<span class="normal"><a href="#__codelineno-36-20">20</a></span>
+<span class="normal"><a href="#__codelineno-36-21">21</a></span>
+<span class="normal"><a href="#__codelineno-36-22">22</a></span>
+<span class="normal"><a href="#__codelineno-36-23">23</a></span>
+<span class="normal"><a href="#__codelineno-36-24">24</a></span>
+<span class="normal"><a href="#__codelineno-36-25">25</a></span>
+<span class="normal"><a href="#__codelineno-36-26">26</a></span>
+<span class="normal"><a href="#__codelineno-36-27">27</a></span>
+<span class="normal"><a href="#__codelineno-36-28">28</a></span>
+<span class="normal"><a href="#__codelineno-36-29">29</a></span>
+<span class="normal"><a href="#__codelineno-36-30">30</a></span>
+<span class="normal"><a href="#__codelineno-36-31">31</a></span>
+<span class="normal"><a href="#__codelineno-36-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">words</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;World&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Java&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Stream&quot;</span><span class="p">);</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="c1">// filter: 过滤长度大于4的字符串</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">longWords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">words</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="w">                              </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6"></a><span class="w">                              </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w"> </span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7"></a><span class="c1">// [Hello, World, Stream]</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8"></a>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9"></a><span class="c1">// map: 将每个字符串转换为大写</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">upperCaseWords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">words</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11"></a><span class="w">                                   </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">String</span><span class="p">::</span><span class="n">toUpperCase</span><span class="p">)</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12"></a><span class="w">                                   </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w"> </span>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13"></a><span class="c1">// [HELLO, WORLD, JAVA, STREAM]</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14"></a>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15"></a><span class="c1">// flatMap: 将每个单词拆分成字母，然后合并成一个流</span>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">letters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">words</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17"></a><span class="w">                            </span><span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">word</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">stream</span><span class="p">(</span><span class="n">word</span><span class="p">.</span><span class="na">split</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)))</span>
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18"></a><span class="w">                            </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span><span class="w"> </span>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19"></a><span class="c1">// [H, e, l, l, o, W, o, r, l, d, J, a, v, a, S, t, r, e, a, m]</span>
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20"></a>
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21"></a><span class="c1">// distinct &amp; sorted</span>
+</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">processedNumbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24"></a><span class="w">                                </span><span class="p">.</span><span class="na">distinct</span><span class="p">()</span><span class="w"> </span><span class="c1">// 去重: [5, 3, 1, 2, 4]</span>
+</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25"></a><span class="w">                                </span><span class="p">.</span><span class="na">sorted</span><span class="p">()</span><span class="w">   </span><span class="c1">// 排序: [1, 2, 3, 4, 5]</span>
+</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26"></a><span class="w">                                </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27"></a>
+</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28"></a><span class="c1">// limit &amp; skip</span>
+</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">limited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30"></a><span class="w">                               </span><span class="p">.</span><span class="na">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="c1">// 跳过前2个: [1, 2, 3, 4, 5]</span>
+</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31"></a><span class="w">                               </span><span class="p">.</span><span class="na">limit</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// 只取3个: [1, 2, 3]</span>
+</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32"></a><span class="w">                               </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="83-终端操作">8.3 终端操作<a class="headerlink" href="#83-终端操作" title="Permanent link">&para;</a></h3>
+<p>终端操作会从流的流水线生成结果或副作用。执行后，Stream 就被消费掉了，不能再使用</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">操作</th>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">遍历</td>
+<td><code>forEach(Consumer&lt;T&gt;)</code> <code>forEachOrdered(Consumer&lt;T&gt;)</code></td>
+<td>对每个元素执行操作（<code>forEachOrdered</code> 在并行流中能够保持顺序）</td>
+</tr>
+<tr>
+<td style="text-align: center;">收集</td>
+<td><code>collect(Collector)</code></td>
+<td>将流转换为其他形式（如 List, Set, Map）</td>
+</tr>
+<tr>
+<td style="text-align: center;">匹配</td>
+<td><code>allMatch</code> / <code>anyMatch</code> / <code>noneMatch(Predicate)</code></td>
+<td>检查流中元素是否全部 / 任一 / 没有匹配谓词</td>
+</tr>
+<tr>
+<td style="text-align: center;">查找</td>
+<td><code>findFirst()</code> / <code>findAny()</code></td>
+<td>返回第一个 / 任意一个元素（返回 <code>Optional</code>）</td>
+</tr>
+<tr>
+<td style="text-align: center;">计数</td>
+<td><code>count()</code></td>
+<td>返回流中元素的总数</td>
+</tr>
+<tr>
+<td style="text-align: center;">规约</td>
+<td><code>reduce(T identity, BinaryOperator)</code></td>
+<td>将流中元素反复结合，得到一个值</td>
+</tr>
+<tr>
+<td style="text-align: center;">聚合</td>
+<td><code>max(Comparator)</code> / <code>min(Comparator)</code></td>
+<td>返回流中最大 / 最小的元素（返回 <code>Optional</code>）</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>匹配操作和查找操作都是 short-circuiting（短路）操作，<mark>一旦找到满足条件的元素就会立即停止处理</mark></p>
+</blockquote>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-37-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-37-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-37-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-37-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-37-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-37-10">10</a></span>
+<span class="normal"><a href="#__codelineno-37-11">11</a></span>
+<span class="normal"><a href="#__codelineno-37-12">12</a></span>
+<span class="normal"><a href="#__codelineno-37-13">13</a></span>
+<span class="normal"><a href="#__codelineno-37-14">14</a></span>
+<span class="normal"><a href="#__codelineno-37-15">15</a></span>
+<span class="normal"><a href="#__codelineno-37-16">16</a></span>
+<span class="normal"><a href="#__codelineno-37-17">17</a></span>
+<span class="normal"><a href="#__codelineno-37-18">18</a></span>
+<span class="normal"><a href="#__codelineno-37-19">19</a></span>
+<span class="normal"><a href="#__codelineno-37-20">20</a></span>
+<span class="normal"><a href="#__codelineno-37-21">21</a></span>
+<span class="normal"><a href="#__codelineno-37-22">22</a></span>
+<span class="normal"><a href="#__codelineno-37-23">23</a></span>
+<span class="normal"><a href="#__codelineno-37-24">24</a></span>
+<span class="normal"><a href="#__codelineno-37-25">25</a></span>
+<span class="normal"><a href="#__codelineno-37-26">26</a></span>
+<span class="normal"><a href="#__codelineno-37-27">27</a></span>
+<span class="normal"><a href="#__codelineno-37-28">28</a></span>
+<span class="normal"><a href="#__codelineno-37-29">29</a></span>
+<span class="normal"><a href="#__codelineno-37-30">30</a></span>
+<span class="normal"><a href="#__codelineno-37-31">31</a></span>
+<span class="normal"><a href="#__codelineno-37-32">32</a></span>
+<span class="normal"><a href="#__codelineno-37-33">33</a></span>
+<span class="normal"><a href="#__codelineno-37-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;d&quot;</span><span class="p">);</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="c1">// forEach: 遍历并打印</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">forEach</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">::</span><span class="n">println</span><span class="p">);</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="c1">// collect: 转换为 List, Set</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">collectedList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">collectedSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toSet</span><span class="p">());</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9"></a>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10"></a><span class="c1">// collect: 转换为 Map (注意：键不能重复)</span>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11"></a><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">map</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12"></a><span class="w">                               </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toMap</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="p">::</span><span class="n">length</span><span class="p">));</span><span class="w"> </span><span class="c1">// {a=1, b=1, c=1, d=1}</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13"></a>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14"></a><span class="c1">// count: 计数</span>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15"></a><span class="kt">long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">filter</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">)).</span><span class="na">count</span><span class="p">();</span><span class="w"> </span><span class="c1">// 1</span>
+</span><span id="__span-37-16"><a id="__codelineno-37-16" name="__codelineno-37-16"></a>
+</span><span id="__span-37-17"><a id="__codelineno-37-17" name="__codelineno-37-17"></a><span class="c1">// anyMatch / allMatch / noneMatch</span>
+</span><span id="__span-37-18"><a id="__codelineno-37-18" name="__codelineno-37-18"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">anyStartsWithA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">anyMatch</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-37-19"><a id="__codelineno-37-19" name="__codelineno-37-19"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">allStartsWithA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">allMatch</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// false</span>
+</span><span id="__span-37-20"><a id="__codelineno-37-20" name="__codelineno-37-20"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">noneStartsWithZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">noneMatch</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;z&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-37-21"><a id="__codelineno-37-21" name="__codelineno-37-21"></a>
+</span><span id="__span-37-22"><a id="__codelineno-37-22" name="__codelineno-37-22"></a><span class="c1">// findFirst / findAny</span>
+</span><span id="__span-37-23"><a id="__codelineno-37-23" name="__codelineno-37-23"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">findFirst</span><span class="p">();</span><span class="w"> </span><span class="c1">// Optional[&quot;a&quot;]</span>
+</span><span id="__span-37-24"><a id="__codelineno-37-24" name="__codelineno-37-24"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">any</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">parallelStream</span><span class="p">().</span><span class="na">findAny</span><span class="p">();</span><span class="w"> </span><span class="c1">// 可能返回任意一个元素</span>
+</span><span id="__span-37-25"><a id="__codelineno-37-25" name="__codelineno-37-25"></a>
+</span><span id="__span-37-26"><a id="__codelineno-37-26" name="__codelineno-37-26"></a><span class="c1">// reduce: 将元素组合起来</span>
+</span><span id="__span-37-27"><a id="__codelineno-37-27" name="__codelineno-37-27"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">concatenated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">reduce</span><span class="p">((</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span><span class="w"> </span><span class="c1">// Optional[&quot;a-b-c-d&quot;]</span>
+</span><span id="__span-37-28"><a id="__codelineno-37-28" name="__codelineno-37-28"></a><span class="c1">// 带初始值的 reduce</span>
+</span><span id="__span-37-29"><a id="__codelineno-37-29" name="__codelineno-37-29"></a><span class="n">String</span><span class="w"> </span><span class="n">resultWithIdentity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">reduce</span><span class="p">(</span><span class="s">&quot;Prefix:&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">s1</span><span class="p">,</span><span class="w"> </span><span class="n">s2</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">s2</span><span class="p">);</span><span class="w"> </span><span class="c1">// &quot;Prefix:-a-b-c-d&quot;</span>
+</span><span id="__span-37-30"><a id="__codelineno-37-30" name="__codelineno-37-30"></a>
+</span><span id="__span-37-31"><a id="__codelineno-37-31" name="__codelineno-37-31"></a><span class="c1">// max / min</span>
+</span><span id="__span-37-32"><a id="__codelineno-37-32" name="__codelineno-37-32"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-37-33"><a id="__codelineno-37-33" name="__codelineno-37-33"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">max</span><span class="p">(</span><span class="n">Integer</span><span class="p">::</span><span class="n">compareTo</span><span class="p">);</span><span class="w"> </span><span class="c1">// Optional[5]</span>
+</span><span id="__span-37-34"><a id="__codelineno-37-34" name="__codelineno-37-34"></a><span class="n">Optional</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">min</span><span class="p">(</span><span class="n">Integer</span><span class="p">::</span><span class="n">compareTo</span><span class="p">);</span><span class="w"> </span><span class="c1">// Optional[1]</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">short-circuiting</p>
+<ol>
+<li><code>anyMatch()</code>：找到第一个匹配就返回</li>
+<li><code>allMatch()</code>：找到第一个不匹配就返回</li>
+<li><code>noneMatch()</code>：找到第一个匹配就返回</li>
+<li><code>findFirst()</code>：找到第一个元素就返回，在并行流中仍保持顺序</li>
+<li><code>findAny()</code>：找到第一个元素就返回，在并行流中可能返回任意一个</li>
+</ol>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span>
+<span class="normal"><a href="#__codelineno-38-6">6</a></span>
+<span class="normal"><a href="#__codelineno-38-7">7</a></span>
+<span class="normal"><a href="#__codelineno-38-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">);</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="c1">// 检查是否没有偶数</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4"></a><span class="kt">boolean</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numbers</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">    </span><span class="p">.</span><span class="na">peek</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;检查: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">n</span><span class="p">))</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6"></a><span class="w">    </span><span class="p">.</span><span class="na">noneMatch</span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7"></a>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;结果: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">output</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1">1</a></span>
+<span class="normal"><a href="#__codelineno-39-2">2</a></span>
+<span class="normal"><a href="#__codelineno-39-3">3</a></span>
+<span class="normal"><a href="#__codelineno-39-4">4</a></span>
+<span class="normal"><a href="#__codelineno-39-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="nl">检查</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="nl">检查</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="nl">检查</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="nl">检查</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a><span class="nl">结果</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">基本类型流的专用终端操作</p>
+<p><code>sum()</code> <code>average()</code> <code>summaryStatistics()</code></p>
+<div class="language-java highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">以 IntStream 为例</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-40-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-40-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-40-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-40-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-40-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-40-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-40-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-40-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-40-10">10</a></span>
+<span class="normal"><a href="#__codelineno-40-11">11</a></span>
+<span class="normal"><a href="#__codelineno-40-12">12</a></span>
+<span class="normal"><a href="#__codelineno-40-13">13</a></span>
+<span class="normal"><a href="#__codelineno-40-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="kt">int</span><span class="o">[]</span><span class="w"> </span><span class="n">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="n">IntStream</span><span class="w"> </span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">numbers</span><span class="p">);</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream</span><span class="p">.</span><span class="na">sum</span><span class="p">();</span><span class="w">                               </span><span class="c1">// 求和: 15</span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="hll"><span class="n">OptionalDouble</span><span class="w"> </span><span class="n">avg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">numbers</span><span class="p">).</span><span class="na">average</span><span class="p">();</span><span class="w"> </span><span class="c1">// 平均值: 3.0</span>
+</span></span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7"></a>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="c1">// 统计信息</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="hll"><span class="n">IntSummaryStatistics</span><span class="w"> </span><span class="n">stats</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntStream</span><span class="p">.</span><span class="na">of</span><span class="p">(</span><span class="n">numbers</span><span class="p">).</span><span class="na">summaryStatistics</span><span class="p">();</span>
+</span></span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Count: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">getCount</span><span class="p">());</span><span class="w">     </span><span class="c1">// 5</span>
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Sum: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">getSum</span><span class="p">());</span><span class="w">         </span><span class="c1">// 15</span>
+</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Min: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">getMin</span><span class="p">());</span><span class="w">         </span><span class="c1">// 1</span>
+</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Max: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">getMax</span><span class="p">());</span><span class="w">         </span><span class="c1">// 5</span>
+</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14"></a><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Average: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">stats</span><span class="p">.</span><span class="na">getAverage</span><span class="p">());</span><span class="w"> </span><span class="c1">// 3.0</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>第 6、9 行这里不能再使用 <code>stream</code> 这个变量了，因为在第 5 行被终端操作消费掉了</p>
+</blockquote>
+</div>
+<h4 id="831-collectors">8.3.1 Collectors<a class="headerlink" href="#831-collectors" title="Permanent link">&para;</a></h4>
+<p><code>java.util.stream.Collectors</code> 类提供了大量静态方法，用于创建常见的收集器，是 <code>collect</code> 操作的核心</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toList()</code></td>
+<td>收集到 <code>List</code></td>
+</tr>
+<tr>
+<td><code>toSet()</code></td>
+<td>收集到 <code>Set</code></td>
+</tr>
+<tr>
+<td><code>toCollection(Supplier)</code></td>
+<td>收集到特定的集合，如 <code>toCollection(LinkedList::new)</code></td>
+</tr>
+<tr>
+<td><code>toMap(Function k, Function v)</code></td>
+<td>收集到 <code>Map</code>，需指定键和值的映射函数</td>
+</tr>
+<tr>
+<td><code>joining()</code> / <code>joining(delimiter)</code></td>
+<td>连接字符串</td>
+</tr>
+<tr>
+<td><code>groupingBy(Function)</code></td>
+<td>根据分类函数分组，返回 <code>Map&lt;K, List&lt;T&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><code>partitioningBy(Predicate)</code></td>
+<td>根据 true/false 分区，返回 <code>Map&lt;Boolean, List&lt;T&gt;&gt;</code></td>
+</tr>
+<tr>
+<td><code>counting()</code></td>
+<td>计数</td>
+</tr>
+<tr>
+<td><code>summingInt</code> / <code>averagingInt</code></td>
+<td>求和 / 求平均值</td>
+</tr>
+<tr>
+<td><code>summarizingInt</code></td>
+<td>获取统计信息（数量、总和、最小值、最大值、平均值）</td>
+</tr>
+</tbody>
+</table>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-41-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-41-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-41-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-41-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-41-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-41-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-41-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-41-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-41-10">10</a></span>
+<span class="normal"><a href="#__codelineno-41-11">11</a></span>
+<span class="normal"><a href="#__codelineno-41-12">12</a></span>
+<span class="normal"><a href="#__codelineno-41-13">13</a></span>
+<span class="normal"><a href="#__codelineno-41-14">14</a></span>
+<span class="normal"><a href="#__codelineno-41-15">15</a></span>
+<span class="normal"><a href="#__codelineno-41-16">16</a></span>
+<span class="normal"><a href="#__codelineno-41-17">17</a></span>
+<span class="normal"><a href="#__codelineno-41-18">18</a></span>
+<span class="normal"><a href="#__codelineno-41-19">19</a></span>
+<span class="normal"><a href="#__codelineno-41-20">20</a></span>
+<span class="normal"><a href="#__codelineno-41-21">21</a></span>
+<span class="normal"><a href="#__codelineno-41-22">22</a></span>
+<span class="normal"><a href="#__codelineno-41-23">23</a></span>
+<span class="normal"><a href="#__codelineno-41-24">24</a></span>
+<span class="normal"><a href="#__codelineno-41-25">25</a></span>
+<span class="normal"><a href="#__codelineno-41-26">26</a></span>
+<span class="normal"><a href="#__codelineno-41-27">27</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Alice&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;London&quot;</span><span class="p">),</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;New York&quot;</span><span class="p">),</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="w">    </span><span class="k">new</span><span class="w"> </span><span class="n">Person</span><span class="p">(</span><span class="s">&quot;Charlie&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;London&quot;</span><span class="p">)</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5"></a><span class="p">);</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6"></a>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7"></a><span class="c1">// groupingBy: 按城市分组</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8"></a><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">peopleByCity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">people</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9"></a><span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getCity</span><span class="p">));</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="c1">// {New York=[Bob], London=[Alice, Charlie]}</span>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11"></a>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12"></a><span class="c1">// groupingBy with downstream: 按城市分组，并计算每组的平均年龄</span>
+</span><span id="__span-41-13"><a id="__codelineno-41-13" name="__codelineno-41-13"></a><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Double</span><span class="o">&gt;</span><span class="w"> </span><span class="n">averageAgeByCity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">people</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-41-14"><a id="__codelineno-41-14" name="__codelineno-41-14"></a><span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">groupingBy</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getCity</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-41-15"><a id="__codelineno-41-15" name="__codelineno-41-15"></a><span class="w">                 </span><span class="n">Collectors</span><span class="p">.</span><span class="na">averagingInt</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getAge</span><span class="p">)));</span>
+</span><span id="__span-41-16"><a id="__codelineno-41-16" name="__codelineno-41-16"></a><span class="c1">// {New York=30.0, London=25.0}</span>
+</span><span id="__span-41-17"><a id="__codelineno-41-17" name="__codelineno-41-17"></a>
+</span><span id="__span-41-18"><a id="__codelineno-41-18" name="__codelineno-41-18"></a><span class="c1">// partitioningBy: 按年龄是否大于26分区</span>
+</span><span id="__span-41-19"><a id="__codelineno-41-19" name="__codelineno-41-19"></a><span class="n">Map</span><span class="o">&lt;</span><span class="n">Boolean</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">partitioned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">people</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-41-20"><a id="__codelineno-41-20" name="__codelineno-41-20"></a><span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">partitioningBy</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="na">getAge</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">26</span><span class="p">));</span>
+</span><span id="__span-41-21"><a id="__codelineno-41-21" name="__codelineno-41-21"></a><span class="c1">// {false=[Alice, Charlie], true=[Bob]}</span>
+</span><span id="__span-41-22"><a id="__codelineno-41-22" name="__codelineno-41-22"></a>
+</span><span id="__span-41-23"><a id="__codelineno-41-23" name="__codelineno-41-23"></a><span class="c1">// joining: 连接所有名字</span>
+</span><span id="__span-41-24"><a id="__codelineno-41-24" name="__codelineno-41-24"></a><span class="n">String</span><span class="w"> </span><span class="n">names</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">people</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-41-25"><a id="__codelineno-41-25" name="__codelineno-41-25"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">getName</span><span class="p">)</span>
+</span><span id="__span-41-26"><a id="__codelineno-41-26" name="__codelineno-41-26"></a><span class="w">        </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">joining</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">));</span>
+</span><span id="__span-41-27"><a id="__codelineno-41-27" name="__codelineno-41-27"></a><span class="c1">// &quot;Alice, Bob, Charlie&quot;</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="84-并行-stream">8.4 并行 Stream<a class="headerlink" href="#84-并行-stream" title="Permanent link">&para;</a></h3>
+<p>通过 <code>parallelStream()</code> 方法或 <code>stream().parallel()</code>可以创建并行流，利用多核处理器提高大数据集的处理效率</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1">1</a></span>
+<span class="normal"><a href="#__codelineno-42-2">2</a></span>
+<span class="normal"><a href="#__codelineno-42-3">3</a></span>
+<span class="normal"><a href="#__codelineno-42-4">4</a></span>
+<span class="normal"><a href="#__codelineno-42-5">5</a></span>
+<span class="normal"><a href="#__codelineno-42-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Arrays</span><span class="p">.</span><span class="na">asList</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;d&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;e&quot;</span><span class="p">);</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="c1">// 使用并行流</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="kt">long</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">list</span><span class="p">.</span><span class="na">parallelStream</span><span class="p">()</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5"></a><span class="w">                 </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">s</span><span class="p">.</span><span class="na">startsWith</span><span class="p">(</span><span class="s">&quot;a&quot;</span><span class="p">))</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="w">                 </span><span class="p">.</span><span class="na">count</span><span class="p">();</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>并行流不总是更快，它有一定的开销（线程池、拆分、合并）</li>
+<li>确保操作是无状态且不干扰的</li>
+<li>在需要共享可变状态时，要特别小心线程安全问题</li>
+</ol>
 
 
 
@@ -11764,7 +12512,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月26日 08:27:33 UTC">2025年10月26日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月29日 11:48:08 UTC">2025年10月29日</span>
   </span>
 
     
@@ -11896,13 +12644,13 @@
         
         
           
-          <a href="../../BS_software_design/" class="md-footer__link md-footer__link--next" aria-label="下一页: B/S 体系软件设计">
+          <a href="../ch6/" class="md-footer__link md-footer__link--next" aria-label="下一页: 6 Exception and RTTI">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                B/S 体系软件设计
+                6 Exception and RTTI
               </div>
             </div>
             <div class="md-footer__button md-icon">
