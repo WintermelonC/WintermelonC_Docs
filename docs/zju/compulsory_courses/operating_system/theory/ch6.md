@@ -220,7 +220,7 @@ critical section problem：当多个进程或线程需要共享资源（如数�
     </div>
     </div>
 
-    mutual exclusion：不满足。Pi 和 Pj 可以将 `while` 循环执行完，然后才设置自己的 
+    mutual exclusion：不满足。Pi 和 Pj 可以将 `while` 循环执行完，然后才设置自己的 `flag` 为 `true`，同时进入 CS
 
 ### 2.3 Peterson's Solution
 
@@ -411,8 +411,8 @@ while (true) {
 
 操作语义（这两个操作必须不可中断）：
 
-1. `wait()`：如果 S 大于 0，立即减少 S 并继续执行；如果 S 小于等于 0，忙等待直到 S 大于 0
-2. `signal()`：增加 S 的值，表示释放一个资源
+1. `wait()` / `P()`：如果 S 大于 0，立即减少 S 并继续执行；如果 S 小于等于 0，忙等待直到 S 大于 0
+2. `signal()` / `V()`：增加 S 的值，表示释放一个资源
 
 ```c linenums="1"
 wait(S) {
@@ -425,7 +425,194 @@ signal(S) {
 }
 ```
 
+1. counting semaphore：其值是一个可以取任何非负整数的计数器。它用于控制对多个相同资源实例的访问。信号量的值表示当前可用资源的数量
+2. binary semaphore：其值被限制为只能是 0 或 1。它主要用于提供互斥，即确保在任何时候只有一个线程或进程可以进入临界区。因此，它常被称为 mutex locks
+
+```c linenums="1"
+semaphore S;
+wait(S);
+critical section;
+signal(S);
+```
+
+信号量本身是一个共享资源，对其值的操作必须是原子的。也就是说，必须保证没有两个进程能同时执行同一信号量的 `wait()` 和 `signal()`，否则会导致信号量状态错误（即竞态条件）
+
+解决方案：将 `wait` 和 `signal` 操作内部的代码本身置于一个临界区中。这就把信号量的实现问题转化为了一个临界区问题
+
+!!! tip "semaphore implementation with busy waiting"
+
+    ```c linenums="1" hl_lines="13"
+    struct semaphore {
+        struct spinlock lock;
+        int count;
+    };
+        
+    void V(struct semaphore *s) {
+        acquire(&s->lock);
+        s->count += 1;
+        release(&s->lock);
+    }
+
+    void P(struct semaphore *s) {
+        while(s->count == 0);
+        acquire(&s->lock);
+        s->count -= 1;
+        release(&s->lock);
+    }
+    ```
+
+    > 如果生产者很少活动，消费者会在第 13 行空转。这非常浪费资源
+
+    如果使用像自旋锁这样的机制来实现保护 `wait` 和 `signal` 操作的临界区，那么当一个进程在等待进入这个临界区时，它可能会在循环中忙等待，消耗 CPU 资源
+
+    busy waiting 适用场景：
+
+    1. 实现代码很短：如果 `wait` 和 `signal` 内部的代码执行得非常快，忙等待的时间会很短
+    2. 临界区很少被占用：如果冲突很少发生，进程很少需要等待，那么忙等待的问题就不显著
+
+    缺点：对于通用的应用程序，进程可能在临界区内花费相当长的时间。在这种情况下，忙等待会变得非常低效，因为它会浪费大量的 CPU 周期
+    
+    因此，信号量的实现通常不会使用纯粹的忙等待
+
+每个信号量都有一个关联的 waiting queue。每个信号量包含两个数据项：
+
+1. value：一个整数，表示可用资源的数量
+
+    1. `value >= 0`：表示当前可用资源的个数
+    2. `value < 0`：其绝对值表示正在等待该信号量的进程数量
+
+2. 等待队列指针：指向一个队列，该队列中存放了所有因等待此信号量而阻塞的进程的 PCB
+
+两种关键操作：
+
+1. block / sleep：一个系统调用。当一个进程执行 wait 操作（或 P 操作）试图获取信号量时，如果信号量的值小于或等于 0（表示没有可用资源），系统不会让它忙等，而是会调用 block 操作。该操作会将当前进程的 PCB 从就绪队列移出，放入该信号量的等待队列，从而让出 CPU
+2. wakeup：一个系统调用。当一个进程执行 signal 操作（或 V 操作）释放信号量时，它会增加信号量的值。如果发现等待队列中有进程在等待，它就会调用 wakeup 操作。该操作会从等待队列中取出一个进程的 PCB，并将其放回就绪队列，使其有机会再次被调度执行
+
+!!! tip "sleep and wakeup"
+
+    ```c linenums="1"
+    void V(struct semaphore *s) {
+        acquire(&s->lock);          // 获取信号量锁
+        s->count += 1;              // 增加计数器
+        wakeup(s);                  // 唤醒等待的进程
+        release(&s->lock);          // 释放锁
+    }
+    
+    void P(struct semaphore *s) {
+        while (s->count == 0) {     // 如果计数为0，进入循环
+            sleep(s);               // 进程睡眠，等待被唤醒
+        }
+        acquire(&s->lock);          // 获取锁
+        s->count -= 1;              // 减少计数器
+        release(&s->lock);          // 释放锁
+    }
+    ```
+
+    当 `P()` 发现 `count == 0` 时，进程会进入睡眠状态，并加入到与信号量关联的等待队列中。通过 sleep 操作主动放弃 CPU，减少了开销
+
+    但如果 P 在进入 while 循环之后，V 执行了 wakeup，P 才执行 sleep，那么进程可能永远不会被唤醒了。这就是 lost wake-up problem（丢失唤醒问题）
+
+    !!! question "提前 acquire 操作？"
+
+        ```c linenums="1"
+        void V(struct semaphore *s) {
+            acquire(&s->lock);
+            s->count += 1;
+            wakeup(s);
+            release(&s->lock);
+        }
+        
+        void P(struct semaphore *s) {
+            acquire(&s->lock);
+            while (s->count == 0) {
+                sleep(s);
+            }
+            s->count -= 1;
+            release(&s->lock);
+        }
+        ```
+
+        防止了丢失唤醒，但出现了 deadlock。进程 sleep 后，它仍然拿着这个锁
+
+    !!! tip "pass the condition lock to sleep"
+
+        ```c linenums="1"
+        void V(struct semaphore *s) {
+            acquire(&s->lock);
+            s->count += 1;
+            wakeup(s);
+            release(&s->lock);
+        }
+        
+        void P(struct semaphore *s) {
+            acquire(&s->lock);
+            while (s->count == 0) {
+                sleep(s, &s->lock);
+            }
+            s->count -= 1;
+            release(&s->lock);
+        }
+        ```
+
+        `sleep(s, &s->lock)` 可以在调用进程被标记为已睡眠并加入到等待队列后，自动释放该锁
+
+        这样既避免了丢失唤醒，又避免了死锁
+
+no busy waiting 的 semaphore 实现：
+
+```c linenums="1"
+wait(S) {
+    value--;
+    if (value < 0) {
+        block();
+    }
+}
+
+signal(S) {
+    value++;
+    if (value <= 0) {
+        wakeup(P);
+    }
+}
+```
+
 ## 5 Classic Problems of Synchronization
+
+### 5.1 Deadlock and Starvation
+
+死锁：指两个或更多的进程，每个都在等待对方释放资源，导致所有进程都无法继续执行的情况
+
+假设 S 和 Q 是两个信号量，初始值均为 1
+
+<div class="grid" markdown>
+
+```c linenums="1" title="P1"
+P(S)
+P(Q)
+...
+V(Q)
+V(S)
+```
+
+```c linenums="1" title="P2"
+P(Q)
+P(S)
+...
+V(S)
+V(Q)
+```
+
+</div>
+
+若 P1 持有 S 的锁，P2 持有 Q 的锁；而 P1 申请 Q 的锁，P2 申请 S 的锁，两个进程都会因无法获得对方占有的资源而无限等待，形成死锁
+
+饥饿：指一个进程由于某种原因（如调度策略不公平、优先级低等）长期得不到它所需的资源，无法继续执行
+
+### 5.2 Bounded-Buffer Problem
+
+### 5.3 Readers and Writers Problem
+
+### 5.4 Dining Philosophers Problem
 
 ## 6 Monitors
 

@@ -788,7 +788,7 @@ public enum Operation implements Describable {
 Java 为所有枚举类型自动提供了一些实用方法：
 
 | 方法 | 作用 |
-| :--: | :--: |
+| -- | -- |
 | `EnumType[] values()` | 返回包含所有枚举常量的数组，按声明顺序排序 |
 | `EnumType valueOf(String name)` | 根据名称返回枚举常量（名称必须完全匹配） |
 | `String name()` | 返回枚举常量的名称 |

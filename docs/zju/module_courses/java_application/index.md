@@ -30,4 +30,6 @@ wk老师
 [2 Basic](./ch2.md){:target="_blank"}<br/>
 [3 Inheritance and Polymorphism](./ch3.md)<br/>
 [4 Classes of Other Kinds](./ch4.md)<br/>
-[5 Container and Generics](./ch5.md)
+[5 Container and Generics](./ch5.md)<br/>
+[6 Exception and RTTI](./ch6.md)<br/>
+[7 Optional and IO](./ch7.md)

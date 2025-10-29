@@ -94,7 +94,7 @@ for (var num : arr) {
 ### 1.2 Array 方法
 
 | 方法 | 说明 | 返回值 |
-| :--: | :--: | :--: |
+| -- | -- | -- |
 | `String Arrays.toString(array)` | 将数组转换为字符串表示形式 | |
 | `String Arrays.deepToString(array)` | 将多维数组转换为字符串表示形式  | |
 | `void Arrays.sort(array)`| 对数组进行升序排序 | |
@@ -265,7 +265,7 @@ while (iterator.hasNext()) {
 ### 3.1 ArrayList 方法
 
 | 方法 | 说明 | 返回值 |
-| :--: | :--: | :--: |
+| -- | -- | -- |
 | **Add** | | |
 | `boolean add(E e)` | 将指定元素追加到此列表的末尾 | 总是返回 `true` |
 | `void add(int index, E element)` | 将指定元素插入此列表中的指定位置 |  |
@@ -386,7 +386,7 @@ Set<Person> treeSet = new TreeSet<>(Comparator.comparing(p -> p.name));
 ### 4.1 Set 方法
 
 | 方法 | 说明 |
-| :--: | :--: |
+| -- | -- |
 | `boolean add(E e)` | 向集合添加元素，如果元素已存在则返回 `false` |
 | `boolean remove(Object o)` | 从集合中移除指定元素 |
 | `boolean contains(Object o)` | 判断集合是否包含指定元素 |
@@ -492,7 +492,7 @@ for (Integer value : map.values()) {
 ### 5.2 Map 方法
 
 | 方法 | 说明 | 返回值 |
-| :--: | :--: | :--: |
+| -- | -- | -- |
 | `V put(K key, V value)` | 添加键值对，如果键已存在则替换旧值 | 旧值或 `null` |
 | `V get(Object key)` | 根据键获取对应的值 |  |
 | `V remove(Object key)` | 根据键移除键值对 | 被移除的值 |
@@ -522,7 +522,7 @@ for (Integer value : map.values()) {
 ### 5.3 Map.Entry 方法
 
 | 方法 | 说明 | 返回值 |
-| :--: | :--: | :--: |
+| -- | -- | -- |
 | `K getKey()` | 返回条目的键 | |
 | `V getValue()` | 返回条目的值 | |
 | `V setValue(V value)` | 设置条目的值 | 旧值 |
@@ -837,3 +837,289 @@ public class ClassInfoInspection {
     }
 }
 ```
+
+## 8 Stream
+
+Stream（流）是一个来自数据源的元素队列，并支持聚合操作。它本身不存储数据，而是对数据源（如集合、数组、I/O channel等）进行计算处理
+
+1. 不是数据结构：它不存储数据，而是通过管道操作源数据
+2. 函数式编程：它的操作不会修改源数据。例如，对 Stream 的过滤操作会生成一个新的 Stream，而不是删除源集合中的元素
+3. 惰性执行：许多操作（如 `filter`, `map`）是惰性的，只有在终端操作执行时，中间操作才会开始
+4. 可消费性：==Stream 在终端操作执行后就被消费掉了，不能再被使用==。你必须重新创建 Stream 才能再次操作
+
+Java 提供了三套专门的基本类型流：
+
+| 流类型 | 元素类型 | 对应的包装类流 |
+| -- | -- | -- |
+| `IntStream` | `int` | `Stream<Integer>` |
+| `LongStream` | `long` | `Stream<Long>` |
+| `DoubleStream` | `double` | `Stream<Double>` |
+
+这些流实现 `BaseStream` 接口，与 `Stream<T>` 并列，有着专用的终端操作
+
+!!! tip "其他基本类型"
+
+    1. `float`：使用 `DoubleStream`
+    2. `char`：使用 `IntStream`
+    3. `boolean`：使用 `IntStream` 或 `Stream<Boolean>`
+
+Stream 的操作遵循一个标准流程：创建流 → 中间操作 → 终端操作
+
+### 8.1 创建 Stream
+
+| 创建方式 | 方法 | 示例 |
+| :--: | -- | -- |
+| 从集合 | `Collection.stream()` / `parallelStream()` | `list.stream()` |
+| 从数组 | `Arrays.stream(T[] array)` | `Arrays.stream(new String[]{"a", "b"})` |
+| 静态工厂 | `Stream.of(T... values)` | `Stream.of("a", "b", "c")` |
+| 无限流 | `Stream.iterate()` / `Stream.generate()` | `Stream.iterate(0, n -> n + 2)` |
+| 空流 | `Stream.empty()` | `Stream.empty()` |
+| 文件行流 | `Files.lines(Path path)` | `Files.lines(Paths.get("file.txt"))` |
+
+```java linenums="1"
+// 从集合创建
+List<String> list = Arrays.asList("a", "b", "c");
+Stream<String> streamFromList = list.stream();
+
+// 从数组创建
+String[] array = {"a", "b", "c"};
+Stream<String> streamFromArray = Arrays.stream(array);
+
+// 使用 Stream.of
+Stream<String> streamOf = Stream.of("a", "b", "c");
+
+// 创建无限流
+// iterate: 从种子开始，通过函数迭代生成
+Stream<Integer> evenNumbers = Stream.iterate(0, n -> n + 2); // 0, 2, 4, 6...
+// generate: 通过 Supplier 不断生成
+Stream<Double> randomNumbers = Stream.generate(Math::random);
+```
+
+!!! tip "`IntStream.range()`"
+
+    1. `IntStream.range(start, end)`：不包含结束值
+    2. `IntStream.rangeClosed(start, end)`：包含结束值
+
+    ```java linenums="1"
+    // 生成 1 到 4 (不包含 5)
+    IntStream.range(1, 5)
+        .forEach(System.out::print);
+    // 输出: 1234
+    ```
+
+### 8.2 中间操作
+
+中间操作返回一个新的 Stream，==是惰性的==，它们不会立即执行，而是等到终端操作时一起执行
+
+| 操作 | 方法 | 描述 |
+| :--: | -- | -- |
+| 过滤 | `filter(Predicate<T>)` | 排除不满足条件的元素 |
+| 映射 | `map(Function<T, R>)` | 将元素转换成其他形式或提取信息 |
+| 扁平化映射 | `flatMap(Function<T, Stream<R>>)` | 将每个元素转换成一个流，然后把所有流连接成一个流 |
+| 去重 | `distinct()` | 通过 `hashCode()` 和 `equals()` 去重 |
+| 排序 | `sorted()` / `sorted(Comparator)` | 产生一个按自然顺序或比较器排序的新流 |
+| 截取 | `limit(long maxSize)` | 截取流的前 N 个元素 |
+| 跳过 | `skip(long n)` | 跳过流的前 N 个元素 |
+| 遍历 | `peek(Consumer<T>)` | 对每个元素执行操作，主要用于调试 |
+
+```java linenums="1"
+List<String> words = Arrays.asList("Hello", "World", "Java", "Stream");
+
+// filter: 过滤长度大于4的字符串
+List<String> longWords = words.stream()
+                              .filter(s -> s.length() > 4)
+                              .collect(Collectors.toList()); 
+// [Hello, World, Stream]
+
+// map: 将每个字符串转换为大写
+List<String> upperCaseWords = words.stream()
+                                   .map(String::toUpperCase)
+                                   .collect(Collectors.toList()); 
+// [HELLO, WORLD, JAVA, STREAM]
+
+// flatMap: 将每个单词拆分成字母，然后合并成一个流
+List<String> letters = words.stream()
+                            .flatMap(word -> Arrays.stream(word.split("")))
+                            .collect(Collectors.toList()); 
+// [H, e, l, l, o, W, o, r, l, d, J, a, v, a, S, t, r, e, a, m]
+
+// distinct & sorted
+List<Integer> numbers = Arrays.asList(5, 3, 1, 2, 3, 4, 5);
+List<Integer> processedNumbers = numbers.stream()
+                                .distinct() // 去重: [5, 3, 1, 2, 4]
+                                .sorted()   // 排序: [1, 2, 3, 4, 5]
+                                .collect(Collectors.toList());
+
+// limit & skip
+List<Integer> limited = numbers.stream()
+                               .skip(2)  // 跳过前2个: [1, 2, 3, 4, 5]
+                               .limit(3) // 只取3个: [1, 2, 3]
+                               .collect(Collectors.toList());
+```
+
+### 8.3 终端操作
+
+终端操作会从流的流水线生成结果或副作用。执行后，Stream 就被消费掉了，不能再使用
+
+| 操作 | 方法 | 描述 |
+| :--: | -- | -- |
+| 遍历 | `forEach(Consumer<T>)` `forEachOrdered(Consumer<T>)` | 对每个元素执行操作（`forEachOrdered` 在并行流中能够保持顺序） |
+| 收集 | `collect(Collector)` | 将流转换为其他形式（如 List, Set, Map） |
+| 匹配 | `allMatch` / `anyMatch` / `noneMatch(Predicate)` | 检查流中元素是否全部 / 任一 / 没有匹配谓词 |
+| 查找 | `findFirst()` / `findAny()` | 返回第一个 / 任意一个元素（返回 `Optional`） |
+| 计数 | `count()` | 返回流中元素的总数 |
+| 规约 | `reduce(T identity, BinaryOperator)` | 将流中元素反复结合，得到一个值 |
+| 聚合 | `max(Comparator)` / `min(Comparator)` | 返回流中最大 / 最小的元素（返回 `Optional`） |
+
+> 匹配操作和查找操作都是 short-circuiting（短路）操作，==一旦找到满足条件的元素就会立即停止处理==
+
+```java linenums="1"
+List<String> list = Arrays.asList("a", "b", "c", "d");
+
+// forEach: 遍历并打印
+list.stream().forEach(System.out::println);
+
+// collect: 转换为 List, Set
+List<String> collectedList = list.stream().collect(Collectors.toList());
+Set<String> collectedSet = list.stream().collect(Collectors.toSet());
+
+// collect: 转换为 Map (注意：键不能重复)
+Map<String, Integer> map = list.stream()
+                               .collect(Collectors.toMap(s -> s, String::length)); // {a=1, b=1, c=1, d=1}
+
+// count: 计数
+long count = list.stream().filter(s -> s.startsWith("a")).count(); // 1
+
+// anyMatch / allMatch / noneMatch
+boolean anyStartsWithA = list.stream().anyMatch(s -> s.startsWith("a")); // true
+boolean allStartsWithA = list.stream().allMatch(s -> s.startsWith("a")); // false
+boolean noneStartsWithZ = list.stream().noneMatch(s -> s.startsWith("z")); // true
+
+// findFirst / findAny
+Optional<String> first = list.stream().findFirst(); // Optional["a"]
+Optional<String> any = list.parallelStream().findAny(); // 可能返回任意一个元素
+
+// reduce: 将元素组合起来
+Optional<String> concatenated = list.stream().reduce((s1, s2) -> s1 + "-" + s2); // Optional["a-b-c-d"]
+// 带初始值的 reduce
+String resultWithIdentity = list.stream().reduce("Prefix:", (s1, s2) -> s1 + "-" + s2); // "Prefix:-a-b-c-d"
+
+// max / min
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+Optional<Integer> max = numbers.stream().max(Integer::compareTo); // Optional[5]
+Optional<Integer> min = numbers.stream().min(Integer::compareTo); // Optional[1]
+```
+
+!!! tip "short-circuiting"
+
+    1. `anyMatch()`：找到第一个匹配就返回
+    2. `allMatch()`：找到第一个不匹配就返回
+    3. `noneMatch()`：找到第一个匹配就返回
+    4. `findFirst()`：找到第一个元素就返回，在并行流中仍保持顺序
+    5. `findAny()`：找到第一个元素就返回，在并行流中可能返回任意一个
+
+    ```java linenums="1"
+    List<Integer> numbers = Arrays.asList(1, 3, 5, 6, 7, 9);
+
+    // 检查是否没有偶数
+    boolean result = numbers.stream()
+        .peek(n -> System.out.println("检查: " + n))
+        .noneMatch(n -> n % 2 == 0);
+    
+    System.out.println("结果: " + result);
+    ```
+
+    ```java linenums="1" title="output"
+    检查: 1
+    检查: 3
+    检查: 5
+    检查: 6
+    结果: false
+    ```
+
+!!! tip "基本类型流的专用终端操作"
+
+    `sum()` `average()` `summaryStatistics()`
+
+    ```java linenums="1" title="以 IntStream 为例" hl_lines="6 9"
+    int[] numbers = {1, 2, 3, 4, 5};
+        
+    IntStream stream = IntStream.of(numbers);
+    
+    int sum = stream.sum();                               // 求和: 15
+    OptionalDouble avg = IntStream.of(numbers).average(); // 平均值: 3.0
+    
+    // 统计信息
+    IntSummaryStatistics stats = IntStream.of(numbers).summaryStatistics();
+    System.out.println("Count: " + stats.getCount());     // 5
+    System.out.println("Sum: " + stats.getSum());         // 15
+    System.out.println("Min: " + stats.getMin());         // 1
+    System.out.println("Max: " + stats.getMax());         // 5
+    System.out.println("Average: " + stats.getAverage()); // 3.0
+    ```
+
+    > 第 6、9 行这里不能再使用 `stream` 这个变量了，因为在第 5 行被终端操作消费掉了
+
+#### 8.3.1 Collectors
+
+`java.util.stream.Collectors` 类提供了大量静态方法，用于创建常见的收集器，是 `collect` 操作的核心
+
+| 方法 | 描述 |
+| -- | -- |
+| `toList()` | 收集到 `List` |
+| `toSet()` | 收集到 `Set` |
+| `toCollection(Supplier)` | 收集到特定的集合，如 `toCollection(LinkedList::new)` |
+| `toMap(Function k, Function v)` | 收集到 `Map`，需指定键和值的映射函数 |
+| `joining()` / `joining(delimiter)` | 连接字符串 |
+| `groupingBy(Function)` | 根据分类函数分组，返回 `Map<K, List<T>>` |
+| `partitioningBy(Predicate)` | 根据 true/false 分区，返回 `Map<Boolean, List<T>>` |
+| `counting()` | 计数 |
+| `summingInt` / `averagingInt` | 求和 / 求平均值 |
+| `summarizingInt` | 获取统计信息（数量、总和、最小值、最大值、平均值） |
+
+```java linenums="1"
+List<Person> people = Arrays.asList(
+    new Person("Alice", 25, "London"),
+    new Person("Bob", 30, "New York"),
+    new Person("Charlie", 25, "London")
+);
+
+// groupingBy: 按城市分组
+Map<String, List<Person>> peopleByCity = people.stream()
+        .collect(Collectors.groupingBy(Person::getCity));
+// {New York=[Bob], London=[Alice, Charlie]}
+
+// groupingBy with downstream: 按城市分组，并计算每组的平均年龄
+Map<String, Double> averageAgeByCity = people.stream()
+        .collect(Collectors.groupingBy(Person::getCity, 
+                 Collectors.averagingInt(Person::getAge)));
+// {New York=30.0, London=25.0}
+
+// partitioningBy: 按年龄是否大于26分区
+Map<Boolean, List<Person>> partitioned = people.stream()
+        .collect(Collectors.partitioningBy(p -> p.getAge() > 26));
+// {false=[Alice, Charlie], true=[Bob]}
+
+// joining: 连接所有名字
+String names = people.stream()
+        .map(Person::getName)
+        .collect(Collectors.joining(", "));
+// "Alice, Bob, Charlie"
+```
+
+### 8.4 并行 Stream
+
+通过 `parallelStream()` 方法或 `stream().parallel() `可以创建并行流，利用多核处理器提高大数据集的处理效率
+
+```java linenums="1"
+List<String> list = Arrays.asList("a", "b", "c", "d", "e");
+
+// 使用并行流
+long count = list.parallelStream()
+                 .filter(s -> s.startsWith("a"))
+                 .count();
+```
+
+1. 并行流不总是更快，它有一定的开销（线程池、拆分、合并）
+2. 确保操作是无状态且不干扰的
+3. 在需要共享可变状态时，要特别小心线程安全问题
