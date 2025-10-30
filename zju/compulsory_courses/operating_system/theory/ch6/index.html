@@ -10699,8 +10699,330 @@
 <p>若 P1 持有 S 的锁，P2 持有 Q 的锁；而 P1 申请 Q 的锁，P2 申请 S 的锁，两个进程都会因无法获得对方占有的资源而无限等待，形成死锁</p>
 <p>饥饿：指一个进程由于某种原因（如调度策略不公平、优先级低等）长期得不到它所需的资源，无法继续执行</p>
 <h3 id="52-bounded-buffer-problem">5.2 Bounded-Buffer Problem<a class="headerlink" href="#52-bounded-buffer-problem" title="Permanent link">&para;</a></h3>
+<ol>
+<li>缓冲区：一块共享内存区域，用于在生产者和消费者之间传递数据，假设总共有 N 个缓冲区</li>
+<li><code>mutex</code>：初始值为 1，是一个二进制信号量。用于确保生产者和消费者不会同时访问缓冲区，保证对缓冲区的互斥访问</li>
+<li><code>full</code>：初始值为 0，是一个计数信号量。它表示当前缓冲区中已被生产者放入、等待消费者取走的数据项数量</li>
+<li><code>empty</code>：初始值为 N，也是一个计数信号量。它表示当前缓冲区中空闲的、可供生产者放入新数据项的位置数量</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">producer process</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-30-1">1</a></span>
+<span class="normal"><a href="#__codelineno-30-2">2</a></span>
+<span class="normal"><a href="#__codelineno-30-3">3</a></span>
+<span class="normal"><a href="#__codelineno-30-4">4</a></span>
+<span class="normal"><a href="#__codelineno-30-5">5</a></span>
+<span class="normal"><a href="#__codelineno-30-6">6</a></span>
+<span class="normal"><a href="#__codelineno-30-7">7</a></span>
+<span class="normal"><a href="#__codelineno-30-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><span class="w">    </span><span class="c1">// produce an item</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span><span class="w">  </span><span class="c1">// 检查是否有空缓冲区</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 获取互斥锁</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><span class="w">    </span><span class="c1">// add the item to the buffer</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放互斥锁</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">full</span><span class="p">);</span><span class="w">  </span><span class="c1">// 通知有新增数据</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">consumer process</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-31-1">1</a></span>
+<span class="normal"><a href="#__codelineno-31-2">2</a></span>
+<span class="normal"><a href="#__codelineno-31-3">3</a></span>
+<span class="normal"><a href="#__codelineno-31-4">4</a></span>
+<span class="normal"><a href="#__codelineno-31-5">5</a></span>
+<span class="normal"><a href="#__codelineno-31-6">6</a></span>
+<span class="normal"><a href="#__codelineno-31-7">7</a></span>
+<span class="normal"><a href="#__codelineno-31-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">full</span><span class="p">);</span><span class="w">  </span><span class="c1">// 检查缓冲区中是否有可供消费的数据</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 获取互斥锁</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><span class="w">    </span><span class="c1">// remove an item from buffer</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放互斥锁</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span><span class="w">  </span><span class="c1">// 通知有空位</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><span class="w">    </span><span class="c1">// consume the removed item</span>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition question">
+<p class="admonition-title">exercise</p>
+<p>三个进程互斥使用一个包含 N 个单元的缓冲区</p>
+<ol>
+<li>P1：每次用 <code>produce</code> 生成一个正整数，并用 <code>put</code> 将正整数放入缓冲区的一个空单元</li>
+<li>P2：每次用 <code>getodd</code> 从缓冲区取一个奇数，并用 <code>countodd</code> 统计奇数个数</li>
+<li>P3：每次用 <code>geteven</code> 从缓冲区取一个偶数，并用 <code>counteven</code> 统计偶数个数</li>
+</ol>
+<details class="success">
+<summary>参考</summary>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-32-1">1</a></span>
+<span class="normal"><a href="#__codelineno-32-2">2</a></span>
+<span class="normal"><a href="#__codelineno-32-3">3</a></span>
+<span class="normal"><a href="#__codelineno-32-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">   </span><span class="c1">// 互斥访问缓冲区</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">empty</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w">   </span><span class="c1">// 空槽位数量</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 奇数数量</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">    </span><span class="c1">// 偶数数量</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">P1</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-33-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-33-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-33-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-33-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-33-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-33-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-33-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-33-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-33-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-33-10">10</a></span>
+<span class="normal"><a href="#__codelineno-33-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">produce</span><span class="p">();</span><span class="w">  </span><span class="c1">// 生成一个正整数</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span><span class="w">           </span><span class="c1">// 等空位</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">           </span><span class="c1">// 进入临界区</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5"></a><span class="w">    </span><span class="n">put</span><span class="p">(</span><span class="n">item</span><span class="p">);</span><span class="w">             </span><span class="c1">// 将item放入缓冲区</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">item</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7"></a><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">even</span><span class="p">);</span><span class="w">      </span><span class="c1">// 如果是偶数，唤醒可能等待的P3</span>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9"></a><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">odd</span><span class="p">);</span><span class="w">       </span><span class="c1">// 如果是奇数，唤醒可能等待的P2</span>
+</span><span id="__span-33-10"><a id="__codelineno-33-10" name="__codelineno-33-10"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">         </span><span class="c1">// 离开临界区</span>
+</span><span id="__span-33-11"><a id="__codelineno-33-11" name="__codelineno-33-11"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">P2</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-34-1">1</a></span>
+<span class="normal"><a href="#__codelineno-34-2">2</a></span>
+<span class="normal"><a href="#__codelineno-34-3">3</a></span>
+<span class="normal"><a href="#__codelineno-34-4">4</a></span>
+<span class="normal"><a href="#__codelineno-34-5">5</a></span>
+<span class="normal"><a href="#__codelineno-34-6">6</a></span>
+<span class="normal"><a href="#__codelineno-34-7">7</a></span>
+<span class="normal"><a href="#__codelineno-34-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">odd</span><span class="p">);</span><span class="w">             </span><span class="c1">// 等有奇数</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">           </span><span class="c1">// 进入临界区</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getodd</span><span class="p">();</span><span class="w">    </span><span class="c1">// 从缓冲区取出一个奇数</span>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span><span class="w">         </span><span class="c1">// 释放一个空位</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">         </span><span class="c1">// 离开临界区</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7"></a><span class="w">    </span><span class="n">countodd</span><span class="p">();</span><span class="w">            </span><span class="c1">// 统计奇数（在临界区外执行）</span>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">P3</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-35-1">1</a></span>
+<span class="normal"><a href="#__codelineno-35-2">2</a></span>
+<span class="normal"><a href="#__codelineno-35-3">3</a></span>
+<span class="normal"><a href="#__codelineno-35-4">4</a></span>
+<span class="normal"><a href="#__codelineno-35-5">5</a></span>
+<span class="normal"><a href="#__codelineno-35-6">6</a></span>
+<span class="normal"><a href="#__codelineno-35-7">7</a></span>
+<span class="normal"><a href="#__codelineno-35-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">even</span><span class="p">);</span><span class="w">            </span><span class="c1">// 等有偶数</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">           </span><span class="c1">// 进入临界区</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">num</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">geteven</span><span class="p">();</span><span class="w">   </span><span class="c1">// 从缓冲区取出一个偶数</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">empty</span><span class="p">);</span><span class="w">         </span><span class="c1">// 释放一个空位</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">         </span><span class="c1">// 离开临界区</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7"></a><span class="w">    </span><span class="n">counteven</span><span class="p">();</span><span class="w">           </span><span class="c1">// 统计偶数（在临界区外执行）</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+</details>
+</div>
 <h3 id="53-readers-and-writers-problem">5.3 Readers and Writers Problem<a class="headerlink" href="#53-readers-and-writers-problem" title="Permanent link">&para;</a></h3>
+<ol>
+<li>readers：只读取数据，不会修改数据，因此多个读者可以同时读取而不会产生数据不一致</li>
+<li>writers：会修改数据，因此必须独占访问权，在写操作期间不允许任何其他读者或写者访问数据</li>
+</ol>
+<p>解决方案组件：</p>
+<ol>
+<li><code>readcount</code>：记录当前正在读取数据的读者数量。当第一个读者开始读取时，需要阻止写者；当最后一个读者结束读取时，需要允许写者</li>
+<li><code>mutex</code>：用于保护 <code>readcount</code> 变量的更新，确保多个读者不会同时修改 <code>readcount</code>，避免竞态条件</li>
+<li><code>wrt</code>：写者互斥信号量。用于确保同一时间只有一个写者可以访问数据，也用于在写者访问时阻止读者</li>
+</ol>
+<p>工作原则：</p>
+<ol>
+<li>读者优先：只要还有读者在读取，新到的读者可以立即开始读取，写者可能被无限期推迟（写者饥饿）</li>
+<li>当第一个读者到达时，它会获取 <code>wrt</code> 信号量，阻止写者</li>
+<li>当最后一个读者离开时，它会释放 <code>wrt</code> 信号量，允许写者</li>
+<li>写者必须等待所有读者完成后才能开始写入</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">readers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<span class="normal"><a href="#__codelineno-36-2">2</a></span>
+<span class="normal"><a href="#__codelineno-36-3">3</a></span>
+<span class="normal"><a href="#__codelineno-36-4">4</a></span>
+<span class="normal"><a href="#__codelineno-36-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">wrt</span><span class="p">);</span><span class="w">  </span><span class="c1">// 尝试获取 wrt 信号量</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><span class="w">    </span><span class="c1">// 执行写入操作</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">wrt</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放 wrt 信号量</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">writers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-37-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-37-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-37-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-37-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-37-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-37-10">10</a></span>
+<span class="normal"><a href="#__codelineno-37-11">11</a></span>
+<span class="normal"><a href="#__codelineno-37-12">12</a></span>
+<span class="normal"><a href="#__codelineno-37-13">13</a></span>
+<span class="normal"><a href="#__codelineno-37-14">14</a></span>
+<span class="normal"><a href="#__codelineno-37-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 保护 readcount 的互斥访问</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a><span class="w">    </span><span class="n">readcount</span><span class="w"> </span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readcount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">wrt</span><span class="p">);</span><span class="w">  </span><span class="c1">// 如果是第一个读者，获取 wrt 信号量</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放对 readcount 的保护</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><span class="w">    </span><span class="c1">// 执行读取操作</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 再次保护 readcount</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10"></a><span class="w">    </span><span class="n">readcount</span><span class="w"> </span><span class="o">--</span><span class="p">;</span>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readcount</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12"></a><span class="w">        </span><span class="n">signal</span><span class="p">(</span><span class="n">wrt</span><span class="p">);</span><span class="w">  </span><span class="c1">// 如果是最后一个读者，释放 wrt 信号量</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-37-14"><a id="__codelineno-37-14" name="__codelineno-37-14"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放对 readcount 的保护</span>
+</span><span id="__span-37-15"><a id="__codelineno-37-15" name="__codelineno-37-15"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h3 id="54-dining-philosophers-problem">5.4 Dining Philosophers Problem<a class="headerlink" href="#54-dining-philosophers-problem" title="Permanent link">&para;</a></h3>
+<p>5 位哲学家围坐在圆桌旁，每位哲学家面前有一碗米饭，每两位哲学家之间放着一根筷子（共 5 根筷子），哲学家需要两根筷子才能吃饭</p>
+<p>shared data：</p>
+<ol>
+<li>一碗米饭：代表共享的数据集或资源</li>
+<li>信号量 <code>chopstick[5]</code>：5 个信号量组成的数组，每个对应一根筷子。初始值都为 1，表示每根筷子最初都是可用的。用于控制对筷子的互斥访问</li>
+</ol>
+<div class="admonition failure">
+<p class="admonition-title">有缺陷的解决方案</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">philosopher i</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-38-1">1</a></span>
+<span class="normal"><a href="#__codelineno-38-2">2</a></span>
+<span class="normal"><a href="#__codelineno-38-3">3</a></span>
+<span class="normal"><a href="#__codelineno-38-4">4</a></span>
+<span class="normal"><a href="#__codelineno-38-5">5</a></span>
+<span class="normal"><a href="#__codelineno-38-6">6</a></span>
+<span class="normal"><a href="#__codelineno-38-7">7</a></span>
+<span class="normal"><a href="#__codelineno-38-8">8</a></span>
+<span class="normal"><a href="#__codelineno-38-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 拿起左边的筷子（等待并获取信号量）</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 拿起右边的筷子</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4"></a>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5"></a><span class="w">    </span><span class="c1">// 吃饭</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6"></a>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 放下左边的筷子（释放信号量）</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span><span class="w">  </span><span class="c1">// 放下右边的筷子</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果所有哲学家同时拿起自己左边的筷子，就会发生死锁。每位哲学家都在等待右边的筷子，但所有筷子都被占用，系统陷入僵局</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">solution 1</p>
+<p>通过信号量 <code>S</code> 限制最多只能有 4 位哲学家同时尝试拿筷子，可以避免死锁</p>
+<blockquote>
+<p>数学原理：鸽巢定理</p>
+</blockquote>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">philosopher i</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-39-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-39-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-39-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-39-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-39-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-39-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-39-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-39-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-39-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-39-10">10</a></span>
+<span class="normal"><a href="#__codelineno-39-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">S</span><span class="p">);</span><span class="w">  </span><span class="c1">// 如果已经有 4 位哲学家在尝试拿筷子，第 5 位哲学家会在此阻塞</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a><span class="w">    </span><span class="c1">// 吃饭</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7"></a>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">S</span><span class="p">);</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>简单有效：只需添加一个信号量</li>
+<li>公平性：所有哲学家都有机会就餐</li>
+</ol>
+</div>
+<div class="admonition success">
+<p class="admonition-title">solution 2</p>
+<p>只有当两根筷子都可用时，哲学家才能拿到筷子。也就是一次性获取所有资源，通过互斥锁确保哲学家检查并获取两根筷子的过程是原子操作</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">philosopher i</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-40-1">1</a></span>
+<span class="normal"><a href="#__codelineno-40-2">2</a></span>
+<span class="normal"><a href="#__codelineno-40-3">3</a></span>
+<span class="normal"><a href="#__codelineno-40-4">4</a></span>
+<span class="normal"><a href="#__codelineno-40-5">5</a></span>
+<span class="normal"><a href="#__codelineno-40-6">6</a></span>
+<span class="normal"><a href="#__codelineno-40-7">7</a></span>
+<span class="normal"><a href="#__codelineno-40-8">8</a></span>
+<span class="normal"><a href="#__codelineno-40-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 保护拿取两根筷子的整个过程</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放互斥锁</span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6"></a><span class="w">    </span><span class="c1">// 吃饭</span>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>并发度低：一次只有一位哲学家可以尝试拿筷子，降低了系统吞吐量</li>
+<li>可能造成饥饿：如果某位哲学家一直拿不到两根筷子，可能会长时间等待</li>
+</ol>
+</div>
+<div class="admonition success">
+<p class="admonition-title">solution 3</p>
+<p>奇数编号先拿左边筷子；偶数编号先拿右边筷子。采用非对称策略</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">philosopher i</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-41-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-41-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-41-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-41-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-41-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-41-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-41-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-41-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-41-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-41-10">10</a></span>
+<span class="normal"><a href="#__codelineno-41-11">11</a></span>
+<span class="normal"><a href="#__codelineno-41-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">odd</span><span class="w"> </span><span class="n">number</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9"></a><span class="w">    </span><span class="c1">// 吃饭</span>
+</span><span id="__span-41-10"><a id="__codelineno-41-10" name="__codelineno-41-10"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-41-11"><a id="__codelineno-41-11" name="__codelineno-41-11"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-41-12"><a id="__codelineno-41-12" name="__codelineno-41-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这个方案打破了循环等待链，所以不会发生死锁</p>
+<ol>
+<li>高并发性：不需要全局互斥锁，多位哲学家可以同时尝试拿筷子</li>
+<li>公平性：所有哲学家都有机会就餐</li>
+</ol>
+</div>
+<div class="admonition success">
+<p class="admonition-title">solution 4</p>
+<p>总是先等待编号较小的筷子。采用全局资源排序策略</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">philosopher i</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-42-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-42-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-42-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-42-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-42-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-42-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-42-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-42-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-42-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-42-10">10</a></span>
+<span class="normal"><a href="#__codelineno-42-11">11</a></span>
+<span class="normal"><a href="#__codelineno-42-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7"></a><span class="w">        </span><span class="n">wait</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9"></a><span class="w">    </span><span class="c1">// 吃饭</span>
+</span><span id="__span-42-10"><a id="__codelineno-42-10" name="__codelineno-42-10"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span id="__span-42-11"><a id="__codelineno-42-11" name="__codelineno-42-11"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">chopstick</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]);</span>
+</span><span id="__span-42-12"><a id="__codelineno-42-12" name="__codelineno-42-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这个方案同样的破坏了循环等待链</p>
+<ol>
+<li>高并发性：不需要全局互斥锁</li>
+<li>适用于任意数量的哲学家</li>
+</ol>
+</div>
 <h2 id="6-monitors">6 Monitors<a class="headerlink" href="#6-monitors" title="Permanent link">&para;</a></h2>
 <h2 id="7-synchronization-examples">7 Synchronization Examples<a class="headerlink" href="#7-synchronization-examples" title="Permanent link">&para;</a></h2>
 <h2 id="8-atomic-transactions">8 Atomic Transactions<a class="headerlink" href="#8-atomic-transactions" title="Permanent link">&para;</a></h2>
@@ -10726,7 +11048,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月29日 11:48:08 UTC">2025年10月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月30日 14:36:31 UTC">2025年10月30日</span>
   </span>
 
     
