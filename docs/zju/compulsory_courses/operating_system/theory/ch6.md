@@ -610,9 +610,244 @@ V(Q)
 
 ### 5.2 Bounded-Buffer Problem
 
+1. 缓冲区：一块共享内存区域，用于在生产者和消费者之间传递数据，假设总共有 N 个缓冲区
+2. `mutex`：初始值为 1，是一个二进制信号量。用于确保生产者和消费者不会同时访问缓冲区，保证对缓冲区的互斥访问
+3. `full`：初始值为 0，是一个计数信号量。它表示当前缓冲区中已被生产者放入、等待消费者取走的数据项数量
+4. `empty`：初始值为 N，也是一个计数信号量。它表示当前缓冲区中空闲的、可供生产者放入新数据项的位置数量
+
+```c linenums="1" title="producer process"
+while (true) {
+    // produce an item
+    wait(empty);  // 检查是否有空缓冲区
+    wait(mutex);  // 获取互斥锁
+    // add the item to the buffer
+    signal(mutex);  // 释放互斥锁
+    signal(full);  // 通知有新增数据
+}
+```
+
+```c linenums="1" title="consumer process"
+while (true) {
+    wait(full);  // 检查缓冲区中是否有可供消费的数据
+    wait(mutex);  // 获取互斥锁
+    // remove an item from buffer
+    signal(mutex);  // 释放互斥锁
+    signal(empty);  // 通知有空位
+    // consume the removed item
+}
+```
+
+!!! question "exercise"
+
+    三个进程互斥使用一个包含 N 个单元的缓冲区
+
+    1. P1：每次用 `produce` 生成一个正整数，并用 `put` 将正整数放入缓冲区的一个空单元
+    2. P2：每次用 `getodd` 从缓冲区取一个奇数，并用 `countodd` 统计奇数个数
+    3. P3：每次用 `geteven` 从缓冲区取一个偶数，并用 `counteven` 统计偶数个数
+
+    ??? success "参考"
+
+        ```c linenums="1"
+        semaphore mutex = 1;   // 互斥访问缓冲区
+        semaphore empty = N;   // 空槽位数量
+        semaphore odd = 0;     // 奇数数量
+        semaphore even = 0;    // 偶数数量
+        ```
+
+        ```c linenums="1" title="P1"
+        while (true) {
+            int item = produce();  // 生成一个正整数
+            wait(empty);           // 等空位
+            wait(mutex);           // 进入临界区
+            put(item);             // 将item放入缓冲区
+            if (item % 2 == 0) 
+                signal(even);      // 如果是偶数，唤醒可能等待的P3
+            else 
+                signal(odd);       // 如果是奇数，唤醒可能等待的P2
+            signal(mutex);         // 离开临界区
+        }
+        ```
+
+        ```c linenums="1" title="P2"
+        while (true) {
+            wait(odd);             // 等有奇数
+            wait(mutex);           // 进入临界区
+            int num = getodd();    // 从缓冲区取出一个奇数
+            signal(empty);         // 释放一个空位
+            signal(mutex);         // 离开临界区
+            countodd();            // 统计奇数（在临界区外执行）
+        }
+        ```
+
+        ```c linenums="1" title="P3"
+        while (true) {
+            wait(even);            // 等有偶数
+            wait(mutex);           // 进入临界区
+            int num = geteven();   // 从缓冲区取出一个偶数
+            signal(empty);         // 释放一个空位
+            signal(mutex);         // 离开临界区
+            counteven();           // 统计偶数（在临界区外执行）
+        }
+        ```
+
 ### 5.3 Readers and Writers Problem
 
+1. readers：只读取数据，不会修改数据，因此多个读者可以同时读取而不会产生数据不一致
+2. writers：会修改数据，因此必须独占访问权，在写操作期间不允许任何其他读者或写者访问数据
+
+解决方案组件：
+
+1. `readcount`：记录当前正在读取数据的读者数量。当第一个读者开始读取时，需要阻止写者；当最后一个读者结束读取时，需要允许写者
+2. `mutex`：用于保护 `readcount` 变量的更新，确保多个读者不会同时修改 `readcount`，避免竞态条件
+3. `wrt`：写者互斥信号量。用于确保同一时间只有一个写者可以访问数据，也用于在写者访问时阻止读者
+
+工作原则：
+
+1. 读者优先：只要还有读者在读取，新到的读者可以立即开始读取，写者可能被无限期推迟（写者饥饿）
+2. 当第一个读者到达时，它会获取 `wrt` 信号量，阻止写者
+3. 当最后一个读者离开时，它会释放 `wrt` 信号量，允许写者
+4. 写者必须等待所有读者完成后才能开始写入
+
+```c linenums="1" title="readers"
+while (true) {
+    wait(wrt);  // 尝试获取 wrt 信号量
+    // 执行写入操作
+    signal(wrt);  // 释放 wrt 信号量
+}
+```
+
+```c linenums="1" title="writers"
+while (true) {
+    wait(mutex);  // 保护 readcount 的互斥访问
+    readcount ++;
+    if (readcount == 1) {
+        wait(wrt);  // 如果是第一个读者，获取 wrt 信号量
+    }
+    signal(mutex);  // 释放对 readcount 的保护
+    // 执行读取操作
+    wait(mutex);  // 再次保护 readcount
+    readcount --;
+    if (readcount == 0) {
+        signal(wrt);  // 如果是最后一个读者，释放 wrt 信号量
+    }
+    signal(mutex);  // 释放对 readcount 的保护
+}
+```
+
 ### 5.4 Dining Philosophers Problem
+
+5 位哲学家围坐在圆桌旁，每位哲学家面前有一碗米饭，每两位哲学家之间放着一根筷子（共 5 根筷子），哲学家需要两根筷子才能吃饭
+
+shared data：
+
+1. 一碗米饭：代表共享的数据集或资源
+2. 信号量 `chopstick[5]`：5 个信号量组成的数组，每个对应一根筷子。初始值都为 1，表示每根筷子最初都是可用的。用于控制对筷子的互斥访问
+
+!!! failure "有缺陷的解决方案"
+
+    ```c linenums="1" title="philosopher i"
+    while (true) {
+        wait(chopstick[i]);  // 拿起左边的筷子（等待并获取信号量）
+        wait(chopstick[(i + 1) % 5]);  // 拿起右边的筷子
+    
+        // 吃饭
+    
+        signal(chopstick[i]);  // 放下左边的筷子（释放信号量）
+        signal(chopstick[(i + 1) % 5]);  // 放下右边的筷子
+    }
+    ```
+
+    如果所有哲学家同时拿起自己左边的筷子，就会发生死锁。每位哲学家都在等待右边的筷子，但所有筷子都被占用，系统陷入僵局
+
+!!! success "solution 1"
+
+    通过信号量 `S` 限制最多只能有 4 位哲学家同时尝试拿筷子，可以避免死锁
+    
+    > 数学原理：鸽巢定理
+    
+    ```c linenums="1" title="philosopher i"
+    while (true) {
+        wait(S);  // 如果已经有 4 位哲学家在尝试拿筷子，第 5 位哲学家会在此阻塞
+        wait(chopstick[i]);
+        wait(chopstick[(i + 1) % 5]);
+        
+        // 吃饭
+        
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+        signal(S);
+    }
+    ```
+
+    1. 简单有效：只需添加一个信号量
+    2. 公平性：所有哲学家都有机会就餐
+
+!!! success "solution 2"
+
+    只有当两根筷子都可用时，哲学家才能拿到筷子。也就是一次性获取所有资源，通过互斥锁确保哲学家检查并获取两根筷子的过程是原子操作
+
+    ```c linenums="1" title="philosopher i"
+    while (true) {
+        wait(mutex);  // 保护拿取两根筷子的整个过程
+        wait(chopstick[i]);
+        wait(chopstick[(i + 1) % 5]);
+        signal(mutex);  // 释放互斥锁
+        // 吃饭
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+    }
+    ```
+
+    1. 并发度低：一次只有一位哲学家可以尝试拿筷子，降低了系统吞吐量
+    2. 可能造成饥饿：如果某位哲学家一直拿不到两根筷子，可能会长时间等待
+
+!!! success "solution 3"
+
+    奇数编号先拿左边筷子；偶数编号先拿右边筷子。采用非对称策略
+
+    ```c linenums="1" title="philosopher i"
+    while (true) {
+        if (i is odd number) {
+            wait(chopstick[i]);
+            wait(chopstick[(i + 1) % 5]);
+        } else {
+            wait(chopstick[(i + 1) % 5]);
+            wait(chopstick[i]);
+        }
+        // 吃饭
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+    }
+    ```
+
+    这个方案打破了循环等待链，所以不会发生死锁
+
+    1. 高并发性：不需要全局互斥锁，多位哲学家可以同时尝试拿筷子
+    2. 公平性：所有哲学家都有机会就餐
+
+!!! success "solution 4"
+
+    总是先等待编号较小的筷子。采用全局资源排序策略
+
+    ```c linenums="1" title="philosopher i"
+    while (true) {
+        if (i < (i + 1) % 5) {
+            wait(chopstick[i]);
+            wait(chopstick[(i + 1) % 5]);
+        } else {
+            wait(chopstick[(i + 1) % 5]);
+            wait(chopstick[i]);
+        }
+        // 吃饭
+        signal(chopstick[i]);
+        signal(chopstick[(i + 1) % 5]);
+    }
+    ```
+
+    这个方案同样的破坏了循环等待链
+
+    1. 高并发性：不需要全局互斥锁
+    2. 适用于任意数量的哲学家
 
 ## 6 Monitors
 
