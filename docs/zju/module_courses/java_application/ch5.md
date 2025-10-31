@@ -1,8 +1,8 @@
 # 5 Container and Generics
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -785,60 +785,7 @@ public class RuntimeTypeCheck {
 }
 ```
 
-## 7 Reflection
-
-反射是 Java 语言的一种特性，允许程序在运行时检查、访问和修改类、接口、字段、方法等程序结构的能力
-
-获取 `Class` 对象：
-
-```java linenums="1"
-public class ReflectionBasics {
-    public static void main(String[] args) throws Exception {
-        // 方式 1: 类名.class (最常用)
-        Class<String> stringClass = String.class;
-        
-        // 方式 2: 对象.getClass()
-        String str = "Hello";
-        Class<?> strClass = str.getClass();
-        
-        // 方式 3: Class.forName() (动态加载)
-        Class<?> arrayListClass = Class.forName("java.util.ArrayList");
-        
-        System.out.println("String class: " + stringClass);
-        System.out.println("Object class: " + strClass);
-        System.out.println("ArrayList class: " + arrayListClass);
-        
-        System.out.println("Same class: " + (stringClass == strClass)); // true
-    }
-}
-```
-
-获取类的基本信息:
-
-```java linenums="1"
-public class ClassInfoInspection {
-    public static void main(String[] args) throws Exception {
-        Class<ArrayList> arrayListClass = ArrayList.class;
-        
-        // 类基本信息
-        System.out.println("类名: " + arrayListClass.getName());
-        System.out.println("简单类名: " + arrayListClass.getSimpleName());
-        System.out.println("包名: " + arrayListClass.getPackage().getName());
-        System.out.println("修饰符: " + Modifier.toString(arrayListClass.getModifiers()));
-        System.out.println("父类: " + arrayListClass.getSuperclass().getName());
-        
-        // 实现的接口
-        Class<?>[] interfaces = arrayListClass.getInterfaces();
-        System.out.println("实现的接口: " + Arrays.toString(interfaces));
-        
-        // 类注解
-        Annotation[] annotations = arrayListClass.getAnnotations();
-        System.out.println("类注解: " + Arrays.toString(annotations));
-    }
-}
-```
-
-## 8 Stream
+## 7 Stream
 
 Stream（流）是一个来自数据源的元素队列，并支持聚合操作。它本身不存储数据，而是对数据源（如集合、数组、I/O channel等）进行计算处理
 
@@ -865,7 +812,7 @@ Java 提供了三套专门的基本类型流：
 
 Stream 的操作遵循一个标准流程：创建流 → 中间操作 → 终端操作
 
-### 8.1 创建 Stream
+### 7.1 创建 Stream
 
 | 创建方式 | 方法 | 示例 |
 | :--: | -- | -- |
@@ -907,7 +854,7 @@ Stream<Double> randomNumbers = Stream.generate(Math::random);
     // 输出: 1234
     ```
 
-### 8.2 中间操作
+### 7.2 中间操作
 
 中间操作返回一个新的 Stream，==是惰性的==，它们不会立即执行，而是等到终端操作时一起执行
 
@@ -957,7 +904,7 @@ List<Integer> limited = numbers.stream()
                                .collect(Collectors.toList());
 ```
 
-### 8.3 终端操作
+### 7.3 终端操作
 
 终端操作会从流的流水线生成结果或副作用。执行后，Stream 就被消费掉了，不能再使用
 
@@ -1060,7 +1007,7 @@ Optional<Integer> min = numbers.stream().min(Integer::compareTo); // Optional[1]
 
     > 第 6、9 行这里不能再使用 `stream` 这个变量了，因为在第 5 行被终端操作消费掉了
 
-#### 8.3.1 Collectors
+#### 7.3.1 Collectors
 
 `java.util.stream.Collectors` 类提供了大量静态方法，用于创建常见的收集器，是 `collect` 操作的核心
 
@@ -1107,7 +1054,7 @@ String names = people.stream()
 // "Alice, Bob, Charlie"
 ```
 
-### 8.4 并行 Stream
+### 7.4 并行 Stream
 
 通过 `parallelStream()` 方法或 `stream().parallel() `可以创建并行流，利用多核处理器提高大数据集的处理效率
 
