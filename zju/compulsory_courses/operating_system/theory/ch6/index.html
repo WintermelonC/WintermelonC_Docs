@@ -10829,7 +10829,7 @@
 <li>当最后一个读者离开时，它会释放 <code>wrt</code> 信号量，允许写者</li>
 <li>写者必须等待所有读者完成后才能开始写入</li>
 </ol>
-<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">readers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">writers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-36-1">1</a></span>
 <span class="normal"><a href="#__codelineno-36-2">2</a></span>
 <span class="normal"><a href="#__codelineno-36-3">3</a></span>
 <span class="normal"><a href="#__codelineno-36-4">4</a></span>
@@ -10839,7 +10839,7 @@
 </span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">wrt</span><span class="p">);</span><span class="w">  </span><span class="c1">// 释放 wrt 信号量</span>
 </span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
-<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">writers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">readers</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-37-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-37-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-37-3"> 3</a></span>
 <span class="normal"><a href="#__codelineno-37-4"> 4</a></span>
@@ -11048,7 +11048,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月30日 14:36:31 UTC">2025年10月30日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月4日 03:09:59 UTC">2025年11月4日</span>
   </span>
 
     
