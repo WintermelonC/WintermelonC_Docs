@@ -5576,6 +5576,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-parse-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Parse Trees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pushdown-automata" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Pushdown Automata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pushdown-automata-and-context-free-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Pushdown Automata and Context-Free Grammars
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9599,6 +9626,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-parse-trees" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 Parse Trees
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-pushdown-automata" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Pushdown Automata
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pushdown-automata-and-context-free-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Pushdown Automata and Context-Free Grammars
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -9683,9 +9737,130 @@
 <p>对于任意 <span class="arithmatex">\(A \in V - \Sigma\)</span> 和 <span class="arithmatex">\(u \in V^*\)</span>，如果 <span class="arithmatex">\((A, u) \in R\)</span>，我们就写作 <span class="arithmatex">\(A \rightarrow_G u\)</span></p>
 <p>对于任意两个字符串 <span class="arithmatex">\(u,v \in V^*\)</span>，我们写成 <span class="arithmatex">\(u \Rightarrow_G v\)</span> 当且仅当存在字符串 <span class="arithmatex">\(x, y \in V^*\)</span> 和非终结符 <span class="arithmatex">\(A \in V - \Sigma\)</span>，使得 <span class="arithmatex">\(u=xAy, v=xv'y\)</span>，且 <span class="arithmatex">\(A \rightarrow_G v'\)</span></p>
 <p>关系 <span class="arithmatex">\(\Rightarrow^*_G\)</span> 是 <span class="arithmatex">\(\Rightarrow_G\)</span> 的自反传递闭包</p>
-<p>记 <span class="arithmatex">\(L(G)\)</span> 为由 <span class="arithmatex">\(G\)</span> 生成的语言，即 <span class="arithmatex">\(\lbrace w \in \Sigma^*: S \Rightarrow^*_G w \rbrace\)</span></p>
-<p>我们也说 </p>
+<p>记 <span class="arithmatex">\(L(G)\)</span> 为由 <span class="arithmatex">\(G\)</span> 生成的语言，即 <span class="arithmatex">\(\lbrace w \in \Sigma^*: S \Rightarrow^*_G w \rbrace\)</span>。我们也说 <span class="arithmatex">\(G\)</span> <strong>generates</strong> <span class="arithmatex">\(L(G)\)</span> 中的每个字符串</p>
+<p>一个语言 <span class="arithmatex">\(L\)</span> 被称为 <strong>context-free language</strong>，当且仅当存在某个上下文无关文法 <span class="arithmatex">\(G\)</span> 使得 <span class="arithmatex">\(L = L(G)\)</span></p>
 </div>
+<p>将任何形如：<span class="arithmatex">\(w_0 \rightarrow_G w_1 \rightarrow_G \cdots \rightarrow_G w_n\)</span> 的序列称为在 <span class="arithmatex">\(G\)</span> 中从 <span class="arithmatex">\(w_0\)</span> 到 <span class="arithmatex">\(w_n\)</span> 的一个 <strong>derivation</strong>（推导）。这里 <span class="arithmatex">\(w_0, \cdots, w_n\)</span> 可以是 <span class="arithmatex">\(V^*\)</span> 中的任意字符串，并且 <span class="arithmatex">\(n\)</span>（the <strong>length</strong> of the derivation）可以是任何自然数，包括 0。我们也说该推导有 <span class="arithmatex">\(n\)</span> 个 <strong>steps</strong>（步骤）</p>
+<figure>
+  <img alt="Img 1" src="../../../../img/computational_theory/ch3/computational_ch3_img1.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 2" src="../../../../img/computational_theory/ch3/computational_ch3_img2.png" width="800" />
+</figure>
+<div class="admonition tip">
+<ul>
+<li>there are context-free languages that are not regular</li>
+<li>all regular languages are context-free</li>
+</ul>
+</div>
+<h2 id="2-parse-trees">2 Parse Trees<a class="headerlink" href="#2-parse-trees" title="Permanent link">&para;</a></h2>
+<figure>
+  <img alt="Img 3" src="../../../../img/computational_theory/ch3/computational_ch3_img3.png" width="800" />
+</figure>
+<p>the string ()() can be derived from <span class="arithmatex">\(S\)</span> by at least two distinct derivations, namely, </p>
+<p><span class="arithmatex">\(S \Rightarrow SS \Rightarrow (S)S \Rightarrow ()S \Rightarrow ()(S) \Rightarrow ()()\)</span><br/><span class="arithmatex">\(S \Rightarrow SS \Rightarrow S(S) \Rightarrow (S)(S) \Rightarrow (S)() \Rightarrow ()()\)</span></p>
+<p>both derivations can be pictured as in <ins>Figure 3-2</ins></p>
+<figure>
+  <img alt="Img 4" src="../../../../img/computational_theory/ch3/computational_ch3_img4.png" width="400" />
+</figure>
+<p>我们称这样的图为一个 <strong>parse tree</strong>（解析树）。图中的点称为 <strong>nodes</strong>；每个节点携带一个 <strong>label</strong>，该标签是集合 <span class="arithmatex">\(V\)</span> 中的一个符号。最顶层的节点称为 <strong>root</strong>，底部的节点称为 <strong>leaves</strong>。所有叶子节点都标记为 <strong>terminals</strong>，或者可能是空串 <span class="arithmatex">\(ε\)</span>。将叶子节点的标签从左到右连接起来，得到的终结符串称为该解析树的 <strong>yield</strong>（产出）</p>
+<p>更正式地，对于任意一个上下文无关文法 <span class="arithmatex">\(G=(V,Σ,R,S)\)</span>，我们如下定义它的解析树、根节点、叶子节点以及产出：</p>
+<figure>
+  <img alt="Img 5" src="../../../../img/computational_theory/ch3/computational_ch3_img5.png" width="800" />
+</figure>
+<p>直观上，解析树是一种表示语言 <span class="arithmatex">\(L(G)\)</span> 中字符串推导的方式，使得由于规则应用顺序不同而导致的表面差异被忽略。换句话说，解析树代表了 equivalence classes of derivations（推导的等价类）</p>
+<p>设两个推导 <span class="arithmatex">\(D = x_1 \Rightarrow x_2 \Rightarrow \cdots \Rightarrow x_n\)</span> 和 <span class="arithmatex">\(D' = x_1' \Rightarrow x_2' \Rightarrow \cdots \Rightarrow x_n'\)</span>，我们说 <span class="arithmatex">\(D\)</span> <strong>precedes</strong>（先于）<span class="arithmatex">\(D'\)</span>，记作 <span class="arithmatex">\(D \prec D'\)</span>，当且仅当 <span class="arithmatex">\(n &gt; 2\)</span> 且存在一个整数 <span class="arithmatex">\(1 &lt; k &lt; n\)</span> 满足：</p>
+<ol>
+<li>对所有 <span class="arithmatex">\(i \not ={k}\)</span>，有 <span class="arithmatex">\(x_i = x_i'\)</span></li>
+<li><span class="arithmatex">\(x_{k-1} = x_{k-1}' = uAvBw\)</span>，其中 <span class="arithmatex">\(u,v,w \in V^*\)</span>，<span class="arithmatex">\(A,B \in V - \Sigma\)</span></li>
+<li><span class="arithmatex">\(x_k = uyvBw\)</span>，其中 <span class="arithmatex">\(A \rightarrow y \in R\)</span></li>
+<li><span class="arithmatex">\(x_k' = uAvzw\)</span>，其中 <span class="arithmatex">\(B \rightarrow z \in R\)</span></li>
+<li><span class="arithmatex">\(x_{k+1} = x_{k+1}' = uyvzw\)</span></li>
+</ol>
+<p>换句话说，这两个推导在除两个连续步骤外完全相同，在这两个步骤中，相同的两个非终结符 A 和 B 被替换为相同的两个字符串，但替换的顺序相反：在其中一个推导中先替换 A，在另一个中先替换 B</p>
+<blockquote>
+<p>先替换左边那个非终结符的推导被称为 precede 另一个推导</p>
+</blockquote>
+<figure>
+  <img alt="Img 6" src="../../../../img/computational_theory/ch3/computational_ch3_img6.png" width="800" />
+</figure>
+<p>我们说两个推导 <span class="arithmatex">\(D\)</span> 和 <span class="arithmatex">\(D'\)</span> 是 <strong>similar</strong>（相似的），如果这对 <span class="arithmatex">\((D,D')\)</span> 属于关系 <span class="arithmatex">\(\prec\)</span> 的 reflexive, symmetric, transitive closure。由于任意关系的自反、对称、传递闭包根据定义是自反的、对称的和传递的，因此相似性是一种等价关系。换句话说，两个推导是相似的，当且仅当它们可以通过一系列规则应用顺序的交换相互转换。这样的一个交换可以将一个推导替换为另一个它先于的推导，或者被一个它先于的推导所替换</p>
+<figure>
+  <img alt="Img 7" src="../../../../img/computational_theory/ch3/computational_ch3_img7.png" width="800" />
+</figure>
+<p>每个在相似性下的推导等价类（即每棵解析树），都包含一个在 <span class="arithmatex">\(≺\)</span> 关系下是极大的推导；也就是说，它不被任何其他推导所先于。这个推导被称为 <strong>leftmost derivation</strong>。每棵解析树中都存在最左推导，它可以通过以下方式从解析树得到：从根节点标签 <span class="arithmatex">\(A\)</span> 开始，反复地根据解析树所建议的规则，替换当前字符串中最左边的非终结符</p>
+<p>类似地，<strong>rightmost derivation</strong> 是指不被任何其他推导所先于的推导，它是通过总是扩展当前字符串中最右边的非终结符从解析树中得到的</p>
+<p>每一棵解析树恰好有一个最左推导和一个最右推导。这是因为，在每一步中，只有一个非终结符可以被替换：对于最左推导来说是最左边的那个，对最右推导则是最右边的那个</p>
+<p>我们将最左推导写成 <span class="arithmatex">\(x \xrightarrow{L} y\)</span>，最右推导写成 <span class="arithmatex">\(x \xrightarrow{R} y\)</span>。如果 <span class="arithmatex">\(x_1 \Rightarrow x_2 \Rightarrow \cdots \Rightarrow x_n\)</span> 是一个最左推导，那么 <span class="arithmatex">\(x_1 \xrightarrow{L} x_2 \xrightarrow{L} \cdots \xrightarrow{L} x_n\)</span></p>
+<div class="admonition tip">
+<p>设 <span class="arithmatex">\(G=(V,Σ,R,S)\)</span> 是一个上下文无关文法，令 <span class="arithmatex">\(A \in V - \Sigma, w \in \Sigma^*\)</span>。则下列语句是等价的：</p>
+<ol>
+<li><span class="arithmatex">\(A \Rightarrow^* w\)</span></li>
+<li>存在一棵以 <span class="arithmatex">\(A\)</span> 为根、产出为 <span class="arithmatex">\(w\)</span> 的解析树</li>
+<li>存在一个最左推导 <span class="arithmatex">\(A \xrightarrow{L}^* w\)</span></li>
+<li>存在一个最右推导 <span class="arithmatex">\(A \xrightarrow{R}^* w\)</span></li>
+</ol>
+</div>
+<h2 id="3-pushdown-automata">3 Pushdown Automata<a class="headerlink" href="#3-pushdown-automata" title="Permanent link">&para;</a></h2>
+<p>并非每种上下文无关语言都能被有限自动机识别，因为我们已经看到，有些上下文无关语言不是正则语言。那么，什么样的更强大的设备可以用来识别任意的上下文无关语言呢？或者更具体地说，我们需要向有限自动机添加哪些额外功能，才能使其接受任何上下文无关语言？</p>
+<p>考虑语言 <span class="arithmatex">\(\lbrace ww^R: w \in \lbrace a,b\rbrace^* \rbrace\)</span>。这个语言是上下文无关的，但不是正则语言</p>
+<p>看起来，任何能够从左到右读取该语言字符串的设备都必须记住输入字符串的前半部分，以便将其按相反顺序与后半部分进行匹配。因此，这种功能显然无法由有限自动机完成 —— 因为有限自动机没有足够的记忆能力来存储整个前半段字符串</p>
+<p>然而，如果机器能够在读取输入的同时累积存储字符串，那么它就可以非确定性地猜测何时到达了输入的中心位置，然后逐个从内存中取出符号进行检查。这种存储设备不必是通用的。一种 stack 或 pushdown store，只允许对最顶部的符号进行读写访问，就非常合适</p>
+<figure>
+  <img alt="Img 8" src="../../../../img/computational_theory/ch3/computational_ch3_img8.png" width="600" />
+</figure>
+<div class="admonition info">
+<p>定义 <strong>pushdown automaton</strong>（下推自动机，PDA）为一个六元组 <span class="arithmatex">\(M = (K,\Sigma,\Gamma,\Delta,s,F)\)</span>，其中</p>
+<ol>
+<li><span class="arithmatex">\(K\)</span> is a finite set of <strong>states</strong></li>
+<li><span class="arithmatex">\(\Sigma\)</span> is an alphabet (the <strong>input symbols</strong>)</li>
+<li><span class="arithmatex">\(\Gamma\)</span> is an alphabet (the <strong>stack symbols</strong>)</li>
+<li><span class="arithmatex">\(s \in K\)</span> is the <strong>initial state</strong></li>
+<li><span class="arithmatex">\(F \subseteq K\)</span> is the set of <strong>final states</strong></li>
+<li><span class="arithmatex">\(\Delta\)</span>, the <strong>transition relation</strong>, is a finite subset of <span class="arithmatex">\((K \times (\Sigma \cup \lbrace e \rbrace) \times \Gamma^*) \times (K \times \Gamma^*)\)</span></li>
+</ol>
+</div>
+<p>如果 <span class="arithmatex">\(((p,a,\beta), (q,\gamma)) \in \Delta\)</span>，说明当机器处于状态 <span class="arithmatex">\(p\)</span>，栈顶为 <span class="arithmatex">\(\beta\)</span> 时，它可以从输入带上读取符号 <span class="arithmatex">\(a\)</span>，将栈顶的 <span class="arithmatex">\(\beta\)</span> 替换为 <span class="arithmatex">\(\gamma\)</span>，进入状态 <span class="arithmatex">\(q\)</span></p>
+<p>这样的一对 <span class="arithmatex">\(((p,a,β),(q,γ))\)</span> 被称为 <span class="arithmatex">\(M\)</span> 的一个 <strong>transition</strong>。由于在任意时刻可能有多个转移同时适用，我们所描述的机器是非确定性的</p>
+<ul>
+<li>将一个符号 <strong>push</strong> 栈：<span class="arithmatex">\(((p,a,e),(q,a))\)</span></li>
+<li>将一个符号 <strong>pop</strong> 栈：<span class="arithmatex">\(((p,a,a),(q,e))\)</span></li>
+</ul>
+<p>正如有限自动机的情况一样，在计算过程中，已经读取的输入部分不会影响机器后续的操作。因此，一个下推自动机的 <strong>configuration</strong> 被定义为三元组 <span class="arithmatex">\(K \times \Sigma^* \times \Gamma^*\)</span> 的一个成员：</p>
+<ol>
+<li>第一个分量是机器的当前状态</li>
+<li>第二个分量是尚未读取的输入部分</li>
+<li>第三个分量是下推存储器（栈）的内容，按从上到下的顺序读取</li>
+</ol>
+<blockquote>
+<p>如果配置是 <span class="arithmatex">\((q,w,abc)\)</span>，那么 <span class="arithmatex">\(a\)</span> 位于栈顶，<span class="arithmatex">\(c\)</span> 位于栈底</p>
+</blockquote>
+<p>如果 <span class="arithmatex">\((p,x,α)\)</span> 和 <span class="arithmatex">\((q,y,ζ)\)</span> 是机器 <span class="arithmatex">\(M\)</span> 的两个配置，我们说 <span class="arithmatex">\((p,x,α)\)</span> 在一步内产生（<strong>yields in one step</strong>）<span class="arithmatex">\((q,y,ζ)\)</span>，记作 <span class="arithmatex">\((p,x,α)⊢_M (q,y,ζ)\)</span>，当且仅当存在一条转移 <span class="arithmatex">\(((p,a,β),(q,γ))∈Δ\)</span>，使得：</p>
+<ol>
+<li><span class="arithmatex">\(x = ay\)</span></li>
+<li><span class="arithmatex">\(\alpha = \beta\eta\)</span></li>
+<li><span class="arithmatex">\(\zeta = \gamma\eta\)</span>，其中 <span class="arithmatex">\(\eta \in \Gamma^*\)</span></li>
+</ol>
+<p>我们用 <span class="arithmatex">\(\vdash_M^*\)</span> 表示 <span class="arithmatex">\(\vdash_M\)</span> 的自反、传递闭包</p>
+<p>我们说机器 <span class="arithmatex">\(M\)</span> <strong>accept</strong> 一个字符串 <span class="arithmatex">\(w \in \Sigma^*\)</span>，当且仅当存在某个终态 <span class="arithmatex">\(p \in F\)</span>，使得：<span class="arithmatex">\((s,w,e) \vdash_M^* (p,e,e)\)</span></p>
+<p>换句话说，<span class="arithmatex">\(M\)</span> 接受字符串 <span class="arithmatex">\(w\)</span>，当且仅当存在一组配置序列 <span class="arithmatex">\(C_0,C_1,\cdots,C_n(n&gt;0)\)</span>，满足：</p>
+<ol>
+<li><span class="arithmatex">\(C_0 = (s,w,e)\)</span></li>
+<li><span class="arithmatex">\(C_n = (p,e,e)\)</span>，其中 <span class="arithmatex">\(p \in F\)</span></li>
+<li>并且对所有 <span class="arithmatex">\(i=0,\cdots,n-1\)</span>，有 <span class="arithmatex">\(C_i \vdash_M C_{i+1}\)</span></li>
+</ol>
+<p>任意满足上述条件的配置序列称为由 <span class="arithmatex">\(M\)</span> 执行的一次 <strong>computation</strong>；其长度为 <span class="arithmatex">\(n\)</span>，或称包含 <span class="arithmatex">\(n\)</span> 步</p>
+<p>由 <span class="arithmatex">\(M\)</span> 接受的语言，记作 <span class="arithmatex">\(L(M)\)</span>，是所有被 <span class="arithmatex">\(M\)</span> 接受的字符串的集合</p>
+<figure>
+  <img alt="Img 9" src="../../../../img/computational_theory/ch3/computational_ch3_img9.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 10" src="../../../../img/computational_theory/ch3/computational_ch3_img10.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 11" src="../../../../img/computational_theory/ch3/computational_ch3_img11.png" width="800" />
+</figure>
+<h2 id="4-pushdown-automata-and-context-free-grammars">4 Pushdown Automata and Context-Free Grammars<a class="headerlink" href="#4-pushdown-automata-and-context-free-grammars" title="Permanent link">&para;</a></h2>
 
 
 
@@ -9708,7 +9883,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年10月22日 03:28:12 UTC">2025年10月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月4日 07:53:50 UTC">2025年11月4日</span>
   </span>
 
     
