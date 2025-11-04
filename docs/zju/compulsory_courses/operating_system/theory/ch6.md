@@ -708,7 +708,7 @@ while (true) {
 3. 当最后一个读者离开时，它会释放 `wrt` 信号量，允许写者
 4. 写者必须等待所有读者完成后才能开始写入
 
-```c linenums="1" title="readers"
+```c linenums="1" title="writers"
 while (true) {
     wait(wrt);  // 尝试获取 wrt 信号量
     // 执行写入操作
@@ -716,7 +716,7 @@ while (true) {
 }
 ```
 
-```c linenums="1" title="writers"
+```c linenums="1" title="readers"
 while (true) {
     wait(mutex);  // 保护 readcount 的互斥访问
     readcount ++;
