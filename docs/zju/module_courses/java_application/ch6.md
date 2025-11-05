@@ -192,7 +192,7 @@ try {
 
     ```java linenums="1"
     try (FileInputStream file = new FileInputStream("file.txt");
-            BufferedReader br = new BufferedReader(new InputStreamReader(file))) {
+         BufferedReader br = new BufferedReader(new InputStreamReader(file))) {
         // 使用资源
         String line;
         while ((line = br.readLine()) != null) {

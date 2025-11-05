@@ -851,6 +851,260 @@ shared data：
 
 ## 6 Monitors
 
+监控器是一种高级同步抽象机制。它的主要目的是简化进程（或线程）间的同步，提供一种比使用信号量等低级原语更便捷、更不易出错的方式来控制对共享资源的访问
+
+在任一时刻，最多只能有一个进程在监控器内处于活动状态。这意味着，当一个进程正在执行监控器中的某个过程时，任何其他进程试图调用该监控器的任何过程都会被阻塞，必须等待当前进程退出监控器
+
+监控器结构：
+
+1. 共享变量：这些变量代表了需要被保护和管理访问的共享资源的状态
+2. 过程 / 方法：这些是操作共享变量的函数。进程必须通过调用这些过程来访问共享资源。正是这些过程保证了互斥访问
+3. 初始化代码：用于对监控器的共享变量进行初始设置
+
+<figure markdown="span">
+    ![Img 1](../../../../img/operating_system/ch6/os_ch6_img1.png){ width="600" }
+</figure>
+
+!!! example "Python 实现监控器模式解决有界缓冲区问题"
+
+    ```python linenums="1"
+    import threading
+    
+    class BoundedBuffer:
+        def __init__(self, max_size):
+            self.buffer = []
+            self.max_size = max_size
+            self.condition = threading.Condition()  # 这就是监控器
+    
+        def produce(self, item):
+            with self.condition:  # 自动获取锁，实现互斥进入
+                while len(self.buffer) >= self.max_size:
+                    self.condition.wait()  # 条件等待
+                self.buffer.append(item)
+                self.condition.notify_all()  # 条件通知
+    
+        def consume(self):
+            with self.condition:  # 自动获取锁，实现互斥进入
+                while len(self.buffer) == 0:
+                    self.condition.wait()  # 条件等待
+                item = self.buffer.pop(0)
+                self.condition.notify_all()  # 条件通知
+                return item
+    ```
+
+**condition variables**（条件变量）是一种同步机制，与互斥锁结合使用，用于在线程 / 进程之间通信关于共享状态变化的信息。它允许线程在某个条件不满足时主动等待，并在条件可能变为真时被唤醒
+
+- `x.wait()`：当线程发现它需要等待某个条件成立时（例如：缓冲区为空，需要等待生产者生产），调用 `x.wait()`。调用该操作的线程会立即释放其持有的互斥锁，然后该线程被挂起 / 阻塞，进入与该条件变量关联的等待队列
+- `x.signal()`：当某个线程改变了共享状态，使得等待的条件可能变为真时（例如：生产者向缓冲区添加了物品），调用 `x.signal()`。调用该操作会唤醒在该条件变量上等待的一个线程（从等待队列中移出），被唤醒的线程会重新尝试获取互斥锁，一旦获得锁，就从 `wait()` 调用后继续执行
+
+!!! tip "使用监控器解决哲学家就餐问题"
+
+    ```c linenums="1"
+    monitor DP
+    {
+        enum { THINKING, HUNGRY, EATING } state[5];
+        condition self[5]; // 哲学家i在无法拿到筷子时可以延迟自己
+    
+        void pickup(int i) {
+            state[i] = HUNGRY;
+            test(i);
+            if (state[i] != EATING) self[i].wait;
+        }
+    
+        void putdown(int i) {
+            state[i] = THINKING;
+            // 测试左右邻居
+            test((i + 4) % 5);
+            test((i + 1) % 5);
+        }
+    
+        void test(int i) {
+            if ((state[(i + 4) % 5] != EATING) &&
+                (state[i] == HUNGRY) &&
+                (state[(i + 1) % 5] != EATING)) {
+                state[i] = EATING;
+                self[i].signal();
+            }
+        }
+    
+        initialization_code() {
+            for (int i = 0; i < 5; i++)
+                state[i] = THINKING;
+        }
+    }
+    ```
+
+    每个哲学家 `i` 按以下顺序调用 `pickup()` 和 `putdown()` 操作：
+
+    ```c linenums="1"
+    dp.pickup(i)
+    // 进食
+    dp.putdown(i)
+    ```
+
+    如果左右邻居持续交替进食，中间的哲学家可能永远无法获得进食机会，导致饥饿
+
+!!! tip "使用信号量实现监控器"
+
+    ```c linenums="1"
+    semaphore mutex; // (初始值 = 1)，用于进入保护
+    semaphore next;  // (初始值 = 0)，用于信号传递，进程可能在此挂起自己
+    int next-count = 0;  // 等待在next上的进程数量
+    ```
+
+    1. `mutex`：用于确保一次只有一个进程能进入监控器，实现互斥访问。每个进程在进入监控器的任何过程前都必须先获取这个锁
+    2. `next`：初始值为 0，用于管理在监控器内部需要挂起的进程，当进程在监控器内部需要等待某个条件时，它会在 `next` 信号量上挂起
+    3. `next-count`：记录当前有多少个进程在 `next` 信号量上等待，用于决定在退出监控器时应该唤醒哪个进程
+
+    每个 procedure F 的逻辑：
+
+    ```c linenums="1"
+    wait(mutex);
+
+    // F 的过程体
+    // 如果在执行过程中需要等待条件，会使用条件变量的等待机制
+
+    // 退出监控器
+    if (next-count > 0) {  // 如果有进程在 next 上等待
+        signal(next);  // 优先唤醒其中一个
+    } else {  // 如果没有进程在内部等待
+        signal(mutex);  // 就释放 mutex 锁，允许新进程进入
+    }
+    ```
+
+对于每个条件变量 `x`：
+
+```c linenums="1"
+semaphore x-sem; // 初始值 = 0
+int x-count = 0;  // 在x上等待的进程数
+```
+
+1. `x-sem`：初始值为 0，用于让进程在条件不满足时真正挂起等待
+2. `x-count`：记录当前在条件变量 `x` 上等待的进程数量，用于跟踪和管理等待队列的大小
+
+`x.wait` 操作可以实现为：
+
+```c linenums="1"
+x-count++;
+if (next-count > 0) {  // 如果有进程在 next 信号量上等待（这些是之前被挂起的进程）
+    signal(next);  // 优先唤醒其中一个
+} else {  // 如果没有内部等待进程
+    signal(mutex);  // 就释放监控器锁，允许新进程进入
+}
+// 在条件变量的信号量上真正挂起当前进程，等待被唤醒
+// 此时进程已经释放了监控器锁，其他进程可以进入
+wait(x-sem);
+// 当进程被唤醒后，减少等待计数器
+// 进程此时已经重新获得了监控器锁，可以继续执行
+x-count--;
+```
+
+工作流程：
+
+1. 进程发现条件不满足，调用 `x.wait()`
+2. 进程记录自己的等待状态，并安排唤醒其他进程
+3. 进程挂起自己，等待条件满足
+4. 当其他进程调用 `x.signal()` 时，等待的进程被唤醒
+5. 被唤醒的进程继续执行，更新等待计数
+
+`x.signal` 操作可以实现为：
+
+```c linenums="1"
+if (x-count > 0) {  // 检查是否有进程在条件变量 x 上等待
+    next-count++;  // 增加在 next 信号量上等待的进程计数器
+    signal(x-sem);  // 唤醒一个在条件变量 x 上等待的进程
+    wait(next);  // 发出信号的进程自己要在 next 信号量上挂起
+    next-count--;  // 当信号发送者被唤醒时，减少 next 计数器
+}
+```
+
+工作流程：
+
+1. 进程 A 调用 `x.signal()`，发现有进程 B 在等待
+2. 进程 A 唤醒进程 B，然后自己挂起在 `next` 上
+3. 进程 B 获得监控器锁并执行
+4. 当进程 B 退出监控器时，会唤醒在 `next` 上等待的进程 A
+5. 进程 A 恢复执行
+
+> 进程 A 调用 `x.signal()` 时，监控器锁在 A 身上，之后唤醒进程 B 并挂起自己，锁是否依然在 A 身上？进程 B 是如何获得监控器锁的呢？没搞明白
+
+??? example "监控器工作流程"
+
+    假设有一个大小为 1 的缓冲区，使用监控器来同步生产者和消费者
+
+    ```c linenums="1"
+    semaphore mutex = 1;    // 监控器入口锁
+    semaphore next = 0;     // 用于信号发送者等待
+    int next-count = 0;     // 在next上等待的进程数
+    
+    // 对于"缓冲区非空"条件
+    semaphore not_empty_sem = 0;  // x-sem
+    int not_empty_count = 0;      // x-count
+    
+    // 对于"缓冲区非满"条件  
+    semaphore not_full_sem = 0;   // 另一个x-sem
+    int not_full_count = 0;       // 另一个x-count
+    ```
+
+    初始状态：缓冲区为空；消费者 C 先到达，生产者 P 后到达
+
+    !!! tip "步骤 1"
+
+        C 调用 `consume()`，获得 `mutex` 锁，检查缓冲区，发现为空，需要等待，调用 `not_empty_sem.wait()`
+
+        ```c linenums="1" title="not_empty_sem.wait()"
+        not_empty_count++;           // not_empty_count = 1
+        if (next_count > 0) {        // next_count = 0，条件为假
+            signal(next);
+        } else {
+            signal(mutex);           // 释放监控器锁
+        }
+        wait(not_empty_sem);         // C在not_empty_sem上挂起
+        // not_empty_count--;        // 等被唤醒后才执行
+        ```
+
+    !!! tip "步骤 2"
+
+        P 调用 `produce()`，获得 `mutex` 锁，P 生产物品放入缓冲区，然后通知消费者，执行 `not_empty_sem.signal()`
+
+        ```c linenums="1" title="not_empty_sem.signal()"
+        if (not_empty_count > 0) {   // not_empty_count = 1，条件为真
+            next_count++;            // next_count = 1
+            signal(not_empty_sem);   // 唤醒C (not_empty_sem 0→1)
+            wait(next);              // P自己在next上挂起
+            // next_count--;         // 等P被唤醒后才执行
+        }
+        ```
+
+    !!! tip "步骤 3"
+
+        > 上面的疑问依旧没解决
+
+        C 被唤醒，执行 `not_empty_count--`，之后继续执行 `consume()`
+
+        ```c linenums="1" title="consume()"
+        item = buffer.pop();
+        // 检查是否需要通知等待的生产者...
+        // 然后退出监控器：
+        if (next_count > 0)     // next_count = 1
+            signal(next);       // 唤醒 P
+        else
+            signal(mutex);
+        ```
+
+    !!! tip "步骤 4"
+
+        P 被唤醒，执行 `next_count--`，之后继续执行 `produce()`
+
+        ```c linenums="1" title="produce()"
+        // produce() 继续执行...
+        // 然后退出监控器：
+        if (next_count > 0)     // next_count = 0
+            signal(next);
+        else
+            signal(mutex);      // 释放监控器锁
+        ```
+
 ## 7 Synchronization Examples
 
 ## 8 Atomic Transactions
