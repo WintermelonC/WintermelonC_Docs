@@ -11024,6 +11024,347 @@
 </ol>
 </div>
 <h2 id="6-monitors">6 Monitors<a class="headerlink" href="#6-monitors" title="Permanent link">&para;</a></h2>
+<p>监控器是一种高级同步抽象机制。它的主要目的是简化进程（或线程）间的同步，提供一种比使用信号量等低级原语更便捷、更不易出错的方式来控制对共享资源的访问</p>
+<p>在任一时刻，最多只能有一个进程在监控器内处于活动状态。这意味着，当一个进程正在执行监控器中的某个过程时，任何其他进程试图调用该监控器的任何过程都会被阻塞，必须等待当前进程退出监控器</p>
+<p>监控器结构：</p>
+<ol>
+<li>共享变量：这些变量代表了需要被保护和管理访问的共享资源的状态</li>
+<li>过程 / 方法：这些是操作共享变量的函数。进程必须通过调用这些过程来访问共享资源。正是这些过程保证了互斥访问</li>
+<li>初始化代码：用于对监控器的共享变量进行初始设置</li>
+</ol>
+<figure>
+    <img alt="Img 1" src="../../../../../img/operating_system/ch6/os_ch6_img1.png" width="600" />
+</figure>
+<div class="admonition example">
+<p class="admonition-title">Python 实现监控器模式解决有界缓冲区问题</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-43-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-43-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-43-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-43-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-43-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-43-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-43-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-43-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-43-10">10</a></span>
+<span class="normal"><a href="#__codelineno-43-11">11</a></span>
+<span class="normal"><a href="#__codelineno-43-12">12</a></span>
+<span class="normal"><a href="#__codelineno-43-13">13</a></span>
+<span class="normal"><a href="#__codelineno-43-14">14</a></span>
+<span class="normal"><a href="#__codelineno-43-15">15</a></span>
+<span class="normal"><a href="#__codelineno-43-16">16</a></span>
+<span class="normal"><a href="#__codelineno-43-17">17</a></span>
+<span class="normal"><a href="#__codelineno-43-18">18</a></span>
+<span class="normal"><a href="#__codelineno-43-19">19</a></span>
+<span class="normal"><a href="#__codelineno-43-20">20</a></span>
+<span class="normal"><a href="#__codelineno-43-21">21</a></span>
+<span class="normal"><a href="#__codelineno-43-22">22</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">threading</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">BoundedBuffer</span><span class="p">:</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_size</span><span class="p">):</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-43-6"><a id="__codelineno-43-6" name="__codelineno-43-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">=</span> <span class="n">max_size</span>
+</span><span id="__span-43-7"><a id="__codelineno-43-7" name="__codelineno-43-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">()</span>  <span class="c1"># 这就是监控器</span>
+</span><span id="__span-43-8"><a id="__codelineno-43-8" name="__codelineno-43-8"></a>
+</span><span id="__span-43-9"><a id="__codelineno-43-9" name="__codelineno-43-9"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">produce</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+</span><span id="__span-43-10"><a id="__codelineno-43-10" name="__codelineno-43-10"></a>        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>  <span class="c1"># 自动获取锁，实现互斥进入</span>
+</span><span id="__span-43-11"><a id="__codelineno-43-11" name="__codelineno-43-11"></a>            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span><span class="p">:</span>
+</span><span id="__span-43-12"><a id="__codelineno-43-12" name="__codelineno-43-12"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>  <span class="c1"># 条件等待</span>
+</span><span id="__span-43-13"><a id="__codelineno-43-13" name="__codelineno-43-13"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</span><span id="__span-43-14"><a id="__codelineno-43-14" name="__codelineno-43-14"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>  <span class="c1"># 条件通知</span>
+</span><span id="__span-43-15"><a id="__codelineno-43-15" name="__codelineno-43-15"></a>
+</span><span id="__span-43-16"><a id="__codelineno-43-16" name="__codelineno-43-16"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">consume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-43-17"><a id="__codelineno-43-17" name="__codelineno-43-17"></a>        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>  <span class="c1"># 自动获取锁，实现互斥进入</span>
+</span><span id="__span-43-18"><a id="__codelineno-43-18" name="__codelineno-43-18"></a>            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-43-19"><a id="__codelineno-43-19" name="__codelineno-43-19"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>  <span class="c1"># 条件等待</span>
+</span><span id="__span-43-20"><a id="__codelineno-43-20" name="__codelineno-43-20"></a>            <span class="n">item</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">buffer</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-43-21"><a id="__codelineno-43-21" name="__codelineno-43-21"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="o">.</span><span class="n">notify_all</span><span class="p">()</span>  <span class="c1"># 条件通知</span>
+</span><span id="__span-43-22"><a id="__codelineno-43-22" name="__codelineno-43-22"></a>            <span class="k">return</span> <span class="n">item</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p><strong>condition variables</strong>（条件变量）是一种同步机制，与互斥锁结合使用，用于在线程 / 进程之间通信关于共享状态变化的信息。它允许线程在某个条件不满足时主动等待，并在条件可能变为真时被唤醒</p>
+<ul>
+<li><code>x.wait()</code>：当线程发现它需要等待某个条件成立时（例如：缓冲区为空，需要等待生产者生产），调用 <code>x.wait()</code>。调用该操作的线程会立即释放其持有的互斥锁，然后该线程被挂起 / 阻塞，进入与该条件变量关联的等待队列</li>
+<li><code>x.signal()</code>：当某个线程改变了共享状态，使得等待的条件可能变为真时（例如：生产者向缓冲区添加了物品），调用 <code>x.signal()</code>。调用该操作会唤醒在该条件变量上等待的一个线程（从等待队列中移出），被唤醒的线程会重新尝试获取互斥锁，一旦获得锁，就从 <code>wait()</code> 调用后继续执行</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">使用监控器解决哲学家就餐问题</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-44-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-44-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-44-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-44-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-44-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-44-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-44-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-44-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-44-10">10</a></span>
+<span class="normal"><a href="#__codelineno-44-11">11</a></span>
+<span class="normal"><a href="#__codelineno-44-12">12</a></span>
+<span class="normal"><a href="#__codelineno-44-13">13</a></span>
+<span class="normal"><a href="#__codelineno-44-14">14</a></span>
+<span class="normal"><a href="#__codelineno-44-15">15</a></span>
+<span class="normal"><a href="#__codelineno-44-16">16</a></span>
+<span class="normal"><a href="#__codelineno-44-17">17</a></span>
+<span class="normal"><a href="#__codelineno-44-18">18</a></span>
+<span class="normal"><a href="#__codelineno-44-19">19</a></span>
+<span class="normal"><a href="#__codelineno-44-20">20</a></span>
+<span class="normal"><a href="#__codelineno-44-21">21</a></span>
+<span class="normal"><a href="#__codelineno-44-22">22</a></span>
+<span class="normal"><a href="#__codelineno-44-23">23</a></span>
+<span class="normal"><a href="#__codelineno-44-24">24</a></span>
+<span class="normal"><a href="#__codelineno-44-25">25</a></span>
+<span class="normal"><a href="#__codelineno-44-26">26</a></span>
+<span class="normal"><a href="#__codelineno-44-27">27</a></span>
+<span class="normal"><a href="#__codelineno-44-28">28</a></span>
+<span class="normal"><a href="#__codelineno-44-29">29</a></span>
+<span class="normal"><a href="#__codelineno-44-30">30</a></span>
+<span class="normal"><a href="#__codelineno-44-31">31</a></span>
+<span class="normal"><a href="#__codelineno-44-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="n">monitor</span><span class="w"> </span><span class="n">DP</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="p">{</span>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a><span class="w">    </span><span class="k">enum</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">THINKING</span><span class="p">,</span><span class="w"> </span><span class="n">HUNGRY</span><span class="p">,</span><span class="w"> </span><span class="n">EATING</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">state</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a><span class="w">    </span><span class="n">condition</span><span class="w"> </span><span class="n">self</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="w"> </span><span class="c1">// 哲学家i在无法拿到筷子时可以延迟自己</span>
+</span><span id="__span-44-5"><a id="__codelineno-44-5" name="__codelineno-44-5"></a>
+</span><span id="__span-44-6"><a id="__codelineno-44-6" name="__codelineno-44-6"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">pickup</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-44-7"><a id="__codelineno-44-7" name="__codelineno-44-7"></a><span class="w">        </span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HUNGRY</span><span class="p">;</span>
+</span><span id="__span-44-8"><a id="__codelineno-44-8" name="__codelineno-44-8"></a><span class="w">        </span><span class="n">test</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-44-9"><a id="__codelineno-44-9" name="__codelineno-44-9"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EATING</span><span class="p">)</span><span class="w"> </span><span class="n">self</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">wait</span><span class="p">;</span>
+</span><span id="__span-44-10"><a id="__codelineno-44-10" name="__codelineno-44-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-44-11"><a id="__codelineno-44-11" name="__codelineno-44-11"></a>
+</span><span id="__span-44-12"><a id="__codelineno-44-12" name="__codelineno-44-12"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">putdown</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-44-13"><a id="__codelineno-44-13" name="__codelineno-44-13"></a><span class="w">        </span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">THINKING</span><span class="p">;</span>
+</span><span id="__span-44-14"><a id="__codelineno-44-14" name="__codelineno-44-14"></a><span class="w">        </span><span class="c1">// 测试左右邻居</span>
+</span><span id="__span-44-15"><a id="__codelineno-44-15" name="__codelineno-44-15"></a><span class="w">        </span><span class="n">test</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-44-16"><a id="__codelineno-44-16" name="__codelineno-44-16"></a><span class="w">        </span><span class="n">test</span><span class="p">((</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+</span><span id="__span-44-17"><a id="__codelineno-44-17" name="__codelineno-44-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-44-18"><a id="__codelineno-44-18" name="__codelineno-44-18"></a>
+</span><span id="__span-44-19"><a id="__codelineno-44-19" name="__codelineno-44-19"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">test</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-44-20"><a id="__codelineno-44-20" name="__codelineno-44-20"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">state</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EATING</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+</span><span id="__span-44-21"><a id="__codelineno-44-21" name="__codelineno-44-21"></a><span class="w">            </span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">HUNGRY</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+</span><span id="__span-44-22"><a id="__codelineno-44-22" name="__codelineno-44-22"></a><span class="w">            </span><span class="p">(</span><span class="n">state</span><span class="p">[(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">EATING</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-44-23"><a id="__codelineno-44-23" name="__codelineno-44-23"></a><span class="w">            </span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EATING</span><span class="p">;</span>
+</span><span id="__span-44-24"><a id="__codelineno-44-24" name="__codelineno-44-24"></a><span class="w">            </span><span class="n">self</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">signal</span><span class="p">();</span>
+</span><span id="__span-44-25"><a id="__codelineno-44-25" name="__codelineno-44-25"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-44-26"><a id="__codelineno-44-26" name="__codelineno-44-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-44-27"><a id="__codelineno-44-27" name="__codelineno-44-27"></a>
+</span><span id="__span-44-28"><a id="__codelineno-44-28" name="__codelineno-44-28"></a><span class="w">    </span><span class="n">initialization_code</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-44-29"><a id="__codelineno-44-29" name="__codelineno-44-29"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-44-30"><a id="__codelineno-44-30" name="__codelineno-44-30"></a><span class="w">            </span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">THINKING</span><span class="p">;</span>
+</span><span id="__span-44-31"><a id="__codelineno-44-31" name="__codelineno-44-31"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-44-32"><a id="__codelineno-44-32" name="__codelineno-44-32"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>每个哲学家 <code>i</code> 按以下顺序调用 <code>pickup()</code> 和 <code>putdown()</code> 操作：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
+<span class="normal"><a href="#__codelineno-45-2">2</a></span>
+<span class="normal"><a href="#__codelineno-45-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="n">dp</span><span class="p">.</span><span class="n">pickup</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="c1">// 进食</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3"></a><span class="n">dp</span><span class="p">.</span><span class="n">putdown</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果左右邻居持续交替进食，中间的哲学家可能永远无法获得进食机会，导致饥饿</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">使用信号量实现监控器</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-46-1">1</a></span>
+<span class="normal"><a href="#__codelineno-46-2">2</a></span>
+<span class="normal"><a href="#__codelineno-46-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">mutex</span><span class="p">;</span><span class="w"> </span><span class="c1">// (初始值 = 1)，用于进入保护</span>
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">next</span><span class="p">;</span><span class="w">  </span><span class="c1">// (初始值 = 0)，用于信号传递，进程可能在此挂起自己</span>
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 等待在next上的进程数量</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><code>mutex</code>：用于确保一次只有一个进程能进入监控器，实现互斥访问。每个进程在进入监控器的任何过程前都必须先获取这个锁</li>
+<li><code>next</code>：初始值为 0，用于管理在监控器内部需要挂起的进程，当进程在监控器内部需要等待某个条件时，它会在 <code>next</code> 信号量上挂起</li>
+<li><code>next-count</code>：记录当前有多少个进程在 <code>next</code> 信号量上等待，用于决定在退出监控器时应该唤醒哪个进程</li>
+</ol>
+<p>每个 procedure F 的逻辑：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-47-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-47-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-47-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-47-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-47-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-47-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-47-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-47-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-47-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-47-10">10</a></span>
+<span class="normal"><a href="#__codelineno-47-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="n">wait</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a><span class="c1">// F 的过程体</span>
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4"></a><span class="c1">// 如果在执行过程中需要等待条件，会使用条件变量的等待机制</span>
+</span><span id="__span-47-5"><a id="__codelineno-47-5" name="__codelineno-47-5"></a>
+</span><span id="__span-47-6"><a id="__codelineno-47-6" name="__codelineno-47-6"></a><span class="c1">// 退出监控器</span>
+</span><span id="__span-47-7"><a id="__codelineno-47-7" name="__codelineno-47-7"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 如果有进程在 next 上等待</span>
+</span><span id="__span-47-8"><a id="__codelineno-47-8" name="__codelineno-47-8"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">  </span><span class="c1">// 优先唤醒其中一个</span>
+</span><span id="__span-47-9"><a id="__codelineno-47-9" name="__codelineno-47-9"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 如果没有进程在内部等待</span>
+</span><span id="__span-47-10"><a id="__codelineno-47-10" name="__codelineno-47-10"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 就释放 mutex 锁，允许新进程进入</span>
+</span><span id="__span-47-11"><a id="__codelineno-47-11" name="__codelineno-47-11"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<p>对于每个条件变量 <code>x</code>：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-48-1">1</a></span>
+<span class="normal"><a href="#__codelineno-48-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">x</span><span class="o">-</span><span class="n">sem</span><span class="p">;</span><span class="w"> </span><span class="c1">// 初始值 = 0</span>
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2"></a><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// 在x上等待的进程数</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><code>x-sem</code>：初始值为 0，用于让进程在条件不满足时真正挂起等待</li>
+<li><code>x-count</code>：记录当前在条件变量 <code>x</code> 上等待的进程数量，用于跟踪和管理等待队列的大小</li>
+</ol>
+<p><code>x.wait</code> 操作可以实现为：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-49-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-49-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-49-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-49-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-49-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-49-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-49-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-49-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-49-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-49-10">10</a></span>
+<span class="normal"><a href="#__codelineno-49-11">11</a></span>
+<span class="normal"><a href="#__codelineno-49-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><span class="n">x</span><span class="o">-</span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 如果有进程在 next 信号量上等待（这些是之前被挂起的进程）</span>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">  </span><span class="c1">// 优先唤醒其中一个</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 如果没有内部等待进程</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">  </span><span class="c1">// 就释放监控器锁，允许新进程进入</span>
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6"></a><span class="p">}</span>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7"></a><span class="c1">// 在条件变量的信号量上真正挂起当前进程，等待被唤醒</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8"></a><span class="c1">// 此时进程已经释放了监控器锁，其他进程可以进入</span>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9"></a><span class="n">wait</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sem</span><span class="p">);</span>
+</span><span id="__span-49-10"><a id="__codelineno-49-10" name="__codelineno-49-10"></a><span class="c1">// 当进程被唤醒后，减少等待计数器</span>
+</span><span id="__span-49-11"><a id="__codelineno-49-11" name="__codelineno-49-11"></a><span class="c1">// 进程此时已经重新获得了监控器锁，可以继续执行</span>
+</span><span id="__span-49-12"><a id="__codelineno-49-12" name="__codelineno-49-12"></a><span class="n">x</span><span class="o">-</span><span class="n">count</span><span class="o">--</span><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>工作流程：</p>
+<ol>
+<li>进程发现条件不满足，调用 <code>x.wait()</code></li>
+<li>进程记录自己的等待状态，并安排唤醒其他进程</li>
+<li>进程挂起自己，等待条件满足</li>
+<li>当其他进程调用 <code>x.signal()</code> 时，等待的进程被唤醒</li>
+<li>被唤醒的进程继续执行，更新等待计数</li>
+</ol>
+<p><code>x.signal</code> 操作可以实现为：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-50-1">1</a></span>
+<span class="normal"><a href="#__codelineno-50-2">2</a></span>
+<span class="normal"><a href="#__codelineno-50-3">3</a></span>
+<span class="normal"><a href="#__codelineno-50-4">4</a></span>
+<span class="normal"><a href="#__codelineno-50-5">5</a></span>
+<span class="normal"><a href="#__codelineno-50-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">  </span><span class="c1">// 检查是否有进程在条件变量 x 上等待</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2"></a><span class="w">    </span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="o">++</span><span class="p">;</span><span class="w">  </span><span class="c1">// 增加在 next 信号量上等待的进程计数器</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">sem</span><span class="p">);</span><span class="w">  </span><span class="c1">// 唤醒一个在条件变量 x 上等待的进程</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">  </span><span class="c1">// 发出信号的进程自己要在 next 信号量上挂起</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5"></a><span class="w">    </span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="o">--</span><span class="p">;</span><span class="w">  </span><span class="c1">// 当信号发送者被唤醒时，减少 next 计数器</span>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>工作流程：</p>
+<ol>
+<li>进程 A 调用 <code>x.signal()</code>，发现有进程 B 在等待</li>
+<li>进程 A 唤醒进程 B，然后自己挂起在 <code>next</code> 上</li>
+<li>进程 B 获得监控器锁并执行</li>
+<li>当进程 B 退出监控器时，会唤醒在 <code>next</code> 上等待的进程 A</li>
+<li>进程 A 恢复执行</li>
+</ol>
+<blockquote>
+<p>进程 A 调用 <code>x.signal()</code> 时，监控器锁在 A 身上，之后唤醒进程 B 并挂起自己，锁是否依然在 A 身上？进程 B 是如何获得监控器锁的呢？没搞明白</p>
+</blockquote>
+<details class="example">
+<summary>监控器工作流程</summary>
+<p>假设有一个大小为 1 的缓冲区，使用监控器来同步生产者和消费者</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-51-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-51-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-51-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-51-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-51-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-51-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-51-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-51-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-51-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-51-10">10</a></span>
+<span class="normal"><a href="#__codelineno-51-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">mutex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">    </span><span class="c1">// 监控器入口锁</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 用于信号发送者等待</span>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 在next上等待的进程数</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4"></a>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5"></a><span class="c1">// 对于&quot;缓冲区非空&quot;条件</span>
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">not_empty_sem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// x-sem</span>
+</span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7"></a><span class="kt">int</span><span class="w"> </span><span class="n">not_empty_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">      </span><span class="c1">// x-count</span>
+</span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8"></a>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9"></a><span class="c1">// 对于&quot;缓冲区非满&quot;条件  </span>
+</span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">not_full_sem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">   </span><span class="c1">// 另一个x-sem</span>
+</span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11"></a><span class="kt">int</span><span class="w"> </span><span class="n">not_full_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">       </span><span class="c1">// 另一个x-count</span>
+</span></code></pre></div></td></tr></table></div>
+<p>初始状态：缓冲区为空；消费者 C 先到达，生产者 P 后到达</p>
+<div class="admonition tip">
+<p class="admonition-title">步骤 1</p>
+<p>C 调用 <code>consume()</code>，获得 <code>mutex</code> 锁，检查缓冲区，发现为空，需要等待，调用 <code>not_empty_sem.wait()</code></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">not_empty_sem.wait()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-52-1">1</a></span>
+<span class="normal"><a href="#__codelineno-52-2">2</a></span>
+<span class="normal"><a href="#__codelineno-52-3">3</a></span>
+<span class="normal"><a href="#__codelineno-52-4">4</a></span>
+<span class="normal"><a href="#__codelineno-52-5">5</a></span>
+<span class="normal"><a href="#__codelineno-52-6">6</a></span>
+<span class="normal"><a href="#__codelineno-52-7">7</a></span>
+<span class="normal"><a href="#__codelineno-52-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a><span class="n">not_empty_count</span><span class="o">++</span><span class="p">;</span><span class="w">           </span><span class="c1">// not_empty_count = 1</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">next_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">        </span><span class="c1">// next_count = 0，条件为假</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4"></a><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">           </span><span class="c1">// 释放监控器锁</span>
+</span><span id="__span-52-6"><a id="__codelineno-52-6" name="__codelineno-52-6"></a><span class="p">}</span>
+</span><span id="__span-52-7"><a id="__codelineno-52-7" name="__codelineno-52-7"></a><span class="n">wait</span><span class="p">(</span><span class="n">not_empty_sem</span><span class="p">);</span><span class="w">         </span><span class="c1">// C在not_empty_sem上挂起</span>
+</span><span id="__span-52-8"><a id="__codelineno-52-8" name="__codelineno-52-8"></a><span class="c1">// not_empty_count--;        // 等被唤醒后才执行</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">步骤 2</p>
+<p>P 调用 <code>produce()</code>，获得 <code>mutex</code> 锁，P 生产物品放入缓冲区，然后通知消费者，执行 <code>not_empty_sem.signal()</code></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">not_empty_sem.signal()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-53-1">1</a></span>
+<span class="normal"><a href="#__codelineno-53-2">2</a></span>
+<span class="normal"><a href="#__codelineno-53-3">3</a></span>
+<span class="normal"><a href="#__codelineno-53-4">4</a></span>
+<span class="normal"><a href="#__codelineno-53-5">5</a></span>
+<span class="normal"><a href="#__codelineno-53-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">not_empty_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="c1">// not_empty_count = 1，条件为真</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2"></a><span class="w">    </span><span class="n">next_count</span><span class="o">++</span><span class="p">;</span><span class="w">            </span><span class="c1">// next_count = 1</span>
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">not_empty_sem</span><span class="p">);</span><span class="w">   </span><span class="c1">// 唤醒C (not_empty_sem 0→1)</span>
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4"></a><span class="w">    </span><span class="n">wait</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">              </span><span class="c1">// P自己在next上挂起</span>
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5"></a><span class="w">    </span><span class="c1">// next_count--;         // 等P被唤醒后才执行</span>
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">步骤 3</p>
+<blockquote>
+<p>上面的疑问依旧没解决</p>
+</blockquote>
+<p>C 被唤醒，执行 <code>not_empty_count--</code>，之后继续执行 <code>consume()</code></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">consume()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1">1</a></span>
+<span class="normal"><a href="#__codelineno-54-2">2</a></span>
+<span class="normal"><a href="#__codelineno-54-3">3</a></span>
+<span class="normal"><a href="#__codelineno-54-4">4</a></span>
+<span class="normal"><a href="#__codelineno-54-5">5</a></span>
+<span class="normal"><a href="#__codelineno-54-6">6</a></span>
+<span class="normal"><a href="#__codelineno-54-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="n">item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">buffer</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2"></a><span class="c1">// 检查是否需要通知等待的生产者...</span>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3"></a><span class="c1">// 然后退出监控器：</span>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">next_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">     </span><span class="c1">// next_count = 1</span>
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">next</span><span class="p">);</span><span class="w">       </span><span class="c1">// 唤醒 P</span>
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6"></a><span class="k">else</span>
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">步骤 4</p>
+<p>P 被唤醒，执行 <code>next_count--</code>，之后继续执行 <code>produce()</code></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">produce()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-55-1">1</a></span>
+<span class="normal"><a href="#__codelineno-55-2">2</a></span>
+<span class="normal"><a href="#__codelineno-55-3">3</a></span>
+<span class="normal"><a href="#__codelineno-55-4">4</a></span>
+<span class="normal"><a href="#__codelineno-55-5">5</a></span>
+<span class="normal"><a href="#__codelineno-55-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="c1">// produce() 继续执行...</span>
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a><span class="c1">// 然后退出监控器：</span>
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">next_count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">     </span><span class="c1">// next_count = 0</span>
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5"></a><span class="k">else</span>
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6"></a><span class="w">    </span><span class="n">signal</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w">      </span><span class="c1">// 释放监控器锁</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+</details>
 <h2 id="7-synchronization-examples">7 Synchronization Examples<a class="headerlink" href="#7-synchronization-examples" title="Permanent link">&para;</a></h2>
 <h2 id="8-atomic-transactions">8 Atomic Transactions<a class="headerlink" href="#8-atomic-transactions" title="Permanent link">&para;</a></h2>
 
@@ -11048,7 +11389,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月4日 03:09:59 UTC">2025年11月4日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月5日 08:07:40 UTC">2025年11月5日</span>
   </span>
 
     
