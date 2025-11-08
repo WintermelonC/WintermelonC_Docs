@@ -43,7 +43,7 @@
 | `flatMap(Function)` | 如果存在值，则对其应用映射函数，该函数必须返回 `Optional`，并直接返回该结果 | 用于链式调用，避免嵌套 `Optional<Optional<T>>` |
 | `filter(Predicate)` | 如果存在值且满足断言条件，则返回当前 `Optional`，否则返回空 `Optional` | 用于条件过滤 |
 
-?? example "创建 `Optional` 对象"
+??? example "创建 `Optional` 对象"
 
     ```java linenums="1"
     // 创建空的 Optional
@@ -185,7 +185,7 @@ String text3 = new String(data, Charset.defaultCharset());
 
 | 方法 | 功能 | 说明 |
 | -- | -- | -- |
-| `write(int b)` | 写入单个字节，高 24 位被忽略 | |
+| `write(int b)` | 写入单个字节，高 24 位被忽略，只写入低 8 位 | |
 | `write(byte b[])` | 写入整个字节数组的所有内容 | |
 | `write(byte[] b, int off, int len)` | 写入字节数组的指定部分 | |
 | `flush()` | 刷新输出流，强制将所有缓冲数据写入目标 | |
@@ -263,6 +263,27 @@ try (ZipInputStream zis = new ZipInputStream(new FileInputStream("archive.zip"))
         zis.closeEntry();
     }
 }
+```
+
+#### 2.1.5 PipedInputStream and PipedOutputStream
+
+管道流用于在同一个 JVM 内不同线程间进行数据通信，建立一条管道
+
+```java linenums="1"
+生产者线程 → PipedOutputStream → 管道 → PipedInputStream → 消费者线程
+```
+
+连接方式：
+
+```java linenums="1"
+// 方式 1：分别创建再连接
+PipedInputStream pis = new PipedInputStream();
+PipedOutputStream pos = new PipedOutputStream();
+pis.connect(pos);  // 或者 pos.connect(pis);
+
+// 方式 2：创建时直接连接
+PipedInputStream pis = new PipedInputStream();
+PipedOutputStream pos = new PipedOutputStream(pis);  // 构造时连接
 ```
 
 ### 2.2 Reader and Writer
@@ -371,6 +392,21 @@ public class Person implements Serializable {
     // 构造方法、getter、setter...
 }
 ```
+
+!!! tip "父类未实现 `Serializable`"
+
+    ```java linenums="1"
+    class Shape {
+        public String name;
+    }
+    class Circle extends Shape implements Serializable {
+        private float radius;
+        transient int color;
+        public static String type = "Circle";
+    }
+    ```
+
+    如果父类没有实现 `Serializable`，则父类的字段不会被自动序列化
 
 对象序列化：
 
