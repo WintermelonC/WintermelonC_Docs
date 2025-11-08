@@ -50,7 +50,8 @@ zzk老师 (1)
 [3 Processes](./theory/ch3.md)<br/>
 [4 Threads](./theory/ch4.md)<br/>
 [5 CPU Scheduling](./theory/ch5.md)<br/>
-[6 Process Synchronization](./theory/ch6.md)
+[6 Process Synchronization](./theory/ch6.md)<br/>
+[7 Deadlocks](./theory/ch7.md)
 
 ### 实验部分
 
