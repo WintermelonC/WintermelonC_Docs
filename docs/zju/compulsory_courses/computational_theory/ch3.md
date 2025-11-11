@@ -1,8 +1,8 @@
 # 3 Context-Free Languages
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -219,3 +219,58 @@ both derivations can be pictured as in ^^Figure 3-2^^
 
 ## 4 Pushdown Automata and Context-Free Grammars
 
+!!! tip ""
+
+    由下推自动机接受的语言类恰好是上下文无关语言类
+
+!!! tip ""
+
+    每个上下文无关语言都被某个下推自动机接受
+
+    设 $G = (V, \Sigma,R,S)$ 是一个上下文无关文法，现在构造一个下推自动机 $M$ 使得 $L(M) = L(G)$。构造的机器只有两个状态，$p$ 和 $q$，并且在第一次移动后永久保持在状态 $q$。同时，$M$ 使用 $V$（即终结符和非终结符的集合）作为其栈字母表。令 $M = (\lbrace p,q \rbrace,\Sigma,V,\Delta,p,\lbrace q \rbrace)$，其中 $\Delta$ 包含：
+
+    1. $((p,e,e),(q,S))$
+    2. $((q,e,A),(q,x))$：对于 $R$ 中的每个规则 $A \rightarrow x$
+    3. $((q,a,a),(q,e))$：对于每个 $a \in \Sigma$
+
+<figure markdown="span">
+  ![Img 12](../../../img/computational_theory/ch3/computational_ch3_img12.png){ width="800" }
+</figure>
+
+!!! tip ""
+
+    如果一个语言被一个下推自动机接受，那么它就是一个上下文无关语言
+
+> emmm，证明暂时不想看（其实看不懂）
+
+## 5 Languages That Are and Are Not Context-Free
+
+!!! tip ""
+
+    上下文无关语言类在 union, concatenation 和 Kleene star 运算下是封闭的
+
+!!! tip ""
+
+    上下文无关语言与正则语言的交集是一个上下文无关语言
+
+<figure markdown="span">
+  ![Img 13](../../../img/computational_theory/ch3/computational_ch3_img13.png){ width="800" }
+</figure>
+
+设 $G = (V,\Sigma, R,S)$ 为一个上下文无关文法。$G$ 的 **fanout**，记作 $\Phi(G)$，是 $R$ 中任何规则右侧符号的最大数量。parse tree 中的一条 **path** 是一个由不同节点组成的序列，每个节点通过线段与前一个节点相连；第一个节点是根节点，最后一个节点是叶节点。路径的 **length** 是其中线段的数量。分析树的 **height** 是其中最长路径的长度
+
+!!! tip ""
+
+    高度为 $h$ 的 $G$ 的任何分析树的产物长度至多为 $\Phi(G)^h$
+
+!!! tip ""
+
+    设 $G = (V,\Sigma,R,S)$ 为一个上下文无关文法。那么任何长度大于 $\Phi(G)^{|V-\Sigma|}$ 的字符串 $w \in L(G)$ 都可以被重写为 $w = uvxyz$ 的形式，使得要么 $v$ 非空，要么 $y$ 非空，并且对于每个 $n \geqslant 0$，$uv^nxy^nz$ 都在 $L(G)$ 中
+
+!!! tip ""
+
+    上下文无关语言类在 intersection 和 complementation 下不是封闭的
+
+<figure markdown="span">
+  ![Img 14](../../../img/computational_theory/ch3/computational_ch3_img14.png){ width="800" }
+</figure>

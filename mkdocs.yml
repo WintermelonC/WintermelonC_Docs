@@ -198,6 +198,7 @@ nav:
         - 1 Sets, Relations, and Languages: zju/compulsory_courses/computational_theory/ch1.md
         - 2 Finite Automata: zju/compulsory_courses/computational_theory/ch2.md
         - 3 Context-Free Languages: zju/compulsory_courses/computational_theory/ch3.md
+        - 4 Turing Machines: zju/compulsory_courses/computational_theory/ch4.md
       - 操作系统:
         - zju/compulsory_courses/operating_system/index.md
         - 理论部分:

@@ -22,4 +22,5 @@ yyc老师
 
 [1 Sets, Relations, and Languages](./ch1.md)<br/>
 [2 Finite Automata](./ch2.md)<br/>
-[3 Context-Free Languages](./ch3.md)
+[3 Context-Free Languages](./ch3.md)<br/>
+[4 Turing Machines](./ch4.md)
