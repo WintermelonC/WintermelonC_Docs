@@ -308,6 +308,60 @@ public ThreadPoolExecutor(
     executor.scheduleWithFixedDelay(task, 0, 2, TimeUnit.SECONDS);
     ```
 
+??? example "示例"
+
+    ```java linenums="1"
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+    import java.util.concurrent.TimeUnit;
+
+    public class ThreadPoolExample {
+        public static void main(String[] args) {
+            // 1. 使用 Executors 工厂类创建一个固定大小的线程池
+            // 这个线程池里有 3 个工作线程
+            ExecutorService executor = Executors.newFixedThreadPool(3);
+
+            System.out.println("向线程池提交 5 个任务...");
+
+            // 2. 循环提交 5 个任务到线程池
+            for (int i = 1; i <= 5; i++) {
+                final int taskId = i;
+                // 使用 submit 或 execute 方法提交一个 Runnable 任务
+                executor.submit(() -> {
+                    System.out.println("任务 " + taskId + " 开始执行, 由线程: " + Thread.currentThread().getName() + " 处理");
+                    try {
+                        // 模拟任务执行耗时
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                    System.out.println("任务 " + taskId + " 执行完毕。");
+                });
+            }
+
+            // 3. 关闭线程池
+            // shutdown() 方法会平滑地关闭线程池。
+            // 它会等待所有已提交的任务执行完毕，但不再接受新的任务。
+            System.out.println("调用 shutdown()，准备关闭线程池...");
+            executor.shutdown();
+
+            try {
+                // 可选：等待所有任务完成，可以设置一个超时时间
+                // 如果在 1 分钟内所有任务都执行完毕，则返回 true
+                if (!executor.awaitTermination(1, TimeUnit.MINUTES)) {
+                    System.err.println("线程池任务未在规定时间内完成，强制关闭。");
+                    executor.shutdownNow(); // 尝试立即停止所有正在执行的任务
+                }
+            } catch (InterruptedException e) {
+                // 如果当前线程在等待时被中断，也强制关闭
+                executor.shutdownNow();
+            }
+
+            System.out.println("所有任务执行完毕，线程池已关闭。");
+        }
+    }
+    ```
+
 ## 3 synchronized
 
 `synchronized` 块是 Java 中用于实现线程同步的一种机制，它提供了一种方式来控制多个线程对共享资源的并发访问。它的核心思想是：确保在同一时刻，只有一个线程可以执行某个特定的代码段，从而避免数据的不一致性问题
