@@ -6924,6 +6924,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4 Paging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 TLB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-memory-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Memory Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-shared-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Shared Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6934,6 +6973,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="5 Structure of The Page Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-two-level-paging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Two Level Paging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-hashed-page-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Hashed Page Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-inverted-page-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Inverted Page Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -11425,6 +11503,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="4 Paging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-tlb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 TLB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-memory-protection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 Memory Protection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-shared-pages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 Shared Pages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -11435,6 +11552,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="5 Structure of The Page Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-two-level-paging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Two Level Paging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-hashed-page-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Hashed Page Tables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-inverted-page-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Inverted Page Table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -11624,6 +11780,7 @@
 <figure>
     <img alt="Img 2" src="../../../../../img/operating_system/ch8/os_ch8_img2.png" width="600" />
 </figure>
+<h2 id="2-swapping">2 Swapping<a class="headerlink" href="#2-swapping" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">base and limit registers</p>
 <p>基址-界限寄存器保护机制：用于在多个进程同时运行时，保护进程彼此之间以及保护操作系统免受进程的干扰。它为每个进程提供一个独立的、受保护的逻辑地址空间</p>
@@ -11690,10 +11847,221 @@
 </ol>
 <p>用户程序完全在它自己的逻辑地址空间中运行，它认为内存就是从 0 开始的一片连续空间。程序无法感知也无法直接访问物理地址。它生成的所有地址都经过 MMU 的自动转换</p>
 </div>
-<h2 id="2-swapping">2 Swapping<a class="headerlink" href="#2-swapping" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">dynamic loading</p>
+<p>将一个程序（尤其是大型程序）的各个组成部分（如子程序、函数、模块）不一次性全部加载到内存中。而是等到某个部分确实被调用到时，才将其从磁盘加载到内存中</p>
+<ol>
+<li>提高内存利用率：内存中只存放当前正在使用或经常使用的代码，避免了不常用代码长期占用宝贵的内存空间</li>
+<li>适用于大型程序：特别有利于那些包含大量用于处理错误、特殊情况或高级功能的代码，但这些情况很少发生的程序</li>
+</ol>
+<p>动态加载主要由应用程序员通过程序设计来负责实现，例如在代码中显式地检查和控制模块的加载。它不需要操作系统提供直接的特殊硬件或系统调用支持。操作系统只需要提供基本的文件读取和内存分配功能即可</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">dynamic linking</p>
+<p>将程序与它所使用的库（如系统函数库）的链接过程，从传统的编译/链接时推迟到程序运行时</p>
+<p>在编译和静态链接时，链接器不会将库函数的代码拷贝到最终的可执行文件中。相反，它只在可执行文件中放入一个 stub（存根）。存根是一小段代码，充当一个占位符</p>
+<p>当程序第一次调用某个库函数时，程序执行到对应的存根。存根负责定位所需的库函数。它通常会请求操作系统的帮助。操作系统检查该库是否已经存在于内存中。找到函数在内存中的实际地址后，存根会用这个地址替换自己（或更新程序的地址表）。然后跳转到该库函数执行。此后，程序对该函数的所有后续调用都会直接跳转到内存中的库代码，不再经过存根</p>
+<ol>
+<li>节省内存：多个程序可以共享同一份物理内存中的库代码（因此得名共享库）</li>
+<li>减小可执行文件体积</li>
+<li>便于库更新：当库升级（如修复漏洞）时，只需替换系统上的共享库文件即可。所有使用该库的程序在下次运行时会自动使用新版本，无需重新编译或重新链接这些程序</li>
+</ol>
+</div>
 <h2 id="3-contiguous-memory-allocation">3 Contiguous Memory Allocation<a class="headerlink" href="#3-contiguous-memory-allocation" title="Permanent link">&para;</a></h2>
+<p>物理内存被划分为两个主要部分：</p>
+<ol>
+<li>操作系统分区：位于内存的低地址区域（例如从地址 0 开始）。这里存放操作系统内核代码和关键数据（如中断向量表）</li>
+<li>用户进程分区：位于内存的高地址区域。所有用户进程都被加载到这个连续的区域内</li>
+</ol>
+<p>保护机制：</p>
+<ol>
+<li>relocation register（重定位寄存器，基址寄存器）：存放的是当前正在运行的进程在物理内存中的起始地址</li>
+<li>limit register（界限寄存器）：存放的是当前进程的最大逻辑地址（即进程的大小）</li>
+<li>MMU：动态映射逻辑地址</li>
+</ol>
+<figure>
+    <img alt="Img 6" src="../../../../../img/operating_system/ch8/os_ch8_img6.png" width="600" />
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">multiple partition allocation</p>
+<p>多分区分配方法</p>
+<p>hole（空闲块）：内存中未被分配、可供使用的连续内存块。随着进程的创建与终止，这些空闲块会分散在内存的各个地方，并且它们的大小各不相同</p>
+<p>当一个新的进程需要被加载到内存时，操作系统会在其维护的空闲块列表中，寻找一个足够大的空闲块来容纳该进程。找到后，操作系统从该空闲块中划出进程所需大小的区域进行分配，剩余的部分会形成一个新的、更小的空闲块</p>
+<p>操作系统需要动态地维护两张关键列表：</p>
+<ol>
+<li>已分配分区列表：记录哪些内存区域已经被分配，以及分配给哪个进程</li>
+<li>空闲分区列表：记录所有当前可用的空闲块及其起始地址和大小</li>
+</ol>
+<p><figure markdown="span">
+    <img alt="Img 7" src="../../../../../img/operating_system/ch8/os_ch8_img7.png" width="600" />
+</figure></p>
+<p>当一个新进程请求大小为 n 的内存时，操作系统需要决定从哪个空闲块中进行分配</p>
+<ol>
+<li>first-fit：从空闲块列表的起始位置开始顺序查找，第一个遇到的大小足够的空闲块就被选中用于分配</li>
+<li>best-fit：遍历整个空闲块列表，找到其中大小 ≥ n 且最小的那个空闲块进行分配</li>
+<li>worst-fit：遍历整个空闲块列表，找到其中最大的空闲块进行分配</li>
+</ol>
+<p>首次适应和最佳适应在整体性能（综合考虑分配速度和内存利用率）上通常优于最差适应。首次适应的优势在于速度。最佳适应的优势在于在某些情况下可能具有较高的内存利用率</p>
+</div>
 <h2 id="4-paging">4 Paging<a class="headerlink" href="#4-paging" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">fragmentation</p>
+<p>碎片化：指内存空间中存在一些无法被有效利用的小块、不连续的空闲内存</p>
+<ol>
+<li>external fragmentation：内存中有足够多的空闲空间来加载一个进程，但这些空闲空间被分散成多个小块，没有一块足够大的连续空间来满足请求</li>
+<li>internal fragmentation：分配给一个进程的内存块大小，比这个进程实际请求的内存要大。这多出来的、在分配块内部但未被进程使用的空间就是内部碎片</li>
+</ol>
+<p>解决外部碎片的方法：</p>
+<ol>
+<li>compaction（压缩）：移动内存中已分配的区域，将所有空闲内存合并成一个大的连续块。必须支持动态重定位，即在程序运行时能更新其物理内存地址的引用。如果一个进程正在进行 I/O 操作，其数据在内存中的位置被移动会导致问题。解决方案包括：在 I/O 期间将进程锁定在内存中不动，或者让 I/O 只通过操作系统的缓冲区进行，不与进程的物理内存直接交互</li>
+<li>non-contiguous allocation（非连续分配）：它允许一个进程的内存空间不必占据连续的物理地址。这样，进程可以被分割成多个小块，分散在内存的不同位置，从而更灵活地利用内存空间，避免外部碎片。现代操作系统（如 Linux, Windows）普遍采用这种技术，即分页和分段机制</li>
+</ol>
+</div>
+<p>分页是一种非连续内存分配方案，旨在解决外部碎片问题。它允许一个进程的物理内存分散在不连续的页框中</p>
+<ul>
+<li>page：将进程的逻辑地址空间（程序员看到的地址空间）划分成固定大小的块</li>
+<li>frame：将物理内存（实际的硬件内存）划分成与页大小完全相同的固定大小的块</li>
+</ul>
+<blockquote>
+<p>page 和 frame 大小必须相同，这确保了任何一页都可以放入任何一个可用的页框中</p>
+</blockquote>
+<p>工作原理：</p>
+<ol>
+<li>分配：当一个需要 n 页内存的进程要运行时，操作系统就在物理内存中寻找 n 个空闲的 frame（无论这些 frame 在物理上是否连续），然后将进程的每一 page 数据分别加载到一个 frame 里</li>
+<li>
+<p>地址转换：由于进程的物理内存是不连续的，操作系统需要为每个进程维护一个称为 page table 的数据结构</p>
+<ul>
+<li>page table：将进程的逻辑页码映射到物理内存的 frame 号。当 CPU 生成一个逻辑地址时，内存管理单元（MMU）会查询页表，找到该逻辑地址所在的页对应的物理页框，从而计算出实际的物理地址</li>
+</ul>
+</li>
+</ol>
+<p>CPU 产生的逻辑地址是一个二进制数，它被自动地划分为两个部分：</p>
+<ol>
+<li>page number：地址的高位部分。它不直接表示地址，而是用作在页表中查找的索引</li>
+<li>page offset：地址的低位部分。它表示目标数据在一个页内部的具体位置</li>
+</ol>
+<figure>
+    <img alt="Img 8" src="../../../../../img/operating_system/ch8/os_ch8_img8.png" width="400" />
+</figure>
+<ol>
+<li>逻辑地址空间 <span class="arithmatex">\(2^m\)</span>：表示 CPU 可以寻址的总内存范围。<code>m</code> 是逻辑地址的总位数</li>
+<li>页大小 <span class="arithmatex">\(2^n\)</span>：表示每个页包含的字节数。<code>n</code> 是页内偏移量 d 所需的位数</li>
+<li>页码 p 的位数：是总地址位数 <code>m</code> 减去偏移量位数 <code>n</code>，即 <code>m-n</code> 位。这决定了页表中有多少表项（即 <span class="arithmatex">\(2^{m-n}\)</span> 个页）</li>
+</ol>
+<figure>
+    <img alt="Img 9" src="../../../../../img/operating_system/ch8/os_ch8_img9.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 10" src="../../../../../img/operating_system/ch8/os_ch8_img10.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 11" src="../../../../../img/operating_system/ch8/os_ch8_img11.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 12" src="../../../../../img/operating_system/ch8/os_ch8_img12.png" width="600" />
+</figure>
+<h3 id="41-tlb">4.1 TLB<a class="headerlink" href="#41-tlb" title="Permanent link">&para;</a></h3>
+<p>page table 存储在主内存中</p>
+<ol>
+<li>page-table base register (PTBR)：一个专用的 CPU 寄存器，其中存放着当前运行进程的页表在物理内存中的起始地址</li>
+<li>page-table length register (PTLR)：另一个专用寄存器，指示了页表的大小，用于进行地址越界检查，防止进程访问不属于它的内存区域</li>
+</ol>
+<p>在这种基础设计下，CPU 每次要访问一个内存地址，都需要两次内存访问：第一次是根据 PTBR 找到页表，再根据虚拟页号在页表中查找对应的物理页框号；第二次是利用得到的物理地址（物理页框号 + 页内偏移）去访问实际的数据或指令</p>
+<p>这导致内存访问速度减半，为了解决这个性能问题，引入了 associative memory 或 translation look-aside buffers（TLBs），TLB 是集成在 CPU 内部的一种高速缓存，专门用于缓存最近使用过的虚拟页到物理页框的映射关系</p>
+<p>当 CPU 需要转换地址时，它首先在极快的 TLB 中查找。如果找到（称为 TLB 命中），则无需访问内存中的页表，直接获得物理地址，只需一次内存访问即可获取数据。只有在 TLB 中找不到（称为 TLB 未命中）时，才需要去访问主内存中的页表，并随后更新 TLB。由于程序通常具有局部性原理，TLB 的命中率很高，从而极大地提升了地址转换的效率</p>
+<p>在多进程系统中，每个进程都有自己的页表。为了确保进程间隔离，需要防止一个进程误用或恶意使用另一个进程的 TLB 条目。address-space identifiers (ASIDs) 被添加到 TLB 的每个条目中。ASID 唯一地标识了每个进程。当进行地址转换时，硬件不仅会比较虚拟页号，还会比较当前运行进程的 ASID 与 TLB 条目中存储的 ASID 是否匹配。只有两者都匹配，才认为该 TLB 条目有效。这确保了进程只能访问属于自己的地址空间，提供了硬件级别的内存保护</p>
+<figure>
+    <img alt="Img 13" src="../../../../../img/operating_system/ch8/os_ch8_img13.png" width="600" />
+</figure>
+<div class="admonition tip">
+<p class="admonition-title">effective access time</p>
+<p>有效访问时间： 在引入了 TLB 之后，系统平均每次内存访问所需要的时间。它综合考虑了 TLB 命中和未命中两种情况</p>
+<ol>
+<li><span class="arithmatex">\(\epsilon\)</span>：在 TLB 中进行一次查找所需要的时间。由于 TLB 是高速硬件，这个时间非常短，通常远小于内存访问时间</li>
+<li>内存周期时间：这是访问一次主内存所需要的时间，作为计算的时间基准单位</li>
+<li>hit ratio <span class="arithmatex">\(\alpha\)</span>：表示 CPU 要转换的地址在 TLB 中就能找到的概率（即 TLB 命中）。命中率与 TLB 的大小（容量）有关，TLB 容量越大，能缓存的页表项越多，命中率通常就越高</li>
+</ol>
+<p>TLB 命中：1 次 TLB 查找时间 + 1 次内存访问时间。<span class="arithmatex">\((1 + \epsilon)\alpha\)</span></p>
+<p>TLB 未命中：1 次 TLB 查找时间 + 2 次内存访问时间。<span class="arithmatex">\((2 + \epsilon)(1 - \alpha)\)</span></p>
+<p>将两种情况加权平均，就得到了有效访问时间 <span class="arithmatex">\(EAT = (1 + \epsilon)\alpha + (2 + \epsilon)(1 - \alpha) = 2 + \epsilon - \alpha\)</span></p>
+</div>
+<h3 id="42-memory-protection">4.2 Memory Protection<a class="headerlink" href="#42-memory-protection" title="Permanent link">&para;</a></h3>
+<p>protection bit：保护位通常与页表项中的每个页相关联。这些位定义了对于该页所对应的物理内存帧的访问权限，例如：读、写、执行</p>
+<p>每个页表项中都包含一个特殊的 valid-invalid 位</p>
+<ol>
+<li>
+<p>valid：</p>
+<ol>
+<li>这个页表项所映射的虚拟页是当前进程逻辑地址空间的一部分，是进程合法拥有的</li>
+<li>该页表项内容（即物理页框号）是有效的，可以用于地址转换</li>
+</ol>
+</li>
+<li>
+<p>invalid：</p>
+<ol>
+<li>该虚拟页不属于进程的地址空间：进程试图访问一个它根本没有分配到的内存区域</li>
+<li>该页目前在磁盘上（交换空间）：虽然该页属于进程，但它当前不在物理内存中。此时，这个无效位会触发一个缺页异常，操作系统会介入，负责将所需的页从磁盘加载到物理内存中，然后将页表项标记为有效，最后让进程重新执行导致异常的指令</li>
+</ol>
+</li>
+</ol>
+<figure>
+    <img alt="Img 14" src="../../../../../img/operating_system/ch8/os_ch8_img14.png" width="600" />
+</figure>
+<h3 id="43-shared-pages">4.3 Shared Pages<a class="headerlink" href="#43-shared-pages" title="Permanent link">&para;</a></h3>
+<p>共享页允许多个进程共同访问同一块物理内存区域（即相同的页框），而不是为每个进程在内存中保留独立的副本</p>
+<p>shared code：可以被多个进程共同使用的代码，例如常见的系统工具或库。这些代码通常是只读的和可重入的。实现方式是在物理内存中只保留一份该代码的副本。然后，在不同进程的页表中，将映射到该代码区域的页表项都指向相同的物理页框。为了使共享代码能够正确工作，该代码在每个共享它的进程的逻辑地址空间中所处的虚拟地址必须是相同的</p>
+<p>private code and data：每个进程所独有的部分，包括其自身的数据以及可能修改的代码。实现方式是操作系统为每个进程的私有部分分配独立的物理页框。即使两个进程运行相同的程序，它们的数据页也是完全分离的，一个进程修改其数据不会影响另一个。与共享代码不同，这些私有页可以映射到进程逻辑地址空间中的任何可用位置，不需要在不同进程间保持地址一致</p>
+<figure>
+    <img alt="Img 15" src="../../../../../img/operating_system/ch8/os_ch8_img15.png" width="600" />
+</figure>
 <h2 id="5-structure-of-the-page-table">5 Structure of The Page Table<a class="headerlink" href="#5-structure-of-the-page-table" title="Permanent link">&para;</a></h2>
+<h3 id="51-two-level-paging">5.1 Two Level Paging<a class="headerlink" href="#51-two-level-paging" title="Permanent link">&para;</a></h3>
+<p>在 32 位系统中，虚拟地址空间大小为 4 GB。页大小为 1 KB，这意味着一个 4 GB 的地址空间需要 <span class="arithmatex">\(2^22\)</span> 个页表项来映射。如果使用单级页表，这个页表将非常庞大</p>
+<p>解决方案是可以使用两级页表</p>
+<figure>
+    <img alt="Img 16" src="../../../../../img/operating_system/ch8/os_ch8_img16.png" width="600" />
+</figure>
+<ol>
+<li>外层页号（P1）：占 12 位。这 12 位用作外层页表的索引，每个页表项指向一个第二级页表的物理基地址</li>
+<li>内层页号（P2）：占 10 位。这 10 位用作由 P1 指定的那个第二级页表内的索引</li>
+</ol>
+<figure>
+    <img alt="Img 17" src="../../../../../img/operating_system/ch8/os_ch8_img17.png" width="400" />
+</figure>
+<figure>
+    <img alt="Img 18" src="../../../../../img/operating_system/ch8/os_ch8_img18.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 19" src="../../../../../img/operating_system/ch8/os_ch8_img19.png" width="600" />
+</figure>
+<h3 id="52-hashed-page-tables">5.2 Hashed Page Tables<a class="headerlink" href="#52-hashed-page-tables" title="Permanent link">&para;</a></h3>
+<p>对于 64 位地址空间，即使使用多级页表，页表的层级也可能变得非常深，导致查找效率低下或内存开销仍然很大。哈希页表是解决这个问题的一种有效方法</p>
+<p>使用哈希函数将虚拟地址中的虚拟页号直接映射到一个哈希桶中</p>
+<p>哈希页表是一个由链表（链）组成的数组。每个链表称为一个桶或链。链表中的每个元素是一个节点，包含三个部分：</p>
+<ol>
+<li>虚拟页号：用于比对，确认这是我们要找的页</li>
+<li>页框号：翻译的目标，即物理内存中的帧号</li>
+<li>下一个元素的指针：指向链表中下一个节点的指针</li>
+</ol>
+<p>查找过程：CPU 产生一个虚拟地址。提取出虚拟页号，通过一个哈希函数计算出一个哈希值，这个值对应哈希页表中的一个索引（即某个链表的头）。沿着该索引对应的链表进行遍历。在遍历过程中，将链表节点中存储的虚拟页号与当前要查找的虚拟页号进行比较。如果找到匹配的节点，则从该节点中取出页框号，与页内偏移组合成物理地址。如果遍历完整个链表都未找到匹配项，则发生缺页异常</p>
+<figure>
+    <img alt="Img 20" src="../../../../../img/operating_system/ch8/os_ch8_img20.png" width="600" />
+</figure>
+<p>对于极其庞大的 64 位地址空间，地址引用通常是稀疏的。为每一个单独的页维护一个表项可能效率不高。clustered page table 是针对 64 位系统的优化。它是哈希页表的一种变体。关键区别在于，链表中的每个元素不再只映射一个虚拟页到一个物理页框，而是同时映射一组（或称一簇）连续的虚拟页到一组连续的物理页框</p>
+<h3 id="53-inverted-page-table">5.3 Inverted Page Table<a class="headerlink" href="#53-inverted-page-table" title="Permanent link">&para;</a></h3>
+<p>反置页表是从物理页框号映射回虚拟页号和进程 ID。IPT 的条目数直接等于系统中物理页框的总数，与进程数量或虚拟地址空间大小无关</p>
+<p>每个 IPT 条目（对应一个物理页框）包含：</p>
+<ol>
+<li>虚拟页号：当前占用该物理页框的是哪个虚拟页</li>
+<li>进程标识符：是哪个进程的虚拟页（因为不同进程的虚拟页号可能相同）</li>
+<li>其他标志位（如有效位、保护位等）</li>
+</ol>
+<p>优点：内存开销极低。这是其主要优势。整个系统只需要维护一个全局的反置页表，其大小仅与物理内存容量成正比，与运行的进程数量无关</p>
+<p>缺点：查找性能差。这是其最大缺点。当需要进行地址转换时，传统页表可以直接索引。而 IPT 需要遍历整个表来查找匹配的 <code>&lt;进程ID, 虚拟页号&gt;</code> 对，这是一个 <span class="arithmatex">\(O(n)\)</span> 操作，非常缓慢</p>
+<p>为了解决查找缓慢的问题，实际实现中会使用一个哈希表。将需要转换的 <code>&lt;进程ID, 虚拟页号&gt;</code> 作为输入，通过一个哈希函数计算出一个哈希值。这个哈希值指向 IPT 中的一个起始位置或一个链表的头。只需检查这个位置（或这个短链表）上的一个或几个 IPT 条目，看是否有匹配的 <code>&lt;进程ID, 虚拟页号&gt;</code></p>
+<figure>
+    <img alt="Img 21" src="../../../../../img/operating_system/ch8/os_ch8_img21.png" width="600" />
+</figure>
 <h2 id="6-segmentation">6 Segmentation<a class="headerlink" href="#6-segmentation" title="Permanent link">&para;</a></h2>
 <h2 id="7-example-the-intel-pentium">7 Example: The Intel Pentium<a class="headerlink" href="#7-example-the-intel-pentium" title="Permanent link">&para;</a></h2>
 
@@ -11718,7 +12086,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月18日 15:46:26 UTC">2025年11月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月22日 07:19:20 UTC">2025年11月22日</span>
   </span>
 
     
