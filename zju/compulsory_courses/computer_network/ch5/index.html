@@ -7321,6 +7321,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-broadcast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Broadcast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-multicast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Multicast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-anycast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Anycast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -11510,6 +11543,39 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-broadcast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.4 Broadcast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-multicast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.5 Multicast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#26-anycast-routing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.6 Anycast Routing
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -12001,6 +12067,159 @@
 <p>DV 则以较慢的收敛和较差的错误容忍度为代价，提供了简单的实现和较低的开销，适用于较小或简单的环境（如 RIP）</p>
 </div>
 <h3 id="23-hierarchical-routing">2.3 Hierarchical Routing<a class="headerlink" href="#23-hierarchical-routing" title="Permanent link">&para;</a></h3>
+<p>分层路由是为了管理大规模网络，将网络组织成层次结构，特别是划分为多个自治系统（AS）。每个自治系统内部使用统一的路由协议进行通信。不同的自治系统可以选择使用不同的内部路由协议</p>
+<p>网关路由器是连接不同自治系统的特殊路由器。它们负责在不同自治系统之间转发数据</p>
+<p>对于包含 N 个路由器的网络，最优的层次级数是对数级 <span class="arithmatex">\(\log N\)</span>。这意味着网络规模越大，采用分层结构的好处越明显，但层次数量只需缓慢增加</p>
+<figure>
+    <img alt="Img 20" src="../../../../img/computer_network/ch5/network_ch5_img20.png" width="600" />
+</figure>
+<h3 id="24-broadcast-routing">2.4 Broadcast Routing<a class="headerlink" href="#24-broadcast-routing" title="Permanent link">&para;</a></h3>
+<p>广播路由的三种主要技术：</p>
+<ol>
+<li>flooding（泛洪法）：每个收到广播包的节点简单地向所有邻居转发副本。容易形成路由循环，且可能产生广播风暴</li>
+<li>
+<p>controlled flooding（受控泛洪法）：两种实现方式</p>
+<ol>
+<li>数据包 ID 记录：每个节点记录已转发的数据包 ID，避免重复转发</li>
+<li>反向路径转发 (RPF)：智能过滤机制，只转发从最短路径方向来的数据包</li>
+</ol>
+</li>
+<li>
+<p>spanning tree（生成树法）：构建一个覆盖所有节点但没有循环的树状结构。最优雅的解决方案，完全避免冗余数据包，确保每个节点只收到一次广播</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">uncontrolled flooding</p>
+<p>非受控泛洪法：发送节点为网络中的每个目的地单独创建并发送数据包副本</p>
+<p>优点：</p>
+<ol>
+<li>简单性：实现容易，不需要复杂算法或协议</li>
+<li>兼容性：利用现有的单播路由机制，无需开发专门的广播协议</li>
+</ol>
+<p>缺点：</p>
+<ol>
+<li>效率低下：源节点需要发送大量重复数据包</li>
+<li>信息依赖：源节点必须预先知道网络中所有目的节点的信息，这在动态变化的网络中很难维护</li>
+<li>广播风暴</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">controlled flooding: Packet ID</p>
+<p>sequence-number-controlled flooding：序列号控制泛洪</p>
+<p>每个广播包包含两个关键信息：源节点地址（唯一标识发送者）、广播序列号（唯一标识本次广播）。每个网络节点维护一个已处理广播记录表，记录：源地址、序列号，这样可以识别重复的广播包</p>
+<p>工作流程：</p>
+<ol>
+<li>接收检查：节点收到广播包时，先查询记录表</li>
+<li>重复处理：如果记录表中已有相同源地址和序列号的记录，直接丢弃</li>
+<li>新包处理：如果是新广播包，则：添加到记录表，复制数据包，转发给所有邻居节点</li>
+</ol>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">controlled flooding: RPF</p>
+<p>路径验证：路由器收到广播包时，检查到达链路：</p>
+<ul>
+<li>如果来自返回源节点最短路径的链路 → 接受并转发</li>
+<li>如果来自其他链路 → 丢弃（认为是重复包）</li>
+</ul>
+<p>转发逻辑：只从正确方向来的第一个广播包被处理，向所有其他接口转发副本（除了接收接口）</p>
+<p>优点：RPF 只需要知道到发送方的单播最短路径上的下一跳邻居。它仅使用该邻居的身份来决定是否泛洪收到的广播数据包，而无需记住序列号</p>
+<p><figure markdown="span">
+    <img alt="Img 21" src="../../../../img/computer_network/ch5/network_ch5_img21.png" width="600" />
+</figure></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">spanning tree</p>
+<p>生成树：包含网络中所有节点的无环连通子图。无环从根本上消除重复数据包和广播风暴</p>
+<p>构建阶段（center-based approach）：</p>
+<ol>
+<li>中心选举：预先选定一个中心节点（rendezvous point / core），作为整个生成树的根节点</li>
+<li>
+<p>树形构建：各节点主动向中心发送加入树消息，消息沿单播最短路径向中心转发</p>
+<ul>
+<li>智能合并：当加入消息遇到已建树节点时，停止继续转发，将该路径 graft（嫁接）到现有生成树上</li>
+</ul>
+</li>
+</ol>
+<p><figure markdown="span">
+    <img alt="Img 22" src="../../../../img/computer_network/ch5/network_ch5_img22.png" width="600" />
+</figure></p>
+<p>广播阶段：源节点仅通过生成树链路发送广播，中间节点仅向生成树邻居转发，数据包沿着树状路径自然传播到所有节点</p>
+<p>优点：</p>
+<ol>
+<li>每个节点确切地收到一份数据包副本</li>
+<li>使用最少数量的链路完成广播</li>
+<li>树结构天然避免循环</li>
+</ol>
+</div>
+<h3 id="25-multicast-routing">2.5 Multicast Routing<a class="headerlink" href="#25-multicast-routing" title="Permanent link">&para;</a></h3>
+<p>组播路由：向特定群组发送信息，而非全网广播或单点单播。这些群组规模较大但与整个网络相比较小</p>
+<p>在组播通信中，我们面临两个问题：</p>
+<ol>
+<li>接收者识别问题：如何确定哪些节点属于特定组播组</li>
+<li>数据包寻址问题：如何为组播组分配网络地址</li>
+</ol>
+<p>使用两种方法来确定组播路由树：</p>
+<ol>
+<li>source based tree：为组播组中的每个发送源分别建立一棵路由树，使用反向路径转发（RPF）算法构建。以源节点 x 为根，覆盖所有接收者的分发树</li>
+<li>group shared tree：整个组播组共享一棵公共的路由树，基于中心节点（汇聚点）构建。通过加入消息机制构建树分支</li>
+</ol>
+<h5 id="251-internet-multicast-routing">2.5.1 Internet Multicast Routing<a class="headerlink" href="#251-internet-multicast-routing" title="Permanent link">&para;</a></h5>
+<p>在互联网中，代表一组接收者的单一标识符是一个 D 类组播 IP 地址</p>
+<blockquote>
+<p>D 类 IP 地址：用于标识组播组的特殊地址范围（224.0.0.0 - 239.255.255.255）</p>
+</blockquote>
+<p>IGMP 协议：主机与路由器之间的组播组成员管理协议。主机向本地路由器宣告加入 / 离开组播组，路由器查询本地网络的组播组成员状态。在网络层和传输层之间运作</p>
+<p>IGMP 协议的三大消息类型：</p>
+<ol>
+<li>
+<p>membership query message（成员查询消息）</p>
+<ol>
+<li>发送方：路由器（主动查询）或主机（主动宣告）</li>
+<li>目的：发现本地网络中的组播组成员</li>
+<li>触发时机：路由器定期查询；主机新加入组时主动报告</li>
+</ol>
+</li>
+<li>
+<p>membership report message（成员报告消息）</p>
+<ol>
+<li>发送方：加入组播组的主机</li>
+<li>目的：响应查询，宣告组成员身份</li>
+<li>工作方式：主机收到查询后报告自己所属的组</li>
+</ol>
+</li>
+<li>
+<p>leave group message（离开组消息，可选）</p>
+<ol>
+<li>发送方：离开组的主机</li>
+<li>目的：快速通知路由器成员离开</li>
+</ol>
+</li>
+</ol>
+<p>即使不发送离开消息，如果主机在查询时不再响应，路由器也会认为其已离开组</p>
+<p>组播路由协议：路由器之间的通信。构建和维护组播分发树</p>
+<ol>
+<li>DVMRP（距离向量组播路由协议）：使用反向路径转发 RPF 和剪枝技术实现基于源的组播树</li>
+<li>
+<p>PIM（协议无关组播）：两种工作模式</p>
+<ol>
+<li>PIM dense mode (PIM-DM)：适用于组播组成员密集分布的网络，采用类似 DVMRP 的洪泛-剪枝机制</li>
+<li>PIM sparse mode (PIM-SM)：适用于成员稀疏分布的大型网络，基于汇聚点（RP）的按需建树</li>
+</ol>
+</li>
+</ol>
+<h3 id="26-anycast-routing">2.6 Anycast Routing<a class="headerlink" href="#26-anycast-routing" title="Permanent link">&para;</a></h3>
+<p>任播路由：多个分布在不同地理位置的服务器使用相同的 IP 地址。当用户尝试访问这个 IP 地址时，网络的路由协议（主要是 BGP）会自动将用户的请求引导到对于该用户来说最近（通常指网络延迟最低）的那台服务器</p>
+<p>这些服务器位于不同的网络（广播域），因此共享同一个 IP 不会冲突。需要通过 BGP 路由协议，让这些服务器所在的网络都向互联宣告这个相同的任播 IP 地址，从而引导流量</p>
+<p>优点：</p>
+<ol>
+<li>提高性能与可靠性：用户总是连接到最近的服务器，降低了延迟，同时也提供了冗余，如果一台服务器故障，流量会自动路由到其他可用的服务器</li>
+<li>服务无关性：对于某些服务（如查询时间、CDN 分发内容），只要能得到正确结果，具体由哪个服务器处理请求并不重要。任播完美契合这种需求</li>
+<li>广泛应用：是 DNS 根服务器和高层域名服务器 的基石技术之一</li>
+<li>增强抗攻击能力：能有效抵御 DDoS 攻击，因为攻击流量会被分散到全球各地的多个服务器，而不是集中攻击单一目标</li>
+</ol>
+<figure>
+    <img alt="Img 23" src="../../../../img/computer_network/ch5/network_ch5_img23.png" width="600" />
+</figure>
 <h2 id="3-the-network-layer-in-the-internet">3 The Network Layer in The Internet<a class="headerlink" href="#3-the-network-layer-in-the-internet" title="Permanent link">&para;</a></h2>
 <h3 id="31-the-ipv4-datagram">3.1 The IPv4 Datagram<a class="headerlink" href="#31-the-ipv4-datagram" title="Permanent link">&para;</a></h3>
 <p>报头结构：</p>
@@ -12331,7 +12550,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月18日 15:46:26 UTC">2025年11月18日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月23日 08:57:49 UTC">2025年11月23日</span>
   </span>
 
     
