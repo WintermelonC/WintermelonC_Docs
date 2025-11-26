@@ -29,8 +29,6 @@ Memory Wall：处理器（CPU）性能与动态随机存取存储器（DRAM）�
     ![Img 2](../../../../img/operating_system/ch8/os_ch8_img2.png){ width="600" }
 </figure>
 
-## 2 Swapping
-
 !!! tip "base and limit registers"
 
     基址-界限寄存器保护机制：用于在多个进程同时运行时，保护进程彼此之间以及保护操作系统免受进程的干扰。它为每个进程提供一个独立的、受保护的逻辑地址空间
@@ -118,7 +116,7 @@ Memory Wall：处理器（CPU）性能与动态随机存取存储器（DRAM）�
     2. 减小可执行文件体积
     3. 便于库更新：当库升级（如修复漏洞）时，只需替换系统上的共享库文件即可。所有使用该库的程序在下次运行时会自动使用新版本，无需重新编译或重新链接这些程序
 
-## 3 Contiguous Memory Allocation
+## 2 Contiguous Memory Allocation
 
 物理内存被划分为两个主要部分：
 
@@ -160,7 +158,7 @@ Memory Wall：处理器（CPU）性能与动态随机存取存储器（DRAM）�
 
     首次适应和最佳适应在整体性能（综合考虑分配速度和内存利用率）上通常优于最差适应。首次适应的优势在于速度。最佳适应的优势在于在某些情况下可能具有较高的内存利用率
 
-## 4 Paging
+## 3 Paging
 
 !!! tip "fragmentation"
 
@@ -217,7 +215,7 @@ CPU 产生的逻辑地址是一个二进制数，它被自动地划分为两个�
     ![Img 12](../../../../img/operating_system/ch8/os_ch8_img12.png){ width="600" }
 </figure>
 
-### 4.1 TLB
+### 3.1 TLB
 
 page table 存储在主内存中
 
@@ -250,7 +248,7 @@ page table 存储在主内存中
 
     将两种情况加权平均，就得到了有效访问时间 $EAT = (1 + \epsilon)\alpha + (2 + \epsilon)(1 - \alpha) = 2 + \epsilon - \alpha$
 
-### 4.2 Memory Protection
+### 3.2 Memory Protection
 
 protection bit：保护位通常与页表项中的每个页相关联。这些位定义了对于该页所对应的物理内存帧的访问权限，例如：读、写、执行
 
@@ -270,7 +268,7 @@ protection bit：保护位通常与页表项中的每个页相关联。这些位
     ![Img 14](../../../../img/operating_system/ch8/os_ch8_img14.png){ width="600" }
 </figure>
 
-### 4.3 Shared Pages
+### 3.3 Shared Pages
 
 共享页允许多个进程共同访问同一块物理内存区域（即相同的页框），而不是为每个进程在内存中保留独立的副本
 
@@ -282,9 +280,9 @@ private code and data：每个进程所独有的部分，包括其自身的数�
     ![Img 15](../../../../img/operating_system/ch8/os_ch8_img15.png){ width="600" }
 </figure>
 
-## 5 Structure of The Page Table
+## 4 Structure of The Page Table
 
-### 5.1 Two Level Paging
+### 4.1 Two Level Paging
 
 在 32 位系统中，虚拟地址空间大小为 4 GB。页大小为 1 KB，这意味着一个 4 GB 的地址空间需要 $2^22$ 个页表项来映射。如果使用单级页表，这个页表将非常庞大
 
@@ -309,7 +307,7 @@ private code and data：每个进程所独有的部分，包括其自身的数�
     ![Img 19](../../../../img/operating_system/ch8/os_ch8_img19.png){ width="600" }
 </figure>
 
-### 5.2 Hashed Page Tables
+### 4.2 Hashed Page Tables
 
 对于 64 位地址空间，即使使用多级页表，页表的层级也可能变得非常深，导致查找效率低下或内存开销仍然很大。哈希页表是解决这个问题的一种有效方法
 
@@ -329,7 +327,7 @@ private code and data：每个进程所独有的部分，包括其自身的数�
 
 对于极其庞大的 64 位地址空间，地址引用通常是稀疏的。为每一个单独的页维护一个表项可能效率不高。clustered page table 是针对 64 位系统的优化。它是哈希页表的一种变体。关键区别在于，链表中的每个元素不再只映射一个虚拟页到一个物理页框，而是同时映射一组（或称一簇）连续的虚拟页到一组连续的物理页框
 
-### 5.3 Inverted Page Table
+### 4.3 Inverted Page Table
 
 反置页表是从物理页框号映射回虚拟页号和进程 ID。IPT 的条目数直接等于系统中物理页框的总数，与进程数量或虚拟地址空间大小无关
 
@@ -349,6 +347,113 @@ private code and data：每个进程所独有的部分，包括其自身的数�
     ![Img 21](../../../../img/operating_system/ch8/os_ch8_img21.png){ width="600" }
 </figure>
 
+## 5 Swapping
+
+当系统内存不足时，可以将内存中暂时不运行的进程的数据和状态（称为内存映像）完整地转移到磁盘上一个称为 backing store（后备存储）的特殊区域。当需要再次运行该进程时，再将其从磁盘读回内存。这有效地扩展了可用的内存空间
+
+后备存储：通常是一块高速磁盘，用于存放被换出的进程内存映像。就绪队列：操作系统维护的一个队列，里面存放着所有准备运行但当前其内存映像在磁盘上的进程。一旦内存可用且轮到它们运行时，它们就会被换入内存
+
+用于进程调度，特别是优先级调度。如果一个高优先级进程需要运行但内存不足，系统可以换出一个低优先级进程（roll out），为高优先级进程腾出空间（roll in）
+
+交换的主要开销是传输时间，即数据在内存和磁盘之间传输的时间。传输时间与交换的数据量直接相关。因此，交换一个占用内存很大的进程会比较慢
+
+<figure markdown="span">
+    ![Img 22](../../../../img/operating_system/ch8/os_ch8_img22.png){ width="600" }
+</figure>
+
 ## 6 Segmentation
 
+分段是一种内存管理方案，其核心目标是支持用户对程序的视角。用户和程序员通常不会将程序看作一个连续的线性地址空间，而是自然地将其视为由不同逻辑模块组成的集合（例如主程序、函数、变量集合、栈等）。分段正是为了在内存中反映和模拟这种逻辑视图
+
+段是程序的一个逻辑单元。每个段都有其特定的目的和意义。程序被看作是由这些不同功能的段组成的集合，而不是一个单一的整体
+
+各种可以作为独立段的逻辑单元：
+
+1. 代码部分：如主程序、过程、函数、方法
+2. 数据部分：如局部变量、全局变量、对象、数组
+3. 运行时数据结构：如栈（用于函数调用、局部变量）、符号表（用于编译/链接）
+4. 系统相关：如公用块
+
+<figure markdown="span">
+    ![Img 23](../../../../img/operating_system/ch8/os_ch8_img23.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 24](../../../../img/operating_system/ch8/os_ch8_img24.png){ width="600" }
+</figure>
+
+在分段系统中，程序的逻辑地址不再是一个单一的线性地址，而是由一个段号和一个段内偏移量组成的二元组。这反映了程序是由多个逻辑段构成的视图
+
+segment table：段表是分段管理的核心数据结构，负责将程序的二维逻辑地址转换（映射）为实际的一维物理内存地址。表项内容：
+
+1. base：指明该段被加载到物理内存中的起始地址
+2. limit：定义了该段的总长度，用于进行越界检查，保护内存
+
+地址转换过程：
+
+1. CPU 发出一个逻辑地址 `<s, d>`（s 是段号，d 是偏移量）
+2. 系统使用 segment table base register (STBR) 中找到段表在内存中的位置
+3. 以段号 s 作为索引，查找段表中对应的表项
+4. 首先进行合法性检查：
+
+    1. 比较段号 s 是否小于 segment table length register (STLR) 的值。如果不是，则说明段号非法，触发陷阱（错误）
+    2. 比较偏移量 d 是否小于该段表项中的限长。如果不是，则说明地址越界，触发陷阱（错误）
+
+5. 如果检查通过，则将该表项中的基址与偏移量 d 相加，得到最终的物理地址
+
+有效性检查：每个段表表项都包含一个有效位。如果该位为 0，表示该段无效（例如未被加载或不存在），访问它会引发错误（如段错误）
+
+权限管理：每个段表表项还包含读、写、执行等权限位。操作系统通过设置这些位，可以防止程序进行非法操作
+
+保护与共享的单元都是段。这意味着可以将一个段（如一个公共函数库的代码段）标记为可读 / 可执行，并被多个进程共享，而它们各自的数据段保持私有和受保护
+
+与分页系统使用固定大小的页框不同，分段系统中的段是长度可变的。因此，为这些大小不一的段在物理内存中寻找空闲区域，就变成了一个动态存储分配问题。这类似于为一个变量列表分配内存，需要解决外部碎片的问题
+
+<figure markdown="span">
+    ![Img 25](../../../../img/operating_system/ch8/os_ch8_img25.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 26](../../../../img/operating_system/ch8/os_ch8_img26.png){ width="600" }
+</figure>
+
 ## 7 Example: The Intel Pentium
+
+奔腾处理器采用混合内存管理方案，它既可以配置为仅使用分段，也可以（更常见地）配置为先分段，后分页。这结合了两种方案的优点
+
+地址转换流程：分段（逻辑地址 → 线性地址）→ 分页（线性地址 → 物理地址）
+
+CPU 产生的逻辑地址，包含一个段选择符和一个偏移量。段选择符指示这个地址属于哪个段表（GDT 或 LDT），以及段在表中的索引
+
+- GDT：全局描述符表，包含操作系统和所有进程共享的段描述符
+- LDT：局部描述符表，每个进程可以有自己私有的 LDT，包含其特有的段描述符。这实现了逻辑地址空间的划分
+
+分段单元：根据段选择符在 GDT 或 LDT 中找到对应的段描述符。该描述符包含段的基地址。然后将这个基地址与逻辑地址中的偏移量相加，得到一个线性地址
+
+分页单元：将分段后输出的线性地址作为输入，这个线性地址不再被视为一个单一的单元，而是被分成若干部分，作为页目录、页表和页内偏移量的索引。分页单元通过查询多级页表，最终将线性地址的页面部分映射到物理内存的页框，并结合页内偏移量，生成最终的物理地址
+
+在奔腾架构中，内存管理单元（MMU）并非一个单一的硬件块，而是由分段单元和分页单元共同构成的
+
+<figure markdown="span">
+    ![Img 27](../../../../img/operating_system/ch8/os_ch8_img27.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 28](../../../../img/operating_system/ch8/os_ch8_img28.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 29](../../../../img/operating_system/ch8/os_ch8_img29.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 30](../../../../img/operating_system/ch8/os_ch8_img30.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 31](../../../../img/operating_system/ch8/os_ch8_img31.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+    ![Img 32](../../../../img/operating_system/ch8/os_ch8_img32.png){ width="600" }
+</figure>
