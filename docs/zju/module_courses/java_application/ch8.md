@@ -1,8 +1,8 @@
 # 8 Thread and Thread Pool
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 !!! info "说明"
 
@@ -362,69 +362,6 @@ public ThreadPoolExecutor(
     }
     ```
 
-## 3 synchronized
-
-`synchronized` 块是 Java 中用于实现线程同步的一种机制，它提供了一种方式来控制多个线程对共享资源的并发访问。它的核心思想是：确保在同一时刻，只有一个线程可以执行某个特定的代码段，从而避免数据的不一致性问题
-
-```java linenums="1"
-synchronized(lockObject) {
-    // 需要同步的代码块
-}
-```
-
-`lockObject`：锁对象。这是 `synchronized` 块的核心。线程在进入同步块之前必须先获得这个对象的监视器锁（也称为内部锁或互斥锁）。可以是任何 Java 对象
-
-所有同步块如果使用同一个锁对象，那么它们就是互斥的。如果使用不同的锁对象，则不会互斥
-
-```java linenums="1"
-// this 锁：对象实例锁
-public class MyClass {
-    public void myMethod() {
-        synchronized(this) {
-            // 访问或修改实例变量
-        }
-    }
-}
-
-// Class 对象锁：类锁
-public class MyClass {
-    public static void staticMethod() {
-        synchronized(MyClass.class) {
-            // 访问或修改静态变量
-        }
-    }
-}
-
-// 自定义对象锁
-public class MyClass {
-    private final Object lock = new Object();
-
-    public void myMethod() {
-        synchronized(lock) {
-            // 同步代码
-        }
-    }
-}
-```
-
-!!! tip "`synchronized` 方法"
-
-    `synchronized` 方法实际上是 `synchronized` 块的一种简写形式
-
-    ```java linenums="1"
-    public synchronized void myMethod() {
-        // 方法体
-    }
-
-    // 等价于
-
-    public void myMethod() {
-        synchronized(this) {
-            // 方法体
-        }
-    }
-    ```
-
-## 4 工具
+## 3 工具
 
 `jconsole` 和 `jstack`

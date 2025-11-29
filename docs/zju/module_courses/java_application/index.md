@@ -33,4 +33,5 @@ wk老师
 [5 Container and Generics](./ch5.md)<br/>
 [6 Exception and RTTI](./ch6.md)<br/>
 [7 Optional and IO](./ch7.md)<br/>
-[8 Thread and Thread Pool](./ch8.md)
+[8 Thread and Thread Pool](./ch8.md)<br/>
+[9 Synchronize and Locks](./ch9.md)
