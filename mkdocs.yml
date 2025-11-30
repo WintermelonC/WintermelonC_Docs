@@ -210,6 +210,7 @@ nav:
           - 6 Process Synchronization: zju/compulsory_courses/operating_system/theory/ch6.md
           - 7 Deadlocks: zju/compulsory_courses/operating_system/theory/ch7.md
           - 8 Main Memory: zju/compulsory_courses/operating_system/theory/ch8.md
+          - 9 Virtual Memory: zju/compulsory_courses/operating_system/theory/ch9.md
         - 实验部分:
           - 1 Linux: zju/compulsory_courses/operating_system/lab/ch1.md
           - 2 QEMU: zju/compulsory_courses/operating_system/lab/ch2.md
