@@ -1,8 +1,8 @@
 <!-- 修改 content.html https://github.com/squidfunk/mkdocs-material/blob/master/material/templates/partials/content.html -->
 {% include "partials/tags.html" %}
 {% include "partials/actions.html" %}
-<!-- 如果页面为首页，则不加 <h1> -->
-{% if page.meta.home %}
+<!-- 如果页面 hide_h1，则不加 <h1> -->
+{% if page.meta.hide_h1 %}
 {% elif "\x3ch1" not in page.content %}
   <h1>{{ page.title | d(config.site_name, true)}}</h1>
 {% endif %}

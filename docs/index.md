@@ -1,7 +1,7 @@
 ---
 template: home.html
 comments: false
-home: true
+hide_h1: true
 edit: false
 view: false
 hide:

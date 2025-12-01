@@ -340,6 +340,9 @@ nav:
         - 3 发布网站: tools/mkdocs/material/ch3.md
         - 4 探索配置: tools/mkdocs/material/ch4.md
         - 5 深度理解: tools/mkdocs/material/ch5.md
+  - 游戏:
+    - games/index.md
+    - demo: games/demo.md
 
 # 主题设置
 theme:
