@@ -6557,6 +6557,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-computing-with-turing-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Computing with Turing Machines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Computing with Turing Machines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-recursive-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Recursive Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-recursively-enumerable-languages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Recursively Enumerable Languages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11546,6 +11585,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#2-computing-with-turing-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Computing with Turing Machines
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Computing with Turing Machines">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-recursive-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Recursive Functions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-recursively-enumerable-languages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Recursively Enumerable Languages
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11763,6 +11841,80 @@
 </figure>
 <h3 id="11-a-notation-for-turing-machines">1.1 A Notation for Turing Machines<a class="headerlink" href="#11-a-notation-for-turing-machines" title="Permanent link">&para;</a></h3>
 <p>定义一个非常简单的 basic machines 库，以及组合机器的规则</p>
+<p><strong>symbol-writing machines</strong> and <strong>head-moving machines</strong>：固定机器的字母表 <span class="arithmatex">\(Σ\)</span>。对于每个 <span class="arithmatex">\(a ∈ Σ ∪ \lbrace →, ← \rbrace − \lbrace\rhd\rbrace\)</span>，定义一台图灵机 <span class="arithmatex">\(M_a = (\lbrace s, h \rbrace, Σ, δ, s, \lbrace h \rbrace)\)</span>，其中对每个 <span class="arithmatex">\(b ∈ Σ − \lbrace \rhd\rbrace\)</span>，<span class="arithmatex">\(δ(s,b) = (h,a)\)</span>。自然地，<span class="arithmatex">\(δ(s,\rhd)\)</span> 仍然是 <span class="arithmatex">\((s, →)\)</span>。也就是说，这台机器的作用只是执行动作 <span class="arithmatex">\(a\)</span>：如果 <span class="arithmatex">\(a ∈ Σ\)</span>，则写入符号 <span class="arithmatex">\(a\)</span>；如果 <span class="arithmatex">\(a ∈ \lbrace←, →\rbrace\)</span>，则按 <span class="arithmatex">\(a\)</span> 指示的方向移动，然后立即停止。当然，这个行为有一个例外情况：如果扫描到的符号是 <span class="arithmatex">\(\rhd\)</span>，那么机器会向右移动</p>
+<p>由于符号写入机器被频繁使用，我们简化其名称，直接用 <span class="arithmatex">\(a\)</span> 代替 <span class="arithmatex">\(M_a\)</span>。也就是说，若 <span class="arithmatex">\(a ∈ Σ\)</span>，则 a-writing machine 简记为 <span class="arithmatex">\(a\)</span>。头移动机器 <span class="arithmatex">\(M_←\)</span> 和 <span class="arithmatex">\(M_→\)</span> 将分别简记为 <span class="arithmatex">\(L\)</span> 和 <span class="arithmatex">\(R\)</span></p>
+<p>图灵机将以一种类似于有限自动机结构的方式进行组合。单个机器就像有限自动机的状态，机器之间可以像有限自动机的状态之间那样相互连接。然而，从一台机器到另一台机器的连接不会在第一台机器停止之前执行；只有当第一台机器停止后，第二台机器才会从其初始状态开始运行，此时磁带和读写头的位置由第一台机器留下的状态决定</p>
+<p>因此，如果 <span class="arithmatex">\(M₁\)</span>、<span class="arithmatex">\(M₂\)</span> 和 <span class="arithmatex">\(M₃\)</span> 是图灵机，则下图所示的机器按如下方式工作：从 <span class="arithmatex">\(M₁\)</span> 的初始状态开始；按照 <span class="arithmatex">\(M₁\)</span> 的方式运行，直到 <span class="arithmatex">\(M₁\)</span> 停止；然后，如果当前扫描的符号是 <span class="arithmatex">\(a\)</span>，则启动 <span class="arithmatex">\(M₂\)</span> 并按照 <span class="arithmatex">\(M₂\)</span> 的方式运行；否则，如果当前扫描的符号是 <span class="arithmatex">\(b\)</span>，则启动 <span class="arithmatex">\(M₃\)</span> 并按照 <span class="arithmatex">\(M₃\)</span> 的方式运行</p>
+<figure>
+  <img alt="Img 7" src="../../../../img/computational_theory/ch4/computational_ch4_img7.png" width="400" />
+</figure>
+<p>假设上图三个图灵机 <span class="arithmatex">\(M₁\)</span>、<span class="arithmatex">\(M₂\)</span> 和 <span class="arithmatex">\(M₃\)</span> 分别为：<span class="arithmatex">\(M₁ = (K₁, Σ, δ₁, s₁, H₁)\)</span>，<span class="arithmatex">\(M₂ = (K₂, Σ, δ₂, s₂, H₂)\)</span>，<span class="arithmatex">\(M₃ = (K₃, Σ, δ₃, s₃, H₃)\)</span>，那么上图所示的组合机器就是 <span class="arithmatex">\(M = (K, Σ, δ, s, H)\)</span></p>
+<ol>
+<li><span class="arithmatex">\(K = K₁ ∪ K₂ ∪ K₃\)</span></li>
+<li><span class="arithmatex">\(s = s₁\)</span></li>
+<li><span class="arithmatex">\(H = H₂ ∪ H₃\)</span></li>
+</ol>
+<p>对于每个 <span class="arithmatex">\(σ ∈ Σ\)</span> 和 <span class="arithmatex">\(q ∈ K − H\)</span>，<span class="arithmatex">\(δ(q, σ)\)</span> 的定义如下：</p>
+<ol>
+<li>如果 <span class="arithmatex">\(q ∈ K₁ − H₁\)</span>，则 <span class="arithmatex">\(δ(q, σ) = δ₁(q, σ)\)</span></li>
+<li>如果 <span class="arithmatex">\(q ∈ K₂ − H₂\)</span>，则 <span class="arithmatex">\(δ(q, σ) = δ₂(q, σ)\)</span></li>
+<li>如果 <span class="arithmatex">\(q ∈ K₃ − H₃\)</span>，则 <span class="arithmatex">\(δ(q, σ) = δ₃(q, σ)\)</span></li>
+<li>
+<p>如果 <span class="arithmatex">\(q ∈ H₁\)</span></p>
+<ol>
+<li>若 <span class="arithmatex">\(σ = a\)</span>，则 <span class="arithmatex">\(δ(q, σ) = s₂\)</span></li>
+<li>若 <span class="arithmatex">\(σ = b\)</span>，则 <span class="arithmatex">\(δ(q, σ) = s₃\)</span></li>
+<li><mark>否则 <span class="arithmatex">\(δ(q, σ) ∈ H\)</span></mark>（没得变了就停止机器）</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<p>实际上就是以数学形式描述了状态转换</p>
+</blockquote>
+<figure>
+  <img alt="Img 10" src="../../../../img/computational_theory/ch4/computational_ch4_img10.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 8" src="../../../../img/computational_theory/ch4/computational_ch4_img8.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 9" src="../../../../img/computational_theory/ch4/computational_ch4_img9.png" width="800" />
+</figure>
+<p><strong>copying machine</strong> <span class="arithmatex">\(C\)</span>：将 <span class="arithmatex">\(\sqcup w \underline{\sqcup}\)</span> 变成 <span class="arithmatex">\(\sqcup w \sqcup  w \underline{\sqcup}\)</span>（<span class="arithmatex">\(w\)</span> 中不能有 <span class="arithmatex">\(\sqcup\)</span> 字符）</p>
+<figure>
+  <img alt="Img 11" src="../../../../img/computational_theory/ch4/computational_ch4_img11.png" width="600" />
+</figure>
+<p><strong>right-shifting machine</strong> <span class="arithmatex">\(S_\rightarrow\)</span>：将字符串 <span class="arithmatex">\(\sqcup w \underline{\sqcup}\)</span> 变成 <span class="arithmatex">\(\sqcup \sqcup w \underline{\sqcup}\)</span>（<span class="arithmatex">\(w\)</span> 中不能有 <span class="arithmatex">\(\sqcup\)</span> 字符）</p>
+<figure>
+  <img alt="Img 12" src="../../../../img/computational_theory/ch4/computational_ch4_img12.png" width="600" />
+</figure>
+<p>同理有 left-shifting machine</p>
+<figure>
+  <img alt="Img 13" src="../../../../img/computational_theory/ch4/computational_ch4_img13.png" width="800" />
+</figure>
+<h2 id="2-computing-with-turing-machines">2 Computing with Turing Machines<a class="headerlink" href="#2-computing-with-turing-machines" title="Permanent link">&para;</a></h2>
+<p>我们采用以下策略来向图灵机提供输入：输入字符串（不含空白符号）写在最左侧符号 <span class="arithmatex">\(\rhd\)</span> 的右侧，其左侧有一个空白，右侧也有空白；读写头位于 <span class="arithmatex">\(\rhd\)</span> 与输入之间的空白方格上；机器从初始状态开始运行。如果 <span class="arithmatex">\(M = (K, \Sigma, \delta, s, H)\)</span> 是一台图灵机，且 <span class="arithmatex">\(w \in (\Sigma - \lbrace \sqcup, \rhd\rbrace)^*\)</span>，那么 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上的 <strong>initial configuration</strong> 是 <span class="arithmatex">\((s, \rhd  \underline{\sqcup}w)\)</span></p>
+<p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,H)\)</span> 是一台图灵机，其中停机状态集合 <span class="arithmatex">\(H=\lbrace y,n \rbrace\)</span> 包含两个不同的停机状态（<span class="arithmatex">\(y\)</span> 表示是，<span class="arithmatex">\(n\)</span> 表示否）。任何停机配置，若其状态分量为 <span class="arithmatex">\(y\)</span>，称为一个 <strong>accepting configuration</strong>；若其状态分量为 <span class="arithmatex">\(n\)</span>，则称为一个 <strong>rejecting configuration</strong>。我们说 <span class="arithmatex">\(M\)</span> <strong>accepting</strong> 输入 <span class="arithmatex">\(w∈(Σ−\lbrace⊔,▹\rbrace)^∗\)</span>，当且仅当 <span class="arithmatex">\((s,▹\underline{⊔}w)\)</span> 导致一个接受配置；类似地，我们说 <span class="arithmatex">\(M\)</span> <strong>reject</strong> 输入 <span class="arithmatex">\(w\)</span>，当且仅当 <span class="arithmatex">\((s,▹\underline{⊔}w)\)</span> 导致一个拒绝配置</p>
+<p>设 <span class="arithmatex">\(\Sigma_0 \in \Sigma - \lbrace \sqcup, \rhd\rbrace\)</span> 为一个字母表，称为 <span class="arithmatex">\(M\)</span> 的 <strong>input alphabet</strong>；通过将 <span class="arithmatex">\(Σ_0\)</span> 固定为 <span class="arithmatex">\(Σ−\lbrace⊔,▹\rbrace\)</span> 的一个子集，我们允许图灵机在计算过程中使用除输入中出现的符号之外的额外符号。我们说 <span class="arithmatex">\(M\)</span> <strong>decide</strong> 一个语言 <span class="arithmatex">\(L⊆Σ_0^*\)</span>，当且仅当对于任意字符串 <span class="arithmatex">\(w \in \Sigma_0^*\)</span>，满足以下条件：如果 <span class="arithmatex">\(w∈L\)</span>，则 <span class="arithmatex">\(M\)</span> 接受 <span class="arithmatex">\(w\)</span>；如果 <span class="arithmatex">\(w\notin L\)</span>，则 <span class="arithmatex">\(M\)</span> 拒绝 <span class="arithmatex">\(w\)</span></p>
+<p>称一个语言 L 为 <strong>recursive</strong>（递归的），如果存在一台图灵机能判定它</p>
+<p>换句话说，一台图灵机判定一个语言 <span class="arithmatex">\(L\)</span>，意味着当以输入 <span class="arithmatex">\(w\)</span> 启动时，它总是会停止，并且在正确的停机状态中停止：如果是 <span class="arithmatex">\(y\)</span>，则 <span class="arithmatex">\(w∈L\)</span>；如果是 <span class="arithmatex">\(n\)</span>，则 <span class="arithmatex">\(w\notin L\)</span>。请注意，如果输入包含空白或左端符号，则不保证会发生什么</p>
+<figure>
+  <img alt="Img 14" src="../../../../img/computational_theory/ch4/computational_ch4_img14.png" width="800" />
+</figure>
+<h3 id="21-recursive-functions">2.1 Recursive Functions<a class="headerlink" href="#21-recursive-functions" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,\lbrace h\rbrace)\)</span> 是一台图灵机，令 <span class="arithmatex">\(Σ_0⊆Σ−\lbrace⊔,▹\rbrace\)</span> 为一个字母表，且 <span class="arithmatex">\(w∈Σ_0^∗\)</span>​。假设 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停止，并且存在某个 <span class="arithmatex">\(y∈Σ_0^∗\)</span>，使得从初始配置 <span class="arithmatex">\((s,▹\underline{⊔}w)\)</span> 出发，经过若干步后进入停机配置 <span class="arithmatex">\((h,▹\underline{⊔}y)\)</span>。那么称 <span class="arithmatex">\(y\)</span> 为 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上的输出，记作 <span class="arithmatex">\(M(w)\)</span>。注意，<span class="arithmatex">\(M(w)\)</span> 只有在 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停止时才被定义，而且实际上必须是在形如 <span class="arithmatex">\((h,▹\underline{⊔}y)\)</span> 的配置中停止，其中 <span class="arithmatex">\(y∈Σ_0^∗\)</span></p>
+<p>现在设 <span class="arithmatex">\(f\)</span> 是从 <span class="arithmatex">\(\Sigma_0^*\)</span> 到 <span class="arithmatex">\(\Sigma_0^*\)</span> 的任意函数。我们说图灵机 <span class="arithmatex">\(M\)</span> <strong>compute</strong> 函数 <span class="arithmatex">\(f\)</span>，如果对所有 <span class="arithmatex">\(w∈\Sigma_0^*\)</span>，都有 <span class="arithmatex">\(M(w)=f(w)\)</span>。也就是说，对于所有 <span class="arithmatex">\(w∈\Sigma_0^*\)</span>，当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上运行时，最终会停止，且其磁带包含字符串 <span class="arithmatex">\(▹⊔f(w)\)</span>。若存在一台图灵机 <span class="arithmatex">\(M\)</span> 能计算函数 <span class="arithmatex">\(f\)</span>，则称函数 <span class="arithmatex">\(f\)</span> 为 <strong>recursive</strong></p>
+<figure>
+  <img alt="Img 15" src="../../../../img/computational_theory/ch4/computational_ch4_img15.png" width="800" />
+</figure>
+<p>集合 <span class="arithmatex">\(\lbrace0,1\rbrace^∗\)</span> 中的字符串可以用熟悉的二进制表示法来表示非负整数。任意字符串 <span class="arithmatex">\(w = a_1a_2 \cdots a_n \in \lbrace 0,1 \rbrace^*\)</span> 表示的数值为：<span class="arithmatex">\(num(w) = a_1 \cdot 2^{n-1} + a_2 \cdot 2^{n-2} + \cdots + a_n\)</span>。并且，任何自然数都可以通过一个形如 <span class="arithmatex">\(0∪1(0∪1)^∗\)</span> 的字符串唯一地表示，也就是说，不包含前导零（即开头多余的 <span class="arithmatex">\(0\)</span>）</p>
+<p>因此，计算从 <span class="arithmatex">\(\lbrace0,1\rbrace^∗\)</span> 到 <span class="arithmatex">\(\lbrace0,1\rbrace^∗\)</span> 的函数的图灵机，可以被看作是计算从自然数到自然数的函数。事实上，具有多个参数的数值函数，例如加法和乘法，可以通过图灵机来计算，这些图灵机计算的是从 <span class="arithmatex">\(\lbrace 0,1,; \rbrace^*\)</span> 到 <span class="arithmatex">\(\lbrace 0,1\rbrace^*\)</span>，其中 <span class="arithmatex">\(;\)</span> 是一个用于分隔二进制参数的符号</p>
+<p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,\lbrace h\rbrace)\)</span> 是一台图灵机，其中符号 <span class="arithmatex">\(0,1,;∈Σ\)</span>，令 <span class="arithmatex">\(f\)</span> 是从 <span class="arithmatex">\(N^k\)</span> 到 <span class="arithmatex">\(N\)</span> 的任意函数（对某个 <span class="arithmatex">\(k≥1\)</span>）。我们说图灵机 <span class="arithmatex">\(M\)</span> 计算函数 <span class="arithmatex">\(f\)</span>，如果对于所有 <span class="arithmatex">\(w_1, \cdots, w_k \in 0 \cup 1 (0 \cup 1)^*\)</span>（即，任何 <span class="arithmatex">\(k\)</span> 个整数的二进制编码字符串），都有：<span class="arithmatex">\(num(M(w_1;\cdots;w_k)) = f(num(w_1), \cdots, num(w_k))\)</span></p>
+<p>也就是说，如果 <span class="arithmatex">\(M\)</span> 以整数 <span class="arithmatex">\(n_1,\cdots,n_k\)</span> 的二进制表示作为输入，则它最终会停止，并且当它停止时，其磁带上包含一个表示数值 <span class="arithmatex">\(f(n_1,\cdots,n_k)\)</span> 的字符串，即该函数的值。若存在一台图灵机 <span class="arithmatex">\(M\)</span> 能计算函数 <span class="arithmatex">\(f\)</span>，则称函数 <span class="arithmatex">\(f: N^k \rightarrow N\)</span> 为 <strong>recursive</strong></p>
+<figure>
+  <img alt="Img 16" src="../../../../img/computational_theory/ch4/computational_ch4_img16.png" width="800" />
+</figure>
+<h3 id="22-recursively-enumerable-languages">2.2 Recursively Enumerable Languages<a class="headerlink" href="#22-recursively-enumerable-languages" title="Permanent link">&para;</a></h3>
 
 
 
@@ -11785,7 +11937,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月11日 15:32:29 UTC">2025年11月11日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月2日 08:01:40 UTC">2025年12月2日</span>
   </span>
 
     
