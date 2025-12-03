@@ -11991,10 +11991,165 @@
 <figure>
     <img alt="Img 13" src="../../../../../img/operating_system/ch9/os_ch9_img13.png" width="600" />
 </figure>
+<figure>
+    <img alt="Img 14" src="../../../../../img/operating_system/ch9/os_ch9_img14.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 15" src="../../../../../img/operating_system/ch9/os_ch9_img15.png" width="600" />
+</figure>
+<p>optimal Algorithm：在需要置换页面时，选择未来最长时间内不会被访问的页面进行替换。这是理论最优的算法，但是因为算法需要预知未来页面的访问顺序，这在实际系统中是不可能的。常作为基准来衡量其他实际页面置换算法的性能优劣</p>
+<figure>
+    <img alt="Img 16" src="../../../../../img/operating_system/ch9/os_ch9_img16.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 17" src="../../../../../img/operating_system/ch9/os_ch9_img17.png" width="600" />
+</figure>
+<p>Least Recently Used（LRU）Algorithm：根据页面的历史访问时间进行置换，优先淘汰最久未被访问的页面。每个页表项配备一个时间戳计数器，每次访问页面时，将当前的系统时钟值（或逻辑时钟值）记录到该页面对应的计数器中。当发生缺页且内存已满，需要置换页面时，系统检查所有在内存中的页面对应的计数器值，选择计数器值最小（即最久未被访问）的页面进行置换</p>
+<figure>
+    <img alt="Img 18" src="../../../../../img/operating_system/ch9/os_ch9_img18.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 19" src="../../../../../img/operating_system/ch9/os_ch9_img19.png" width="600" />
+</figure>
+<p>LRU 算法的栈实现方式：使用一个双向链表构成的栈来记录页面访问顺序，栈顶是最近访问的页面，栈底是最久未访问的页面。当页面被访问时，需要修改共 6 个指针。当需要页面置换时，淘汰栈底的页面即可，无需搜索</p>
+<figure>
+    <img alt="Img 20" src="../../../../../img/operating_system/ch9/os_ch9_img20.png" width="600" />
+</figure>
+<p>精确的 LRU 实现开销较大，有两种 LRU Approximation Algorithms：</p>
+<ol>
+<li>Reference Bit Algorithm：系统为每个页框维护一个 Reference Bit（引用位），初始时所有页面的引用位为 0，当页面被访问时，硬件自动将其引用位置 1，需要置换页面时，操作系统扫描并选择一个引用位为 0 的页面进行置换</li>
+<li>Second Chance Algorithm / Clock Algorithm：同样使用引用位，但增加了更智能的扫描机制，页面组织成环形队列（类似时钟的钟面），维护一个时钟指针，按顺序扫描页面。页面置换时，检查指针指向的页面，如果引用位为 0，直接置换该页面，指针向前移动；如果引用位为 1，给页面第二次机会：将引用位置 0，指针向前移动，继续检查下一个页面</li>
+</ol>
+<figure>
+    <img alt="Img 21" src="../../../../../img/operating_system/ch9/os_ch9_img21.png" width="600" />
+</figure>
+<p>Counting-based Algorithms：基于页面访问次数的置换算法</p>
+<ol>
+<li>Least Frequently Used（LFU）：当需要置换页面时，选择访问计数值最小的页面淘汰</li>
+<li>Most Frequently Used（MFU）：当需要置换时，选择访问计数值最大的页面淘汰</li>
+</ol>
 <h2 id="5-allocation-of-frames">5 Allocation of Frames<a class="headerlink" href="#5-allocation-of-frames" title="Permanent link">&para;</a></h2>
+<p>每个进程需要一定数量的内存页才能正常运行，这个最小页面数通常由计算机硬件架构决定，特别是指令集架构。如果分配少于这个最小数量，进程可能无法执行某些指令，导致严重错误</p>
+<blockquote>
+<p>IBM 370 的 MOVE 指令长 6 字节，可能跨越 2 个内存页，而源操作数和目标操作数可能各需要 2 个内存页，一共就需要 6 页</p>
+</blockquote>
+<p>有两种分配方案：</p>
+<ol>
+<li>
+<p>Fixed Allocation：每个进程获得固定数量的内存帧</p>
+<ol>
+<li>Equal Allocation：将可用物理内存帧平均分配给所有进程。每个进程分配帧数 = 总帧数 / 进程数</li>
+<li>Proportional Allocation（按比例分配）：根据进程的逻辑地址空间大小按比例分配物理帧，进程越大，分配的帧越多。每个进程分配帧数 = <span class="arithmatex">\(\dfrac{s_i}{S} \times m\)</span>（<span class="arithmatex">\(s_i\)</span> 是进程 i 的大小，<span class="arithmatex">\(S\)</span> 是所有进程大小的总和，<span class="arithmatex">\(m\)</span> 是可用物理帧总数）</li>
+</ol>
+</li>
+<li>
+<p>Priority Allocation：根据进程优先级分配内存资源，高优先级进程获得更多或更高质量的内存资源。如果发生缺页，系统从产生缺页的进程自身的帧中选取替换；也可能从优先级更低的其他进程的帧中借用或替换</p>
+</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Global Allocation vs. Local Allocation</p>
+<ul>
+<li>全局置换：当进程需要新页面时，可以在整个系统的所有物理帧中选择一个进行替换</li>
+<li>局部置换：每个进程只能从自己分配到的固定帧集合中选择页面替换</li>
+</ul>
+<p>全局置换的缺点：</p>
+<ol>
+<li>缺页率不可预测</li>
+<li>缺乏控制</li>
+<li>公平性问题</li>
+</ol>
+<p>局部置换：</p>
+<ol>
+<li>内存利用率低</li>
+<li>系统吞吐量下降</li>
+</ol>
+</div>
 <h2 id="6-thrashing">6 Thrashing<a class="headerlink" href="#6-thrashing" title="Permanent link">&para;</a></h2>
+<p><strong>抖动</strong>：当进程没有足够的内存页面来维持其当前工作集时，会频繁发生缺页中断，导致进程大部分时间都花在页面调入 / 调出上，而无法进行有效计算的状态</p>
+<ol>
+<li>系统性能下降：CPU 大部分时间在等待页面调换，利用率低下</li>
+<li>I/O 瓶颈：大量页面在内存和磁盘之间频繁交换，形成排队</li>
+<li>系统误判：操作系统误认为 CPU 空闲是因为进程太少，从而增加更多进程</li>
+<li>恶性循环：添加新进程进一步加剧页面竞争，情况更加恶化</li>
+</ol>
+<figure>
+    <img alt="Img 22" src="../../../../../img/operating_system/ch9/os_ch9_img22.png" width="600" />
+</figure>
+<p>抖动的原因：系统中所有进程的局部区域大小总和超过了物理内存总容量时，就会发生抖动。本质上是内存资源供不应求，系统无法同时容纳所有进程的工作集</p>
+<ol>
+<li>限制抖动影响：每个进程只能使用自己的内存帧，不能偷取其他进程的帧</li>
+<li>预防抖动：为每个进程分配足够的内存，使其能够容纳当前的局部性工作集</li>
+</ol>
+<figure>
+    <img alt="Img 23" src="../../../../../img/operating_system/ch9/os_ch9_img23.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 24" src="../../../../../img/operating_system/ch9/os_ch9_img24.png" width="600" />
+</figure>
+<p>预防抖动的方法：working-set model</p>
+<ol>
+<li>working-set window（工作集窗口）<span class="arithmatex">\(\Delta\)</span>：一个固定的观察时间段，通常用页面引用次数或指令数衡量</li>
+<li>工作集大小 <span class="arithmatex">\(WSS_i\)</span>：在最近 <span class="arithmatex">\(Δ\)</span> 时间内进程实际访问的唯一页面集合的大小</li>
+<li>总需求 <span class="arithmatex">\(D\)</span>：所有进程工作集大小的总和</li>
+</ol>
+<p>窗口大小 <span class="arithmatex">\(Δ\)</span> 的影响：</p>
+<ol>
+<li><span class="arithmatex">\(Δ\)</span> 过小：只看到局部性的一部分，会低估实际内存需求</li>
+<li><span class="arithmatex">\(Δ\)</span> 过大：包含了多个不同局部性，会高估内存需求</li>
+<li><span class="arithmatex">\(Δ = ∞\)</span>：等同于程序需要的全部页面（失去按需调页的意义）</li>
+</ol>
+<p>抖动判断机制：当所有进程的工作集总和 (<span class="arithmatex">\(D\)</span>) &gt; 可用物理内存帧数 (<span class="arithmatex">\(m\)</span>) 时，必然发生抖动</p>
+<p>预防策略：监控每个进程的 <span class="arithmatex">\(WSS\)</span>，计算总需求 <span class="arithmatex">\(D\)</span>，当 <span class="arithmatex">\(D &gt; m\)</span> 时，系统选择挂起一个或多个进程，被挂起进程的内存可以分配给其他进程，使 <span class="arithmatex">\(D ≤ m\)</span></p>
+<figure>
+    <img alt="Img 25" src="../../../../../img/operating_system/ch9/os_ch9_img25.png" width="600" />
+</figure>
+<p>近似实现跟踪工作集：操作系统通过间隔定时器中断定期采样引用位状态</p>
+<p>假设工作集窗口 <span class="arithmatex">\(Δ\)</span> = 10,000 时间单位，采样间隔 = 50,000 时间单位，每个页面用 2 位记录，1 位记录前半个窗口是否被访问，1 位记录后半个窗口是否被访问</p>
+<p>算法流程：定时器每 5,000 单位中断一次，复制当前所有引用位到内存相应位，清零硬件引用位，如果页面对应的任一内存位 = 1，则判定该页面在最近 <span class="arithmatex">\(Δ\)</span> 时间内被访问过</p>
+<p>局限性：无法确定页面是在 5,000 单位时间内的哪个具体时刻被访问，结果可能高估实际的工作集大小。可以增加位数或者缩短采样间隔来划分更细的时间段</p>
+<figure>
+    <img alt="Img 26" src="../../../../../img/operating_system/ch9/os_ch9_img26.png" width="600" />
+</figure>
 <h2 id="7-memory-mapped-files">7 Memory Mapped Files<a class="headerlink" href="#7-memory-mapped-files" title="Permanent link">&para;</a></h2>
+<p>内存映射：将磁盘上的文件直接映射到进程的虚拟地址空间中，文件数据像访问普通内存一样通过指针操作，而非传统的 read/write 系统调用</p>
+<p>使用按需调页技术，仅在进程访问文件某个部分时才将对应磁盘块读入物理内存页面，一旦数据在内存中，后续读写操作就是普通的内存加载/存储指令，操作系统在后台自动处理脏页写回磁盘</p>
+<p>通过内存而非 read/write 系统调用来处理文件 I/O，从而简化文件访问。同时，还允许多个进程映射同一个文件，使得内存中的页面可以共享</p>
+<figure>
+    <img alt="Img 27" src="../../../../../img/operating_system/ch9/os_ch9_img27.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 28" src="../../../../../img/operating_system/ch9/os_ch9_img28.png" width="600" />
+</figure>
 <h2 id="8-allocating-kernel-memory">8 Allocating Kernel Memory<a class="headerlink" href="#8-allocating-kernel-memory" title="Permanent link">&para;</a></h2>
+<p>内核内存通常有独立的分配器，不从通用用户堆分配，分配策略针对内核使用模式优化。内核内存来源于内核内存池，是系统启动时预留的专用内存区域。由于部分硬件操作需要连续的物理内存。所以某些内核内存需要连续，因此，许多系统不对内核代码和数据使用分页技术</p>
+<p>内核频繁分配/释放各种大小的数据结构，使用对象缓存预分配常用大小的对象，能够减少锁片的产生</p>
+<p>Buddy System 是一种动态内存管理算法，主要用于操作系统内核管理物理内存页。内存被组织成多个固定大小的段，每个段由物理上连续的页组成，便于高效管理。所有分配大小必须是 2 的幂次，如果请求大小不是 2 的幂次，则向上取整。当没有正好大小的块时，系统会将一个较大的块一分为二，形成两个大小相等的伙伴块。当内存释放时，如果两个伙伴块都空闲，它们会合并成一个更大的块，以减少碎片</p>
+<p>优点是分配和释放速度快，外部碎片较少，适合管理大块连续内存；缺点是内部碎片可能较多（因为向上取整），且只支持 2 的幂次大小</p>
+<figure>
+    <img alt="Img 29" src="../../../../../img/operating_system/ch9/os_ch9_img29.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 30" src="../../../../../img/operating_system/ch9/os_ch9_img30.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 31" src="../../../../../img/operating_system/ch9/os_ch9_img31.png" width="600" />
+</figure>
+<p>Slab 分配器是另一种高效管理内核内存的机制，主要用于频繁分配和释放小型、固定大小的内核对象</p>
+<ol>
+<li>Slab：内存管理的基本单位，通常是一个或多个物理连续的页面</li>
+<li>Cache：每个缓存对应一种特定类型的内核数据结构，其中包含一个或多个 slab</li>
+<li>Object：缓存中存储的实际数据结构的实例</li>
+</ol>
+<p>工作流程：系统启动时为每种常用数据结构创建一个缓存，并预先分配一些对象（标记为空闲）。当内核需要分配一个对象时，直接从对应缓存的空闲列表中获取，无需实时分配内存，速度极快。如果当前 slab 已满，则从另一个空的 slab 分配；若无空闲 slab，则分配新的 slab</p>
+<p>优点：</p>
+<ol>
+<li>无外部碎片：对象大小固定且预先分配，避免了内存碎片问题</li>
+<li>高性能：对象分配和释放只是状态标记，无需复杂的内存查找与合并</li>
+<li>缓存友好：相同类型的对象集中存储，提高 CPU 缓存利用率</li>
+</ol>
+<figure>
+    <img alt="Img 32" src="../../../../../img/operating_system/ch9/os_ch9_img32.png" width="600" />
+</figure>
 <h2 id="9-other-considerations">9 Other Considerations<a class="headerlink" href="#9-other-considerations" title="Permanent link">&para;</a></h2>
 <h2 id="10-operating-system-examples">10 Operating System Examples<a class="headerlink" href="#10-operating-system-examples" title="Permanent link">&para;</a></h2>
 
@@ -12019,7 +12174,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月1日 07:29:23 UTC">2025年12月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月3日 12:47:03 UTC">2025年12月3日</span>
   </span>
 
     
