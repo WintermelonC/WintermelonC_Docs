@@ -222,6 +222,7 @@ nav:
         - 3 The Data Link Layer: zju/compulsory_courses/computer_network/ch3.md
         - 4 The Medium Access Control Sublayer: zju/compulsory_courses/computer_network/ch4.md
         - 5 The Network Layer: zju/compulsory_courses/computer_network/ch5.md
+        - 6 Transport Layer: zju/compulsory_courses/computer_network/ch6.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - Java 应用技术:
@@ -235,6 +236,9 @@ nav:
         - 7 Optional and IO: zju/module_courses/java_application/ch7.md
         - 8 Thread and Thread Pool: zju/module_courses/java_application/ch8.md
         - 9 Synchronize and Locks: zju/module_courses/java_application/ch9.md
+        - 10 Thread Coordination and Parallel Streams: zju/module_courses/java_application/ch10.md
+        - 11 Future and Asynchronous Programming: zju/module_courses/java_application/ch11.md
+        - 12 JMM and Troubleshooting: zju/module_courses/java_application/ch12.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:

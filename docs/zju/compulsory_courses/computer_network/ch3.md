@@ -316,7 +316,7 @@ $m+r+1 \leqslant 2^r$
 
 16-bit Internet checksum：采用 one's complement 加法
 
-而现在计算机一般都是用 tow's complement，反码求和等价于将所有 16 位数据相加后取模 $2^{16}$，并将高位溢出的部分加回到低位上
+> 现在计算机一般都是用 tow's complement
 
 发送端计算校验和：
 

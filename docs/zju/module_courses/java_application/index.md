@@ -34,4 +34,7 @@ wk老师
 [6 Exception and RTTI](./ch6.md)<br/>
 [7 Optional and IO](./ch7.md)<br/>
 [8 Thread and Thread Pool](./ch8.md)<br/>
-[9 Synchronize and Locks](./ch9.md)
+[9 Synchronize and Locks](./ch9.md)<br/>
+[10 Thread Coordination and Parallel Streams](./ch10.md)<br/>
+[11 Future and Asynchronous Programming](./ch11.md)<br/>
+[12 JMM and Troubleshooting](./ch12.md)
