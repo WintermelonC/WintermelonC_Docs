@@ -196,3 +196,60 @@ A **configuration** of a Turing machine $M = (K,\Sigma,\delta,s,H)$ is a member 
 </figure>
 
 ### 2.2 Recursively Enumerable Languages
+
+设 $M=(K,Σ,δ,s,H)$ 是一台图灵机，令 $Σ_0⊆Σ−{⊔,▹}$ 为一个字母表，并设 $L⊆Σ_0^∗$ 为一种语言。我们说 $M$ **semidecides**（半判定）语言 $L$，当且仅当对于任意字符串 $w∈Σ_0^∗$，以下条件成立：$w∈L$ 当且仅当 $M$ 在输入 $w$ 上停机
+
+一个语言 $L$ 是 **recursively enumerable**（递归可枚举），当且仅当存在一台图灵机 $M$ 能够半判定 $L$
+
+因此，当 $M$ 接收到输入 $w∈L$ 时，它必须最终停机。我们并不关心它具体进入哪个停机状态，只要它最终达到某个停机配置即可。然而，如果 $w∈Σ_0^∗ − L$，则 $M$ 永远不能进入停机状态
+
+我们记 $M(w)=↗$ 表示 $M$ 在输入 $w$ 上无法停机。在此记法下，我们可以将图灵机 $M$ 半判定语言 $L⊆Σ_0^∗$ 的定义重述如下：对所有 $w∈Σ_0^∗$，有 $M(w)=↗$ 当且仅当 $w\notin L$
+
+<figure markdown="span">
+  ![Img 17](../../../img/computational_theory/ch4/computational_ch4_img17.png){ width="800" }
+</figure>
+
+!!! tip ""
+
+    如果一个语言是 recursive 的，那么它也是 recursively enumerable 的
+
+    > 存在 recursively enumerable 但是不 recursive 的语言
+
+!!! example "证明"
+
+    要构造一台半判定（而不是判定）该语言的图灵机，只需将原判定机中的拒绝状态变为非停机状态，从而确保机器永远不会停机。具体来说，给定任意一台判定语言 $L$ 的图灵机 $M=(K,Σ,δ,s,{y,n})$，我们可以定义一台半判定 $L$ 的新机器 $M'$ 如下：$M' = (K,Σ,\delta',s,\lbrace y\rbrace)$，其中 $\delta'$ 是 $δ$ 的扩展，增加如下转移规则：对所有 $a∈Σ$，有 $\delta'(n,a) = (n,a)$ —— 即状态 $n$ 不再是停机状态。显然，如果 $M$ 确实能判定 $L$，那么 $M'$ 就能半判定 $L$，因为 $M'$ 接受与 $M$ 相同的输入；此外，如果 $M$ 拒绝输入 $w$，则 $M'$ 在 $w$ 上不会停机（它在状态 $n$ 中永远循环）。换句话说，对于所有输入 $w$，有 $M'(w)=↗$ 当且仅当 $M(w)=n$
+
+!!! tip ""
+
+    如果语言 $L$ 是 recursive 的，那么 $\bar{L}$ 也是 recursive 的
+
+## 3 Extensions of the Turing Machine
+
+### 3.1 Multiple Tapes
+
+可以设想具有多个磁带的图灵机，每条磁带通过一个读 / 写头与有限控制器相连（每条磁带有一个读 / 写头）。在一步操作中，机器可以读取所有读 / 写头所扫描的符号，然后根据这些符号及其当前状态，重写某些被扫描的方格，并将某些读 / 写头向左或向右移动，同时改变自身状态
+
+<figure markdown="span">
+  ![Img 18](../../../img/computational_theory/ch4/computational_ch4_img18.png){ width="800" }
+</figure>
+
+设 $k≥1$ 为一个整数。一个 **$k$ - tape Turing machine** 是一个五元组 $(K,Σ,δ,s,H)$，其中 $K$、$Σ$、$s$ 和 $H$ 的含义与普通图灵机的定义相同，而 $δ$（**transition function**）是从 $(K-H)\times \Sigma^k$ 到 $K\times(\Sigma\cup \lbrace \leftarrow,\rightarrow \rbrace)^k$ 的一个函数。也就是说，对于每个状态 $q$，以及每个由磁带符号组成的 $k$ - 元组 $(a_1, \cdots, a_k)$，有 $\delta(q,(a_1, \cdots, a_k)) = (p,(b_1, \cdots, b_k))$，其中 $p$ 是新的状态，而 $b_j$ 直观上表示机器在第 $j$ 条磁带上的动作。自然地，我们再次要求：如果对某个 $j≤k$ 有 $a_j = \rhd$，则必须有 $b_j = \rightarrow$
+
+设 $M = (K,Σ,δ,s,H)$ 是一个 $k$-tape 图灵机，$M$ 的 **configuration** 是 $K \times (\rhd \Sigma^* \times (\Sigma^*(\Sigma-\lbrace \sqcup \rbrace) \cup \lbrace e\rbrace))^k$ 的一个成员
+
+例如，$\delta(p,(a_1, \cdots, a_k)) = (b_1, \cdots, b_k)$，配置 $(q,(w_1\underline{a_1}u_1, \cdots, w_k\underline{a_k}u_k))$ yields in one step 配置 $(q,(w_1'\underline{a_1'}u_1', \cdots, w_k'\underline{a_k'}u_k'))$，其中 $a_i'$ 是 $a_i$ 经过操作 $b_i$ 后变成的
+
+<figure markdown="span">
+  ![Img 19](../../../img/computational_theory/ch4/computational_ch4_img19.png){ width="800" }
+</figure>
+
+!!! tip ""
+
+    设 $M=(K,Σ,δ,s,H)$ 是一个 $k$-磁带图灵机，其中 $k≥1$。那么存在一台标准图灵机 $M' = (K',\Sigma',\delta',s',H)$，满足 $Σ⊆\Sigma'$，并且以下性质成立：对于任意输入字符串 $x\in \Sigma^*$，机器 $M$ 在输入 $x$ 上停机并输出 $y$（在第一条磁带上），当且仅当 $M'$ 在输入 $x$ 上停机、处于相同的停机状态，并在其磁带上输出相同的 $y$。此外，如果 $M$ 在输入 $x$ 上经过 $t$ 步后停机，则 $M'$ 在输入 $x$ 上经过的步数为 $O(t⋅(|x|+t))$
+
+!!! tip ""
+
+    任何由 $k$-磁带图灵机计算的函数，或由 $k$-磁带图灵机判定（或半判定）的语言，也分别可以由一台标准图灵机计算、判定（或半判定）
+
+## 6 Grammars
+
