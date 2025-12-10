@@ -6596,6 +6596,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-extensions-of-the-turing-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Extensions of the Turing Machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Extensions of the Turing Machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-multiple-tapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Multiple Tapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Grammars
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11744,6 +11783,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-extensions-of-the-turing-machine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Extensions of the Turing Machine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Extensions of the Turing Machine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-multiple-tapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Multiple Tapes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 Grammars
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -12035,6 +12113,45 @@
   <img alt="Img 16" src="../../../../img/computational_theory/ch4/computational_ch4_img16.png" width="800" />
 </figure>
 <h3 id="22-recursively-enumerable-languages">2.2 Recursively Enumerable Languages<a class="headerlink" href="#22-recursively-enumerable-languages" title="Permanent link">&para;</a></h3>
+<p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,H)\)</span> 是一台图灵机，令 <span class="arithmatex">\(Σ_0⊆Σ−{⊔,▹}\)</span> 为一个字母表，并设 <span class="arithmatex">\(L⊆Σ_0^∗\)</span> 为一种语言。我们说 <span class="arithmatex">\(M\)</span> <strong>semidecides</strong>（半判定）语言 <span class="arithmatex">\(L\)</span>，当且仅当对于任意字符串 <span class="arithmatex">\(w∈Σ_0^∗\)</span>，以下条件成立：<span class="arithmatex">\(w∈L\)</span> 当且仅当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机</p>
+<p>一个语言 <span class="arithmatex">\(L\)</span> 是 <strong>recursively enumerable</strong>（递归可枚举），当且仅当存在一台图灵机 <span class="arithmatex">\(M\)</span> 能够半判定 <span class="arithmatex">\(L\)</span></p>
+<p>因此，当 <span class="arithmatex">\(M\)</span> 接收到输入 <span class="arithmatex">\(w∈L\)</span> 时，它必须最终停机。我们并不关心它具体进入哪个停机状态，只要它最终达到某个停机配置即可。然而，如果 <span class="arithmatex">\(w∈Σ_0^∗ − L\)</span>，则 <span class="arithmatex">\(M\)</span> 永远不能进入停机状态</p>
+<p>我们记 <span class="arithmatex">\(M(w)=↗\)</span> 表示 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上无法停机。在此记法下，我们可以将图灵机 <span class="arithmatex">\(M\)</span> 半判定语言 <span class="arithmatex">\(L⊆Σ_0^∗\)</span> 的定义重述如下：对所有 <span class="arithmatex">\(w∈Σ_0^∗\)</span>，有 <span class="arithmatex">\(M(w)=↗\)</span> 当且仅当 <span class="arithmatex">\(w\notin L\)</span></p>
+<figure>
+  <img alt="Img 17" src="../../../../img/computational_theory/ch4/computational_ch4_img17.png" width="800" />
+</figure>
+<div class="admonition tip">
+<p>如果一个语言是 recursive 的，那么它也是 recursively enumerable 的</p>
+<blockquote>
+<p>存在 recursively enumerable 但是不 recursive 的语言</p>
+</blockquote>
+</div>
+<div class="admonition example">
+<p class="admonition-title">证明</p>
+<p>要构造一台半判定（而不是判定）该语言的图灵机，只需将原判定机中的拒绝状态变为非停机状态，从而确保机器永远不会停机。具体来说，给定任意一台判定语言 <span class="arithmatex">\(L\)</span> 的图灵机 <span class="arithmatex">\(M=(K,Σ,δ,s,{y,n})\)</span>，我们可以定义一台半判定 <span class="arithmatex">\(L\)</span> 的新机器 <span class="arithmatex">\(M'\)</span> 如下：<span class="arithmatex">\(M' = (K,Σ,\delta',s,\lbrace y\rbrace)\)</span>，其中 <span class="arithmatex">\(\delta'\)</span> 是 <span class="arithmatex">\(δ\)</span> 的扩展，增加如下转移规则：对所有 <span class="arithmatex">\(a∈Σ\)</span>，有 <span class="arithmatex">\(\delta'(n,a) = (n,a)\)</span> —— 即状态 <span class="arithmatex">\(n\)</span> 不再是停机状态。显然，如果 <span class="arithmatex">\(M\)</span> 确实能判定 <span class="arithmatex">\(L\)</span>，那么 <span class="arithmatex">\(M'\)</span> 就能半判定 <span class="arithmatex">\(L\)</span>，因为 <span class="arithmatex">\(M'\)</span> 接受与 <span class="arithmatex">\(M\)</span> 相同的输入；此外，如果 <span class="arithmatex">\(M\)</span> 拒绝输入 <span class="arithmatex">\(w\)</span>，则 <span class="arithmatex">\(M'\)</span> 在 <span class="arithmatex">\(w\)</span> 上不会停机（它在状态 <span class="arithmatex">\(n\)</span> 中永远循环）。换句话说，对于所有输入 <span class="arithmatex">\(w\)</span>，有 <span class="arithmatex">\(M'(w)=↗\)</span> 当且仅当 <span class="arithmatex">\(M(w)=n\)</span></p>
+</div>
+<div class="admonition tip">
+<p>如果语言 <span class="arithmatex">\(L\)</span> 是 recursive 的，那么 <span class="arithmatex">\(\bar{L}\)</span> 也是 recursive 的</p>
+</div>
+<h2 id="3-extensions-of-the-turing-machine">3 Extensions of the Turing Machine<a class="headerlink" href="#3-extensions-of-the-turing-machine" title="Permanent link">&para;</a></h2>
+<h3 id="31-multiple-tapes">3.1 Multiple Tapes<a class="headerlink" href="#31-multiple-tapes" title="Permanent link">&para;</a></h3>
+<p>可以设想具有多个磁带的图灵机，每条磁带通过一个读 / 写头与有限控制器相连（每条磁带有一个读 / 写头）。在一步操作中，机器可以读取所有读 / 写头所扫描的符号，然后根据这些符号及其当前状态，重写某些被扫描的方格，并将某些读 / 写头向左或向右移动，同时改变自身状态</p>
+<figure>
+  <img alt="Img 18" src="../../../../img/computational_theory/ch4/computational_ch4_img18.png" width="800" />
+</figure>
+<p>设 <span class="arithmatex">\(k≥1\)</span> 为一个整数。一个 <strong><span class="arithmatex">\(k\)</span> - tape Turing machine</strong> 是一个五元组 <span class="arithmatex">\((K,Σ,δ,s,H)\)</span>，其中 <span class="arithmatex">\(K\)</span>、<span class="arithmatex">\(Σ\)</span>、<span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(H\)</span> 的含义与普通图灵机的定义相同，而 <span class="arithmatex">\(δ\)</span>（<strong>transition function</strong>）是从 <span class="arithmatex">\((K-H)\times \Sigma^k\)</span> 到 <span class="arithmatex">\(K\times(\Sigma\cup \lbrace \leftarrow,\rightarrow \rbrace)^k\)</span> 的一个函数。也就是说，对于每个状态 <span class="arithmatex">\(q\)</span>，以及每个由磁带符号组成的 <span class="arithmatex">\(k\)</span> - 元组 <span class="arithmatex">\((a_1, \cdots, a_k)\)</span>，有 <span class="arithmatex">\(\delta(q,(a_1, \cdots, a_k)) = (p,(b_1, \cdots, b_k))\)</span>，其中 <span class="arithmatex">\(p\)</span> 是新的状态，而 <span class="arithmatex">\(b_j\)</span> 直观上表示机器在第 <span class="arithmatex">\(j\)</span> 条磁带上的动作。自然地，我们再次要求：如果对某个 <span class="arithmatex">\(j≤k\)</span> 有 <span class="arithmatex">\(a_j = \rhd\)</span>，则必须有 <span class="arithmatex">\(b_j = \rightarrow\)</span></p>
+<p>设 <span class="arithmatex">\(M = (K,Σ,δ,s,H)\)</span> 是一个 <span class="arithmatex">\(k\)</span>-tape 图灵机，<span class="arithmatex">\(M\)</span> 的 <strong>configuration</strong> 是 <span class="arithmatex">\(K \times (\rhd \Sigma^* \times (\Sigma^*(\Sigma-\lbrace \sqcup \rbrace) \cup \lbrace e\rbrace))^k\)</span> 的一个成员</p>
+<p>例如，<span class="arithmatex">\(\delta(p,(a_1, \cdots, a_k)) = (b_1, \cdots, b_k)\)</span>，配置 <span class="arithmatex">\((q,(w_1\underline{a_1}u_1, \cdots, w_k\underline{a_k}u_k))\)</span> yields in one step 配置 <span class="arithmatex">\((q,(w_1'\underline{a_1'}u_1', \cdots, w_k'\underline{a_k'}u_k'))\)</span>，其中 <span class="arithmatex">\(a_i'\)</span> 是 <span class="arithmatex">\(a_i\)</span> 经过操作 <span class="arithmatex">\(b_i\)</span> 后变成的</p>
+<figure>
+  <img alt="Img 19" src="../../../../img/computational_theory/ch4/computational_ch4_img19.png" width="800" />
+</figure>
+<div class="admonition tip">
+<p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,H)\)</span> 是一个 <span class="arithmatex">\(k\)</span>-磁带图灵机，其中 <span class="arithmatex">\(k≥1\)</span>。那么存在一台标准图灵机 <span class="arithmatex">\(M' = (K',\Sigma',\delta',s',H)\)</span>，满足 <span class="arithmatex">\(Σ⊆\Sigma'\)</span>，并且以下性质成立：对于任意输入字符串 <span class="arithmatex">\(x\in \Sigma^*\)</span>，机器 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机并输出 <span class="arithmatex">\(y\)</span>（在第一条磁带上），当且仅当 <span class="arithmatex">\(M'\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上停机、处于相同的停机状态，并在其磁带上输出相同的 <span class="arithmatex">\(y\)</span>。此外，如果 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上经过 <span class="arithmatex">\(t\)</span> 步后停机，则 <span class="arithmatex">\(M'\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上经过的步数为 <span class="arithmatex">\(O(t⋅(|x|+t))\)</span></p>
+</div>
+<div class="admonition tip">
+<p>任何由 <span class="arithmatex">\(k\)</span>-磁带图灵机计算的函数，或由 <span class="arithmatex">\(k\)</span>-磁带图灵机判定（或半判定）的语言，也分别可以由一台标准图灵机计算、判定（或半判定）</p>
+</div>
+<h2 id="6-grammars">6 Grammars<a class="headerlink" href="#6-grammars" title="Permanent link">&para;</a></h2>
 
 
 
@@ -12057,7 +12174,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月2日 08:01:40 UTC">2025年12月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月10日 02:25:19 UTC">2025年12月10日</span>
   </span>
 
     
