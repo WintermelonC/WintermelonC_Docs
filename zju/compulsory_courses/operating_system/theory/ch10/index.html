@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch9/">
       
       
-        <link rel="next" href="../../lab/ch1/">
+        <link rel="next" href="../ch11/">
       
       
         
@@ -6601,6 +6601,8 @@
       
         
       
+        
+      
     
     
     
@@ -7016,10 +7018,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-direct-access" class="md-nav__link">
+  <a href="#22-direct--random-access" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Direct Access
+        2.2 Direct / Random Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-index-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Index Access
       
     </span>
   </a>
@@ -7079,6 +7092,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 File System Implementation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -7628,6 +7669,8 @@
       
         
       
+        
+      
     
     
     
@@ -8005,6 +8048,34 @@
     
   
     12 JMM and Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../module_courses/java_application/ch13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 Virtual Thread and Reactive
   
 
     
@@ -11805,10 +11876,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-direct-access" class="md-nav__link">
+  <a href="#22-direct--random-access" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Direct Access
+        2.2 Direct / Random Access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-index-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Index Access
       
     </span>
   </a>
@@ -12054,7 +12136,7 @@
 <p class="admonition-title">File Attributes</p>
 <ol>
 <li>name</li>
-<li>identifier：文件系统内部使用的唯一数字标识，用于在存储中精确定位文件，对用户透明</li>
+<li>identifier：文件系统内部使用的唯一数字标识（如 inode 编号），用于在存储中精确定位文件，对用户透明</li>
 <li>type</li>
 <li>location</li>
 <li>size</li>
@@ -12114,7 +12196,6 @@
 <li>advisory（劝告锁）：操作系统只提供查询和设置锁的机制，但不强制阻止进程的 I/O 操作。进程在访问文件前，可以先劝告性地检查锁的状态。如果发现有冲突的锁，由进程自己决定是等待、放弃还是忽略锁直接进行访问</li>
 </ol>
 <h2 id="2-access-methods">2 Access Methods<a class="headerlink" href="#2-access-methods" title="Permanent link">&para;</a></h2>
-<p>操作系统或文件系统中两种基本的文件数据访问模式：sequential access 和 direct / random access</p>
 <h3 id="21-sequential-access">2.1 Sequential Access<a class="headerlink" href="#21-sequential-access" title="Permanent link">&para;</a></h3>
 <p>数据必须严格按照从前到后的线性顺序进行读取或写入，就像磁带机一样</p>
 <ol>
@@ -12126,7 +12207,7 @@
 <figure>
     <img alt="Img 4" src="../../../../../img/operating_system/ch10/os_ch10_img4.png" width="600" />
 </figure>
-<h3 id="22-direct-access">2.2 Direct Access<a class="headerlink" href="#22-direct-access" title="Permanent link">&para;</a></h3>
+<h3 id="22-direct--random-access">2.2 Direct / Random Access<a class="headerlink" href="#22-direct--random-access" title="Permanent link">&para;</a></h3>
 <p>允许程序直接跳转到文件的任何位置进行读写操作，无需经过前面的数据，就像磁盘或内存访问一样</p>
 <p>文件被逻辑上划分为固定大小的块或记录，n 表示第 n 个块</p>
 <ol>
@@ -12145,7 +12226,7 @@
 <figure>
     <img alt="Img 5" src="../../../../../img/operating_system/ch10/os_ch10_img5.png" width="600" />
 </figure>
-<h2 id="3-directory-structure">3 Directory Structure<a class="headerlink" href="#3-directory-structure" title="Permanent link">&para;</a></h2>
+<h3 id="23-index-access">2.3 Index Access<a class="headerlink" href="#23-index-access" title="Permanent link">&para;</a></h3>
 <ol>
 <li>index file（索引文件）：一种文件组织方式，其中通过一个单独的索引结构来记录文件中每个记录的位置，从而实现快速随机访问</li>
 <li>relative file（相对文件，直接文件）：一种文件组织方式，其中记录通过相对记录号（RRN） 直接访问，记录号通常通过哈希函数从键值计算得出</li>
@@ -12153,8 +12234,9 @@
 <figure>
     <img alt="Img 6" src="../../../../../img/operating_system/ch10/os_ch10_img6.png" width="600" />
 </figure>
+<h2 id="3-directory-structure">3 Directory Structure<a class="headerlink" href="#3-directory-structure" title="Permanent link">&para;</a></h2>
 <p>目录是一个 symbol table（符号表）。就像编程中的符号表将变量名映射到内存地址一样，目录将用户友好的、人类可读的文件名映射到操作系统内部用于标识和管理文件的底层数据结构 —— file control block</p>
-<p>文件控制块是操作系统内核中保存一个文件所有元数据（属性）的数据结构，如文件大小、位置、权限、时间戳等</p>
+<p>文件控制块是操作系统内核中保存一个文件所有元数据（属性）的数据结构，如文件大小、位置、权限、时间戳等（在 UNIX/Linux 中通常是 inode，在 Windows 中是文件记录）。</p>
 <p>从数据结构的角度看，目录本身是一个包含多条记录的集合。每个节点对应一个文件（或子目录），其中存储了该文件的管理信息。这些信息通常至少包括：文件名；指向文件控制块（FCB）的引用。因此，目录是文件系统元数据的组织框架，它不直接存储文件数据，而是存储如何找到和管理这些数据的索引或指针</p>
 <figure>
     <img alt="Img 7" src="../../../../../img/operating_system/ch10/os_ch10_img7.png" width="600" />
@@ -12216,18 +12298,93 @@
 <p>解决方案：维护反向指针列表。为每个文件维护一个列表，记录所有指向它的目录条目。这样，在删除文件时，可以先检查引用计数，或同时删除所有相关链接</p>
 <p>为了明确区分原始文件和它的别名，引入了 link 作为新的目录条目类型。link 本身是一个目录条目，但它不包含文件数据，只包含一个指针，指向另一个文件（或目录）的原始位置</p>
 <p>解析链接：当访问一个链接时，操作系统需要解析它，即跟随该指针找到实际的文件数据</p>
-<ol>
-<li>硬链接：直接指向文件的文件控制块。删除原始文件后，硬链接仍然有效，直到所有硬链接都被删除</li>
-<li>符号链接（软链接）：包含目标文件的路径字符串。如果原始文件被删除，符号链接将变为断开状态（悬空）</li>
-</ol>
 <p>无环图目录需要确保没有环</p>
 <p><figure markdown="span">
     <img alt="Img 13" src="../../../../../img/operating_system/ch10/os_ch10_img13.png" width="600" />
 </figure></p>
 </div>
+<p>文件系统中两种不同的链接机制：</p>
+<ol>
+<li>
+<p>soft link（软链接，符号链接）：本质上是一个独立的文件，它像快捷方式一样，内容仅仅是目标文件（或目录）的路径字符串，有自己的 inode 和文件属性</p>
+<ul>
+<li>优点：可以链接到不同文件系统或分区上的文件；可以链接到目录</li>
+<li>缺点：如果目标文件被移动、重命名或删除，软链接会失效（成为悬空链接）</li>
+</ul>
+</li>
+<li>
+<p>hard link（硬链接）：本质上是同一个文件数据块的另一个目录条目（文件名）。它和原始文件完全平等，都直接指向存储数据的 inode。与原始文件共享同一个 inode，因此文件属性（如权限、所有者、时间戳）完全相同</p>
+<ul>
+<li>优点：非常高效，删除任何一个硬链接（包括原始名称）只要链接数不为零，文件数据就不会被释放</li>
+<li>缺点：不能跨文件系统；传统上大多数系统不允许为目录创建硬链接（以防止目录结构中出现循环）</li>
+</ul>
+</li>
+</ol>
 <h2 id="4-file-system-mounting">4 File System Mounting<a class="headerlink" href="#4-file-system-mounting" title="Permanent link">&para;</a></h2>
+<p>mount（挂载）：是将一个独立的存储设备（如硬盘分区、U 盘、光盘）或虚拟文件系统（如网络共享）的内容，链接到现有目录树结构中的一个特定目录（即挂载点）的过程。挂载后，操作系统和应用程序就可以通过访问这个目录来使用该存储设备上的文件和目录</p>
+<p>除了根文件系统在启动时由内核自动挂载外，其他文件系统（如额外的硬盘分区、U 盘、光盘等）在物理连接或逻辑存在后，必须经过挂载这一步骤，才能被操作系统识别并整合到统一的目录视图中，从而被用户和程序访问。未被挂载的文件系统是不可见或不可访问的</p>
+<p>mount point（挂载点）：这是现有目录树中的一个空目录。挂载完成后，访问这个目录（挂载点）的操作，实际上就被重定向到了新挂载的文件系统的根目录。挂载点目录原有的内容（如果有）在新文件系统卸载前会被暂时隐藏</p>
+<figure>
+    <img alt="Img 14" src="../../../../../img/operating_system/ch10/os_ch10_img14.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 15" src="../../../../../img/operating_system/ch10/os_ch10_img15.png" width="500" />
+</figure>
 <h2 id="5-file-sharing">5 File Sharing<a class="headerlink" href="#5-file-sharing" title="Permanent link">&para;</a></h2>
+<p>在多用户操作系统中，允许多个用户访问和使用同一个文件是核心功能之一，这对于协作、数据一致性和资源高效利用是必要的</p>
+<p>文件共享需要建立在 protection 机制之上</p>
+<p>在分布式系统中，文件可以存储在网络上的某台服务器（或存储设备）上，并被网络中的其他计算机（客户端）访问和使用。网络文件系统（NFS）是此类技术的一个典型代表和广泛使用的标准。它的工作原理是，允许客户端计算机将远程服务器上的目录挂载到本地目录树中，使其看起来和操作起来就像本地文件系统一样。这实现了跨网络的透明文件访问</p>
+<p>在多用户操作系统中实现文件共享和访问控制的两种基本身份标识机制：</p>
+<ol>
+<li>UID：每个用户在系统中都有一个唯一的数字标识（UID）。它是操作系统识别和区分不同用户的最基本单位</li>
+<li>GID：除了个体身份，用户还可以被分配到一个或多个组中，每个组也有一个唯一的数字标识（GID）。文件或目录也可以关联一个组 ID</li>
+</ol>
+<p>三种网络文件访问方式：</p>
+<ol>
+<li>手动 (FTP 等)：用户主动运行特定程序（如 FTP 客户端），建立连接后进行文件传输。操作不透明，需用户干预</li>
+<li>自动/无缝 (分布式文件系统)：如 NFS (Unix/Linux) 或 CIFS/SMB (Windows)。远程文件系统可以像本地磁盘一样挂载到本地目录树，应用程序无需修改即可透明访问远程文件，系统自动处理网络通信</li>
+<li>半自动 (万维网)：通过浏览器（HTTP/HTTPS 协议）访问，流程比 FTP 简单，但通常只支持下载和有限的上传，功能不如专业文件共享协议完整</li>
+</ol>
+<p>Client-server 模型：服务端存储实际文件，响应客户端请求；客户端发起访问请求，并将远程文件系统呈现给本地用户</p>
+<p>特性：</p>
+<ol>
+<li>可扩展性：一台服务器可服务多个客户端</li>
+<li>身份认证是核心挑战。如何安全、便捷地确认远程客户端的用户身份</li>
+<li>协议：NFS，类 Unix 系统间的标准协议；CIFS/SMB，Windows 网络文件/打印机共享的标准协议，现也广泛用于跨平台</li>
+<li>透明性：通过客户端软件（如 VFS 层），将 open()、read()、write() 等本地系统调用透明地转换为网络消息发送给服务器</li>
+</ol>
+<p>distributed information systems / distributed naming services（分布式信息系统 / 分布式命名服务）提供集中的、分布式的信息查询服务，是实现安全、可管理远程访问的基础设施。例如 LDAP，DNS，NIS，Active Directory</p>
+<p>与本地文件系统相比，远程文件系统依赖网络和远程服务器。因此，引入了两个关键的故障点：网络故障和服务器故障。当上述故障发生时，客户端可能有一个或多个正在进行的文件操作被中断。为了在连接恢复后能够正确地恢复操作，系统需要知道这些被中断的请求之前进行到了什么状态。这些信息就是状态信息</p>
+<p>如何处理这些状态信息：</p>
+<ol>
+<li>无状态协议（以 NFS 为例）：服务器不保存客户端操作的状态。每个客户端请求都必须是自包含的，即包含完成该操作所需的全部信息。服务器崩溃重启后，客户端只需简单地重发请求即可。因为服务器不需要记得之前发生了什么，恢复过程非常简单和健壮</li>
+<li>有状态协议：服务器会维护与客户端会话相关的状态，如打开的文件、持有的锁、读写位置等。服务器崩溃后，其内存中的状态信息会丢失。恢复时，客户端和服务器需要进行复杂的状态重建或状态回收协商，协议设计更复杂</li>
+</ol>
+<p>consistency semantics（一致性语义）：定义了当一个文件的多个副本或同一文件的多个并发访问者存在时，读操作应该看到什么内容</p>
+<ol>
+<li>
+<p>Unix 文件系统 (UFS) 语义（强一致性模型）</p>
+<ol>
+<li>写入立即可见：一个进程对已打开文件的修改，立即对同时打开了该文件的其他进程可见</li>
+<li>共享文件偏移量（指针）：如果多个进程共享同一个打开的文件描述符（如通过 fork），它们使用同一个文件指针。一个进程的读/写操作会改变指针位置，直接影响另一个进程的后续操作</li>
+</ol>
+</li>
+<li>
+<p>Andrew 文件系统 (AFS) 语义（会话语义/弱一致性模型）：文件在客户端被缓存。客户端对缓存的修改，在文件关闭之前，只对本地会话可见。只有当文件被关闭后，修改才会被写回服务器。其他客户端只有在新打开（或重新打开） 该文件时，才会从服务器获取最新版本，从而看到之前会话的修改</p>
+</li>
+</ol>
+<p>UFS 语义在网络文件系统中实现起来比较昂贵，因为要频繁地在客户端和服务器之间同步数据和状态。但是在单机环境下，提供了直观的强一致性。AFS 语义减少了网络通信，提升了性能</p>
 <h2 id="6-protection">6 Protection<a class="headerlink" href="#6-protection" title="Permanent link">&para;</a></h2>
+<p>系统应提供一种机制，让文件（或资源）的所有者/创建者有权决定该文件如何被访问。规定对文件可以执行哪些具体操作，规定哪些用户或主体可以执行这些操作</p>
+<p>操作权限：</p>
+<ol>
+<li>read</li>
+<li>write</li>
+<li>execute</li>
+<li>append：在文件末尾添加新内容，但不修改已有内容</li>
+<li>delete</li>
+<li>list</li>
+</ol>
 
 
 
@@ -12250,7 +12407,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月14日 09:24:30 UTC">2025年12月14日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 08:53:49 UTC">2025年12月15日</span>
   </span>
 
     
@@ -12382,13 +12539,13 @@
         
         
           
-          <a href="../../lab/ch1/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1 Linux">
+          <a href="../ch11/" class="md-footer__link md-footer__link--next" aria-label="下一页: 11 File System Implementation">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                1 Linux
+                11 File System Implementation
               </div>
             </div>
             <div class="md-footer__button md-icon">

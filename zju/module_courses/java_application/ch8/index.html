@@ -6595,6 +6595,8 @@
       
         
       
+        
+      
     
     
     
@@ -6907,6 +6909,34 @@
     
   
     10 File System Interface
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../compulsory_courses/operating_system/theory/ch11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11 File System Implementation
   
 
     
@@ -7468,6 +7498,8 @@
       
         
       
+        
+      
     
     
     
@@ -7871,6 +7903,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3 工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-jconsole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 jconsole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-jstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 jstack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -7981,6 +8041,34 @@
     
   
     12 JMM and Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13 Virtual Thread and Reactive
   
 
     
@@ -11816,6 +11904,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="3 工具">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-jconsole" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 jconsole
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-jstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 jstack
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -12458,7 +12574,117 @@
 </span></code></pre></div></td></tr></table></div>
 </details>
 <h2 id="3-工具">3 工具<a class="headerlink" href="#3-工具" title="Permanent link">&para;</a></h2>
-<p><code>jconsole</code> 和 <code>jstack</code></p>
+<h3 id="31-jconsole">3.1 jconsole<a class="headerlink" href="#31-jconsole" title="Permanent link">&para;</a></h3>
+<p>jconsole 是 JDK 自带的一个图形化的监控和管理工具。它基于 JMX 技术，允许你连接到一个正在运行的 Java 进程，并实时地查看其内部的各种性能指标和资源消耗情况</p>
+<p>启动 jconsole：在命令行或终端中直接输入 <code>jconsole</code> 并回车，即可启动 jconsole 的图形化界面</p>
+<p>连接 Java 进程：</p>
+<ol>
+<li>本地进程：jconsole 会自动发现本机上正在运行的、可供连接的 Java 进程。只需在列表中选择要监控的进程，然后点击连接</li>
+<li>远程进程：也可以连接到运行在另一台服务器上的 Java 进程。这需要在远程 Java 应用启动时，添加特定的 JMX 参数来开放远程连接端口（例如 <code>-Dcom.sun.management.jmxremote.port=9999</code>）</li>
+</ol>
+<p>jconsole 的主要功能面板：</p>
+<ol>
+<li>
+<p>概述：以图表的形式汇总了四个最重要的指标</p>
+<ol>
+<li>堆内存使用情况 (Heap Memory Usage)：显示了堆内存已使用大小随时间的变化</li>
+<li>线程 (Threads)：显示了活动线程数量的变化</li>
+<li>类 (Classes)：显示了已加载类的数量</li>
+<li>CPU 使用率 (CPU Usage)：显示了 JVM 进程的 CPU 占用率</li>
+</ol>
+</li>
+<li>
+<p>内存：详细展示了 JVM 内存的各个区域。可以选择查看不同内存池（如 Eden 区、Survivor 区、老年代 Tenured Gen、元空间 Metaspace）的使用情况</p>
+</li>
+<li>线程：列出了当前所有的线程。点击任意一个线程，会显示该线程的当前状态（如 <code>RUNNABLE</code>, <code>BLOCKED</code>）和完整的堆栈轨迹（Stack Trace），能够知道它正在执行什么代码</li>
+<li>类：显示当前 JVM 加载和卸载的类的总数</li>
+<li>VM 摘要：提供了关于 JVM 和运行环境的静态信息</li>
+<li>MBeans：允许直接与 JVM 内部的 JMX MBean 进行交互</li>
+</ol>
+<h3 id="32-jstack">3.2 jstack<a class="headerlink" href="#32-jstack" title="Permanent link">&para;</a></h3>
+<p>jstack 是 JDK (Java Development Kit) 自带的一个命令行工具，它的核心功能是生成指定 Java 进程的线程快照（Thread Dump）。这个快照包含了该进程中所有线程在某一时刻的运行状态和执行堆栈</p>
+<p>jstack 主要用于解决以下问题：</p>
+<ol>
+<li>死锁 (Deadlock)：当多个线程互相等待对方持有的锁时，就会发生死锁。jstack 不仅能捕获到这种情况，还能直接明确地指出哪些线程参与了死锁，以及它们各自等待的锁和持有的锁</li>
+<li>无限循环 / CPU 占用率过高：当某个线程执行了无限循环或进行大量计算时，会导致 CPU 占用率飙升。通过结合 top (Linux) 或 taskmgr (Windows) 等系统命令，可以定位到具体是哪个 Java 线程在消耗 CPU，然后用 jstack 查看该线程的堆栈，从而快速定位到问题代码</li>
+<li>线程阻塞 / 程序无响应：当应用程序看起来卡住或响应缓慢时，通常是因为大量线程被阻塞了。jstack 可以显示出每个线程的当前状态（如 BLOCKED, WAITING），以及它们正在等待什么资源（锁、网络 I/O 等），帮助我们理解程序为什么会停滞不前</li>
+</ol>
+<p><strong>1.获取 Java 进程的 PID</strong></p>
+<p>使用 <code>jps</code> 命令（JDK 自带）来列出当前系统上所有的 Java 进程及其 PID</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1">1</a></span>
+<span class="normal"><a href="#__codelineno-13-2">2</a></span>
+<span class="normal"><a href="#__codelineno-13-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a>$<span class="w"> </span>jps<span class="w"> </span>-l
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="m">12345</span><span class="w"> </span>com.example.MyApplication
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="m">67890</span><span class="w"> </span>org.apache.catalina.startup.Bootstrap
+</span></code></pre></div></td></tr></table></div>
+<p><strong>2.执行 jstack 命令</strong></p>
+<ul>
+<li><code>jstack &lt;pid&gt;</code></li>
+<li><code>jstack -l &lt;pid&gt;</code>：<code>-l</code> 参数会打印出关于锁的附加信息</li>
+</ul>
+<p>例如：<code>jstack -l 12345 &gt; threaddump.txt</code></p>
+<p>jstack 的输出：</p>
+<div class="language-java highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="s">&quot;pool-1-thread-2&quot;</span><span class="w"> </span><span class="err">#</span><span class="mi">12</span><span class="w"> </span><span class="n">prio</span><span class="o">=</span><span class="mi">5</span><span class="w"> </span><span class="n">os_prio</span><span class="o">=</span><span class="mi">0</span><span class="w"> </span><span class="n">tid</span><span class="o">=</span><span class="mh">0x00007f8c9c8b8800</span><span class="w"> </span><span class="n">nid</span><span class="o">=</span><span class="mh">0x1a0b</span><span class="w"> </span><span class="n">waiting</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">condition</span><span class="w"> </span><span class="o">[</span><span class="mh">0x00007f8c8a9a9000</span><span class="o">]</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">   </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Thread</span><span class="p">.</span><span class="na">State</span><span class="p">:</span><span class="w"> </span><span class="n">WAITING</span><span class="w"> </span><span class="p">(</span><span class="n">parking</span><span class="p">)</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">sun</span><span class="p">.</span><span class="na">misc</span><span class="p">.</span><span class="na">Unsafe</span><span class="p">.</span><span class="na">park</span><span class="p">(</span><span class="n">Native</span><span class="w"> </span><span class="n">Method</span><span class="p">)</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">parking</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">wait</span><span class="w"> </span><span class="k">for</span><span class="w">  </span><span class="o">&lt;</span><span class="mh">0x000000076ab4f8f8</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">locks</span><span class="p">.</span><span class="na">AbstractQueuedSynchronizer$ConditionObject</span><span class="p">)</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">locks</span><span class="p">.</span><span class="na">LockSupport</span><span class="p">.</span><span class="na">park</span><span class="p">(</span><span class="n">LockSupport</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">175</span><span class="p">)</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">locks</span><span class="p">.</span><span class="na">AbstractQueuedSynchronizer$ConditionObject</span><span class="p">.</span><span class="na">await</span><span class="p">(</span><span class="n">AbstractQueuedSynchronizer</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">2039</span><span class="p">)</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">LinkedBlockingQueue</span><span class="p">.</span><span class="na">take</span><span class="p">(</span><span class="n">LinkedBlockingQueue</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">442</span><span class="p">)</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">ThreadPoolExecutor</span><span class="p">.</span><span class="na">getTask</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">1074</span><span class="p">)</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">ThreadPoolExecutor</span><span class="p">.</span><span class="na">runWorker</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">1134</span><span class="p">)</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">util</span><span class="p">.</span><span class="na">concurrent</span><span class="p">.</span><span class="na">ThreadPoolExecutor$Worker</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">ThreadPoolExecutor</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">624</span><span class="p">)</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">    </span><span class="n">at</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">Thread</span><span class="p">.</span><span class="na">run</span><span class="p">(</span><span class="n">Thread</span><span class="p">.</span><span class="na">java</span><span class="p">:</span><span class="mi">748</span><span class="p">)</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">   </span><span class="n">Locked</span><span class="w"> </span><span class="n">ownable</span><span class="w"> </span><span class="n">synchronizers</span><span class="p">:</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">None</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li>
+<p><code>"pool-1-thread-2" #12 prio=5 os_prio=0 tid=0x00007f8c9c8b8800 nid=0x1a0b</code>：线程头信息:</p>
+<ol>
+<li><code>"pool-1-thread-2"</code>：线程名称</li>
+<li><code>#12</code>：线程的内部 ID</li>
+<li><code>prio=5</code>：线程的 Java 优先级</li>
+<li><code>tid</code>：线程在 JVM 内的唯一 ID</li>
+<li><code>nid</code>：线程对应的操作系统本地线程 ID，通常是十六进制。可以用它来关联 top 等系统命令的输出</li>
+</ol>
+</li>
+<li>
+<p><code>java.lang.Thread.State: WAITING (parking)</code>：线程状态</p>
+<ol>
+<li><code>RUNNABLE</code>: 正在运行或在就绪队列中等待 CPU。CPU 占用率高的问题通常发生在这里</li>
+<li><code>BLOCKED</code>: 正在等待一个监视器锁（<code>synchronized</code> 块）</li>
+<li><code>WAITING</code>: 无限期等待另一个线程执行特定操作（如调用 <code>Object.wait()</code> 或 <code>LockSupport.park()</code>）</li>
+<li><code>TIMED_WAITING</code>: 在指定的时间内等待</li>
+</ol>
+</li>
+<li>
+<p>Stack Trace：从上到下显示了方法的调用链。最上面的是当前正在执行的方法。通过堆栈轨迹，我们可以精确地知道线程卡在了哪一行代码</p>
+</li>
+<li>
+<p>锁信息：</p>
+<ol>
+<li><code>waiting on condition [0x00007f8c8a9a9000]</code>：表示线程正在等待获取哪个对象的锁</li>
+<li><code>locked ...</code>：表示线程当前持有哪些对象的锁</li>
+<li><code>Locked ownable synchronizers</code>：显示了线程持有的 <code>java.util.concurrent</code> 包下的锁</li>
+</ol>
+</li>
+</ol>
+<p>如果存在死锁，jstack 会非常智能地直接打印出 <code>Found 1 deadlock.</code> 并详细列出参与死锁的线程、它们正在等待的锁和已经持有的锁</p>
 
 
 
@@ -12481,7 +12707,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月29日 12:47:38 UTC">2025年11月29日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月15日 08:53:49 UTC">2025年12月15日</span>
   </span>
 
     
