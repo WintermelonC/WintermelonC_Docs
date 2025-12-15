@@ -364,4 +364,98 @@ public ThreadPoolExecutor(
 
 ## 3 工具
 
-`jconsole` 和 `jstack`
+### 3.1 jconsole
+
+jconsole 是 JDK 自带的一个图形化的监控和管理工具。它基于 JMX 技术，允许你连接到一个正在运行的 Java 进程，并实时地查看其内部的各种性能指标和资源消耗情况
+
+启动 jconsole：在命令行或终端中直接输入 `jconsole` 并回车，即可启动 jconsole 的图形化界面
+
+连接 Java 进程：
+
+1. 本地进程：jconsole 会自动发现本机上正在运行的、可供连接的 Java 进程。只需在列表中选择要监控的进程，然后点击连接
+2. 远程进程：也可以连接到运行在另一台服务器上的 Java 进程。这需要在远程 Java 应用启动时，添加特定的 JMX 参数来开放远程连接端口（例如 `-Dcom.sun.management.jmxremote.port=9999`）
+
+jconsole 的主要功能面板：
+
+1. 概述：以图表的形式汇总了四个最重要的指标
+
+    1. 堆内存使用情况 (Heap Memory Usage)：显示了堆内存已使用大小随时间的变化
+    2. 线程 (Threads)：显示了活动线程数量的变化
+    3. 类 (Classes)：显示了已加载类的数量
+    4. CPU 使用率 (CPU Usage)：显示了 JVM 进程的 CPU 占用率
+
+2. 内存：详细展示了 JVM 内存的各个区域。可以选择查看不同内存池（如 Eden 区、Survivor 区、老年代 Tenured Gen、元空间 Metaspace）的使用情况
+3. 线程：列出了当前所有的线程。点击任意一个线程，会显示该线程的当前状态（如 `RUNNABLE`, `BLOCKED`）和完整的堆栈轨迹（Stack Trace），能够知道它正在执行什么代码
+4. 类：显示当前 JVM 加载和卸载的类的总数
+5. VM 摘要：提供了关于 JVM 和运行环境的静态信息
+6. MBeans：允许直接与 JVM 内部的 JMX MBean 进行交互
+
+### 3.2 jstack
+
+jstack 是 JDK (Java Development Kit) 自带的一个命令行工具，它的核心功能是生成指定 Java 进程的线程快照（Thread Dump）。这个快照包含了该进程中所有线程在某一时刻的运行状态和执行堆栈
+
+jstack 主要用于解决以下问题：
+
+1. 死锁 (Deadlock)：当多个线程互相等待对方持有的锁时，就会发生死锁。jstack 不仅能捕获到这种情况，还能直接明确地指出哪些线程参与了死锁，以及它们各自等待的锁和持有的锁
+2. 无限循环 / CPU 占用率过高：当某个线程执行了无限循环或进行大量计算时，会导致 CPU 占用率飙升。通过结合 top (Linux) 或 taskmgr (Windows) 等系统命令，可以定位到具体是哪个 Java 线程在消耗 CPU，然后用 jstack 查看该线程的堆栈，从而快速定位到问题代码
+3. 线程阻塞 / 程序无响应：当应用程序看起来卡住或响应缓慢时，通常是因为大量线程被阻塞了。jstack 可以显示出每个线程的当前状态（如 BLOCKED, WAITING），以及它们正在等待什么资源（锁、网络 I/O 等），帮助我们理解程序为什么会停滞不前
+
+**1.获取 Java 进程的 PID**
+
+使用 `jps` 命令（JDK 自带）来列出当前系统上所有的 Java 进程及其 PID
+
+```bash linenums="1"
+$ jps -l
+12345 com.example.MyApplication
+67890 org.apache.catalina.startup.Bootstrap
+```
+
+**2.执行 jstack 命令**
+
+- `jstack <pid>`
+- `jstack -l <pid>`：`-l` 参数会打印出关于锁的附加信息
+
+例如：`jstack -l 12345 > threaddump.txt`
+
+jstack 的输出：
+
+```java linenums="1"
+"pool-1-thread-2" #12 prio=5 os_prio=0 tid=0x00007f8c9c8b8800 nid=0x1a0b waiting on condition [0x00007f8c8a9a9000]
+   java.lang.Thread.State: WAITING (parking)
+    at sun.misc.Unsafe.park(Native Method)
+    - parking to wait for  <0x000000076ab4f8f8> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+    at java.util.concurrent.locks.LockSupport.park(LockSupport.java:175)
+    at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2039)
+    at java.util.concurrent.LinkedBlockingQueue.take(LinkedBlockingQueue.java:442)
+    at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1074)
+    at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1134)
+    at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)
+    at java.lang.Thread.run(Thread.java:748)
+
+   Locked ownable synchronizers:
+    - None
+```
+
+1. `"pool-1-thread-2" #12 prio=5 os_prio=0 tid=0x00007f8c9c8b8800 nid=0x1a0b`：线程头信息:
+
+    1. `"pool-1-thread-2"`：线程名称
+    2. `#12`：线程的内部 ID
+    3. `prio=5`：线程的 Java 优先级
+    4. `tid`：线程在 JVM 内的唯一 ID
+    5. `nid`：线程对应的操作系统本地线程 ID，通常是十六进制。可以用它来关联 top 等系统命令的输出
+
+2. `java.lang.Thread.State: WAITING (parking)`：线程状态
+
+    1. `RUNNABLE`: 正在运行或在就绪队列中等待 CPU。CPU 占用率高的问题通常发生在这里
+    2. `BLOCKED`: 正在等待一个监视器锁（`synchronized` 块）
+    3. `WAITING`: 无限期等待另一个线程执行特定操作（如调用 `Object.wait()` 或 `LockSupport.park()`）
+    4. `TIMED_WAITING`: 在指定的时间内等待
+
+3. Stack Trace：从上到下显示了方法的调用链。最上面的是当前正在执行的方法。通过堆栈轨迹，我们可以精确地知道线程卡在了哪一行代码
+4. 锁信息：
+
+    1. `waiting on condition [0x00007f8c8a9a9000]`：表示线程正在等待获取哪个对象的锁
+    2. `locked ...`：表示线程当前持有哪些对象的锁
+    3. `Locked ownable synchronizers`：显示了线程持有的 `java.util.concurrent` 包下的锁
+
+如果存在死锁，jstack 会非常智能地直接打印出 `Found 1 deadlock.` 并详细列出参与死锁的线程、它们正在等待的锁和已经持有的锁
