@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch3/">
       
       
-        <link rel="next" href="../../operating_system/">
+        <link rel="next" href="../ch5/">
       
       
         
@@ -6325,6 +6325,8 @@
       
         
       
+        
+      
     
     
     
@@ -6635,10 +6637,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#7-numerical-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Numerical Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Undecidability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -11912,6 +11953,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#7-numerical-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7 Numerical Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -12227,7 +12279,7 @@
 <h3 id="31-multiple-tapes">3.1 Multiple Tapes<a class="headerlink" href="#31-multiple-tapes" title="Permanent link">&para;</a></h3>
 <p>可以设想具有多个磁带的图灵机，每条磁带通过一个读 / 写头与有限控制器相连（每条磁带有一个读 / 写头）。在一步操作中，机器可以读取所有读 / 写头所扫描的符号，然后根据这些符号及其当前状态，重写某些被扫描的方格，并将某些读 / 写头向左或向右移动，同时改变自身状态</p>
 <figure>
-  <img alt="Img 18" src="../../../../img/computational_theory/ch4/computational_ch4_img18.png" width="800" />
+  <img alt="Img 18" src="../../../../img/computational_theory/ch4/computational_ch4_img18.png" width="600" />
 </figure>
 <p>设 <span class="arithmatex">\(k≥1\)</span> 为一个整数。一个 <strong><span class="arithmatex">\(k\)</span> - tape Turing machine</strong> 是一个五元组 <span class="arithmatex">\((K,Σ,δ,s,H)\)</span>，其中 <span class="arithmatex">\(K\)</span>、<span class="arithmatex">\(Σ\)</span>、<span class="arithmatex">\(s\)</span> 和 <span class="arithmatex">\(H\)</span> 的含义与普通图灵机的定义相同，而 <span class="arithmatex">\(δ\)</span>（<strong>transition function</strong>）是从 <span class="arithmatex">\((K-H)\times \Sigma^k\)</span> 到 <span class="arithmatex">\(K\times(\Sigma\cup \lbrace \leftarrow,\rightarrow \rbrace)^k\)</span> 的一个函数。也就是说，对于每个状态 <span class="arithmatex">\(q\)</span>，以及每个由磁带符号组成的 <span class="arithmatex">\(k\)</span> - 元组 <span class="arithmatex">\((a_1, \cdots, a_k)\)</span>，有 <span class="arithmatex">\(\delta(q,(a_1, \cdots, a_k)) = (p,(b_1, \cdots, b_k))\)</span>，其中 <span class="arithmatex">\(p\)</span> 是新的状态，而 <span class="arithmatex">\(b_j\)</span> 直观上表示机器在第 <span class="arithmatex">\(j\)</span> 条磁带上的动作。自然地，我们再次要求：如果对某个 <span class="arithmatex">\(j≤k\)</span> 有 <span class="arithmatex">\(a_j = \rhd\)</span>，则必须有 <span class="arithmatex">\(b_j = \rightarrow\)</span></p>
 <p>设 <span class="arithmatex">\(M = (K,Σ,δ,s,H)\)</span> 是一个 <span class="arithmatex">\(k\)</span>-tape 图灵机，<span class="arithmatex">\(M\)</span> 的 <strong>configuration</strong> 是 <span class="arithmatex">\(K \times (\rhd \Sigma^* \times (\Sigma^*(\Sigma-\lbrace \sqcup \rbrace) \cup \lbrace e\rbrace))^k\)</span> 的一个成员</p>
@@ -12242,6 +12294,90 @@
 <p>任何由 <span class="arithmatex">\(k\)</span>-磁带图灵机计算的函数，或由 <span class="arithmatex">\(k\)</span>-磁带图灵机判定（或半判定）的语言，也分别可以由一台标准图灵机计算、判定（或半判定）</p>
 </div>
 <h2 id="6-grammars">6 Grammars<a class="headerlink" href="#6-grammars" title="Permanent link">&para;</a></h2>
+<p>一个 <strong>grammar</strong>（或 <strong>unrestricted grammar</strong>，或 <strong>rewriting system</strong>）是一个四元组 <span class="arithmatex">\(G=(V,Σ,R,S)\)</span>，其中：</p>
+<ol>
+<li><span class="arithmatex">\(V\)</span> 是一个字母表</li>
+<li><span class="arithmatex">\(Σ⊆V\)</span> 是 <strong>terminal symbols</strong> 的集合，而 <span class="arithmatex">\(V−Σ\)</span> 被称为 <strong>nonterminal symbols</strong> 的集合</li>
+<li><span class="arithmatex">\(S∈V−Σ\)</span> 是 <strong>start symbol</strong></li>
+<li><span class="arithmatex">\(R\)</span>，即 <strong>rules</strong> 的集合，是 <span class="arithmatex">\((V^* (V−Σ)V^∗)×V^∗\)</span>的有限子集</li>
+</ol>
+<p>我们写作 <span class="arithmatex">\(u→v\)</span> 如果 <span class="arithmatex">\((u,v)∈R\)</span></p>
+<p>我们写作 <span class="arithmatex">\(u \Rightarrow_G v\)</span> 当且仅当，对于某些 <span class="arithmatex">\(w_1, w_2 \in V^*\)</span> 和某个规则 <span class="arithmatex">\(u' \rightarrow v' \in R\)</span>，有 <span class="arithmatex">\(u = w_1u'w_2\)</span> 且 <span class="arithmatex">\(v = w_1v'w_2\)</span></p>
+<p>通常，<span class="arithmatex">\(\Rightarrow^*_G\)</span> 是 <span class="arithmatex">\(\Rightarrow_G\)</span> 的自反传递闭包。一个字符串 <span class="arithmatex">\(w \in \Sigma^*\)</span> 由 <span class="arithmatex">\(G\)</span> 生成，当且仅当 <span class="arithmatex">\(S \Rightarrow_G^* w\)</span></p>
+<p>而 <span class="arithmatex">\(L(G)\)</span>，即由 <span class="arithmatex">\(G\)</span> 生成的语言，是由 <span class="arithmatex">\(G\)</span> 生成的所有 <span class="arithmatex">\(Σ^∗\)</span> 中字符串的集合</p>
+<p>我们也使用最初为上下文无关文法引入的其他术语；例如，一个 <strong>derivation</strong> 是一系列形式为 <span class="arithmatex">\(w_0 \Rightarrow_G w_1 \Rightarrow_G \cdots \Rightarrow_G w_n\)</span></p>
+<figure>
+  <img alt="Img 20" src="../../../../img/computational_theory/ch4/computational_ch4_img20.png" width="800" />
+</figure>
+<div class="admonition tip">
+<p>A language is generated by a grammar if and only if it is recursively enumerable</p>
+</div>
+<p>设 <span class="arithmatex">\(G=(V,Σ,R,S)\)</span> 是一个文法，且设 <span class="arithmatex">\(f:\Sigma^* \rightarrow \Sigma^*\)</span> 是一个函数。我们说 <span class="arithmatex">\(G\)</span> 计算 <span class="arithmatex">\(f\)</span>，如果对于所有 <span class="arithmatex">\(w,v\in \Sigma^*\)</span>，以下条件成立：<span class="arithmatex">\(SwS \Rightarrow^*_G v \text{ if and only if }v=f(w)\)</span></p>
+<p>也就是说，由输入字符串 <span class="arithmatex">\(w\)</span> 构成的字符串，其两边各有一个文法 <span class="arithmatex">\(G\)</span> 的开始符号 <span class="arithmatex">\(S\)</span>，经过推导后恰好生成一个在 <span class="arithmatex">\(\Sigma^*\)</span> 中的字符串：即 <span class="arithmatex">\(f(w)\)</span> 的正确值</p>
+<p>一个函数 <span class="arithmatex">\(f:\Sigma^* \rightarrow \Sigma^*\)</span> 被称为 <strong>grammatically computable</strong> ，当且仅当存在一个文法 <span class="arithmatex">\(G\)</span> 能够计算它</p>
+<div class="admonition tip">
+<p>A function <span class="arithmatex">\(f:\Sigma^* \rightarrow \Sigma^*\)</span> is recursive if and only if it is grammatically computable</p>
+</div>
+<h2 id="7-numerical-functions">7 Numerical Functions<a class="headerlink" href="#7-numerical-functions" title="Permanent link">&para;</a></h2>
+<p>我们首先定义一些从 <span class="arithmatex">\(N^k\)</span> 到 <span class="arithmatex">\(N\)</span> 的极其简单的函数，其中 <span class="arithmatex">\(k≥0\)</span>（一个 0 元函数当然就是一个常数，因为它没有任何依赖变量）。这些 <strong>basic functions</strong> 包括以下几种：</p>
+<ol>
+<li>对任意 <span class="arithmatex">\(k≥0\)</span>，<strong>k-ary zero function</strong> 定义为：<span class="arithmatex">\(zero_k(n_1,\cdots,n_k) = 0\)</span> 对所有 <span class="arithmatex">\(n_1,\cdots,n_k \in N\)</span> 成立</li>
+<li>对任意 <span class="arithmatex">\(k≥j&gt;0\)</span>，<strong>j th k-ary identity function</strong> 定义为：<span class="arithmatex">\(id_{k,j}(n_1,\cdots,n_k) = n_j\)</span> 对所有 <span class="arithmatex">\(n_1,\cdots,n_k \in N\)</span> 成立</li>
+<li><strong>successor function</strong> 定义为：<span class="arithmatex">\(succ(n)=n+1\)</span> 对所有 <span class="arithmatex">\(n∈N\)</span> 成立</li>
+</ol>
+<p>接下来，我们引入两种简单的方法，通过组合函数来构造稍微复杂一些的函数：</p>
+<ol>
+<li>设 <span class="arithmatex">\(k,ℓ≥0\)</span>，令 <span class="arithmatex">\(g:N^k\rightarrow N\)</span> 是一个 <span class="arithmatex">\(k\)</span> 元函数，且 <span class="arithmatex">\(h_1,\cdots,h_k\)</span> 是 <span class="arithmatex">\(ℓ\)</span> 元函数。那么，<span class="arithmatex">\(g\)</span> 与 <span class="arithmatex">\(h_1,\cdots,h_k\)</span> 的 <strong>composition</strong> 函数是一个 <span class="arithmatex">\(ℓ\)</span> 元函数，定义为：<span class="arithmatex">\(f(n_1,\cdots,n_ℓ)=g(h_1(n_1,\cdots,n_ℓ),\cdots,h_k(n_1,\cdots,n_ℓ))\)</span></li>
+<li>设 <span class="arithmatex">\(k≥0\)</span>，令 <span class="arithmatex">\(g\)</span> 是一个 <span class="arithmatex">\(k\)</span> 元函数，<span class="arithmatex">\(h\)</span> 是一个 <span class="arithmatex">\((k+2)\)</span> 元函数。那么，由 <span class="arithmatex">\(g\)</span> 和 <span class="arithmatex">\(h\)</span> <strong>recursively</strong> 定义的函数 <span class="arithmatex">\(f\)</span> 是一个 <span class="arithmatex">\((k+1)\)</span> 元函数，定义如下：<span class="arithmatex">\(f(n_1,\cdots,n_k, 0) = g(n_1,\cdots,n_k)\)</span>, <span class="arithmatex">\(f(n_1,\cdots,n_k, m+1) = h(n_1,\cdots,n_k,m,f(n_1,\cdots,n_k,m))\)</span> 对所有 <span class="arithmatex">\(n_1,\cdots,n_k,m \in N\)</span> 成立</li>
+</ol>
+<p><strong>primitive recursive functions</strong> 是指所有基本函数，以及通过任意多次应用复合和递归定义所得到的所有函数</p>
+<figure>
+  <img alt="Img 21" src="../../../../img/computational_theory/ch4/computational_ch4_img21.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 22" src="../../../../img/computational_theory/ch4/computational_ch4_img22.png" width="800" />
+</figure>
+<p>为了方便，我们将一个 <strong>primitive recursive predicate</strong> 定义为仅取值 0 或 1 的原始递归函数。直观上，一个原始递归谓词（如 <span class="arithmatex">\(\text{greater-than}(m,n)\)</span>）可以表达两个数 <span class="arithmatex">\(m\)</span> 和 <span class="arithmatex">\(n\)</span> 之间可能成立也可能不成立的关系。如果该关系成立，则原始递归谓词的值为 1；否则为 0</p>
+<figure>
+  <img alt="Img 23" src="../../../../img/computational_theory/ch4/computational_ch4_img23.png" width="800" />
+</figure>
+<p>此外，如果 <span class="arithmatex">\(f\)</span> 和 <span class="arithmatex">\(g\)</span> 是原始递归函数，<span class="arithmatex">\(p\)</span> 是一个原始递归谓词，且三者具有相同的元数 <span class="arithmatex">\(k\)</span>，那么 <strong>function defined by cases</strong></p>
+<div class="arithmatex">\[
+f(n_1,\cdots,n_k) = 
+\begin{cases}
+    g(n_1,\cdots,n_k), &amp;\text{if }p(n_1,\cdots,n_k)\\
+    h(n_1,\cdots,n_k), &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<p>也是原始递归的，因为它可以重写为：<span class="arithmatex">\(f(n_1,\cdots,n_k) = p(n_1,\cdots,n_k)g(n_1,\cdots,n_k) + (1 \sim p(n_1,\cdots,n_k))h(n_1,\cdots,n_k)\)</span></p>
+<figure>
+  <img alt="Img 24" src="../../../../img/computational_theory/ch4/computational_ch4_img24.png" width="800" />
+</figure>
+<figure>
+  <img alt="Img 25" src="../../../../img/computational_theory/ch4/computational_ch4_img25.png" width="800" />
+</figure>
+<p>设 <span class="arithmatex">\(g\)</span> 是一个 <span class="arithmatex">\((k+1)\)</span> 元函数，其中 <span class="arithmatex">\(k≥0\)</span>。函数 <span class="arithmatex">\(g\)</span> 的 <strong>minimalization</strong> 是一个 <span class="arithmatex">\(k\)</span> 元函数 <span class="arithmatex">\(f\)</span>，定义如下：</p>
+<div class="arithmatex">\[
+f(n_1,\cdots,n_k) = 
+\begin{cases}
+    \text{the least }m\text{ such that }g(n_1,\cdots,n_k, m) = 1, &amp; \text{if such an }m\text{ exists}\\
+    0 &amp; \text{otherwise}
+\end{cases}
+\]</div>
+<p>我们将用符号 <span class="arithmatex">\(μm[g(n_1,\cdots,n_k,m)=1]\)</span> 表示 <span class="arithmatex">\(g\)</span> 的最小化</p>
+<p>尽管一个函数 <span class="arithmatex">\(g\)</span> 的最小化总是有良好定义的，但目前并没有明显的方法来计算它，即使我们知道如何计算 <span class="arithmatex">\(g\)</span>。显然的方法是：</p>
+<div class="language-c highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nl">m</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="k">while</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="n">n₁</span><span class="p">,</span><span class="w"> </span><span class="p">...,</span><span class="w"> </span><span class="n">nₖ</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"> </span><span class="err">≠</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">output</span><span class="w"> </span><span class="n">m</span>
+</span></code></pre></div></td></tr></table></div>
+<p>但这不是一个算法，因为它可能无法终止</p>
+<p>因此，我们称一个函数 <span class="arithmatex">\(g\)</span> 是 <strong>minimalizable</strong> ，当且仅当上述方法总是能终止。也就是说，一个 <span class="arithmatex">\((k+1)\)</span> 元函数 g 是可最小化的，当且仅当它具有以下性质：对于每一个 <span class="arithmatex">\(n_1,\cdots,n_k\in N\)</span>，都存在某个 <span class="arithmatex">\(m∈N\)</span>，使得 <span class="arithmatex">\(g(n_1,\cdots,n_k,m)=1\)</span></p>
+<p>最后，我们称一个函数为 <strong><span class="arithmatex">\(\mu\)</span>-recursive</strong> ，如果它可以通过基本函数，经由复合、递归定义以及对可最小化函数的最小化操作而得到</p>
+<div class="admonition tip">
+<p>A function <span class="arithmatex">\(f:N^k \mapsto N\)</span> is <span class="arithmatex">\(\mu\)</span>-recursive if and only if it is recursive (that is, computable by a Turing machine)</p>
+</div>
 
 
 
@@ -12264,7 +12400,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月10日 02:25:19 UTC">2025年12月10日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月16日 07:14:40 UTC">2025年12月16日</span>
   </span>
 
     
@@ -12396,13 +12532,13 @@
         
         
           
-          <a href="../../operating_system/" class="md-footer__link md-footer__link--next" aria-label="下一页: 操作系统">
+          <a href="../ch5/" class="md-footer__link md-footer__link--next" aria-label="下一页: 5 Undecidability">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                操作系统
+                5 Undecidability
               </div>
             </div>
             <div class="md-footer__button md-icon">
