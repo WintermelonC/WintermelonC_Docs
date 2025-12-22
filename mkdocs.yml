@@ -244,6 +244,7 @@ nav:
         - 11 Future and Asynchronous Programming: zju/module_courses/java_application/ch11.md
         - 12 JMM and Troubleshooting: zju/module_courses/java_application/ch12.md
         - 13 Virtual Thread and Reactive: zju/module_courses/java_application/ch13.md
+        - 14 Socket: zju/module_courses/java_application/ch14.md
       - B/S 体系软件设计:
         - zju/module_courses/BS_software_design/index.md
       - 密码学:
