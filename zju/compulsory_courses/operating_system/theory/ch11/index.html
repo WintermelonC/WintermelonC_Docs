@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch10/">
       
       
-        <link rel="next" href="../../lab/ch1/">
+        <link rel="next" href="../ch12/">
       
       
         
@@ -6633,6 +6633,8 @@
       
         
       
+        
+      
     
     
     
@@ -7150,6 +7152,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12 Mass storage Systems
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -12117,10 +12147,10 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="11-file-system-implementation">11 File System Implementation<a class="headerlink" href="#11-file-system-implementation" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -12311,6 +12341,40 @@
 <p>这些管理结构不能只存在于内存中，必须写入磁盘持久存储。系统运行时，为了提高性能，通常会在内存中保留这些管理结构的缓存副本。这就导致可能出现内存副本与磁盘副本不一致的情况</p>
 </div>
 <h2 id="6-efficiency-and-performance">6 Efficiency and Performance<a class="headerlink" href="#6-efficiency-and-performance" title="Permanent link">&para;</a></h2>
+<p>efficiency 取决于</p>
+<ol>
+<li>磁盘分配策略和目录管理算法，它们决定了文件如何存储和组织</li>
+<li>目录条目中记录的信息类型，例如是否记录最后修改时间等元数据，这些信息会影响文件检索和管理的效率</li>
+</ol>
+<p>performance：</p>
+<ol>
+<li>disk cache：在内存中开辟一块区域，用于缓存频繁访问的磁盘块，减少物理磁盘 I/O，加速访问</li>
+<li>free-behind and read-ahead（延迟释放与预读）：延迟释放指读完一块数据后不立即释放缓存，因为后续很可能继续访问；预读指在访问当前块时提前将下一块读入缓存</li>
+<li>RAM disk（或称虚拟磁盘）：将一部分内存模拟成硬盘使用，由于内存速度远高于磁盘，可显著提升读写性能，适用于临时文件或高频繁读写场景</li>
+</ol>
+<p>page cache：缓存的是内存页（通常由虚拟内存系统管理），而非物理磁盘块。依赖于虚拟内存技术，将文件部分映射到进程的地址空间。主要用于内存映射 I/O：文件被映射到进程虚拟地址空间，读写操作直接作用于内存页，由操作系统在后台完成与磁盘的同步</p>
+<p>buffer cache / disk cache：缓存的是磁盘块（或文件系统块），是块级别的缓存。用于传统的、通过文件系统 API（如 read(), write()）进行的常规 I/O 操作</p>
+<figure>
+    <img alt="Img 13" src="../../../../../img/operating_system/ch11/os_ch11_img13.png" width="600" />
+</figure>
+<p>unified buffer cache（统一缓存系统）：将原来分离的页缓存（用于内存映射 I/O）和缓冲区缓存（用于常规文件 I/O）合并为一个统一的缓存系统。所有文件数据，无论是通过内存映射访问还是通过 read() / write() 系统调用访问，都存储在同一个缓存池中</p>
+<p>在非统一缓存系统中，同一个文件数据可能同时存在于页缓存和缓冲区缓存中，导致内存浪费和缓存不一致问题。统一缓存后，同一份文件数据在内存中只有一份副本，既节省了内存，又保证了数据一致性</p>
+<figure>
+    <img alt="Img 14" src="../../../../../img/operating_system/ch11/os_ch11_img14.png" width="600" />
+</figure>
+<figure>
+    <img alt="Img 15" src="../../../../../img/operating_system/ch11/os_ch11_img15.png" width="600" />
+</figure>
+<div class="admonition example">
+<p class="admonition-title">WAFL File System</p>
+<p>由 NetApp 公司开发，主要用于其 Filers 系列分布式文件系统存储设备。是一个支持多协议的文件系统，可同时提供 NFS、CIFS、HTTP 与 FTP 服务</p>
+<ol>
+<li>write-anywhere file layout（任意位置写入布局）：允许在磁盘的任何空闲位置写入数据块，避免原地覆盖，利于写操作优化和快照创建</li>
+<li>随机 I/O 与写入优化：通过数据结构和算法优化，提升随机读写性能，尤其注重写入效率</li>
+<li>使用 NVRAM（非易失性内存）作为写入缓存：写入操作先写入 NVRAM（闪存），确保数据持久性并提升写入速度，之后批量、高效地写入磁盘</li>
+</ol>
+<p>设计基础来源于 Berkeley Fast File System（FFS），但在布局、缓存、快照等方面做了大量改进，以适应企业级网络存储的需求</p>
+</div>
 
 
 
@@ -12333,7 +12397,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月22日 03:25:52 UTC">2025年12月22日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月22日 08:24:58 UTC">2025年12月22日</span>
   </span>
 
     
@@ -12465,13 +12529,13 @@
         
         
           
-          <a href="../../lab/ch1/" class="md-footer__link md-footer__link--next" aria-label="下一页: 1 Linux">
+          <a href="../ch12/" class="md-footer__link md-footer__link--next" aria-label="下一页: 12 Mass storage Systems">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                1 Linux
+                12 Mass storage Systems
               </div>
             </div>
             <div class="md-footer__button md-icon">
