@@ -32,4 +32,6 @@ Homework 和 quiz 只要做了就有分数，不管做得怎么样
 [3 The Data Link Layer](./ch3.md)<br/>
 [4 The Medium Access Control Sublayer](./ch4.md)<br/>
 [5 The Network Layer](./ch5.md)<br/>
-[6 Transport Layer](./ch6.md)
+[6 Transport Layer](./ch6.md)<br/>
+[7 Application Layer](./ch7.md)<br/>
+[8 Network Security](./ch8.md)
