@@ -219,11 +219,11 @@ both derivations can be pictured as in ^^Figure 3-2^^
 
 ## 4 Pushdown Automata and Context-Free Grammars
 
-!!! tip ""
+!!! tip "Theorem 3.4.1"
 
     由下推自动机接受的语言类恰好是上下文无关语言类
 
-!!! tip ""
+!!! tip "Lemma 3.4.1"
 
     每个上下文无关语言都被某个下推自动机接受
 
@@ -237,7 +237,7 @@ both derivations can be pictured as in ^^Figure 3-2^^
   ![Img 12](../../../img/computational_theory/ch3/computational_ch3_img12.png){ width="800" }
 </figure>
 
-!!! tip ""
+!!! tip "Lemma 3.4.2"
 
     如果一个语言被一个下推自动机接受，那么它就是一个上下文无关语言
 
