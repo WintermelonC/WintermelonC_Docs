@@ -290,32 +290,153 @@ A **configuration** of a Turing machine $M = (K,\Sigma,\delta,s,H)$ is a member 
 
 ## 7 Numerical Functions
 
-我们首先定义一些从 $N^k$ 到 $N$ 的极其简单的函数，其中 $k≥0$（一个 0 元函数当然就是一个常数，因为它没有任何依赖变量）。这些 **basic functions** 包括以下几种：
+!!! quote "课本原文 AI 翻译"
 
-1. 对任意 $k≥0$，**k-ary zero function** 定义为：$zero_k(n_1,\cdots,n_k) = 0$ 对所有 $n_1,\cdots,n_k \in N$ 成立
-2. 对任意 $k≥j>0$，**j th k-ary identity function** 定义为：$id_{k,j}(n_1,\cdots,n_k) = n_j$ 对所有 $n_1,\cdots,n_k \in N$ 成立
-3. **successor function** 定义为：$succ(n)=n+1$ 对所有 $n∈N$ 成立
+    让我们现在采用一种完全不同的计算观点，这种观点不基于任何明确的计算或信息处理形式化体系（例如图灵机或文法），而是专注于需要计算的内容：从数字到数字的函数。例如，显然对于任意给定的 $m$ 和 $n$ 值，函数 $f(m,n)=m\cdot n^2+3\cdot m^{2\cdot m + 17}$ 都可以被计算出来，因为它是可计算函数——加法、乘法和幂运算，再加上一些常数——的组合。那么我们如何知道幂运算可以被计算呢？因为它可以通过一个更简单的函数（即乘法）以及较小参数下的值来递归定义。毕竟，当 $n = 0$ 时，$m^n=1$；否则，$m^n=m\cdot m^{n-1}$。而乘法本身也可以通过加法递归地定义——依此类推
 
-接下来，我们引入两种简单的方法，通过组合函数来构造稍微复杂一些的函数：
+    从原理上讲，我们应该 **从自然数到自然数** 的函数开始，这些函数非常简单，以至于它们毫无疑问是可计算的（例如恒等函数和后继函数 $succ(n)=n+1）$，然后通过一些同样非常基础且显然可计算的组合方式（如函数复合和递归定义），缓慢而耐心地将它们组合起来，最终得到一类既广泛又非平凡的从数字到数字的函数。在本节中，我们将进行这一练习。值得注意的是，这样定义的“计算”概念将被证明与本章其他方法（如图灵机、其变体以及文法）所达到的概念完全一致，尽管这些方法在精神、范围和细节上都大相径庭
 
-1. 设 $k,ℓ≥0$，令 $g:N^k\rightarrow N$ 是一个 $k$ 元函数，且 $h_1,\cdots,h_k$ 是 $ℓ$ 元函数。那么，$g$ 与 $h_1,\cdots,h_k$ 的 **composition** 函数是一个 $ℓ$ 元函数，定义为：$f(n_1,\cdots,n_ℓ)=g(h_1(n_1,\cdots,n_ℓ),\cdots,h_k(n_1,\cdots,n_ℓ))$
-2. 设 $k≥0$，令 $g$ 是一个 $k$ 元函数，$h$ 是一个 $(k+2)$ 元函数。那么，由 $g$ 和 $h$ **recursively** 定义的函数 $f$ 是一个 $(k+1)$ 元函数，定义如下：$f(n_1,\cdots,n_k, 0) = g(n_1,\cdots,n_k)$, $f(n_1,\cdots,n_k, m+1) = h(n_1,\cdots,n_k,m,f(n_1,\cdots,n_k,m))$ 对所有 $n_1,\cdots,n_k,m \in N$ 成立
+!!! info "Definition 4.7.1"
 
-**primitive recursive functions** 是指所有基本函数，以及通过任意多次应用复合和递归定义所得到的所有函数
+    我们首先定义一些从 $N^k$ 到 $N$ 的极其简单的函数，其中 $k≥0$（一个 0 元函数当然就是一个常数，因为它没有任何依赖变量）。这些 **basic functions** 包括以下几种：
+    
+    1. 对任意 $k≥0$，**k-ary zero function** 定义为：$zero_k(n_1,\cdots,n_k) = 0$ 对所有 $n_1,\cdots,n_k \in N$ 成立
+    2. 对任意 $k≥j>0$，**j th k-ary identity function** 定义为：$id_{k,j}(n_1,\cdots,n_k) = n_j$ 对所有 $n_1,\cdots,n_k \in N$ 成立
+    3. **successor function** 定义为：$succ(n)=n+1$ 对所有 $n∈N$ 成立
+    
+    接下来，我们引入两种简单的方法，通过组合函数来构造稍微复杂一些的函数：
+    
+    (1) 设 $k,ℓ≥0$，令 $g:N^k\rightarrow N$ 是一个 $k$ 元函数，且 $h_1,\cdots,h_k$ 是 $ℓ$ 元函数。那么，$g$ 与 $h_1,\cdots,h_k$ 的 **composition** 函数是一个 $ℓ$ 元函数，定义为：$f(n_1,\cdots,n_ℓ)=g(h_1(n_1,\cdots,n_ℓ),\cdots,h_k(n_1,\cdots,n_ℓ))$
 
-<figure markdown="span">
-  ![Img 21](../../../img/computational_theory/ch4/computational_ch4_img21.png){ width="800" }
-</figure>
+    (2) 设 $k≥0$，令 $g$ 是一个 $k$ 元函数，$h$ 是一个 $(k+2)$ 元函数。那么，由 $g$ 和 $h$ **recursively** 定义的函数 $f$ 是一个 $(k+1)$ 元函数，定义如下：
 
-<figure markdown="span">
-  ![Img 22](../../../img/computational_theory/ch4/computational_ch4_img22.png){ width="800" }
-</figure>
+    $$
+    \begin{aligned}
+        f(n_1,\cdots,n_k, 0) & = g(n_1,\cdots,n_k) \\
+        f(n_1,\cdots,n_k, m+1) & = h(n_1,\cdots,n_k,m,f(n_1,\cdots,n_k,m))
+    \end{aligned}
+    $$
+
+    对所有 $n_1,\cdots,n_k,m \in N$ 成立
+    
+    **primitive recursive functions** 是指所有基本函数，以及通过任意多次应用复合和递归定义所得到的所有函数
+
+!!! example "$plus2(n) = n + 2$"
+
+    $plus2$ 是原始递归函数
+
+    $plus2(n) = succ(succ(n))$
+
+!!! example "$plus(m, n) = m + n$"
+
+    $$
+    \begin{aligned}
+        plus(m,0) & = m \\
+        plus(m,n+1) & = succ(plus(m,n))
+    \end{aligned}
+    $$
+
+!!! example "$mult(m, n) = m \cdot n$"
+
+    $$
+    \begin{aligned}
+        mult(m,0) & = zero(m) \\
+        mult(m,n+1) & = plus(m,mult(m,n))
+    \end{aligned}
+    $$
+
+!!! example "$exp(m, n) = m^n$"
+
+    $$
+    \begin{aligned}
+        exp(m,0) & = succ(zero(m)) \\
+        exp(m,n+1) & = mult(m,exp(m,n))
+    \end{aligned}
+    $$
+
+!!! example "constant functions"
+
+    所有常数函数都是原始递归的，因为它们可以通过将一个适当的零函数与后继函数复合得到
+
+    例如 $f(n_1,\cdots,n_k) = 17$ 需要复合 17 次
+
+!!! example "$sgn(n)$"
+
+    $$
+    \begin{aligned}
+        sgn(0) & = 0 \\
+        sgn(n+1) & = 1
+    \end{aligned}
+    $$
+
+为了提高可读性，使用
+
+1. $m+n$ 代替 $plus(m,n)$
+2. $m⋅n$ 代替 $mult(m,n)$
+3. $m↑n$ 代替 $exp(m,n)$
+
+因此，像 $m\cdot(n+m^2)+178^m$ 这样的数值函数也是原始递归的，因为它们是通过上述基本函数经过连续复合得到的
+
+由于我们限定在自然数范围内，无法实现真正的减法和除法。然而，我们可以定义一些有用的类似函数
+
+$m\sim n = \max\lbrace m-n,0\rbrace$
+
+定义 predecessor（前驱）函数：
+
+$$
+\begin{aligned}
+    pred(0) & = 0 \\
+    pred(n+1) & = n
+\end{aligned}
+$$
+
+由此我们可以得到非负减法函数：
+
+$$
+\begin{aligned}
+    m\sim 0 & = m \\
+    m\sim n + 1 & = pred(m\sim n)
+\end{aligned}
+$$
+
+很明显，对于给定的参数值，我们可以计算任意原始递归函数的值。同样显而易见的是，我们可以判断关于数字的断言是否成立，例如：$m⋅n>m^2+n+7$，对于任意给定的 $m$ 和 $n$ 值
 
 为了方便，我们将一个 **primitive recursive predicate** 定义为仅取值 0 或 1 的原始递归函数。直观上，一个原始递归谓词（如 $\text{greater-than}(m,n)$）可以表达两个数 $m$ 和 $n$ 之间可能成立也可能不成立的关系。如果该关系成立，则原始递归谓词的值为 1；否则为 0
 
-<figure markdown="span">
-  ![Img 23](../../../img/computational_theory/ch4/computational_ch4_img23.png){ width="800" }
-</figure>
+!!! example "原始递归谓词"
+
+    函数 $iszero$：当 $n=0$ 时值为 $1$，当 $n>0$ 时值为 $0$，是一个原始递归谓词，其递归定义如下：
+
+    $$
+    \begin{aligned}
+        iszero(0) & = 1 \\
+        iszero(m+1) & = 0
+    \end{aligned}
+    $$
+
+    类似地，有函数 $isone$
+
+    $$
+    \begin{aligned}
+        isone(0) & = 0 \\
+        isone(n+1) & = iszero(n)
+    \end{aligned}
+    $$
+
+    $positive(n)$ 与之前定义的 $sgn(n)$ 是相同的
+
+    不小于关系 $\text{greater-than-or-equal}(m,n)$（记作 $m≥n$）可以定义为 $iszero(n∼m)$
+
+    它的 negation（否定），即小于关系 $\text{less-than}(m,n)$，自然就是 $1∼\text{greater-than-or-equal}(m,n)$
+
+一般来说，任意原始递归谓词的否定仍然是一个原始递归谓词。事实上，两个原始递归谓词的 disjunction 和合取 conjunction 也是原始递归谓词：
+
+- $p(m,n)\ or\ q(m,n) = 1 \sim iszero(p(m,n) + q(m,n))$
+- $p(m,n)\ and\ q(m,n) = 1 \sim iszero(p(m,n) \cdot q(m,n))$
+
+!!! example "$equals(m,n)$"
+
+    相等谓词 $equals(m,n)$ 可以定义为 $\text{greater-than-or-equal}(m,n)$ 和 $\text{greater-than-or-equal}(n,m)$ 的 conjunction
 
 此外，如果 $f$ 和 $g$ 是原始递归函数，$p$ 是一个原始递归谓词，且三者具有相同的元数 $k$，那么 **function defined by cases**
 
@@ -329,44 +450,105 @@ $$
 
 也是原始递归的，因为它可以重写为：$f(n_1,\cdots,n_k) = p(n_1,\cdots,n_k)g(n_1,\cdots,n_k) + (1 \sim p(n_1,\cdots,n_k))h(n_1,\cdots,n_k)$
 
-<figure markdown="span">
-  ![Img 24](../../../img/computational_theory/ch4/computational_ch4_img24.png){ width="800" }
-</figure>
+!!! example "$rem(m,n)$"
 
-<figure markdown="span">
-  ![Img 25](../../../img/computational_theory/ch4/computational_ch4_img25.png){ width="800" }
-</figure>
+    $$
+    \begin{aligned}
+        rem(0,n) & = 0 \\
+        rem(m+1,n) & = \begin{cases}
+            0 & \text{if }equal(rem(m,n),pred(n))\\
+            rem(m,n)+1 & otherwise
+        \end{cases}
+    \end{aligned}
+    $$
 
-设 $g$ 是一个 $(k+1)$ 元函数，其中 $k≥0$。函数 $g$ 的 **minimalization** 是一个 $k$ 元函数 $f$，定义如下：
+!!! example "$div(m,n)$"
 
-$$
-f(n_1,\cdots,n_k) = 
-\begin{cases}
-    \text{the least }m\text{ such that }g(n_1,\cdots,n_k, m) = 1, & \text{if such an }m\text{ exists}\\
-    0 & \text{otherwise}
-\end{cases}
-$$
+    $$
+    \begin{aligned}
+        div(0,n) & = 0 \\
+        div(m+1,n) & = \begin{cases}
+            div(m,n)+1 & \text{if }equal(rem(m,n),pred(n))\\
+            div(m,n) & otherwise
+        \end{cases}
+    \end{aligned}
+    $$
 
-我们将用符号 $μm[g(n_1,\cdots,n_k,m)=1]$ 表示 $g$ 的最小化
+!!! example "$digit(m,n,p)$"
 
-尽管一个函数 $g$ 的最小化总是有良好定义的，但目前并没有明显的方法来计算它，即使我们知道如何计算 $g$。显然的方法是：
+    $digit(m,n,p)$ 表示数 $n$ 在以 $p$ 为底的进制表示中，从右往左数第 $m$ 个最低位数字。它也是原始递归函数
 
-```c linenums="1"
-m := 0;
-while g(n₁, ..., nₖ, m) ≠ 1 do m := m + 1;
-output m
-```
+    $div(rem(n,p\uparrow m), p \uparrow (m-1))$
 
-但这不是一个算法，因为它可能无法终止
+!!! example "$odd(n)$"
 
-因此，我们称一个函数 $g$ 是 **minimalizable** ，当且仅当上述方法总是能终止。也就是说，一个 $(k+1)$ 元函数 $g$ 是可最小化的，当且仅当它具有以下性质：对于每一个 $n_1,\cdots,n_k\in N$，都存在某个 $m∈N$，使得 $g(n_1,\cdots,n_k,m)=1$
+    谓词 $odd(n) = digit(1,n,2)$
 
-最后，我们称一个函数为 **$\mu$-recursive** ，如果它可以通过基本函数，经由复合、递归定义以及对可最小化函数的最小化操作而得到
+!!! example "$sum_f(n,m)$"
 
-<figure markdown="span">
-  ![Img 26](../../../img/computational_theory/ch4/computational_ch4_img26.png){ width="800" }
-</figure>
+    如果 $f(n,m)$ 是一个原始递归函数，那么和函数 $sum_f(n,m)=f(n,0) + f(n,1) + \cdots + f(n,m)$ 也是原始递归的，因为它可以递归地定义为：
 
-!!! tip ""
+    $$
+    \begin{aligned}
+        sum_f(n,0) & = 0 \\
+        sum_f(n,m+1) & = sum_f(n,m) + f(n,m+1)
+    \end{aligned}
+    $$
+
+    我们也可以用类似方式定义谓词的 unbounded conjunctions 和 unbounded disjunctions。例如，如果 $p(n,m)$ 是一个谓词，那么析取式 $p(n,0)\ or\ p(n,1)\ or\ p(n,2)\ or\cdots or\ p(n,m)$ 就等价于 $sgn(sum_p(n,m))$
+
+显然，从定义 4.7.1 中极其简单的初始材料出发，我们可以证明许多相当复杂的函数是原始递归的。然而，原始递归函数并不能涵盖所有我们认为合理可计算的函数。这一点最好通过对角化论证（diagonalization argument）来说明：
+
+!!! example "Example 4.7.5"
+
+    > TODO
+
+!!! quote "课本原文 AI 翻译"
+
+    显然，任何试图定义函数以涵盖所有我们合理称之为“可计算”的内容的方法，都不能仅仅依赖于诸如函数复合和递归定义这类简单操作——这些操作所产生的函数总是能够被明确识别并枚举出来。因此，我们发现了一个关于计算形式化体系的有趣事实：任何其成员（即计算装置）具有“自明性”（self-evident）的形式化体系（也就是说，给定一个字符串，我们可以轻易判断它是否编码了一个该形式化体系中的计算装置），要么过于弱小（例如有限状态自动机和原始递归函数），要么过于宽泛以至于在实践中毫无用处（例如图灵机，它在某些输入上可能不会停止）。任何能够精确捕捉所有可计算函数、且仅包含这些函数的形式化体系，都必须包含一些“非自明性”的函数（正如我们无法轻易判断一台图灵机在所有输入上是否会停止，从而决定某个语言一样）。事实上，接下来我们将定义一种更微妙的函数操作，它对应于我们熟悉的计算基本原语——无界迭代（unbounded iteration），即通常所说的“while 循环”。正如我们即将看到的，无界迭代确实引入了结果可能不是一个函数的可能性
+
+!!! info "Definition 4.7.2"
+
+    设 $g$ 是一个 $(k+1)$ 元函数，其中 $k≥0$。函数 $g$ 的 **minimalization** 是一个 $k$ 元函数 $f$，定义如下：
+    
+    $$
+    f(n_1,\cdots,n_k) = 
+    \begin{cases}
+        \text{the least }m\text{ such that }g(n_1,\cdots,n_k, m) = 1, & \text{if such an }m\text{ exists}\\
+        0 & \text{otherwise}
+    \end{cases}
+    $$
+    
+    我们将用符号 $μ\ m[g(n_1,\cdots,n_k,m)=1]$ 表示 $g$ 的最小化
+    
+    尽管一个函数 $g$ 的最小化总是有良好定义的，但目前并没有明显的方法来计算它，即使我们知道如何计算 $g$。显然的方法是：
+    
+    ```c linenums="1"
+    m := 0;
+    while g(n₁, ..., nₖ, m) ≠ 1 do m := m + 1;
+    output m
+    ```
+    
+    但这不是一个算法，因为它可能无法终止
+    
+    因此，我们称一个函数 $g$ 是 **minimalizable** ，当且仅当上述方法总是能终止。也就是说，一个 $(k+1)$ 元函数 $g$ 是可最小化的，当且仅当它具有以下性质：对于每一个 $n_1,\cdots,n_k\in N$，都存在某个 $m∈N$，使得 $g(n_1,\cdots,n_k,m)=1$
+    
+    最后，我们称一个函数为 **$\mu$-recursive** ，如果它可以通过基本函数，经由复合、递归定义以及对可最小化函数的最小化操作而得到
+
+!!! example "$\log(m,n)$"
+
+    利用最小化操作，我们可以定义对数函数：$log(m,n)$ 是使 $m+2$ 的幂至少达到 $n+1$ 的最小幂次，即 $\log(m,n)=⌊\log_{m+2}(n+1)⌋$（在定义中使用 $m+2$ 和 $n+1$ 作为参数，是为了避免在 $m≤1$ 或 $n=0$ 时出现数学上的错误）
+
+    该函数定义如下：$\log(m,n) = \mu\ p[\text{greater-than-or-equal}((m+2)\uparrow p, n+1)]$
+
+    这是一个合法的 $μ$-递归函数定义，因为函数 $g(m,n,p)=\text{greater-than-or-equal}((m+2)↑p,n+1)$ 是可最小化的：事实上，对于任意 $m,n≥0$，总存在某个 $p≥0$，使得 $(m+2)^p \geqslant n$ —— 因为将大于等于 2 的整数不断取更高次幂，可以得到任意大的整数
+
+!!! tip "Theorem 4.7.1"
 
     A function $f:N^k \mapsto N$ is $\mu$-recursive if and only if it is recursive (that is, computable by a Turing machine)
+
+    一个函数 $f:N^k \mapsto N$ 是 $μ$-递归的 $\iff$ 它是递归的（即，可以用图灵机计算）
+
+    !!! success "Proof"
+
+        > TODO
