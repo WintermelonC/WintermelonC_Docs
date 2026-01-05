@@ -176,7 +176,7 @@ critical section problem：当多个进程或线程需要共享资源（如数�
 
     1. mutual exclusion：满足。每次进入临界区之前，都会检查对方的 `flag` 是否为 `true`，两个进程不会同时进入临界区
     2. progress：不满足。如果 Pi 执行了 `flag[i] = true`，Pj 执行了 `flag[j] = true`，那么两个进程都会卡在 `while` 循环当中
-    3. bounded waiting：不满足。Pi 退出 CS 后立即又想进入，执行 `flag[i] = true`，此时 P1 可能还没进入 CS（还在执行 remainder 或刚要检查 `flag[i]`）。如果 Pi 总是能抢先设置 `flag[i] = true` 并检查 `flag[j]` 为 `false`，那么 Pj 可能饥饿
+    3. bounded waiting：不满足。Pi 退出 CS 后立即又想进入，执行 `flag[i] = true`，此时 Pj 可能还没进入 CS（还在执行 remainder 或刚要检查 `flag[i]`）。如果 Pi 总是能抢先设置 `flag[i] = true` 并检查 `flag[j]` 为 `false`，那么 Pj 可能饥饿
 
 !!! example "Algorithm 3"
 
@@ -1024,8 +1024,6 @@ if (x-count > 0) {  // 检查是否有进程在条件变量 x 上等待
 4. 当进程 B 退出监控器时，会唤醒在 `next` 上等待的进程 A
 5. 进程 A 恢复执行
 
-> 进程 A 调用 `x.signal()` 时，监控器锁在 A 身上，之后唤醒进程 B 并挂起自己，锁是否依然在 A 身上？进程 B 是如何获得监控器锁的呢？没搞明白
-
 ??? example "监控器工作流程"
 
     假设有一个大小为 1 的缓冲区，使用监控器来同步生产者和消费者
@@ -1075,8 +1073,6 @@ if (x-count > 0) {  // 检查是否有进程在条件变量 x 上等待
         ```
 
     !!! tip "步骤 3"
-
-        > 上面的疑问依旧没解决
 
         C 被唤醒，执行 `not_empty_count--`，之后继续执行 `consume()`
 
