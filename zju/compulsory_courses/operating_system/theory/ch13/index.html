@@ -12211,10 +12211,10 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="13-io-systems">13 I/O Systems<a class="headerlink" href="#13-io-systems" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -12492,7 +12492,42 @@
 <p>所有 I/O 操作必须通过操作系统提供的安全接口来执行。内存映射 I/O 区域、I/O 端口空间、内存管理单元（MMU）也需要受到保护</p>
 </div>
 <h2 id="4-transforming-io-requests-to-hardware-operations">4 Transforming I/O Requests to Hardware Operations<a class="headerlink" href="#4-transforming-io-requests-to-hardware-operations" title="Permanent link">&para;</a></h2>
+<p>如何将一个读取文件的 I/O 请求（软件层面的操作）转换为底层具体：</p>
+<ol>
+<li>逻辑定位：首先，操作系统需要根据进程提供的文件名，确定文件实际存储在哪个物理设备上。这涉及到解析文件路径和查询系统数据结构</li>
+<li>设备映射：将用户友好的文件名或路径，翻译成操作系统内核能理解的、针对特定硬件控制器和存储位置的内部表示</li>
+<li>物理操作：操作系统通过设备驱动程序，向磁盘控制器发出具体的读写命令。控制器则操作磁盘臂移动、盘片旋转，最终将指定扇区上的数据读取出来，并传输到系统内存的缓冲区中</li>
+<li>数据交付：数据从内核缓冲区复制到用户进程指定的内存空间，使其可供进程使用</li>
+<li>控制权返还：I/O 操作完成（可能通过中断通知），操作系统将 CPU 控制权交还给发起请求的进程，进程从等待 I/O 的阻塞状态恢复继续执行</li>
+</ol>
+<figure>
+    <img alt="Img 10" src="../../../../../img/operating_system/ch13/os_ch13_img10.png" width="600" />
+</figure>
 <h2 id="5-performance">5 Performance<a class="headerlink" href="#5-performance" title="Permanent link">&para;</a></h2>
+<p>I/O 操作是影响计算机系统整体性能的关键瓶颈</p>
+<ol>
+<li>CPU 开销：CPU 需要花费时间周期来运行设备驱动程序和操作系统内核中的 I/O 管理代码，以初始化、控制和结束 I/O 操作</li>
+<li>上下文切换负担：当 I/O 设备完成操作（如数据读完）时，会通过硬件中断通知 CPU。CPU 必须暂停当前任务（保存其上下文），转去处理中断服务程序，然后再恢复原任务。这种频繁的上下文切换会消耗大量 CPU 时间，降低有效工作量</li>
+<li>数据拷贝开销：数据通常需要在不同内存区域间多次移动。例如，从设备缓冲区拷贝到内核空间，再从内核空间拷贝到用户进程空间。这些内存拷贝操作消耗 CPU 周期和内存带宽</li>
+<li>网络流量的特殊压力：相比本地 I/O（如磁盘），网络 I/O 对性能影响更大，因为它引入了额外的延迟（网络传输时间）、协议处理开销（如 TCP/IP 栈），以及更高的不确定性和拥塞可能性</li>
+</ol>
+<p>优化策略：</p>
+<ol>
+<li>减少上下文切换次数：目标是降低因频繁 I/O 中断和处理而导致的 CPU 状态保存与恢复开销。可通过改进 I/O 调度、使用异步 I/O 模型或批处理请求来实现</li>
+<li>减少数据拷贝：避免数据在内核缓冲区与用户缓冲区之间不必要的复制。零拷贝技术是典型代表，它允许数据直接从设备缓冲区传输到用户空间，或通过网络接口卡直接发送，大幅节省 CPU 周期和内存带宽</li>
+<li>
+<p>减少中断：</p>
+<ol>
+<li>大块传输：一次性传输更多数据，减少中断触发频率（例如，不再每个字节中断一次，而是每 1KB 数据中断一次）</li>
+<li>智能控制器：使设备控制器具备一定处理能力（如打包/解包数据），能在准备就绪更多数据后再通知 CPU</li>
+<li>轮询：在特定场景下，CPU 可以主动、周期性地检查设备状态，避免中断开销，但这可能增加 CPU 空转消耗</li>
+</ol>
+</li>
+<li>
+<p>使用 DMA：这是最关键的硬件辅助优化。DMA 控制器允许 I/O 设备与主内存之间直接交换数据，而无需 CPU 参与每一个字节的传输。CPU 只需发起传输指令，在 DMA 完成整个数据块传输后才会收到一个中断。这极大地解放了 CPU</p>
+</li>
+<li>平衡系统性能：认识到性能是一个整体问题。即使优化了 I/O，如果 CPU 处理能力、内存速度或总线带宽成为新的瓶颈，整体吞吐量仍无法提升。需要根据应用特点，确保这些子系统性能匹配，避免出现明显的短板</li>
+</ol>
 
 
 
@@ -12515,7 +12550,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月1日 16:13:54 UTC">2026年1月1日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月5日 13:10:34 UTC">2026年1月5日</span>
   </span>
 
     

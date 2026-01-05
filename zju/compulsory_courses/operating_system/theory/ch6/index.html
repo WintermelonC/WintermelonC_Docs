@@ -12634,7 +12634,7 @@
 <ol>
 <li>mutual exclusion：满足。每次进入临界区之前，都会检查对方的 <code>flag</code> 是否为 <code>true</code>，两个进程不会同时进入临界区</li>
 <li>progress：不满足。如果 Pi 执行了 <code>flag[i] = true</code>，Pj 执行了 <code>flag[j] = true</code>，那么两个进程都会卡在 <code>while</code> 循环当中</li>
-<li>bounded waiting：不满足。Pi 退出 CS 后立即又想进入，执行 <code>flag[i] = true</code>，此时 P1 可能还没进入 CS（还在执行 remainder 或刚要检查 <code>flag[i]</code>）。如果 Pi 总是能抢先设置 <code>flag[i] = true</code> 并检查 <code>flag[j]</code> 为 <code>false</code>，那么 Pj 可能饥饿</li>
+<li>bounded waiting：不满足。Pi 退出 CS 后立即又想进入，执行 <code>flag[i] = true</code>，此时 Pj 可能还没进入 CS（还在执行 remainder 或刚要检查 <code>flag[i]</code>）。如果 Pi 总是能抢先设置 <code>flag[i] = true</code> 并检查 <code>flag[j]</code> 为 <code>false</code>，那么 Pj 可能饥饿</li>
 </ol>
 </div>
 <div class="admonition example">
@@ -13734,9 +13734,6 @@
 <li>当进程 B 退出监控器时，会唤醒在 <code>next</code> 上等待的进程 A</li>
 <li>进程 A 恢复执行</li>
 </ol>
-<blockquote>
-<p>进程 A 调用 <code>x.signal()</code> 时，监控器锁在 A 身上，之后唤醒进程 B 并挂起自己，锁是否依然在 A 身上？进程 B 是如何获得监控器锁的呢？没搞明白</p>
-</blockquote>
 <details class="example">
 <summary>监控器工作流程</summary>
 <p>假设有一个大小为 1 的缓冲区，使用监控器来同步生产者和消费者</p>
@@ -13801,9 +13798,6 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">步骤 3</p>
-<blockquote>
-<p>上面的疑问依旧没解决</p>
-</blockquote>
 <p>C 被唤醒，执行 <code>not_empty_count--</code>，之后继续执行 <code>consume()</code></p>
 <div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">consume()</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-54-1">1</a></span>
 <span class="normal"><a href="#__codelineno-54-2">2</a></span>
@@ -13900,7 +13894,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年11月8日 04:36:29 UTC">2025年11月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月5日 13:10:34 UTC">2026年1月5日</span>
   </span>
 
     
