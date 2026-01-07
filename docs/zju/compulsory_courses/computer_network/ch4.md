@@ -446,7 +446,7 @@ $p$ 的最佳值为 $\dfrac{1}{k}$，$A_{max} = (\dfrac{k-1}{k})^{k-1}$
 
     $i = \log_2 q$
 
-### 2.6 Multiple Access with Collision Avoidance
+### 2.6 CSMA with Collision Avoidance
 
 !!! tip "Wireless LAN Protocols"
 
@@ -1047,7 +1047,7 @@ IEEE 802 系列包含多种局域网标准，不同标准的 MAC 子层和物理
 3. 地址打破平局：当多条路径的跳数距离相等时，选择连接更低地址交换机的端口
 
 <figure markdown="span">
-    ![Img 35](../../../img/computer_network/ch4/network_ch4_img35.png){ width="600" }
+    ![Img 35](../../../img/computer_network/ch4/network_ch4_img35.png){ width="800" }
 </figure>
 
 ### 5.3 Devices

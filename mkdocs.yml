@@ -227,8 +227,8 @@ nav:
         - 3 The Data Link Layer: zju/compulsory_courses/computer_network/ch3.md
         - 4 The Medium Access Control Sublayer: zju/compulsory_courses/computer_network/ch4.md
         - 5 The Network Layer: zju/compulsory_courses/computer_network/ch5.md
-        - 6 Transport Layer: zju/compulsory_courses/computer_network/ch6.md
-        - 7 Application Layer: zju/compulsory_courses/computer_network/ch7.md
+        - 6 The Transport Layer: zju/compulsory_courses/computer_network/ch6.md
+        - 7 The Application Layer: zju/compulsory_courses/computer_network/ch7.md
         - 8 Network Security: zju/compulsory_courses/computer_network/ch8.md
     - 专业模块课程:
       - zju/module_courses/index.md
