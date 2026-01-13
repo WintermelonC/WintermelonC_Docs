@@ -12117,9 +12117,9 @@
 
     本文档正在更新中…… -->
 
-<div class="admonition warning">
-<p class="admonition-title">注意</p>
-<p>我把这一章放掉了，只把结论记住了。请同学们不要看这个文档</p>
+<div class="admonition info">
+<p class="admonition-title">说明</p>
+<p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
 <h2 id="1-the-church-turing-thesis">1 The Church-Turing Thesis<a class="headerlink" href="#1-the-church-turing-thesis" title="Permanent link">&para;</a></h2>
 <div class="admonition quote">
@@ -12137,6 +12137,7 @@
 <p class="admonition-title">课本原文 AI 翻译</p>
 <p>计算的基础是硬件还是软件？你可能对这个问题有自己的看法——以及关于这个问题是否有意义、是否具有建设性。但事实是，我们在上一章中引入并发展的算法形式化模型——图灵机——是一种“不可编程”的硬件，专门用于解决某个特定问题，其指令在出厂时就已经“硬编码”（hard-wired）</p>
 <p>现在我们将从相反的角度来看待这个问题。我们将论证：图灵机也是软件。也就是说，我们将证明存在一种“通用”的图灵机，它能够像通用计算机一样被编程，从而解决任何图灵机可以解决的问题。使这种通用机器表现出特定机器 <span class="arithmatex">\(M\)</span> 行为的“程序”，必须是 <span class="arithmatex">\(M\)</span> 的一种描述。换句话说，我们将把图灵机的形式化视为一种编程语言，我们可以在其中编写程序。用这种语言编写的程序随后可以由一台通用图灵机（universal Turing machine）来解释——也就是说，用同一种语言编写的另一个程序。一个用某种语言编写的程序能够解释该语言中的任意其他程序，并不是什么新颖的想法——这正是经典“引导式”（bootstrapping）语言处理器方法的基础。但为了继续本书中的研究，我们有必要在图灵机的背景下精确地阐明这一点</p>
+</div>
 <p>首先，我们需要提出一种通用的方式来描述图灵机，使得这些描述可以作为其他图灵机的输入。也就是说，必须定义一种语言，其字符串都是图灵机的合法表示形式。这个问题已经显现出来：无论我们为这种表示选择多么大的字母表，总会有图灵机的状态数和磁带符号数更多。因此，我们需要将状态和磁带符号编码为固定字母表上的字符串。我们采用如下约定：表示图灵机状态的字符串形式为 <span class="arithmatex">\(\lbrace q\rbrace \lbrace 0,1\rbrace ^∗\)</span>，即字母 <span class="arithmatex">\(q\)</span> 后跟一个二进制字符串。类似地，磁带符号总是表示为形如 <span class="arithmatex">\(\lbrace a\rbrace \lbrace 0,1\rbrace^∗\)</span> 的字符串</p>
 <p>设 <span class="arithmatex">\(M=(K,Σ,δ,s,H)\)</span> 是一台图灵机，令 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span> 为最小整数，满足 <span class="arithmatex">\(2^i \geqslant |K|\)</span> 且 <span class="arithmatex">\(2^j \geqslant |\Sigma| + 2\)</span>。那么 <span class="arithmatex">\(K\)</span> 中的每个状态都将表示为字母 <span class="arithmatex">\(q\)</span> 后跟一个长度为 <span class="arithmatex">\(i\)</span> 的二进制字符串；<span class="arithmatex">\(Σ\)</span> 中的每个符号也将以字母 <span class="arithmatex">\(a\)</span> 后跟一个 <span class="arithmatex">\(j\)</span> 位二进制字符串的形式表示。头的移动方向 <span class="arithmatex">\(←\)</span> 和 <span class="arithmatex">\(→\)</span> 也将被视为“荣誉磁带符号”（它们正是定义 <span class="arithmatex">\(j\)</span> 时“+2”项的原因）。我们规定特殊符号 <span class="arithmatex">\(⊔\)</span>、<span class="arithmatex">\(\rhd\)</span>、<span class="arithmatex">\(←\)</span> 和 <span class="arithmatex">\(→\)</span> 分别用字典序最小的四个符号来表示：</p>
 <ol>
@@ -12149,15 +12150,14 @@
 <p>注意，我们要求在符号 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(q\)</span> 后的字符串前补零，以使总长度达到所需值</p>
 <p>我们将整个图灵机 <span class="arithmatex">\(M\)</span> 的表示记作 “<span class="arithmatex">\(M\)</span>”。这个“<span class="arithmatex">\(M\)</span>”由转移表 <span class="arithmatex">\(δ\)</span> 构成。也就是说，它是一系列形如 <span class="arithmatex">\((q,a,p,b)\)</span> 的字符串序列，其中 <span class="arithmatex">\(q\)</span> 和 <span class="arithmatex">\(p\)</span> 是状态的表示，<span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 是符号的表示，各部分之间用逗号分隔，并包含在括号中。我们采用惯例：四元组按字典序递增排列，从 <span class="arithmatex">\(δ(s,⊔)\)</span> 开始。停止状态集合 <span class="arithmatex">\(H\)</span> 将通过间接方式确定：如果某个状态未出现在任何四元组的第一个分量中，则该状态属于停机状态。如果 <span class="arithmatex">\(M\)</span> 判定某种语言，因此 <span class="arithmatex">\(H={y,n}\)</span>，我们将采用惯例：<span class="arithmatex">\(y\)</span> 是两个停机状态中字典序较小的那个</p>
 <p>通过这种方式，任何图灵机都可以被表示出来。我们将使用相同的方法来表示图灵机字母表中的字符串。任意字符串 <span class="arithmatex">\(w∈Σ^∗\)</span> 都将有一个唯一的表示，也记作 “<span class="arithmatex">\(w\)</span>”，即其各个符号表示的拼接</p>
-<p><figure markdown="span">
-  <img alt="Img 1" src="../../../../img/computational_theory/ch5/computational_ch5_img1.png" width="800" />
-</figure></p>
+<figure>
+    <img alt="Img 1" src="../../../../img/computational_theory/ch5/computational_ch5_img1.png" width="800" />
+</figure>
 <p>现在我们已经准备好讨论一台通用图灵机 <span class="arithmatex">\(U\)</span>，它使用其他机器的编码作为程序来指导其运行。直观上，<span class="arithmatex">\(U\)</span> 接受两个参数：一台机器 <span class="arithmatex">\(M\)</span> 的描述 “<span class="arithmatex">\(M\)</span>”，以及一个输入字符串 <span class="arithmatex">\(w\)</span> 的描述 “<span class="arithmatex">\(w\)</span>”。我们希望 <span class="arithmatex">\(U\)</span> 具有如下性质：当且仅当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机时，<span class="arithmatex">\(U\)</span> 在输入 “<span class="arithmatex">\(M\)</span>”“<span class="arithmatex">\(w\)</span>” 上才会停机。为了使用我们在上一章中为图灵机建立的功能性表示法，可以写成：<span class="arithmatex">\(U(“M”“w”) = “M(w)”\)</span></p>
 <p>我们实际上描述的并不是单磁带机器 <span class="arithmatex">\(U\)</span>，而是一个与之密切相关的三磁带机器 <span class="arithmatex">\(U'\)</span>（之后，<span class="arithmatex">\(U\)</span> 将是模拟 <span class="arithmatex">\(U'\)</span> 的单磁带图灵机）。具体来说，<span class="arithmatex">\(U'\)</span> 使用其三条磁带如下：第一条磁带包含当前被模拟的机器 <span class="arithmatex">\(M\)</span> 的磁带内容的编码；第二条磁带包含 <span class="arithmatex">\(M\)</span> 本身的编码；第三条磁带包含在模拟计算的当前步骤中 <span class="arithmatex">\(M\)</span> 的状态的编码。</p>
 <p>机器 <span class="arithmatex">\(U'\)</span> 以某个字符串 “<span class="arithmatex">\(M\)</span>”“<span class="arithmatex">\(w\)</span>” 作为其第一条磁带的输入，其余两条磁带为空。（如果输入字符串不是这种形式，<span class="arithmatex">\(U'\)</span> 的行为无关紧要。）首先，<span class="arithmatex">\(U'\)</span> 将 “<span class="arithmatex">\(M\)</span>” 移动到第二条磁带上，并将 “<span class="arithmatex">\(w\)</span>” 向左移动到第一条磁带的左端，前面加上符号 “<span class="arithmatex">\(\rhd⊔\)</span>”。因此，在此时刻，第一条磁带的内容为 “<span class="arithmatex">\(\rhd ⊔w\)</span>”。接着，<span class="arithmatex">\(U'\)</span> 在第三条磁带上写下 <span class="arithmatex">\(M\)</span> 的初始状态 <span class="arithmatex">\(s\)</span> 的编码，即始终为 <span class="arithmatex">\(q0^i\)</span>（<span class="arithmatex">\(U'\)</span> 可以通过检查 “<span class="arithmatex">\(M\)</span>” 轻松确定 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span>）。现在，<span class="arithmatex">\(U'\)</span> 开始模拟 <span class="arithmatex">\(M\)</span> 的计算步骤。在每次模拟步骤之间，<span class="arithmatex">\(U'\)</span> 会将第二条和第三条磁带的读写头保持在最左端，而第一条磁带的读写头则扫描当前对应时刻 <span class="arithmatex">\(M\)</span> 所扫描符号的编码中的 <span class="arithmatex">\(a\)</span> 部分。</p>
 <p><span class="arithmatex">\(U'\)</span> 模拟 <span class="arithmatex">\(M\)</span> 的一个步骤如下：它扫描第二条磁带，直到找到一个四元组，其第一个分量与第三条磁带上的编码状态匹配，且第二个分量与第一条磁带上扫描到的编码符号匹配。如果找到了这样的四元组，它就将状态更新为该四元组的第三个分量，并在第一条磁带上执行由第四个分量建议的操作。如果第四个分量编码的是 <span class="arithmatex">\(M\)</span> 的磁带字母表中的一个符号，则将该符号写入第一条磁带。如果第四个分量是 <span class="arithmatex">\(a0^{j-2}10\)</span>（即 <span class="arithmatex">\(←\)</span> 的编码），则 <span class="arithmatex">\(U'\)</span> 将其第一条磁带的读写头向左移动到下一个 <span class="arithmatex">\(a\)</span> 符号；如果是 <span class="arithmatex">\(a0^{j-2}11\)</span>（<span class="arithmatex">\(→\)</span> 的编码），则向右移动。如果遇到 <span class="arithmatex">\(⊔\)</span> 的编码，<span class="arithmatex">\(U'\)</span> 必须将其转换为 <span class="arithmatex">\(a0^j\)</span>，即 <span class="arithmatex">\(M\)</span> 中空白符号的编码</p>
 <p>如果在某一步中，状态-符号组合在第二条磁带上未找到，这意味着该状态是一个停机状态。此时 <span class="arithmatex">\(U'\)</span> 也会进入相应的停机状态。至此，我们完成了对 <span class="arithmatex">\(U'\)</span> 运作方式的描述</p>
-</div>
 <h2 id="3-the-halting-problem">3 The Halting Problem<a class="headerlink" href="#3-the-halting-problem" title="Permanent link">&para;</a></h2>
 <div class="admonition quote">
 <p class="admonition-title">课本原文 AI 翻译</p>
@@ -12173,16 +12173,19 @@
 <p>这种论证方式不仅来自你过去对计算机科学的学习，也来自二十世纪普遍文化中的经典悖论。关键在于，我们现在已经引入了所有必要的工具，来形式化、数学严谨地表达这个悖论。我们拥有了一种完整的算法形式化表示方法，一种“编程语言”式的工具：图灵机。事实上，在上一节中，我们引入了最后一个所需特性：我们已经构建了一个框架，使得我们的“程序”可以操作其他程序及其输入——这正是我们虚构的程序 <code>halts(P, X)</code> 所做的。因此，我们现在准备定义一个不可递归的语言，并证明它确实不可递归。令：<span class="arithmatex">\(H=\lbrace“M”“w”:图灵机 M 在输入字符串 w 上停止\rbrace\)</span></p>
 <p>首先注意到，<span class="arithmatex">\(H\)</span> 是递归可枚举的：它恰好是我们在上一节中介绍的通用图灵机 <span class="arithmatex">\(U\)</span> 所半判定的语言。事实上，当输入为 “<span class="arithmatex">\(M\)</span>”“<span class="arithmatex">\(w\)</span>” 时，<span class="arithmatex">\(U\)</span> 正好在输入属于 <span class="arithmatex">\(H\)</span> 时停止</p>
 <p>此外，如果 <span class="arithmatex">\(H\)</span> 是递归的，那么每一个递归可枚举语言都是递归的。换句话说，<span class="arithmatex">\(H\)</span> 是我们第 4.2 节所提出问题的关键：即所有递归可枚举语言是否也都是图灵可判定的——这个问题的答案是肯定的，当且仅当 <span class="arithmatex">\(H\)</span> 是递归的</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Theorem 5.3.1</p>
+<p>语言 <span class="arithmatex">\(H=\lbrace“M”“w”:图灵机 M 在输入字符串 w 上停止\rbrace\)</span> 不是递归的；因此，递归语言类是递归可枚举语言类的一个真子集</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
 <p>假设 <span class="arithmatex">\(H\)</span> 确实由某个图灵机 <span class="arithmatex">\(M_0\)</span> 判定。那么对于任意一个特定的图灵机 <span class="arithmatex">\(M\)</span>，它半判定某个语言 <span class="arithmatex">\(L(M)\)</span>，我们可以设计一台图灵机 <span class="arithmatex">\(M'\)</span> 来判定 <span class="arithmatex">\(L(M)\)</span>，方法如下：首先，<span class="arithmatex">\(M'\)</span> 将其输入磁带从形式 <span class="arithmatex">\(▹⊔w\underline{⊔}\)</span> 转换为 <span class="arithmatex">\(▹“M”“w”\underline{⊔}\)</span>，然后在该输入上模拟 <span class="arithmatex">\(M_0\)</span>。根据假设，<span class="arithmatex">\(M_0\)</span> 将正确判断 <span class="arithmatex">\(M\)</span> 是否接受 <span class="arithmatex">\(w\)</span>。我们可以这样说：所有递归可枚举语言都可以规约（reduce）到 <span class="arithmatex">\(H\)</span>，因此 <span class="arithmatex">\(H\)</span> 是递归可枚举语言类中的完备语言（complete language）</p>
 <p>但我们可以通过形式化上面关于 <code>halts(P, X)</code> 的论证来证明：<span class="arithmatex">\(H\)</span> 不是递归的。首先，如果 <span class="arithmatex">\(H\)</span> 是递归的，那么 <span class="arithmatex">\(H_1=\lbrace“M”:图灵机 M 在输入字符串 “M” 上停止\rbrace\)</span> 也将是递归的（<span class="arithmatex">\(H_1\)</span> 对应于对角程序中 <code>halts(X, X)</code> 的部分）。如果存在一台图灵机 <span class="arithmatex">\(M_0\)</span> 能够判定 <span class="arithmatex">\(H\)</span>，那么一台判定 <span class="arithmatex">\(H_1\)</span> 的图灵机 <span class="arithmatex">\(M_1\)</span> 只需要将其输入字符串 <span class="arithmatex">\(▹⊔“M”\underline{⊔}\)</span> 转换为 <span class="arithmatex">\(▹⊔“M”“M”\underline{⊔}\)</span>，然后将控制权交给 <span class="arithmatex">\(M_0\)</span> 即可。因此，只需证明 <span class="arithmatex">\(H_1\)</span> 不是递归的就足够了</p>
 <p>其次，如果 <span class="arithmatex">\(H_1\)</span> 是递归的，那么它的补集也必然是递归的：<span class="arithmatex">\(\bar{H_1}=\lbrace w:要么 w 不是图灵机的编码，要么它是某台图灵机 M 的编码 “M”，且 M 在输入 “M” 上不终止\rbrace\)</span></p>
 <p>这是因为递归语言类在取补运算下是封闭的。顺便提一下，<span class="arithmatex">\(\bar{H_1}\)</span> 就是我们所谓的“对角语言”，它对应于我们之前构造的对角程序，也是整个证明的最后一步</p>
 <p>但 <span class="arithmatex">\(H_1\)</span> 不可能是递归可枚举的——更不用说递归了。假设存在一台图灵机 <span class="arithmatex">\(M^*\)</span> 半判定 <span class="arithmatex">\(\bar{H_1}\)</span>。那么，<span class="arithmatex">\(“M^*”\)</span> 是否属于 <span class="arithmatex">\(\bar{H_1}\)</span>？根据 <span class="arithmatex">\(\bar{H_1}\)</span> 的定义，<span class="arithmatex">\(“M^*”\)</span> 属于 <span class="arithmatex">\(\bar{H_1}\)</span> 当且仅当 <span class="arithmatex">\(M^*\)</span> 不接受输入字符串 <span class="arithmatex">\(“M^*”\)</span>。但 <span class="arithmatex">\(M^*\)</span> 被假设为半判定 <span class="arithmatex">\(\bar{H_1}\)</span>，因此 <span class="arithmatex">\(“M^*”\)</span> 属于 <span class="arithmatex">\(\bar{H_1}\)</span> 当且仅当 <span class="arithmatex">\(M^*\)</span> 接受 <span class="arithmatex">\(“M^*”\)</span>。于是我们得出：<span class="arithmatex">\(M^*\)</span> 接受 <span class="arithmatex">\(“M^*”\)</span> 当且仅当它不接受 <span class="arithmatex">\(“M^*”\)</span>。这是矛盾的，因此假设 <span class="arithmatex">\(M_0\)</span> 存在必须是错误的</p>
-<p>让我们总结本节的发展过程。我们试图探究：是否每一个递归可枚举语言都是递归的。我们观察到，这成立当且仅当那个特定的递归可枚举语言 <span class="arithmatex">\(H\)</span> 是递归的。从 <span class="arithmatex">\(H\)</span> 出发，我们通过两步推导出语言 <span class="arithmatex">\(\bar{H_1}\)</span>，而为了使 <span class="arithmatex">\(H\)</span> 是递归的，<span class="arithmatex">\(\bar{H_1}\)</span> 必须是递归的。然而，假设 <span class="arithmatex">\(\bar{H_1}\)</span> 是递归的会导致逻辑矛盾，这是通过对角化方法得到的。因此，我们已经证明了以下最重要的定理</p>
+<p>让我们总结本节的发展过程。我们试图探究：是否每一个递归可枚举语言都是递归的。我们观察到，这成立当且仅当那个特定的递归可枚举语言 <span class="arithmatex">\(H\)</span> 是递归的。从 <span class="arithmatex">\(H\)</span> 出发，我们通过两步推导出语言 <span class="arithmatex">\(\bar{H_1}\)</span>，而为了使 <span class="arithmatex">\(H\)</span> 是递归的，<span class="arithmatex">\(\bar{H_1}\)</span> 必须是递归的。然而，假设 <span class="arithmatex">\(\bar{H_1}\)</span> 是递归的会导致逻辑矛盾，这是通过对角化方法得到的</p>
 </div>
-<div class="admonition tip">
-<p class="admonition-title">Theorem 5.3.1</p>
-<p>语言 <span class="arithmatex">\(H\)</span> 不是递归的；因此，递归语言类是递归可枚举语言类的一个真子集</p>
 </div>
 <div class="admonition quote">
 <p class="admonition-title">课本原文 AI 翻译</p>
@@ -12211,6 +12214,10 @@
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.4.1</p>
 <p>如果语言 <span class="arithmatex">\(L_1\)</span> 不是递归的，并且存在从 <span class="arithmatex">\(L_1\)</span> 到 <span class="arithmatex">\(L_2\)</span> 的规约，那么 <span class="arithmatex">\(L_2\)</span> 也不是递归的</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
+<p>假设 <span class="arithmatex">\(L_2\)</span> 是递归的，即由某个图灵机 <span class="arithmatex">\(M_2\)</span> 判定，并设 <span class="arithmatex">\(T\)</span> 为计算归约 <span class="arithmatex">\(τ\)</span> 的图灵机。那么图灵机 <span class="arithmatex">\(TM_2\)</span>（即 <span class="arithmatex">\(T\)</span> 后面接 <span class="arithmatex">\(M_2\)</span> 的组合）将会判定 <span class="arithmatex">\(L_1\)</span>。但 <span class="arithmatex">\(L_1\)</span> 是不可判定的。矛盾</p>
+</div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.4.2</p>
@@ -12224,11 +12231,43 @@
 <li>给定一个图灵机 <span class="arithmatex">\(M\)</span>，它半判定的语言是否是正则语言？是否是上下文无关语言？是否是递归语言？</li>
 <li>此外，对于某个特定的固定图灵机 <span class="arithmatex">\(M\)</span>，以下问题也是不可判定的：给定一个字符串 <span class="arithmatex">\(w\)</span>，<span class="arithmatex">\(M\)</span> 是否在 <span class="arithmatex">\(w\)</span> 上停机？</li>
 </ol>
+<div class="admonition success">
+<p class="admonition-title">Proof 2</p>
+<p>我们描述一个从 <span class="arithmatex">\(H\)</span> 到语言 <span class="arithmatex">\(L=\lbrace“M”:M 在 ϵ 上停机\rbrace\)</span> 的归约</p>
+<p>给定一台图灵机 <span class="arithmatex">\(M\)</span> 的描述和一个输入 <span class="arithmatex">\(x\)</span>，我们的归约简单地构造出一台图灵机 <span class="arithmatex">\(M_w\)</span> 的描述，其操作方式如下：当 <span class="arithmatex">\(M_w\)</span> 从空白磁带（即配置 <span class="arithmatex">\((s, \rhd\sqcup)\)</span>）开始运行时，它会在磁带上写下 <span class="arithmatex">\(w\)</span>，然后开始模拟 <span class="arithmatex">\(M\)</span>。换句话说，如果 <span class="arithmatex">\(w = a_1 \cdots a_n\)</span>，那么 <span class="arithmatex">\(M_w\)</span> 就是简单的机器 <span class="arithmatex">\(Ra_1Ra_2R \cdots Ra_nL_\sqcup M\)</span></p>
+<p>很容易看出，将<span class="arithmatex">\(“M”“w”\)</span>映射到<span class="arithmatex">\(“M_w”\)</span>的函数 <span class="arithmatex">\(\tau\)</span> 确实是递归的</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proof 3</p>
+<p>我们可以将 2 部分中所示的语言 <span class="arithmatex">\(L\)</span> 归约到语言 <span class="arithmatex">\(L'=\lbrace“M”:M 在某个输入上停机\rbrace\)</span></p>
+<p>给定任意图灵机 <span class="arithmatex">\(M\)</span> 的表示，我们的归约构造出一个图灵机 <span class="arithmatex">\(M'\)</span> 的表示，该机器会先擦除其接收到的任何输入，然后在空字符串上模拟 <span class="arithmatex">\(M\)</span>。显然，<span class="arithmatex">\(M'\)</span> 在某个字符串上停机当且仅当它在所有字符串上停机，当且仅当 <span class="arithmatex">\(M\)</span> 在空字符串上停机</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proof 4</p>
+<p>3 部分中的论证在这里同样适用，因为 <span class="arithmatex">\(M'\)</span> 是这样构造的：它接受某个输入当且仅当它接受所有输入</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proof 5</p>
+<p>我们将 4 部分中的问题归约到本问题。给定一台机器 <span class="arithmatex">\(M\)</span> 的描述，我们的归约构造出字符串 <span class="arithmatex">\(τ(“M”)=“M”“y”\)</span>，其中 <span class="arithmatex">\(“y”\)</span> 立即接受任何输入的机器的描述。显然，两台机器 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(y\)</span> 接受相同的输入当且仅当 <span class="arithmatex">\(M\)</span> 接受所有输入</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proof 6</p>
+<p>我们将 5 部分中的问题简化为当前问题。我们展示了如何修改任意图灵机 <span class="arithmatex">\(M\)</span>，以得到一个图灵机 <span class="arithmatex">\(M'\)</span>，使得 <span class="arithmatex">\(M'\)</span> 要么在集合 <span class="arithmatex">\(H\)</span> 中的字符串上停机，要么在没有任何字符串上停机，具体取决于 <span class="arithmatex">\(M\)</span> 是否在空串上停机。由于没有算法可以判断 <span class="arithmatex">\(M\)</span> 是否在空串上停机，因此也就没有算法能够判断 <span class="arithmatex">\(L(M)\)</span> 是否为空（即是否是正则、上下文无关或递归语言），或者是否等于 <span class="arithmatex">\(H\)</span>（而 <span class="arithmatex">\(H\)</span> 既不是正则、也不是上下文无关，更不是递归的）。首先，<span class="arithmatex">\(M'\)</span> 保存其输入字符串，并开始执行 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(\epsilon\)</span> 上的操作。如果 <span class="arithmatex">\(M\)</span> 停机，则 <span class="arithmatex">\(M'\)</span> 恢复其输入，并在该输入上执行通用图灵机 <span class="arithmatex">\(U\)</span> 的操作。因此，<span class="arithmatex">\(M'\)</span> 要么在任何输入上都不停机（因为它从未完成对 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(\epsilon\)</span> 上的模拟），要么恰好在 <span class="arithmatex">\(H\)</span> 中的字符串上停机</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Proof 7</p>
+<p>定理陈述中提到的固定机器 <span class="arithmatex">\(M_0\)</span> 正是通用图灵机 <span class="arithmatex">\(U\)</span></p>
+</div>
 </div>
 <h2 id="7-properties-of-recursive-languages">7 Properties of Recursive Languages<a class="headerlink" href="#7-properties-of-recursive-languages" title="Permanent link">&para;</a></h2>
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.7.1</p>
 <p>一个语言是递归的，当且仅当它本身及其补集都是递归可枚举的</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
+<p>如果 <span class="arithmatex">\(L\)</span> 是递归的，那么根据定理 4.2.1，<span class="arithmatex">\(L\)</span> 是递归可枚举的；同时，<span class="arithmatex">\(\overline{L}\)</span> 也是递归的，因此根据定理 4.2.2，<span class="arithmatex">\(\overline{L}\)</span> 也是递归可枚举的</p>
+<p>对于另一个方向，假设 <span class="arithmatex">\(L\)</span> 被图灵机 <span class="arithmatex">\(M_1\)</span> 半判定，而 <span class="arithmatex">\(\overline{L}\)</span> 被图灵机 <span class="arithmatex">\(M_2\)</span> 半判定。那么我们可以构造一台图灵机 <span class="arithmatex">\(M\)</span> 来判定 <span class="arithmatex">\(L\)</span>。为方便起见，我们将 <span class="arithmatex">\(M\)</span> 描述为一台双带图灵机；根据定理 4.3.1，<span class="arithmatex">\(M\)</span> 可以被模拟成单带图灵机。机器 <span class="arithmatex">\(M\)</span> 首先将输入字符串 <span class="arithmatex">\(w\)</span> 同时复制到两条带上，并将两个读写头都置于输入副本的右端。然后，<span class="arithmatex">\(M\)</span> 并行地模拟 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span>：在 <span class="arithmatex">\(M\)</span> 的每一步操作中，<span class="arithmatex">\(M_1\)</span> 的一步计算在第一条带上执行，<span class="arithmatex">\(M_2\)</span> 的一步计算在第二条带上执行。由于 <span class="arithmatex">\(M_1\)</span> 和 <span class="arithmatex">\(M_2\)</span> 中必有一个在 <span class="arithmatex">\(w\)</span> 上停机，但不会两者都停机，因此 <span class="arithmatex">\(M\)</span> 最终会进入一种状态，即模拟的 <span class="arithmatex">\(M_1\)</span> 或 <span class="arithmatex">\(M_2\)</span> 即将停机。当这种情况发生时，<span class="arithmatex">\(M\)</span> 判断出是哪一个（<span class="arithmatex">\(M_1\)</span> 还是 <span class="arithmatex">\(M_2\)</span>）即将停机，并相应地在 <span class="arithmatex">\(y\)</span> 或 <span class="arithmatex">\(n\)</span> 上停机</p>
+</div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Definition 5.7.1</p>
@@ -12242,6 +12281,19 @@
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.7.2</p>
 <p>一个语言是递归可枚举的，当且仅当它是图灵可枚举的</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
+<p>假设语言 <span class="arithmatex">\(L\)</span> 被图灵机 <span class="arithmatex">\(M\)</span> 半判定。那么我们可以设计一台机器 <span class="arithmatex">\(M'\)</span>，它不以字符串作为输入，而是从空带开始，系统地生成（例如按字典序）该语言字母表上的所有字符串，并对每个字符串执行 <span class="arithmatex">\(M\)</span> 会进行的相同计算。不幸的是，实现这一目标的明显方法可能行不通：我们的新机器 <span class="arithmatex">\(M'\)</span> 不可能在开始处理下一个字符串之前完成对当前字符串的计算，因为它可能会在某个 <span class="arithmatex">\(M\)</span> 无法终止的字符串上“卡住”无限长时间，尽管还有其他 <span class="arithmatex">\(M\)</span> 会接受但尚未生成的字符串（如果 <span class="arithmatex">\(L\)</span> 是由 <span class="arithmatex">\(M\)</span> 决定的，那么这种策略当然有效；参见下一定理的证明）</p>
+<p>解决方案基于我们在第 1.4 节中使用的一种“对角化”（dovetailing）过程，用来证明可数多个集合的并集是可数的。与试图在生成每个字符串时立即完成其计算不同，<span class="arithmatex">\(M'\)</span> 执行如下操作序列：</p>
+<ol>
+<li>首先，<span class="arithmatex">\(M'\)</span> 对字母表上字典序第一个字符串执行 <span class="arithmatex">\(M\)</span> 的一步计算</li>
+<li>然后，它对前两个字符串各执行 <span class="arithmatex">\(M\)</span> 的两步计算</li>
+<li>接着，它对前三个字符串各执行 <span class="arithmatex">\(M\)</span> 的三步计算，依此类推</li>
+</ol>
+<p>当 <span class="arithmatex">\(M'\)</span> 第一次发现 <span class="arithmatex">\(M\)</span> 会接受某个字符串（比如 <span class="arithmatex">\(w_1\)</span>）时，<span class="arithmatex">\(M'\)</span> 将 <span class="arithmatex">\(w_1\)</span> 写入其磁带上，并在状态 <span class="arithmatex">\(q\)</span> 暂停，以表示 <span class="arithmatex">\(w_1 \in L\)</span></p>
+<p>一般地，在第 <span class="arithmatex">\(i\)</span> 个属于 <span class="arithmatex">\(L\)</span> 的字符串被发现后（记为 <span class="arithmatex">\(w_i\)</span>），<span class="arithmatex">\(M'\)</span> 首先在状态 <span class="arithmatex">\(q\)</span> 显示它，并从步骤 1 重新开始，同时保持 <span class="arithmatex">\(w_i\)</span> 在磁带上。每当它现在发现一个被 <span class="arithmatex">\(M\)</span> 接受的新字符串时，它首先将其与 <span class="arithmatex">\(w_i\)</span> 进行比较；如果它们不相等，则继续。如果发现刚刚发现的字符串与 <span class="arithmatex">\(w_i\)</span> 相同，则它寻找 <span class="arithmatex">\(M\)</span> 接受的下一个字符串。这个下一个字符串将是 <span class="arithmatex">\(w_{i+1}\)</span>。再次，<span class="arithmatex">\(w_{i+1}\)</span> 在状态 <span class="arithmatex">\(q\)</span> 被显示、记住并比较。显然，<span class="arithmatex">\(L\)</span> 中的任何成员最终都会被显示出来</p>
+<p>另一个方向要简单一些。如果 <span class="arithmatex">\(M\)</span> 枚举了语言 <span class="arithmatex">\(L\)</span>，那么我们可以修改 <span class="arithmatex">\(M\)</span> 来半判定 <span class="arithmatex">\(L\)</span>：重新设计 <span class="arithmatex">\(M\)</span>，使其在开始枚举过程之前保存所提供的任意输入。此外，每当 <span class="arithmatex">\(M\)</span> 将进入特殊状态 <span class="arithmatex">\(q\)</span> 时，修改后的机器会将当前磁带内容与保存的输入字符串进行比较。如果匹配成功，则接受输入字符串；否则，枚举过程继续。这样，新机器恰好半判定由 <span class="arithmatex">\(M\)</span> 枚举的语言</p>
+</div>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Definition 5.7.2</p>
@@ -12250,10 +12302,24 @@
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.7.3</p>
 <p>一个语言是递归的，当且仅当它是字典序图灵可枚举的</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
+<p>假设 <span class="arithmatex">\(M\)</span> 是一台判定语言 <span class="arithmatex">\(L\)</span> 的图灵机。那么以下图灵机 <span class="arithmatex">\(M'\)</span>（这是我们在证明定理 5.7.2 同一方向时第一次尝试构造的机器）会以字典序枚举 <span class="arithmatex">\(L\)</span>：<span class="arithmatex">\(M'\)</span> 按照 <span class="arithmatex">\(L\)</span> 的字母表中所有字符串的字典序依次生成每个字符串，并对每个字符串运行 <span class="arithmatex">\(M\)</span>。每当 <span class="arithmatex">\(M\)</span> 接受该字符串时，<span class="arithmatex">\(M'\)</span> 就显示该字符串并继续处理下一个字符串；如果 <span class="arithmatex">\(M\)</span> 拒绝，则 <span class="arithmatex">\(M'\)</span> 直接跳到下一个字符串，不进入显示状态</p>
+<p>对于另一个方向，假设 <span class="arithmatex">\(L\)</span> 被一台图灵机 <span class="arithmatex">\(M\)</span> 按字典序枚举。这里有两种情况：如果 <span class="arithmatex">\(L\)</span> 是有限的，那么无需证明，因为在这种情况下 <span class="arithmatex">\(L\)</span> 必然是递归的（同时也是上下文无关、正则等）。因此，假设 <span class="arithmatex">\(L\)</span> 是无限的。下面的机器 <span class="arithmatex">\(M'\)</span> 可以判定 <span class="arithmatex">\(L\)</span>：在输入 <span class="arithmatex">\(w\)</span> 上，启动枚举机 $ M $，等待直到要么 <span class="arithmatex">\(w\)</span> 被显示，要么某个字典序上位于 <span class="arithmatex">\(w\)</span> 之后的字符串被显示。在第一种情况下，接受 <span class="arithmatex">\(w\)</span>；在第二种情况下，拒绝。由于在 <span class="arithmatex">\(w\)</span> 之前按字典序排列的字符串数量是有限的（少于 <span class="arithmatex">\(|\Sigma + 1|^{|w|}\)</span>），而 <span class="arithmatex">\(L\)</span> 是无限的，我们知道这两个事件中必有一个会发生</p>
+</div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Theorem 5.7.4 (Rice's Theorem)</p>
-<p>假设 <span class="arithmatex">\(C\)</span> 是所有递归可枚举语言类的一个真子集，且非空。那么以下问题是不可判定的：给定一台图灵机 <span class="arithmatex">\(M\)</span>，其识别的语言 <span class="arithmatex">\(L(M)\)</span> 是否属于 <span class="arithmatex">\(C\)</span>？</p>
+<p>假设 <span class="arithmatex">\(\mathcal{C}\)</span> 是所有递归可枚举语言类的一个真子集，且非空。那么以下问题是不可判定的：给定一台图灵机 <span class="arithmatex">\(M\)</span>，其识别的语言 <span class="arithmatex">\(L(M)\)</span> 是否属于 <span class="arithmatex">\(\mathcal{C}\)</span>？</p>
+<div class="admonition success">
+<p class="admonition-title">Proof</p>
+<p>我们可以假设 <span class="arithmatex">\(\emptyset \notin \mathcal{C}\)</span>（否则，对不在 <span class="arithmatex">\(\mathcal{C}\)</span> 中的所有递归可枚举语言类重复其余论证，这同样是一个递归可枚举语言类的真非空子集）。接下来，由于 <span class="arithmatex">\(\mathcal{C}\)</span> 非空，我们可以假设存在一个语言 <span class="arithmatex">\(L \in \mathcal{C}\)</span>，由机器 <span class="arithmatex">\(M_L\)</span> 半判定</p>
+<p>我们将停机问题规约为判断某个给定图灵机所半判定的语言是否属于 <span class="arithmatex">\(\mathcal{C}\)</span> 的问题。假设我们给定一台图灵机 <span class="arithmatex">\(M\)</span> 和输入 <span class="arithmatex">\(w\)</span>，我们希望判断 <span class="arithmatex">\(M\)</span> 是否在 <span class="arithmatex">\(w\)</span> 上停机。为了实现这一点，我们构造一台图灵机 <span class="arithmatex">\(T_{M,w}\)</span>，使得它所半判定的语言要么是上面固定的语言 <span class="arithmatex">\(L\)</span>，要么是空语言 <span class="arithmatex">\(\emptyset\)</span>。对于输入 <span class="arithmatex">\(x\)</span>，<span class="arithmatex">\(T_{M,w}\)</span> 模拟通用图灵机 <span class="arithmatex">\(U\)</span> 在输入 “<span class="arithmatex">\(M\)</span>”“<span class="arithmatex">\(w\)</span>” 上的运行。如果 <span class="arithmatex">\(U\)</span> 停机，则 <span class="arithmatex">\(T_{M,w}\)</span> 不直接停机，而是继续模拟 <span class="arithmatex">\(M_L\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上的运行：它可能停机并接受，也可能永不终止，具体取决于 <span class="arithmatex">\(M_L\)</span> 在 <span class="arithmatex">\(x\)</span> 上的行为。自然地，如果 <span class="arithmatex">\(U(\text{“}M\text{”}\text{“}w\text{”}) = \nearrow\)</span>，则 <span class="arithmatex">\(T_{M,w}(x) = \nearrow\)</span>。回顾一下，<span class="arithmatex">\(T_{M,w}\)</span> 的定义如下：<span class="arithmatex">\(T_{M,w}(x): \text{ if } U(\text{“}M\text{”}\text{“}w\text{”}) \neq \nearrow \text{ then } M_L(x) \text{ else } \nearrow\)</span></p>
+<p>断言：<span class="arithmatex">\(T_{M,w}\)</span> 所半判定的语言属于类 <span class="arithmatex">\(\mathcal{C}\)</span> 当且仅当 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机</p>
+<p>注意，该断言说明从 <span class="arithmatex">\(M\)</span> 和 <span class="arithmatex">\(w\)</span> 构造 <span class="arithmatex">\(T_{M,w}\)</span> 的过程，实际上是将停机问题规约为这样一个问题：给定一台图灵机，判断它所半判定的语言是否在 <span class="arithmatex">\(\mathcal{C}\)</span> 中。这将完成定理的证明</p>
+<p>断言的证明：假设 <span class="arithmatex">\(M\)</span> 在输入 <span class="arithmatex">\(w\)</span> 上停机。那么 <span class="arithmatex">\(T_{M,w}\)</span> 在输入 <span class="arithmatex">\(x\)</span> 上会确定这一点，并且总是接着接受 <span class="arithmatex">\(x\)</span> 当且仅当 <span class="arithmatex">\(x \in L\)</span>。因此，在这种情况下，<span class="arithmatex">\(T_{M,w}\)</span> 所半判定的语言是 <span class="arithmatex">\(L\)</span>——而 <span class="arithmatex">\(L \in \mathcal{C}\)</span></p>
+<p>假设 <span class="arithmatex">\(M(w) = \nearrow\)</span>。在这种情况下，<span class="arithmatex">\(T_{M,w}\)</span> 永远不会停机，因此 <span class="arithmatex">\(M_x\)</span> 半判定的是空语言 <span class="arithmatex">\(\emptyset\)</span>，而空语言已知不在 <span class="arithmatex">\(\mathcal{C}\)</span> 中</p>
+</div>
 </div>
 
 
@@ -12277,7 +12343,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年12月31日 14:07:32 UTC">2025年12月31日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年1月13日 07:10:18 UTC">2026年1月13日</span>
   </span>
 
     
