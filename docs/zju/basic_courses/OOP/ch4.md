@@ -465,7 +465,7 @@ int main() {
       1. 静态存储
          - 在程序的生命周期内，静态变量只分配一次内存，并且在整个程序运行期间都存在。这意味着它们的值在函数调用之间保持不变
       2. 受限访问
-         - 静态关键字可以用于限制变量或函数的访问范围。例如，在 C++ 中，静态成员变量或函数只能在类内部访问
+         - 静态关键字可以用于限制变量或函数的访问范围，例如静态全局变量拥有内部链接，其他源文件不可访问
 2. 在固定地址一次性分配
       1. 名称的可见性
          - 静态变量在程序启动时分配内存，并且在整个程序运行期间保持不变
@@ -1093,18 +1093,24 @@ int main() {
 
 ### 4.7 修饰静态成员变量
 
-静态成员变量可以被 `const` 修饰，但必须在类外初始化
+静态成员变量可以被 `const` 修饰
+
+1. 静态常量整型成员（包括 `const int`、`const char`、`const short` 等）可以在类内直接初始化
+2. 静态常量非整型成员（如 `const double`、`const float`、`const std::string` 等）必须在类外初始化
+3. 静态非常量成员（无论什么类型）都必须在类外初始化
 
 ```cpp linenums="1"
 class MyClass {
 public:
-    static const int value; // 静态常量成员变量
+    static const int value = 10;  // 1 可以在类内初始化
+    static const char ch = 'A';   // 1 可以在类内初始化
+    static const double pi;  // 2 必须在类外初始化
+    static int count;  // 3 必须在类外初始化
 };
 
-const int MyClass::value = 10; // 在类外初始化
+const double MyClass::pi = 3.14159;  // 2 必须在类外初始化
+int MyClass::count = 0;  // 3 必须在类外初始化
 ```
-
----
 
 ### 4.8 总结
 

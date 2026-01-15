@@ -126,7 +126,7 @@ Name: Bob, Age: 25
 
 !!! tip "代理构造函数与初始化列表的执行顺序"
 
-    执行顺序：目标构造函数（target constructor）的初始化列表 → 目标构造函数的主体 → 当前构造函数的初始化列表 → 当前构造函数的主体
+    执行顺序：目标构造函数（target constructor）的初始化列表 → 目标构造函数的主体 → 当前构造函数的主体
 
     ```cpp linenums="1"
     #include <iostream>
@@ -148,9 +148,9 @@ Name: Bob, Age: 25
             std::cout << "Delegating constructor executed (no parameters)" << std::endl;
         }
     
-        // 代理构造函数 + 初始化列表
-        Person(std::string n) : Person(n, 0), age(18) {
-            // age = 18 会覆盖目标构造函数中 age = 0 的值
+        // 代理构造函数
+        Person(std::string n) : Person(n, 0) {
+            age = 18;
             std::cout << "Delegating constructor executed (with name): name = " << name << ", age = " << age << std::endl;
         }
     };
@@ -219,9 +219,9 @@ void greet(std::string name = "Guest");
 void greet(); // 错误：调用时无法区分
 ```
 
-**2.默认参数的值是静态绑定的**
+**2.默认参数的值是在函数调用时计算的**
 
-默认参数的值在编译时确定，不能在运行时动态改变
+默认参数的值是在函数调用时计算的，而不是在函数声明时固定的
 
 ```cpp linenums="1"
 int globalValue = 10;
@@ -232,7 +232,9 @@ void display(int value = globalValue) {
 
 int main() {
     globalValue = 20;
-    display(); // 输出：10，而不是 20
+    // 此时调用 display 时，globalValue 的值已被修改为 20
+    // 因此输出 20
+    display();
     return 0;
 }
 ```
