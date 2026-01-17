@@ -1,8 +1,8 @@
 # Java 应用技术
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 ## 课程介绍
 
@@ -26,8 +26,8 @@ wk老师
 
 ## 个人笔记
 
-[1 Introduction](./ch1.md){:target="_blank"}<br/>
-[2 Basic](./ch2.md){:target="_blank"}<br/>
+[1 Introduction](./ch1.md)<br/>
+[2 Basic](./ch2.md)<br/>
 [3 Inheritance and Polymorphism](./ch3.md)<br/>
 [4 Classes of Other Kinds](./ch4.md)<br/>
 [5 Container and Generics](./ch5.md)<br/>
@@ -40,3 +40,23 @@ wk老师
 [12 JMM and Troubleshooting](./ch12.md)<br/>
 [13 Virtual Thread and Reactive](./ch13.md)<br/>
 [14 Socket](./ch14.md)
+
+## 历年题整理
+
+### 2024-2025 秋冬
+
+[2024 JAVA应用技术 判断+编程部分回忆卷](https://www.cc98.org/topic/5802770){:target="_blank"}
+
+### 2018-2019 秋冬
+
+[浙江大学课程攻略共享计划 - Java应用技术](https://qsctech.github.io/zju-icicles/Java%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/){:target="_blank"}
+
+### 2017-2018
+
+[浙江大学课程攻略共享计划 - Java应用技术](https://qsctech.github.io/zju-icicles/Java%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/){:target="_blank"}
+
+## 个人感受
+
+老师课件里后面一半都在讲 Java 的并行编程，但其实期末考试这部分的比重不高，编程题也没考并行编程
+
+期末考试我带的书是 ^^Thinking in Java: Fourth Edition^^ 中文版，二手书店找的。但是这个书比较老了，Stream 和 Lambda 表达式都没有，只能自己额外抄一些知识点上去。并且考试的时候书用的不是很多，主要还是得把知识点记到脑子里，翻书主要是翻 String、List 等等的方法名称是什么
