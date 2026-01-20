@@ -1,8 +1,8 @@
 # 8 Network Security
 
-!!! tip "说明"
+!!! warning "注意"
 
-    本文档正在更新中……
+    本文档已停止更新
 
 !!! info "说明"
 
