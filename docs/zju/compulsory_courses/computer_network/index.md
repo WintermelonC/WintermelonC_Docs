@@ -14,10 +14,10 @@ lxq老师
 
 ### 考核方式
 
-1. Homework：15 %
-2. quiz：10 %
-3. experiment：25 %
-4. final exam：50 %
+1. Homework：15%
+2. quiz：10%
+3. experiment：25%
+4. final exam：50%
 
 Homework 和 quiz 只要做了就有分数，不管做得怎么样。爱你老师 😍
 

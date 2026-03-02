@@ -18,13 +18,13 @@ wzh老师
   ![Img 1](../../../img/comp_arch/ca_img1.png){ width="600" }
 </figure>
 
-#### 作业（16 %）
+#### 作业（16%）
 
 <figure markdown="span">
   ![Img 2](../../../img/comp_arch/ca_img2.png){ width="600" }
 </figure>
 
-#### 实验部分（32 %）
+#### 实验部分（32%）
 
 <figure markdown="span">
   ![Img 4](../../../img/comp_arch/ca_img4.png){ width="600" }
