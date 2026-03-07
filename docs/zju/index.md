@@ -90,7 +90,7 @@
 [操作系统](./compulsory_courses/operating_system/index.md)<br/>
 [计算机网络](./compulsory_courses/computer_network/index.md)<br/>
 [软件工程](./compulsory_courses/software_engineering.md)<br/>
-[编译原理](./compulsory_courses/compiler_principle.md)
+[编译原理](./compulsory_courses/compiler_principle/index.md)
 
 ### 专业模块课程
 
@@ -101,7 +101,7 @@
 #### 计算机软件技术
 
 [Java 应用技术](./module_courses/java_application/index.md)<br/>
-[多媒体技术](./module_courses/multimedia_technology.md)<br/>
+[多媒体技术](./module_courses/multimedia_technology/index.md)<br/>
 [B/S 体系软件设计](./module_courses/BS_software_design/index.md)
 
 #### 信息安全技术

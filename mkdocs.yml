@@ -231,7 +231,8 @@ nav:
         - 7 The Application Layer: zju/compulsory_courses/computer_network/ch7.md
         - 8 Network Security: zju/compulsory_courses/computer_network/ch8.md
       - 软件工程: zju/compulsory_courses/software_engineering.md
-      - 编译原理: zju/compulsory_courses/compiler_principle.md
+      - 编译原理: 
+        - zju/compulsory_courses/compiler_principle/index.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: zju/module_courses/AI.md
@@ -251,7 +252,9 @@ nav:
         - 12 JMM and Troubleshooting: zju/module_courses/java_application/ch12.md
         - 13 Virtual Thread and Reactive: zju/module_courses/java_application/ch13.md
         - 14 Socket: zju/module_courses/java_application/ch14.md
-      - 多媒体技术: zju/module_courses/multimedia_technology.md
+      - 多媒体技术:
+        - zju/module_courses/multimedia_technology/index.md
+        - 1 Graphics and Image Data Representation: zju/module_courses/multimedia_technology/ch1.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md

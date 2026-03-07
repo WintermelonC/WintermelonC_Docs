@@ -22,3 +22,7 @@ xj老师
 
 3. 期末考试：40%
 4. Bonus（论文阅读）：5%
+
+## 个人笔记
+
+[Graphics and Image Data Representation](./ch1.md)
