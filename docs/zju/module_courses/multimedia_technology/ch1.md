@@ -1,8 +1,8 @@
 # 1 Graphics and Image Data Representation
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 ## 1 Basic Graphics / Image Types
 

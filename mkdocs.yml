@@ -233,6 +233,8 @@ nav:
       - 软件工程: zju/compulsory_courses/software_engineering.md
       - 编译原理: 
         - zju/compulsory_courses/compiler_principle/index.md
+        - 1 Introduction: zju/compulsory_courses/compiler_principle/ch1.md
+        - 2 Lexical Analysis: zju/compulsory_courses/compiler_principle/ch2.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: zju/module_courses/AI.md
