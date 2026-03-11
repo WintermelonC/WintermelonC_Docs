@@ -25,4 +25,5 @@ xj老师
 
 ## 个人笔记
 
-[Graphics and Image Data Representation](./ch1.md)
+[1 Graphics and Image Data Representation](./ch1.md)<br/>
+[2 Color in Image and Video](./ch2.md)

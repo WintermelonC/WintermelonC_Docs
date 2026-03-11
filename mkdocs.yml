@@ -257,6 +257,7 @@ nav:
       - 多媒体技术:
         - zju/module_courses/multimedia_technology/index.md
         - 1 Graphics and Image Data Representation: zju/module_courses/multimedia_technology/ch1.md
+        - 2 Color in Image and Video: zju/module_courses/multimedia_technology/ch2.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md
@@ -330,6 +331,9 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
+      - Algorithm:
+        - knowledge/C_Cpp/algorithm/index.md
+        - 1 sort: knowledge/C_Cpp/algorithm/sort.md
     - Java: 
       - knowledge/java/index.md
     - Web:

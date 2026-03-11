@@ -5,6 +5,7 @@
 1. [CMake](./cmake.md)
 2. [vcpkg](./vcpkg.md)
 3. [Ninja](./ninja.md)
+4. [Algorithm](./algorithm/index.md)
 
 ## C/C++ 规则
 
