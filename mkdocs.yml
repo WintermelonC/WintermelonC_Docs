@@ -331,9 +331,12 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
-      - Algorithm:
-        - knowledge/C_Cpp/algorithm/index.md
-        - 1 sort: knowledge/C_Cpp/algorithm/sort.md
+      - STL:
+        - knowledge/C_Cpp/stl/index.md
+        - Containers:
+          - emplace_back: knowledge/C_Cpp/stl/containers/emplace_back.md
+        - Algorithms:
+          - sort: knowledge/C_Cpp/stl/algorithms/sort.md
     - Java: 
       - knowledge/java/index.md
     - Web:
