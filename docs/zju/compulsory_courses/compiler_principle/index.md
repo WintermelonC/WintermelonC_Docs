@@ -18,3 +18,8 @@ cms老师
 2. quiz：10%
 3. lab：30%。共 5 次
 4. 期末考试：50%
+
+## 个人笔记
+
+[1 Introduction](./ch1.md)<br/>
+[2 Lexical Analysis](./ch2.md)

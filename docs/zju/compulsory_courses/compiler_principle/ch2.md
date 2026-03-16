@@ -1,8 +1,8 @@
 # 2 Lexical Analysis
 
-!!! tip "说明"
+<!-- !!! tip "说明"
 
-    本文档正在更新中……
+    本文档正在更新中…… -->
 
 <figure markdown="span">
   ![Img 9](../../../img/compiler_principle/ch2/compiler_ch2_img9.png){ width="600" }

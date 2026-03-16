@@ -26,4 +26,5 @@ xj老师
 ## 个人笔记
 
 [1 Graphics and Image Data Representation](./ch1.md)<br/>
-[2 Color in Image and Video](./ch2.md)
+[2 Color in Image and Video](./ch2.md)<br/>
+[3 Fundamental Concepts in Video](./ch3.md)
