@@ -259,6 +259,7 @@ nav:
         - 1 Graphics and Image Data Representation: zju/module_courses/multimedia_technology/ch1.md
         - 2 Color in Image and Video: zju/module_courses/multimedia_technology/ch2.md
         - 3 Fundamental Concepts in Video: zju/module_courses/multimedia_technology/ch3.md
+        - 4 Basics of Digital Audio: zju/module_courses/multimedia_technology/ch4.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md
@@ -335,6 +336,7 @@ nav:
       - STL:
         - knowledge/C_Cpp/stl/index.md
         - Containers:
+          - set: knowledge/C_Cpp/stl/containers/set.md
           - emplace_back: knowledge/C_Cpp/stl/containers/emplace_back.md
         - Algorithms:
           - sort: knowledge/C_Cpp/stl/algorithms/sort.md
