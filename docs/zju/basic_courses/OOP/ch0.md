@@ -1,4 +1,4 @@
-# 0 Introduction
+# 0 Introduction (cin and cout)
 
 <!-- !!! tip "说明"
 

@@ -193,3 +193,65 @@ void insertionSort(vector<int>& arr) {
     }
 }
 ```
+
+## 2 归并排序
+
+将一个大数组分成两个小数组，分别排序后再合并，以此类推直到整个数组有序
+
+时间复杂度为 $O(n\log n)$，空间复杂度为 $O(n)$
+
+```cpp linenums="1"
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void mergeRange(vector<int>& a, vector<int>& tmp, int left, int mid, int right) {
+    int i = left;      // 左半部分起点
+    int j = mid + 1;   // 右半部分起点
+    int k = left;      // tmp 写入位置
+
+    // 合并两个有序区间 [left, mid] 和 [mid+1, right]
+    while (i <= mid && j <= right) {
+        if (a[i] <= a[j]) tmp[k++] = a[i++];
+        else              tmp[k++] = a[j++];
+    }
+
+    while (i <= mid)   tmp[k++] = a[i++];
+    while (j <= right) tmp[k++] = a[j++];
+
+    // 拷回原数组
+    for (int p = left; p <= right; ++p) {
+        a[p] = tmp[p];
+    }
+}
+
+void mergeSort(vector<int>& a, vector<int>& tmp, int left, int right) {
+    if (left >= right) return;
+
+    int mid = left + (right - left) / 2;
+    mergeSort(a, tmp, left, mid);
+    mergeSort(a, tmp, mid + 1, right);
+
+    // 可选优化：如果本来就有序，跳过 merge
+    if (a[mid] <= a[mid + 1]) return;
+
+    mergeRange(a, tmp, left, mid, right);
+}
+
+void mergeSort(vector<int>& a) {
+    if (a.empty()) return;
+    vector<int> tmp(a.size());
+    mergeSort(a, tmp, 0, (int)a.size() - 1);
+}
+
+int main() {
+    vector<int> nums = {5, 2, 8, 1, 9, 3, 7, 4, 6};
+    mergeSort(nums);
+
+    for (int x : nums) {
+        cout << x << " ";
+    }
+    cout << "\n";
+    return 0;
+}
+```

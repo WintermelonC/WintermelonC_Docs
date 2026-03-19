@@ -117,9 +117,9 @@ nav:
         - 8 假设检验: zju/basic_courses/prob_theo_and_math_stat/chapter_8.md
       - 面向对象程序设计:
         - zju/basic_courses/OOP/index.md
-        - 0 Introduction: zju/basic_courses/OOP/ch0.md
-        - 1 Using Objects: zju/basic_courses/OOP/ch1.md
-        - 2 Grouping Objects: zju/basic_courses/OOP/ch2.md
+        - 0 Introduction (cin and cout): zju/basic_courses/OOP/ch0.md
+        - 1 Object and String: zju/basic_courses/OOP/ch1.md
+        - 2 Containers and Iterators: zju/basic_courses/OOP/ch2.md
         - 3 Defining Class: zju/basic_courses/OOP/ch3.md
         - 4 Inside Object: zju/basic_courses/OOP/ch4.md
         - 5 Inside Class: zju/basic_courses/OOP/ch5.md
@@ -334,10 +334,11 @@ nav:
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
       - STL:
-        - knowledge/C_Cpp/stl/index.md
+        - String: knowledge/C_Cpp/stl/string.md
         - Containers:
+          - vector: knowledge/C_Cpp/stl/containers/vector.md
+          - list: knowledge/C_Cpp/stl/containers/list.md
           - set: knowledge/C_Cpp/stl/containers/set.md
-          - emplace_back: knowledge/C_Cpp/stl/containers/emplace_back.md
         - Algorithms:
           - sort: knowledge/C_Cpp/stl/algorithms/sort.md
     - Java: 
