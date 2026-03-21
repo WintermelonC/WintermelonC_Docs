@@ -48,7 +48,7 @@ wk老师
 [0 Introduction (cin and cout)](./ch0.md)<br/>
 [1 Object and String](./ch1.md)<br/>
 [2 Containers and Iterators](./ch2.md)<br/>
-[3 Defining Class](./ch3.md)<br/>
+[3 Struct and Class](./ch3.md)<br/>
 [4 Inside Object](./ch4.md)<br/>
 [5 Inside Class](./ch5.md)<br/>
 [6 Composition](./ch6.md)<br/>

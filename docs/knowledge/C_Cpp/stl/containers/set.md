@@ -1,6 +1,6 @@
 # set
 
-## 有序集合
+## set
 
 `std::set`，最常用的集合容器，元素会自动按升序排序，每个元素都是唯一的
 
@@ -52,7 +52,7 @@ int main() {
 | `bool empty() const` | 判断集合是否为空 | 空返回 true |
 | `size_type size() const` | 返回集合中元素的个数 | |
 
-## 无序集合
+## unordered_set
 
 `std::unordered_set`，C++ 11 引入的哈希集合，元素无序存储
 

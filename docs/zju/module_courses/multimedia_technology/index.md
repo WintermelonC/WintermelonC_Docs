@@ -28,4 +28,5 @@ xj老师
 [1 Graphics and Image Data Representation](./ch1.md)<br/>
 [2 Color in Image and Video](./ch2.md)<br/>
 [3 Fundamental Concepts in Video](./ch3.md)<br/>
-[4 Basics of Digital Audio](./ch4.md)
+[4 Basics of Digital Audio](./ch4.md)<br/>
+[5 Lossless Compression Algorithms](./ch5.md)

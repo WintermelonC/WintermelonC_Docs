@@ -1,4 +1,4 @@
-# 3 Defining Class
+# 3 Struct and Class
 
 <!-- !!! tip "说明"
 

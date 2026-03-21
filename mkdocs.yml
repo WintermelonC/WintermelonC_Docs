@@ -120,7 +120,7 @@ nav:
         - 0 Introduction (cin and cout): zju/basic_courses/OOP/ch0.md
         - 1 Object and String: zju/basic_courses/OOP/ch1.md
         - 2 Containers and Iterators: zju/basic_courses/OOP/ch2.md
-        - 3 Defining Class: zju/basic_courses/OOP/ch3.md
+        - 3 Struct and Class: zju/basic_courses/OOP/ch3.md
         - 4 Inside Object: zju/basic_courses/OOP/ch4.md
         - 5 Inside Class: zju/basic_courses/OOP/ch5.md
         - 6 Composition: zju/basic_courses/OOP/ch6.md
@@ -260,6 +260,7 @@ nav:
         - 2 Color in Image and Video: zju/module_courses/multimedia_technology/ch2.md
         - 3 Fundamental Concepts in Video: zju/module_courses/multimedia_technology/ch3.md
         - 4 Basics of Digital Audio: zju/module_courses/multimedia_technology/ch4.md
+        - 5 Lossless Compression Algorithms: zju/module_courses/multimedia_technology/ch5.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md
@@ -300,6 +301,11 @@ nav:
       - Github Copilot: application/vscode/copilot.md
     - Watt Toolkit:
       - application/watt_toolkit/index.md
+    - Unreal Engine:
+      - application/unreal_engine/index.md
+      - 1 基础知识: application/unreal_engine/ch1.md
+      - 2 虚幻中的 C++: application/unreal_engine/ch2.md
+      - 3 控制输入: application/unreal_engine/ch3.md
   - 知识:
     - knowledge/index.md
     - Python:
@@ -333,12 +339,16 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
+      - Core Language:
+        - Type Alias: knowledge/C_Cpp/core_language/type_alias.md
       - STL:
         - String: knowledge/C_Cpp/stl/string.md
+        - Iterators: knowledge/C_Cpp/stl/iterators.md
         - Containers:
           - vector: knowledge/C_Cpp/stl/containers/vector.md
           - list: knowledge/C_Cpp/stl/containers/list.md
           - set: knowledge/C_Cpp/stl/containers/set.md
+          - map: knowledge/C_Cpp/stl/containers/map.md
         - Algorithms:
           - sort: knowledge/C_Cpp/stl/algorithms/sort.md
     - Java: 
