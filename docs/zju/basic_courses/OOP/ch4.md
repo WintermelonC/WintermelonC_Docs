@@ -1,4 +1,4 @@
-# 4 Inside Object
+# 4 Scope, Reference, Constant and Dynamic Memory Allocation
 
 <!-- !!! tip "说明"
 

@@ -4,6 +4,10 @@
 
     本文档正在更新中…… -->
 
+!!! info "说明"
+
+    本文档仅涉及部分内容，仅可用于复习重点知识
+
 <figure markdown="span">
   ![Img 9](../../../img/compiler_principle/ch2/compiler_ch2_img9.png){ width="600" }
 </figure>

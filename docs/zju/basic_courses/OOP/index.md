@@ -49,7 +49,7 @@ wk老师
 [1 Object and String](./ch1.md)<br/>
 [2 Containers and Iterators](./ch2.md)<br/>
 [3 Struct and Class](./ch3.md)<br/>
-[4 Inside Object](./ch4.md)<br/>
+[4 Scope, Reference, Constant and Dynamic Memory Allocation](./ch4.md)<br/>
 [5 Inside Class](./ch5.md)<br/>
 [6 Composition](./ch6.md)<br/>
 [7 Inheritance](./ch7.md)<br/>

@@ -22,4 +22,5 @@ cms老师
 ## 个人笔记
 
 [1 Introduction](./ch1.md)<br/>
-[2 Lexical Analysis](./ch2.md)
+[2 Lexical Analysis](./ch2.md)<br/>
+[3 Parsing](./ch3.md)
