@@ -18,7 +18,7 @@
         <link rel="prev" href="../object_lifetime/">
       
       
-        <link rel="next" href="../../stl/string/">
+        <link rel="next" href="../reference/">
       
       
         
@@ -3993,7 +3993,7 @@
   <span class="md-ellipsis">
     
   
-    5 Inside Class
+    5 Overloaded Constructors and Inline Functions and Variables
   
 
     
@@ -7782,9 +7782,36 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../../../zju/module_courses/AI/" class="md-nav__link">
+    
+    
+      
         
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../zju/module_courses/ai/" class="md-nav__link ">
+              
   
   
   <span class="md-ellipsis">
@@ -7798,7 +7825,87 @@
   
   
 
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_10_2" id="__nav_2_10_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_10_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    人工智能
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../zju/module_courses/ai/ch1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1 人工智能绪论
+  
+
+    
+  </span>
+  
+  
+
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../zju/module_courses/ai/ch2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2 知识表达与推理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -9884,6 +9991,8 @@
       
         
       
+        
+      
     
     
     
@@ -10037,6 +10146,34 @@
     
   
     4 Anim Instance 与动画
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../application/unreal_engine/ch5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 虚幻与面向对象
   
 
     
@@ -11232,6 +11369,8 @@
       
         
       
+        
+      
     
     
     
@@ -11394,6 +11533,34 @@
 
       </a>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -13157,14 +13324,14 @@
 <p>stack（栈）：</p>
 <ol>
 <li>分配释放由函数进出作用域自动完成。一般是连续内存，局部性好，速度快。空间通常较小（和平台、线程栈大小配置有关）</li>
-<li>放函数参数、返回地址、保存寄存器。自动存储期局部变量（普通局部对象）</li>
+<li>存放函数参数、返回地址、保存寄存器。自动存储期局部变量（普通局部对象）</li>
 <li>栈溢出：递归过深或大数组放栈上</li>
 <li>悬空指针：返回局部变量地址</li>
 </ol>
 <p>heap（堆）：</p>
 <ol>
 <li>运行时按需申请，大小和生命周期更灵活。分配释放慢于栈。可能出现内存碎片。需要正确管理所有权</li>
-<li>放动态创建对象，大体量数据或跨作用域共享对象</li>
+<li>存放动态创建对象，大体量数据或跨作用域共享对象</li>
 <li>内存泄漏：只分配不释放</li>
 <li>重复释放：同一块内存释放多次</li>
 <li>野指针：释放后继续访问</li>
@@ -13172,7 +13339,7 @@
 </ol>
 <p>全局/静态区：</p>
 <ol>
-<li>放全局变量，静态变量（包括函数内静态），类静态数据成员</li>
+<li>存放全局变量，静态变量（包括函数内静态），类静态数据成员</li>
 <li>程序启动前初始化，程序退出时析构</li>
 </ol>
 <p>常量区：字符串字面量通常在只读区域。试图修改会导致未定义行为或崩溃</p>
@@ -13199,7 +13366,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月23日 09:13:23 UTC">2026年3月23日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月28日 02:06:08 UTC">2026年3月28日</span>
   </span>
 
     
@@ -13331,13 +13498,13 @@
         
         
           
-          <a href="../../stl/string/" class="md-footer__link md-footer__link--next" aria-label="下一页: String">
+          <a href="../reference/" class="md-footer__link md-footer__link--next" aria-label="下一页: Reference">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                String
+                Reference
               </div>
             </div>
             <div class="md-footer__button md-icon">
