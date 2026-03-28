@@ -122,7 +122,7 @@ nav:
         - 2 Containers and Iterators: zju/basic_courses/OOP/ch2.md
         - 3 Struct and Class: zju/basic_courses/OOP/ch3.md
         - 4 Scope, Reference, Constant and Dynamic Memory Allocation: zju/basic_courses/OOP/ch4.md
-        - 5 Inside Class: zju/basic_courses/OOP/ch5.md
+        - 5 Overloaded Constructors and Inline Functions and Variables: zju/basic_courses/OOP/ch5.md
         - 6 Composition: zju/basic_courses/OOP/ch6.md
         - 7 Inheritance: zju/basic_courses/OOP/ch7.md
         - 8 Polymorphism: zju/basic_courses/OOP/ch8.md
@@ -238,7 +238,10 @@ nav:
         - 3 Parsing: zju/compulsory_courses/compiler_principle/ch3.md
     - 专业模块课程:
       - zju/module_courses/index.md
-      - 人工智能: zju/module_courses/AI.md
+      - 人工智能: 
+        - zju/module_courses/ai/index.md
+        - 1 人工智能绪论: zju/module_courses/ai/ch1.md
+        - 2 知识表达与推理: zju/module_courses/ai/ch2.md
       - Java 应用技术:
         - zju/module_courses/java_application/index.md
         - 1 Introduction: zju/module_courses/java_application/ch1.md
@@ -308,6 +311,7 @@ nav:
       - 2 虚幻中的 C++: application/unreal_engine/ch2.md
       - 3 控制输入: application/unreal_engine/ch3.md
       - 4 Anim Instance 与动画: application/unreal_engine/ch4.md
+      - 5 虚幻与面向对象: application/unreal_engine/ch5.md
   - 知识:
     - knowledge/index.md
     - Python:
@@ -346,6 +350,7 @@ nav:
         - Class: knowledge/C_Cpp/core_language/class.md
         - Object Lifetime: knowledge/C_Cpp/core_language/object_lifetime.md
         - Memory Model: knowledge/C_Cpp/core_language/memory_model.md
+        - Reference: knowledge/C_Cpp/core_language/reference.md
       - STL:
         - String: knowledge/C_Cpp/stl/string.md
         - Iterators: knowledge/C_Cpp/stl/iterators.md
