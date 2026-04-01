@@ -69,7 +69,7 @@ $composite = Y + C = Y + I \cos(F_{sc}t) + Q \sin(F_{sc}t)$
 
 1. 提取 $Y$ 分量：使用低通滤波器分离 $Y$ 与 $C$
 2. 提取 $I$ 分量：$C$ 与 $2 \cos(F_{sc}t)$ 相乘，得到 $I + I \cos(2F_{sc}t) + Q\cdot 2\sin(2F_{sc}t)$，再使用低通滤波器
-3. 提取 $Q$ 分量：$C$ 与 $2 \sin(F_{sc}t)$ 相乘，得到 $Q + I\sin(2F_{sc}t) - Q\cos(2F_{sc}t)$
+3. 提取 $Q$ 分量：$C$ 与 $2 \sin(F_{sc}t)$ 相乘，得到 $Q + I\sin(2F_{sc}t) - Q\cos(2F_{sc}t)$，再使用低通滤波器
 
 ## 3 Digital Video
 
