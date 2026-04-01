@@ -8387,6 +8387,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -8484,6 +8488,62 @@
     
   
     2 知识表达与推理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../module_courses/ai/ch3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3 搜索探寻与问题求解
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../module_courses/ai/ch4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 机器学习
   
 
     
@@ -16092,18 +16152,18 @@
 <p><strong>释放单个变量</strong></p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-43-1">1</a></span>
 <span class="normal"><a href="#__codelineno-43-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><span class="k">delete</span><span class="w"> </span><span class="n">ptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 释放动态分配的单个变量</span>
-</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><span class="n">ptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>释放数组</strong></p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-44-1">1</a></span>
 <span class="normal"><a href="#__codelineno-44-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="k">delete</span><span class="p">[]</span><span class="w"> </span><span class="n">arr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 释放动态分配的数组</span>
-</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="n">arr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
 </span></code></pre></div></td></tr></table></div>
 <p><strong>释放对象</strong></p>
 <p>先调用析构函数，再释放内存</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-45-1">1</a></span>
 <span class="normal"><a href="#__codelineno-45-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><span class="k">delete</span><span class="w"> </span><span class="n">obj</span><span class="p">;</span><span class="w"> </span><span class="c1">// 调用对象的析构函数并释放内存</span>
-</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><span class="n">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">;</span><span class="w"> </span><span class="c1">// 避免悬空指针</span>
 </span></code></pre></div></td></tr></table></div>
 <h3 id="53-常见问题">5.3 常见问题<a class="headerlink" href="#53-常见问题" title="Permanent link">&para;</a></h3>
 <p><strong>内存泄漏</strong></p>
