@@ -267,6 +267,10 @@ nav:
         - 3 Fundamental Concepts in Video: zju/module_courses/multimedia_technology/ch3.md
         - 4 Basics of Digital Audio: zju/module_courses/multimedia_technology/ch4.md
         - 5 Lossless Compression Algorithms: zju/module_courses/multimedia_technology/ch5.md
+        - 6 Lossy Compression Algorithms: zju/module_courses/multimedia_technology/ch6.md
+        - 7 Image Compression Standards: zju/module_courses/multimedia_technology/ch7.md
+        - 8 Basic Video Compression Techniques: zju/module_courses/multimedia_technology/ch8.md
+        - 9 MPEG Video Coding: zju/module_courses/multimedia_technology/ch9.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md

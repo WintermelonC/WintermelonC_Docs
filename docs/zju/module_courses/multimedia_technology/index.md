@@ -29,4 +29,8 @@ xj老师
 [2 Color in Image and Video](./ch2.md)<br/>
 [3 Fundamental Concepts in Video](./ch3.md)<br/>
 [4 Basics of Digital Audio](./ch4.md)<br/>
-[5 Lossless Compression Algorithms](./ch5.md)
+[5 Lossless Compression Algorithms](./ch5.md)<br/>
+[6 Lossy Compression Algorithms](./ch6.md)<br/>
+[7 Image Compression Standards](./ch7.md)<br/>
+[8 Basic Video Compression Techniques](./ch8.md)<br/>
+[9 MPEG Video Coding](./ch9.md)
