@@ -8799,6 +8799,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Basic Video Compression Techniques
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -8815,6 +8833,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-video-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Introduction to Video Compression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-video-compression-based-on-motion-compensation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Video Compression Based on Motion Compensation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Video Compression Based on Motion Compensation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-motion-compensation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Motion Compensation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-search-for-motion-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Search For Motion Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-h261" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 H.261
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-h263" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 H.263
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -13379,6 +13488,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduction-to-video-compression" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Introduction to Video Compression
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-video-compression-based-on-motion-compensation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Video Compression Based on Motion Compensation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Video Compression Based on Motion Compensation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-motion-compensation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Motion Compensation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-search-for-motion-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Search For Motion Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-h261" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 H.261
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-h263" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 H.263
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -13500,14 +13689,114 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="8-basic-video-compression-techniques">8 Basic Video Compression Techniques<a class="headerlink" href="#8-basic-video-compression-techniques" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
+<h2 id="1-introduction-to-video-compression">1 Introduction to Video Compression<a class="headerlink" href="#1-introduction-to-video-compression" title="Permanent link">&para;</a></h2>
+<p>未压缩的高清视频数据量是巨大的，网络无法承受。为了减少数据量，我们可以扔掉一些信息，因为人眼并不敏感：</p>
+<ol>
+<li>分辨率降低：从广播标准（如 625 线）降低到 SIF (Source Input Format)，即 352 x 288 像素</li>
+<li>色彩信息（YUV）：人眼对亮度（Y）敏感，对色度（U/V）不敏感。进行 4:2:0 采样</li>
+</ol>
+<p>JPEG 标准用于压缩单帧图像，利用 DCT 去除空间冗余，但单纯使用 JPEG 无法满足视频通信的极高压缩比需求，因为视频还存在时间冗余</p>
+<p>视频是时间维度上的图像序列。连续帧之间通常非常相似，主要差异来自于摄像机或物体的运动。predictive coding（预测编码）则是不直接编码每一帧，而是编码相邻帧的差值（残差）</p>
+<h2 id="2-video-compression-based-on-motion-compensation">2 Video Compression Based on Motion Compensation<a class="headerlink" href="#2-video-compression-based-on-motion-compensation" title="Permanent link">&para;</a></h2>
+<h3 id="21-motion-compensation">2.1 Motion Compensation<a class="headerlink" href="#21-motion-compensation" title="Permanent link">&para;</a></h3>
+<p>运动补偿是去除时间冗余的主要手段：将图像分为背景（静止）和前景（运动）</p>
+<ol>
+<li>宏块 (Macroblock)：图像被划分为 16x16 像素的块（亮度分量）</li>
+<li>参考帧 (Reference Frame)：以前的帧作为基准</li>
+<li>运动矢量 (Motion Vector, MV)：描述当前宏块在参考帧中的位置偏移量 (u,v)</li>
+</ol>
+<p>过程：</p>
+<ol>
+<li>运动估计：在参考帧中寻找与当前宏块最匹配的块</li>
+<li>预测：计算预测块与当前块的差值</li>
+<li>编码：只传输运动矢量和预测误差（残差）</li>
+</ol>
+<figure>
+  <img alt="Img 1" src="../../../../img/multimedia_technology/ch8/multimedia_ch8_img1.png" width="600" />
+</figure>
+<h2 id="3-search-for-motion-vectors">3 Search For Motion Vectors<a class="headerlink" href="#3-search-for-motion-vectors" title="Permanent link">&para;</a></h2>
+<p>匹配准则：MAD (Mean Absolute Difference) 平均绝对误差。寻找使 <span class="arithmatex">\(\sum|C(x+i,y+j) - R(x+i,y+j)|\)</span> 最小的 <span class="arithmatex">\((i,j)\)</span></p>
+<p>搜索算法：</p>
+<ol>
+<li>全搜索 (Sequential Search)：遍历搜索窗口内的每一个位置</li>
+<li>2D 对数搜索 (2D-Logarithmic Search)：类似二分法。从大步长开始，在 9 个方向搜索，找到最小 MAD 后缩小步长，直到步长为 1</li>
+<li>分层搜索 (Hierarchical Search)：多分辨率搜索。先将图像下采样（如降为 &frac14; 大小），在低分辨率下进行粗估，得到粗略 MV，然后在原图分辨率下进行微调</li>
+</ol>
+<figure>
+  <img alt="Img 2" src="../../../../img/multimedia_technology/ch8/multimedia_ch8_img2.png" width="600" />
+</figure>
+<figure>
+  <img alt="Img 3" src="../../../../img/multimedia_technology/ch8/multimedia_ch8_img3.png" width="600" />
+</figure>
+<h2 id="4-h261">4 H.261<a class="headerlink" href="#4-h261" title="Permanent link">&para;</a></h2>
+<p>H.261 是第一个广泛使用的视频压缩标准（1990 年），奠定了现代视频编码的基础</p>
+<ol>
+<li>应用场景：视频会议、ISDN 网络</li>
+<li>码率：p x 64 kbps（p = 1 到 30）</li>
+<li>
+<p>帧格式：</p>
+<ol>
+<li>CIF (Common Intermediate Format): 352 x 288</li>
+<li>QCIF: 176 x 144</li>
+</ol>
+</li>
+<li>
+<p>帧类型：</p>
+<ol>
+<li>I 帧 (Intra): 帧内编码，类似 JPEG，独立解码，用于随机访问和防止误差累积</li>
+<li>P 帧 (Predictive): 帧间编码，基于前一帧（I 帧或 P 帧）进行运动补偿预测</li>
+</ol>
+</li>
+</ol>
+<figure>
+  <img alt="Img 4" src="../../../../img/multimedia_technology/ch8/multimedia_ch8_img4.png" width="600" />
+</figure>
+<p>I 帧编码：DCT → 量化 → 熵编码</p>
+<p>P 帧编码：</p>
+<ol>
+<li>运动矢量精度：全像素（整数像素）</li>
+<li>搜索范围：限制在 ±15 像素内</li>
+<li>预测误差编码：传输的是差值宏块</li>
+<li>MV 差分编码：传输的是当前 MV 与前一个 MV 的差值 (MVD)，以提高熵编码效率</li>
+</ol>
+<figure>
+  <img alt="Img 5" src="../../../../img/multimedia_technology/ch8/multimedia_ch8_img5.png" width="600" />
+</figure>
+<p>量化步长 (step_size) 为 2-62 的偶数。DC 系数固定用步长 8</p>
+<p>码流语法 (4 层结构)：</p>
+<ol>
+<li>图像层 (Picture): 包含起始码和时间戳</li>
+<li>GOB 层 (Group of Blocks): 将图像分为 11 x 3 宏块的组（CIF 有 12 个 GOB），用于同步和错误恢复</li>
+<li>宏块层 (Macroblock): 包含位置信息、量化参数、运动矢量等</li>
+<li>块层 (Block): 8 x 8 的 DCT 系数，采用 Z 字形扫描，行程编码 (Run, Level)</li>
+</ol>
+<h2 id="5-h263">5 H.263<a class="headerlink" href="#5-h263" title="Permanent link">&para;</a></h2>
+<p>H.263 是 H.261 的改进版，针对低码率（&lt; 64 kbps）进行了优化</p>
+<ol>
+<li>更低的码率：适用于 PSTN（公共交换电话网）</li>
+<li>图像格式：支持 Sub-QCIF 到 16 CIF</li>
+<li>GOB 结构变化：GOB 不再有固定大小，且总是从行首开始到行尾结束，增加了灵活性</li>
+</ol>
+<p>运动补偿增强：</p>
+<ol>
+<li>半像素精度 (Half-pixel precision)：H.261 只有全像素，H.263 支持半像素（通过双线性插值计算），大大提高了预测精度</li>
+<li>运动矢量预测：当前宏块的 MV 是由左侧、上方、右上方 MV 的中值预测出来的，传输的是误差值</li>
+<li>无限制运动矢量：允许参考块超出图像边界（通过边缘扩展实现）</li>
+</ol>
+<p>可选编码模式：</p>
+<ol>
+<li>算术编码：替代变长编码，效率更高</li>
+<li>高级预测模式：每个宏块可以使用 4 个运动矢量（针对每个 8 x 8 块分别计算），适合复杂运动</li>
+<li>PB 帧模式：将 P 帧和 B 帧（双向预测）组合在一起编码，进一步提高压缩率（虽然 H.263 核心不支持 B 帧，但通过此模式模拟）</li>
+</ol>
 
 
 
@@ -13530,7 +13819,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月2日 13:45:36 UTC">2026年4月2日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月7日 14:46:53 UTC">2026年4月7日</span>
   </span>
 
     
