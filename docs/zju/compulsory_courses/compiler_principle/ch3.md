@@ -230,3 +230,191 @@ $$
 <figure markdown="span">
   ![Img 29](../../../img/compiler_principle/ch3/compiler_ch3_img29.png){ width="600" }
 </figure>
+
+## 4 Yacc
+
+Yet Another Compiler-Compiler 是一个自动生成解析器的工具。输入一个 `.y` 文件（语法规范文件），输出一个 C 源文件（通常是 `tab.c`），包含一个 LALR 解析器
+
+```cpp linenums="1"
+%{
+#include <stdio.h>
+#include <ctype.h>
+int yylex(void);
+int yyerror(char *s);
+%}
+
+%token NUMBER
+
+%%
+command : exp { printf("%d\n", $1); }
+;
+
+exp : exp '+' term { $$ = $1 + $3; }
+    | exp '-' term { $$ = $1 - $3; }
+    | term { $$ = $1; }
+;
+
+term : term '*' factor { $$ = $1 * $3; }
+     | factor { $$ = $1; }
+;
+
+factor : NUMBER { $$ = $1; }
+       | '(' exp ')' { $$ = $2; }
+;
+%%
+
+int main() { return yyparse(); }
+int yylex() { /* 词法分析实现 */ }
+int yyerror(char *s) { fprintf(stderr, "%s\n", s); return 0; }
+```
+
+1. `yylex()`：词法分析器。Yacc 会调用 `yylex()` 获取下一个 token。返回 token 类型。全局变量 `yylval` 用于存储 token 的语义值
+2. `yyparse()`：解析器入口。由 Yacc 自动生成。返回 0 表示成功，1 表示失败
+3. ` yyerror()`：错误处理函数。当解析出错时被调用
+
+每条规则后可以用 `{ ... }` 写 C 代码，使用伪变量：
+
+1. `$$`：左部的语义值
+2. `$1`、`$2`、...：右部第 `i` 个符号的语义值
+
+返回的 token 类型可能不同（如整数、浮点数、操作符），可使用 `%union` 和 `%type`
+
+1. `%union` 定义可存储的类型
+2. `%type <类型名>` 指定非终结符的类型
+3. `%token <类型名>` 指定终结符的类型
+
+```cpp linenums="1"
+%union {
+    double val;
+    char op;
+}
+
+%token <val> NUMBER
+%type <val> exp term
+%type <op> op
+```
+
+Embedded Actions（嵌入动作）在规则中间执行代码，用于记录上下文信息，比如变量类型
+
+```cpp linenums="1"
+decl : type { current_type = $1; } var_list ;
+type : INT { $$ = INT_TYPE; }
+     | FLOAT { $$ = FLOAT_TYPE; }
+;
+```
+
+Yacc 的冲突处理：
+
+1. shift-reduce 冲突：默认选择 shift
+2. reduce-reduce 冲突：默认选择第一个规则
+
+优先级与结合性指令：
+
+```cpp linenums="1"
+%left PLUS MINUS
+%left TIMES DIV
+%right EXP
+%nonassoc EQ NEQ
+```
+
+1. `%left`：左结合，遇到冲突时 reduce
+2. `%right`：右结合，遇到冲突时 shift
+3. `%nonassoc`：不允许连续出现
+
+`%prec` 指令：用于为规则显式指定优先级（如负号）
+
+```cpp linenums="1"
+// 在 -6 * 8 中，-6 会被优先结合成 (-6)，然后再与 8 进行乘法运算
+
+%token INT PLUS MINUS TIMES UMINUS
+%start exp
+%left PLUS MINUS      // 左结合，优先级最低
+%left TIMES           // 左结合，优先级中等
+%left UMINUS          // 左结合，优先级最高（实际是占位符）
+%% 
+exp : INT
+    | exp PLUS exp
+    | exp MINUS exp
+    | exp TIMES exp
+    | MINUS exp %prec UMINUS   // 这条规则使用 UMINUS 的优先级
+```
+
+## 5 Error Recovery
+
+### 5.1 Local Error Recovery
+
+使用特殊 token `error`
+
+```cpp linenums="1"
+exp : '(' error ')'
+exps : error ';' exp
+```
+
+解析器会：
+
+1. 弹出栈直到可 shift `error`
+2. shift `error`
+3. 跳过输入直到同步点（如 `;` 或 `)`）
+
+<figure markdown="span">
+  ![Img 30](../../../img/compiler_principle/ch3/compiler_ch3_img30.png){ width="600" }
+</figure>
+
+### 5.2 Global Error Repair
+
+Burke-Fisher 错误修复是一种局部错误修复策略：它只在错误位置之前最多 K 个词法单元的范围内尝试修复
+
+1. 插入一个词法单元
+2. 删除一个词法单元
+3. 替换一个词法单元为另一个
+
+且每次只改一个词法单元（单点修复）
+
+修复的度量标准是修复后，解析器能继续前进多远。越过原始错误点之后解析的额外词法单元数越多，修复越好。如果给定阈值 $R=4$，意味着如果能继续解析 4 个以上的词法单元，就认为修复足够好，不再尝试其他修复
+
+为了实现回退 K 个词法单元并重解析，我们需要维护两个栈和一个 token 队列
+
+1. 当前栈：正常解析的主栈，代表现在的解析状态
+2. 旧栈：保存过去的解析状态，用于错误发生后回退重试
+3. token 队列：队列大小为 K，保存最近移入的 K 个词法单元。队列就像一个滑动窗口，新词法单元进入尾部，最老的词法单元从头部移出，进入旧栈
+
+两个栈同步维护，但旧栈总是落后当前栈 K 个词法单元。这样，当错误发生时，我们可以从旧栈的状态开始，尝试不同的修复，而不影响当前解析
+
+当解析器在当前词法单元处检测到语法错误时，析器不会报错退出，而是启动 Burke-Fisher 修复流程，在队列（大小为 K 的滑动窗口）中的任意位置进行尝试修复
+
+<figure markdown="span">
+  ![Img 31](../../../img/compiler_principle/ch3/compiler_ch3_img31.png){ width="600" }
+</figure>
+
+在 Burke-Fisher 修复过程中：解析器会反复尝试各种插入/删除/替换，每次尝试都会导致移入和归约（在副本上），归约动作通常关联语义动作，但有时语义动作会有副作用
+
+```cpp linenums="1"
+// 在语义动作中
+{ nest++; $$ = $1 + $3; }   // nest + 1
+{ nest--; $$ = $1 - $3; }   // nest - 1
+```
+
+如果这些动作在尝试性解析中被执行，尝试失败后，`nest` 的值已经改变了，无法撤销这些副作用，最终错误恢复时状态不一致
+
+解决方案：当前栈上的归约只更新解析状态，不调用语义动作，这些归约被记录下来，当同一个归约后来在旧栈上执行时，才真正执行语义动作
+
+当必须插入数字或标识符这类词法单元时，它们的语义值由 `%value` 指令指定：
+
+```cpp linenums="1"
+%value ID ("bogus")    // 插入 ID 时，使用 "bogus" 作为变量名
+%value INT (1)         // 插入 INT 时，使用 1 作为数值
+%value STRING ("")     // 插入 STRING 时，使用空字符串
+```
+
+有时，某一种特定的单词法单元插入或替换非常常见，应该优先尝试。`%change` 指令让程序员告诉解析器，这些修复应该优先尝试
+
+```cpp linenums="1"
+%change EQ -> ASSIGN
+      | ASSIGN -> EQ
+      | SEMICOLON ELSE -> ELSE
+      | -> IN INT END  // 自动补全 Tiger 语言的 let ... end 结构
+```
+
+<figure markdown="span">
+  ![Img 32](../../../img/compiler_principle/ch3/compiler_ch3_img32.png){ width="600" }
+</figure>

@@ -23,4 +23,5 @@ cms老师
 
 [1 Introduction](./ch1.md)<br/>
 [2 Lexical Analysis](./ch2.md)<br/>
-[3 Parsing](./ch3.md)
+[3 Parsing](./ch3.md)<br/>
+[4 Abstract Syntax](./ch4.md)
