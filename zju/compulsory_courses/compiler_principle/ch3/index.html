@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch2/">
       
       
-        <link rel="next" href="../../../module_courses/">
+        <link rel="next" href="../ch4/">
       
       
         
@@ -7578,6 +7578,8 @@
       
         
       
+        
+      
     
     
     
@@ -7932,10 +7934,88 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-yacc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Yacc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Error Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Error Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-local-error-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Local Error Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-global-error-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Global Error Repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4 Abstract Syntax
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -13778,6 +13858,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-yacc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Yacc
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Error Recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5 Error Recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-local-error-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Local Error Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-global-error-repair" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Global Error Repair
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -14063,6 +14193,219 @@ S \rightarrow \text{other}
 <figure>
   <img alt="Img 29" src="../../../../img/compiler_principle/ch3/compiler_ch3_img29.png" width="600" />
 </figure>
+<h2 id="4-yacc">4 Yacc<a class="headerlink" href="#4-yacc" title="Permanent link">&para;</a></h2>
+<p>Yet Another Compiler-Compiler 是一个自动生成解析器的工具。输入一个 <code>.y</code> 文件（语法规范文件），输出一个 C 源文件（通常是 <code>tab.c</code>），包含一个 LALR 解析器</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="o">%</span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ctype.h&gt;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">yylex</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="kt">int</span><span class="w"> </span><span class="nf">yyerror</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="o">%</span><span class="p">}</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="o">%</span><span class="n">token</span><span class="w"> </span><span class="n">NUMBER</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="o">%%</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="nl">command</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">$1</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="p">;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="nl">exp</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="sc">&#39;+&#39;</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">$3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="sc">&#39;-&#39;</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">$3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="p">;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="nl">term</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">term</span><span class="w"> </span><span class="sc">&#39;*&#39;</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">$3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="p">;</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="nl">factor</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">NUMBER</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">       </span><span class="o">|</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="sc">&#39;)&#39;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$2</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="p">;</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="o">%%</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">yyparse</span><span class="p">();</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="kt">int</span><span class="w"> </span><span class="n">yylex</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* 词法分析实现 */</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="kt">int</span><span class="w"> </span><span class="n">yyerror</span><span class="p">(</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><code>yylex()</code>：词法分析器。Yacc 会调用 <code>yylex()</code> 获取下一个 token。返回 token 类型。全局变量 <code>yylval</code> 用于存储 token 的语义值</li>
+<li><code>yyparse()</code>：解析器入口。由 Yacc 自动生成。返回 0 表示成功，1 表示失败</li>
+<li><code>yyerror()</code>：错误处理函数。当解析出错时被调用</li>
+</ol>
+<p>每条规则后可以用 <code>{ ... }</code> 写 C 代码，使用伪变量：</p>
+<ol>
+<li><code>$$</code>：左部的语义值</li>
+<li><code>$1</code>、<code>$2</code>、...：右部第 <code>i</code> 个符号的语义值</li>
+</ol>
+<p>返回的 token 类型可能不同（如整数、浮点数、操作符），可使用 <code>%union</code> 和 <code>%type</code></p>
+<ol>
+<li><code>%union</code> 定义可存储的类型</li>
+<li><code>%type &lt;类型名&gt;</code> 指定非终结符的类型</li>
+<li><code>%token &lt;类型名&gt;</code> 指定终结符的类型</li>
+</ol>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="o">%</span><span class="k">union</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">val</span><span class="p">;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">op</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="p">}</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="o">%</span><span class="n">token</span><span class="w"> </span><span class="o">&lt;</span><span class="n">val</span><span class="o">&gt;</span><span class="w"> </span><span class="n">NUMBER</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="o">%</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;</span><span class="n">val</span><span class="o">&gt;</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="n">term</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="o">%</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;</span><span class="n">op</span><span class="o">&gt;</span><span class="w"> </span><span class="n">op</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Embedded Actions（嵌入动作）在规则中间执行代码，用于记录上下文信息，比如变量类型</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nl">decl</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">current_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">var_list</span><span class="w"> </span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nl">type</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">INT</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INT_TYPE</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">     </span><span class="o">|</span><span class="w"> </span><span class="n">FLOAT</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FLOAT_TYPE</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="p">;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Yacc 的冲突处理：</p>
+<ol>
+<li>shift-reduce 冲突：默认选择 shift</li>
+<li>reduce-reduce 冲突：默认选择第一个规则</li>
+</ol>
+<p>优先级与结合性指令：</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="o">%</span><span class="n">left</span><span class="w"> </span><span class="n">PLUS</span><span class="w"> </span><span class="n">MINUS</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="o">%</span><span class="n">left</span><span class="w"> </span><span class="n">TIMES</span><span class="w"> </span><span class="n">DIV</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="o">%</span><span class="n">right</span><span class="w"> </span><span class="n">EXP</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="o">%</span><span class="n">nonassoc</span><span class="w"> </span><span class="n">EQ</span><span class="w"> </span><span class="n">NEQ</span>
+</span></code></pre></div></td></tr></table></div>
+<ol>
+<li><code>%left</code>：左结合，遇到冲突时 reduce</li>
+<li><code>%right</code>：右结合，遇到冲突时 shift</li>
+<li><code>%nonassoc</code>：不允许连续出现</li>
+</ol>
+<p><code>%prec</code> 指令：用于为规则显式指定优先级（如负号）</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1">// 在 -6 * 8 中，-6 会被优先结合成 (-6)，然后再与 8 进行乘法运算</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="o">%</span><span class="n">token</span><span class="w"> </span><span class="n">INT</span><span class="w"> </span><span class="n">PLUS</span><span class="w"> </span><span class="n">MINUS</span><span class="w"> </span><span class="n">TIMES</span><span class="w"> </span><span class="n">UMINUS</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="o">%</span><span class="n">start</span><span class="w"> </span><span class="n">exp</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="o">%</span><span class="n">left</span><span class="w"> </span><span class="n">PLUS</span><span class="w"> </span><span class="n">MINUS</span><span class="w">      </span><span class="c1">// 左结合，优先级最低</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="o">%</span><span class="n">left</span><span class="w"> </span><span class="n">TIMES</span><span class="w">           </span><span class="c1">// 左结合，优先级中等</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="o">%</span><span class="n">left</span><span class="w"> </span><span class="n">UMINUS</span><span class="w">          </span><span class="c1">// 左结合，优先级最高（实际是占位符）</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="o">%%</span><span class="w"> </span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="nl">exp</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">INT</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="n">PLUS</span><span class="w"> </span><span class="n">exp</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="n">MINUS</span><span class="w"> </span><span class="n">exp</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="n">TIMES</span><span class="w"> </span><span class="n">exp</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">MINUS</span><span class="w"> </span><span class="n">exp</span><span class="w"> </span><span class="o">%</span><span class="n">prec</span><span class="w"> </span><span class="n">UMINUS</span><span class="w">   </span><span class="c1">// 这条规则使用 UMINUS 的优先级</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="5-error-recovery">5 Error Recovery<a class="headerlink" href="#5-error-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="51-local-error-recovery">5.1 Local Error Recovery<a class="headerlink" href="#51-local-error-recovery" title="Permanent link">&para;</a></h3>
+<p>使用特殊 token <code>error</code></p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nl">exp</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="sc">&#39;(&#39;</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="sc">&#39;)&#39;</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nl">exps</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="sc">&#39;;&#39;</span><span class="w"> </span><span class="n">exp</span>
+</span></code></pre></div></td></tr></table></div>
+<p>解析器会：</p>
+<ol>
+<li>弹出栈直到可 shift <code>error</code></li>
+<li>shift <code>error</code></li>
+<li>跳过输入直到同步点（如 <code>;</code> 或 <code>)</code>）</li>
+</ol>
+<figure>
+  <img alt="Img 30" src="../../../../img/compiler_principle/ch3/compiler_ch3_img30.png" width="600" />
+</figure>
+<h3 id="52-global-error-repair">5.2 Global Error Repair<a class="headerlink" href="#52-global-error-repair" title="Permanent link">&para;</a></h3>
+<p>Burke-Fisher 错误修复是一种局部错误修复策略：它只在错误位置之前最多 K 个词法单元的范围内尝试修复</p>
+<ol>
+<li>插入一个词法单元</li>
+<li>删除一个词法单元</li>
+<li>替换一个词法单元为另一个</li>
+</ol>
+<p>且每次只改一个词法单元（单点修复）</p>
+<p>修复的度量标准是修复后，解析器能继续前进多远。越过原始错误点之后解析的额外词法单元数越多，修复越好。如果给定阈值 <span class="arithmatex">\(R=4\)</span>，意味着如果能继续解析 4 个以上的词法单元，就认为修复足够好，不再尝试其他修复</p>
+<p>为了实现回退 K 个词法单元并重解析，我们需要维护两个栈和一个 token 队列</p>
+<ol>
+<li>当前栈：正常解析的主栈，代表现在的解析状态</li>
+<li>旧栈：保存过去的解析状态，用于错误发生后回退重试</li>
+<li>token 队列：队列大小为 K，保存最近移入的 K 个词法单元。队列就像一个滑动窗口，新词法单元进入尾部，最老的词法单元从头部移出，进入旧栈</li>
+</ol>
+<p>两个栈同步维护，但旧栈总是落后当前栈 K 个词法单元。这样，当错误发生时，我们可以从旧栈的状态开始，尝试不同的修复，而不影响当前解析</p>
+<p>当解析器在当前词法单元处检测到语法错误时，析器不会报错退出，而是启动 Burke-Fisher 修复流程，在队列（大小为 K 的滑动窗口）中的任意位置进行尝试修复</p>
+<figure>
+  <img alt="Img 31" src="../../../../img/compiler_principle/ch3/compiler_ch3_img31.png" width="600" />
+</figure>
+<p>在 Burke-Fisher 修复过程中：解析器会反复尝试各种插入/删除/替换，每次尝试都会导致移入和归约（在副本上），归约动作通常关联语义动作，但有时语义动作会有副作用</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="c1">// 在语义动作中</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="p">{</span><span class="w"> </span><span class="n">nest</span><span class="o">++</span><span class="p">;</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">$3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// nest + 1</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="p">{</span><span class="w"> </span><span class="n">nest</span><span class="o">--</span><span class="p">;</span><span class="w"> </span><span class="n">$$</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">$1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">$3</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c1">// nest - 1</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果这些动作在尝试性解析中被执行，尝试失败后，<code>nest</code> 的值已经改变了，无法撤销这些副作用，最终错误恢复时状态不一致</p>
+<p>解决方案：当前栈上的归约只更新解析状态，不调用语义动作，这些归约被记录下来，当同一个归约后来在旧栈上执行时，才真正执行语义动作</p>
+<p>当必须插入数字或标识符这类词法单元时，它们的语义值由 <code>%value</code> 指令指定：</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="o">%</span><span class="n">value</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;bogus&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">// 插入 ID 时，使用 &quot;bogus&quot; 作为变量名</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="o">%</span><span class="n">value</span><span class="w"> </span><span class="n">INT</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">         </span><span class="c1">// 插入 INT 时，使用 1 作为数值</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="o">%</span><span class="n">value</span><span class="w"> </span><span class="n">STRING</span><span class="w"> </span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">)</span><span class="w">     </span><span class="c1">// 插入 STRING 时，使用空字符串</span>
+</span></code></pre></div></td></tr></table></div>
+<p>有时，某一种特定的单词法单元插入或替换非常常见，应该优先尝试。<code>%change</code> 指令让程序员告诉解析器，这些修复应该优先尝试</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="o">%</span><span class="n">change</span><span class="w"> </span><span class="n">EQ</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ASSIGN</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">ASSIGN</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">EQ</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">SEMICOLON</span><span class="w"> </span><span class="n">ELSE</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ELSE</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">IN</span><span class="w"> </span><span class="n">INT</span><span class="w"> </span><span class="n">END</span><span class="w">  </span><span class="c1">// 自动补全 Tiger 语言的 let ... end 结构</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 32" src="../../../../img/compiler_principle/ch3/compiler_ch3_img32.png" width="600" />
+</figure>
 
 
 
@@ -14085,7 +14428,7 @@ S \rightarrow \text{other}
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年3月28日 02:06:08 UTC">2026年3月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月8日 14:42:25 UTC">2026年4月8日</span>
   </span>
 
     
@@ -14217,13 +14560,13 @@ S \rightarrow \text{other}
         
         
           
-          <a href="../../../module_courses/" class="md-footer__link md-footer__link--next" aria-label="下一页: 专业模块课程">
+          <a href="../ch4/" class="md-footer__link md-footer__link--next" aria-label="下一页: 4 Abstract Syntax">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                专业模块课程
+                4 Abstract Syntax
               </div>
             </div>
             <div class="md-footer__button md-icon">
