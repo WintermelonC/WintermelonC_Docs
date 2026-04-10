@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch8/">
       
       
-        <link rel="next" href="../../BS_software_design/">
+        <link rel="next" href="../ch10/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>9 MPEG Video Coding - WintermelonC Docs</title>
+        <title>9 MPEG Video Coding 1 - WintermelonC Docs</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#9-mpeg-video-coding" class="md-skip">
+        <a href="#9-mpeg-video-coding-1" class="md-skip">
           跳转至
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              9 MPEG Video Coding
+              9 MPEG Video Coding 1
             
           </span>
         </div>
@@ -7576,6 +7576,8 @@
       
         
       
+        
+      
     
     
     
@@ -7729,6 +7731,34 @@
     
   
     4 Abstract Syntax
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../compulsory_courses/compiler_principle/ch5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5 Semantic Analysis
   
 
     
@@ -8563,6 +8593,8 @@
       
         
       
+        
+      
     
     
     
@@ -8864,7 +8896,7 @@
   <span class="md-ellipsis">
     
   
-    9 MPEG Video Coding
+    9 MPEG Video Coding 1
   
 
     
@@ -8882,7 +8914,7 @@
   <span class="md-ellipsis">
     
   
-    9 MPEG Video Coding
+    9 MPEG Video Coding 1
   
 
     
@@ -8929,10 +8961,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 MPEG Video Coding 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -13496,6 +13567,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#exercise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exercise
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -13618,11 +13700,11 @@
 
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
-<h1 id="9-mpeg-video-coding">9 MPEG Video Coding<a class="headerlink" href="#9-mpeg-video-coding" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<h1 id="9-mpeg-video-coding-1">9 MPEG Video Coding 1<a class="headerlink" href="#9-mpeg-video-coding-1" title="Permanent link">&para;</a></h1>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
@@ -13704,12 +13786,12 @@
 <li>基本层独立解码，提供基础质量</li>
 <li>增强层依赖基本层，提供更高质量</li>
 </ol>
-<p>5 种可分级类型：</p>
+<p>5 种可伸缩类型：</p>
 <ol>
-<li>SNR 可分级：增强层提供更高的信噪比（更少的块效应）</li>
-<li>空间可分级：基本层是低分辨率，增强层提供高分辨率细节</li>
-<li>时间可分级：基本层帧率低（如 15 fps），增强层补充帧以达到高帧率（如 30 fps）</li>
-<li>混合可分级：上述两两的组合</li>
+<li>SNR 可伸缩性：增强层提供更高的信噪比（更少的块效应）</li>
+<li>空间可伸缩性：基本层是低分辨率，增强层提供高分辨率细节</li>
+<li>时间可伸缩性：基本层帧率低（如 15 fps），增强层补充帧以达到高帧率（如 30 fps）</li>
+<li>混合可伸缩性：上述两两的组合</li>
 <li>数据分割（Data Partitioning）：将重要数据（头信息、低频 DCT 系数）和非重要数据（高频 DCT 系数）分开传输。在噪声信道中，即使丢失高频部分，图像轮廓依然清晰</li>
 </ol>
 <p>MPEG-2 和 MPEG-1 的其他差异：</p>
@@ -13718,6 +13800,9 @@
 <li>色度抽样：MPEG-2 支持 4:2:2 和 4:4:4，而不仅仅是 4:2:0</li>
 <li>量化方式：MPEG-2 支持非线性量化表（Look-up Table），提供了比 MPEG-1 更灵活的量化步长控制</li>
 </ol>
+<h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
+<p>H.263 和 MPEG-2 的区别（4 点以上）</p>
+<p>MPEG-2 支持的可伸缩类型有哪些</p>
 
 
 
@@ -13740,7 +13825,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月7日 14:46:53 UTC">2026年4月7日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月10日 12:49:11 UTC">2026年4月10日</span>
   </span>
 
     
@@ -13872,13 +13957,13 @@
         
         
           
-          <a href="../../BS_software_design/" class="md-footer__link md-footer__link--next" aria-label="下一页: B/S 体系软件设计">
+          <a href="../ch10/" class="md-footer__link md-footer__link--next" aria-label="下一页: 10 MPEG Video Coding 2">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                B/S 体系软件设计
+                10 MPEG Video Coding 2
               </div>
             </div>
             <div class="md-footer__button md-icon">
