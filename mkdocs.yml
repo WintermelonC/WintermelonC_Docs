@@ -237,6 +237,7 @@ nav:
         - 2 Lexical Analysis: zju/compulsory_courses/compiler_principle/ch2.md
         - 3 Parsing: zju/compulsory_courses/compiler_principle/ch3.md
         - 4 Abstract Syntax: zju/compulsory_courses/compiler_principle/ch4.md
+        - 5 Semantic Analysis: zju/compulsory_courses/compiler_principle/ch5.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 
@@ -271,7 +272,8 @@ nav:
         - 6 Lossy Compression Algorithms: zju/module_courses/multimedia_technology/ch6.md
         - 7 Image Compression Standards: zju/module_courses/multimedia_technology/ch7.md
         - 8 Basic Video Compression Techniques: zju/module_courses/multimedia_technology/ch8.md
-        - 9 MPEG Video Coding: zju/module_courses/multimedia_technology/ch9.md
+        - 9 MPEG Video Coding 1: zju/module_courses/multimedia_technology/ch9.md
+        - 10 MPEG Video Coding 2: zju/module_courses/multimedia_technology/ch10.md
       - B/S 体系软件设计: zju/module_courses/BS_software_design.md
       - 密码学:
         - zju/module_courses/cryptography/index.md

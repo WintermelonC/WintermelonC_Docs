@@ -118,3 +118,15 @@ H.263 是 H.261 的改进版，针对低码率（< 64 kbps）进行了优化
 1. 算术编码：替代变长编码，效率更高
 2. 高级预测模式：每个宏块可以使用 4 个运动矢量（针对每个 8 x 8 块分别计算），适合复杂运动
 3. PB 帧模式：将 P 帧和 B 帧（双向预测）组合在一起编码，进一步提高压缩率（虽然 H.263 核心不支持 B 帧，但通过此模式模拟）
+
+## Exercise
+
+In block-based video coding, what takes more effort: compression or decompression? Briefly explain why.
+
+压缩通常需要更多的精力（计算资源）。编码器（压缩端）需要执行复杂的操作来寻找最佳的压缩方案，例如在帧内编码时进行变换和量化，在帧间编码时进行运动估计（Motion Estimation）以寻找最佳的运动矢量。这通常涉及大量的搜索和计算。解码器（解压缩端）的主要任务是解析压缩数据并进行逆变换，其计算复杂度通常远低于编码器，因为它不需要进行耗时的搜索过程
+
+---
+
+An H.261 video has the three color channels Y, Cr, Cb. Should MVs be computed for each channel and then transmitted? Justify your answer. If not, which channel should be used for motion compensation?
+
+不应该为每个通道（Y, Cr, Cb）都计算并传输运动矢量。运动矢量代表了图像块在时间上的位移。对于同一位置的像素，无论是在亮度通道还是色度通道，其运动位移在物理上是相同的。如果为每个通道单独计算，会导致大量的冗余计算和传输开销，且不会显著提高补偿精度。通常只在 Y（亮度）通道上计算运动矢量。因为人眼对亮度的变化最敏感，且亮度通道包含了主要的图像细节信息，基于 Y 通道的运动估计最能反映物体的真实运动

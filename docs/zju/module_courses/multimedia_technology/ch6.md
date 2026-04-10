@@ -184,3 +184,15 @@ DFT/DCT 的局限：在频域有很好的分辨率，但在时间（空间）域
 <figure markdown="span">
   ![Img 8](../../../img/multimedia_technology/ch6/multimedia_ch6_img8.png){ width="600" }
 </figure>
+
+## Exercise
+
+When the blocksize is 8
+
+(a) If an 8 × 8 grayscale image is in the range 0.. 255, what is the largest value a DCT coefficient could be, and for what input image? (Also, state all the DCT coefficient values for that image.)
+
+(b) If we first subtract the value 128 from the whole image and then carry out the DCT, what is the exact effect on the DCT value F[2,3]?
+
+(a) 当左右像素值取 255 时，DCT 系数中的 DC 系数 F(0,0) 能够达到最大值：$F(0,0) = \dfrac{1}{8} \times 255 \times 64 = 2040$。此时，其余的 AC 系数均为 0
+
+(b) 减去 128 对 AC 系数没有影响，只影响 DC 系数

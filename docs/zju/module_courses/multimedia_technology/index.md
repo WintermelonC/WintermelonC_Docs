@@ -35,4 +35,5 @@ xj老师
 [6 Lossy Compression Algorithms](./ch6.md)<br/>
 [7 Image Compression Standards](./ch7.md)<br/>
 [8 Basic Video Compression Techniques](./ch8.md)<br/>
-[9 MPEG Video Coding](./ch9.md)
+[9 MPEG Video Coding 1](./ch9.md)<br/>
+[10 MPEG Video Coding 2](./ch10.md)

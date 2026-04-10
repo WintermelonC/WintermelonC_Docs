@@ -84,3 +84,26 @@ JPEG 2000 是新一代标准，旨在解决传统 JPEG 的痛点：
 | 视觉效果 | 块效应 (Blocking Artifacts)：高压缩下出现明显的马赛克方块 | 模糊 (Blurring)：图像变模糊，但没有生硬的方块边界，视觉效果更自然 |
 | 图像类型适应性 | 对自然图像尚可，对计算机生成图像（如线条图、文本）效果较差 | 对自然图像、计算机生成图像、医疗影像均表现优异 |
 | 比特率性能 | 在低比特率（<1 bpp）时，失真严重 | 在低比特率（0.25bpp - 0.75bpp）下，图像依然可辨识，细节保留更好 |
+
+## Exercise
+
+JPEG uses the Discrete Cosine Transform (DCT) for image compression.
+
+i. What is the value of F(o, O) if the image f(i, j) is as below?
+
+ii. Which AC coefficient |F(u, v)| is the largest for this f(i, j)? Why? Is this F(u, v) positive or negative? Why?
+
+```text linenums="1"
+20 20 20 20 20 20 20 20
+20 20 20 20 20 20 20 20
+80 80 80 80 80 80 80 80
+80 80 80 80 80 80 80 80
+140 140 140 140 140 140 140 140
+140 140 140 140 140 140 140 140
+200 200 200 200 200 200 200 200
+200 200 200 200 200 200 200 200
+```
+
+i. $F(0,0) = \dfrac{1}{8} \times (20 \times 16 + 80 \times 16 + 140 \times 16 + 200 \times 16) = 880$
+
+ii. |F(1, 0)| 是最大的，因为强度值的变化类似于在 8x8 块内垂直方向上的半个余弦周期。F(1,0) 是负数，因为变化的相位相差 180 度
