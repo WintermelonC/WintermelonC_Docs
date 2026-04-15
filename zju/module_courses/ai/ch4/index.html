@@ -8117,6 +8117,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 监督学习：回归分析与决策树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-回归分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 回归分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-决策树" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 决策树
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -13615,6 +13643,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="2 监督学习：回归分析与决策树">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-回归分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 回归分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-决策树" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 决策树
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -13801,16 +13857,115 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="4-机器学习">4 机器学习<a class="headerlink" href="#4-机器学习" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
 <h2 id="1-机器学习基本概念">1 机器学习基本概念<a class="headerlink" href="#1-机器学习基本概念" title="Permanent link">&para;</a></h2>
+<p>机器学习就是从数据中自动学习规律，并用学到的规律对新数据进行预测或决策</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>数据特点</th>
+<th>典型任务</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>监督学习</td>
+<td>数据有标签</td>
+<td>分类、回归</td>
+</tr>
+<tr>
+<td>无监督学习</td>
+<td>数据无标签</td>
+<td>聚类、降维</td>
+</tr>
+<tr>
+<td>半监督学习</td>
+<td>部分有标签、部分无标签</td>
+<td>利用少量标签提升效果</td>
+</tr>
+</tbody>
+</table>
+<p>数据集划分：</p>
+<table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>训练集</td>
+<td>用于训练模型参数</td>
+</tr>
+<tr>
+<td>验证集</td>
+<td>用于调整超参数、选择最佳模型</td>
+</tr>
+<tr>
+<td>测试集</td>
+<td>用于最终评估模型性能</td>
+</tr>
+</tbody>
+</table>
+<p>三个数据集之间没有任何交叉</p>
+<p>损失函数用来衡量预测值 <span class="arithmatex">\(f(x_i)\)</span> 与真实值 <span class="arithmatex">\(y_i\)</span> 之间的差异。训练目标就是最小化所有样本损失之和</p>
+<ul>
+<li>经验风险 <span class="arithmatex">\(R_{emp}\)</span>：模型在训练集上的平均损失</li>
+<li>期望风险 <span class="arithmatex">\(R\)</span>：模型在所有数据（含未知数据）上的平均损失</li>
+</ul>
+<p>存在关系：<span class="arithmatex">\(R \leqslant R_{emp} + err\)</span>。其中 err 与模型复杂度和训练样本数有关</p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>经验风险</th>
+<th>期望风险</th>
+<th>结论</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>泛化能力强</td>
+<td>小</td>
+<td>小</td>
+<td>理想状态</td>
+</tr>
+<tr>
+<td>过拟合</td>
+<td>小</td>
+<td>大</td>
+<td>模型过于复杂，记住了噪声</td>
+</tr>
+<tr>
+<td>欠拟合</td>
+<td>大</td>
+<td>大</td>
+<td>模型太简单，没学到规律</td>
+</tr>
+</tbody>
+</table>
 <h2 id="2-监督学习回归分析与决策树">2 监督学习：回归分析与决策树<a class="headerlink" href="#2-监督学习回归分析与决策树" title="Permanent link">&para;</a></h2>
+<h3 id="21-回归分析">2.1 回归分析<a class="headerlink" href="#21-回归分析" title="Permanent link">&para;</a></h3>
+<p>回归分析是分析不同变量之间存在关系的研究方法，刻画变量之间关系的模型称为回归模型</p>
+<p>线性回归只能处理线性关系，对于分类问题不适用</p>
+<p>logistic regression 是在线性回归的基础上引入 sigmoid 函数，用于解决二分类问题</p>
+<p>对于多分类问题，使用 softmax 函数将输出转换为各个类别的概率分布</p>
+<h3 id="22-决策树">2.2 决策树<a class="headerlink" href="#22-决策树" title="Permanent link">&para;</a></h3>
+<p>决策树将分类问题分解为若干基于单个信息的推理任务，采用树状结构来逐步完成决策判断</p>
+<figure>
+  <img alt="Img 2" src="../../../../img/ai/ch4/AI_ch4_img2.png" width="600" />
+</figure>
+<p>构建决策树的关键是选择哪个属性先进行划分。好的划分应该让子节点的纯度越来越高。熵值越小，纯度越高</p>
+<p>信息增益划分前后信息熵的减少量，选择信息增益最大的属性作为当前节点的划分属性</p>
 <h2 id="3-无监督学习k-均值聚类">3 无监督学习：K 均值聚类<a class="headerlink" href="#3-无监督学习k-均值聚类" title="Permanent link">&para;</a></h2>
 <p>k-means 算法的目标是将 𝑛 个 𝑑 维数据划分为 𝐾 个聚簇，使得簇内方差最小化</p>
 <h2 id="4-监督学习与非监督学习下特征降维">4 监督学习与非监督学习下特征降维<a class="headerlink" href="#4-监督学习与非监督学习下特征降维" title="Permanent link">&para;</a></h2>
@@ -13851,7 +14006,31 @@
 <p>由于 <span class="arithmatex">\(S_b w = (m_2-m_1)(m_2-m_1)^T w = (m_2-m_1)\lambda_w\)</span>，代入得 <span class="arithmatex">\(S_w^{-1}(m_2-m_1)\lambda_w = \lambda w\)</span></p>
 <p>去掉常数因子 <span class="arithmatex">\(\lambda_w\)</span>，得到：<span class="arithmatex">\(w = S_w^{-1}(m_2-m_1)\)</span>，这就是最优投影方向</p>
 <h3 id="42-主成分分析">4.2 主成分分析<a class="headerlink" href="#42-主成分分析" title="Permanent link">&para;</a></h3>
+<p>PCA 是一种无监督的特征降维方法。其目标是，在尽可能保留原始数据总体方差结构的前提下，将高维数据映射到低维空间。通俗地说，就是找到数据中方差最大的方向（主成分），将数据投影到这些方向上，从而用更少的维度表达数据的主要信息</p>
+<p>原始数据往往存在冗余（如相邻像素之间高度相关）。高维数据会带来维度灾难，增加计算与存储成本。而 PCA 可以：去噪、减少冗余、提高后续任务（如分类、聚类）的效率</p>
+<p>对每个样本 <span class="arithmatex">\(x_i\)</span> 进行中心化处理：<span class="arithmatex">\(x_i = x_i - \mu,\ \mu = \dfrac{1}{n}\sum\limits_{i=1}^n x_i\)</span>，目的是使数据的均值为0，便于计算协方差矩阵</p>
+<p><span class="arithmatex">\(X\)</span> 是中心化后的数据矩阵，计算协方差矩阵 <span class="arithmatex">\(\Sigma = \dfrac{1}{n-1}X^TX\)</span></p>
+<p>对协方差矩阵进行特征值分解：<span class="arithmatex">\(\Sigma v= \lambda v\)</span>，特征值 <span class="arithmatex">\(\lambda\)</span> 表示该主成分方向上的方差大小。特征向量 <span class="arithmatex">\(v\)</span> 表示主成分的方向</p>
+<p>将特征值从大到小排序：<span class="arithmatex">\(\lambda_1 \geqslant \lambda_2 \geqslant \cdots \geqslant \lambda_d\)</span>，选择前 <span class="arithmatex">\(l\)</span> 个最大特征值对应的特征向量 <span class="arithmatex">\(w_1, w_2, \cdots, w_l\)</span>，这些特征向量构成投影矩阵 <span class="arithmatex">\(W\)</span></p>
+<p>将原始 <span class="arithmatex">\(d\)</span> 维样本 <span class="arithmatex">\(x\)</span> 映射到 <span class="arithmatex">\(l\)</span> 维空间 <span class="arithmatex">\(z\)</span>，<span class="arithmatex">\(z = W^Tx\)</span></p>
 <h2 id="5-演化学习">5 演化学习<a class="headerlink" href="#5-演化学习" title="Permanent link">&para;</a></h2>
+<p>演化学习是指一类受自然演化启发的启发式随机优化算法，通过突变重组和自然选择两种机制来模拟生物演化过程</p>
+<p>常见的演化算法：</p>
+<ol>
+<li>遗传算法：最经典，使用选择、交叉、变异操作</li>
+<li>遗传规划：对计算机程序进行演化</li>
+<li>演化策略：强调自适应变异步长</li>
+</ol>
+<p>遗传算法步骤：</p>
+<ol>
+<li>初始化种群：随机生成一定数量的染色体（候选解），每个染色体代表问题的一个潜在解</li>
+<li>计算适应度：适应度函数就是我们的目标函数（越大越好）</li>
+<li>选择（轮盘赌算法）：适应度越高的个体，被选中的概率越大</li>
+<li>交叉：随机选择一对染色体，随机选择一个位置，该位置之后的基因进行交换，产生新后代</li>
+<li>变异：以很小的概率随机改变染色体中的某个基因</li>
+<li>重新评价适应度，更新最优解</li>
+<li>判断终止条件</li>
+</ol>
 
 
 
@@ -13874,7 +14053,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月8日 14:42:25 UTC">2026年4月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月15日 02:37:00 UTC">2026年4月15日</span>
   </span>
 
     
