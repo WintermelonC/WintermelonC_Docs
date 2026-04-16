@@ -5,8 +5,8 @@
 1. [Python](./python/index.md)
 
     1. [Anaconda](./python/anaconda.md)
-    2. [Python 编程基础](./python/basic/index.md)
-    3. [PyTorch 深度学习](./python/pytorch/index.md)
+    2. [Python 编程基础](./python/basic.md)
+    3. [PyTorch 深度学习](./python/pytorch.md)
 
 2. [C/C++](./C_Cpp/index.md)
 

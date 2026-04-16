@@ -3,8 +3,6 @@
 1. [CMake](./cmake.md)
 2. [vcpkg](./vcpkg.md)
 3. [Ninja](./ninja.md)
-4. Core Language
-5. STL
 
 ## C/C++ 规则
 

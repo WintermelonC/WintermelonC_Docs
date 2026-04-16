@@ -21,4 +21,3 @@
     - **开发**：GitHub 的 README.md、代码注释
     - **学术**：论文、报告（配合 Pandoc 可转 LaTeX/PDF）
     - **协作**：Slack、Discord 等平台支持 Markdown 格式化消息
-
