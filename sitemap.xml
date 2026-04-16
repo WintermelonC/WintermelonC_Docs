@@ -13,26 +13,6 @@
          <lastmod>2026-04-16</lastmod>
     </url>
     <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ch1/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ch2/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ch3/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ch4/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ch5/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
          <loc>https://wintermelonc.github.io/WintermelonC_Docs/application/vivado/</loc>
          <lastmod>2026-04-16</lastmod>
     </url>
@@ -109,54 +89,6 @@
          <lastmod>2026-04-16</lastmod>
     </url>
     <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/core_language/class/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/core_language/memory_model/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/core_language/object_lifetime/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/core_language/reference/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/core_language/type_alias/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/iterators/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/string/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/algorithms/sort/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/containers/list/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/containers/map/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/containers/set/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/containers/vector/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
          <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/java/</loc>
          <lastmod>2026-04-16</lastmod>
     </url>
@@ -177,75 +109,7 @@
          <lastmod>2026-04-16</lastmod>
     </url>
     <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch0/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch1/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch2/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch3/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch4/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/basic/ch5/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
          <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_1/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_2/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_3/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_4/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_5/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_6/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch7/ch7_7/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch8/ch8_1/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch8/ch8_2/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch8/ch8_3/</loc>
-         <lastmod>2026-04-16</lastmod>
-    </url>
-    <url>
-         <loc>https://wintermelonc.github.io/WintermelonC_Docs/knowledge/python/pytorch/ch8/ch8_4/</loc>
          <lastmod>2026-04-16</lastmod>
     </url>
     <url>
