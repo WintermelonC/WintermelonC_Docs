@@ -10930,6 +10930,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CSS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -10946,6 +10964,64 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-基本语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 基本语法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基本语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-选择器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 选择器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-简单示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 简单示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -11946,6 +12022,53 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-基本语法" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 基本语法
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 基本语法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-选择器" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 选择器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-简单示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 简单示例
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -12049,10 +12172,10 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="css">css<a class="headerlink" href="#css" title="Permanent link">&para;</a></h1>
-<div class="admonition tip">
-<p class="admonition-title">说明</p>
-<p>本文档正在更新中……</p>
-</div>
+<!-- !!! tip "说明"
+
+    本文档正在更新中…… -->
+
 <div class="admonition info">
 <p class="admonition-title">AI 介绍</p>
 <p>CSS（<strong>层叠样式表</strong>，Cascading Style Sheets）是用于 <strong>控制网页外观和布局</strong> 的样式语言。它和 <strong>HTML（结构）</strong>、<strong>JavaScript（交互）</strong> 并称前端开发的三大核心技术</p>
@@ -12076,6 +12199,274 @@
 <li><strong>JavaScript</strong> 负责网页**交互**（动态行为）</li>
 </ul>
 </div>
+<p>CSS 是一种用来给 HTML 元素添加样式的语言。HTML 负责搭建网页的骨架，也就是显示什么内容，而 CSS 负责网页的外观，也就是这些内容如何呈现，可以用来控制文字的颜色和大小、元素的排版布局、背景图片、间距、边框，甚至是动画效果</p>
+<h2 id="1-基本语法">1 基本语法<a class="headerlink" href="#1-基本语法" title="Permanent link">&para;</a></h2>
+<p>CSS 的核心由 selector（选择器）和包含在花括号内的 declaration block（声明块）组成</p>
+<div class="language-css highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">selector</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">property1</span><span class="p">:</span><span class="w"> </span><span class="n">value1</span><span class="p">;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">property2</span><span class="p">:</span><span class="w"> </span><span class="n">value2</span><span class="p">;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li>选择器：告诉浏览器你想要改变哪个 HTML 元素的样式（例如 <code>h1</code> 代表所有一级标题，<code>p</code> 代表所有段落）</li>
+<li>属性：你想要改变的内容（如 <code>color</code>、<code>font-size</code>）</li>
+<li>值：你想把这个内容改成什么样（如 <code>red</code>、<code>16px</code>）</li>
+</ol>
+<p>CSS 与 HTML 结合的三种方式：</p>
+<ol>
+<li>外部样式表：将 CSS 代码写在单独的 <code>.css</code> 文件中，然后在 HTML 的 <code>&lt;head&gt;</code> 里用 <code>&lt;link&gt;</code> 标签引入</li>
+<li>内部样式表：将 CSS 写在 HTML 的 <code>&lt;head&gt;</code> 区域的 <code>&lt;style&gt;</code> 标签内</li>
+<li>内联样式：直接写在 HTML 标签的 <code>style</code> 属性里，如 <code>&lt;p style="color: red;"&gt;</code></li>
+</ol>
+<h3 id="11-选择器">1.1 选择器<a class="headerlink" href="#11-选择器" title="Permanent link">&para;</a></h3>
+<p>各种类型到的选择器可以组合起来使用</p>
+<p><strong>基础选择器</strong></p>
+<ol>
+<li>
+<p>标签选择器</p>
+<ol>
+<li>语法：<code>标签名</code></li>
+<li>作用：选中页面中所有该名称的 HTML 标签</li>
+<li>示例：<code>p { color: red; }</code> （将所有 <code>&lt;p&gt;</code> 段落的文字变成红色）</li>
+</ol>
+</li>
+<li>
+<p>类选择器</p>
+<ol>
+<li>语法：<code>.类名</code></li>
+<li>作用：选中所有 <code>class</code> 属性包含该类名的元素。最常用的选择器，可以多处复用</li>
+<li>示例：<code>.highlight { background: yellow; }</code> （选中所有 <code>&lt;div class="highlight"&gt;</code> 等元素）</li>
+</ol>
+</li>
+<li>
+<p>ID 选择器</p>
+<ol>
+<li>语法：<code>#ID名</code></li>
+<li>作用：选中 <code>id</code> 属性为该名称的唯一元素。在一个 HTML 页面中，同一个 ID 只能出现一次</li>
+<li>示例：<code>#nav-bar { width: 100%; }</code> （选中 <code>&lt;nav id="nav-bar"&gt;</code>）</li>
+</ol>
+</li>
+<li>
+<p>通配符选择器</p>
+<ol>
+<li>语法：<code>*</code></li>
+<li>作用：选中页面上的所有元素。常用于重置默认样式</li>
+<li>示例：<code>* { margin: 0; padding: 0; }</code></li>
+</ol>
+</li>
+</ol>
+<p><strong>组合选择器</strong></p>
+<p>根据 DOM 树中元素之间的相对关系来选择元素</p>
+<details class="tip">
+<summary>DOM 树</summary>
+<p>DOM 树是浏览器用来表示和组织 HTML 网页内部结构的一种方式。非常好理解</p>
+<div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span>
+<span class="normal"><a href="#__codelineno-1-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>我的网页<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>大标题<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>一段文字<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>浏览器解析这段代码后，在内存中生成的 DOM 树骨架长这样：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>Document (隐藏的绝对根节点)
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a> └── &lt;html&gt; (网页本身的根元素)
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a>      │
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>      ├── &lt;head&gt; (html 的子节点)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a>      │    └── &lt;title&gt;
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a>      │         └── &quot;我的网页&quot; (文本节点/树叶)
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>      │
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a>      └── &lt;body&gt; (html 的子节点，与 head 是兄弟)
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a>           ├── &lt;h1&gt; (body 的子节点)
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>           │    └── &quot;大标题&quot; (文本节点/树叶)
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a>           │
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a>           └── &lt;p&gt; (body 的子节点，与 h1 是兄弟)
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a>                └── &quot;一段文字&quot; (文本节点/树叶)
+</span></code></pre></div></td></tr></table></div>
+<p>可以这样理解：HTML 代码便于人类理解，而 DOM 树结构便于计算机理解</p>
+</details>
+<ol>
+<li>
+<p>后代选择器</p>
+<ol>
+<li>语法：<code>A B</code></li>
+<li>作用：选中 <code>A</code> 元素内部的所有 <code>B</code> 元素（不论嵌套了多少层）</li>
+<li>示例：<code>div p { color: blue; }</code> （选中 <code>&lt;div&gt;</code> 内部所有的 <code>&lt;p&gt;</code> 元素）</li>
+</ol>
+</li>
+<li>
+<p>子代选择器</p>
+<ol>
+<li>语法：<code>A &gt; B</code></li>
+<li>作用：选中 <code>A</code> 元素的直接子元素 <code>B</code>（只管儿子，不管孙子）</li>
+<li>示例：<code>ul &gt; li { list-style: none; }</code></li>
+</ol>
+</li>
+<li>
+<p>相邻兄弟选择器</p>
+<ol>
+<li>语法：<code>A + B</code></li>
+<li>作用：选中紧跟在 <code>A</code> 元素后面的那一个 <code>B</code> 元素（必须是兄弟节点，且相邻紧挨着）</li>
+<li>示例：<code>h1 + p { font-weight: bold; }</code> （紧跟在 <code>&lt;h1&gt;</code> 后面的第一个 <code>&lt;p&gt;</code> 将加粗）</li>
+</ol>
+</li>
+<li>
+<p>通用兄弟选择器</p>
+<ol>
+<li>语法：<code>A ~ B</code></li>
+<li>作用：选中 <code>A</code> 元素后面的所有同级 <code>B</code> 元素（不必紧挨着）</li>
+<li>示例：<code>h1 ~ p { color: gray; }</code> （<code>&lt;h1&gt;</code> 之后所有的同级 <code>&lt;p&gt;</code> 变灰）</li>
+</ol>
+</li>
+</ol>
+<p><strong>属性选择器</strong></p>
+<p>根据元素的 HTML 属性及属性值来选择元素</p>
+<ol>
+<li><code>[attr]</code>：选择带有指定属性的元素。示例：<code>[disabled] { opacity: 0.5; }</code> （选中所有带有 <code>disabled</code> 属性的元素）</li>
+<li><code>[attr="value"]</code>：选择属性值完全等于指定值的元素。示例：<code>input[type="text"] { border: 1px solid black; }</code></li>
+<li><code>[attr^="value"]</code>：选择属性值以指定值开头的元素。示例：<code>a[href^="https"] { color: green; }</code> （选中所有的 HTTPS 链接）</li>
+<li><code>[attr$="value"]</code>：选择属性值以指定值结尾的元素。示例：<code>a[href$=".pdf"] { background-image: url('pdf-icon.png'); }</code></li>
+<li><code>[attr*="value"]</code>：选择属性值包含指定值的元素。示例：<code>a[href*="github"] { font-weight: bold; }</code></li>
+</ol>
+<p><strong>伪类选择器</strong></p>
+<p>用于选择处于特定状态的元素，通常使用一个冒号 <code>:</code></p>
+<ol>
+<li>
+<p>动态伪类：常用于链接和按钮</p>
+<ol>
+<li><code>:hover</code>：鼠标悬停在元素上时</li>
+<li><code>:active</code>：鼠标按下但没有松开时</li>
+<li><code>:focus</code>：元素获得焦点时（如输入框被点击输入文字时）</li>
+</ol>
+</li>
+<li>
+<p>结构伪类：基于元素在 DOM 树中的位置</p>
+<ol>
+<li><code>:first-child</code>：选中作为其父元素第一个子元素的元素</li>
+<li><code>:last-child</code>：选中作为其父元素最后一个子元素的元素</li>
+<li><code>:nth-child(n)</code>：选中作为其父元素第 n 个子元素的元素（n 可以是数字、<code>odd</code> 奇数、<code>even</code> 偶数，或者公式如 <code>2n+1</code>）</li>
+<li><code>:not(selector)</code>：否定伪类，选中非指定选择器的其他元素（例如 <code>p:not(.intro)</code> 选中所有 <code>class</code> 不是 <code>intro</code> 的 <code>&lt;p&gt;</code>）</li>
+</ol>
+</li>
+</ol>
+<p><strong>伪元素选择器</strong></p>
+<p>用于选择或创建元素的某个特定部分，属于页面上原本并不存在的逻辑元素，通常使用两个冒号 <code>::</code></p>
+<ol>
+<li><code>::before</code>：在元素内容的最前面插入一段内容（必须配合 <code>content</code> 属性使用）</li>
+<li><code>::after</code>：在元素内容的最后面插入一段内容。示例：<code>.price::before { content: "¥"; }</code> （在价格前自动加上人民币符号）</li>
+<li><code>::first-letter</code>：选中一段文本的第一个字母或汉字（常用于首字下沉排版）</li>
+<li><code>::first-line</code>：选中一段文本的第一行</li>
+<li><code>::selection</code>：选中文本被用户鼠标高亮选中时的状态（常用来修改选中文本的背景色）</li>
+</ol>
+<h2 id="2-简单示例">2 简单示例<a class="headerlink" href="#2-简单示例" title="Permanent link">&para;</a></h2>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">index.html</label><label for="__tabbed_1_2">style.css</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-html highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;zh-CN&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>外部样式表示例<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a>    <span class="cm">&lt;!-- 核心步骤：在这里引入外部的 CSS 文件 --&gt;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a>    <span class="cm">&lt;!-- rel=&quot;stylesheet&quot; 告诉浏览器引入的是样式表 --&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="cm">&lt;!-- href=&quot;style.css&quot; 指向了 CSS 文件的路径 --&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9"></a>    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;style.css&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12"></a>    <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>真正的网页开发<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13"></a>    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;card&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14"></a>        <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>通过外部样式表，我们可以让 HTML 只负责内容，CSS 只负责外观。这让代码变得非常干净<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15"></a>    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+<div class="tabbed-block">
+<div class="language-css highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span>
+<span class="normal"><a href="#__codelineno-4-14">14</a></span>
+<span class="normal"><a href="#__codelineno-4-15">15</a></span>
+<span class="normal"><a href="#__codelineno-4-16">16</a></span>
+<span class="normal"><a href="#__codelineno-4-17">17</a></span>
+<span class="normal"><a href="#__codelineno-4-18">18</a></span>
+<span class="normal"><a href="#__codelineno-4-19">19</a></span>
+<span class="normal"><a href="#__codelineno-4-20">20</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c">/* 给整个页面设置一个浅蓝色的背景 */</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="mh">#f0f8ff</span><span class="p">;</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">    </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="c">/* 让所有的一级标题居中，并设置颜色为深灰色 */</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="nt">h1</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#333333</span><span class="p">;</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">    </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="p">}</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="c">/* 给 class=&quot;card&quot; 的元素添加边框、内边距和背景色 */</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="p">.</span><span class="nc">card</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15"></a><span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="mh">#3498db</span><span class="p">;</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">    </span><span class="k">background-color</span><span class="p">:</span><span class="w"> </span><span class="kc">white</span><span class="p">;</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">    </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19"></a><span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span><span class="w"> </span><span class="c">/* 让卡片在页面中居中 */</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+</div>
+</div>
+</div>
+<p>在 VS Code 使用插件预览如下：</p>
+<figure>
+  <img alt="img 1" src="../../../img/css/css_img1.png" width="600" />
+</figure>
 
 
 
@@ -12098,7 +12489,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年5月8日 07:15:37 UTC">2025年5月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月17日 05:09:18 UTC">2026年4月17日</span>
   </span>
 
     
