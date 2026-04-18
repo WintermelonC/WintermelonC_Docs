@@ -25,4 +25,6 @@ cms老师
 [2 Lexical Analysis](./ch2.md)<br/>
 [3 Parsing](./ch3.md)<br/>
 [4 Abstract Syntax](./ch4.md)<br/>
-[5 Semantic Analysis](./ch5.md)
+[5 Semantic Analysis](./ch5.md)<br/>
+[6 Activation Records](./ch6.md)<br/>
+[7 intermediate Code](./ch7.md)

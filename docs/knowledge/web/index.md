@@ -34,9 +34,9 @@ Web 框架与 HTML、CSS、JavaScript 之间是高度依赖且互补的关系
 在浏览器页面上，按下 ++f12++ 快捷键可以打开浏览器调试工具
 
 <figure markdown="span">
-  ![img 1](../../img/web/web_img1.png){ width="600" }
+  ![img 1](../../img/web/web_img1.png){ width="800" }
 </figure>
 
 <figure markdown="span">
-  ![img 2](../../img/web/web_img2.png){ width="600" }
+  ![img 2](../../img/web/web_img2.png){ width="800" }
 </figure>
