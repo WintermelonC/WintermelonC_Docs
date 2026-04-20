@@ -13,6 +13,8 @@
     1. [CMake](./C_Cpp/cmake.md)
     2. [vcpkg](./C_Cpp/vcpkg.md)
     3. [Ninja](./C_Cpp/ninja.md)
+    4. Core Language
+    5. STL
 
 3. [Java](./java/index.md)
 4. [Web](./web/index.md)

@@ -29,6 +29,8 @@
    1. CMake
    2. vcpkg
    3. Ninja
+   4. Core Language
+   5. STL
 3. Java
 4. Web
    1. HTML

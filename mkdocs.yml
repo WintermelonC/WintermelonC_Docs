@@ -239,7 +239,7 @@ nav:
         - 4 Abstract Syntax: zju/compulsory_courses/compiler_principle/ch4.md
         - 5 Semantic Analysis: zju/compulsory_courses/compiler_principle/ch5.md
         - 6 Activation Records: zju/compulsory_courses/compiler_principle/ch6.md
-        - 7 intermediate Code: zju/compulsory_courses/compiler_principle/ch7.md
+        - 7 Intermediate Code: zju/compulsory_courses/compiler_principle/ch7.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 
@@ -318,6 +318,7 @@ nav:
       - application/watt_toolkit/index.md
     - Unreal Engine:
       - application/unreal_engine/index.md
+      - 蓝图基础: application/unreal_engine/blueprint_basic.md
   - 知识:
     - knowledge/index.md
     - Python:
@@ -330,6 +331,13 @@ nav:
       - CMake: knowledge/C_Cpp/cmake.md
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
+      - Core Language:
+        - Exception: knowledge/C_Cpp/core_language/exception.md
+      - STL:
+        - Container: knowledge/C_Cpp/stl/container.md
+        - Algorithm: knowledge/C_Cpp/stl/algorithm.md
+        - Stream: knowledge/C_Cpp/stl/stream.md
+        - Smart Pointer: knowledge/C_Cpp/stl/smart_pointer.md
     - Java: 
       - knowledge/java/index.md
     - Web:

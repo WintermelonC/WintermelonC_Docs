@@ -27,4 +27,4 @@ cms老师
 [4 Abstract Syntax](./ch4.md)<br/>
 [5 Semantic Analysis](./ch5.md)<br/>
 [6 Activation Records](./ch6.md)<br/>
-[7 intermediate Code](./ch7.md)
+[7 Intermediate Code](./ch7.md)
