@@ -319,8 +319,13 @@ nav:
     - Unreal Engine:
       - application/unreal_engine/index.md
       - 蓝图基础: application/unreal_engine/blueprint_basic.md
+      - 蓝图实战: application/unreal_engine/blueprint_practice.md
   - 知识:
     - knowledge/index.md
+    - 数据结构与算法:
+      - knowledge/data_structure_and_algorithm/index.md
+      - 算法:
+        - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
     - Python:
       - knowledge/python/index.md
       - Anaconda: knowledge/python/anaconda.md
@@ -333,6 +338,7 @@ nav:
       - Ninja: knowledge/C_Cpp/ninja.md
       - Core Language:
         - Exception: knowledge/C_Cpp/core_language/exception.md
+        - Template: knowledge/C_Cpp/core_language/template.md
       - STL:
         - Container: knowledge/C_Cpp/stl/container.md
         - Algorithm: knowledge/C_Cpp/stl/algorithm.md

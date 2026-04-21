@@ -21,22 +21,23 @@
 
 你可以找到一些有用的知识
 
-1. Python
+1. 数据结构与算法
+2. Python
    1. Anaconda
    2. Python 编程基础
    3. PyTorch 深度学习
-2. C/C++
+3. C/C++
    1. CMake
    2. vcpkg
    3. Ninja
    4. Core Language
    5. STL
-3. Java
-4. Web
+4. Java
+5. Web
    1. HTML
    2. css
    3. JavaScript
-5. Markdown
+6. Markdown
 
 ## 工具
 

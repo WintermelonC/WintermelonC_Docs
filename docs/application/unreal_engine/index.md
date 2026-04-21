@@ -8,4 +8,5 @@
 
     [【最新版5.7】UE5零基础入门教程 | 新手必刷 — 虚幻5完整系列教程](https://www.bilibili.com/video/BV1qYSvBHELW/){target="_blank"}
 
-[蓝图基础](./blueprint_basic.md)
+[蓝图基础](./blueprint_basic.md)<br/>
+[蓝图实战](./blueprint_practice.md)
