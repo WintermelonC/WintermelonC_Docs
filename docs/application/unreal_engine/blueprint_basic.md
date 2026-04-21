@@ -4,7 +4,7 @@
 
 <figure markdown="span">
   ![Img 1](../../img/unreal_engine/bp/ue_bp_img1.png){ width="800" }
-  <figcaption>事件开始时，打印字符串 `StringTest`</figcaption>
+  <figcaption markdown>事件开始时，打印字符串 `StringTest`</figcaption>
 </figure>
 
 框选蓝图节点，按 ++c++ 可以添加注释
@@ -66,3 +66,27 @@
     <figure markdown="span">
       ![Img 8](../../img/unreal_engine/bp/ue_bp_img8.png){ width="600" }
     </figure>
+
+## 3 实现自动门功能
+
+在 Fab 中添加 Wooden Door（@kellett66）到项目中
+
+打开门框的网络体，修改视图模式为玩家碰撞，会发现门框中间的部分是实心的。点击碰撞 → 移除碰撞，会发现整个门框都变成了空的。点击碰撞 → 自动凹凸碰撞，ue 会自动帮我们生成碰撞范围
+
+门和玩家是有交互的，不能单纯的拖到场景当中。
+
+1. 创建一个 Actor 蓝图类 BP_Door
+2. 组件中添加两个静态网络体组件 Door 和 DoorFrame（两者同级），并在右侧指定对应的模型，调整两者的位置
+3. 添加一个 Box Collision，调整盒体范围和位置使其覆盖门，在事件中添加组件开始重叠时、组件结束重叠时触发器
+
+在事件图表中添加“添加时间轴...”组件，打开后添加浮点型轨道，创建关键帧
+
+<figure markdown="span">
+  ![Img 9](../../img/unreal_engine/bp/ue_bp_img9.png){ width="600" }
+</figure>
+
+在事件图表中调整蓝图
+
+<figure markdown="span">
+  ![Img 10](../../img/unreal_engine/bp/ue_bp_img10.png){ width="600" }
+</figure>
