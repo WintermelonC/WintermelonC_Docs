@@ -339,6 +339,8 @@ nav:
       - Core Language:
         - Exception: knowledge/C_Cpp/core_language/exception.md
         - Template: knowledge/C_Cpp/core_language/template.md
+        - Overloaded Operator: knowledge/C_Cpp/core_language/overloaded_operator.md
+        - Lambda: knowledge/C_Cpp/core_language/lambda.md
       - STL:
         - Container: knowledge/C_Cpp/stl/container.md
         - Algorithm: knowledge/C_Cpp/stl/algorithm.md
