@@ -11127,6 +11127,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -11215,6 +11219,62 @@
     
   
     Template
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../C_Cpp/core_language/overloaded_operator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overloaded Operator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../C_Cpp/core_language/lambda/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lambda
   
 
     
@@ -12860,6 +12920,9 @@
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="p">}</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="1-子数组最大平均数">1 子数组最大平均数<a class="headerlink" href="#1-子数组最大平均数" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>固定窗口：窗口的大小是固定的常数 <code>k</code>。这种题目比较简单，通常不需要内层 <code>while</code> 循环，只需要在 <code>right - left + 1 == k</code> 时更新结果并移动 <code>left</code> 即可</p>
+</blockquote>
 <p>给你一个由 <code>n</code> 个整数组成的数组 <code>nums</code> 和一个整数 <code>k</code>。请找出所有长度为 <code>k</code> 的连续子数组，并计算得到其最大平均数并返回</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
@@ -12914,6 +12977,9 @@
 </span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="2-无重复字符的最长子串">2 无重复字符的最长子串<a class="headerlink" href="#2-无重复字符的最长子串" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>可变窗口 - 求最长/最大：窗口大小不固定。在扩大窗口时，可能会破坏题目要求的条件；当条件被破坏时，通过移动 <code>left</code> 来恢复条件</p>
+</blockquote>
 <p>给定一个字符串 <code>s</code> ，请你找出其中不含有重复字符的最长子串的长度</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
@@ -12972,6 +13038,9 @@
 </span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="p">};</span>
 </span></code></pre></div></td></tr></table></div>
 <h2 id="3-长度最小的子数组">3 长度最小的子数组<a class="headerlink" href="#3-长度最小的子数组" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>可变窗口 - 求最短/最小：窗口大小不固定。在扩大窗口时，是在努力达到题目要求的条件；一旦达到条件，就开始试探性地缩小窗口，看是否能用更短的区间满足条件</p>
+</blockquote>
 <p>给定一个含有 <code>n</code> 个正整数的数组和一个正整数 <code>target</code>。找出该数组中满足其和 <code>≥ target</code> 的长度最小的连续子数组，并返回其长度。如果不存在符合条件的子数组，返回 0</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
@@ -13049,7 +13118,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月21日 16:23:46 UTC">2026年4月21日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月22日 16:01:10 UTC">2026年4月22日</span>
   </span>
 
     
