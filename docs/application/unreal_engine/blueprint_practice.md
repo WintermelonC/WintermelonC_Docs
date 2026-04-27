@@ -131,7 +131,7 @@
 打开事件图表，编辑蓝图
 
 <figure markdown="span">
-  ![Img 17](../../img/unreal_engine/bp_practice/ue_bp_practice_img17.png){ width="600" }
+  ![Img 19](../../img/unreal_engine/bp_practice/ue_bp_practice_img19.png){ width="600" }
 </figure>
 
 <figure markdown="span">
@@ -143,7 +143,7 @@
 打开 BP_ChallengeCharacter，编辑事件图表
 
 <figure markdown="span">
-  ![Img 20](../../img/unreal_engine/bp_practice/ue_bp_practice_img20.png){ width="600" }
+  ![Img 20](../../img/unreal_engine/bp_practice/ue_bp_practice_img20.png){ width="800" }
 </figure>
 
 打开 BP_Sphere，编辑事件图表
@@ -157,3 +157,5 @@
 打开 SK_Adventurer，选择物理资产 SK_Adventurer_Physics
 
 打开 BP_ChallengeCharacter，修改碰撞预设为 PhysicsActor，将弹簧体组件作为网格体的子类
+
+## 6 实现角色死亡后重生逻辑

@@ -89,7 +89,7 @@ JPEG 2000 是新一代标准，旨在解决传统 JPEG 的痛点：
 
 JPEG uses the Discrete Cosine Transform (DCT) for image compression.
 
-i. What is the value of F(o, O) if the image f(i, j) is as below?
+i. What is the value of F(0, 0) if the image f(i, j) is as below?
 
 ii. Which AC coefficient |F(u, v)| is the largest for this f(i, j)? Why? Is this F(u, v) positive or negative? Why?
 

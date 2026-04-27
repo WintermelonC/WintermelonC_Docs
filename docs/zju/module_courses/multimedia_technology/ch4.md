@@ -40,7 +40,7 @@ Nyquist frequency：定义为奈奎斯特率的一半，即采样频率的一半
 
 SQNR 是信号功率与量化噪声功率的比值
 
-$SQNR = 20\cdot \log_{10}\dfrac{V_{signal}}{V_{quan_noise}} = 20 \cdot \log_{10}\dfrac{2^{N-1}}{\frac{1}{2}}$
+$SQNR = 20\cdot \log_{10}\dfrac{V_{signal}}{V_{quan\_ noise}} = 20 \cdot \log_{10}\dfrac{2^{N-1}}{\frac{1}{2}}$
 
 ## 2 Music Instrument Digital Interface
 
