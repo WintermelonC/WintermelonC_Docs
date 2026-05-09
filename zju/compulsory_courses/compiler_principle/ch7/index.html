@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch6/">
       
       
-        <link rel="next" href="../../../module_courses/">
+        <link rel="next" href="../ch8/">
       
       
         
@@ -7586,6 +7586,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -8066,6 +8070,62 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Blocks and Traces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 Instruction Selection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -13260,9 +13320,13 @@
 <p>Tr_Cx 结构：</p>
 <div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
-<span class="normal"><a href="#__codelineno-0-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// stm：一条 IR 语句，通常是一个条件跳转，如 CJUMP(&gt;, a, b, true_label, false_label)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">// patchList true / patchList false：记录哪些跳转目标尚未确定（例如，当 a &gt; b 作为更大表达式的一部分时，true/false 的目标地址可能还未生成），后续可以回填</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="n">Tr_Cx</span><span class="w"> </span><span class="p">(</span><span class="n">patchList</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">patchList</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">T_stm</span><span class="w"> </span><span class="n">stm</span><span class="p">);</span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1">// stm：一条 IR 语句，通常是一个条件跳转，如 CJUMP(&gt;, a, b, true_label, false_label)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="c1">// patchList true / patchList false：记录哪些跳转目标尚未确定</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="c1">// 例如，当 a &gt; b 作为更大表达式的一部分时，true/false 的目标地址可能还未生成</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1">// 后续可以回填</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">Tr_Cx</span><span class="w"> </span><span class="p">(</span><span class="n">patchList</span><span class="w"> </span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="n">patchList</span><span class="w"> </span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="n">T_stm</span><span class="w"> </span><span class="n">stm</span><span class="p">);</span>
 </span></code></pre></div></td></tr></table></div>
 <blockquote>
 <p>假设 AST 表达式：<code>(a &gt; b) &amp;&amp; (c &lt; d)</code></p>
@@ -13524,7 +13588,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月21日 08:31:09 UTC">2026年4月21日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年5月9日 13:51:17 UTC">2026年5月9日</span>
   </span>
 
     
@@ -13656,13 +13720,13 @@
         
         
           
-          <a href="../../../module_courses/" class="md-footer__link md-footer__link--next" aria-label="下一页: 专业模块课程">
+          <a href="../ch8/" class="md-footer__link md-footer__link--next" aria-label="下一页: 8 Blocks and Traces">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                专业模块课程
+                8 Blocks and Traces
               </div>
             </div>
             <div class="md-footer__button md-icon">
