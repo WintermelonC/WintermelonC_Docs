@@ -81,7 +81,9 @@ Tr_Cx 结构：
 
 ```cpp linenums="1"
 // stm：一条 IR 语句，通常是一个条件跳转，如 CJUMP(>, a, b, true_label, false_label)
-// patchList true / patchList false：记录哪些跳转目标尚未确定（例如，当 a > b 作为更大表达式的一部分时，true/false 的目标地址可能还未生成），后续可以回填
+// patchList true / patchList false：记录哪些跳转目标尚未确定
+// 例如，当 a > b 作为更大表达式的一部分时，true/false 的目标地址可能还未生成
+// 后续可以回填
 Tr_Cx (patchList true, patchList false, T_stm stm);
 ```
 

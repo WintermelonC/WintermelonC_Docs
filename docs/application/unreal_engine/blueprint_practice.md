@@ -159,3 +159,57 @@
 打开 BP_ChallengeCharacter，修改碰撞预设为 PhysicsActor，将弹簧体组件作为网格体的子类
 
 ## 6 实现角色死亡后重生逻辑
+
+打开 BP_ChallengeCharacter，编辑蓝图
+
+<figure markdown="span">
+  ![Img 22](../../img/unreal_engine/bp_practice/ue_bp_practice_img22.png){ width="800" }
+</figure>
+
+打开 BP_ChallengeMode，新建 RebirthLocation 变量，设置 Z 轴默认值为 100，编辑蓝图
+
+<figure markdown="span">
+  ![Img 23](../../img/unreal_engine/bp_practice/ue_bp_practice_img23.png){ width="600" }
+</figure>
+
+## 7 制作场景检查点蓝图功能
+
+新建 BP_CheckPoint，添加 Box Collision 和箭头组件（Box Collision 是父类）
+
+打开事件图表，编辑蓝图
+
+<figure markdown="span">
+  ![Img 24](../../img/unreal_engine/bp_practice/ue_bp_practice_img24.png){ width="800" }
+</figure>
+
+来到视口，可以放置一些标志物
+
+<figure markdown="span">
+  ![Img 25](../../img/unreal_engine/bp_practice/ue_bp_practice_img25.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 26](../../img/unreal_engine/bp_practice/ue_bp_practice_img26.png){ width="600" }
+</figure>
+
+## 8 制作场景中的第二道机关
+
+新建 BP_002，添加 SM_Stone_03, SM_WoodenPole_05, SW_WoodenPole_06 静态网络体组件。编辑视口
+
+<figure markdown="span">
+  ![Img 27](../../img/unreal_engine/bp_practice/ue_bp_practice_img27.png){ width="600" }
+</figure>
+
+打开事件图表，编辑蓝图
+
+<figure markdown="span">
+  ![Img 28](../../img/unreal_engine/bp_practice/ue_bp_practice_img28.png){ width="800" }
+</figure>
+
+<figure markdown="span">
+  ![Img 29](../../img/unreal_engine/bp_practice/ue_bp_practice_img29.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 30](../../img/unreal_engine/bp_practice/ue_bp_practice_img30.png){ width="800" }
+</figure>
