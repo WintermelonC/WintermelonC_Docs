@@ -7884,6 +7884,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9 Instruction Selection
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -7900,6 +7918,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-tree-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Tree Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-algorithms-for-instruction-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Algorithms for Instruction Selection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Algorithms for Instruction Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-maximal-munch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Maximal Munch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-dynamic-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Dynamic Programming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-tree-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Tree Grammars
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cisc-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 CISC Machines
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -12690,6 +12799,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-tree-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Tree Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-algorithms-for-instruction-selection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Algorithms for Instruction Selection
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 Algorithms for Instruction Selection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-maximal-munch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.1 Maximal Munch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-dynamic-programming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.2 Dynamic Programming
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-tree-grammars" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2.3 Tree Grammars
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-cisc-machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 CISC Machines
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -12819,6 +13008,182 @@
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
+<h2 id="1-tree-patterns">1 Tree Patterns<a class="headerlink" href="#1-tree-patterns" title="Permanent link">&para;</a></h2>
+<p>树模式就是用来描述“哪些 IR 树的子树可以一次性被翻译成一条机器指令”。例如，LOAD 指令就是专门用来处理“基址+偏移量”这种内存访问模式的</p>
+<figure>
+  <img alt="Img 1" src="../../../../img/compiler_principle/ch9/compiler_ch9_img1.png" width="600" />
+</figure>
+<p>instruction selection：通过用最小的树模式集合来 tile（覆盖）整棵 IR 树</p>
+<p>为了阐述指令选择，我们使用 Jouette（法语中意为“玩具”）架构指令集</p>
+<figure>
+  <img alt="Img 2" src="../../../../img/compiler_principle/ch9/compiler_ch9_img2.png" width="600" />
+</figure>
+<p>有些指令可能对应不止一个 tree pattern</p>
+<figure>
+  <img alt="Img 3" src="../../../../img/compiler_principle/ch9/compiler_ch9_img3.png" width="600" />
+</figure>
+<p>我们总是可以用 tiny tiles（微小砖块）来覆盖整棵树，每个砖块只覆盖一个节点（MOVE 节点除外）。微小砖块是指最简单、最基础的机器指令</p>
+<figure>
+  <img alt="Img 4" src="../../../../img/compiler_principle/ch9/compiler_ch9_img4.png" width="600" />
+</figure>
+<p>不同的铺砖方式会导致不同的代码性能：</p>
+<ol>
+<li>best tiling：在给定 CPU 下，耗时最短的那一段汇编代码</li>
+<li>optimum tiling（全局最优覆盖）：全局最优是在所有可能的“布砖”组合里，选出总成本最低的那一种。它只是一个理论上的最优</li>
+<li>optimal tiling（局部最优覆盖）：编译器实际会使用的算法</li>
+</ol>
+<figure>
+  <img alt="Img 5" src="../../../../img/compiler_principle/ch9/compiler_ch9_img5.png" width="600" />
+</figure>
+<h2 id="2-algorithms-for-instruction-selection">2 Algorithms for Instruction Selection<a class="headerlink" href="#2-algorithms-for-instruction-selection" title="Permanent link">&para;</a></h2>
+<p>实现 optimal tiling 的算法比实现 optimum tiling 的算法更为简单</p>
+<ul>
+<li>对于 CISC（复杂指令集计算机）而言，optimal tiling 和 optimum tiling 之间的区别是显著的。因为某些 CISC 指令可以单条完成多个操作</li>
+<li>对于 RISC（精简指令集计算机）而言，optimal tiling 和 optimum tiling 之间通常没有任何区别。因为 RISC 的指令都很基础，且成本基本一致</li>
+</ul>
+<p>因此，对于 RISC 架构，只需要用简单的贪心算法（寻找局部最优 Optimal）即可</p>
+<h3 id="21-maximal-munch">2.1 Maximal Munch<a class="headerlink" href="#21-maximal-munch" title="Permanent link">&para;</a></h3>
+<p>maximal munch 是一种用于实现 optimal tiling 的贪心算法</p>
+<ol>
+<li>从树的根节点开始，寻找能够匹配的最大的砖块（指包含节点数量最多的树模式）。如果根节点匹配到了两个大小相等的砖块，那么任选其中一个即可</li>
+<li>用这个砖块覆盖根节点，或许还能覆盖根节点附近的几个其他节点，然后留下几个独立的子树</li>
+<li>对剩下的每一个子树，重复执行上述同样的算法</li>
+</ol>
+<p>由于该算法是自顶向下的，因此最后生成的指令是逆序的</p>
+<p>使用两个递归函数：</p>
+<ol>
+<li>munchStm：处理语句</li>
+<li>munchExp：处理表达式</li>
+</ol>
+<figure>
+  <img alt="Img 6" src="../../../../img/compiler_principle/ch9/compiler_ch9_img6.png" width="600" />
+</figure>
+<h3 id="22-dynamic-programming">2.2 Dynamic Programming<a class="headerlink" href="#22-dynamic-programming" title="Permanent link">&para;</a></h3>
+<p>动态规划基于每个子问题的全局最优解，找到整棵树的全局最优解。它自底向上进行分析，为树中每一个节点都分配一个成本值</p>
+<p>给定一棵以节点 n 为根的中间表示树：</p>
+<ol>
+<li>自底向上递归地算出节点 n 的所有子节点（以及孙子节点等）的成本</li>
+<li>尝试将每一个树模式（即不同的砖块类型）与节点 n 进行匹配</li>
+<li>每一个砖块都有零个或多个叶子节点，这些叶子节点是用来挂载子树的位置</li>
+<li>对于每一个能在节点 n 匹配上的砖块 t，当在该节点选择这个砖块 t 时，总成本的计算公式为 <span class="arithmatex">\(c_{\text{tile\_total}} = c_t + \sum\limits_i c_i\)</span>。其中所有叶子子树的成本 <span class="arithmatex">\(\sum\limits_i c_i\)</span> 是已经计算出的最优解</li>
+<li>最后选择成本最低的那个方案</li>
+</ol>
+<figure>
+  <img alt="Img 7" src="../../../../img/compiler_principle/ch9/compiler_ch9_img7.png" width="200" />
+</figure>
+<figure>
+  <img alt="Img 8" src="../../../../img/compiler_principle/ch9/compiler_ch9_img8.png" width="600" />
+</figure>
+<p>DP 阶段是决策阶段，我们用公式算出了成本，选定了具体用哪一条指令。但它还没真的生成代码。而发射阶段是执行阶段，我们要把选定的指令 emit 出来</p>
+<p>Emission(n)：</p>
+<ol>
+<li>对于在节点 n 所选定的砖块的每一个叶子节点 li，先执行 Emission(li)</li>
+<li>然后再输出节点 n 处匹配到的指令</li>
+</ol>
+<figure>
+  <img alt="Img 9" src="../../../../img/compiler_principle/ch9/compiler_ch9_img9.png" width="600" />
+</figure>
+<h3 id="23-tree-grammars">2.3 Tree Grammars<a class="headerlink" href="#23-tree-grammars" title="Permanent link">&para;</a></h3>
+<p>对于具有复杂指令集以及多类寄存器和多种寻址模式的机器，存在一个对动态规划算法的推广，树文法本质上是使用形式化规则来描述什么样的树结构可以匹配到什么样的指令。这很像“正则表达式”对文本的描述，只不过树文法是针对树结构的</p>
+<figure>
+  <img alt="Img 10" src="../../../../img/compiler_principle/ch9/compiler_ch9_img10.png" width="600" />
+</figure>
+<p>可以使用上下文无关文法来描述砖块，该文法将包含以下非终结符：</p>
+<ol>
+<li>s：表示语句</li>
+<li>a：表示计算结果放入 a 寄存器的表达式</li>
+<li>d：表示计算结果放入 d 寄存器的表达式</li>
+</ol>
+<figure>
+  <img alt="Img 11" src="../../../../img/compiler_principle/ch9/compiler_ch9_img11.png" width="600" />
+</figure>
+<p>这样的文法是 highly ambiguous（高度二义性）的，因为存在许多不同的指令序列来实现同一个表达式。我们可以使用 DP 的思想来计算每个非终结符的最小代价</p>
+<div class="admonition tip">
+<p class="admonition-title">Fast Matching</p>
+<p>由于一个节点可能匹配多个砖块，我们需要快速知道对于给定标签，可能有哪些砖块。可以根据节点的标签进行分类。使用 switch 语句或跳转表，直接跳转到对该标签适用的砖块检查代码，而不需要遍历所有砖块</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MEM</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">        </span><span class="c1">// 检查所有以 MEM 为根的模式</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">        </span><span class="n">check_mem_tiles</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">BINOP</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">        </span><span class="c1">// 检查所有以 BINOP 为根的模式</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">        </span><span class="n">check_binop_tiles</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">CONST</span><span class="p">:</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">        </span><span class="c1">// 常量节点</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">        </span><span class="n">check_const_tiles</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">        </span><span class="k">break</span><span class="p">;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这相当于构建了一个决策树，根节点的第一层分叉就是节点的标签</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Efficiency of Tiling Algorithms</p>
+<p>假设：</p>
+<ol>
+<li>T：不同砖块的总数</li>
+<li>K：平均每个砖块包含 K 个非叶节点</li>
+<li>K'：在某个给定子树处，为判断哪些砖块能够匹配而需要检查的最大节点数</li>
+<li>T'：在每个树节点处，平均能够匹配的不同砖块模式数量</li>
+<li>N：输入树中的节点总数</li>
+</ol>
+<p>Maximal Munch：运行时间正比于 <span class="arithmatex">\((K' + T')\cdot N/K\)</span></p>
+<p>DP：运行时间正比于 <span class="arithmatex">\((K' + T')\cdot N\)</span></p>
+<p>由于 K、K' 和 T' 都是常数，所有这些算法的运行时间都是线性的（<span class="arithmatex">\(O(N)\)</span>）</p>
+</div>
+<h2 id="3-cisc-machines">3 CISC Machines<a class="headerlink" href="#3-cisc-machines" title="Permanent link">&para;</a></h2>
+<p>CISC 寄存器数量少，中间结果可能不够放：在指令选择阶段随意生成 TEMP 节点，然后在后面的寄存器分配阶段，把这些虚拟寄存器映射到有限的物理寄存器上，必要时插入 spill（溢出到内存）</p>
+<p>在奔腾（Pentium）处理器上进行乘法运算：左操作数必须放在 eax 寄存器中，结果的高 32 位放入 edx，低 32 位留在 eax 中。对于 Tiger 语言程序来说，高 32 位通常是无用的。我们可以显示移动数据</p>
+<blockquote>
+<p>例如实现 t1 ← t2 x t3</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Mov eax, t2
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a>Mul t3
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a>Mov t1, eax
+</span></code></pre></div></td></tr></table></div>
+</blockquote>
+<p>CISC 使用二地址指令（目标寄存器同时也是第一个源操作数）：可以添加额外的 move 指令</p>
+<blockquote>
+<p>例如实现 t1 ← t2 + t3</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a>mov t1, t2  // t1 ← t2
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>add t1, t3  // t1 ← t1 + t3
+</span></code></pre></div></td></tr></table></div>
+<p>如果 t1 和 t2 最终在分配时使用同一个物理寄存器，那这条 move 就完全不需要</p>
+</blockquote>
+<p>在指令选择阶段，我们使用虚拟寄存器（TEMP 节点），假装有无穷多的寄存器可用。但在后续的寄存器分配阶段，由于物理寄存器数量有限，很多 TEMP 会被溢出（spill）到内存中。可以在运算之前将所有操作数加载到寄存器中，运算之后再将其存回内存</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a>mov eax, [ebp - 8]
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a>add eax, ecx
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a>mov [ebp - 8], eax
+</span></code></pre></div></td></tr></table></div>
+<p>在 CISC 架构（如 x86）中，许多算术指令允许一个操作数在内存中。因此也可以直接用一条指令完成。这个方法和上一个方法速度相同，同时更加的简洁。另外，上一个方法有一个缺点，会破坏 eax 的值</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>add [ebp - 8], ecx
+</span></code></pre></div></td></tr></table></div>
+<p>CISC 架构的一条指令可以包含复杂的寻址模式，这一条指令可能会被拆成多个步骤执行，因此写成多个简单指令的执行速度并不会变快。复杂寻址模式破坏的寄存器更少，而且指令编码更短。理论上，可以用树匹配的方法来生成 CISC 指令，但使用简单 RISC 风格指令也能达到同样快的速度。因此很多编译器选择生成简单指令，让后续的微指令融合或硬件优化来提升性能</p>
+<p>CISC 架构的指令长度不固定，但对于编译器来说，编译器不需要知道具体每条指令的编码长度，它只需生成汇编指令。汇编器则需要考虑指令长度</p>
+<p>某些机器具有一种“自动递增”的内存读取指令，其效果为：<code>r2 ← M[r1]</code>, <code>r1 ← r1 + 4</code>。使用树模式来建模这类指令比较困难。有三种解决方案：</p>
+<ol>
+<li>忽略：不生成自动递增指令，只用普通 load + add</li>
+<li>特设匹配（ad hoc way）：在代码生成器中硬编码识别特定模式（如 <code>*p++</code>）</li>
+<li>DAG 模式：使用有向无环图（DAG）代替树，允许节点共享</li>
+</ol>
 
 
 
@@ -12841,7 +13206,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年5月9日 13:51:17 UTC">2026年5月9日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年5月10日 12:18:57 UTC">2026年5月10日</span>
   </span>
 
     
