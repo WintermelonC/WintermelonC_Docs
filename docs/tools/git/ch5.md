@@ -289,16 +289,6 @@ git graph 这里也可以看到 remote_test 分支合并到了 main 分支
 
     Fork（分叉）就是把你感兴趣的一个别人的仓库，复制一份到你自己的 GitHub 账户下。Fork 操作会在你的 GitHub 账户下创建一个与原仓库完全相同的副本。这个副本是完全独立于原仓库的，你可以对它进行任何操作，而不会影响到原项目
 
-    贡献代码的流程：
-
-    1. Fork 你感兴趣的项目
-    2. Clone 到你的本地电脑
-    3. 创建一个新的分支（Branch）来开发你的功能
-    4. 在本地完成代码修改、测试和提交（Commit）
-    5. 将修改推送（Push）回你 GitHub 账户下的 Fork 副本
-    6. 在 GitHub 上向原项目的作者发起一个 拉取请求（Pull Request, PR）
-    7. 原项目的维护者会审查你的代码。如果他们认为你的修改很好，就会将你的代码合并（Merge）到原始项目中
-
 首先找到需要合作的仓库，fork 一下
 
 <figure markdown="span">
@@ -311,11 +301,9 @@ git graph 这里也可以看到 remote_test 分支合并到了 main 分支
   ![Img 15](../../img/git/ch5/git_ch5_img15.png){ width="600" }
 </figure>
 
-### 2.2 Clone 仓库
+### 2.2 克隆 fork 仓库到本地
 
-clone 你 fork 出来的仓库到本地
-
-找一个文件夹打开终端
+我们需要克隆 fork 仓库到本地，找一个文件夹打开终端
 
 !!! tip "HTTPS 和 SSH 字段如何查看"
 
@@ -331,85 +319,166 @@ Cloning into 'git_test_repository'...
 remote: Enumerating objects: 40, done.
 remote: Counting objects: 100% (40/40), done.
 remote: Compressing objects: 100% (23/23), done.
-remote: Total 40 (delta 9), reused 35 (delta 7), pack-reused 0 (from 0)
-Receiving objects: 100% (40/40), 4.95 KiB | 845.00 KiB/s, done.
+remote: Total 40 (delta 9), reused 36 (delta 7), pack-reused 0 (from 0)
+Receiving objects: 100% (40/40), 4.95 KiB | 1014.00 KiB/s, done.
 Resolving deltas: 100% (9/9), done.
 ```
 
-### 2.3 修改并提交
+### 2.3 设置上游仓库
 
-比如我们可以新建一个文件
+现在我们本地仓库只关联了我们 fork 出来的自己的远程仓库，但是如果原仓库的 main 分支有什么改变，我们 fork 出来的仓库是不会自动同步的。因此，我们还需要关联一下原仓库。按照惯例，我们将其命名为 upstream（上游仓库）
 
-```text linenums="1" title="fork_new_file.txt"
-这是 WintermelonB 贡献的一个文件
+```bash linenums="1"
+$ git remote add upstream git@github2.com:WintermelonC/git_test_repository.git
 ```
+
+!!! tip "合作流程"
+
+    我们来规定一下合作流程：
+
+    1. 协作者（WintermelonB）在写自己的代码时，首先应该从 upstream 同步 main 分支的状态
+    2. 协作者不得直接修改 main 分支，应创建自己的 dev 分支，在 dev 分支上完成开发后，将 dev 分支 push 到 origin 仓库
+    3. 在 github 上进行 pull request，请求将 fork 仓库的 dev 分支 merge 到原仓库（WintermelonC）的 main 分支
+    4. 原仓库拥有者审查后同意合并
+    5. 协作者从 upstream 同步 main 分支状态，继续开发
+
+### 2.4 协作者开发
+
+按照合作流程，我们先从 upstream 同步 main 分支的状态
+
+```bash linenums="1"
+$ git pull upstream main      
+From github2.com:WintermelonC/git_test_repository
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> upstream/main
+Already up to date.
+```
+
+现在我们只是将本地 main 分支和 upstream（原仓库）同步了，但是我们 fork 的仓库还没有同步，因此还需要 push 到 origin 仓库（我们 fork 出来的仓库）
+
+```bash linenums="1"
+$ git push origin main
+Everything up-to-date
+```
+
+现在新建一个 dev 分支进行开发
+
+```bash linenums="1"
+$ git branch dev_B            
+$ git switch dev_B    
+Switched to branch 'dev_B'
+```
+
+新建一个文件
+
+```text linenums="1" title="fork.txt"
+这是 WintermelonB 贡献的文件
+```
+
+开发完成后，提交
 
 <figure markdown="span">
   ![Img 17](../../img/git/ch5/git_ch5_img17.png){ width="600" }
 </figure>
 
-### 2.4 push 提交
+然后将 dev 分支 push 到 origin 仓库
 
 ```bash linenums="1"
-$ git push -u origin main 
+$ git push -u origin dev_B                                               
 Enumerating objects: 4, done.
 Counting objects: 100% (4/4), done.
 Delta compression using up to 20 threads
 Compressing objects: 100% (2/2), done.
-Writing objects: 100% (3/3), 351 bytes | 351.00 KiB/s, done.
+Writing objects: 100% (3/3), 326 bytes | 326.00 KiB/s, done.
 Total 3 (delta 1), reused 0 (delta 0), pack-reused 0 (from 0)
 remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+remote: 
+remote: Create a pull request for 'dev_B' on GitHub by visiting:
+remote:      https://github.com/WintermelonB/git_test_repository/pull/new/dev_B
+remote: 
 To github2.com:WintermelonB/git_test_repository.git
-   8a79f2e..1ba3aa1  main -> main
-branch 'main' set up to track 'origin/main'.
+ * [new branch]      dev_B -> dev_B
+branch 'dev_B' set up to track 'origin/dev_B'.
 ```
 
 ### 2.5 发起 pull request
+
+接下来回到 github，我们发起 pull request
 
 <figure markdown="span">
   ![Img 18](../../img/git/ch5/git_ch5_img18.png){ width="600" }
 </figure>
 
+设置 pull request 信息。注意将 WintermlonB 的 dev 分支合并到 WintermelonC 的 main 分支
+
 <figure markdown="span">
   ![Img 19](../../img/git/ch5/git_ch5_img19.png){ width="600" }
 </figure>
 
-可以看到我们刚才设置的分支保护规则的生效情况：需要有其他有相关权限的人的审查
-
-### 2.6 审查 pull request
-
-回到仓库拥有者的视角
+接下来等待原仓库拥有者的审查
 
 <figure markdown="span">
   ![Img 20](../../img/git/ch5/git_ch5_img20.png){ width="600" }
 </figure>
 
-点击上面的 ^^Files changed^^ 按钮审查代码
+### 2.6 审查 pull request
+
+回到仓库拥有者视角
 
 <figure markdown="span">
-  ![Img 21](../../img/git/ch5/git_ch5_img21.png){ width="800" }
+  ![Img 21](../../img/git/ch5/git_ch5_img21.png){ width="600" }
 </figure>
 
-同意之后，返回此界面，可以看到安心的绿色。这时候仓库拥有者可以点击 ^^merge pull request^^ 按钮进行合并了
+我们需要点击 ^^Fils changed^^ 进行代码审查，在这里仓库拥有者可以审查代码并批准
 
 <figure markdown="span">
   ![Img 22](../../img/git/ch5/git_ch5_img22.png){ width="600" }
 </figure>
 
-### 2.7 同步 fork 仓库状态
-
-回到仓库协作者的视角
-
-这时候需要我们从主仓库那里 pull 一下最新的状态，因为 main 分支有了一次合并提交
+接下来点击 ^^Merge pull request^^ 完成合并
 
 <figure markdown="span">
   ![Img 23](../../img/git/ch5/git_ch5_img23.png){ width="600" }
 </figure>
 
-同步完之后，就可以继续补充代码做贡献了
+<figure markdown="span">
+  ![Img 24](../../img/git/ch5/git_ch5_img24.png){ width="600" }
+</figure>
 
-## 3 建议
+### 2.7 同步状态
 
-1. 各个协作者（包括仓库拥有者）应避免直接在 main 分支上修改，正确的做法是创建各自的 develop 分支并在此分支上更新代码，并通过 pull request 的方式将修改的内容 merge 的 main 分支上
-2. 各个协作者在编写自己的代码时，应首先 pull 一下远程仓库，保证自己的本地仓库的状态和远程仓库那边的最新状态是一致的，这样可以减少代码合并冲突
-3. 负责 pull request 的人员可以在 main 分支有更新后，及时提醒各个协作者，让他们知道需要 `git pull` 了
+回到协作者视角
+
+合并成功后，我们需要同步本地和 origin 的 main 分支
+
+```bash linenums="1"
+# 切换到 main 分支
+$ git switch main         
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+# 从 upstream 同步 main 分支
+$ git pull upstream main  
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (1/1), 905 bytes | 150.00 KiB/s, done.
+From github2.com:WintermelonC/git_test_repository
+ * branch            main       -> FETCH_HEAD
+   8a79f2e..25bfa48  main       -> upstream/main
+Updating 8a79f2e..25bfa48
+Fast-forward
+ fork.txt | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 fork.txt
+# 同样，需要 push 到 origin
+$ git push origin main
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To github2.com:WintermelonB/git_test_repository.git
+   8a79f2e..25bfa48  main -> main
+```
+
+最后的 git graph：
+
+<figure markdown="span">
+  ![Img 25](../../img/git/ch5/git_ch5_img25.png){ width="600" }
+</figure>
