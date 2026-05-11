@@ -308,7 +308,7 @@ git graph 这里也可以看到 remote_test 分支合并到了 main 分支
 !!! tip "HTTPS 和 SSH 字段如何查看"
 
     <figure markdown="span">
-      ![Img 16](../../img/git/ch5/git_ch5_img16.png){ width="400" }
+      ![Img 16](../../img/git/ch5/git_ch5_img16.png){ width="600" }
     </figure>
 
 ```bash linenums="1"
