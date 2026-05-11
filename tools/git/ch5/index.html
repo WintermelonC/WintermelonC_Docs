@@ -12161,10 +12161,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-clone-仓库" class="md-nav__link">
+  <a href="#22-克隆-fork-仓库到本地" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Clone 仓库
+        2.2 克隆 fork 仓库到本地
       
     </span>
   </a>
@@ -12172,10 +12172,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-修改并提交" class="md-nav__link">
+  <a href="#23-设置上游仓库" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3 修改并提交
+        2.3 设置上游仓库
       
     </span>
   </a>
@@ -12183,10 +12183,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-push-提交" class="md-nav__link">
+  <a href="#24-协作者开发" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4 push 提交
+        2.4 协作者开发
       
     </span>
   </a>
@@ -12216,10 +12216,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#27-同步-fork-仓库状态" class="md-nav__link">
+  <a href="#27-同步状态" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.7 同步 fork 仓库状态
+        2.7 同步状态
       
     </span>
   </a>
@@ -12228,17 +12228,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-建议" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 建议
-      
-    </span>
-  </a>
   
 </li>
       
@@ -12914,10 +12903,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22-clone-仓库" class="md-nav__link">
+  <a href="#22-克隆-fork-仓库到本地" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.2 Clone 仓库
+        2.2 克隆 fork 仓库到本地
       
     </span>
   </a>
@@ -12925,10 +12914,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23-修改并提交" class="md-nav__link">
+  <a href="#23-设置上游仓库" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.3 修改并提交
+        2.3 设置上游仓库
       
     </span>
   </a>
@@ -12936,10 +12925,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#24-push-提交" class="md-nav__link">
+  <a href="#24-协作者开发" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.4 push 提交
+        2.4 协作者开发
       
     </span>
   </a>
@@ -12969,10 +12958,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#27-同步-fork-仓库状态" class="md-nav__link">
+  <a href="#27-同步状态" class="md-nav__link">
     <span class="md-ellipsis">
       
-        2.7 同步 fork 仓库状态
+        2.7 同步状态
       
     </span>
   </a>
@@ -12981,17 +12970,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-建议" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 建议
-      
-    </span>
-  </a>
   
 </li>
       
@@ -13410,16 +13388,6 @@
 <p class="admonition-title">fork 是什么</p>
 <p><strong>AI 解释</strong>：</p>
 <p>Fork（分叉）就是把你感兴趣的一个别人的仓库，复制一份到你自己的 GitHub 账户下。Fork 操作会在你的 GitHub 账户下创建一个与原仓库完全相同的副本。这个副本是完全独立于原仓库的，你可以对它进行任何操作，而不会影响到原项目</p>
-<p>贡献代码的流程：</p>
-<ol>
-<li>Fork 你感兴趣的项目</li>
-<li>Clone 到你的本地电脑</li>
-<li>创建一个新的分支（Branch）来开发你的功能</li>
-<li>在本地完成代码修改、测试和提交（Commit）</li>
-<li>将修改推送（Push）回你 GitHub 账户下的 Fork 副本</li>
-<li>在 GitHub 上向原项目的作者发起一个 拉取请求（Pull Request, PR）</li>
-<li>原项目的维护者会审查你的代码。如果他们认为你的修改很好，就会将你的代码合并（Merge）到原始项目中</li>
-</ol>
 </div>
 <p>首先找到需要合作的仓库，fork 一下</p>
 <figure>
@@ -13429,9 +13397,8 @@
 <figure>
   <img alt="Img 15" src="../../../img/git/ch5/git_ch5_img15.png" width="600" />
 </figure>
-<h3 id="22-clone-仓库">2.2 Clone 仓库<a class="headerlink" href="#22-clone-仓库" title="Permanent link">&para;</a></h3>
-<p>clone 你 fork 出来的仓库到本地</p>
-<p>找一个文件夹打开终端</p>
+<h3 id="22-克隆-fork-仓库到本地">2.2 克隆 fork 仓库到本地<a class="headerlink" href="#22-克隆-fork-仓库到本地" title="Permanent link">&para;</a></h3>
+<p>我们需要克隆 fork 仓库到本地，找一个文件夹打开终端</p>
 <div class="admonition tip">
 <p class="admonition-title">HTTPS 和 SSH 字段如何查看</p>
 <p><figure markdown="span">
@@ -13454,74 +13421,169 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">40</span>,<span class="w"> </span><span class="k">done</span>.
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">40</span>/40<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a>remote:<span class="w"> </span>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">23</span>/23<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">9</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">7</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>Receiving<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">40</span>/40<span class="o">)</span>,<span class="w"> </span><span class="m">4</span>.95<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">845</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">9</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">7</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a>Receiving<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">40</span>/40<span class="o">)</span>,<span class="w"> </span><span class="m">4</span>.95<span class="w"> </span>KiB<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1014</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
 </span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">9</span>/9<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
 </span></code></pre></div></td></tr></table></div>
-<h3 id="23-修改并提交">2.3 修改并提交<a class="headerlink" href="#23-修改并提交" title="Permanent link">&para;</a></h3>
-<p>比如我们可以新建一个文件</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">fork_new_file.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>这是 WintermelonB 贡献的一个文件
+<h3 id="23-设置上游仓库">2.3 设置上游仓库<a class="headerlink" href="#23-设置上游仓库" title="Permanent link">&para;</a></h3>
+<p>现在我们本地仓库只关联了我们 fork 出来的自己的远程仓库，但是如果原仓库的 main 分支有什么改变，我们 fork 出来的仓库是不会自动同步的。因此，我们还需要关联一下原仓库。按照惯例，我们将其命名为 upstream（上游仓库）</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a>$<span class="w"> </span>git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>git@github2.com:WintermelonC/git_test_repository.git
 </span></code></pre></div></td></tr></table></div>
+<div class="admonition tip">
+<p class="admonition-title">合作流程</p>
+<p>我们来规定一下合作流程：</p>
+<ol>
+<li>协作者（WintermelonB）在写自己的代码时，首先应该从 upstream 同步 main 分支的状态</li>
+<li>协作者不得直接修改 main 分支，应创建自己的 dev 分支，在 dev 分支上完成开发后，将 dev 分支 push 到 origin 仓库</li>
+<li>在 github 上进行 pull request，请求将 fork 仓库的 dev 分支 merge 到原仓库（WintermelonC）的 main 分支</li>
+<li>原仓库拥有者审查后同意合并</li>
+<li>协作者从 upstream 同步 main 分支状态，继续开发</li>
+</ol>
+</div>
+<h3 id="24-协作者开发">2.4 协作者开发<a class="headerlink" href="#24-协作者开发" title="Permanent link">&para;</a></h3>
+<p>按照合作流程，我们先从 upstream 同步 main 分支的状态</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main<span class="w">      </span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>From<span class="w"> </span>github2.com:WintermelonC/git_test_repository
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w"> </span>*<span class="w"> </span>branch<span class="w">            </span>main<span class="w">       </span>-&gt;<span class="w"> </span>FETCH_HEAD
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="w"> </span>*<span class="w"> </span><span class="o">[</span>new<span class="w"> </span>branch<span class="o">]</span><span class="w">      </span>main<span class="w">       </span>-&gt;<span class="w"> </span>upstream/main
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>Already<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date.
+</span></code></pre></div></td></tr></table></div>
+<p>现在我们只是将本地 main 分支和 upstream（原仓库）同步了，但是我们 fork 的仓库还没有同步，因此还需要 push 到 origin 仓库（我们 fork 出来的仓库）</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a>Everything<span class="w"> </span>up-to-date
+</span></code></pre></div></td></tr></table></div>
+<p>现在新建一个 dev 分支进行开发</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a>$<span class="w"> </span>git<span class="w"> </span>branch<span class="w"> </span>dev_B<span class="w">            </span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>dev_B<span class="w">    </span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;dev_B&#39;</span>
+</span></code></pre></div></td></tr></table></div>
+<p>新建一个文件</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">fork.txt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-9-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a>这是 WintermelonB 贡献的文件
+</span></code></pre></div></td></tr></table></div>
+<p>开发完成后，提交</p>
 <figure>
   <img alt="Img 17" src="../../../img/git/ch5/git_ch5_img17.png" width="600" />
 </figure>
-<h3 id="24-push-提交">2.4 push 提交<a class="headerlink" href="#24-push-提交" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
-<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
-<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
-<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
-<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
-<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
-<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
-<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
-<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
-<span class="normal"><a href="#__codelineno-6-10">10</a></span>
-<span class="normal"><a href="#__codelineno-6-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a>Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">20</span><span class="w"> </span>threads
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a>Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">351</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">351</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
-</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a>remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span>completed<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>object.
-</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a>To<span class="w"> </span>github2.com:WintermelonB/git_test_repository.git
-</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10"></a><span class="w">   </span>8a79f2e..1ba3aa1<span class="w">  </span>main<span class="w"> </span>-&gt;<span class="w"> </span>main
-</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11"></a>branch<span class="w"> </span><span class="s1">&#39;main&#39;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">&#39;origin/main&#39;</span>.
+<p>然后将 dev 分支 push 到 origin 仓库</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-10-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-10-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-10-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-10-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-10-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-10-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-10-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-10-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-10-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-10-10">10</a></span>
+<span class="normal"><a href="#__codelineno-10-11">11</a></span>
+<span class="normal"><a href="#__codelineno-10-12">12</a></span>
+<span class="normal"><a href="#__codelineno-10-13">13</a></span>
+<span class="normal"><a href="#__codelineno-10-14">14</a></span>
+<span class="normal"><a href="#__codelineno-10-15">15</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>dev_B<span class="w">                                               </span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">4</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">4</span>/4<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a>Delta<span class="w"> </span>compression<span class="w"> </span>using<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span><span class="m">20</span><span class="w"> </span>threads
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a>Compressing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">2</span>/2<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a>Writing<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">3</span>/3<span class="o">)</span>,<span class="w"> </span><span class="m">326</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">326</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a>Total<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a>remote:<span class="w"> </span>Resolving<span class="w"> </span>deltas:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span>completed<span class="w"> </span>with<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">local</span><span class="w"> </span>object.
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a>remote:<span class="w"> </span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a>remote:<span class="w"> </span>Create<span class="w"> </span>a<span class="w"> </span>pull<span class="w"> </span>request<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;dev_B&#39;</span><span class="w"> </span>on<span class="w"> </span>GitHub<span class="w"> </span>by<span class="w"> </span>visiting:
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a>remote:<span class="w">      </span>https://github.com/WintermelonB/git_test_repository/pull/new/dev_B
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a>remote:<span class="w"> </span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a>To<span class="w"> </span>github2.com:WintermelonB/git_test_repository.git
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><span class="w"> </span>*<span class="w"> </span><span class="o">[</span>new<span class="w"> </span>branch<span class="o">]</span><span class="w">      </span>dev_B<span class="w"> </span>-&gt;<span class="w"> </span>dev_B
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a>branch<span class="w"> </span><span class="s1">&#39;dev_B&#39;</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>track<span class="w"> </span><span class="s1">&#39;origin/dev_B&#39;</span>.
 </span></code></pre></div></td></tr></table></div>
 <h3 id="25-发起-pull-request">2.5 发起 pull request<a class="headerlink" href="#25-发起-pull-request" title="Permanent link">&para;</a></h3>
+<p>接下来回到 github，我们发起 pull request</p>
 <figure>
   <img alt="Img 18" src="../../../img/git/ch5/git_ch5_img18.png" width="600" />
 </figure>
+<p>设置 pull request 信息。注意将 WintermlonB 的 dev 分支合并到 WintermelonC 的 main 分支</p>
 <figure>
   <img alt="Img 19" src="../../../img/git/ch5/git_ch5_img19.png" width="600" />
 </figure>
-<p>可以看到我们刚才设置的分支保护规则的生效情况：需要有其他有相关权限的人的审查</p>
-<h3 id="26-审查-pull-request">2.6 审查 pull request<a class="headerlink" href="#26-审查-pull-request" title="Permanent link">&para;</a></h3>
-<p>回到仓库拥有者的视角</p>
+<p>接下来等待原仓库拥有者的审查</p>
 <figure>
   <img alt="Img 20" src="../../../img/git/ch5/git_ch5_img20.png" width="600" />
 </figure>
-<p>点击上面的 <ins>Files changed</ins> 按钮审查代码</p>
+<h3 id="26-审查-pull-request">2.6 审查 pull request<a class="headerlink" href="#26-审查-pull-request" title="Permanent link">&para;</a></h3>
+<p>回到仓库拥有者视角</p>
 <figure>
-  <img alt="Img 21" src="../../../img/git/ch5/git_ch5_img21.png" width="800" />
+  <img alt="Img 21" src="../../../img/git/ch5/git_ch5_img21.png" width="600" />
 </figure>
-<p>同意之后，返回此界面，可以看到安心的绿色。这时候仓库拥有者可以点击 <ins>merge pull request</ins> 按钮进行合并了</p>
+<p>我们需要点击 <ins>Fils changed</ins> 进行代码审查，在这里仓库拥有者可以审查代码并批准</p>
 <figure>
   <img alt="Img 22" src="../../../img/git/ch5/git_ch5_img22.png" width="600" />
 </figure>
-<h3 id="27-同步-fork-仓库状态">2.7 同步 fork 仓库状态<a class="headerlink" href="#27-同步-fork-仓库状态" title="Permanent link">&para;</a></h3>
-<p>回到仓库协作者的视角</p>
-<p>这时候需要我们从主仓库那里 pull 一下最新的状态，因为 main 分支有了一次合并提交</p>
+<p>接下来点击 <ins>Merge pull request</ins> 完成合并</p>
 <figure>
   <img alt="Img 23" src="../../../img/git/ch5/git_ch5_img23.png" width="600" />
 </figure>
-<p>同步完之后，就可以继续补充代码做贡献了</p>
-<h2 id="3-建议">3 建议<a class="headerlink" href="#3-建议" title="Permanent link">&para;</a></h2>
-<ol>
-<li>各个协作者（包括仓库拥有者）应避免直接在 main 分支上修改，正确的做法是创建各自的 develop 分支并在此分支上更新代码，并通过 pull request 的方式将修改的内容 merge 的 main 分支上</li>
-<li>各个协作者在编写自己的代码时，应首先 pull 一下远程仓库，保证自己的本地仓库的状态和远程仓库那边的最新状态是一致的，这样可以减少代码合并冲突</li>
-<li>负责 pull request 的人员可以在 main 分支有更新后，及时提醒各个协作者，让他们知道需要 <code>git pull</code> 了</li>
-</ol>
+<figure>
+  <img alt="Img 24" src="../../../img/git/ch5/git_ch5_img24.png" width="600" />
+</figure>
+<h3 id="27-同步状态">2.7 同步状态<a class="headerlink" href="#27-同步状态" title="Permanent link">&para;</a></h3>
+<p>回到协作者视角</p>
+<p>合并成功后，我们需要同步本地和 origin 的 main 分支</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-11-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-11-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-11-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-11-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-11-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-11-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-11-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-11-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-11-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-11-10">10</a></span>
+<span class="normal"><a href="#__codelineno-11-11">11</a></span>
+<span class="normal"><a href="#__codelineno-11-12">12</a></span>
+<span class="normal"><a href="#__codelineno-11-13">13</a></span>
+<span class="normal"><a href="#__codelineno-11-14">14</a></span>
+<span class="normal"><a href="#__codelineno-11-15">15</a></span>
+<span class="normal"><a href="#__codelineno-11-16">16</a></span>
+<span class="normal"><a href="#__codelineno-11-17">17</a></span>
+<span class="normal"><a href="#__codelineno-11-18">18</a></span>
+<span class="normal"><a href="#__codelineno-11-19">19</a></span>
+<span class="normal"><a href="#__codelineno-11-20">20</a></span>
+<span class="normal"><a href="#__codelineno-11-21">21</a></span>
+<span class="normal"><a href="#__codelineno-11-22">22</a></span>
+<span class="normal"><a href="#__codelineno-11-23">23</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="c1"># 切换到 main 分支</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a>$<span class="w"> </span>git<span class="w"> </span>switch<span class="w"> </span>main<span class="w">         </span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a>Switched<span class="w"> </span>to<span class="w"> </span>branch<span class="w"> </span><span class="s1">&#39;main&#39;</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a>Your<span class="w"> </span>branch<span class="w"> </span>is<span class="w"> </span>up<span class="w"> </span>to<span class="w"> </span>date<span class="w"> </span>with<span class="w"> </span><span class="s1">&#39;origin/main&#39;</span>.
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="c1"># 从 upstream 同步 main 分支</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a>$<span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span>upstream<span class="w"> </span>main<span class="w">  </span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a>remote:<span class="w"> </span>Enumerating<span class="w"> </span>objects:<span class="w"> </span><span class="m">1</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8"></a>remote:<span class="w"> </span>Counting<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9"></a>remote:<span class="w"> </span>Total<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10"></a>Unpacking<span class="w"> </span>objects:<span class="w"> </span><span class="m">100</span>%<span class="w"> </span><span class="o">(</span><span class="m">1</span>/1<span class="o">)</span>,<span class="w"> </span><span class="m">905</span><span class="w"> </span>bytes<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">150</span>.00<span class="w"> </span>KiB/s,<span class="w"> </span><span class="k">done</span>.
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11"></a>From<span class="w"> </span>github2.com:WintermelonC/git_test_repository
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12"></a><span class="w"> </span>*<span class="w"> </span>branch<span class="w">            </span>main<span class="w">       </span>-&gt;<span class="w"> </span>FETCH_HEAD
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13"></a><span class="w">   </span>8a79f2e..25bfa48<span class="w">  </span>main<span class="w">       </span>-&gt;<span class="w"> </span>upstream/main
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14"></a>Updating<span class="w"> </span>8a79f2e..25bfa48
+</span><span id="__span-11-15"><a id="__codelineno-11-15" name="__codelineno-11-15"></a>Fast-forward
+</span><span id="__span-11-16"><a id="__codelineno-11-16" name="__codelineno-11-16"></a><span class="w"> </span>fork.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">1</span><span class="w"> </span>+
+</span><span id="__span-11-17"><a id="__codelineno-11-17" name="__codelineno-11-17"></a><span class="w"> </span><span class="m">1</span><span class="w"> </span>file<span class="w"> </span>changed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span id="__span-11-18"><a id="__codelineno-11-18" name="__codelineno-11-18"></a><span class="w"> </span>create<span class="w"> </span>mode<span class="w"> </span><span class="m">100644</span><span class="w"> </span>fork.txt
+</span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19"></a><span class="c1"># 同样，需要 push 到 origin</span>
+</span><span id="__span-11-20"><a id="__codelineno-11-20" name="__codelineno-11-20"></a>$<span class="w"> </span>git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21"></a>Total<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>delta<span class="w"> </span><span class="m">0</span><span class="o">)</span>,<span class="w"> </span>pack-reused<span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">(</span>from<span class="w"> </span><span class="m">0</span><span class="o">)</span>
+</span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22"></a>To<span class="w"> </span>github2.com:WintermelonB/git_test_repository.git
+</span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23"></a><span class="w">   </span>8a79f2e..25bfa48<span class="w">  </span>main<span class="w"> </span>-&gt;<span class="w"> </span>main
+</span></code></pre></div></td></tr></table></div>
+<p>最后的 git graph：</p>
+<figure>
+  <img alt="Img 25" src="../../../img/git/ch5/git_ch5_img25.png" width="600" />
+</figure>
 
 
 
@@ -13544,7 +13606,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2025年9月20日 15:17:01 UTC">2025年9月20日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年5月11日 08:54:34 UTC">2026年5月11日</span>
   </span>
 
     
