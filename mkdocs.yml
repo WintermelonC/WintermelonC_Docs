@@ -242,6 +242,7 @@ nav:
         - 7 Intermediate Code: zju/compulsory_courses/compiler_principle/ch7.md
         - 8 Blocks and Traces: zju/compulsory_courses/compiler_principle/ch8.md
         - 9 Instruction Selection: zju/compulsory_courses/compiler_principle/ch9.md
+        - 10 Liveness Analysis: zju/compulsory_courses/compiler_principle/ch10.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 

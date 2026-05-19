@@ -29,4 +29,5 @@ cms老师
 [6 Activation Records](./ch6.md)<br/>
 [7 Intermediate Code](./ch7.md)<br/>
 [8 Blocks and Traces](./ch8.md)<br/>
-[9 Instruction Selection](./ch9.md)
+[9 Instruction Selection](./ch9.md)<br/>
+[10 Liveness Analysis](./ch10.md)

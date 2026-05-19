@@ -429,7 +429,7 @@ branch 'dev_B' set up to track 'origin/dev_B'.
   ![Img 21](../../img/git/ch5/git_ch5_img21.png){ width="600" }
 </figure>
 
-我们需要点击 ^^Fils changed^^ 进行代码审查，在这里仓库拥有者可以审查代码并批准
+我们需要点击 ^^Files changed^^ 进行代码审查，在这里仓库拥有者可以审查代码并批准
 
 <figure markdown="span">
   ![Img 22](../../img/git/ch5/git_ch5_img22.png){ width="600" }
