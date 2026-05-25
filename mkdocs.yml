@@ -243,6 +243,7 @@ nav:
         - 8 Blocks and Traces: zju/compulsory_courses/compiler_principle/ch8.md
         - 9 Instruction Selection: zju/compulsory_courses/compiler_principle/ch9.md
         - 10 Liveness Analysis: zju/compulsory_courses/compiler_principle/ch10.md
+        - 11 Register Allocation: zju/compulsory_courses/compiler_principle/ch11.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 
@@ -340,6 +341,7 @@ nav:
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
       - Core Language:
+        - Memory Model: knowledge/C_Cpp/core_language/memory_model.md
         - Exception: knowledge/C_Cpp/core_language/exception.md
         - Template: knowledge/C_Cpp/core_language/template.md
         - Overloaded Operator: knowledge/C_Cpp/core_language/overloaded_operator.md
