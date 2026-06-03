@@ -244,6 +244,7 @@ nav:
         - 9 Instruction Selection: zju/compulsory_courses/compiler_principle/ch9.md
         - 10 Liveness Analysis: zju/compulsory_courses/compiler_principle/ch10.md
         - 11 Register Allocation: zju/compulsory_courses/compiler_principle/ch11.md
+        - 13 Garbage Collection: zju/compulsory_courses/compiler_principle/ch13.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 
