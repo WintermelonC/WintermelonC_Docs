@@ -325,6 +325,8 @@ nav:
       - application/unreal_engine/index.md
       - 蓝图基础: application/unreal_engine/blueprint_basic.md
       - 蓝图实战: application/unreal_engine/blueprint_practice.md
+      - 数学运算: application/unreal_engine/math.md
+      - 蓝图进阶: application/unreal_engine/blueprint_advanced.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:
