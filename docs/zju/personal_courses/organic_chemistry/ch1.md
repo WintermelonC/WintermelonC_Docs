@@ -359,8 +359,6 @@ $$
     1. [有机化学2.2：共振式书写无敌攻略](https://www.bilibili.com/video/BV1yT411w7Hf/){:target="_blank"}
     2. [有机化学2.3：共振论的书写和共振论的应用](https://www.bilibili.com/video/BV1it4y1g7sr/){:target="_blank"}
 
-    > 我超，这个视频太牛啦啦啦啦啦啦，不会写的赶紧去看啊啊啊啊啊啊
-
 ### 9.3 共振稳定作用
 
 1. 共振结构越稳定，对共振杂化体贡献越大  

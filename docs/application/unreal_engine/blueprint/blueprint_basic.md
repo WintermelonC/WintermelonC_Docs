@@ -3,7 +3,7 @@
 构造脚本相当于构造函数，事件图表是触发器 + 函数的组合，左下角可以添加变量
 
 <figure markdown="span">
-  ![Img 1](../../img/unreal_engine/bp/ue_bp_img1.png){ width="800" }
+  ![Img 1](../../../img/unreal_engine/bp/ue_bp_img1.png){ width="800" }
   <figcaption markdown>事件开始时，打印字符串 `StringTest`</figcaption>
 </figure>
 
@@ -24,23 +24,23 @@
 创建输入映射情景 IMC_Input，设置 WASD 按键映射
 
 <figure markdown="span">
-  ![Img 2](../../img/unreal_engine/bp/ue_bp_img2.png){ width="600" }
+  ![Img 2](../../../img/unreal_engine/bp/ue_bp_img2.png){ width="600" }
 </figure>
 
 <figure markdown="span">
-  ![Img 3](../../img/unreal_engine/bp/ue_bp_img3.png){ width="600" }
+  ![Img 3](../../../img/unreal_engine/bp/ue_bp_img3.png){ width="600" }
 </figure>
 
 将 IMC_Input 绑定到 BP_Character 上，让 IMC_Input 控制 BP_Character
 
 <figure markdown="span">
-  ![Img 4](../../img/unreal_engine/bp/ue_bp_img4.png){ width="600" }
+  ![Img 4](../../../img/unreal_engine/bp/ue_bp_img4.png){ width="600" }
 </figure>
 
 在 BP_Character 中添加移动输入，实现玩家移动功能
 
 <figure markdown="span">
-  ![Img 5](../../img/unreal_engine/bp/ue_bp_img5.png){ width="600" }
+  ![Img 5](../../../img/unreal_engine/bp/ue_bp_img5.png){ width="600" }
 </figure>
 
 ## 2 实现玩家视角移动功能
@@ -50,13 +50,13 @@
 在 IMC_Input 中增加 IA_MyLook，设置鼠标的映射
 
 <figure markdown="span">
-  ![Img 6](../../img/unreal_engine/bp/ue_bp_img6.png){ width="600" }
+  ![Img 6](../../../img/unreal_engine/bp/ue_bp_img6.png){ width="600" }
 </figure>
 
 在 BP_Character 中添加 yaw 和 pitch 输入，实现玩家视角移动功能
 
 <figure markdown="span">
-  ![Img 7](../../img/unreal_engine/bp/ue_bp_img7.png){ width="600" }
+  ![Img 7](../../../img/unreal_engine/bp/ue_bp_img7.png){ width="600" }
 </figure>
 
 !!! tip "pitch, roll, yaw"
@@ -66,7 +66,7 @@
     3. 滚动（Roll）：控制沿纵向（Z）轴的旋转。更改此值会使对象左右滚动，类似于将头向左或向右倾斜
 
     <figure markdown="span">
-      ![Img 8](../../img/unreal_engine/bp/ue_bp_img8.png){ width="600" }
+      ![Img 8](../../../img/unreal_engine/bp/ue_bp_img8.png){ width="600" }
     </figure>
 
 ## 3 实现自动门功能
@@ -84,13 +84,13 @@
 在事件图表中添加“添加时间轴...”组件，打开后添加浮点型轨道，创建关键帧
 
 <figure markdown="span">
-  ![Img 9](../../img/unreal_engine/bp/ue_bp_img9.png){ width="600" }
+  ![Img 9](../../../img/unreal_engine/bp/ue_bp_img9.png){ width="600" }
 </figure>
 
 在事件图表中调整蓝图
 
 <figure markdown="span">
-  ![Img 10](../../img/unreal_engine/bp/ue_bp_img10.png){ width="600" }
+  ![Img 10](../../../img/unreal_engine/bp/ue_bp_img10.png){ width="600" }
 </figure>
 
 ## 4 常用流程控制节点
@@ -116,7 +116,7 @@
 调整蓝图角色移动的逻辑
 
 <figure markdown="span">
-  ![Img 11](../../img/unreal_engine/bp/ue_bp_img11.png){ width="800" }
+  ![Img 11](../../../img/unreal_engine/bp/ue_bp_img11.png){ width="800" }
 </figure>
 
 ## 6 制作第三人称角色动画
@@ -132,13 +132,13 @@
 打开 ABP_Main，在事件图表中编辑蓝图
 
 <figure markdown="span">
-  ![Img 12](../../img/unreal_engine/bp/ue_bp_img12.png){ width="600" }
+  ![Img 12](../../../img/unreal_engine/bp/ue_bp_img12.png){ width="600" }
 </figure>
 
 在 AnimGraph 中编辑蓝图
 
 <figure markdown="span">
-  ![Img 13](../../img/unreal_engine/bp/ue_bp_img13.png){ width="600" }
+  ![Img 13](../../../img/unreal_engine/bp/ue_bp_img13.png){ width="600" }
 </figure>
 
 回到 BP_Character 选择动画类为 ABP_Main

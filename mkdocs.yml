@@ -230,7 +230,22 @@ nav:
         - 6 The Transport Layer: zju/compulsory_courses/computer_network/ch6.md
         - 7 The Application Layer: zju/compulsory_courses/computer_network/ch7.md
         - 8 Network Security: zju/compulsory_courses/computer_network/ch8.md
-      - 软件工程: zju/compulsory_courses/software_engineering.md
+      - 软件工程: 
+        - zju/compulsory_courses/software_engineering/index.md
+        - 整理: zju/compulsory_courses/software_engineering/doc.md
+        - 1 软件的本质与演变: zju/compulsory_courses/software_engineering/ch1.md
+        - 2 软件工程学科定义与过程: zju/compulsory_courses/software_engineering/ch2.md
+        - 3 软件过程结构: zju/compulsory_courses/software_engineering/ch3.md
+        - 4 软件过程模型: zju/compulsory_courses/software_engineering/ch4.md
+        - 5 敏捷开发: zju/compulsory_courses/software_engineering/ch5.md
+        - 6 软件工程的人文与团队层面: zju/compulsory_courses/software_engineering/ch6.md
+        - 7 指导实践的原则: zju/compulsory_courses/software_engineering/ch7.md
+        - 8 需求工程: zju/compulsory_courses/software_engineering/ch8.md
+        - 9 基于场景的需求建模: zju/compulsory_courses/software_engineering/ch9.md
+        - 10 基于类的需求建模: zju/compulsory_courses/software_engineering/ch10.md
+        - 11 需求建模 - 行为、模式与 Web/移动应用: zju/compulsory_courses/software_engineering/ch11.md
+        - 12 设计概念: zju/compulsory_courses/software_engineering/ch12.md
+        - 13 架构设计: zju/compulsory_courses/software_engineering/ch13.md
       - 编译原理: 
         - zju/compulsory_courses/compiler_principle/index.md
         - 1 Introduction: zju/compulsory_courses/compiler_principle/ch1.md
@@ -323,10 +338,13 @@ nav:
       - application/watt_toolkit/index.md
     - Unreal Engine:
       - application/unreal_engine/index.md
-      - 蓝图基础: application/unreal_engine/blueprint_basic.md
-      - 蓝图实战: application/unreal_engine/blueprint_practice.md
-      - 数学运算: application/unreal_engine/math.md
-      - 蓝图进阶: application/unreal_engine/blueprint_advanced.md
+      - UE5 蓝图:
+        - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
+        - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
+        - 数学运算: application/unreal_engine/blueprint/math.md
+        - 蓝图进阶: application/unreal_engine/blueprint/blueprint_advanced.md
+      - UE5 C++:
+        - Section 2: application/unreal_engine/cpp/ch2.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:
@@ -336,7 +354,9 @@ nav:
     - Python:
       - knowledge/python/index.md
       - Anaconda: knowledge/python/anaconda.md
-      - Python 编程基础: knowledge/python/basic.md
+      - Python 编程基础: 
+        - knowledge/python/basic/index.md
+        - 0 Python 环境及编辑器: knowledge/python/basic/ch0.md
       - PyTorch 深度学习: knowledge/python/pytorch.md
     - C/C++:
       - knowledge/C_Cpp/index.md

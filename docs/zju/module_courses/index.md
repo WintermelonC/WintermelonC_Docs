@@ -8,7 +8,7 @@
 
 [Java 应用技术](./java_application/index.md)<br/>
 [多媒体技术](./multimedia_technology/index.md)<br/>
-[B/S 体系软件设计](./BS_software_design/index.md)
+[B/S 体系软件设计](./BS_software_design.md)
 
 ## 信息安全技术
 

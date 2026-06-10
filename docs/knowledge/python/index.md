@@ -23,5 +23,5 @@
     Namespaces are one honking great idea -- let's do more of those!<br/>
 
 1. [Anaconda](./anaconda.md)
-2. [Python 编程基础](./basic.md)
+2. [Python 编程基础](./basic/index.md)
 3. [PyTorch 深度学习](./pytorch.md)

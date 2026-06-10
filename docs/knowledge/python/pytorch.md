@@ -8,4 +8,4 @@
 
     1. 微积分
     2. 线性代数
-    3. [概率论与数理统计](../../../zju/basic_courses/prob_theo_and_math_stat/index.md){:target="_blank"}
+    3. [概率论与数理统计](../../zju/basic_courses/prob_theo_and_math_stat/index.md){:target="_blank"}
