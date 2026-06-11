@@ -21,4 +21,4 @@
 
     [虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy/){target="_blank"}
 
-[Section 2](./cpp/ch2.md)
+[2 关卡制作](./cpp/ch2.md)

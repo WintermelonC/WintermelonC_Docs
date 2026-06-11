@@ -1,4 +1,4 @@
-# Section 2
+# 2 关卡制作
 
 ## 010 Open World
 
@@ -109,3 +109,53 @@
 3. 接下来就可以给地形绘制材质了
 
 ## 014 Landscape Painting
+
+## 015 Foliage Painting
+
+去 Fab 下载一些草、树木的模型资源
+
+1. 选择植被模式
+2. 添加静态网络体植物
+3. 开始绘制
+
+## 016 More Foliage Painting
+
+修改树的静态网络体植物文件的碰撞为 BlockAll
+
+## 017 Post Process Volume
+
+!!! info "Post Process Volume（后处理体积）"
+
+    是一个非常重要的体积 Actor，用于控制场景的最终视觉效果。它相当于一个“全局滤镜”或“相机效果设置器”，可以模拟各种相机和镜头效果，并可以基于摄像机位置在场景中不同区域应用不同效果
+
+1. 打开放置 Actor 面板
+2. 添加一个后期处理体积，勾选 Infinite Extent
+3. temperature 中可以修改色温
+4. bloom 可以调整光晕
+5. bright 可以修改亮度，可以将最大亮度和最小亮度都调整为 1，然后再微调
+6. global 中可以调整整体的饱和度、对比度、伽马值
+7. shadow 中可以调整阴影区域的饱和度等等
+8. midtones 中可以调整中间区域的饱和度等等
+9. highlight 中可以调整高光区域的饱和度等等
+
+选择 Sun1，勾选 light shaft bloom，调整 bloom scale，可以有一些光柱效果（丁达尔效应）
+
+可以选择删除 Sun0，只保留一个太阳
+
+## 018 Forest Polish Up
+
+## 019 Packed Level Actors
+
+在地图中选择一些静态网络体，右键点击 Level -> Create Packed Level Actor，存储到 Maps/PackedLevelInstances。相当于把这部分静态网络体打包到了一起
+
+可以将其他项目里的文件夹 migrate 到别的项目当中
+
+## 020 Mountains
+
+在 M_Landscape 中将每个 Texture Sample 的 Sampler Source 改成 Shared Wrap，地图中就不会出现未加载的材质
+
+## 021 Level Instances
+
+右键点击 Level -> Create Level Instance 并存储，这个可以在细节面板中修改 Level，从而显示出不同的 Level，会显示出该 Level 的所有东西，包括灯光等等
+
+因此，我们可以导入 Fab 中的关卡地图到我们自己的项目里，在导入之前，可能需要手动删除该关卡地图中的摄像机等等的组件，以免和自己的项目冲突。修改之前记得备份一下关卡文件
