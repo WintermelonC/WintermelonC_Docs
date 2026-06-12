@@ -246,6 +246,17 @@ nav:
         - 11 需求建模 - 行为、模式与 Web/移动应用: zju/compulsory_courses/software_engineering/ch11.md
         - 12 设计概念: zju/compulsory_courses/software_engineering/ch12.md
         - 13 架构设计: zju/compulsory_courses/software_engineering/ch13.md
+        - 14 构件级设计: zju/compulsory_courses/software_engineering/ch14.md
+        - 15 用户界面设计: zju/compulsory_courses/software_engineering/ch15.md
+        - 16 基于模式的设计: zju/compulsory_courses/software_engineering/ch16.md
+        - 17 WebApp 设计: zju/compulsory_courses/software_engineering/ch17.md
+        - 18 移动应用设计: zju/compulsory_courses/software_engineering/ch18.md
+        - 19 质量概念: zju/compulsory_courses/software_engineering/ch19.md
+        - 20 评审技术: zju/compulsory_courses/software_engineering/ch20.md
+        - 21 软件质量保证: zju/compulsory_courses/software_engineering/ch21.md
+        - 22 软件测试策略: zju/compulsory_courses/software_engineering/ch22.md
+        - 23 传统应用程序测试: zju/compulsory_courses/software_engineering/ch23.md
+        - 24 面向对象测试: zju/compulsory_courses/software_engineering/ch24.md
       - 编译原理: 
         - zju/compulsory_courses/compiler_principle/index.md
         - 1 Introduction: zju/compulsory_courses/compiler_principle/ch1.md
