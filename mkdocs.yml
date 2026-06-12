@@ -344,7 +344,11 @@ nav:
         - 数学运算: application/unreal_engine/blueprint/math.md
         - 蓝图进阶: application/unreal_engine/blueprint/blueprint_advanced.md
       - UE5 C++:
-        - 2 关卡制作: application/unreal_engine/cpp/ch2.md
+        - 2 地形编辑: application/unreal_engine/cpp/ch2.md
+        - 3 向量: application/unreal_engine/cpp/ch3.md
+        - 4 C++: application/unreal_engine/cpp/ch4.md
+        - 5 打印调试信息: application/unreal_engine/cpp/ch5.md
+        - 6 Actor: application/unreal_engine/cpp/ch6.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:

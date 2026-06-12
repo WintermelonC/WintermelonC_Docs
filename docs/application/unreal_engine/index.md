@@ -21,4 +21,8 @@
 
     [虚幻5 C++ 游戏开发从入门到秃头](https://www.bilibili.com/video/BV1Wk9EYvEoy/){target="_blank"}
 
-[2 关卡制作](./cpp/ch2.md)
+[2 地形编辑](./cpp/ch2.md)<br/>
+[3 向量](./cpp/ch3.md)<br/>
+[4 C++](./cpp/ch4.md)<br/>
+[5 打印调试信息](./cpp/ch5.md)<br/>
+[6 Actor](./cpp/ch6.md)
