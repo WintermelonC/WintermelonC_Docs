@@ -18,7 +18,7 @@
         <link rel="prev" href="../ch5/">
       
       
-        <link rel="next" href="../../../../knowledge/">
+        <link rel="next" href="../ch7/">
       
       
         
@@ -11540,6 +11540,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -11851,10 +11857,127 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#056-template-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        056 Template Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#057-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        057 Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#058-components-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        058 Components in C++
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7 Pawn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8 Character
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -14220,6 +14343,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#056-template-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        056 Template Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#057-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        057 Components
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#058-components-in-c" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        058 Components in C++
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -14345,158 +14501,233 @@
 <h1 id="6-actor">6 Actor<a class="headerlink" href="#6-actor" title="Permanent link">&para;</a></h1>
 <h2 id="047-setactorlocation">047 SetActorLocation<a class="headerlink" href="#047-setactorlocation" title="Permanent link">&para;</a></h2>
 <p>蓝图中的 BeginPlay 先于 C++ 代码中的 BeginPlay 执行</p>
-<p>```cpp linenums="1" linenums="Item.cpp"
-void AItem::BeginPlay()
-{
-    Super::BeginPlay();</p>
-<div class="language-text highlight"><pre><span></span><code>UWorld* World = GetWorld();
-
-SetActorLocation(FVector(0.f, 0.f, 50.f));
-FVector Location = GetActorLocation();
-FVector Forward = GetActorForwardVector();
-
-DRAW_SPHERE(Location);
-DRAW_VECTOR(Location, Location + Forward * 100.f);
-</code></pre></div>
-<p>}
-```
-</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::BeginPlay</span><span class="p">()</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetWorld</span><span class="p">();</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="n">SetActorLocation</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">50.f</span><span class="p">));</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">();</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Forward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorForwardVector</span><span class="p">();</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="n">DRAW_SPHERE</span><span class="p">(</span><span class="n">Location</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="n">DRAW_VECTOR</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">Location</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.f</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="048-setactorrotation">048 SetActorRotation<a class="headerlink" href="#048-setactorrotation" title="Permanent link">&para;</a></h2>
-<p><code>cpp linenums="1" linenums="Item.cpp"
-void AItem::BeginPlay()
-{
-    Super::BeginPlay();
-
-    UWorld* World = GetWorld();
-
-    SetActorLocation(FVector(0.f, 0.f, 50.f));
-    SetActorRotation(FRotator(0.f, 45.f, 0.f));
-    FVector Location = GetActorLocation();
-    FVector Forward = GetActorForwardVector();
-
-    DRAW_SPHERE(Location);
-    DRAW_VECTOR(Location, Location + Forward * 100.f);
-}</code></p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::BeginPlay</span><span class="p">()</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">BeginPlay</span><span class="p">();</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="n">UWorld</span><span class="o">*</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetWorld</span><span class="p">();</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="n">SetActorLocation</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">50.f</span><span class="p">));</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="n">SetActorRotation</span><span class="p">(</span><span class="n">FRotator</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">45.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">));</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">();</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Forward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GetActorForwardVector</span><span class="p">();</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">    </span><span class="n">DRAW_SPHERE</span><span class="p">(</span><span class="n">Location</span><span class="p">);</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">    </span><span class="n">DRAW_VECTOR</span><span class="p">(</span><span class="n">Location</span><span class="p">,</span><span class="w"> </span><span class="n">Location</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Forward</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.f</span><span class="p">);</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="049-actor-world-offset">049 Actor World Offset<a class="headerlink" href="#049-actor-world-offset" title="Permanent link">&para;</a></h2>
-<p>```cpp linenums="1" linenums="Item.cpp"
-void AItem::Tick(float DeltaTime)
-{
-    Super::Tick(DeltaTime);</p>
-<div class="language-text highlight"><pre><span></span><code>float MovementRate = 50.f;
-float RotationRate = 45.f;
-
-AddActorWorldOffset(FVector(MovementRate * DeltaTime, 0.f, 0.f));
-AddActorWorldRotation(FRotator(0.f, RotationRate * DeltaTime, 0.f));
-DRAW_SPHERE_SINGLE_FRAME(GetActorLocation());
-DRAW_VECTOR_SINGLE_FRAME(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
-</code></pre></div>
-<p>}
-```
-</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="p">{</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">MovementRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">50.f</span><span class="p">;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RotationRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">45.f</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">    </span><span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="n">MovementRate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">));</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">    </span><span class="n">AddActorWorldRotation</span><span class="p">(</span><span class="n">FRotator</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="n">RotationRate</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">));</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">    </span><span class="n">DRAW_SPHERE_SINGLE_FRAME</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">());</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">    </span><span class="n">DRAW_VECTOR_SINGLE_FRAME</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">GetActorForwardVector</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.f</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="051-the-sine-function">051 The Sine Function<a class="headerlink" href="#051-the-sine-function" title="Permanent link">&para;</a></h2>
-<p><code>cpp linenums="1" linenums="Item.h"
-class SLASH_API AItem : public AActor
-{
-private:
-    float RunningTime;
-    float Amplitude = 0.25f;
-    float TimeConstant = 5.f;
-};</code></p>
-<p>```cpp linenums="1" linenums="Item.cpp"
-void AItem::Tick(float DeltaTime)
-{
-    Super::Tick(DeltaTime);</p>
-<div class="language-text highlight"><pre><span></span><code>RunningTime += DeltaTime;
-
-float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
-
-AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
-
-DRAW_SPHERE_SINGLE_FRAME(GetActorLocation());
-DRAW_VECTOR_SINGLE_FRAME(GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 100.f);
-</code></pre></div>
-<p>}
-```
-</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.h</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SLASH_API</span><span class="w"> </span><span class="n">AItem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RunningTime</span><span class="p">;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TimeConstant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.f</span><span class="p">;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span>
+<span class="normal"><a href="#__codelineno-4-12">12</a></span>
+<span class="normal"><a href="#__codelineno-4-13">13</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">AItem::Tick</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">)</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">    </span><span class="n">Super</span><span class="o">::</span><span class="n">Tick</span><span class="p">(</span><span class="n">DeltaTime</span><span class="p">);</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="n">RunningTime</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">DeltaTime</span><span class="p">;</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">DeltaZ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TimeConstant</span><span class="p">);</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">    </span><span class="n">AddActorWorldOffset</span><span class="p">(</span><span class="n">FVector</span><span class="p">(</span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="n">DeltaZ</span><span class="p">));</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10"></a>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">    </span><span class="n">DRAW_SPHERE_SINGLE_FRAME</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">());</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">    </span><span class="n">DRAW_VECTOR_SINGLE_FRAME</span><span class="p">(</span><span class="n">GetActorLocation</span><span class="p">(),</span><span class="w"> </span><span class="n">GetActorLocation</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">GetActorForwardVector</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">100.f</span><span class="p">);</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 <h2 id="052-exposing-variables-to-blueprint">052 Exposing Variables to Blueprint<a class="headerlink" href="#052-exposing-variables-to-blueprint" title="Permanent link">&para;</a></h2>
 <ol>
 <li>EditDefaultsOnly：只能在蓝图的细节面板中编辑</li>
 <li>EditInstanceOnly：只能在蓝图实例中编辑</li>
-<li>EditAnywhere：在蓝图和蓝图实例中都能编辑
-</li>
+<li>EditAnywhere：在蓝图和蓝图实例中都能编辑</li>
 </ol>
 <h2 id="053-visible-but-not-editable">053 Visible, But Not Editable<a class="headerlink" href="#053-visible-but-not-editable" title="Permanent link">&para;</a></h2>
 <ol>
 <li>VisibleDefaultsOnly：只能在蓝图的细节面板中查看</li>
 <li>VisibleInstanceOnly：只能在蓝图实例中查看</li>
-<li>VisibleAnywhere：在蓝图和蓝图实例中都能查看
-</li>
+<li>VisibleAnywhere：在蓝图和蓝图实例中都能查看</li>
 </ol>
 <h2 id="054-exposing-variables-to-the-event-graph">054 Exposing Variables to the Event Graph<a class="headerlink" href="#054-exposing-variables-to-the-event-graph" title="Permanent link">&para;</a></h2>
 <ol>
 <li>BlueprintReadOnly：可以在事件图表中 get</li>
-<li>BlueprintReadWrite：可以在事件图表中 get 和 set
-
-当变量为 private 时，<code>meta = (AllowPrivateAccess = "true")</code> 可以让事件图表获得操作该变量的权限
-</li>
+<li>BlueprintReadWrite：可以在事件图表中 get 和 set</li>
 </ol>
+<p>当变量为 private 时，<code>meta = (AllowPrivateAccess = "true")</code> 可以让事件图表获得操作该变量的权限</p>
 <h2 id="055-exposing-functions">055 Exposing Functions<a class="headerlink" href="#055-exposing-functions" title="Permanent link">&para;</a></h2>
 <ol>
 <li>BlueprintCallable：可以在事件图表中调用</li>
-<li>BlueprintPure：事件图表中调用此函数的节点不会有输入引脚
-
-<code>cpp linenums="1" linenums="Item.h"
-class SLASH_API AItem : public AActor
-{
-protected:
-    virtual void BeginPlay() override;
-
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sine Parameters")
-    float Amplitude = 0.25f;
-    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Sine Parameters")
-    float TimeConstant = 5.f;
-
-    UFUNCTION(BlueprintPure)
-    float TransformedSin();
-    UFUNCTION(BlueprintPure)
-    float TransformedCos();
-private:
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-    float RunningTime;
-};</code></li>
+<li>BlueprintPure：事件图表中调用此函数的节点不会有输入引脚</li>
 </ol>
-<p>```cpp linenums="1" linenums="Item.cpp"
-float AItem::TransformedSin()
-{
-    return Amplitude * FMath::Sin(RunningTime * TimeConstant);
-}</p>
-<p>float AItem::TransformedCos()
-{
-    return Amplitude * FMath::Cos(RunningTime * TimeConstant);
-}
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>## 056 Template Functions
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>## 057 Components
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>## 058 Components in C++
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>```cpp linenums=&quot;1&quot; linenums=&quot;Item.h&quot;
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>class SLASH_API AItem : public AActor
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>{
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>private:
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    UPROPERTY(VisibleAnywhere)
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    UStaticMeshComponent* ItemMesh;
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>}
-</span></code></pre></div></p>
-<p>```cpp linenums="1" linenums="Item.cpp"
-AItem::AItem()
-{
-    PrimaryActorTick.bCanEverTick = true;</p>
-<div class="language-text highlight"><pre><span></span><code>ItemMesh = CreateDefaultSubobject&lt;UStaticMeshComponent&gt;(TEXT(&quot;ItemMeshComponent&quot;));
-SetRootComponent(ItemMesh);
-</code></pre></div>
-<p>}
-```</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.h</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span>
+<span class="normal"><a href="#__codelineno-5-12">12</a></span>
+<span class="normal"><a href="#__codelineno-5-13">13</a></span>
+<span class="normal"><a href="#__codelineno-5-14">14</a></span>
+<span class="normal"><a href="#__codelineno-5-15">15</a></span>
+<span class="normal"><a href="#__codelineno-5-16">16</a></span>
+<span class="normal"><a href="#__codelineno-5-17">17</a></span>
+<span class="normal"><a href="#__codelineno-5-18">18</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SLASH_API</span><span class="w"> </span><span class="n">AItem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="p">{</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="k">protected</span><span class="o">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">BeginPlay</span><span class="p">()</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sine Parameters&quot;</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.25f</span><span class="p">;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Sine Parameters&quot;</span><span class="p">)</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TimeConstant</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.f</span><span class="p">;</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">)</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TransformedSin</span><span class="p">();</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">)</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TransformedCos</span><span class="p">();</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">AllowPrivateAccess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;true&quot;</span><span class="p">))</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">RunningTime</span><span class="p">;</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="p">};</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span>
+<span class="normal"><a href="#__codelineno-6-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">AItem::TransformedSin</span><span class="p">()</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="p">{</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Sin</span><span class="p">(</span><span class="n">RunningTime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TimeConstant</span><span class="p">);</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4"></a><span class="p">}</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5"></a>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6"></a><span class="kt">float</span><span class="w"> </span><span class="nf">AItem::TransformedCos</span><span class="p">()</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7"></a><span class="p">{</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Amplitude</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Cos</span><span class="p">(</span><span class="n">RunningTime</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">TimeConstant</span><span class="p">);</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="056-template-functions">056 Template Functions<a class="headerlink" href="#056-template-functions" title="Permanent link">&para;</a></h2>
+<h2 id="057-components">057 Components<a class="headerlink" href="#057-components" title="Permanent link">&para;</a></h2>
+<h2 id="058-components-in-c">058 Components in C++<a class="headerlink" href="#058-components-in-c" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.h</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1">1</a></span>
+<span class="normal"><a href="#__codelineno-7-2">2</a></span>
+<span class="normal"><a href="#__codelineno-7-3">3</a></span>
+<span class="normal"><a href="#__codelineno-7-4">4</a></span>
+<span class="normal"><a href="#__codelineno-7-5">5</a></span>
+<span class="normal"><a href="#__codelineno-7-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">SLASH_API</span><span class="w"> </span><span class="n">AItem</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="p">{</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">private</span><span class="o">:</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">VisibleAnywhere</span><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="n">UStaticMeshComponent</span><span class="o">*</span><span class="w"> </span><span class="n">ItemMesh</span><span class="p">;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Item.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1">1</a></span>
+<span class="normal"><a href="#__codelineno-8-2">2</a></span>
+<span class="normal"><a href="#__codelineno-8-3">3</a></span>
+<span class="normal"><a href="#__codelineno-8-4">4</a></span>
+<span class="normal"><a href="#__codelineno-8-5">5</a></span>
+<span class="normal"><a href="#__codelineno-8-6">6</a></span>
+<span class="normal"><a href="#__codelineno-8-7">7</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="n">AItem</span><span class="o">::</span><span class="n">AItem</span><span class="p">()</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="p">{</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">    </span><span class="n">PrimaryActorTick</span><span class="p">.</span><span class="n">bCanEverTick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="n">ItemMesh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UStaticMeshComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">&quot;ItemMeshComponent&quot;</span><span class="p">));</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="n">SetRootComponent</span><span class="p">(</span><span class="n">ItemMesh</span><span class="p">);</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -14519,7 +14750,7 @@ SetRootComponent(ItemMesh);
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月12日 14:35:51 UTC">2026年6月12日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月13日 10:03:42 UTC">2026年6月13日</span>
   </span>
 
     
@@ -14651,13 +14882,13 @@ SetRootComponent(ItemMesh);
         
         
           
-          <a href="../../../../knowledge/" class="md-footer__link md-footer__link--next" aria-label="下一页: 知识">
+          <a href="../ch7/" class="md-footer__link md-footer__link--next" aria-label="下一页: 7 Pawn">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                知识
+                7 Pawn
               </div>
             </div>
             <div class="md-footer__button md-icon">
