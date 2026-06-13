@@ -2,13 +2,13 @@
 
 ## 038 Actor Creation
 
-创建 C++ 文件 `Items/Item.cpp`
+基于 Actor 创建 C++ 文件 `Items/Item.cpp`
 
 ## 039 Blueprint Creation
 
 基于 Item C++ 创建蓝图 BP_Item
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -19,7 +19,7 @@ void AItem::BeginPlay()
 
 ## 040 Onscreen Debug Messages
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	if (GEngine)
@@ -31,7 +31,7 @@ void AItem::BeginPlay()
 
 ## 041 Formatting Strings
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -40,7 +40,7 @@ void AItem::Tick(float DeltaTime)
 }
 ```
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::Tick(float DeltaTime)
 {
 	if (GEngine)
@@ -53,7 +53,7 @@ void AItem::Tick(float DeltaTime)
 
 FString 重载了 * 运算符，使用 * 会转变为 C 风格字符串
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::Tick(float DeltaTime)
 {
 	if (GEngine)
@@ -69,7 +69,7 @@ void AItem::Tick(float DeltaTime)
 
 ## 042 Drawing Debug Spheres
 
-```cpp linenums="1"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	UWorld* World = GetWorld();
@@ -84,11 +84,11 @@ void AItem::BeginPlay()
 
 ---
 
-```cpp linenums="1" linenums="Slash.h"
+```cpp linenums="1" title="Slash.h"
 #define DRAW_SPHERE(Location) if (GetWorld()) DrawDebugSphere(GetWorld(), Location, 25.f, 12, FColor::Red, true);
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 #include "Slash/Slash.h"
 
 void AItem::BeginPlay()
@@ -100,11 +100,11 @@ void AItem::BeginPlay()
 
 ## 043 Drawing Debug Lines
 
-```cpp linenums="1" linenums="Slash.h"
+```cpp linenums="1" title="Slash.h"
 #define DRAW_LINE(StartLocation, EndLocation) if (GetWorld()) DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true, -1.f, 0, 1.f);
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -120,7 +120,7 @@ void AItem::BeginPlay()
 
 ## 044 Drawing Debug Points
 
-```cpp linenums="1" linenums="Slash.h"
+```cpp linenums="1" title="Slash.h"
 #define DRAW_VECTOR(StartLocation, EndLocation) if (GetWorld()) \
 	{ \
 		DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, true, -1.f, 0, 1.f); \
@@ -128,7 +128,7 @@ void AItem::BeginPlay()
     }
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -144,7 +144,7 @@ void AItem::BeginPlay()
 
 ## 045 Custom Header Files
 
-```cpp linenums="1" linenums="DebugMacros.h"
+```cpp linenums="1" title="DebugMacros.h"
 #pragma once
 
 #include "DrawDebugHelpers.h"
@@ -159,6 +159,6 @@ DrawDebugPoint(GetWorld(), EndLocation, 15.f, FColor::Red, true); \
 }
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 #include "Slash/DebugMacros.h"
 ```

@@ -360,6 +360,9 @@ nav:
         - 4 C++: application/unreal_engine/cpp/ch4.md
         - 5 打印调试信息: application/unreal_engine/cpp/ch5.md
         - 6 Actor: application/unreal_engine/cpp/ch6.md
+        - 7 Pawn: application/unreal_engine/cpp/ch7.md
+        - 8 Character: application/unreal_engine/cpp/ch8.md
+        - 9: application/unreal_engine/cpp/ch9.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:

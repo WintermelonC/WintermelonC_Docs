@@ -4,7 +4,7 @@
 
 蓝图中的 BeginPlay 先于 C++ 代码中的 BeginPlay 执行
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -22,7 +22,7 @@ void AItem::BeginPlay()
 
 ## 048 SetActorRotation
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
@@ -41,7 +41,7 @@ void AItem::BeginPlay()
 
 ## 049 Actor World Offset
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -58,7 +58,7 @@ void AItem::Tick(float DeltaTime)
 
 ## 051 The Sine Function
 
-```cpp linenums="1" linenums="Item.h"
+```cpp linenums="1" title="Item.h"
 class SLASH_API AItem : public AActor
 {
 private:
@@ -68,7 +68,7 @@ private:
 };
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -108,7 +108,7 @@ void AItem::Tick(float DeltaTime)
 1. BlueprintCallable：可以在事件图表中调用
 2. BlueprintPure：事件图表中调用此函数的节点不会有输入引脚
 
-```cpp linenums="1" linenums="Item.h"
+```cpp linenums="1" title="Item.h"
 class SLASH_API AItem : public AActor
 {
 protected:
@@ -129,7 +129,7 @@ private:
 };
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 float AItem::TransformedSin()
 {
 	return Amplitude * FMath::Sin(RunningTime * TimeConstant);
@@ -147,7 +147,7 @@ float AItem::TransformedCos()
 
 ## 058 Components in C++
 
-```cpp linenums="1" linenums="Item.h"
+```cpp linenums="1" title="Item.h"
 class SLASH_API AItem : public AActor
 {
 private:
@@ -156,7 +156,7 @@ private:
 }
 ```
 
-```cpp linenums="1" linenums="Item.cpp"
+```cpp linenums="1" title="Item.cpp"
 AItem::AItem()
 {
 	PrimaryActorTick.bCanEverTick = true;

@@ -25,4 +25,7 @@
 [3 向量](./cpp/ch3.md)<br/>
 [4 C++](./cpp/ch4.md)<br/>
 [5 打印调试信息](./cpp/ch5.md)<br/>
-[6 Actor](./cpp/ch6.md)
+[6 Actor](./cpp/ch6.md)<br/>
+[7 Pawn](./cpp/ch7.md)<br/>
+[8 Character](./cpp/ch8.md)<br/>
+[9](./cpp/ch9.md)
