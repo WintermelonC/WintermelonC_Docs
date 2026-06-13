@@ -1,4 +1,4 @@
-# 9
+# 9 Animation
 
 ## 078 The Animation Blueprint
 
@@ -189,3 +189,38 @@ void USlashAnimInstance::NativeUpdateAnimation(float DeltaTime)
 
 ## 082 Inverse Kinematics
 
+基于 ControlRig 创建控制绑定文件
+
+创建函数 FootTrace
+
+<figure markdown="span">
+  ![Img 16](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img16.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 17](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img17.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 18](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img18.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 19](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img19.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 20](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img20.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 21](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img21.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 22](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img22.png){ width="600" }
+</figure>
+
+<figure markdown="span">
+  ![Img 23](../../../img/unreal_engine/cpp/ch9/ue_cpp_ch9_img23.png){ width="600" }
+</figure>
