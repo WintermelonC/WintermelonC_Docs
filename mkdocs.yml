@@ -363,6 +363,8 @@ nav:
         - 7 Pawn: application/unreal_engine/cpp/ch7.md
         - 8 Character: application/unreal_engine/cpp/ch8.md
         - 9 Animation: application/unreal_engine/cpp/ch9.md
+        - 10 Collision and Delegate: application/unreal_engine/cpp/ch10.md
+        - 11 Weapon and IK Retargeter: application/unreal_engine/cpp/ch11.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:
