@@ -9163,6 +9163,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14 Object-Oriented Language
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -9179,6 +9197,97 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-single-inheritance-of-data-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Single Inheritance of Data Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-multiple-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Multiple Inheritance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Multiple Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Hashing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-testing-class-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Testing Class Membership
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-private-fields-and-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Private Fields and Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -14592,6 +14701,86 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-single-inheritance-of-data-fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Single Inheritance of Data Fields
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-multiple-inheritance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Multiple Inheritance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Multiple Inheritance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-hashing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 Hashing
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-testing-class-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Testing Class Membership
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-private-fields-and-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Private Fields and Methods
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -14721,6 +14910,231 @@
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
+<h2 id="1-classes">1 Classes<a class="headerlink" href="#1-classes" title="Permanent link">&para;</a></h2>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="n">let</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">10</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Vehicle</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">        </span><span class="n">var</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">start</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Truck</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="nf">move</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">55</span><span class="w"> </span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">            </span><span class="n">then</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">Car</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">        </span><span class="n">var</span><span class="w"> </span><span class="n">passengers</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="n">await</span><span class="p">(</span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Vehicle</span><span class="p">)</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">v</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">position</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">            </span><span class="n">then</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">v</span><span class="p">.</span><span class="n">position</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">            </span><span class="k">else</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Truck</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Car</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">v</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Vehicle</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">c</span><span class="w">  </span><span class="c1">// v 是 Vehicle 类型的变量，但实际指向 c</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="n">in</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="n">passengers</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mi">60</span><span class="p">);</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="n">v</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="mi">70</span><span class="p">);</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="n">await</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="n">end</span>
+</span></code></pre></div></td></tr></table></div>
+<p>当我们写 <code>v.position</code> 时：编译器在编译时只知道 v 的静态类型是 Vehicle，它需要生成机器代码来从对象中读取 position 字段</p>
+<p>如果编译器按最简单的方式处理，根据 position 在 Vehicle 对象中的偏移量生成代码，这在没有继承的语言中是可行的。但有了继承后，Car 继承自 Vehicle，但增加了自己的字段 passengers。对象的内存布局可能发生改变</p>
+<h2 id="2-single-inheritance-of-data-fields">2 Single Inheritance of Data Fields<a class="headerlink" href="#2-single-inheritance-of-data-fields" title="Permanent link">&para;</a></h2>
+<p>对于字段来说，子类的内存布局将父类的部分放在前面，把自己的部分放在后面</p>
+<figure>
+  <img alt="Img 1" src="../../../../img/compiler_principle/ch14/compiler_ch14_img1.png" width="600" />
+</figure>
+<p>对于方法来说，方法本质上是函数，方法实例 Truck_move 的入口点位于机器代码标签 Truck_move 处</p>
+<p>每个类描述符都包含一个指向其父类的指针，以及一个方法实例列表。当程序调用 <code>v.move(60)</code> 时，假设 v 实际指向一个 Car 对象，实际执行步骤是：</p>
+<ol>
+<li>从对象头部获取它的类描述符指针</li>
+<li>在类描述符的方法列表中查找 move 方法的入口地址</li>
+<li>如果找到了，就调用它</li>
+<li>如果没找到，就沿着父类指针往上找，直到找到为止</li>
+</ol>
+<p>静态方法属于类本身，而不是属于某个对象实例</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="n">method</span><span class="w"> </span><span class="n">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="nf">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">            </span><span class="n">method</span><span class="w"> </span><span class="nf">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>编译器处理 <code>c.f()</code> 调用时的步骤：</p>
+<ol>
+<li>找出 c 的静态类型（编译时已知的类）</li>
+<li>在 C 中查找 f</li>
+<li>如果没找到，向上查找父类 B，直到 Object</li>
+<li>一旦在某个祖先类 A 中找到 f，就编译成函数调用 A_f</li>
+</ol>
+<p>调用动态方法时，实际执行哪个版本，取决于 c 运行时指向的对象类型，而不是编译时的静态类型</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="w">    </span><span class="n">var</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="w">    </span><span class="n">method</span><span class="w"> </span><span class="n">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">        </span><span class="n">method</span><span class="w"> </span><span class="nf">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">        </span><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="w">            </span><span class="n">method</span><span class="w"> </span><span class="nf">g</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">            </span><span class="k">class</span><span class="w"> </span><span class="nc">D</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="w">                </span><span class="n">var</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="w">                </span><span class="n">method</span><span class="w"> </span><span class="n">f</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="w">            </span><span class="p">}</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>每个类的类描述符中都有一个方法表，它是一个数组/向量，按顺序存放该类所有非静态方法的入口地址。子类的方法表 = 父类的方法表 + 子类新增方法追加在后面</p>
+<p>当执行 <code>c.f()</code> 时，编译后的代码执行以下指令：</p>
+<ol>
+<li>从对象 c 的偏移量 0 处获取类描述符 d</li>
+<li>从 d 的 f 偏移量处获取方法实例指针 p</li>
+<li>跳转到地址 p，同时保存返回地址</li>
+</ol>
+<figure>
+  <img alt="Img 2" src="../../../../img/compiler_principle/ch14/compiler_ch14_img2.png" width="600" />
+</figure>
+<h2 id="3-multiple-inheritance">3 Multiple Inheritance<a class="headerlink" href="#3-multiple-inheritance" title="Permanent link">&para;</a></h2>
+<p>对于字段来说，我们可以一次性静态分析所有类（使用图着色算法），为每个字段名找到一个在所有包含该字段的记录中都可以使用的偏移量</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">A</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">B</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">Object</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">C</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">D</span><span class="w"> </span><span class="n">extends</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<figure>
+  <img alt="Img 3" src="../../../../img/compiler_principle/ch14/compiler_ch14_img3.png" width="600" />
+</figure>
+<p>在类描述符的结构当中保留 empty slot，但在对象的结构中不保留空位</p>
+<figure>
+  <img alt="Img 4" src="../../../../img/compiler_principle/ch14/compiler_ch14_img4.png" width="600" />
+</figure>
+<p>对于方法来说，全局图着色方法同样适用，方法名可以与字段名一起混合，作为大型干涉图的节点。字段的描述符条目给出的是在对象内部的位置（偏移量），方法的描述符条目给出的是方法实例的机器代码地址</p>
+<p>但全局图着色方案依赖于提前知道所有类，但许多现代语言运行时支持动态类加载，两者存在根本冲突</p>
+<h3 id="31-hashing">3.1 Hashing<a class="headerlink" href="#31-hashing" title="Permanent link">&para;</a></h3>
+<p>哈希表方案的核心思想是：放弃编译时分配固定槽位，改为运行时通过哈希表动态查找</p>
+<p>每个类的类描述符中包含两个哈希表：</p>
+<ol>
+<li>Ktab (Key Table)：存储字段名的指针（字符串/符号）。用于冲突检测，确认哈希到的条目是否真的是要找的字段</li>
+<li>Ftab (Field Table)：存储字段的偏移量或方法的入口地址。用于获取实际的访问信息</li>
+</ol>
+<p>这两个表共享相同的哈希索引，配对使用</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a>Ktab 和 Ftab 按相同索引配对：
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a>索引 0: Ktab[0] = &quot;position&quot;  ←→  Ftab[0] = 偏移量 4
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>索引 1: Ktab[1] = &quot;passengers&quot; ←→  Ftab[1] = 偏移量 8
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a>索引 2: Ktab[2] = &quot;move&quot;      ←→  Ftab[2] = 方法地址
+</span></code></pre></div></td></tr></table></div>
+<p>要获取对象 c 的字段 x，编译器生成如下代码：</p>
+<ol>
+<li>从对象 c 的偏移量 0 处获取类描述符 d</li>
+<li>从地址 d + Ktab + hash_x 处获取字段名 f</li>
+<li>测试 f 是否等于 ptr_x（即是否匹配）；如果匹配，则</li>
+<li>从 d + Ftab + hash_x 处获取字段偏移量 k</li>
+<li>从 c + k 处获取字段的值</li>
+</ol>
+<h2 id="4-testing-class-membership">4 Testing Class Membership<a class="headerlink" href="#4-testing-class-membership" title="Permanent link">&para;</a></h2>
+<p>一些面向对象语言允许程序在运行过程中检查某个对象是否属于某个类</p>
+<p>假设没有多重继承，实现 <code>x instanceof C</code> 的一种简单方法是在运行时生成执行以下循环的代码：</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">t1</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">descriptor</span><span class="w">          </span><span class="c1">// 获取 x 的类描述符</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nl">L1</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">C</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="nb">true</span><span class="w">    </span><span class="c1">// 如果当前类就是 C，返回 true</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="n">t1</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">t1</span><span class="p">.</span><span class="n">super</span><span class="w">          </span><span class="c1">// 否则沿着父类指针向上移动</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">t1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nil</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="c1">// 如果到达顶端（没有父类），返回 false</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">L1</span><span class="w">                </span><span class="c1">// 继续循环检查</span>
+</span></code></pre></div></td></tr></table></div>
+<p>但这个方法可能很慢。一种更快的方法是使用父类 Display 表</p>
+<p>Display 表的思路：在类描述符中预先存储好整条继承链的快照，访问时直接通过索引获取任意祖先类，无需循环</p>
+<p>每个类的类描述符中包含一个数组 <code>display[]</code>，按深度存储从根类 Object 到当前类的所有祖先</p>
+<p>使用 Display 表判断 <code>x instanceof C</code>：</p>
+<ol>
+<li>获取 x 的类描述符 d</li>
+<li>获取 C 的深度 depth_C（编译时已知的常量）</li>
+<li>从 <code>d.display[depth_C]</code> 读取，如果等于 C 的描述符 → true，否则 false</li>
+</ol>
+<p>关于 Type Coercions（类型强制转换），向上转型是安全的，而向下转型可能不安全</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">b</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">B</span><span class="w">          </span><span class="c1">// b 指向一个 B 对象</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">c</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">b</span><span class="w">              </span><span class="c1">// c 是 C 类型（C 继承 B），尝试把 B 赋值给 C</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">c</span><span class="p">.</span><span class="n">some_field_of_C_but_not_B</span><span class="w">  </span><span class="c1">// 访问 C 独有的字段</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="5-private-fields-and-methods">5 Private Fields and Methods<a class="headerlink" href="#5-private-fields-and-methods" title="Permanent link">&para;</a></h2>
+<p>私有性是在编译器的类型检查阶段静态地强制实施的。在类的符号表中，除了每个字段的偏移量和每个方法的偏移量之外，还有一个布尔标志，用于指示该字段或方法是否为私有的</p>
 
 
 
@@ -14743,7 +15157,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月16日 10:25:31 UTC">2026年6月16日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月16日 13:51:50 UTC">2026年6月16日</span>
   </span>
 
     
