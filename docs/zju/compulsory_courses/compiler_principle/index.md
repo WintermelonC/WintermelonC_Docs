@@ -30,4 +30,8 @@ cms老师
 [7 Intermediate Code](./ch7.md)<br/>
 [8 Blocks and Traces](./ch8.md)<br/>
 [9 Instruction Selection](./ch9.md)<br/>
-[10 Liveness Analysis](./ch10.md)
+[10 Liveness Analysis](./ch10.md)<br/>
+[11 Register Allocation](./ch11.md)<br/>
+[13 Garbage Collection](./ch13.md)<br/>
+[14 Object-Oriented Language](./ch14.md)<br/>
+[18 Loop Optimizations](./ch18.md)

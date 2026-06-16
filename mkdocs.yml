@@ -243,7 +243,7 @@ nav:
         - 8 需求工程: zju/compulsory_courses/software_engineering/ch8.md
         - 9 基于场景的需求建模: zju/compulsory_courses/software_engineering/ch9.md
         - 10 基于类的需求建模: zju/compulsory_courses/software_engineering/ch10.md
-        - 11 需求建模 - 行为、模式与 Web/移动应用: zju/compulsory_courses/software_engineering/ch11.md
+        - 11 需求建模：行为、模式与 Web/移动应用: zju/compulsory_courses/software_engineering/ch11.md
         - 12 设计概念: zju/compulsory_courses/software_engineering/ch12.md
         - 13 架构设计: zju/compulsory_courses/software_engineering/ch13.md
         - 14 构件级设计: zju/compulsory_courses/software_engineering/ch14.md
@@ -257,6 +257,18 @@ nav:
         - 22 软件测试策略: zju/compulsory_courses/software_engineering/ch22.md
         - 23 传统应用程序测试: zju/compulsory_courses/software_engineering/ch23.md
         - 24 面向对象测试: zju/compulsory_courses/software_engineering/ch24.md
+        - 25 Web 应用测试: zju/compulsory_courses/software_engineering/ch25.md
+        - 26 移动应用测试: zju/compulsory_courses/software_engineering/ch26.md
+        - 27 安全工程: zju/compulsory_courses/software_engineering/ch27.md
+        - 28 形式化建模与验证: zju/compulsory_courses/software_engineering/ch28.md
+        - 29 软件配置管理: zju/compulsory_courses/software_engineering/ch29.md
+        - 30 产品度量: zju/compulsory_courses/software_engineering/ch30.md
+        - 31 项目管理概念: zju/compulsory_courses/software_engineering/ch31.md
+        - 32 过程与项目度量: zju/compulsory_courses/software_engineering/ch32.md
+        - 33 估算: zju/compulsory_courses/software_engineering/ch33.md
+        - 34 项目进度安排: zju/compulsory_courses/software_engineering/ch34.md
+        - 35 风险分析: zju/compulsory_courses/software_engineering/ch35.md
+        - 36 维护与再工程: zju/compulsory_courses/software_engineering/ch36.md
       - 编译原理: 
         - zju/compulsory_courses/compiler_principle/index.md
         - 1 Introduction: zju/compulsory_courses/compiler_principle/ch1.md
@@ -271,6 +283,8 @@ nav:
         - 10 Liveness Analysis: zju/compulsory_courses/compiler_principle/ch10.md
         - 11 Register Allocation: zju/compulsory_courses/compiler_principle/ch11.md
         - 13 Garbage Collection: zju/compulsory_courses/compiler_principle/ch13.md
+        - 14 Object-Oriented Language: zju/compulsory_courses/compiler_principle/ch14.md
+        - 18 Loop Optimizations: zju/compulsory_courses/compiler_principle/ch18.md
     - 专业模块课程:
       - zju/module_courses/index.md
       - 人工智能: 
