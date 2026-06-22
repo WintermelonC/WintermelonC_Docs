@@ -9191,6 +9191,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Loop Optimizations
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -9207,6 +9225,80 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-dominators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Dominators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-loop-invariant-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Loop-Invariant Computations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-induction-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Induction Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-array-bounds-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Array-Bounds Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-loop-unrolling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Loop Unrolling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -14592,6 +14684,69 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-dominators" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 Dominators
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-loop-invariant-computations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 Loop-Invariant Computations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-induction-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 Induction Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-array-bounds-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 Array-Bounds Checks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-loop-unrolling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 Loop Unrolling
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -14713,14 +14868,146 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="18-loop-optimizations">18 Loop Optimizations<a class="headerlink" href="#18-loop-optimizations" title="Permanent link">&para;</a></h1>
-<!-- !!! tip "说明"
-
-    本文档正在更新中…… -->
-
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>本文档已停止更新</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">说明</p>
 <p>本文档仅涉及部分内容，仅可用于复习重点知识</p>
 </div>
+<p>控制流图中的循环是包含一个头节点 h 的节点集合 S，且满足以下性质：</p>
+<ol>
+<li>从 S 中任意节点出发，都存在有向边的路径到达 h</li>
+<li>从 h 出发，存在有向边的路径到达 S 中任意节点</li>
+<li>不存在从 S 外部任意节点到 S 内部任意节点（除了 h 以外）的边</li>
+</ol>
+<hr />
+<ul>
+<li>loop entry 节点：其 predecessor 节点在 loop 之外</li>
+<li>loop exit 节点：其 successor 节点在 loop 之外</li>
+</ul>
+<figure>
+  <img alt="Img 1" src="../../../../img/compiler_principle/ch18/compiler_ch18_img1.png" width="600" />
+</figure>
+<h2 id="1-dominators">1 Dominators<a class="headerlink" href="#1-dominators" title="Permanent link">&para;</a></h2>
+<p>dominator：如果从起始节点 s0 到节点 n 的每一条有向边路径都必须经过节点 d，则称节点 d 支配节点 n</p>
+<ol>
+<li>入口节点支配所有节点</li>
+<li>每个节点都支配它自身</li>
+<li>一个节点 n 可以有多个支配节点</li>
+</ol>
+<p>寻找支配节点的算法：</p>
+<ol>
+<li>对于起始节点：<span class="arithmatex">\(D[s_0] = \lbrace s_0 \rbrace\)</span></li>
+<li>对于其他节点，先假设所有节点都可能是它的支配者，然后通过迭代逐步删减：<span class="arithmatex">\(D[n] = \lbrace n \rbrace \cup (\bigcap\limits_{p \in pred[n]} D[p])\)</span></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">定理</p>
+<p>在一个连通图中，如果节点 d 支配节点 n，并且节点 e 也支配节点 n，那么必然有：要么 d 支配 e，要么 e 支配 d</p>
+</div>
+<p>每个节点 n（除了起始节点 s0 之外）都恰好有一个 immediate dominator（直接支配节点），记作 idom(n)，它满足以下条件：</p>
+<ol>
+<li>idom(n) 不是节点 n 本身</li>
+<li>idom(n) 支配节点 n</li>
+<li>idom(n) 不支配节点 n 的任何其他支配节点</li>
+</ol>
+<figure>
+  <img alt="Img 2" src="../../../../img/compiler_principle/ch18/compiler_ch18_img2.png" width="600" />
+</figure>
+<p>back edge（回边）：在流图中，从节点 n 到节点 h 的一条边，如果 h 支配 n，则称这条边为回边</p>
+<p>一条回边 n → h 的 natural loop（该循环的头部就是 h），是指满足以下条件的节点 x 的集合：</p>
+<ol>
+<li>h 支配 x</li>
+<li>存在一条从 x 到 n 的路径，且该路径不经过 h</li>
+</ol>
+<figure>
+  <img alt="Img 3" src="../../../../img/compiler_principle/ch18/compiler_ch18_img3.png" width="600" />
+</figure>
+<p>nested loop（嵌套循环）：如果 A 和 B 是两个循环，其头部分别为 a 和 b，且满足 a ≠ b，并且 b 属于 A（即 b 是 A 中的一个节点），那么 B 的所有节点都是 A 的节点的真子集。此时我们说，循环 B 嵌套在循环 A 内部，或者说 B 是内层循环</p>
+<figure>
+  <img alt="Img 4" src="../../../../img/compiler_principle/ch18/compiler_ch18_img4.png" width="600" />
+</figure>
+<p>很多优化技术需要在循环体之外、紧挨着循环之前的位置插入代码。最典型的例子就是 loop-invariant hoisting（循环不变式外提）：如果循环内部某个表达式的值在每次迭代中都不变，那么把它移到循环外面只计算一次，可以大幅提升性能</p>
+<figure>
+  <img alt="Img 5" src="../../../../img/compiler_principle/ch18/compiler_ch18_img5.png" width="600" />
+</figure>
+<h2 id="2-loop-invariant-computations">2 Loop-Invariant Computations<a class="headerlink" href="#2-loop-invariant-computations" title="Permanent link">&para;</a></h2>
+<p>在循环内部，有一条计算语句 <span class="arithmatex">\(t=a⊕b\)</span>，如果参与运算的两个操作数 a 和 b 在循环的每一次迭代中值都不变，那么计算结果 t 也必然不变。既然 t 不变，就没有必要在循环内部重复计算，可以把它移到循环之前执行一次，这就是循环不变式外提</p>
+<p>将语句 <span class="arithmatex">\(d:t←a⊕b\)</span> 外提到循环前置头末尾，需要满足以下条件：</p>
+<ol>
+<li>d 支配所有 t 处于活跃状态的循环出口</li>
+<li>循环内对 t 的定值只有这一个</li>
+<li>t 在循环前置头出口处不是活跃的</li>
+</ol>
+<figure>
+  <img alt="Img 6" src="../../../../img/compiler_principle/ch18/compiler_ch18_img6.png" width="600" />
+</figure>
+<h2 id="3-induction-variables">3 Induction Variables<a class="headerlink" href="#3-induction-variables" title="Permanent link">&para;</a></h2>
+<p>归纳变量是在循环中每次迭代都会按固定步长变化的变量</p>
+<ul>
+<li>基本归纳变量：指在循环中只会通过固定的增量 / 减量进行更新的变量</li>
+<li>派生归纳变量：指其值可以由基本归纳变量通过线性表达式计算得到的变量</li>
+</ul>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
+<span class="normal"><a href="#__codelineno-0-2">2</a></span>
+<span class="normal"><a href="#__codelineno-0-3">3</a></span>
+<span class="normal"><a href="#__codelineno-0-4">4</a></span>
+<span class="normal"><a href="#__codelineno-0-5">5</a></span>
+<span class="normal"><a href="#__codelineno-0-6">6</a></span>
+<span class="normal"><a href="#__codelineno-0-7">7</a></span>
+<span class="normal"><a href="#__codelineno-0-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="nl">L₁</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">≥</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">L₂</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">·</span><span class="w"> </span><span class="mi">4</span><span class="w">          </span><span class="c1">// 每次迭代都计算乘法</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="n">k</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="w">          </span><span class="c1">// 加法</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w">           </span><span class="c1">// 数组访问</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">L₁</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="nl">L₂</span><span class="p">:</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以将乘法替换为加法</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span>
+<span class="normal"><a href="#__codelineno-1-6">6</a></span>
+<span class="normal"><a href="#__codelineno-1-7">7</a></span>
+<span class="normal"><a href="#__codelineno-1-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nl">L₁</span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">≥</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">L₂</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="w">           </span><span class="c1">// 直接用 k 访问数组</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="n">i</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="w">          </span><span class="c1">// 用加法代替乘法</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="n">k</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">4</span><span class="w">          </span><span class="c1">// 因为 j 增加 4，k 也增加 4</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">    </span><span class="k">goto</span><span class="w"> </span><span class="n">L₁</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="nl">L₂</span><span class="p">:</span>
+</span></code></pre></div></td></tr></table></div>
+<p>线性归纳变量：在循环的每次迭代中，该变量的增量是恒定的</p>
+<p>线性归纳变量可以安全地进行强度削弱（将乘法替换为加法），非线性归纳变量不能简单地用增量加法替换，因为增量不是固定的</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// 如果走 L2 路径，j 不变，j 不是线性归纳变量</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="n">s</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nl">L₁</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">L₂</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">     </span><span class="n">i</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">     </span><span class="n">j</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">·</span><span class="w"> </span><span class="mi">4</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">     </span><span class="n">x</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">M</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">     </span><span class="n">s</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="w">     </span><span class="k">goto</span><span class="w"> </span><span class="n">L₁</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nl">L₂</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="w">     </span><span class="n">s</span><span class="w"> </span><span class="err">←</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="w">     </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">goto</span><span class="w"> </span><span class="n">L₁</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="4-array-bounds-checks">4 Array-Bounds Checks<a class="headerlink" href="#4-array-bounds-checks" title="Permanent link">&para;</a></h2>
+<h2 id="5-loop-unrolling">5 Loop Unrolling<a class="headerlink" href="#5-loop-unrolling" title="Permanent link">&para;</a></h2>
 
 
 
@@ -14743,7 +15030,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月16日 10:25:31 UTC">2026年6月16日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年6月22日 08:15:19 UTC">2026年6月22日</span>
   </span>
 
     
