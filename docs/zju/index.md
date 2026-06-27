@@ -96,7 +96,7 @@
 
 #### 计算机科学
 
-[人工智能](./module_courses/ai/index.md)
+[人工智能](./module_courses/ai.md)
 
 #### 计算机软件技术
 

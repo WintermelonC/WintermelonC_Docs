@@ -287,12 +287,7 @@ nav:
         - 18 Loop Optimizations: zju/compulsory_courses/compiler_principle/ch18.md
     - 专业模块课程:
       - zju/module_courses/index.md
-      - 人工智能: 
-        - zju/module_courses/ai/index.md
-        - 1 人工智能绪论: zju/module_courses/ai/ch1.md
-        - 2 知识表达与推理: zju/module_courses/ai/ch2.md
-        - 3 搜索探寻与问题求解: zju/module_courses/ai/ch3.md
-        - 4 机器学习: zju/module_courses/ai/ch4.md
+      - 人工智能: zju/module_courses/ai.md
       - Java 应用技术:
         - zju/module_courses/java_application/index.md
         - 1 Introduction: zju/module_courses/java_application/ch1.md
