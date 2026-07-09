@@ -374,6 +374,7 @@ nav:
         - 9 Animation: application/unreal_engine/cpp/ch9.md
         - 10 Collision and Delegate: application/unreal_engine/cpp/ch10.md
         - 11 Weapon and IK Retargeter: application/unreal_engine/cpp/ch11.md
+        - 12: application/unreal_engine/cpp/ch12.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:
