@@ -374,13 +374,21 @@ nav:
         - 9 Animation: application/unreal_engine/cpp/ch9.md
         - 10 Collision and Delegate: application/unreal_engine/cpp/ch10.md
         - 11 Weapon and IK Retargeter: application/unreal_engine/cpp/ch11.md
-        - 12: application/unreal_engine/cpp/ch12.md
+        - 12 Animation Montages and Meta Sounds: application/unreal_engine/cpp/ch12.md
+        - 13 Collision Detection: application/unreal_engine/cpp/ch13.md
+        - 14 Destructible Actor: application/unreal_engine/cpp/ch14.md
+        - 15 Spawn Actor and Niagara: application/unreal_engine/cpp/ch15.md
+        - 16 User Widget: application/unreal_engine/cpp/ch16.md
+        - 17: application/unreal_engine/cpp/ch17.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:
       - knowledge/data_structure_and_algorithm/index.md
+      - 数据结构:
+        - 并查集: knowledge/data_structure_and_algorithm/data_structure/union_find.md
       - 算法:
         - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
+        - 回溯: knowledge/data_structure_and_algorithm/algorithm/backtracking.md
     - Python:
       - knowledge/python/index.md
       - Anaconda: knowledge/python/anaconda.md

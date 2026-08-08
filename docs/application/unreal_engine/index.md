@@ -31,4 +31,9 @@
 [9 Animation](./cpp/ch9.md)<br/>
 [10 Collision and Delegate](./cpp/ch10.md)<br/>
 [11 Weapon and IK Retargeter](./cpp/ch11.md)<br/>
-[12](./cpp/ch12.md)
+[12 Animation Montages and Meta Sounds](./cpp/ch12.md)<br/>
+[13 Collision Detection](./cpp/ch13.md)<br/>
+[14 Destructible Actor](./cpp/ch14.md)<br/>
+[15 Spawn Actor and Niagara](./cpp/ch15.md)<br/>
+[16 User Widget](./cpp/ch16.md)<br/>
+[17](./cpp/ch17.md)

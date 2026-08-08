@@ -156,3 +156,74 @@ std::sort(people.begin(), people.end(), compareAge);
         }
     }
     ```
+
+## 2 `std::find`
+
+`std::find` 在给定范围 `[first, last)` 内线性搜索第一个等于给定值的元素，找到则返回指向该元素的迭代器，否则返回 `last`。时间复杂度为 $O(N)$
+
+```cpp linenums="1"
+#include <algorithm>
+#include <vector>
+#include <iostream>
+
+std::vector<int> vec = {5, 2, 8, 1, 9};
+
+// 查找值为 8 的元素
+auto it = std::find(vec.begin(), vec.end(), 8);
+
+if (it != vec.end()) {
+    std::cout << "找到了: " << *it << "\n";  // 输出: 找到了: 8
+    std::cout << "索引: " << std::distance(vec.begin(), it) << "\n"; // 索引: 2
+} else {
+    std::cout << "未找到\n";
+}
+```
+
+对于自定义类型，需要提供 `operator==`，因为 `std::find` 内部使用 `==` 进行比较
+
+```cpp linenums="1"
+struct Person {
+    std::string name;
+    int age;
+
+    // 必须定义 operator==
+    bool operator==(const Person& other) const {
+        return name == other.name && age == other.age;
+    }
+};
+
+std::vector<Person> people = {{"Alice", 30}, {"Bob", 25}, {"Charlie", 35}};
+
+// 查找一个特定的 Person
+Person target{"Bob", 25};
+auto it = std::find(people.begin(), people.end(), target);
+// 找到了 "Bob"
+```
+
+### 2.1 `std::find_if`
+
+如果只想按名字查找，用 `std::find_if`，配合 Lambda
+
+```cpp linenums="1"
+auto it = std::find_if(people.begin(), people.end(), [](const Person& p) {
+    return p.name == "Bob";
+});
+// 找到了 Bob（不关心 age）
+```
+
+### 2.2 底层实现
+
+`std::find` 的实现非常直接——纯线性扫描：
+
+```cpp linenums="1"
+template <class InputIterator, class T>
+InputIterator find(InputIterator first, InputIterator last, const T& value) {
+    while (first != last) {
+        if (*first == value) {  // 使用 operator== 比较
+            return first;
+        }
+        ++first;
+    }
+    return last;  // 未找到
+}
+```
