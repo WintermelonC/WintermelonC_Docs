@@ -12573,6 +12573,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -12661,6 +12667,90 @@
     
   
     回溯
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_structure_and_algorithm/algorithm/sorting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    排序
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_structure_and_algorithm/algorithm/greedy_algorithm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    贪心算法
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../data_structure_and_algorithm/algorithm/dynamic_programming/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    动态规划
   
 
     
@@ -13332,6 +13422,8 @@
       
         
       
+        
+      
     
     
     
@@ -13487,6 +13579,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-stdstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 std::stack
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -13567,6 +13670,34 @@
     
   
     Smart Pointer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concurrency_library/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concurrency Library
   
 
     
@@ -14845,6 +14976,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#5-stdstack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 std::stack
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -15145,6 +15287,43 @@
 <p><code>m.insert_or_assign()</code> (C++17)：完美解决了 <code>insert</code> 和 <code>[]</code> 的短板。如果 Key 不存在，它就插入（性能优于 <code>[]</code> 因为不用先默认构造再赋值）；如果 Key 已存在，它会覆盖掉旧的 Value（而 <code>insert</code> 是拒绝覆盖的）</p>
 <hr />
 <p><code>std::unordered_map</code> 的底层实现通常是哈希表。元素无序</p>
+<h2 id="5-stdstack">5 <code>std::stack</code><a class="headerlink" href="#5-stdstack" title="Permanent link">&para;</a></h2>
+<p><code>std::stack</code> 不是“原生”容器：它没有自己独立的数据结构，而是在现有容器（默认是 <code>std::deque</code>）之上套了一层壳（Wrapper），强行限制外部只能以后进先出（LIFO, Last In First Out）的方式来操作元素</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// Container：底层真正干活的那个容器，默认是 std::deque</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// 也可以显式指定为 std::vector&lt;T&gt; 或 std::list&lt;T&gt;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1">// 只要该容器提供了 stack 要求的三个核心函数：</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="c1">// push_back()、pop_back()、back()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">class</span><span class="w"> </span><span class="nc">T</span><span class="p">,</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Container</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">class</span><span class="w"> </span><span class="nc">stack</span><span class="p">;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">s1</span><span class="p">;</span><span class="w">                       </span><span class="c1">// 默认：deque 实现</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s2</span><span class="p">;</span><span class="w">     </span><span class="c1">// 换成 vector 实现</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">std</span><span class="o">::</span><span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">s3</span><span class="p">;</span><span class="w">       </span><span class="c1">// 换成 list 实现</span>
+</span></code></pre></div></td></tr></table></div>
+<p>栈区别于 vector/deque 的地方：没有迭代器，没有 <code>[]</code>，不能遍历，不能随机访问。只有：<code>push()</code>, <code>pop()</code>, <code>top()</code>, <code>empty()</code>, <code>size()</code></p>
+<div class="admonition question">
+<p class="admonition-title">pop() 为什么不返回被弹出的元素？</p>
+<ol>
+<li>异常安全性：想象一下，如果 <code>pop()</code> 要返回栈顶元素，它内部必须做两件事：先把栈顶元素拷贝一份给调用方，然后再从底层容器中真正删除这个元素。如果这个拷贝构造过程跑了一半抛出了异常，但是底层的元素已经被删掉了，那么这个元素就永久丢失了！C++ 标准委员会的设计原则是：绝不以牺牲数据安全为代价来换取接口便利性。因此，他们强制要求你先用 <code>top()</code> 安全地获取引用（拷贝由调用方在自己的安全范围内完成），然后再调用 <code>pop()</code></li>
+<li>性能考量：如果调用方并不关心被弹出的元素内容，强制返回会白白造成一次拷贝构造的浪费。把 <code>top()</code> 和 <code>pop()</code> 拆开，程序员可以灵活选择是否拷贝</li>
+</ol>
+</div>
+<div class="admonition question">
+<p class="admonition-title">stack 为什么默认用 deque 而不是 vector？</p>
+<ol>
+<li>vector 的短板：vector 在 push_back 满了之后需要整块扩容搬家（拷贝旧数据到新内存），虽然均摊是 O(1)，但单次扩容的延迟极高（尖刺感很强）。另外，vector 从来不释放多余的内存（capacity 只增不减），如果栈经历过一次高峰期（元素极多）后又长期处于低位，vector 依然霸占着巨量内存不肯归还</li>
+<li>deque 的优势：deque（双端队列）底层是分段连续的（由多个固定大小的块通过中控器映射组成）。它扩容时，只需要申请一个新的块然后修改中控指针，不需要搬运旧元素的内存，扩容导致的单次延迟极低，内存的使用也更加平滑和节约</li>
+</ol>
+</div>
 
 
 
@@ -15167,7 +15346,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年4月20日 16:19:14 UTC">2026年4月20日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月13日 08:39:19 UTC">2026年8月13日</span>
   </span>
 
     
