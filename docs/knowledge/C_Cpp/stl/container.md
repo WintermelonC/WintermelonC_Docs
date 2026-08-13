@@ -174,3 +174,32 @@ set<int, Cmp> s; // 在模板参数中指定
 ---
 
 `std::unordered_map` 的底层实现通常是哈希表。元素无序
+
+## 5 `std::stack`
+
+`std::stack` 不是“原生”容器：它没有自己独立的数据结构，而是在现有容器（默认是 `std::deque`）之上套了一层壳（Wrapper），强行限制外部只能以后进先出（LIFO, Last In First Out）的方式来操作元素
+
+```cpp linenums="1"
+// Container：底层真正干活的那个容器，默认是 std::deque
+// 也可以显式指定为 std::vector<T> 或 std::list<T>
+// 只要该容器提供了 stack 要求的三个核心函数：
+// push_back()、pop_back()、back()
+template <class T, class Container = std::deque<T>>
+class stack;
+
+std::stack<int> s1;                       // 默认：deque 实现
+std::stack<int, std::vector<int>> s2;     // 换成 vector 实现
+std::stack<int, std::list<int>> s3;       // 换成 list 实现
+```
+
+栈区别于 vector/deque 的地方：没有迭代器，没有 `[]`，不能遍历，不能随机访问。只有：`push()`, `pop()`, `top()`, `empty()`, `size()`
+
+!!! question "pop() 为什么不返回被弹出的元素？"
+
+    1. 异常安全性：想象一下，如果 `pop()` 要返回栈顶元素，它内部必须做两件事：先把栈顶元素拷贝一份给调用方，然后再从底层容器中真正删除这个元素。如果这个拷贝构造过程跑了一半抛出了异常，但是底层的元素已经被删掉了，那么这个元素就永久丢失了！C++ 标准委员会的设计原则是：绝不以牺牲数据安全为代价来换取接口便利性。因此，他们强制要求你先用 `top()` 安全地获取引用（拷贝由调用方在自己的安全范围内完成），然后再调用 `pop()`
+    2. 性能考量：如果调用方并不关心被弹出的元素内容，强制返回会白白造成一次拷贝构造的浪费。把 `top()` 和 `pop()` 拆开，程序员可以灵活选择是否拷贝
+
+!!! question "stack 为什么默认用 deque 而不是 vector？"
+
+    1. vector 的短板：vector 在 push_back 满了之后需要整块扩容搬家（拷贝旧数据到新内存），虽然均摊是 O(1)，但单次扩容的延迟极高（尖刺感很强）。另外，vector 从来不释放多余的内存（capacity 只增不减），如果栈经历过一次高峰期（元素极多）后又长期处于低位，vector 依然霸占着巨量内存不肯归还
+    2. deque 的优势：deque（双端队列）底层是分段连续的（由多个固定大小的块通过中控器映射组成）。它扩容时，只需要申请一个新的块然后修改中控指针，不需要搬运旧元素的内存，扩容导致的单次延迟极低，内存的使用也更加平滑和节约

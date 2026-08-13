@@ -389,6 +389,9 @@ nav:
       - 算法:
         - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
         - 回溯: knowledge/data_structure_and_algorithm/algorithm/backtracking.md
+        - 排序: knowledge/data_structure_and_algorithm/algorithm/sorting.md
+        - 贪心算法: knowledge/data_structure_and_algorithm/algorithm/greedy_algorithm.md
+        - 动态规划: knowledge/data_structure_and_algorithm/algorithm/dynamic_programming.md
     - Python:
       - knowledge/python/index.md
       - Anaconda: knowledge/python/anaconda.md
@@ -412,6 +415,7 @@ nav:
         - Algorithm: knowledge/C_Cpp/stl/algorithm.md
         - Stream: knowledge/C_Cpp/stl/stream.md
         - Smart Pointer: knowledge/C_Cpp/stl/smart_pointer.md
+        - Concurrency Library: knowledge/C_Cpp/stl/concurrency_library.md
     - Java: 
       - knowledge/java/index.md
     - Web:

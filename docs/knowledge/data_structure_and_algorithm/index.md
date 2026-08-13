@@ -7,4 +7,7 @@
 ## 算法
 
 [滑动窗口](./algorithm/sliding_window.md)<br/>
-[回溯](./algorithm/backtracking.md)
+[回溯](./algorithm/backtracking.md)<br/>
+[排序](./algorithm/sorting.md)<br/>
+[贪心算法](./algorithm/greedy_algorithm.md)<br/>
+[动态规划](./algorithm/dynamic_programming.md)
