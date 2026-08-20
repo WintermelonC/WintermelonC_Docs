@@ -12101,6 +12101,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -12580,7 +12590,147 @@
   <span class="md-ellipsis">
     
   
-    17
+    17 Enemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Refactor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Motion Warping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 HUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Pickup Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22
   
 
     
@@ -12878,6 +13028,8 @@
       
         
       
+        
+      
     
     
     
@@ -13050,6 +13202,34 @@
     
   
     动态规划
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/data_structure_and_algorithm/algorithm/binary_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二分查找
   
 
     
@@ -16763,11 +16943,11 @@
 </span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 用于信号发送者等待</span>
 </span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3"></a><span class="kt">int</span><span class="w"> </span><span class="n">next</span><span class="o">-</span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">     </span><span class="c1">// 在next上等待的进程数</span>
 </span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4"></a>
-</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5"></a><span class="c1">// 对于&quot;缓冲区非空&quot;条件</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5"></a><span class="c1">// 对于"缓冲区非空"条件</span>
 </span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">not_empty_sem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">  </span><span class="c1">// x-sem</span>
 </span><span id="__span-51-7"><a id="__codelineno-51-7" name="__codelineno-51-7"></a><span class="kt">int</span><span class="w"> </span><span class="n">not_empty_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">      </span><span class="c1">// x-count</span>
 </span><span id="__span-51-8"><a id="__codelineno-51-8" name="__codelineno-51-8"></a>
-</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9"></a><span class="c1">// 对于&quot;缓冲区非满&quot;条件  </span>
+</span><span id="__span-51-9"><a id="__codelineno-51-9" name="__codelineno-51-9"></a><span class="c1">// 对于"缓冲区非满"条件  </span>
 </span><span id="__span-51-10"><a id="__codelineno-51-10" name="__codelineno-51-10"></a><span class="n">semaphore</span><span class="w"> </span><span class="n">not_full_sem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">   </span><span class="c1">// 另一个x-sem</span>
 </span><span id="__span-51-11"><a id="__codelineno-51-11" name="__codelineno-51-11"></a><span class="kt">int</span><span class="w"> </span><span class="n">not_full_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">       </span><span class="c1">// 另一个x-count</span>
 </span></code></pre></div></td></tr></table></div>

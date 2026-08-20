@@ -12302,6 +12302,16 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -12781,7 +12791,147 @@
   <span class="md-ellipsis">
     
   
-    17
+    17 Enemy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch18/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18 Refactor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19 Motion Warping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch20/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20 HUD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch21/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21 Pickup Items
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../application/unreal_engine/cpp/ch22/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22
   
 
     
@@ -13079,6 +13229,8 @@
       
         
       
+        
+      
     
     
     
@@ -13251,6 +13403,34 @@
     
   
     动态规划
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../knowledge/data_structure_and_algorithm/algorithm/binary_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    二分查找
   
 
     
@@ -16450,9 +16630,9 @@
 <span class="normal"><a href="#__codelineno-4-2">2</a></span>
 <span class="normal"><a href="#__codelineno-4-3">3</a></span>
 <span class="normal"><a href="#__codelineno-4-4">4</a></span>
-<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nl">lockit:</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 原子加载: R2 = *R1，并标记内存地址 (R1+0) 为&quot;被监视&quot;</span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nl">lockit:</span><span class="w"> </span><span class="n">LL</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 原子加载: R2 = *R1，并标记内存地址 (R1+0) 为"被监视"</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">BNEZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R2 != 0（锁已被占用），跳回 lockit 继续自旋等待</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">R0</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R2 = 1（R0 是零寄存器，准备写入锁的&quot;占用&quot;状态）</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">DADDUI</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">R0</span><span class="p">,</span><span class="w"> </span><span class="p">#</span><span class="mh">1</span><span class="p">;</span><span class="w">  </span><span class="c1">// R2 = 1（R0 是零寄存器，准备写入锁的"占用"状态）</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">SC</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="mh">0</span><span class="p">(</span><span class="n">R1</span><span class="p">);</span><span class="w">  </span><span class="c1">// 尝试原子存储: 若 *R1 未被其他线程修改，则 *R1 = R2 = 1，R2 = 1（成功）；否则 R2 = 0（失败）</span>
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">BEQZ</span><span class="w"> </span><span class="n">R2</span><span class="p">,</span><span class="w"> </span><span class="n">lockit</span><span class="p">;</span><span class="w">  </span><span class="c1">// 如果 R2 == 0（存储失败），跳回 lockit 重试</span>
 </span></code></pre></div></td></tr></table></div>
