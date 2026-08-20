@@ -227,3 +227,127 @@ InputIterator find(InputIterator first, InputIterator last, const T& value) {
     return last;  // 未找到
 }
 ```
+
+## 3 `std::binary_search`
+
+针对 **已排序** 的区间
+
+| 函数 | 返回值 | 作用 |
+|------|--------|------|
+| `std::binary_search` | `bool` | 判断元素 **是否存在** |
+| `std::lower_bound` | 迭代器 | 返回 **第一个 `>= value`** 的位置 |
+| `std::upper_bound` | 迭代器 | 返回 **第一个 `> value`** 的位置 |
+| `std::equal_range` | `pair<it, it>` | 返回 `[lower_bound, upper_bound)`，即等于 value 的区间 |
+
+> 前提：区间必须是 **有序的**（通常升序），否则结果未定义
+
+`std::binary_search`：判断是否存在
+
+```cpp linenums="1"
+#include <algorithm>
+#include <vector>
+
+std::vector<int> vec = {1, 3, 5, 7, 9};  // 已排序
+
+if (std::binary_search(vec.begin(), vec.end(), 5)) {
+    // 找到了 5
+}
+
+// 也可以用于普通数组
+int arr[] = {1, 3, 5, 7, 9};
+bool found = std::binary_search(arr, arr + 5, 3);
+```
+
+**时间复杂度**：$O(\log N)$
+
+`std::lower_bound` / `std::upper_bound`：找位置
+
+这两个函数是二分查找最常用的形式，返回 **迭代器**：
+
+```cpp linenums="1"
+std::vector<int> vec = {1, 2, 2, 2, 3, 4};
+
+// lower_bound: 第一个 >= 2 的位置 → 指向下标 1
+auto lower = std::lower_bound(vec.begin(), vec.end(), 2);
+
+// upper_bound: 第一个 > 2 的位置 → 指向下标 4
+auto upper = std::upper_bound(vec.begin(), vec.end(), 2);
+
+// 等于 2 的元素个数 = upper - lower = 3
+int count = upper - lower;  // 3
+```
+
+`std::equal_range`：一次拿到等于 value 的整个区间
+
+```cpp linenums="1"
+std::vector<int> vec = {1, 2, 2, 2, 3, 4};
+
+auto range = std::equal_range(vec.begin(), vec.end(), 2);
+// range.first  == lower_bound (第一个 >= 2)
+// range.second == upper_bound (第一个 > 2)
+
+int count = range.second - range.first;  // 3
+```
+
+### 3.1 自定义比较器
+
+对于降序排列或自定义类型，可以传入第四个参数（与排序时使用相同的比较器）：
+
+```cpp linenums="1"
+// 降序数组：比较器必须与排序时一致
+std::vector<int> vec = {9, 7, 5, 3, 1};  // 降序
+auto it = std::lower_bound(vec.begin(), vec.end(), 5, std::greater<int>());
+
+// 自定义结构体：按 age 查找
+struct Person {
+    std::string name;
+    int age;
+};
+
+std::vector<Person> people = {
+    {"Alice", 20}, {"Bob", 25}, {"Charlie", 30}
+};
+
+// 按 age 排序后，查找第一个 age >= 25 的人
+auto it = std::lower_bound(people.begin(), people.end(), 25,
+    [](const Person& p, int age) {
+        return p.age < age;  // 注意：第一个参数是元素，第二个是查找值
+    });
+```
+
+`lower_bound` 的比较器与 `sort` 的签名 **不同**：
+
+```cpp linenums="1"
+// sort 的比较器：两个参数都是元素
+sort(people.begin(), people.end(), [](const Person& a, const Person& b) {
+    return a.age < b.age;
+});
+
+// lower_bound 的比较器：第一个是元素，第二个是查找值
+lower_bound(people.begin(), people.end(), 25,
+    [](const Person& p, int value) {
+        return p.age < value;   // p 是元素，value 是查找的目标
+    });
+```
+
+### 3.2 二分查找底层实现（以 lower_bound 为例）
+
+```cpp linenums="1"
+template <class ForwardIt, class T>
+ForwardIt lower_bound(ForwardIt first, ForwardIt last, const T& value) {
+    while (first != last) {
+        auto mid = first + (last - first) / 2;  // 防止溢出
+
+        if (*mid < value)
+            first = mid + 1;   // 中间值太小，去右半区
+        else
+            last = mid;        // 中间值 >= value，答案在 [first, mid]
+    }
+    return first;  // 第一个 >= value 的位置
+}
+```
+
+**要点**：
+
+- 用 `first + (last - first) / 2` 而非 `(first + last) / 2`，避免迭代器相加（也避免整数溢出）
+- `mid` 不满足条件时收缩左边界，否则收缩右边界

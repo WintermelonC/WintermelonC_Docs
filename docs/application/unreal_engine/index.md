@@ -36,4 +36,9 @@
 [14 Destructible Actor](./cpp/ch14.md)<br/>
 [15 Spawn Actor and Niagara](./cpp/ch15.md)<br/>
 [16 User Widget](./cpp/ch16.md)<br/>
-[17](./cpp/ch17.md)
+[17 Enemy](./cpp/ch17.md)<br/>
+[18 Refactor](./cpp/ch18.md)<br/>
+[19 Motion Warping](./cpp/ch19.md)<br/>
+[20 HUD](./cpp/ch20.md)<br/>
+[21 Pickup Items](./cpp/ch21.md)<br/>
+[22](./cpp/ch22.md)
