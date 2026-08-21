@@ -16,7 +16,7 @@ int fib(int n, std::vector<int>& memo) {
 解法二：自底向上（DP Table）
 
 ```cpp linenums="1"
-// 从小问题推大问题：F(0)→F(1)→F(2)→...→F(n)
+// 从小问题推大问题
 int fib(int n) {
     if (n <= 1) return 1;
     std::vector<int> dp(n + 1);

@@ -82,3 +82,206 @@ void heapSort(std::vector<int>& arr) {
     }
 }
 ```
+
+## 2 快速排序
+
+快速排序的核心是 **分区（Partition）** 操作：
+
+1. **选取基准（Pivot）**：从数组中挑一个元素作为基准
+2. **分区**：重新排列数组，使得所有 **小于** 基准的元素都放到基准左边，所有 **大于等于** 基准的元素都放到基准右边。分区结束后，基准就位于它最终的正确位置
+3. **递归**：对基准左右两个子数组分别重复上述过程
+
+递归终止条件是子数组长度为 0 或 1，此时天然有序
+
+**Lomuto 分区**（更直观）：
+
+用最后一个元素作基准，维护一个指针 `i` 表示"小于基准区域"的边界：
+
+```cpp linenums="1"
+// Lomuto 分区：返回基准最终位置
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high];     // 选最后一个元素作基准
+    int i = low;               // i 指向小于基准区域的末尾
+
+    for (int j = low; j < high; ++j) {
+        if (arr[j] < pivot) {
+            std::swap(arr[i], arr[j]);
+            ++i;               // 小于基准区域扩大
+        }
+    }
+    std::swap(arr[i], arr[high]);  // 把基准放到正确位置
+    return i;
+}
+```
+
+**Hoare 分区**（效率更高）：
+
+用双指针从两端向中间扫描，交换逆序元素：
+
+```cpp linenums="1"
+// Hoare 分区：双指针相遇
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[low];      // 选第一个元素作基准
+    int i = low - 1;
+    int j = high + 1;
+
+    while (true) {
+        do { ++i; } while (arr[i] < pivot);   // 从左找 ≥ pivot 的
+        do { --j; } while (arr[j] > pivot);   // 从右找 ≤ pivot 的
+        if (i >= j) return j;                 // 指针相遇
+        std::swap(arr[i], arr[j]);            // 交换逆序对
+    }
+}
+```
+
+> Hoare 分区平均交换次数约为 Lomuto 的 1/3，但边界处理更复杂、递归区间划分方式不同，初学者建议先掌握 Lomuto
+
+### 2.1 Lomuto
+
+递归：
+
+```cpp linenums="1"
+#include <vector>
+#include <algorithm>
+
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low;
+    for (int j = low; j < high; ++j) {
+        if (arr[j] < pivot) {
+            std::swap(arr[i], arr[j]);
+            ++i;
+        }
+    }
+    std::swap(arr[i], arr[high]);
+    return i;
+}
+
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low >= high) return;          // 递归终止
+
+    int p = partition(arr, low, high); // 分区，基准归位
+    quickSort(arr, low, p - 1);        // 排左边
+    quickSort(arr, p + 1, high);       // 排右边
+}
+```
+
+迭代：
+
+```cpp linenums="1"
+#include <stack>
+
+void quickSortIterative(std::vector<int>& arr, int low, int high) {
+    std::stack<std::pair<int, int>> st;
+    st.push({low, high});
+
+    while (!st.empty()) {
+        auto [l, r] = st.top();
+        st.pop();
+        if (l >= r) continue;
+
+        int p = partition(arr, l, r);
+        st.push({l, p - 1});   // 左区间
+        st.push({p + 1, r});   // 右区间
+    }
+}
+```
+
+### 2.2 Hoare
+
+递归：
+
+```cpp linenums="1"
+// Hoare 分区：双指针从两端向中间扫描
+// 返回值 j 不是基准的最终位置，而是左右区间的分界点
+// 分区后：arr[low..j] 中的元素都 <= arr[j+1..high] 中的元素
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[low];      // 选第一个元素作基准
+    int i = low - 1;           // 左指针（先自增再比较）
+    int j = high + 1;          // 右指针（先自减再比较）
+
+    while (true) {
+        // 从左向右找第一个 >= pivot 的元素
+        do { ++i; } while (arr[i] < pivot);
+        // 从右向左找第一个 <= pivot 的元素
+        do { --j; } while (arr[j] > pivot);
+        if (i >= j) return j;          // 指针相遇或交错，分区完成
+        std::swap(arr[i], arr[j]);     // 交换逆序对
+    }
+}
+
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low >= high) return;           // 区间长度 0 或 1，递归终止
+
+    int p = partition(arr, low, high); // 分区，返回分界点 j
+    quickSort(arr, low, p);            // 注意：左区间包含 p！
+    quickSort(arr, p + 1, high);       // 右区间
+}
+```
+
+迭代：
+
+```cpp linenums="1"
+#include <stack>
+
+void quickSortIterative(std::vector<int>& arr, int low, int high) {
+    std::stack<std::pair<int, int>> st;
+    st.push({low, high});
+
+    while (!st.empty()) {
+        auto [l, r] = st.top();
+        st.pop();
+        if (l >= r) continue;
+
+        int p = partition(arr, l, r);
+        st.push({l, p});        // 左区间（包含 p）
+        st.push({p + 1, r});    // 右区间
+    }
+}
+```
+
+### 2.3 复杂度分析
+
+| 情况 | 时间复杂度 | 说明 |
+|---|---|---|
+| 最好情况 | $O(N\log N)$ | 每次分区都均匀分成两半 |
+| 平均情况 | $O(N\log N)$ | 随机输入下期望性能 |
+| 最坏情况 | $O(N^2)$ | 每次基准都是最大/最小元素（已排序/逆序数组） |
+
+**最坏情况**：如果数组已经有序，Lomuto 分区每次选末尾元素作基准都是当前最大值，导致每次只把数组分成 `N-1` 和 `1` 两部分，递归深度退化为 $N$，总复杂度 $O(N^2)$
+
+**空间复杂度**：主要来自递归调用栈的深度
+
+- 平均 $O(\log N)$（每次对半分，递归深度 $\log N$）
+- 最坏 $O(N)$（退化成链表状递归树）
+
+**稳定性**：快速排序是 **不稳定** 排序。分区过程中相同元素的相对位置可能改变
+
+### 2.4 三路快排
+
+当数组含有大量重复元素时，普通快排仍会把它们反复比较。三路快排把数组分为 `<`、`=`、`>` 三部分，等于基准的部分直接跳过：
+
+```cpp linenums="1"
+void quickSort3Way(std::vector<int>& arr, int low, int high) {
+    if (low >= high) return;
+
+    int pivot = arr[low];
+    int lt = low;       // arr[low..lt-1]  < pivot
+    int gt = high;      // arr[gt+1..high] > pivot
+    int i = low + 1;    // 当前扫描位置
+
+    while (i <= gt) {
+        if (arr[i] < pivot)
+            std::swap(arr[lt++], arr[i++]);
+        else if (arr[i] > pivot)
+            std::swap(arr[i], arr[gt--]);
+        else
+            ++i;
+    }
+
+    quickSort3Way(arr, low, lt - 1);
+    quickSort3Way(arr, gt + 1, high);
+}
+```
+
+三路快排对含大量重复键的数据可达到 $O(N)$（接近线性）

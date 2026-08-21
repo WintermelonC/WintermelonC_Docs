@@ -203,3 +203,98 @@ std::stack<int, std::list<int>> s3;       // 换成 list 实现
 
     1. vector 的短板：vector 在 push_back 满了之后需要整块扩容搬家（拷贝旧数据到新内存），虽然均摊是 O(1)，但单次扩容的延迟极高（尖刺感很强）。另外，vector 从来不释放多余的内存（capacity 只增不减），如果栈经历过一次高峰期（元素极多）后又长期处于低位，vector 依然霸占着巨量内存不肯归还
     2. deque 的优势：deque（双端队列）底层是分段连续的（由多个固定大小的块通过中控器映射组成）。它扩容时，只需要申请一个新的块然后修改中控指针，不需要搬运旧元素的内存，扩容导致的单次延迟极低，内存的使用也更加平滑和节约
+
+## 6 `std::priority_queue`
+
+它提供 **常数时间获取最大（或最小）元素** 的能力，插入和删除的代价是 $O(\log N)$
+
+```cpp linenums="1" title="priority_queue 的模板声明"
+template <
+    class T,                           // 元素类型
+    class Container = std::vector<T>,  // 底层容器，默认 vector
+    class Compare   = std::less<T>     // 比较器，默认 less（大顶堆）
+>
+class priority_queue;
+```
+
+优先队列底层是一个 **二叉堆**（通常是完全二叉树，用数组存储）。默认 `std::less<T>` 形成的是 **大顶堆**
+
+它只提供了 5 个核心接口，没有迭代器，不能遍历：
+
+| 成员函数 | 作用 | 复杂度 |
+|---|---|---|
+| `push(x)` | 插入元素，然后调整堆 | $O(\log N)$ |
+| `pop()` | 移除堆顶元素，然后调整堆 | $O(\log N)$ |
+| `top()` | 返回堆顶元素的 **常量引用** | $O(1)$ |
+| `empty()` | 判断是否为空 | $O(1)$ |
+| `size()` | 返回元素个数 | $O(1)$ |
+
+```cpp linenums="1"
+#include <queue>
+#include <iostream>
+
+std::priority_queue<int> pq;    // 默认大顶堆
+pq.push(3);
+pq.push(5);
+pq.push(1);
+
+std::cout << pq.top();   // 输出 5
+pq.pop();
+std::cout << pq.top();   // 输出 3
+```
+
+想得到"最小元素在堆顶"，只需把比较器换成 `std::greater<T>`：
+
+```cpp linenums="1"
+std::priority_queue<int, std::vector<int>, std::greater<int>> min_pq;
+min_pq.push(3);
+min_pq.push(5);
+min_pq.push(1);
+std::cout << min_pq.top();   // 输出 1
+```
+
+### 6.1 自定义类型的比较
+
+如果元素是自定义结构体，和 `set` 类似，有两种方式告诉它如何比较：
+
+**方式一：重载 `<` 运算符**
+
+```cpp linenums="1"
+struct Student {
+    string name;
+    int score;
+    // priority_queue 默认用 less，即调用 operator<
+    bool operator<(const Student& other) const {
+        return score < other.score;   // 分数高者优先（大顶堆）
+    }
+};
+std::priority_queue<Student> pq;
+```
+
+**方式二：自定义仿函数（更灵活，推荐）**
+
+```cpp linenums="1"
+struct Cmp {
+    bool operator()(const Student& a, const Student& b) const {
+        return a.score > b.score;   // 分数低者优先（小顶堆）
+    }
+};
+std::priority_queue<Student, std::vector<Student>, Cmp> pq;
+```
+
+### 6.2 底层堆操作原理
+
+`priority_queue` 内部实际上调用了 `<algorithm>` 中的堆算法，它和这些算法等价：
+
+| priority_queue 操作 | 内部等价的算法 |
+|---|---|
+| 用一组数据构造 | `std::make_heap` |
+| `push(x)` | `container.push_back(x)` + `std::push_heap` |
+| `pop()` | `std::pop_heap` + `container.pop_back()` |
+
+`push_heap` 采用 **上滤（sift up）**：新元素放到数组末尾，然后不断与父节点比较并交换，直到满足堆性质。
+`pop_heap` 采用 **下滤（sift down）**：堆顶与末尾元素交换，移除末尾，然后堆顶元素不断与较大的子节点交换下沉。
+
+!!! question 为什么底层容器用 `vector`
+
+    二叉堆要求元素在内存中 **连续存储**（这样父节点索引 `i` 与子节点 `2i+1`、`2i+2` 的映射才高效），而 `vector` 正是连续内存 + 尾部插入快的最佳选择。`deque` 虽也支持随机访问，但分段连续、索引映射效率略低；`list` 则完全不支持随机访问，无法实现堆。所以标准库把 `vector` 定为默认底层容器
