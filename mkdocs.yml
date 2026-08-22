@@ -384,7 +384,7 @@ nav:
         - 19 Motion Warping: application/unreal_engine/cpp/ch19.md
         - 20 HUD: application/unreal_engine/cpp/ch20.md
         - 21 Pickup Items: application/unreal_engine/cpp/ch21.md
-        - 22: application/unreal_engine/cpp/ch22.md
+        - 22 Animation Blueprint Templates: application/unreal_engine/cpp/ch22.md
   - 知识:
     - knowledge/index.md
     - 数据结构与算法:

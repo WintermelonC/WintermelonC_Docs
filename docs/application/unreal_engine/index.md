@@ -41,4 +41,4 @@
 [19 Motion Warping](./cpp/ch19.md)<br/>
 [20 HUD](./cpp/ch20.md)<br/>
 [21 Pickup Items](./cpp/ch21.md)<br/>
-[22](./cpp/ch22.md)
+[22 Animation Blueprint Templates](./cpp/ch22.md)
