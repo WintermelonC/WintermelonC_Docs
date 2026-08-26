@@ -295,6 +295,6 @@ std::priority_queue<Student, std::vector<Student>, Cmp> pq;
 `push_heap` 采用 **上滤（sift up）**：新元素放到数组末尾，然后不断与父节点比较并交换，直到满足堆性质。
 `pop_heap` 采用 **下滤（sift down）**：堆顶与末尾元素交换，移除末尾，然后堆顶元素不断与较大的子节点交换下沉。
 
-!!! question 为什么底层容器用 `vector`
+!!! question "为什么底层容器用 `vector`"
 
     二叉堆要求元素在内存中 **连续存储**（这样父节点索引 `i` 与子节点 `2i+1`、`2i+2` 的映射才高效），而 `vector` 正是连续内存 + 尾部插入快的最佳选择。`deque` 虽也支持随机访问，但分段连续、索引映射效率略低；`list` 则完全不支持随机访问，无法实现堆。所以标准库把 `vector` 定为默认底层容器

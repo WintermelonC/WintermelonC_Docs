@@ -120,3 +120,7 @@ C++ 编译器在处理模板时，采用的是极为严格的“两阶段”编�
 假设你有 `A.cpp` 和 `B.cpp`，都在包含头文件后使用了 `std::vector<int>`。那么 `A.o` 和 `B.o` 各自都会包含一份 `std::vector<int>` 的机器码
 
 如果是普通函数，这违背了单一原则（ODR），链接器会报错（重定义）。但对于模板，编译器会在生成的符号上打上一种特殊的标记（在 ELF 格式中常称为 Weak Symbol，在现代工具链中称为 COMDAT group 机制）。链接器 (Linker) 在看到多个一模一样的 COMDAT 符号时，不会报错，而是默默挑选其中一份保留，将其他的丢弃掉，从而合并相同的实例化代码，避免最终由于重复而在二进制文件中占据多份空间
+
+## 3 模板元编程
+
+[Template Metaprogramming](./template_metaprogramming.md){:target="_blank"}

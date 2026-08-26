@@ -358,12 +358,14 @@ nav:
       - application/watt_toolkit/index.md
     - Unreal Engine:
       - application/unreal_engine/index.md
-      - UE5 蓝图:
+      - UE5:
+        - 反射系统: application/unreal_engine/ue5/reflection_system.md
+      - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
         - 数学运算: application/unreal_engine/blueprint/math.md
         - 蓝图进阶: application/unreal_engine/blueprint/blueprint_advanced.md
-      - UE5 C++:
+      - UE5 C++ 入门:
         - 2 地形编辑: application/unreal_engine/cpp/ch2.md
         - 3 向量: application/unreal_engine/cpp/ch3.md
         - 4 C++: application/unreal_engine/cpp/ch4.md
@@ -392,6 +394,7 @@ nav:
       - 数据结构:
         - 并查集: knowledge/data_structure_and_algorithm/data_structure/union_find.md
         - 前缀树: knowledge/data_structure_and_algorithm/data_structure/trie.md
+        - 二叉搜索树: knowledge/data_structure_and_algorithm/data_structure/bst.md
       - 算法:
         - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
         - 回溯: knowledge/data_structure_and_algorithm/algorithm/backtracking.md
@@ -416,8 +419,10 @@ nav:
         - Memory Model: knowledge/C_Cpp/core_language/memory_model.md
         - Exception: knowledge/C_Cpp/core_language/exception.md
         - Template: knowledge/C_Cpp/core_language/template.md
+        - Template Metaprogramming: knowledge/C_Cpp/core_language/template_metaprogramming.md
         - Overloaded Operator: knowledge/C_Cpp/core_language/overloaded_operator.md
         - Lambda: knowledge/C_Cpp/core_language/lambda.md
+        - Inheritance and Polymorphism: knowledge/C_Cpp/core_language/inheritance.md
       - STL:
         - Container: knowledge/C_Cpp/stl/container.md
         - Algorithm: knowledge/C_Cpp/stl/algorithm.md
