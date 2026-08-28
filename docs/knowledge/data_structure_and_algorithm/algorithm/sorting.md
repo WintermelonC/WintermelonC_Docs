@@ -285,3 +285,164 @@ void quickSort3Way(std::vector<int>& arr, int low, int high) {
 ```
 
 三路快排对含大量重复键的数据可达到 $O(N)$（接近线性）
+
+## 3 归并排序
+
+归并排序是一种基于 **分治（Divide and Conquer）** 思想的稳定排序算法，由冯·诺依曼于 1945 年提出。它是少数 **时间复杂度始终为 $O(N\log N)$** 的排序算法之一（最好、最坏、平均都一样），也是 **链表排序** 和 **求逆序对** 的首选
+
+归并排序分为三个阶段：
+
+1. **分（Divide）**：把数组从中间分成两半
+2. **治（Conquer）**：递归地对左右两半分别排序
+3. **合（Combine）**：把两个 **有序** 子数组合并成一个有序数组
+
+核心在于"合"——利用"两个有序序列合并后仍有序"这一事实，每次只需 $O(N)$ 时间
+
+```mermaid
+graph TD
+    A["[38, 27, 43, 3, 9, 82, 10]"] --> B["[38, 27, 43, 3]"]
+    A --> C["[9, 82, 10]"]
+    B --> D["[38, 27]"]
+    B --> E["[43, 3]"]
+    D --> D1["[38]"] & D2["[27]"]
+    E --> E1["[43]"] & E2["[3]"]
+    D1 & D2 --> D3["合并 [27, 38]"]
+    E1 & E2 --> E3["合并 [3, 43]"]
+    D3 & E3 --> B3["合并 [3, 27, 38, 43]"]
+    C --> C1["[9, 82]"] & C2["[10]"]
+    C1 --> C3["合并 [9, 82]"]
+    C3 & C2 --> C4["合并 [9, 10, 82]"]
+    B3 & C4 --> R["合并 [3, 9, 10, 27, 38, 43, 82]"]
+```
+
+### 3.1 合并函数（核心）
+
+合并两个已排序的区间 `[left, mid]` 和 `[mid+1, right]`：
+
+```cpp linenums="1"
+// 合并两个有序子数组
+void merge(std::vector<int>& arr, int left, int mid, int right) {
+    std::vector<int> tmp(right - left + 1);   // 临时数组
+    int i = left;          // 左半部分的指针
+    int j = mid + 1;       // 右半部分的指针
+    int k = 0;             // 临时数组的指针
+
+    // 双指针归并：每次取较小者放入临时数组
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j])      // 注意 <= 保证稳定性
+            tmp[k++] = arr[i++];
+        else
+            tmp[k++] = arr[j++];
+    }
+
+    // 把剩余的元素拷入
+    while (i <= mid)  tmp[k++] = arr[i++];
+    while (j <= right) tmp[k++] = arr[j++];
+
+    // 写回原数组
+    for (int p = 0; p < (int)tmp.size(); ++p)
+        arr[left + p] = tmp[p];
+}
+```
+
+!!! tip "为什么用 `<=` 而不是 `<`"
+
+    `if (arr[i] <= arr[j])` 中必须用 `<=`：当左右元素相等时，优先取 **左边** 的元素，这样才能保证相同元素的相对顺序不变，即保证 **稳定性**。若写成 `<`，相等时会先取右边的元素，排序就变成不稳定的了
+
+### 3.2 递归实现（自顶向下）
+
+```cpp linenums="1"
+void mergeSort(std::vector<int>& arr, int left, int right) {
+    if (left >= right) return;          // 区间长度 0 或 1，天然有序
+
+    int mid = left + (right - left) / 2;   // 防溢出的写法
+    mergeSort(arr, left, mid);         // 递归排序左半
+    mergeSort(arr, mid + 1, right);    // 递归排序右半
+    merge(arr, left, mid, right);      // 合并两个有序半区
+}
+
+// 调用：mergeSort(arr, 0, arr.size() - 1);
+```
+
+### 3.3 迭代实现（自底向上）
+
+递归版依赖函数调用栈，迭代版从最小规模的子数组开始两两合并，空间更可控、无递归开销：
+
+```cpp linenums="1"
+void mergeSortIterative(std::vector<int>& arr) {
+    int n = arr.size();
+    // size 是当前每次合并的子数组长度：1, 2, 4, 8, ...
+    for (int size = 1; size < n; size *= 2) {
+        for (int left = 0; left < n - size; left += 2 * size) {
+            int mid   = left + size - 1;
+            int right = std::min(left + 2 * size - 1, n - 1);  // 防越界
+            merge(arr, left, mid, right);
+        }
+    }
+}
+```
+
+### 3.4 复杂度分析
+
+| 项目 | 复杂度 | 说明 |
+|---|---|---|
+| 最好情况 | $O(N\log N)$ | 无论输入如何都固定 |
+| 平均情况 | $O(N\log N)$ | 每层合并 $O(N)$，共 $\log N$ 层 |
+| 最坏情况 | $O(N\log N)$ | **不受输入分布影响** |
+| 空间复杂度 | $O(N)$ | 需要临时数组（迭代版同样 $O(N)$） |
+| 稳定性 | **稳定** | 合并时相等元素保留左半优先 |
+
+递归深度 $\log N$，每层都要遍历全部 $N$ 个元素做合并，因此总时间 $O(N\log N)$。归并排序**不受输入影响**，没有快排那种"最坏 $O(N^2)$"的风险，代价是需要 $O(N)$ 额外空间。
+
+### 3.5 经典应用：求逆序对
+
+归并排序是求 **逆序对**（$i < j$ 但 $arr[i] > arr[j]$）的标准解法，在合并时顺带统计：
+
+```cpp linenums="1"
+long long cnt = 0;   // 逆序对个数（可能很大，用 long long）
+
+void mergeCount(std::vector<int>& arr, int left, int mid, int right) {
+    std::vector<int> tmp(right - left + 1);
+    int i = left, j = mid + 1, k = 0;
+
+    while (i <= mid && j <= right) {
+        if (arr[i] <= arr[j]) {
+            tmp[k++] = arr[i++];
+        } else {
+            // arr[j] 比左半剩余的所有元素都小
+            // 左半剩余元素个数 = mid - i + 1，每个都与 arr[j] 构成逆序对
+            cnt += mid - i + 1;
+            tmp[k++] = arr[j++];
+        }
+    }
+    while (i <= mid)  tmp[k++] = arr[i++];
+    while (j <= right) tmp[k++] = arr[j++];
+    for (int p = 0; p < (int)tmp.size(); ++p) arr[left + p] = tmp[p];
+}
+
+void mergeSortCount(std::vector<int>& arr, int left, int right) {
+    if (left >= right) return;
+    int mid = left + (right - left) / 2;
+    mergeSortCount(arr, left, mid);
+    mergeSortCount(arr, mid + 1, right);
+    mergeCount(arr, left, mid, right);
+}
+```
+
+### 3.6 与快排、堆排的对比
+
+| 维度 | 归并排序 | 快速排序 | 堆排序 |
+|---|---|---|---|
+| 平均时间 | $O(N\log N)$ | $O(N\log N)$ | $O(N\log N)$ |
+| 最坏时间 | $O(N\log N)$ **稳定** | $O(N^2)$（可优化） | $O(N\log N)$ |
+| 空间 | $O(N)$ | 平均 $O(\log N)$ | $O(1)$ |
+| 稳定性 | **稳定** | 不稳定 | 不稳定 |
+| 缓存友好 | 较差（跳跃访问临时数组） | 好（顺序访问） | 较差（跳跃访问） |
+| 适用场景 | 链表排序、外部排序、求逆序对 | 通用（`std::sort` 主体） | 内存受限、求 Top-K |
+
+!!! tip "归并排序 vs 快速排序"
+
+    - **快排**：空间少、缓存友好、实际更快，但不稳定、最坏 $O(N^2)$
+    - **归并**：稳定、最坏也是 $O(N\log N)$，但需要 $O(N)$ 额外空间
+    - **链表排序**：归并排序是 **唯一** 能在链表上高效工作的 $O(N\log N)$ 排序（快排需要随机访问，不适合链表）
+    - **外部排序**（数据大到无法装入内存）：归并排序的分治 + 合并思想是外部排序的基础

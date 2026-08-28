@@ -395,6 +395,8 @@ nav:
         - 并查集: knowledge/data_structure_and_algorithm/data_structure/union_find.md
         - 前缀树: knowledge/data_structure_and_algorithm/data_structure/trie.md
         - 二叉搜索树: knowledge/data_structure_and_algorithm/data_structure/bst.md
+        - 平衡二叉搜索树: knowledge/data_structure_and_algorithm/data_structure/avl_tree.md
+        - 单调栈: knowledge/data_structure_and_algorithm/data_structure/monotonic_stack.md
       - 算法:
         - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
         - 回溯: knowledge/data_structure_and_algorithm/algorithm/backtracking.md
