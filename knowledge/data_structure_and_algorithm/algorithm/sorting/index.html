@@ -13329,6 +13329,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-选择排序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 选择排序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 选择排序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-代码实现" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-优化二元选择排序一次找最大和最小" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 优化：二元选择排序（一次找最大和最小）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-复杂度分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 复杂度分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-与冒泡插入排序的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 与冒泡、插入排序的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-与堆排序的联系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 与堆排序的联系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -15783,6 +15855,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-选择排序" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 选择排序
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 选择排序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-代码实现" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1 代码实现
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-优化二元选择排序一次找最大和最小" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2 优化：二元选择排序（一次找最大和最小）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-复杂度分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3 复杂度分析
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-与冒泡插入排序的关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4 与冒泡、插入排序的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45-与堆排序的联系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.5 与堆排序的联系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -16593,6 +16737,249 @@
 <li><strong>外部排序</strong>（数据大到无法装入内存）：归并排序的分治 + 合并思想是外部排序的基础</li>
 </ul>
 </div>
+<h2 id="4-选择排序">4 选择排序<a class="headerlink" href="#4-选择排序" title="Permanent link">&para;</a></h2>
+<p>选择排序是一种简单直观的排序算法，属于 <span class="arithmatex">\(O(N^2)\)</span> 级别的 <strong>交换类排序</strong>。它的核心思想非常朴素：<strong>每次从未排序部分选出最小（或最大）的元素，放到已排序部分的末尾</strong></p>
+<p>把数组分成"已排序区间"和"未排序区间"两部分：</p>
+<ol>
+<li>初始时，已排序区间为空，未排序区间是整个数组</li>
+<li>每轮从未排序区间 <strong>选出最小元素</strong>，与未排序区间的第一个元素交换</li>
+<li>交换后，已排序区间扩大一个元素，未排序区间缩小一个元素</li>
+<li>重复 <span class="arithmatex">\(N-1\)</span> 轮后，整个数组有序</li>
+</ol>
+<p>以升序为例：</p>
+<ol>
+<li>在第 <code>i</code> 轮（<code>i</code> 从 0 开始），在 <code>arr[i..n-1]</code> 中找到最小元素的下标 <code>minIdx</code></li>
+<li>交换 <code>arr[i]</code> 和 <code>arr[minIdx]</code></li>
+<li><code>i++</code>，继续下一轮，直到 <code>i = n-1</code></li>
+</ol>
+<h3 id="41-代码实现">4.1 代码实现<a class="headerlink" href="#41-代码实现" title="Permanent link">&para;</a></h3>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-14-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-14-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-14-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-14-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-14-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-14-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-14-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-14-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-14-10">10</a></span>
+<span class="normal"><a href="#__codelineno-14-11">11</a></span>
+<span class="normal"><a href="#__codelineno-14-12">12</a></span>
+<span class="normal"><a href="#__codelineno-14-13">13</a></span>
+<span class="normal"><a href="#__codelineno-14-14">14</a></span>
+<span class="normal"><a href="#__codelineno-14-15">15</a></span>
+<span class="normal"><a href="#__codelineno-14-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;algorithm&gt;</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4"></a><span class="kt">void</span><span class="w"> </span><span class="nf">selectionSort</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6"></a>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">minIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w">                       </span><span class="c1">// 假设当前第一个元素最小</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">     </span><span class="c1">// 在未排序区间找更小的</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">minIdx</span><span class="p">])</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11"></a><span class="w">                </span><span class="n">minIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">minIdx</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w">                      </span><span class="c1">// 找到更小的才交换</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">minIdx</span><span class="p">]);</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="42-优化二元选择排序一次找最大和最小">4.2 优化：二元选择排序（一次找最大和最小）<a class="headerlink" href="#42-优化二元选择排序一次找最大和最小" title="Permanent link">&para;</a></h3>
+<p>普通选择排序每轮只找一个极值。优化版 <strong>每轮同时找最小值和最大值</strong>，分别放到两端，轮数减半：</p>
+<div class="language-cpp highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-15-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-15-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-15-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-15-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-15-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-15-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-15-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-15-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-15-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-15-10">10</a></span>
+<span class="normal"><a href="#__codelineno-15-11">11</a></span>
+<span class="normal"><a href="#__codelineno-15-12">12</a></span>
+<span class="normal"><a href="#__codelineno-15-13">13</a></span>
+<span class="normal"><a href="#__codelineno-15-14">14</a></span>
+<span class="normal"><a href="#__codelineno-15-15">15</a></span>
+<span class="normal"><a href="#__codelineno-15-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">selectionSort2</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">arr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">right</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">left</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">right</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">minIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">,</span><span class="w"> </span><span class="n">maxIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">left</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">right</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">minIdx</span><span class="p">])</span><span class="w"> </span><span class="n">minIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">maxIdx</span><span class="p">])</span><span class="w"> </span><span class="n">maxIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10"></a>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="p">],</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">minIdx</span><span class="p">]);</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">        </span><span class="c1">// 关键修正：若最大值本来在 left 位置，它已被换到了 minIdx</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxIdx</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">left</span><span class="p">)</span><span class="w"> </span><span class="n">maxIdx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">minIdx</span><span class="p">;</span>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="p">],</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">maxIdx</span><span class="p">]);</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title">易错点：<code>maxIdx == left</code> 的修正</p>
+<p>假设最大值恰好在 <code>left</code> 位置。先执行 <code>swap(arr[left], arr[minIdx])</code> 后，最大值被移动到了 <code>minIdx</code> 位置。此时若不修正 <code>maxIdx</code>，后面的 <code>swap(arr[right], arr[maxIdx])</code> 会把一个错误元素放到右端。所以必须先判断 <code>if (maxIdx == left) maxIdx = minIdx;</code>。</p>
+</div>
+<h3 id="43-复杂度分析">4.3 复杂度分析<a class="headerlink" href="#43-复杂度分析" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>复杂度</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>最好情况</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td>无论输入如何，比较次数固定</td>
+</tr>
+<tr>
+<td>平均情况</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td>同下</td>
+</tr>
+<tr>
+<td>最坏情况</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td>每轮都要扫描整个未排序区间</td>
+</tr>
+<tr>
+<td>比较次数</td>
+<td><span class="arithmatex">\(\frac{N(N-1)}{2}\)</span></td>
+<td>与输入无关，恒为这个值</td>
+</tr>
+<tr>
+<td>交换次数</td>
+<td><span class="arithmatex">\(O(N)\)</span>（最多 <span class="arithmatex">\(N-1\)</span> 次）</td>
+<td>远少于冒泡排序</td>
+</tr>
+<tr>
+<td>空间复杂度</td>
+<td><span class="arithmatex">\(O(1)\)</span></td>
+<td>原地排序</td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td><strong>不稳定</strong></td>
+<td>交换会破坏相同元素的相对顺序</td>
+</tr>
+</tbody>
+</table>
+<p>选择排序最大的特点：<strong>交换次数少</strong>（最多 <span class="arithmatex">\(N-1\)</span> 次），而比较次数固定为 <span class="arithmatex">\(\frac{N(N-1)}{2}\)</span>。因此当"交换（写入）代价很高、比较代价很低"时，选择排序有独特价值</p>
+<div class="admonition question">
+<p class="admonition-title">为什么不稳定</p>
+<p>选择排序的"远距离交换"会打乱相同元素的相对顺序。以 <code>[2a, 2b, 1]</code> 为例：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>数组</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>初始</td>
+<td><code>[2a, 2b, 1]</code></td>
+<td>两个 2，a 在前 b 在后</td>
+</tr>
+<tr>
+<td>第 1 轮</td>
+<td><code>[1, 2b, 2a]</code></td>
+<td>找到最小值 1（下标 2），与 <code>arr[0]</code>（即 2a）交换</td>
+</tr>
+</tbody>
+</table>
+<p>交换后 <code>2a</code> 被挪到了数组末尾，相对顺序从 <code>2a → 2b</code> 变成 <code>2b → 2a</code>，因此 <strong>不稳定</strong></p>
+</div>
+<h3 id="44-与冒泡插入排序的关系">4.4 与冒泡、插入排序的关系<a class="headerlink" href="#44-与冒泡插入排序的关系" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>选择排序</th>
+<th>冒泡排序</th>
+<th>插入排序</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>平均时间</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+</tr>
+<tr>
+<td>最好时间</td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td><span class="arithmatex">\(O(N)\)</span>（加标志位）</td>
+<td><span class="arithmatex">\(O(N)\)</span>（近乎有序）</td>
+</tr>
+<tr>
+<td>比较次数</td>
+<td>固定 <span class="arithmatex">\(\frac{N(N-1)}{2}\)</span></td>
+<td>最多 <span class="arithmatex">\(\frac{N(N-1)}{2}\)</span></td>
+<td>最多 <span class="arithmatex">\(\frac{N(N-1)}{2}\)</span></td>
+</tr>
+<tr>
+<td>交换/移动次数</td>
+<td><strong><span class="arithmatex">\(O(N)\)</span>（最少）</strong></td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+</tr>
+<tr>
+<td>稳定性</td>
+<td>不稳定</td>
+<td>稳定</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>适用场景</td>
+<td>写入代价高的场景</td>
+<td>教学、小数据</td>
+<td>近乎有序的数据</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>vs 冒泡</strong>：两者比较次数相同，但选择排序交换次数远少（<span class="arithmatex">\(O(N)\)</span> vs <span class="arithmatex">\(O(N^2)\)</span>）</li>
+<li><strong>vs 插入</strong>：插入排序对近乎有序数据可到 <span class="arithmatex">\(O(N)\)</span> 且稳定，但元素移动次数多；选择排序交换少但永远 <span class="arithmatex">\(O(N^2)\)</span></li>
+</ul>
+<h3 id="45-与堆排序的联系">4.5 与堆排序的联系<a class="headerlink" href="#45-与堆排序的联系" title="Permanent link">&para;</a></h3>
+<p>堆排序可以看作 <strong>选择排序的优化版</strong>：</p>
+<blockquote>
+<p>选择排序每轮用 <span class="arithmatex">\(O(N)\)</span> 线性扫描找最小值；堆排序用 <strong>堆</strong> 在 <span class="arithmatex">\(O(\log N)\)</span> 时间内找到最值</p>
+</blockquote>
+<p>两者本质都是"<strong>每轮选出最值放到末尾</strong>"，只是找最值的手段不同：</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>找最值的方式</th>
+<th>单次找最值</th>
+<th>总时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>选择排序</td>
+<td>线性扫描</td>
+<td><span class="arithmatex">\(O(N)\)</span></td>
+<td><span class="arithmatex">\(O(N^2)\)</span></td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>大顶堆/小顶堆</td>
+<td><span class="arithmatex">\(O(\log N)\)</span></td>
+<td><span class="arithmatex">\(O(N\log N)\)</span></td>
+</tr>
+</tbody>
+</table>
 
 
 
@@ -16615,7 +17002,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月28日 13:23:07 UTC">2026年8月28日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月28日 15:48:12 UTC">2026年8月28日</span>
   </span>
 
     
