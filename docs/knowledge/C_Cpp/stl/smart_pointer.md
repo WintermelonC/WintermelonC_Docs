@@ -1,4 +1,4 @@
-# Smart Pointer
+# 智能指针
 
 C++ 中的智能指针（Smart Pointers）是 C++11 标准引入的重要特性，主要用于自动、安全地管理动态分配的内存。它们包含在 `<memory>` 头文件中
 
@@ -42,6 +42,83 @@ int main() {
     return 0;
 }
 ```
+
+### 1.1 unique_ptr 的大小
+
+**结论**：默认情况下，`sizeof(std::unique_ptr<T>)` **等于一个裸指针的大小**——64 位系统是 **8 字节**，32 位系统是 **4 字节**
+
+原因在于默认删除器 `std::default_delete<T>` 是一个 **空类**（无任何成员），通过 **空基类优化（EBO, Empty Base Optimization）**，它在 `unique_ptr` 内部不占任何空间。所以 `unique_ptr` 实际上只存了一个裸指针
+
+```cpp linenums="1"
+#include <iostream>
+#include <memory>
+
+int main() {
+    std::cout << sizeof(std::unique_ptr<int>) << '\n';  // 8（64 位系统）
+    std::cout << sizeof(int*) << '\n';                  // 8（相等）
+    std::cout << sizeof(std::unique_ptr<double>) << '\n'; // 8（与 T 类型无关）
+}
+```
+
+`unique_ptr` 的核心设计目标就是 **零额外开销**——它的大小、解引用速度、访问速度都应当和一个裸指针完全一致。默认删除器是空类型，配合 EBO 后，`unique_ptr<T>` 的内部布局等价于：
+
+```text
+┌──────────────┐
+│   T* ptr     │  ← 就一个指针
+└──────────────┘
+```
+
+这也包括数组版本：`sizeof(std::unique_ptr<int[]>)` 同样是 8 字节（`default_delete<T[]>` 也是空类）
+
+如果传入 **有状态** 的删除器，`unique_ptr` 的大小会变成"指针 + 删除器"：
+
+| 删除器类型 | `sizeof(unique_ptr)` | 说明 |
+|---|---|---|
+| 默认 `std::default_delete<T>` | 8 | 空类，EBO 不占空间 |
+| 无捕获 lambda / 空仿函数 | 8 | 也是空类型，EBO 生效 |
+| **函数指针** `void(*)(T*)` | **16** | 必须额外存一个函数指针 |
+| 带捕获的 lambda | 12~16+ | 取决于捕获的成员大小 + 对齐 |
+
+```cpp linenums="1"
+#include <iostream>
+#include <memory>
+
+int main() {
+    // 1. 默认删除器：8 字节
+    std::cout << sizeof(std::unique_ptr<int>) << '\n';        // 8
+
+    // 2. 函数指针删除器：16 字节（指针 + 函数指针）
+    using FP = void(*)(int*);
+    std::cout << sizeof(std::unique_ptr<int, FP>) << '\n';    // 16
+
+    // 3. 无捕获 lambda（空类型）：8 字节，EBO 生效
+    auto emptyDel = [](int* p) { delete p; };
+    std::cout << sizeof(std::unique_ptr<int, decltype(emptyDel)>) << '\n'; // 8
+
+    // 4. 带捕获 lambda：捕获了一个 int → 8 + 4 对齐到 16
+    int n = 0;
+    auto capDel = [n](int* p) { delete p; };
+    std::cout << sizeof(std::unique_ptr<int, decltype(capDel)>) << '\n';   // 16
+}
+```
+
+!!! tip "建议"
+
+    如果自定义删除器不需要携带状态，尽量用 **无捕获 lambda 或空仿函数**，这样能保持 `unique_ptr` 的零开销（还是 8 字节）。用 **函数指针** 做删除器会额外占 8 字节，是常见的小浪费
+
+`shared_ptr` 需要同时维护"对象指针"和"控制块指针"，所以通常是 **两个指针的大小**（64 位下 16 字节）：
+
+```cpp linenums="1"
+std::cout << sizeof(std::shared_ptr<int>) << '\n';  // 16（对象指针 + 控制块指针）
+std::cout << sizeof(std::unique_ptr<int>) << '\n';  // 8（只有对象指针）
+```
+
+| 智能指针 | 64 位大小 | 内部存储 |
+|---|---|---|
+| `unique_ptr<T>`（默认删除器） | **8** | 一个裸指针 |
+| `shared_ptr<T>` | **16** | 对象指针 + 控制块指针 |
+| `weak_ptr<T>` | **16** | 同上（控制块指针 + 对象指针） |
+| 裸指针 `T*` | 8 | 一个指针 |
 
 ## 2 `std::shared_ptr`
 

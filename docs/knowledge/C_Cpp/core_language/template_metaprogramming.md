@@ -1,4 +1,4 @@
-# Template Metaprogramming
+# 模板元编程
 
 模板元编程（TMP，Template Metaprogramming）是 **利用模板在编译期进行计算** 的技术。它把编译器当成一个"解释器"，让程序的一部分逻辑在编译阶段就执行完毕，而不是等到运行期
 

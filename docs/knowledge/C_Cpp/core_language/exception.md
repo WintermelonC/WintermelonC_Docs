@@ -1,4 +1,4 @@
-# Exception
+# 异常
 
 [OOP - Exception](../../../zju/basic_courses/OOP/ch12.md){:target="_blank"}
 

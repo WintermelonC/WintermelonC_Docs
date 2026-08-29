@@ -1,4 +1,4 @@
-# Stream
+# 流
 
 [OOP - Stream](../../../zju/basic_courses/OOP/ch14.md){:target="_blank"}
 

@@ -1,4 +1,4 @@
-# Inheritance and Polymorphism
+# 继承与多态
 
 [C++ Inheritance](../../../zju/basic_courses/OOP/ch7.md){:target="_blank"}<br/>
 [c++ Polymorphism](../../../zju/basic_courses/OOP/ch8.md){:target="_blank"}

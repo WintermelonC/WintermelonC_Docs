@@ -418,19 +418,22 @@ nav:
       - vcpkg: knowledge/C_Cpp/vcpkg.md
       - Ninja: knowledge/C_Cpp/ninja.md
       - Core Language:
-        - Memory Model: knowledge/C_Cpp/core_language/memory_model.md
-        - Exception: knowledge/C_Cpp/core_language/exception.md
-        - Template: knowledge/C_Cpp/core_language/template.md
-        - Template Metaprogramming: knowledge/C_Cpp/core_language/template_metaprogramming.md
-        - Overloaded Operator: knowledge/C_Cpp/core_language/overloaded_operator.md
+        - 内存模型: knowledge/C_Cpp/core_language/memory_model.md
+        - 异常: knowledge/C_Cpp/core_language/exception.md
+        - 模板: knowledge/C_Cpp/core_language/template.md
+        - 模板元编程: knowledge/C_Cpp/core_language/template_metaprogramming.md
+        - 重载运算符: knowledge/C_Cpp/core_language/overloaded_operator.md
         - Lambda: knowledge/C_Cpp/core_language/lambda.md
-        - Inheritance and Polymorphism: knowledge/C_Cpp/core_language/inheritance.md
+        - 继承与多态: knowledge/C_Cpp/core_language/inheritance.md
+        - 移动语义: knowledge/C_Cpp/core_language/move_semantics.md
+        - 完美转发: knowledge/C_Cpp/core_language/perfect_forwarding.md
       - STL:
-        - Container: knowledge/C_Cpp/stl/container.md
-        - Algorithm: knowledge/C_Cpp/stl/algorithm.md
-        - Stream: knowledge/C_Cpp/stl/stream.md
-        - Smart Pointer: knowledge/C_Cpp/stl/smart_pointer.md
-        - Concurrency Library: knowledge/C_Cpp/stl/concurrency_library.md
+        - 容器库: knowledge/C_Cpp/stl/container.md
+        - 算法库: knowledge/C_Cpp/stl/algorithm.md
+        - 并发支持库: knowledge/C_Cpp/stl/concurrency_library.md
+        - 函数对象库: knowledge/C_Cpp/stl/function_object.md
+        - 流: knowledge/C_Cpp/stl/stream.md
+        - 智能指针: knowledge/C_Cpp/stl/smart_pointer.md
     - Java: 
       - knowledge/java/index.md
     - Web:
