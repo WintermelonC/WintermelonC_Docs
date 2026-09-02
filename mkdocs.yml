@@ -397,6 +397,7 @@ nav:
         - 二叉搜索树: knowledge/data_structure_and_algorithm/data_structure/bst.md
         - 平衡二叉搜索树: knowledge/data_structure_and_algorithm/data_structure/avl_tree.md
         - 单调栈: knowledge/data_structure_and_algorithm/data_structure/monotonic_stack.md
+        - 跳表: knowledge/data_structure_and_algorithm/data_structure/skip_list.md
       - 算法:
         - 滑动窗口: knowledge/data_structure_and_algorithm/algorithm/sliding_window.md
         - 回溯: knowledge/data_structure_and_algorithm/algorithm/backtracking.md
@@ -434,6 +435,7 @@ nav:
         - 函数对象库: knowledge/C_Cpp/stl/function_object.md
         - 流: knowledge/C_Cpp/stl/stream.md
         - 智能指针: knowledge/C_Cpp/stl/smart_pointer.md
+        - 字符串: knowledge/C_Cpp/stl/string.md
     - Java: 
       - knowledge/java/index.md
     - Web:
