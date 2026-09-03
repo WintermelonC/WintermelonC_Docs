@@ -12,13 +12,13 @@
         <meta name="author" content="WintermelonC">
       
       
-        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/ue5/reflection_system/">
+        <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/application/unreal_engine/game_framework/GameplayAbilitySystem/">
       
       
-        <link rel="prev" href="../../">
+        <link rel="prev" href="../FGameplayTag/">
       
       
-        <link rel="next" href="../../blueprint/blueprint_basic/">
+        <link rel="next" href="../network_synchronization/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>反射系统 - WintermelonC Docs</title>
+        <title>GameplayAbilitySystem - WintermelonC Docs</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#反射系统" class="md-skip">
+        <a href="#gameplayabilitysystem" class="md-skip">
           跳转至
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              反射系统
+              GameplayAbilitySystem
             
           </span>
         </div>
@@ -11535,6 +11535,8 @@
       
         
       
+        
+      
     
     
     
@@ -11596,6 +11598,594 @@
                 
   
   
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_2" id="__nav_4_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引擎核心与底层框架
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    引擎核心与底层框架
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_2_1" id="__nav_4_5_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心对象模型
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心对象模型
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine_core/reflection_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    反射系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine_core/garbage_collection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    垃圾回收
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine_core/blueprint_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    蓝图系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_2_2" id="__nav_4_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    资产管理
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    资产管理
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../engine_core/UDataAsset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UDataAsset
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_3" id="__nav_4_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    游戏框架与交互逻辑
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    游戏框架与交互逻辑
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_3_1" id="__nav_4_5_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    核心游戏框架
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    核心游戏框架
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gameplay_framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GamePlay 框架
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5_3_2" id="__nav_4_5_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    数据驱动配置
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    数据驱动配置
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UDataTable/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    UDataTable
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../FGameplayTag/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FGameplayTag
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -11618,17 +12208,17 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_4_5_2" id="__nav_4_5_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5_3_3" id="__nav_4_5_3_3_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
     
   
-    UE5
+    实体组件与能力系统
   
 
     
@@ -11639,12 +12229,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4_5_2">
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_5_3_3">
             <span class="md-nav__icon md-icon"></span>
             
   
-    UE5
+    实体组件与能力系统
   
 
           </label>
@@ -11666,24 +12256,6 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    反射系统
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -11691,7 +12263,7 @@
   <span class="md-ellipsis">
     
   
-    反射系统
+    GameplayAbilitySystem
   
 
     
@@ -11701,223 +12273,105 @@
 
       </a>
       
-        
+    </li>
+  
 
-<nav class="md-nav md-nav--secondary" aria-label="目录">
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
   
   
   
     
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+    
       
-        <li class="md-nav__item">
-  <a href="#1-核心类型" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 核心类型
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 核心类型">
-      <ul class="md-nav__list">
         
-          <li class="md-nav__item">
-  <a href="#11-uobject" class="md-nav__link">
-    <span class="md-ellipsis">
       
-        1.1 UObject
+    
+    
+    
       
-    </span>
-  </a>
-  
-</li>
+      
         
-          <li class="md-nav__item">
-  <a href="#12-uclass" class="md-nav__link">
-    <span class="md-ellipsis">
       
-        1.2 UClass
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
       
-    </span>
-  </a>
-  
-</li>
         
-          <li class="md-nav__item">
-  <a href="#13-ustruct" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 UStruct
-      
-    </span>
-  </a>
-  
-</li>
         
-          <li class="md-nav__item">
-  <a href="#14-fproperty属性" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.4 FProperty（属性）
-      
-    </span>
-  </a>
-  
-</li>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3_4" >
         
-          <li class="md-nav__item">
-  <a href="#15-ufunction函数" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.5 UFunction（函数）
-      
-    </span>
-  </a>
+          
+          <label class="md-nav__link" for="__nav_4_5_3_4" id="__nav_4_5_3_4_label" tabindex="0">
+            
   
-</li>
+  
+  <span class="md-ellipsis">
+    
+  
+    网络同步与多人系统
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
         
-      </ul>
-    </nav>
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_5_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-反射宏" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2 反射宏
-      
-    </span>
-  </a>
+    网络同步与多人系统
   
-    <nav class="md-nav" aria-label="2 反射宏">
-      <ul class="md-nav__list">
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../network_synchronization/" class="md-nav__link">
         
-          <li class="md-nav__item">
-  <a href="#21-uclass类" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 UCLASS（类）
-      
-    </span>
-  </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-ustruct--uenum结构体--枚举" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 USTRUCT / UENUM（结构体 / 枚举）
-      
-    </span>
-  </a>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-uproperty成员变量" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 UPROPERTY（成员变量）
-      
-    </span>
-  </a>
+  <span class="md-ellipsis">
+    
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-ufunction成员函数" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 UFUNCTION（成员函数）
-      
-    </span>
-  </a>
+    网络同步
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25-uinterface--udelegate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.5 UINTERFACE / UDELEGATE
-      
-    </span>
-  </a>
+
+    
+  </span>
   
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#26-umeta元数据" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.6 UMETA（元数据）
-      
-    </span>
-  </a>
   
-</li>
-        
-      </ul>
-    </nav>
+
+      </a>
+    </li>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-uht-生成的代码" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 UHT 生成的代码
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-反射的运行时对象模型" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4 反射的运行时对象模型
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-在代码中使用反射" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5 在代码中使用反射
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-常见注意事项与坑" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 常见注意事项与坑
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -11962,10 +12416,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_4" >
         
           
-          <label class="md-nav__link" for="__nav_4_5_3" id="__nav_4_5_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5_4" id="__nav_4_5_4_label" tabindex="0">
             
   
   
@@ -11983,8 +12437,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -12178,10 +12632,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_4" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5_5" >
         
           
-          <label class="md-nav__link" for="__nav_4_5_4" id="__nav_4_5_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_5_5" id="__nav_4_5_5_label" tabindex="0">
             
   
   
@@ -12199,8 +12653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4_5_4">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5_5">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -15698,213 +16152,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1-核心类型" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1 核心类型
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 核心类型">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11-uobject" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.1 UObject
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12-uclass" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.2 UClass
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#13-ustruct" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.3 UStruct
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#14-fproperty属性" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.4 FProperty（属性）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#15-ufunction函数" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1.5 UFunction（函数）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-反射宏" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2 反射宏
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="2 反射宏">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#21-uclass类" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.1 UCLASS（类）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#22-ustruct--uenum结构体--枚举" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.2 USTRUCT / UENUM（结构体 / 枚举）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#23-uproperty成员变量" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.3 UPROPERTY（成员变量）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#24-ufunction成员函数" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.4 UFUNCTION（成员函数）
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#25-uinterface--udelegate" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.5 UINTERFACE / UDELEGATE
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#26-umeta元数据" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2.6 UMETA（元数据）
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-uht-生成的代码" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3 UHT 生成的代码
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-反射的运行时对象模型" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4 反射的运行时对象模型
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-在代码中使用反射" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        5 在代码中使用反射
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-常见注意事项与坑" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        6 常见注意事项与坑
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -15981,11 +16228,37 @@
   
     
     
+      
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../gameplay_framework/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    游戏框架与交互逻辑
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+    
+    
       <li class="md-path__item">
         <a href="./" class="md-path__link">
           
   <span class="md-ellipsis">
-    UE5
+    实体组件与能力系统
   </span>
 
         </a>
@@ -16007,7 +16280,7 @@
 
   <!-- 若 meta 中 edit 为 false，则不加 edit 按钮 -->
 	
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/application/unreal_engine/ue5/reflection_system.md" title="编辑此页" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/edit/main/docs/application/unreal_engine/game_framework/GameplayAbilitySystem.md" title="编辑此页" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -16017,7 +16290,7 @@
     
       
     
-    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/application/unreal_engine/ue5/reflection_system.md" title="查看本页的源代码" class="md-content__button md-icon">
+    <a href="https://github.com/WintermelonC/WintermelonC_Docs/raw/main/docs/application/unreal_engine/game_framework/GameplayAbilitySystem.md" title="查看本页的源代码" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
@@ -16025,331 +16298,7 @@
 
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
-<h1 id="反射系统">反射系统<a class="headerlink" href="#反射系统" title="Permanent link">&para;</a></h1>
-<p>反射（Reflection）是指程序在 <strong>运行时</strong> 能够"自省"（Introspection）自身结构的能力——即代码可以查询某个对象属于什么类、有哪些属性、哪些函数，甚至动态地创建对象、读写属性、调用函数</p>
-<p>C++ 语言本身 <strong>不支持反射</strong>。UE 通过在编译前运行一个名为 <strong>UHT（Unreal Header Tool，Unreal 头文件工具）</strong> 的程序，扫描带有特定宏的代码，自动生成反射元数据，从而在运行时提供了一套"伪反射"机制</p>
-<div class="admonition info">
-<p class="admonition-title">一句话总结</p>
-<p>UE 反射系统 = UHT 编译期扫描宏 + 生成的元数据代码 + 运行时查询/操作的 API</p>
-</div>
-<p>游戏开发中大量功能都依赖反射，它是整个 UE 引擎的基石：</p>
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>依赖反射的原因</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>蓝图（Blueprint）</strong></td>
-<td>蓝图编译器需要动态创建 UObject、读写属性、调用函数，而蓝图脚本并不存在 C++ 源码</td>
-</tr>
-<tr>
-<td><strong>编辑器属性面板</strong></td>
-<td>Details 面板遍历类的属性，根据 <code>EditAnywhere</code> 等说明符自动生成编辑 UI</td>
-</tr>
-<tr>
-<td><strong>序列化 / 存档</strong></td>
-<td><code>SaveGame</code> 系统、关卡保存通过反射遍历属性自动读写，无需手写每个字段</td>
-</tr>
-<tr>
-<td><strong>垃圾回收（GC）</strong></td>
-<td>GC 通过反射找到对象内引用的其他 UObject，从而追踪可达性</td>
-</tr>
-<tr>
-<td><strong>网络复制</strong></td>
-<td>标记 <code>Replicated</code> 的属性由复制系统通过反射自动同步到客户端</td>
-</tr>
-<tr>
-<td><strong>控制台命令</strong></td>
-<td><code>Exec</code> 函数通过反射按名字查找并调用</td>
-</tr>
-<tr>
-<td><strong>数据驱动</strong></td>
-<td>配置、DataAsset、蓝图结构体等都能在运行时被统一描述和处理</td>
-</tr>
-</tbody>
-</table>
-<pre class="mermaid"><code>flowchart LR
-    A[写代码&lt;br/&gt;UCLASS/UPROPERTY/UFUNCTION 宏] --&gt; B[UHT 扫描头文件]
-    B --&gt; C[生成 .generated.h&lt;br/&gt;与 .gen.cpp]
-    C --&gt; D[编译器编译生成代码]
-    D --&gt; E[模块加载时&lt;br/&gt;注册反射元数据到运行时]
-    E --&gt; F[运行时查询/操作&lt;br/&gt;GetClass/FindProperty/ProcessEvent]</code></pre>
-<div class="admonition note">
-<p class="admonition-title">UHT 只解析头文件</p>
-<p>UHT 只扫描 <strong><code>.h</code> 头文件</strong>，因此反射宏（<code>UCLASS</code>、<code>UPROPERTY</code>、<code>UFUNCTION</code> 等）必须写在头文件中，不能写在 <code>.cpp</code> 里。同时头文件**最后一行必须包含** <code>#include "YourClass.generated.h"</code></p>
-</div>
-<h2 id="1-核心类型">1 核心类型<a class="headerlink" href="#1-核心类型" title="Permanent link">&para;</a></h2>
-<h3 id="11-uobject">1.1 UObject<a class="headerlink" href="#11-uobject" title="Permanent link">&para;</a></h3>
-<p>所有可被反射、可被 GC 管理的对象基类。<code>UObject</code> 的实例在运行时都携带自己的 <code>UClass*</code>（通过 <code>GetClass()</code> 获取），这就是反射的入口。</p>
-<h3 id="12-uclass">1.2 UClass<a class="headerlink" href="#12-uclass" title="Permanent link">&para;</a></h3>
-<p>描述"某个类的类型信息"的对象—— <strong>类本身在运行时也是一个对象</strong>。它记录类名、父类、属性列表、函数列表、默认对象（CDO）等信息。蓝图生成的类在运行时就是 <code>UClass</code> 的实例（<code>ClassGeneratedBy</code> 指向蓝图资产）</p>
-<h3 id="13-ustruct">1.3 UStruct<a class="headerlink" href="#13-ustruct" title="Permanent link">&para;</a></h3>
-<p><code>UClass</code> 与 <code>UScriptStruct</code>（反射结构体）的共同基类。一个 <code>UStruct</code> 维护：</p>
-<ul>
-<li><code>Children</code>：直属子字段（属性、函数）的链表</li>
-<li><code>SuperStruct</code>：父结构体（用于继承链）</li>
-<li><code>Next</code>：同一层级的下一个字段</li>
-</ul>
-<h3 id="14-fproperty属性">1.4 FProperty（属性）<a class="headerlink" href="#14-fproperty属性" title="Permanent link">&para;</a></h3>
-<p>描述一个成员变量的反射信息：名字、类型、在对象中的内存偏移、默认值、说明符等。它是反射中最常用的类型。</p>
-<div class="admonition info">
-<p class="admonition-title">UE 4.25 的架构变更</p>
-<p>在 4.25 之前，属性基类 <code>UProperty</code> 继承自 <code>UObject</code>；4.25 之后重构为 <strong><code>FField</code> 体系</strong>（<code>FField → FProperty → FIntProperty</code> 等），属性**不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 <code>UFunction</code> 仍然继承自 <code>UObject</code>。</p>
-</div>
-<p>常见的属性反射类型对应关系：</p>
-<table>
-<thead>
-<tr>
-<th>C++ 类型</th>
-<th>反射类型</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>int32</code></td>
-<td><code>FIntProperty</code></td>
-</tr>
-<tr>
-<td><code>float</code></td>
-<td><code>FFloatProperty</code></td>
-</tr>
-<tr>
-<td><code>bool</code></td>
-<td><code>FBoolProperty</code></td>
-</tr>
-<tr>
-<td><code>FString</code></td>
-<td><code>FStrProperty</code></td>
-</tr>
-<tr>
-<td><code>FName</code></td>
-<td><code>FNameProperty</code></td>
-</tr>
-<tr>
-<td><code>FText</code></td>
-<td><code>FTextProperty</code></td>
-</tr>
-<tr>
-<td><code>TArray&lt;T&gt;</code></td>
-<td><code>FArrayProperty</code></td>
-</tr>
-<tr>
-<td><code>TMap&lt;K,V&gt;</code></td>
-<td><code>FMapProperty</code></td>
-</tr>
-<tr>
-<td><code>TSet&lt;T&gt;</code></td>
-<td><code>FSetProperty</code></td>
-</tr>
-<tr>
-<td><code>UObject*</code></td>
-<td><code>FObjectProperty</code></td>
-</tr>
-<tr>
-<td><code>TSubclassOf&lt;UClass&gt;</code></td>
-<td><code>FClassProperty</code> / <code>FSoftClassProperty</code></td>
-</tr>
-<tr>
-<td>结构体（<code>USTRUCT</code>）</td>
-<td><code>FStructProperty</code></td>
-</tr>
-<tr>
-<td>委托</td>
-<td><code>FDelegateProperty</code> / <code>FMulticastDelegateProperty</code></td>
-</tr>
-</tbody>
-</table>
-<h3 id="15-ufunction函数">1.5 UFunction（函数）<a class="headerlink" href="#15-ufunction函数" title="Permanent link">&para;</a></h3>
-<p>描述一个成员函数的反射信息：函数名、参数列表、返回值、<code>Native</code> 函数指针、标志位（<code>BlueprintCallable</code>、<code>Exec</code>、<code>Server</code> 等）。蓝图节点、RPC 调用都建立在它之上。</p>
-<h2 id="2-反射宏">2 反射宏<a class="headerlink" href="#2-反射宏" title="Permanent link">&para;</a></h2>
-<h3 id="21-uclass类">2.1 UCLASS（类）<a class="headerlink" href="#21-uclass类" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintType</span><span class="p">)</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyClass</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UObject</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">};</span>
-</span></code></pre></div>
-<p>常见说明符：<code>Blueprintable</code>、<code>BlueprintType</code>、<code>Abstract</code>、<code>EditInlineNew</code>、<code>Config</code>、<code>Transient</code>、<code>NotBlueprintable</code>、<code>ClassGroup</code>、<code>MinimalAPI</code> 等。</p>
-<div class="admonition warning">
-<p class="admonition-title">模板类不能被 UCLASS</p>
-<p>泛型（模板）C++ 类无法做类反射，必须用具体类型或宏展开生成具体类。</p>
-</div>
-<h3 id="22-ustruct--uenum结构体--枚举">2.2 USTRUCT / UENUM（结构体 / 枚举）<a class="headerlink" href="#22-ustruct--uenum结构体--枚举" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">USTRUCT</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">FMyStruct</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">{</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">)</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">Value</span><span class="p">;</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">};</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">UENUM</span><span class="p">(</span><span class="n">BlueprintType</span><span class="p">)</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">EMyEnum</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">uint8</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">{</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="n">First</span><span class="p">,</span>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">    </span><span class="n">Second</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">};</span>
-</span></code></pre></div>
-<h3 id="23-uproperty成员变量">2.3 UPROPERTY（成员变量）<a class="headerlink" href="#23-uproperty成员变量" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">UCLASS</span><span class="p">()</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyClass</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UObject</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="c1">// 可在编辑器/蓝图读写</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">BlueprintReadWrite</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Stats"</span><span class="p">)</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">Health</span><span class="p">;</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="c1">// 仅蓝图可读</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">VisibleAnywhere</span><span class="p">)</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="n">int32</span><span class="w"> </span><span class="n">MaxHealth</span><span class="p">;</span>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="c1">// 不参与序列化、不保存</span>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Transient</span><span class="p">)</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">TempValue</span><span class="p">;</span>
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">    </span><span class="c1">// 网络复制</span>
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">Replicated</span><span class="p">)</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">    </span><span class="n">FVector</span><span class="w"> </span><span class="n">Location</span><span class="p">;</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="p">};</span>
-</span></code></pre></div>
-<p>常见说明符：<code>EditAnywhere</code>、<code>EditDefaultsOnly</code>、<code>EditInstanceOnly</code>、<code>VisibleAnywhere</code>、<code>BlueprintReadWrite</code>、<code>BlueprintReadOnly</code>、<code>Category</code>、<code>Transient</code>、<code>SaveGame</code>、<code>Config</code>、<code>Replicated</code>、<code>ReplicatedUsing</code>、<code>AdvancedDisplay</code>、<code>Instanced</code>、<code>Meta</code> 等。</p>
-<h3 id="24-ufunction成员函数">2.4 UFUNCTION（成员函数）<a class="headerlink" href="#24-ufunction成员函数" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">UCLASS</span><span class="p">()</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyClass</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UObject</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">{</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="c1">// 可在蓝图调用</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Action"</span><span class="p">)</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">DoSomething</span><span class="p">();</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="c1">// 纯函数（无副作用，蓝图里可作连线值）</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintPure</span><span class="p">)</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">GetHealth</span><span class="p">()</span><span class="w"> </span><span class="k">const</span><span class="p">;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="c1">// 蓝图实现事件</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintImplementableEvent</span><span class="p">)</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnKilled</span><span class="p">();</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="c1">// C++ 有默认实现，蓝图可覆盖</span>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">)</span>
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">OnHit</span><span class="p">();</span>
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="w">    </span><span class="c1">// 控制台命令</span>
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Exec</span><span class="p">)</span>
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">MyCommand</span><span class="p">(</span><span class="n">FString</span><span class="w"> </span><span class="n">Args</span><span class="p">);</span>
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="c1">// RPC</span>
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">Server</span><span class="p">,</span><span class="w"> </span><span class="n">Reliable</span><span class="p">)</span>
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="n">ServerFire</span><span class="p">();</span>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="p">};</span>
-</span></code></pre></div>
-<h3 id="25-uinterface--udelegate">2.5 UINTERFACE / UDELEGATE<a class="headerlink" href="#25-uinterface--udelegate" title="Permanent link">&para;</a></h3>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">UINTERFACE</span><span class="p">(</span><span class="n">MinimalAPI</span><span class="p">,</span><span class="w"> </span><span class="n">Blueprintable</span><span class="p">)</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UInterface</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">{</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">};</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">class</span><span class="w"> </span><span class="nc">IMyInterface</span>
-</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">{</span>
-</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
-</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="k">public</span><span class="o">:</span>
-</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">DoThing</span><span class="p">()</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">};</span>
-</span></code></pre></div>
-<p>委托用 <code>DECLARE_DYNAMIC_MULTICAST_DELEGATE</code>、<code>UDELET</code> 系列宏声明后即可被反射（可在蓝图绑定）</p>
-<h3 id="26-umeta元数据">2.6 UMETA（元数据）<a class="headerlink" href="#26-umeta元数据" title="Permanent link">&para;</a></h3>
-<p><code>meta</code> 用来附加编辑器提示、工具信息：</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">EditAnywhere</span><span class="p">,</span><span class="w"> </span><span class="n">meta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DisplayName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"生命值"</span><span class="p">,</span><span class="w"> </span><span class="n">ClampMin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"0"</span><span class="p">,</span><span class="w"> </span><span class="n">ClampMax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"999"</span><span class="p">))</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="kt">float</span><span class="w"> </span><span class="n">Health</span><span class="p">;</span>
-</span></code></pre></div>
-<h2 id="3-uht-生成的代码">3 UHT 生成的代码<a class="headerlink" href="#3-uht-生成的代码" title="Permanent link">&para;</a></h2>
-<p>每个带反射宏的类会生成两份文件：</p>
-<div class="admonition info">
-<p class="admonition-title">.generated.h</p>
-<p>被 <code>GENERATED_BODY()</code> 宏展开引用。包含 <code>StaticClass()</code> 声明、<code>GetLifetimeReplicatedProps</code> 等 RPC 声明、访问成员内部辅助、<code>F...</code> 的类型相关声明等。</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">.gen.cpp</p>
-<p>包含类型的"构造器"函数（如 <code>Z_Construct_UClass_UMyClass</code>）、每个属性的反射注册代码、以及一个**静态注册对象**：</p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">static</span><span class="w"> </span><span class="n">FCompiledInDefer</span><span class="w"> </span><span class="n">Z_CompiledInDefer_UClass_UMyClass</span><span class="p">(</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="n">Z_Construct_UClass_UMyClass</span><span class="p">,</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="o">&amp;</span><span class="n">UMyClass</span><span class="o">::</span><span class="n">StaticClass</span><span class="p">,</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="n">TEXT</span><span class="p">(</span><span class="s">"UMyClass"</span><span class="p">),</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="p">...</span>
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">);</span>
-</span></code></pre></div>
-<p>这个静态对象在 <strong>模块加载时</strong> 把类的构造器指针登记到全局注册表，模块 <code>StartupModule</code> 时统一创建对应的 <code>UClass</code>。因此只要模块被加载，所有反射类就会自动"上线"。</p>
-</div>
-<h2 id="4-反射的运行时对象模型">4 反射的运行时对象模型<a class="headerlink" href="#4-反射的运行时对象模型" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>graph TD
-    UObject --&gt; UField --&gt; UStruct --&gt; UClass
-    UStruct --&gt; UScriptStruct
-    UStruct --&gt; UFunction
-    FField --&gt; FProperty --&gt; FIntProperty
-    FProperty --&gt; FObjectProperty</code></pre>
-<ul>
-<li>每个 <code>UObject</code> 通过 <code>GetClass()</code> 拿到自己的 <code>UClass</code></li>
-<li><code>UClass</code> 通过 <code>SuperStruct</code> 链指向父类（用于向上查找）</li>
-<li>属性挂在 <code>UStruct::Children</code> 链上，用 <code>TFieldIterator&lt;FProperty&gt;</code> 遍历</li>
-<li><code>GetDefaultObject()</code>（CDO）保存类的默认属性值，新对象克隆 CDO 初始化</li>
-</ul>
-<h2 id="5-在代码中使用反射">5 在代码中使用反射<a class="headerlink" href="#5-在代码中使用反射" title="Permanent link">&para;</a></h2>
-<p><strong>遍历类的属性：</strong></p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">UClass</span><span class="o">*</span><span class="w"> </span><span class="n">Class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyObject</span><span class="o">-&gt;</span><span class="n">GetClass</span><span class="p">();</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">TFieldIterator</span><span class="o">&lt;</span><span class="n">FProperty</span><span class="o">&gt;</span><span class="w"> </span><span class="n">It</span><span class="p">(</span><span class="n">Class</span><span class="p">);</span><span class="w"> </span><span class="n">It</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">It</span><span class="p">)</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">{</span>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="n">FProperty</span><span class="o">*</span><span class="w"> </span><span class="n">Property</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">It</span><span class="p">;</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="n">Name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Property</span><span class="o">-&gt;</span><span class="n">GetName</span><span class="p">();</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">FString</span><span class="w"> </span><span class="n">Type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Property</span><span class="o">-&gt;</span><span class="n">GetCPPType</span><span class="p">();</span>
-</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="c1">// 通过偏移读取对象中的实际值</span>
-</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">    </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">ValuePtr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Property</span><span class="o">-&gt;</span><span class="n">ContainerPtrToValuePtr</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="p">(</span><span class="n">MyObject</span><span class="p">);</span>
-</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="n">FString</span><span class="w"> </span><span class="n">OutValue</span><span class="p">;</span>
-</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="n">Property</span><span class="o">-&gt;</span><span class="n">ExportText_Direct</span><span class="p">(</span><span class="n">OutValue</span><span class="p">,</span><span class="w"> </span><span class="n">ValuePtr</span><span class="p">,</span><span class="w"> </span><span class="n">ValuePtr</span><span class="p">,</span><span class="w"> </span><span class="n">MyObject</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
-</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a><span class="w">    </span><span class="n">UE_LOG</span><span class="p">(</span><span class="n">LogTemp</span><span class="p">,</span><span class="w"> </span><span class="n">Log</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">"%s (%s) = %s"</span><span class="p">),</span><span class="w"> </span><span class="o">*</span><span class="n">Name</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">Type</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="n">OutValue</span><span class="p">);</span>
-</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">}</span>
-</span></code></pre></div>
-<p><strong>按名字查找并调用函数：</strong></p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">UFunction</span><span class="o">*</span><span class="w"> </span><span class="n">Func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="o">-&gt;</span><span class="n">FindFunctionByName</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">"DoSomething"</span><span class="p">));</span>
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">MyObject</span><span class="o">-&gt;</span><span class="n">ProcessEvent</span><span class="p">(</span><span class="n">Func</span><span class="p">,</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">);</span>
-</span></code></pre></div>
-<p><strong>带参数的调用：</strong></p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">UFunction</span><span class="o">*</span><span class="w"> </span><span class="n">Func</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="o">-&gt;</span><span class="n">FindFunctionByName</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">"AddScore"</span><span class="p">));</span>
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">struct</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">int32</span><span class="w"> </span><span class="n">Delta</span><span class="p">;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="n">Params</span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 布局需与函数签名一致</span>
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">MyObject</span><span class="o">-&gt;</span><span class="n">ProcessEvent</span><span class="p">(</span><span class="n">Func</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Params</span><span class="p">);</span>
-</span></code></pre></div>
-<p><strong>按名字查找对象 / 创建对象：</strong></p>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">UClass</span><span class="o">*</span><span class="w"> </span><span class="n">Cls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LoadClass</span><span class="o">&lt;</span><span class="n">UObject</span><span class="o">&gt;</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">TEXT</span><span class="p">(</span><span class="s">"/Game/MyBP.MyBP_C"</span><span class="p">));</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="n">UObject</span><span class="o">*</span><span class="w"> </span><span class="n">Instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NewObject</span><span class="o">&lt;</span><span class="n">UObject</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">Cls</span><span class="p">);</span>
-</span></code></pre></div>
-<h2 id="6-常见注意事项与坑">6 常见注意事项与坑<a class="headerlink" href="#6-常见注意事项与坑" title="Permanent link">&para;</a></h2>
-<div class="admonition warning">
-<p class="admonition-title">头文件规范</p>
-<ol>
-<li><code>.generated.h</code> 必须 <strong>最后</strong> <code>#include</code></li>
-<li>反射宏只能写在头文件里</li>
-<li><code>UCLASS</code> / <code>USTRUCT</code> / <code>UENUM</code> 宏与类型名之间不要加注释或修饰符，避免 UHT 解析失败</li>
-<li>大括号配对要整齐，UHT 的解析对格式有一定敏感度</li>
-</ol>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">性能与 GC</p>
-<ul>
-<li>属性用 <code>FField</code> 体系后已不再参与 GC；但 <code>UFunction</code>、<code>UClass</code>、<code>UObject</code> 仍受 GC 管理</li>
-<li>不要在高频循环里频繁用名字查找属性/函数（会走哈希与字符串比较），尽量缓存 <code>FProperty*</code> / <code>UFunction*</code></li>
-<li>反射遍历会有一定开销，编辑器工具中使用无妨，运行时热路径要谨慎</li>
-</ul>
-</div>
-<div class="admonition info">
-<p class="admonition-title">UE5 相关变化</p>
-<p>UE5 继续使用 4.25 重构后的 <code>FField</code> 属性体系，并强化了 IWYU（包含最小化）规范。反射机制本身与 UE4 基本一致，新增的大多为更高层的特性（如 Chaos、Nanite、Lumen 的编辑器集成），反射底层仍以 <code>UClass</code> / <code>FProperty</code> / <code>UFunction</code> 为核心。</p>
-</div>
+<h1 id="gameplayabilitysystem">GameplayAbilitySystem<a class="headerlink" href="#gameplayabilitysystem" title="Permanent link">&para;</a></h1>
 
 
 
@@ -16372,7 +16321,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月26日 14:53:13 UTC">2026年8月26日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月3日 06:34:47 UTC">2026年9月3日</span>
   </span>
 
     
@@ -16382,7 +16331,7 @@
     <span class="md-icon" title="创建日期">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年8月26日 14:53:13 UTC">2026年8月26日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月3日 06:34:47 UTC">2026年9月3日</span>
   </span>
 
     
@@ -16487,7 +16436,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../../" class="md-footer__link md-footer__link--prev" aria-label="上一页: Unreal Engine">
+          <a href="../FGameplayTag/" class="md-footer__link md-footer__link--prev" aria-label="上一页: FGameplayTag">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -16497,20 +16446,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                Unreal Engine
+                FGameplayTag
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../blueprint/blueprint_basic/" class="md-footer__link md-footer__link--next" aria-label="下一页: 蓝图基础">
+          <a href="../network_synchronization/" class="md-footer__link md-footer__link--next" aria-label="下一页: 网络同步">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                蓝图基础
+                网络同步
               </div>
             </div>
             <div class="md-footer__button md-icon">
