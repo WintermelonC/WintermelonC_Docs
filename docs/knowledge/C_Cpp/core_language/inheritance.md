@@ -134,7 +134,7 @@ vptr 是对象数据的一部分，对象在哪它就在哪：
     
     非虚调用：`call Animal::move`（直接跳转，可内联优化）
     
-    虚调用：`mov rax, [p]` → 取 vptr；`mov rax, [rax + 8*n]` → 取第 n 个槽位；`call rax` → 间接调用。
+    虚调用：`mov rax, [p]` → 取 vptr；`mov rax, [rax + 8*n]` → 取第 n 个槽位；`call rax` → 间接调用
     
     代价主要是 **一次间接寻址 + 难以内联**（除非编译器能静态证明对象的真实类型，如 `devirtualization` 优化）。这也是为什么"无关继承的类不要随便加 virtual"
 
@@ -372,6 +372,131 @@ public:
 !!! danger "经验法则"
 
     只要一个类 **设计为被继承**（含虚函数或会被多态使用），就应把析构函数声明为 `virtual`。反过来，若类 **不含任何虚函数**、也不作为基类，则不必加 virtual（省一个 vptr 的开销）
+
+!!! question "构造函数可以是虚函数吗"
+
+    **不能。** 构造函数 **绝对不能** 声明为虚函数，C++ 标准直接禁止这样做，编译器会报错。这与"析构函数可以是（而且往往应该是）虚函数"形成了鲜明的对比
+    
+    语法上：编译直接报错
+    
+    机制上：vptr 还没初始化，虚调用无从谈起。虚函数依赖对象内部的 **vptr** 来找到虚函数表。但关键问题是：**vptr 是在构造函数执行期间才被初始化的**。也就是说，**在构造函数开始执行之前，vptr 根本不存在**。如果构造函数本身是虚的，编译器就要在"还没有 vptr"的情况下通过 vptr 去查找调用哪个构造函数——这在机制上自相矛盾，是"先有鸡还是先有蛋"的问题
+    
+    语义上：多态需要对象，而构造正是创建对象。多态的意义是"根据对象的 **实际类型** 决定调用哪个函数"。但构造对象时 **总是明确知道要创建哪个类**，根本不存在"运行时才知道类型"的场景，因此构造函数没有多态的需求，声明成虚函数毫无意义
+
+    !!! tip "替代方案：模拟“虚构造函数”效果"
+
+        虽然构造函数不能是虚的，但有时我们确实需要"**根据运行时类型创建对象**"。这可以用以下模式实现：
+        
+        虚克隆（Virtual Clone / 原型模式）：
+        
+        ```cpp linenums="1"
+        class Animal {
+        public:
+            virtual ~Animal() {}
+            virtual Animal* clone() const = 0;   // 虚"拷贝构造"：克隆自己
+        };
+        
+        class Dog : public Animal {
+        public:
+            Animal* clone() const override {
+                return new Dog(*this);    // 调用 Dog 的拷贝构造
+            }
+        };
+        
+        class Cat : public Animal {
+        public:
+            Animal* clone() const override {
+                return new Cat(*this);
+            }
+        };
+        
+        int main() {
+            Animal* p = new Dog();
+            Animal* copy = p->clone();   // 运行时创建了正确的类型（Dog）
+            // copy 是 Dog*，但通过 Animal* 使用
+        }
+        ```
+        
+        工厂模式：
+        
+        ```cpp linenums="1"
+        // 工厂根据参数返回不同类型的对象
+        std::unique_ptr<Animal> createAnimal(const std::string& type) {
+            if (type == "dog") return std::make_unique<Dog>();
+            if (type == "cat") return std::make_unique<Cat>();
+            return nullptr;
+        }
+        ```
+
+!!! question "如果在构造函数调用了纯虚函数，会怎么样"
+
+    **结论：这是未定义行为（Undefined Behavior），绝大多数情况下程序会直接崩溃（终止）**
+    
+    要理解原因，需要串联两条规则：
+    
+    1. **构造函数中调用虚函数是静态绑定的**——调用的是"当前正在构造的那个类"的版本，而不是派生类重写的版本
+    2. 当构造函数属于 **定义纯虚函数的那个基类** 时，静态绑定绑到的就是 **纯虚函数本身**——而它没有实现
+    
+    纯虚函数在虚函数表中 **没有真实地址**，编译器填的是一个特殊占位符（如 Itanium ABI 下的 `__cxa_pure_virtual`）：
+    
+    ```text
+    Base 的 vtable:
+    ┌─────────────────────────────┐
+    │ type_info (RTTI)            │
+    ├─────────────────────────────┤
+    │ __cxa_pure_virtual  ← f()   │   ← 纯虚函数槽位，不是真实函数
+    └─────────────────────────────┘
+    ```
+    
+    这个占位符被调用时，运行时会报错并终止程序
+    
+    | 编译器 | 典型表现 |
+    |---|---|
+    | GCC / Clang | 打印 `pure virtual method called`，然后 `terminate called without an active exception`，`abort` |
+    | MSVC | 抛出运行时错误（如 `R6025 - pure virtual function call`），程序终止 |
+    
+    **注意**：由于是未定义行为，标准 **不保证**一定有友好报错——也可能静默崩溃、段错误，或（理论上）任何行为。不要依赖具体的报错信息
+
+    !!! tip "一个重要的例外：纯虚函数有定义时"
+
+        纯虚函数 **可以有函数体**（定义必须写在类外）：
+        
+        ```cpp linenums="1"
+        class Base {
+        public:
+            Base() { Base::f(); }  // ✓ 限定名调用，合法！调用下面的定义
+            virtual void f() = 0;
+        };
+        
+        // 纯虚函数的定义（写在类外）
+        void Base::f() {
+            std::cout << "Base::f 的定义\n";
+        }
+        ```
+        
+        关键区别：
+        
+        | 调用方式 | 是否合法 | 说明 |
+        |---|---|---|
+        | `Base::f()`（限定名） | ✓ **合法** | 直接调用纯虚函数的定义，不走虚调用机制 |
+        | `f()`（构造函数里的虚调用） | ✗ **UB** | 走 vtable，vtable 里仍是 `__cxa_pure_virtual` 占位符，不指向你的定义 |
+        
+        也就是说：**纯虚函数即使有定义，构造函数里不加限定名的 `f()` 依然会崩溃**——因为虚调用走的是 vtable 占位符，而不是你写的定义
+
+    !!! question "为什么标准不直接禁止（编译错误）"
+    
+        编译器 **无法静态检测** 所有情况。比如：
+        
+        ```cpp linenums="1"
+        class Base {
+        public:
+            Base() { init(); }            // 调用非虚函数
+            void init() { f(); }          // init 内部调用了纯虚函数 —— 编译期很难追踪
+            virtual void f() = 0;
+        };
+        ```
+        
+        构造函数调用了 `init()`，`init()` 又调用了纯虚函数 `f()`。这种 **间接调用链** 在编译期难以全部静态分析，所以标准只能把它定为"未定义行为"而不是"编译错误"，把责任交给程序员
 
 ## 5 多重继承与菱形继承
 

@@ -35,15 +35,15 @@ flowchart LR
 
 ## 1 核心类型
 
-### 1.1 UObject
+##### 1.1 UObject
 
-所有可被反射、可被 GC 管理的对象基类。`UObject` 的实例在运行时都携带自己的 `UClass*`（通过 `GetClass()` 获取），这就是反射的入口。
+所有可被反射、可被 GC 管理的对象基类。`UObject` 的实例在运行时都携带自己的 `UClass*`（通过 `GetClass()` 获取），这就是反射的入口
 
-### 1.2 UClass
+##### 1.2 UClass
 
 描述"某个类的类型信息"的对象—— **类本身在运行时也是一个对象**。它记录类名、父类、属性列表、函数列表、默认对象（CDO）等信息。蓝图生成的类在运行时就是 `UClass` 的实例（`ClassGeneratedBy` 指向蓝图资产）
 
-### 1.3 UStruct
+##### 1.3 UStruct
 
 `UClass` 与 `UScriptStruct`（反射结构体）的共同基类。一个 `UStruct` 维护：
 
@@ -51,13 +51,13 @@ flowchart LR
 - `SuperStruct`：父结构体（用于继承链）
 - `Next`：同一层级的下一个字段
 
-### 1.4 FProperty（属性）
+##### 1.4 FProperty（属性）
 
-描述一个成员变量的反射信息：名字、类型、在对象中的内存偏移、默认值、说明符等。它是反射中最常用的类型。
+描述一个成员变量的反射信息：名字、类型、在对象中的内存偏移、默认值、说明符等。它是反射中最常用的类型
 
 !!! info "UE 4.25 的架构变更"
 
-    在 4.25 之前，属性基类 `UProperty` 继承自 `UObject`；4.25 之后重构为 **`FField` 体系**（`FField → FProperty → FIntProperty` 等），属性**不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 `UFunction` 仍然继承自 `UObject`。
+    在 4.25 之前，属性基类 `UProperty` 继承自 `UObject`；4.25 之后重构为 **`FField` 体系**（`FField → FProperty → FIntProperty` 等），属性**不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 `UFunction` 仍然继承自 `UObject`
 
 常见的属性反射类型对应关系：
 
@@ -77,13 +77,13 @@ flowchart LR
 | 结构体（`USTRUCT`） | `FStructProperty` |
 | 委托 | `FDelegateProperty` / `FMulticastDelegateProperty` |
 
-### 1.5 UFunction（函数）
+##### 1.5 UFunction（函数）
 
-描述一个成员函数的反射信息：函数名、参数列表、返回值、`Native` 函数指针、标志位（`BlueprintCallable`、`Exec`、`Server` 等）。蓝图节点、RPC 调用都建立在它之上。
+描述一个成员函数的反射信息：函数名、参数列表、返回值、`Native` 函数指针、标志位（`BlueprintCallable`、`Exec`、`Server` 等）。蓝图节点、RPC 调用都建立在它之上
 
 ## 2 反射宏
 
-### 2.1 UCLASS（类）
+##### 2.1 UCLASS（类）
 
 ```cpp
 UCLASS(Blueprintable, BlueprintType)
@@ -97,9 +97,9 @@ class UMyClass : public UObject
 
 !!! warning "模板类不能被 UCLASS"
 
-    泛型（模板）C++ 类无法做类反射，必须用具体类型或宏展开生成具体类。
+    泛型（模板）C++ 类无法做类反射，必须用具体类型或宏展开生成具体类
 
-### 2.2 USTRUCT / UENUM（结构体 / 枚举）
+##### 2.2 USTRUCT / UENUM（结构体 / 枚举）
 
 ```cpp
 USTRUCT(BlueprintType)
@@ -119,7 +119,7 @@ enum class EMyEnum : uint8
 };
 ```
 
-### 2.3 UPROPERTY（成员变量）
+##### 2.3 UPROPERTY（成员变量）
 
 ```cpp
 UCLASS()
@@ -147,7 +147,7 @@ class UMyClass : public UObject
 
 常见说明符：`EditAnywhere`、`EditDefaultsOnly`、`EditInstanceOnly`、`VisibleAnywhere`、`BlueprintReadWrite`、`BlueprintReadOnly`、`Category`、`Transient`、`SaveGame`、`Config`、`Replicated`、`ReplicatedUsing`、`AdvancedDisplay`、`Instanced`、`Meta` 等。
 
-### 2.4 UFUNCTION（成员函数）
+##### 2.4 UFUNCTION（成员函数）
 
 ```cpp
 UCLASS()
@@ -181,7 +181,7 @@ class UMyClass : public UObject
 };
 ```
 
-### 2.5 UINTERFACE / UDELEGATE
+##### 2.5 UINTERFACE / UDELEGATE
 
 ```cpp
 UINTERFACE(MinimalAPI, Blueprintable)
@@ -200,7 +200,7 @@ public:
 
 委托用 `DECLARE_DYNAMIC_MULTICAST_DELEGATE`、`UDELET` 系列宏声明后即可被反射（可在蓝图绑定）
 
-### 2.6 UMETA（元数据）
+##### 2.6 UMETA（元数据）
 
 `meta` 用来附加编辑器提示、工具信息：
 
@@ -219,7 +219,7 @@ float Health;
 
 !!! info ".gen.cpp"
 
-    包含类型的"构造器"函数（如 `Z_Construct_UClass_UMyClass`）、每个属性的反射注册代码、以及一个**静态注册对象**：
+    包含类型的"构造器"函数（如 `Z_Construct_UClass_UMyClass`）、每个属性的反射注册代码、以及一个 **静态注册对象**：
 
     ```cpp
     static FCompiledInDefer Z_CompiledInDefer_UClass_UMyClass(
@@ -230,7 +230,7 @@ float Health;
     );
     ```
 
-    这个静态对象在 **模块加载时** 把类的构造器指针登记到全局注册表，模块 `StartupModule` 时统一创建对应的 `UClass`。因此只要模块被加载，所有反射类就会自动"上线"。
+    这个静态对象在 **模块加载时** 把类的构造器指针登记到全局注册表，模块 `StartupModule` 时统一创建对应的 `UClass`。因此只要模块被加载，所有反射类就会自动"上线"
 
 ## 4 反射的运行时对象模型
 

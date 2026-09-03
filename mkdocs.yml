@@ -358,8 +358,23 @@ nav:
       - application/watt_toolkit/index.md
     - Unreal Engine:
       - application/unreal_engine/index.md
-      - UE5:
-        - 反射系统: application/unreal_engine/ue5/reflection_system.md
+      - 引擎核心与底层框架:
+        - 核心对象模型:
+          - 反射系统: application/unreal_engine/engine_core/reflection_system.md
+          - 垃圾回收: application/unreal_engine/engine_core/garbage_collection.md
+          - 蓝图系统: application/unreal_engine/engine_core/blueprint_system.md
+        - 资产管理:
+          - UDataAsset: application/unreal_engine/engine_core/UDataAsset.md
+      - 游戏框架与交互逻辑:
+        - 核心游戏框架:
+          - GamePlay 框架: application/unreal_engine/game_framework/gameplay_framework.md
+        - 数据驱动配置:
+          - UDataTable: application/unreal_engine/game_framework/UDataTable.md
+          - FGameplayTag: application/unreal_engine/game_framework/FGameplayTag.md
+        - 实体组件与能力系统:
+          - GameplayAbilitySystem: application/unreal_engine/game_framework/GameplayAbilitySystem.md
+        - 网络同步与多人系统:
+          - 网络同步: application/unreal_engine/game_framework/network_synchronization.md
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
