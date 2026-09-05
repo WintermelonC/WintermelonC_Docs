@@ -373,6 +373,7 @@ nav:
           - FGameplayTag: application/unreal_engine/game_framework/FGameplayTag.md
         - 实体组件与能力系统:
           - GameplayAbilitySystem: application/unreal_engine/game_framework/GameplayAbilitySystem.md
+          - GameplayCue: application/unreal_engine/game_framework/GameplayCue.md
         - 网络同步与多人系统:
           - 网络同步: application/unreal_engine/game_framework/network_synchronization.md
       - UE5 蓝图入门:
@@ -443,6 +444,7 @@ nav:
         - 继承与多态: knowledge/C_Cpp/core_language/inheritance.md
         - 移动语义: knowledge/C_Cpp/core_language/move_semantics.md
         - 完美转发: knowledge/C_Cpp/core_language/perfect_forwarding.md
+        - 类型转换: knowledge/C_Cpp/core_language/type_conversion.md
       - STL:
         - 容器库: knowledge/C_Cpp/stl/container.md
         - 算法库: knowledge/C_Cpp/stl/algorithm.md

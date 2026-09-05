@@ -4,6 +4,13 @@ C++ 中的智能指针（Smart Pointers）是 C++11 标准引入的重要特性�
 
 智能指针的核心思想是 RAII（Resource Acquisition Is Initialization，资源获取即初始化）：将动态分配的内存封装在一个局部对象中，利用局部对象在离开作用域时自动调用析构函数的特性，来实现内存的自动释放。这能有效防止内存泄漏（Memory Leak）和悬垂指针（Dangling Pointer）
 
+| 智能指针 | 64 位大小 | 内部存储 |
+|---|---|---|
+| `unique_ptr<T>`（默认删除器） | **8** | 一个裸指针 |
+| `shared_ptr<T>` | **16** | 对象指针 + 控制块指针 |
+| `weak_ptr<T>` | **16** | 同上（控制块指针 + 对象指针） |
+| 裸指针 `T*` | 8 | 一个指针 |
+
 ## 1 `std::unique_ptr`
 
 `std::unique_ptr` 是一种独占性的智能指针。这意味着在任何时刻，一个对象只能被一个 `unique_ptr` 所拥有
@@ -43,7 +50,54 @@ int main() {
 }
 ```
 
-### 1.1 unique_ptr 的大小
+### 1.1 底层实现
+
+内部就存一个 `T*`，禁止拷贝、允许移动
+
+```cpp linenums="1"
+template <typename T>
+class unique_ptr {
+    T* ptr;
+public:
+    explicit unique_ptr(T* p = nullptr) : ptr(p) {}
+
+    ~unique_ptr() {
+        delete ptr;                     // 析构自动释放（RAII 核心）
+    }
+
+    // 禁止拷贝
+    unique_ptr(const unique_ptr&) = delete;
+    unique_ptr& operator=(const unique_ptr&) = delete;
+
+    // 允许移动：转移所有权，原指针置空
+    unique_ptr(unique_ptr&& other) noexcept : ptr(other.ptr) {
+        other.ptr = nullptr;            // 关键：防止双重释放
+    }
+
+    unique_ptr& operator=(unique_ptr&& other) noexcept {
+        if (this != &other) {
+            delete ptr;                 // 先释放自己的旧资源
+            ptr = other.ptr;            // 接管
+            other.ptr = nullptr;        // 源置空
+        }
+        return *this;
+    }
+
+    // 像指针一样使用
+    T* operator->() const { return ptr; }
+    T& operator*()  const { return *ptr; }
+    T* get()        const { return ptr; }
+    explicit operator bool() const { return ptr != nullptr; }
+};
+```
+
+核心要点：
+
+1. 析构函数里 `delete ptr`——离开作用域自动释放
+2. 移动构造/赋值把 `other.ptr` 置 `nullptr`，保证同一时刻只有一个 `unique_ptr` 拥有对象
+3. 真实的 `unique_ptr` 还带一个删除器（默认为 `std::default_delete<T>`），通过空基类优化（EBO）做到零额外开销（`sizeof(unique_ptr<T>) == sizeof(T*)`）
+
+### 1.2 unique_ptr 的大小
 
 **结论**：默认情况下，`sizeof(std::unique_ptr<T>)` **等于一个裸指针的大小**——64 位系统是 **8 字节**，32 位系统是 **4 字节**
 
@@ -105,20 +159,6 @@ int main() {
 !!! tip "建议"
 
     如果自定义删除器不需要携带状态，尽量用 **无捕获 lambda 或空仿函数**，这样能保持 `unique_ptr` 的零开销（还是 8 字节）。用 **函数指针** 做删除器会额外占 8 字节，是常见的小浪费
-
-`shared_ptr` 需要同时维护"对象指针"和"控制块指针"，所以通常是 **两个指针的大小**（64 位下 16 字节）：
-
-```cpp linenums="1"
-std::cout << sizeof(std::shared_ptr<int>) << '\n';  // 16（对象指针 + 控制块指针）
-std::cout << sizeof(std::unique_ptr<int>) << '\n';  // 8（只有对象指针）
-```
-
-| 智能指针 | 64 位大小 | 内部存储 |
-|---|---|---|
-| `unique_ptr<T>`（默认删除器） | **8** | 一个裸指针 |
-| `shared_ptr<T>` | **16** | 对象指针 + 控制块指针 |
-| `weak_ptr<T>` | **16** | 同上（控制块指针 + 对象指针） |
-| 裸指针 `T*` | 8 | 一个指针 |
 
 ## 2 `std::shared_ptr`
 
@@ -205,6 +245,83 @@ int main() {
     1. 控制块的引用计数是线程安全的：底层通常使用原子操作（`std::atomic`）实现计数的增减，因此多个线程同时拷贝、析构同一个 `shared_ptr` 是安全的
     2. 指针指向的对象的读写不是线程安全的：多个线程通过 `shared_ptr` 并发修改其指向的底层对象时，如果没有加锁同步，会引发数据竞争（Data Race）。此外，对同一个 `shared_ptr` 实例本身进行并发读写操作（如一个线程赋值，另一个线程读取）也是不安全的，需要加锁
 
+### 2.1 底层实现
+
+shared_ptr 允许多个指针共享同一对象，所以需要引用计数。它内部持有两个指针：
+
+```cpp linenums="1"
+shared_ptr 对象：
+┌─────────────────┐
+│ ptr（对象指针）   │ ──→ 被管理的对象
+├─────────────────┤
+│ ctrl（控制块指针）│ ──→ 控制块 ControlBlock
+└─────────────────┘
+```
+
+```cpp linenums="1"
+template <typename T>
+struct ControlBlock {
+    size_t strong_count;   // 强引用计数：有多少个 shared_ptr 指向对象
+    size_t weak_count;     // 弱引用计数：有多少个 weak_ptr 在观察
+    // （真实实现里还有：删除器、分配器等，这里简化）
+};
+```
+
+```cpp linenums="1"
+template <typename T>
+class shared_ptr {
+    T* ptr;                  // 指向对象
+    ControlBlock* ctrl;      // 指向控制块
+
+public:
+    // 构造函数：初始化引用计数为 1
+    explicit shared_ptr(T* p)
+        : ptr(p), ctrl(new ControlBlock{1, 0}) {}
+
+    // 拷贝构造：强引用计数 +1
+    shared_ptr(const shared_ptr& other)
+        : ptr(other.ptr), ctrl(other.ctrl) {
+        ++ctrl->strong_count;
+    }
+
+    // 拷贝赋值：先处理旧的，再处理新的
+    shared_ptr& operator=(const shared_ptr& other) {
+        if (this != &other) {
+            release();                     // 释放自己原来的引用
+            ptr = other.ptr;
+            ctrl = other.ctrl;
+            ++ctrl->strong_count;          // 增加新的引用
+        }
+        return *this;
+    }
+
+    // 析构：强引用计数 -1，为 0 时销毁对象
+    ~shared_ptr() { release(); }
+
+    void release() {
+        if (--ctrl->strong_count == 0) {
+            delete ptr;                    // ① 强引用归零 → 销毁对象
+            if (ctrl->weak_count == 0)
+                delete ctrl;               // ② 弱引用也归零 → 销毁控制块
+        }
+    }
+
+    size_t use_count() const { return ctrl->strong_count; }
+    T* get() const { return ptr; }
+    T* operator->() const { return ptr; }
+    T& operator*()  const { return *ptr; }
+};
+```
+
+### 2.2 shared_ptr 的大小
+
+`shared_ptr` 需要同时维护"对象指针"和"控制块指针"，所以通常是 **两个指针的大小**（64 位下 16 字节）：
+
+```cpp linenums="1"
+std::cout << sizeof(std::shared_ptr<int>) << '\n';  // 16（对象指针 + 控制块指针）
+std::cout << sizeof(std::unique_ptr<int>) << '\n';  // 8（只有对象指针）
+```
+
 ## 3 `std::weak_ptr`
 
 `std::weak_ptr` 是为了配合 `shared_ptr` 而设计的。它提供对象的“非拥有”（观察者）访问权
@@ -252,6 +369,41 @@ int main() {
 
     1. 如果对象还存活：它会返回一个有效的 `std::shared_ptr`（同时会临时将引用计数加 1，保证在你使用期间对象绝对不会被其他地方销毁）
     2. 如果对象已经销毁：它会返回一个空的 `std::shared_ptr`
+
+### 3.1 底层实现
+
+weak_ptr 也指向控制块，但不增加强引用计数，只增加弱引用计数
+
+```cpp linenums="1"
+template <typename T>
+class weak_ptr {
+    T* ptr;                  // 对象指针（可能已失效）
+    ControlBlock* ctrl;      // 控制块指针
+
+public:
+    // 从 shared_ptr 构造：只增加 weak_count，不动 strong_count
+    weak_ptr(const shared_ptr<T>& sp)
+        : ptr(sp.get()), ctrl(sp.ctrl) {
+        ++ctrl->weak_count;
+    }
+
+    ~weak_ptr() {
+        if (--ctrl->weak_count == 0 && ctrl->strong_count == 0)
+            delete ctrl;               // 两个计数都归零才销毁控制块
+    }
+
+    // 关键：lock() 检查对象是否还活着
+    shared_ptr<T> lock() const {
+        if (ctrl->strong_count > 0) {  // 对象还活着
+            ++ctrl->strong_count;      // 临时 +1，保证使用期间不被销毁
+            return shared_ptr<T>(ptr, ctrl);
+        }
+        return shared_ptr<T>();        // 对象已销毁，返回空
+    }
+
+    bool expired() const { return ctrl->strong_count == 0; }
+};
+```
 
 ---
 
