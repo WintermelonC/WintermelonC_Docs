@@ -18,7 +18,7 @@
         <link rel="prev" href="../FGameplayTag/">
       
       
-        <link rel="next" href="../network_synchronization/">
+        <link rel="next" href="../GameplayCue/">
       
       
         
@@ -12195,6 +12195,8 @@
       
         
       
+        
+      
     
     
     
@@ -12256,6 +12258,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GameplayAbilitySystem
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -12273,6 +12293,169 @@
 
       </a>
       
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-核心组成与对象关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 核心组成与对象关系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 核心组成与对象关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-abilitysystemcomponentasc枢纽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 AbilitySystemComponent（ASC，枢纽）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-attributeset属性集" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 AttributeSet（属性集）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-gameplayeffectge效果--数值配方" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 GameplayEffect（GE，效果 / 数值配方）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-gameplayabilityga技能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 GameplayAbility（GA，技能）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-gameplaytag标签" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 GameplayTag（标签）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-abilitytask异步任务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 AbilityTask（异步任务）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-gameplaycue表现通知" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 GameplayCue（表现通知）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-一次伤害的完整旅程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 一次伤害的完整旅程
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-网络与预测" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 网络与预测
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GameplayCue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GameplayCue
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -14377,6 +14560,8 @@
       
         
       
+        
+      
     
     
     
@@ -14661,6 +14846,34 @@
     
   
     完美转发
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../knowledge/C_Cpp/core_language/type_conversion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    类型转换
   
 
     
@@ -16152,6 +16365,130 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-核心组成与对象关系" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1 核心组成与对象关系
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1 核心组成与对象关系">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-abilitysystemcomponentasc枢纽" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1 AbilitySystemComponent（ASC，枢纽）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-attributeset属性集" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2 AttributeSet（属性集）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-gameplayeffectge效果--数值配方" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3 GameplayEffect（GE，效果 / 数值配方）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-gameplayabilityga技能" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4 GameplayAbility（GA，技能）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-gameplaytag标签" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5 GameplayTag（标签）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-abilitytask异步任务" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6 AbilityTask（异步任务）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-gameplaycue表现通知" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7 GameplayCue（表现通知）
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-一次伤害的完整旅程" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 一次伤害的完整旅程
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-网络与预测" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 网络与预测
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -16299,6 +16636,250 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="gameplayabilitysystem">GameplayAbilitySystem<a class="headerlink" href="#gameplayabilitysystem" title="Permanent link">&para;</a></h1>
+<p>Gameplay Ability System 通常简称 <strong>GAS（游戏能力系统）</strong>，是 Epic 官方随引擎提供的一套 <strong>通用技能/属性框架</strong>（Lyra、Fortnite、Paragon 等均基于它）</p>
+<div class="admonition info">
+<p class="admonition-title">一句话总结</p>
+<p>GAS = <strong>AbilitySystemComponent（枢纽）</strong> + <strong>AttributeSet（属性）</strong> + <strong>GameplayEffect（改属性的效果）</strong> + <strong>GameplayAbility（技能）</strong> + <strong>GameplayTag（标签）</strong> + <strong>AbilityTask（异步任务）</strong> + <strong>GameplayCue（表现通知）</strong>，一套把"技能、数值、Buff、冷却、状态"统一起来并 <strong>原生支持网络与预测</strong> 的框架</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">不是默认启用的功能</p>
+<p>GAS 是独立插件/模块。使用前需在项目的 <code>Build.cs</code> 中添加依赖并启用插件：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">PublicDependencyModuleNames</span><span class="p">.</span><span class="n">AddRange</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">string</span><span class="p">[]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="s">"Core"</span><span class="p">,</span><span class="w"> </span><span class="s">"..."</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="s">"GameplayAbilities"</span><span class="p">,</span><span class="w">   </span><span class="c1">// GAS 主模块</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="s">"GameplayTags"</span><span class="p">,</span><span class="w">        </span><span class="c1">// 标签</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="s">"GameplayTasks"</span><span class="w">        </span><span class="c1">// 异步任务</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">});</span>
+</span></code></pre></div>
+</div>
+<p>为什么需要 GAS：</p>
+<table>
+<thead>
+<tr>
+<th>传统做法的痛点</th>
+<th>GAS 的解决方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每个技能自己写一套冷却/消耗/Buff，代码爆炸</td>
+<td>统一的 Ability / Effect 结构，配置驱动</td>
+</tr>
+<tr>
+<td>状态判定（眩晕中不能放技能）散落各处</td>
+<td><strong>GameplayTag</strong> 统一标记与拦截</td>
+</tr>
+<tr>
+<td>属性（血量/攻击）修改逻辑重复、易出错</td>
+<td>AttributeSet + GameplayEffect 统一结算</td>
+</tr>
+<tr>
+<td>多人同步 + 客户端预测极难自己写</td>
+<td>框架内置网络复制与能力预测</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-核心组成与对象关系">1 核心组成与对象关系<a class="headerlink" href="#1-核心组成与对象关系" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>flowchart TD
+    subgraph Host[Character / PlayerState]
+        ASC[AbilitySystemComponent&lt;br/&gt;核心枢纽]
+    end
+    subgraph Parts[由 ASC 组织]
+        AS[AttributeSet&lt;br/&gt;属性：血量/攻击]
+        AB[已赋予的技能&lt;br/&gt;GameplayAbility]
+        GE[生效中的效果&lt;br/&gt;GameplayEffect]
+        TG[OwnedTags&lt;br/&gt;持有标签]
+        GC[GameplayCue 表现]
+    end
+    ASC --&gt; AS
+    ASC --&gt; AB
+    ASC --&gt; GE
+    ASC --&gt; TG
+    ASC --&gt; GC
+    Task[AbilityTask&lt;br/&gt;技能内部异步任务] --&gt; AB</code></pre>
+<h3 id="11-abilitysystemcomponentasc枢纽">1.1 AbilitySystemComponent（ASC，枢纽）<a class="headerlink" href="#11-abilitysystemcomponentasc枢纽" title="Permanent link">&para;</a></h3>
+<p>一个参与 GAS 的角色身上挂一个 <code>UAbilitySystemComponent</code>，它是 <strong>一切的中转站</strong>：持有属性集、已赋予的技能、生效中的效果、标签、并负责网络复制。</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// 角色构造函数中创建（示意）</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">AbilitySystemComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UAbilitySystemComponent</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">"AbilitySystemComponent"</span><span class="p">));</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">AttributeSet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CreateDefaultSubobject</span><span class="o">&lt;</span><span class="n">UMyAttributeSet</span><span class="o">&gt;</span><span class="p">(</span><span class="n">TEXT</span><span class="p">(</span><span class="s">"AttributeSet"</span><span class="p">));</span>
+</span></code></pre></div>
+<p>常用操作都通过它发起：<code>GiveAbility</code>（赋予技能）、<code>TryActivateAbilitiesByTag</code>（按标签激活）、<code>ApplyGameplayEffectToSelf</code>（对自己应用效果）、<code>ExecuteGameplayCue</code>（触发表现）、属性变化的委托回调等</p>
+<div class="admonition note">
+<p class="admonition-title">ASC 挂在谁身上</p>
+<p>简单单机可放 <code>Character</code> 上；<strong>多人游戏推荐挂在 <code>PlayerState</code> 上</strong>，这样角色死亡重生后能力/效果状态仍在（类比：PlayerState 是跨重生保留的档案）。挂在不同对象上时 <code>InitAbilityActorInfo(OwnerActor, AvatarActor)</code> 的职责不同</p>
+</div>
+<h3 id="12-attributeset属性集">1.2 AttributeSet（属性集）<a class="headerlink" href="#12-attributeset属性集" title="Permanent link">&para;</a></h3>
+<p><code>UAttributeSet</code> 定义这个角色"有哪些属性"（血量、法力、攻击力……）。每个属性是 <code>FGameplayAttributeData</code>（内含当前值与基础值）：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">UCLASS</span><span class="p">()</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyAttributeSet</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UAttributeSet</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">{</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="c1">// 声明属性并提供访问宏</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">UPROPERTY</span><span class="p">(</span><span class="n">BlueprintReadOnly</span><span class="p">,</span><span class="w"> </span><span class="n">ReplicatedUsing</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">OnRep_Health</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Attributes"</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="n">FGameplayAttributeData</span><span class="w"> </span><span class="n">Health</span><span class="p">;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="n">ATTRIBUTE_ACCESSORS</span><span class="p">(</span><span class="n">UMyAttributeSet</span><span class="p">,</span><span class="w"> </span><span class="n">Health</span><span class="p">)</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="c1">// 属性变化前钳制（如血量不超上限、不为负）</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">PreAttributeChange</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAttribute</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Attribute</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="o">&amp;</span><span class="w"> </span><span class="n">NewValue</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="c1">// GE 真正结算后处理（判断死亡、记录伤害等）</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PostGameplayEffectExecute</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEffectModCallbackData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">Data</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">};</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">常见做法</p>
+<p>属性分"当前值 + 最大值"：GE 通过 Modifier 修改它们。若想让伤害走统一入口，可声明一个瞬时 <strong>Meta 属性（如 Damage）</strong>，GE 把伤害灌进 Damage，再由 <code>PostGameplayEffectExecute</code> 转扣到 Health 并清零——便于统计伤害、做死亡判定</p>
+</div>
+<h3 id="13-gameplayeffectge效果--数值配方">1.3 GameplayEffect（GE，效果 / 数值配方）<a class="headerlink" href="#13-gameplayeffectge效果--数值配方" title="Permanent link">&para;</a></h3>
+<p><code>UGameplayEffect</code> <strong>不是一段会执行的代码，而是一份"数据配方"</strong>：描述"修改哪些属性、加还是乘、持续多久"。真正的修改由 ASC 统一结算</p>
+<p>按持续时间分为三类：</p>
+<table>
+<thead>
+<tr>
+<th>时长类型</th>
+<th>含义</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Instant</strong></td>
+<td>瞬时生效一次，不保留</td>
+<td>一次攻击的伤害</td>
+</tr>
+<tr>
+<td><strong>HasDuration</strong></td>
+<td>持续一段时间（可周期触发）</td>
+<td>燃烧（每 0.5s 掉血）、短暂加速</td>
+</tr>
+<tr>
+<td><strong>Infinite</strong></td>
+<td>无限持续，直到被移除</td>
+<td>常驻 Buff、装备加成</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Modifier</strong>：指定要修改的属性与运算（加/乘等）</li>
+<li>通过 <code>MakeOutgoingEffectSpec</code> + <code>ApplyGameplayEffectSpecToSelf/Target</code> 应用（可在服务器上指定目标）</li>
+<li>应用后得到一个 <code>ActiveGameplayEffectHandle</code>，可据此移除效果</li>
+<li>可配置 Stacking（叠加）、Chance（概率）、Tag 相关条件</li>
+<li>更复杂公式用 <code>GameplayEffectExecutionCalculation</code> 或 <code>SetByCaller</code> 传入自定义数值</li>
+</ul>
+<h3 id="14-gameplayabilityga技能">1.4 GameplayAbility（GA，技能）<a class="headerlink" href="#14-gameplayabilityga技能" title="Permanent link">&para;</a></h3>
+<p><code>UGameplayAbility</code> 描述"一个能主动激活的动作"，是技能的载体（施法、攻击连段、冲刺）</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">UCLASS</span><span class="p">()</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyGameplayAbility</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UGameplayAbility</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">{</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">GENERATED_BODY</span><span class="p">()</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="c1">// 激活入口（蓝图版通常直接做 Activate Ability 事件）</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">ActivateAbility</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilitySpecHandle</span><span class="w"> </span><span class="n">Handle</span><span class="p">,</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActorInfo</span><span class="o">*</span><span class="w"> </span><span class="n">ActorInfo</span><span class="p">,</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayAbilityActivationInfo</span><span class="w"> </span><span class="n">ActivationInfo</span><span class="p">,</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">FGameplayEventData</span><span class="o">*</span><span class="w"> </span><span class="n">TriggerEventData</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="c1">// 结束技能（结束时记得调用）</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">EndAbility</span><span class="p">(...);</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">    </span><span class="c1">// 应用消耗(蓝耗)与冷却 —— 内部即 Apply 两个 GameplayEffect</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="k">virtual</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">CommitAbility</span><span class="p">(...)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="p">};</span>
+</span></code></pre></div>
+<p>技能需要：<strong>赋予</strong>（<code>GiveAbility</code> 到 ASC）、<strong>激活</strong>（输入/标签/事件）、以及 <strong>约束</strong>（用 Tag 表示）。蓝图方式创建 GameplayAbility 子类蓝图，配置 Tag、Cost、Cooldown 后赋予即可</p>
+<h3 id="15-gameplaytag标签">1.5 GameplayTag（标签）<a class="headerlink" href="#15-gameplaytag标签" title="Permanent link">&para;</a></h3>
+<p>分层的短字符串（<code>State.Stunned</code>、<code>Ability.Fire.Cooldown</code>），是 GAS 的"通用语言"，广泛用于：</p>
+<table>
+<thead>
+<tr>
+<th>用途</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>技能前提/拦截</td>
+<td><code>ActivationRequiredTags</code> / <code>ActivationBlockedTags</code>（如眩晕时不能放技能）</td>
+</tr>
+<tr>
+<td>技能互相打断</td>
+<td><code>CancelAbilitiesWithTag</code> / <code>BlockAbilitiesWithTag</code></td>
+</tr>
+<tr>
+<td>GE 免疫</td>
+<td>GE 携带的 Tag 决定能否被应用</td>
+</tr>
+<tr>
+<td>状态标记</td>
+<td>ASC 的 <code>OwnedTags</code> 表示"正在眩晕/无敌"</td>
+</tr>
+<tr>
+<td>GameplayCue 匹配</td>
+<td>表现通知按 Tag 广播</td>
+</tr>
+</tbody>
+</table>
+<h3 id="16-abilitytask异步任务">1.6 AbilityTask（异步任务）<a class="headerlink" href="#16-abilitytask异步任务" title="Permanent link">&para;</a></h3>
+<p>技能内部常有"等待一段时间 / 等待输入 / 移动 / 播放动画"这类异步操作。GAS 用 <strong><code>UAbilityTask</code></strong> 把它们封装成可等待的节点（蓝图中表现为向下延伸的接线）：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 示意：技能里等待一个输入按键</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">UAbilityTask_WaitInputPress</span><span class="o">*</span><span class="w"> </span><span class="n">Wait</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UAbilityTask_WaitInputPress</span><span class="o">::</span><span class="n">WaitInputPress</span><span class="p">(</span><span class="k">this</span><span class="p">))</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">{</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="n">Wait</span><span class="o">-&gt;</span><span class="n">OnPress</span><span class="p">.</span><span class="n">AddDynamic</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UMyAbility</span><span class="o">::</span><span class="n">OnInputPressed</span><span class="p">);</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">Wait</span><span class="o">-&gt;</span><span class="n">ReadyForActivation</span><span class="p">();</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>常用内置任务：<code>WaitInputPress</code>、<code>WaitTargetData</code>（索敌）、<code>PlayMontageAndWait</code>（播动画等结束）等，也可自定义。技能结束时应一并结束其任务</p>
+<h3 id="17-gameplaycue表现通知">1.7 GameplayCue（表现通知）<a class="headerlink" href="#17-gameplaycue表现通知" title="Permanent link">&para;</a></h3>
+<p>负责特效/音效/飘字等 <strong>表现层</strong>，与数值逻辑解耦</p>
+<h2 id="2-一次伤害的完整旅程">2 一次伤害的完整旅程<a class="headerlink" href="#2-一次伤害的完整旅程" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    participant P as 玩家（客户端）
+    participant ASC as AbilitySystem
+    participant S as 服务器
+    participant AS as AttributeSet
+
+    P-&gt;&gt;ASC: 输入 → 激活技能 Ability
+    ASC-&gt;&gt;ASC: 检查 Tag/资源（可否释放）
+    ASC-&gt;&gt;S: 激活确认（含客户端预测）
+    S-&gt;&gt;S: CommitAbility：扣蓝 + 上冷却(GE)
+    S-&gt;&gt;S: 命中目标 → 应用伤害 GE
+    S-&gt;&gt;AS: GE 结算 → 修改 Health 属性
+    AS-&gt;&gt;S: PostGameplayEffectExecute（死亡判断）
+    S--&gt;&gt;P: 属性复制：Health 变化同步
+    S-&gt;&gt;P: GameplayCue：命中特效/音效/飘字</code></pre>
+<p>要点：<strong>技能在客户端可预测地本地响应，但伤害结算等权威逻辑在服务器完成</strong>，结果通过属性复制与 Cue 同步给所有人</p>
+<h2 id="3-网络与预测">3 网络与预测<a class="headerlink" href="#3-网络与预测" title="Permanent link">&para;</a></h2>
+<p>GAS 对"拥有者客户端"内置了相当强的 <strong>能力激活与属性变化预测</strong>（按下技能立即有反馈，服务器稍后确认/纠正）。要做到正确，需要遵循：</p>
+<ul>
+<li>所有 <strong>实际结算（伤害、扣蓝、状态变更）放服务器</strong>；客户端只发"意图"做表现</li>
+<li>ASC、AttributeSet、Active Effects 都要正确配置复制</li>
+<li>预测与回滚是 GAS 最复杂的部分——初学者建议先保证"服务器权威、复制状态"，再逐步引入预测</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">网络红线</p>
+<p>客户端直接 <code>ApplyGameplayEffect</code> 修改伤害/扣血在权威模型下不可靠，应通过 RPC 请服务器执行，或使用 GAS 提供的预测式 API</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">最常见的错误</p>
+<ol>
+<li><strong>忘记 <code>InitAbilityActorInfo</code></strong>：ASC 未初始化，赋予的技能/属性不工作</li>
+<li><strong>属性没配复制</strong>：<code>ReplicatedUsing</code> + <code>GetLifetimeReplicatedProps</code> 都注册，客户端才看得到变化</li>
+<li><strong>客户端直接结算伤害</strong>：应在服务器权威执行</li>
+<li><strong>GE 当代码用 / 到处动态改数值</strong>：把效果写成数据资产，便于策划配置</li>
+<li><strong>技能 EndAbility 遗漏</strong>：技能不结束会导致状态卡死</li>
+</ol>
+</div>
+<div class="admonition info">
+<p class="admonition-title">最佳实践</p>
+<ol>
+<li>属性通过 <code>PreAttributeChange</code> 钳制边界、用 <code>PostGameplayEffectExecute</code> 处理副作用（死亡、日志）</li>
+<li>用 GameplayTag 管理"能不能放技能"，别用一堆 bool 手动判断</li>
+<li>消耗与冷却统一做成 <strong>GE</strong>，随 Level 缩放，方便复用与显示</li>
+<li>数值公式走 <code>ExecutionCalculation</code> / <code>SetByCaller</code>，保持 AttributeSet 纯净</li>
+<li>表现一律走 <strong>GameplayCue</strong>，逻辑层不直接碰特效/音效</li>
+</ol>
+</div>
 
 
 
@@ -16321,7 +16902,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月3日 06:34:47 UTC">2026年9月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月5日 09:23:01 UTC">2026年9月5日</span>
   </span>
 
     
@@ -16453,13 +17034,13 @@
         
         
           
-          <a href="../network_synchronization/" class="md-footer__link md-footer__link--next" aria-label="下一页: 网络同步">
+          <a href="../GameplayCue/" class="md-footer__link md-footer__link--next" aria-label="下一页: GameplayCue">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                网络同步
+                GameplayCue
               </div>
             </div>
             <div class="md-footer__button md-icon">
