@@ -21,23 +21,24 @@
 
 你可以找到一些有用的知识
 
-1. 数据结构与算法
-2. Python
+1. 数据库
+2. 数据结构与算法
+3. Python
    1. Anaconda
    2. Python 编程基础
    3. PyTorch 深度学习
-3. C/C++
+4. C/C++
    1. CMake
    2. vcpkg
    3. Ninja
    4. Core Language
    5. STL
-4. Java
-5. Web
+5. Java
+6. Web
    1. HTML
    2. css
    3. JavaScript
-6. Markdown
+7. Markdown
 
 ## 工具
 
@@ -48,3 +49,9 @@
    1. Github Pages
 3. MkDocs
    1. Material for MkDocs
+
+## 游戏
+
+你可以找到一些和游戏相关的东西
+
+1. 游戏设计与开发
