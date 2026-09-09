@@ -11671,6 +11671,8 @@
       
         
       
+        
+      
     
     
     
@@ -11900,6 +11902,34 @@
     
   
     蓝图系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delegate_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    委托系统
   
 
     
@@ -15021,6 +15051,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../knowledge/C_Cpp/stl/string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../knowledge/C_Cpp/stl/stream/" class="md-nav__link">
         
   
@@ -15057,34 +15115,6 @@
     
   
     智能指针
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../knowledge/C_Cpp/stl/string/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    字符串
   
 
     
@@ -16601,6 +16631,8 @@
       
         
       
+        
+      
     
     
     
@@ -16645,6 +16677,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../games/game_design/module_design/network_synchronization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -16991,7 +17051,7 @@
     E --&gt; F[运行时查询/操作&lt;br/&gt;GetClass/FindProperty/ProcessEvent]</code></pre>
 <div class="admonition note">
 <p class="admonition-title">UHT 只解析头文件</p>
-<p>UHT 只扫描 <strong><code>.h</code> 头文件</strong>，因此反射宏（<code>UCLASS</code>、<code>UPROPERTY</code>、<code>UFUNCTION</code> 等）必须写在头文件中，不能写在 <code>.cpp</code> 里。同时头文件**最后一行必须包含** <code>#include "YourClass.generated.h"</code></p>
+<p>UHT 只扫描 <strong><code>.h</code> 头文件</strong>，因此反射宏（<code>UCLASS</code>、<code>UPROPERTY</code>、<code>UFUNCTION</code> 等）必须写在头文件中，不能写在 <code>.cpp</code> 里。同时头文件 <strong>最后一行必须包含</strong> <code>#include "YourClass.generated.h"</code></p>
 </div>
 <h2 id="1-核心类型">1 核心类型<a class="headerlink" href="#1-核心类型" title="Permanent link">&para;</a></h2>
 <h5 id="11-uobject">1.1 UObject<a class="headerlink" href="#11-uobject" title="Permanent link">&para;</a></h5>
@@ -17009,7 +17069,7 @@
 <p>描述一个成员变量的反射信息：名字、类型、在对象中的内存偏移、默认值、说明符等。它是反射中最常用的类型</p>
 <div class="admonition info">
 <p class="admonition-title">UE 4.25 的架构变更</p>
-<p>在 4.25 之前，属性基类 <code>UProperty</code> 继承自 <code>UObject</code>；4.25 之后重构为 <strong><code>FField</code> 体系</strong>（<code>FField → FProperty → FIntProperty</code> 等），属性**不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 <code>UFunction</code> 仍然继承自 <code>UObject</code></p>
+<p>在 4.25 之前，属性基类 <code>UProperty</code> 继承自 <code>UObject</code>；4.25 之后重构为 <strong><code>FField</code> 体系</strong>（<code>FField → FProperty → FIntProperty</code> 等），属性 <strong>不再是 UObject</strong>。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 <code>UFunction</code> 仍然继承自 <code>UObject</code></p>
 </div>
 <p>常见的属性反射类型对应关系：</p>
 <table>
@@ -17284,7 +17344,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月3日 06:34:47 UTC">2026年9月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月9日 10:08:15 UTC">2026年9月9日</span>
   </span>
 
     

@@ -18,7 +18,7 @@
         <link rel="prev" href="../garbage_collection/">
       
       
-        <link rel="next" href="../UDataAsset/">
+        <link rel="next" href="../delegate_system/">
       
       
         
@@ -11671,6 +11671,8 @@
       
         
       
+        
+      
     
     
     
@@ -11839,22 +11841,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-蓝图与-c-的通信" class="md-nav__link">
+  <a href="#1-认识蓝图可视化脚本" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1 蓝图与 C++ 的通信
+        1 认识蓝图：可视化脚本
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1 蓝图与 C++ 的通信">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-蓝图资产类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 蓝图资产类型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-蓝图类内部结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 蓝图类内部结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-节点图的组成" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 节点图的组成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-蓝图运行原理从节点图到字节码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 蓝图运行原理：从节点图到字节码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-蓝图与-c-的通信" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 蓝图与 C++ 的通信
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 蓝图与 C++ 的通信">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-c-暴露给蓝图蓝图使用-c" class="md-nav__link">
+  <a href="#61-c-暴露给蓝图蓝图使用-c" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 C++ 暴露给蓝图（蓝图使用 C++）
+        6.1 C++ 暴露给蓝图（蓝图使用 C++）
       
     </span>
   </a>
@@ -11862,10 +11919,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-蓝图提供逻辑c-调用蓝图" class="md-nav__link">
+  <a href="#62-蓝图提供逻辑c-调用蓝图" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 蓝图提供逻辑（C++ 调用蓝图）
+        6.2 蓝图提供逻辑（C++ 调用蓝图）
       
     </span>
   </a>
@@ -11873,10 +11930,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-双向统一通信蓝图接口interface" class="md-nav__link">
+  <a href="#63-双向统一通信蓝图接口interface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 双向统一通信：蓝图接口（Interface）
+        6.3 双向统一通信：蓝图接口（Interface）
       
     </span>
   </a>
@@ -11884,10 +11941,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#14-双方如何引用对方" class="md-nav__link">
+  <a href="#64-双方如何引用对方" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 双方如何引用对方
+        6.4 双方如何引用对方
       
     </span>
   </a>
@@ -11903,6 +11960,34 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../delegate_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    委托系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -15016,6 +15101,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../../knowledge/C_Cpp/stl/string/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    字符串库
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../../knowledge/C_Cpp/stl/stream/" class="md-nav__link">
         
   
@@ -15052,34 +15165,6 @@
     
   
     智能指针
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../knowledge/C_Cpp/stl/string/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    字符串
   
 
     
@@ -16596,6 +16681,8 @@
       
         
       
+        
+      
     
     
     
@@ -16640,6 +16727,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../games/game_design/module_design/network_synchronization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -16719,22 +16834,77 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1-蓝图与-c-的通信" class="md-nav__link">
+  <a href="#1-认识蓝图可视化脚本" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1 蓝图与 C++ 的通信
+        1 认识蓝图：可视化脚本
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="1 蓝图与 C++ 的通信">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-蓝图资产类型" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2 蓝图资产类型
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-蓝图类内部结构" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3 蓝图类内部结构
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-节点图的组成" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4 节点图的组成
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-蓝图运行原理从节点图到字节码" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5 蓝图运行原理：从节点图到字节码
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-蓝图与-c-的通信" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6 蓝图与 C++ 的通信
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6 蓝图与 C++ 的通信">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-c-暴露给蓝图蓝图使用-c" class="md-nav__link">
+  <a href="#61-c-暴露给蓝图蓝图使用-c" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.1 C++ 暴露给蓝图（蓝图使用 C++）
+        6.1 C++ 暴露给蓝图（蓝图使用 C++）
       
     </span>
   </a>
@@ -16742,10 +16912,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-蓝图提供逻辑c-调用蓝图" class="md-nav__link">
+  <a href="#62-蓝图提供逻辑c-调用蓝图" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.2 蓝图提供逻辑（C++ 调用蓝图）
+        6.2 蓝图提供逻辑（C++ 调用蓝图）
       
     </span>
   </a>
@@ -16753,10 +16923,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-双向统一通信蓝图接口interface" class="md-nav__link">
+  <a href="#63-双向统一通信蓝图接口interface" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.3 双向统一通信：蓝图接口（Interface）
+        6.3 双向统一通信：蓝图接口（Interface）
       
     </span>
   </a>
@@ -16764,10 +16934,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#14-双方如何引用对方" class="md-nav__link">
+  <a href="#64-双方如何引用对方" class="md-nav__link">
     <span class="md-ellipsis">
       
-        1.4 双方如何引用对方
+        6.4 双方如何引用对方
       
     </span>
   </a>
@@ -16928,7 +17098,235 @@
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
 <h1 id="蓝图系统">蓝图系统<a class="headerlink" href="#蓝图系统" title="Permanent link">&para;</a></h1>
-<h2 id="1-蓝图与-c-的通信">1 蓝图与 C++ 的通信<a class="headerlink" href="#1-蓝图与-c-的通信" title="Permanent link">&para;</a></h2>
+<h2 id="1-认识蓝图可视化脚本">1 认识蓝图：可视化脚本<a class="headerlink" href="#1-认识蓝图可视化脚本" title="Permanent link">&para;</a></h2>
+<p><strong>蓝图（Blueprint）</strong> 是 UE 的 <strong>可视化脚本（Visual Scripting）系统</strong>：用"节点 + 连线"代替手写 C++ 来定义逻辑，同时它又是一套完整的 <strong>资产系统</strong>（可继承、可保存、可被引擎加载）</p>
+<div class="admonition info">
+<p class="admonition-title">一句话总结</p>
+<p>蓝图 = 一套 <strong>以节点图为载体</strong> 的脚本语言 + 资产体系：编辑器里画图 → <strong>K2 编译器</strong> 把图编译成 <strong>字节码</strong> → 运行时由 <strong>蓝图虚拟机（VM）</strong> 解释执行</p>
+</div>
+<pre class="mermaid"><code>flowchart LR
+    A[在编辑器画节点图&lt;br/&gt;UBlueprint 资产] --&gt; B[K2 编译器&lt;br/&gt;FKismetCompilerContext]
+    B --&gt; C[生成 UBlueprintGeneratedClass&lt;br/&gt;函数编译为字节码]
+    C --&gt; D[运行时 ProcessEvent&lt;br/&gt;虚拟机解释执行字节码]</code></pre>
+<p>为什么用它：</p>
+<table>
+<thead>
+<tr>
+<th>优势</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>面向设计师</strong></td>
+<td>不需要写代码即可做玩法、AI、UI 逻辑</td>
+</tr>
+<tr>
+<td><strong>快速迭代</strong></td>
+<td>改完点 Compile 立即生效，无需编译整个工程</td>
+</tr>
+<tr>
+<td><strong>数据驱动</strong></td>
+<td>属性即配置，可在细节面板调整</td>
+</tr>
+<tr>
+<td><strong>可视化</strong></td>
+<td>逻辑以图呈现，便于阅读、演示</td>
+</tr>
+</tbody>
+</table>
+<p>代价是 <strong>性能低于原生 C++</strong>、大型蓝图难以维护/合并冲突，因此引擎鼓励"C++ 写核心，蓝图做表现与配置"</p>
+<h2 id="2-蓝图资产类型">2 蓝图资产类型<a class="headerlink" href="#2-蓝图资产类型" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>蓝图类（Blueprint Class）</strong></td>
+<td>最常用。继承任意 UObject 派生类（Actor、Character、Component…），是"新的类"</td>
+</tr>
+<tr>
+<td><strong>关卡蓝图（Level Blueprint）</strong></td>
+<td>只属于某个关卡的全局事件（开灯、门、流程）</td>
+</tr>
+<tr>
+<td><strong>蓝图接口（Blueprint Interface）</strong></td>
+<td>定义一组函数签名，供多个蓝图/C++ 实现（跨类通信）</td>
+</tr>
+<tr>
+<td><strong>蓝图宏库（Macro Library）</strong></td>
+<td>存放可复用的宏（调用处内联展开）</td>
+</tr>
+<tr>
+<td><strong>蓝图函数库（Function Library）</strong></td>
+<td>存放全局静态函数（如自定义工具节点）</td>
+</tr>
+<tr>
+<td><strong>动画蓝图 / 控件蓝图</strong></td>
+<td>专用于动画状态机、UMG 界面</td>
+</tr>
+<tr>
+<td><strong>仅数据蓝图（Data-only）</strong></td>
+<td>不写逻辑，只当"带类型的数据配置"用（如数据资产）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-蓝图类内部结构">3 蓝图类内部结构<a class="headerlink" href="#3-蓝图类内部结构" title="Permanent link">&para;</a></h2>
+<p>一个蓝图类 = <strong>组件 + 各类图 + 变量</strong>：</p>
+<pre class="mermaid"><code>graph TD
+    BP[蓝图类 UBlueprint] --&gt; Super[继承父类&lt;br/&gt;C++ 类或另一个蓝图]
+    BP --&gt; Comp[组件列表&lt;br/&gt;Scene/碰撞/网格…]
+    BP --&gt; Var[变量&lt;br/&gt;编译为 UPROPERTY]
+    BP --&gt; EG[事件图表 Event Graph&lt;br/&gt;BeginPlay/Tick/自定义事件]
+    BP --&gt; Func[函数 Functions]
+    BP --&gt; Macro[宏 Macros]
+    BP --&gt; ED[事件调度器&lt;br/&gt;Event Dispatcher]
+    BP --&gt; CS[构造脚本&lt;br/&gt;Construction Script]</code></pre>
+<h5 id="31-变量">3.1 变量<a class="headerlink" href="#31-变量" title="Permanent link">&para;</a></h5>
+<ul>
+<li>蓝图变量本质是 <strong>生成类上的 <code>UPROPERTY</code></strong>——因此天然参与反射、序列化、GC、网络复制</li>
+<li>访问级别（Public / Private）对应是否暴露给外部与细节面板</li>
+</ul>
+<h5 id="32-事件图表event-graph">3.2 事件图表（Event Graph）<a class="headerlink" href="#32-事件图表event-graph" title="Permanent link">&para;</a></h5>
+<ul>
+<li>蓝图的主逻辑图。常见入口：<code>Event BeginPlay</code>、<code>Event Tick</code>、自定义事件</li>
+<li>事件是 <strong>异步触发入口</strong>：由引擎/其他对象在"某个时刻"调用</li>
+</ul>
+<h5 id="33-函数--宏--事件调度器">3.3 函数 / 宏 / 事件调度器<a class="headerlink" href="#33-函数--宏--事件调度器" title="Permanent link">&para;</a></h5>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>触发方式</th>
+<th>返回值</th>
+<th>复用</th>
+<th>编译产物</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>事件</strong></td>
+<td>由引擎/他人触发，异步</td>
+<td>无</td>
+<td>图内可有多个事件</td>
+<td>并入 Ubergraph</td>
+<td>响应时机（BeginPlay、被击中）</td>
+</tr>
+<tr>
+<td><strong>函数</strong></td>
+<td>被调用，同步执行</td>
+<td>有</td>
+<td>可多次调用</td>
+<td>独立 UFunction</td>
+<td>可复用的有输入输出逻辑</td>
+</tr>
+<tr>
+<td><strong>宏</strong></td>
+<td>被调用</td>
+<td>多个</td>
+<td>调用处 <strong>内联展开</strong></td>
+<td>无独立产物</td>
+<td>复用一段"连线片段"（不产生调用开销）</td>
+</tr>
+<tr>
+<td><strong>事件调度器</strong></td>
+<td>绑定者后广播触发</td>
+<td>无</td>
+<td>一声明多绑定</td>
+<td>动态多播委托</td>
+<td>一对多通知（血量变化）</td>
+</tr>
+</tbody>
+</table>
+<h5 id="34-构造脚本construction-script">3.4 构造脚本（Construction Script）<a class="headerlink" href="#34-构造脚本construction-script" title="Permanent link">&para;</a></h5>
+<ul>
+<li>在 <strong>编辑器放置时</strong> 以及 <strong>运行时生成 Actor 时</strong> 执行的初始化脚本</li>
+<li>常用于按数据动态摆放组件、根据属性调整外观</li>
+</ul>
+<h2 id="4-节点图的组成">4 节点图的组成<a class="headerlink" href="#4-节点图的组成" title="Permanent link">&para;</a></h2>
+<p>节点图由"节点 + 引脚 + 连线"构成：</p>
+<table>
+<thead>
+<tr>
+<th>元素</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>执行引脚（白色）</strong></td>
+<td>表示控制流顺序，用白线串联</td>
+</tr>
+<tr>
+<td><strong>数据引脚（彩色）</strong></td>
+<td>传数据（值/引用），按类型着色</td>
+</tr>
+<tr>
+<td><strong>纯函数（Pure）</strong></td>
+<td>无执行引脚、无副作用，取个值就连走（如 <code>Get Actor Location</code>）</td>
+</tr>
+<tr>
+<td><strong>事件节点</strong></td>
+<td>图的入口（红色"事件"标题）</td>
+</tr>
+<tr>
+<td><strong>Cast（类型转换）</strong></td>
+<td>把基类引用转成具体类型后访问其成员</td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>flowchart LR
+    E[Event Tick] --&gt; B{是否有目标?}
+    B --&gt;|是| M[调用 Move 函数]
+    B --&gt;|否| N[调用 Idle 函数]</code></pre>
+<h2 id="5-蓝图运行原理从节点图到字节码">5 蓝图运行原理：从节点图到字节码<a class="headerlink" href="#5-蓝图运行原理从节点图到字节码" title="Permanent link">&para;</a></h2>
+<div class="admonition info">
+<p class="admonition-title">关键对象</p>
+<ul>
+<li><strong><code>UBlueprint</code></strong>：编辑器里的"资产对象"，保存节点图等源码级信息</li>
+<li><strong><code>UBlueprintGeneratedClass</code></strong>：编译后生成的运行时 <code>UClass</code>（蓝图类的"真身"）</li>
+<li><strong><code>FKismetCompilerContext</code></strong>：K2 编译器上下文，负责把图转成字节码</li>
+</ul>
+</div>
+<p>编译过程：</p>
+<ol>
+<li>编辑器点 <strong>Compile</strong> → K2 编译器遍历所有图</li>
+<li><strong>事件图表</strong> 被编译进一个统一的 Ubergraph 函数（事件在内部按编号分派）；<strong>蓝图函数</strong> 各自编译为独立的 <code>UFunction</code></li>
+<li>函数体生成 <strong>字节码（Bytecode）</strong>，存放在对应 <code>UFunction</code> 上</li>
+<li>运行时调用蓝图函数 = 调 <code>ProcessEvent</code> → <strong>虚拟机解释执行字节码</strong></li>
+</ol>
+<p>这正说明蓝图逻辑本质仍跑在"UObject + UFunction + 反射"之上</p>
+<div class="admonition note">
+<p class="admonition-title">虚拟机与性能</p>
+<p>蓝图字节码由引擎的 <strong>蓝图虚拟机</strong> 逐条解释执行，因此比编译成机器码的 C++ <strong>慢不少</strong>。早期提供过"Nativization（把蓝图编译为 C++ 原生代码）"，UE5 已移除该方案，现更推荐把热路径逻辑写进 C++，蓝图只做调用与组合</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">蓝图常见性能问题</p>
+<ol>
+<li>每帧 <code>Event Tick</code> 里做大量逻辑 → 尽量关闭 Tick 或改用定时器</li>
+<li>巨型事件图表（几百个节点）难以维护 → 拆成函数/宏/子蓝图</li>
+<li>热路径（每帧、批量单位）用蓝图 → 应下沉到 C++</li>
+<li>频繁 Cast、字符串操作、每帧创建临时对象 → 缓存复用</li>
+</ol>
+</div>
+<div class="admonition info">
+<p class="admonition-title">何时用蓝图 / 何时用 C++</p>
+<ul>
+<li><strong>用 C++</strong>：核心规则、计算密集、需要稳定性能与版本管理的底层</li>
+<li><strong>用蓝图</strong>：一次性玩法、AI 行为、UI、动画逻辑、数值微调</li>
+<li><strong>混合</strong>：C++ 提供"钩子"（事件/委托/接口），蓝图在钩子上做扩展，这是官方推荐的协作模式</li>
+</ul>
+</div>
+<h2 id="6-蓝图与-c-的通信">6 蓝图与 C++ 的通信<a class="headerlink" href="#6-蓝图与-c-的通信" title="Permanent link">&para;</a></h2>
+<div class="admonition tip">
+<p class="admonition-title">蓝图与 C++ 的分工与通信</p>
+<p><strong>C++ 负责规则与性能，蓝图负责表现与配置</strong>；两者之间通过 <code>UPROPERTY</code> / <code>UFUNCTION</code> 及 <code>BlueprintImplementableEvent</code> / <code>BlueprintNativeEvent</code> / 委托 / 接口互相调用</p>
+</div>
 <p>UE 允许同一个类用 <strong>C++ 写逻辑</strong>、用 <strong>蓝图（Blueprint）做表现与调整</strong>。C++ 类和它的蓝图子类是"同一个对象"——蓝图类本质就是一个被 <code>UClass</code> 描述的 C++ 派生类。因此"通信"并非两个系统互相发消息，而是 <strong>通过反射宏暴露接口</strong>，让两边能互相调用。关键在于理解 <strong>两个方向</strong>：</p>
 <div class="admonition info">
 <p class="admonition-title">一句话总结</p>
@@ -17020,8 +17418,8 @@
 </tbody>
 </table>
 </div>
-<h3 id="11-c-暴露给蓝图蓝图使用-c">1.1 C++ 暴露给蓝图（蓝图使用 C++）<a class="headerlink" href="#11-c-暴露给蓝图蓝图使用-c" title="Permanent link">&para;</a></h3>
-<h5 id="111-暴露变量uproperty">1.1.1 暴露变量：UPROPERTY<a class="headerlink" href="#111-暴露变量uproperty" title="Permanent link">&para;</a></h5>
+<h3 id="61-c-暴露给蓝图蓝图使用-c">6.1 C++ 暴露给蓝图（蓝图使用 C++）<a class="headerlink" href="#61-c-暴露给蓝图蓝图使用-c" title="Permanent link">&para;</a></h3>
+<h5 id="611-暴露变量uproperty">6.1.1 暴露变量：UPROPERTY<a class="headerlink" href="#611-暴露变量uproperty" title="Permanent link">&para;</a></h5>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">UCLASS</span><span class="p">(</span><span class="n">Blueprintable</span><span class="p">)</span><span class="w">   </span><span class="c1">// 允许被创建为蓝图子类</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">AMyActor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">{</span>
@@ -17058,7 +17456,7 @@
 </tr>
 </tbody>
 </table>
-<h5 id="112-暴露函数ufunctionblueprintcallable">1.1.2 暴露函数：UFUNCTION(BlueprintCallable)<a class="headerlink" href="#112-暴露函数ufunctionblueprintcallable" title="Permanent link">&para;</a></h5>
+<h5 id="612-暴露函数ufunctionblueprintcallable">6.1.2 暴露函数：UFUNCTION(BlueprintCallable)<a class="headerlink" href="#612-暴露函数ufunctionblueprintcallable" title="Permanent link">&para;</a></h5>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintCallable</span><span class="p">,</span><span class="w"> </span><span class="n">Category</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Action"</span><span class="p">)</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">TakeDamage</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Amount</span><span class="p">);</span><span class="w">          </span><span class="c1">// 蓝图可调用，有执行连线</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
@@ -17083,9 +17481,9 @@
 </tr>
 </tbody>
 </table>
-<h5 id="113-暴露类型uclass--ustruct--uenum">1.1.3 暴露类型：UCLASS / USTRUCT / UENUM<a class="headerlink" href="#113-暴露类型uclass--ustruct--uenum" title="Permanent link">&para;</a></h5>
+<h5 id="613-暴露类型uclass--ustruct--uenum">6.1.3 暴露类型：UCLASS / USTRUCT / UENUM<a class="headerlink" href="#613-暴露类型uclass--ustruct--uenum" title="Permanent link">&para;</a></h5>
 <p><code>UCLASS(BlueprintType)</code> 让 C++ 类可作为蓝图变量类型；<code>USTRUCT</code> / <code>UENUM</code> 加 <code>BlueprintType</code> 后，蓝图里能声明对应的结构体变量、枚举变量</p>
-<h5 id="114-蓝图函数库blueprintfunctionlibrary">1.1.4 蓝图函数库（BlueprintFunctionLibrary）<a class="headerlink" href="#114-蓝图函数库blueprintfunctionlibrary" title="Permanent link">&para;</a></h5>
+<h5 id="614-蓝图函数库blueprintfunctionlibrary">6.1.4 蓝图函数库（BlueprintFunctionLibrary）<a class="headerlink" href="#614-蓝图函数库blueprintfunctionlibrary" title="Permanent link">&para;</a></h5>
 <p>把一批静态工具函数暴露给蓝图（不需要实例）：</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">UCLASS</span><span class="p">()</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyFuncLib</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UBlueprintFunctionLibrary</span>
@@ -17096,9 +17494,9 @@
 </span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">Clamp01</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">Value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">FMath</span><span class="o">::</span><span class="n">Clamp</span><span class="p">(</span><span class="n">Value</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.f</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
 </span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">};</span>
 </span></code></pre></div>
-<h3 id="12-蓝图提供逻辑c-调用蓝图">1.2 蓝图提供逻辑（C++ 调用蓝图）<a class="headerlink" href="#12-蓝图提供逻辑c-调用蓝图" title="Permanent link">&para;</a></h3>
+<h3 id="62-蓝图提供逻辑c-调用蓝图">6.2 蓝图提供逻辑（C++ 调用蓝图）<a class="headerlink" href="#62-蓝图提供逻辑c-调用蓝图" title="Permanent link">&para;</a></h3>
 <p>要让"C++ 主动调用蓝图里写的东西"，必须用下面三种"回调式"机制——它们都在 <strong>C++ 里以基类函数形式声明</strong>，C++ 不需要知道具体蓝图类是谁</p>
-<h5 id="121-blueprintimplementableevent纯蓝图实现">1.2.1 BlueprintImplementableEvent（纯蓝图实现）<a class="headerlink" href="#121-blueprintimplementableevent纯蓝图实现" title="Permanent link">&para;</a></h5>
+<h5 id="621-blueprintimplementableevent纯蓝图实现">6.2.1 BlueprintImplementableEvent（纯蓝图实现）<a class="headerlink" href="#621-blueprintimplementableevent纯蓝图实现" title="Permanent link">&para;</a></h5>
 <p>C++ <strong>只声明、不实现</strong>，逻辑完全写在蓝图里；C++ 调用这个函数时，实际触发蓝图实现：</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">UCLASS</span><span class="p">()</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">AMyActor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">AActor</span>
@@ -17120,7 +17518,7 @@
 <p class="admonition-title">本质</p>
 <p>这类调用走反射的 <code>ProcessEvent</code>——C++ 把"函数名 + 参数"交给蓝图虚拟机执行对应实现，因此它比直接调用虚函数略慢，适合"低频事件"（死亡、受伤、通关），不要放进每帧热路径</p>
 </div>
-<h5 id="122-blueprintnativeeventc-有默认实现蓝图可选覆写">1.2.2 BlueprintNativeEvent（C++ 有默认实现，蓝图可选覆写）<a class="headerlink" href="#122-blueprintnativeeventc-有默认实现蓝图可选覆写" title="Permanent link">&para;</a></h5>
+<h5 id="622-blueprintnativeeventc-有默认实现蓝图可选覆写">6.2.2 BlueprintNativeEvent（C++ 有默认实现，蓝图可选覆写）<a class="headerlink" href="#622-blueprintnativeeventc-有默认实现蓝图可选覆写" title="Permanent link">&para;</a></h5>
 <p>C++ 提供默认实现（写在 <code>_Implementation</code> 后缀函数里），蓝图子类 <strong>可以选择覆写</strong>：</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// 声明</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">UFUNCTION</span><span class="p">(</span><span class="n">BlueprintNativeEvent</span><span class="p">)</span>
@@ -17133,7 +17531,7 @@
 </span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="p">}</span>
 </span></code></pre></div>
 <p>蓝图覆写后若 <strong>不调用父节点</strong>（Call to Parent Function），C++ 默认实现就不会执行——这给了蓝图完全的控制权</p>
-<h5 id="123-动态多播委托event-dispatcher">1.2.3 动态多播委托（Event Dispatcher）<a class="headerlink" href="#123-动态多播委托event-dispatcher" title="Permanent link">&para;</a></h5>
+<h5 id="623-动态多播委托event-dispatcher">6.2.3 动态多播委托（Event Dispatcher）<a class="headerlink" href="#623-动态多播委托event-dispatcher" title="Permanent link">&para;</a></h5>
 <p>C++ 声明一个可被蓝图 <strong>绑定</strong> 的委托，然后由 C++ <strong>广播</strong> 触发。这是"蓝图响应 C++ 事件"最灵活的方式：</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// 头文件：声明一个动态多播委托类型（蓝图里称为 Event Dispatcher）</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam</span><span class="p">(</span><span class="n">FOnHealthChanged</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="n">NewHealth</span><span class="p">);</span>
@@ -17158,9 +17556,9 @@
 <p class="admonition-title">委托与"事件调度器"</p>
 <p>蓝图里的 Event Dispatcher 就是动态多播委托的蓝图形态。C++ 暴露的 <code>BlueprintAssignable</code> 委托，蓝图里可以像 Event Dispatcher 一样 Bind 自定义事件；反之蓝图里创建的 Event Dispatcher 也可通过 <code>BindEventTo...</code> 之类在 C++ 中绑定（较少见）</p>
 </div>
-<h5 id="124-引擎事件的receive映射">1.2.4 引擎事件的"Receive"映射<a class="headerlink" href="#124-引擎事件的receive映射" title="Permanent link">&para;</a></h5>
+<h5 id="624-引擎事件的receive映射">6.2.4 引擎事件的"Receive"映射<a class="headerlink" href="#624-引擎事件的receive映射" title="Permanent link">&para;</a></h5>
 <p>蓝图里常见的 <code>Event BeginPlay</code>、<code>Event Tick</code> 等，本质是引擎为 C++ 虚函数（<code>BeginPlay()</code>、<code>Tick()</code>）预先定义的 <code>BlueprintImplementableEvent</code>。C++ 调用 <code>BeginPlay()</code> 时，蓝图对应的事件实现会被触发。这是"引擎 → 蓝图"通信的典型例子</p>
-<h3 id="13-双向统一通信蓝图接口interface">1.3 双向统一通信：蓝图接口（Interface）<a class="headerlink" href="#13-双向统一通信蓝图接口interface" title="Permanent link">&para;</a></h3>
+<h3 id="63-双向统一通信蓝图接口interface">6.3 双向统一通信：蓝图接口（Interface）<a class="headerlink" href="#63-双向统一通信蓝图接口interface" title="Permanent link">&para;</a></h3>
 <p>当 C++ 需要调用"可能是 C++ 类也可能是蓝图类"实现同一组函数时，用 <strong>接口</strong> 最干净，避免 C++ 强依赖具体蓝图类：</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">UINTERFACE</span><span class="p">(</span><span class="n">MinimalAPI</span><span class="p">,</span><span class="w"> </span><span class="n">Blueprintable</span><span class="p">)</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">UMyInterface</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">UInterface</span>
@@ -17182,7 +17580,7 @@
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="n">IMyInterface</span><span class="o">::</span><span class="n">Execute_DoThing</span><span class="p">(</span><span class="n">OtherActor</span><span class="p">);</span><span class="w">   </span><span class="c1">// 触发蓝图或 C++ 的实现</span>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="14-双方如何引用对方">1.4 双方如何引用对方<a class="headerlink" href="#14-双方如何引用对方" title="Permanent link">&para;</a></h3>
+<h3 id="64-双方如何引用对方">6.4 双方如何引用对方<a class="headerlink" href="#64-双方如何引用对方" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -17247,7 +17645,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月3日 06:34:47 UTC">2026年9月3日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月9日 10:08:15 UTC">2026年9月9日</span>
   </span>
 
     
@@ -17379,13 +17777,13 @@
         
         
           
-          <a href="../UDataAsset/" class="md-footer__link md-footer__link--next" aria-label="下一页: UDataAsset">
+          <a href="../delegate_system/" class="md-footer__link md-footer__link--next" aria-label="下一页: 委托系统">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                UDataAsset
+                委托系统
               </div>
             </div>
             <div class="md-footer__button md-icon">

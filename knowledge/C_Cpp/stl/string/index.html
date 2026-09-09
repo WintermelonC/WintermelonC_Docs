@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://wintermelonc.github.io/WintermelonC_Docs/knowledge/C_Cpp/stl/string/">
       
       
-        <link rel="prev" href="../smart_pointer/">
+        <link rel="prev" href="../function_object/">
       
       
-        <link rel="next" href="../../../python/">
+        <link rel="next" href="../stream/">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>字符串 - WintermelonC Docs</title>
+        <title>字符串库 - WintermelonC Docs</title>
       
     
     
@@ -92,7 +92,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#字符串" class="md-skip">
+        <a href="#字符串库" class="md-skip">
           跳转至
         </a>
       
@@ -125,7 +125,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              字符串
+              字符串库
             
           </span>
         </div>
@@ -11648,6 +11648,8 @@
       
         
       
+        
+      
     
     
     
@@ -11764,6 +11766,34 @@
     
   
     蓝图系统
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../application/unreal_engine/engine_core/delegate_system/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    委托系统
   
 
     
@@ -14900,62 +14930,6 @@
                 
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../stream/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    流
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../smart_pointer/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    智能指针
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
     
   
   
@@ -14975,7 +14949,7 @@
   <span class="md-ellipsis">
     
   
-    字符串
+    字符串库
   
 
     
@@ -14993,7 +14967,7 @@
   <span class="md-ellipsis">
     
   
-    字符串
+    字符串库
   
 
     
@@ -15083,6 +15057,62 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stream/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    流
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../smart_pointer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    智能指针
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -16603,6 +16633,8 @@
       
         
       
+        
+      
     
     
     
@@ -16647,6 +16679,34 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../games/game_design/module_design/network_synchronization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    网络同步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -16908,7 +16968,7 @@
 
 <!-- 如果页面 hide_h1，则不加 <h1> -->
 
-<h1 id="字符串">字符串<a class="headerlink" href="#字符串" title="Permanent link">&para;</a></h1>
+<h1 id="字符串库">字符串库<a class="headerlink" href="#字符串库" title="Permanent link">&para;</a></h1>
 <h2 id="1-stdstring">1 <code>std::string</code><a class="headerlink" href="#1-stdstring" title="Permanent link">&para;</a></h2>
 <p><a href="../../../../zju/basic_courses/OOP/ch1/" target="_blank">C++ string</a></p>
 <p><code>std::string</code> 是 C++ 标准库中管理字符串的类，定义于 <code>&lt;string&gt;</code> 头文件。它本质是 <code>std::basic_string&lt;char&gt;</code> 的别名（<code>std::wstring</code> 对应 <code>wchar_t</code>）。相比 C 风格字符数组，<code>std::string</code> 自动管理内存、支持动态增长，是 C++ 中处理字符串的首选</p>
@@ -17344,7 +17404,7 @@
     <span class="md-icon" title="最后更新">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月8日 09:14:21 UTC">2026年9月8日</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="2026年9月9日 10:08:15 UTC">2026年9月9日</span>
   </span>
 
     
@@ -17459,7 +17519,7 @@
       <nav class="md-footer__inner md-grid" aria-label="页脚" >
         
           
-          <a href="../smart_pointer/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 智能指针">
+          <a href="../function_object/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 函数对象库">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -17469,20 +17529,20 @@
                 上一页
               </span>
               <div class="md-ellipsis">
-                智能指针
+                函数对象库
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../../python/" class="md-footer__link md-footer__link--next" aria-label="下一页: Python">
+          <a href="../stream/" class="md-footer__link md-footer__link--next" aria-label="下一页: 流">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 下一页
               </span>
               <div class="md-ellipsis">
-                Python
+                流
               </div>
             </div>
             <div class="md-footer__button md-icon">
