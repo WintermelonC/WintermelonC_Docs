@@ -72,7 +72,7 @@ flowchart LR
 
 ## 2 属性复制（Property Replication）
 
-把 UObject 成员标记为 `Replicated`，**服务器上的值一旦变化，引擎会定期自动同步给客户端**。注意它是 **单向** 的：只能服务器 → 客户端。
+把 UObject 成员标记为 `Replicated`，**服务器上的值一旦变化，引擎会定期自动同步给客户端**。注意它是 **单向** 的：只能服务器 → 客户端
 
 ```cpp
 UCLASS()

@@ -363,6 +363,7 @@ nav:
           - 反射系统: application/unreal_engine/engine_core/reflection_system.md
           - 垃圾回收: application/unreal_engine/engine_core/garbage_collection.md
           - 蓝图系统: application/unreal_engine/engine_core/blueprint_system.md
+          - 委托系统: application/unreal_engine/engine_core/delegate_system.md
         - 资产管理:
           - UDataAsset: application/unreal_engine/engine_core/UDataAsset.md
       - 游戏框架与交互逻辑:
@@ -449,9 +450,9 @@ nav:
         - 算法库: knowledge/C_Cpp/stl/algorithm.md
         - 并发支持库: knowledge/C_Cpp/stl/concurrency_library.md
         - 函数对象库: knowledge/C_Cpp/stl/function_object.md
+        - 字符串库: knowledge/C_Cpp/stl/string.md
         - 流: knowledge/C_Cpp/stl/stream.md
         - 智能指针: knowledge/C_Cpp/stl/smart_pointer.md
-        - 字符串: knowledge/C_Cpp/stl/string.md
     - Python:
       - knowledge/python/index.md
       - Anaconda: knowledge/python/anaconda.md
@@ -496,6 +497,7 @@ nav:
     - 游戏设计与开发:
       - games/game_design/index.md
       - 模块设计:
+        - 网络同步: games/game_design/module_design/network_synchronization.md
         - 装备系统设计: games/game_design/module_design/equipment_system.md
 
 # 主题设置

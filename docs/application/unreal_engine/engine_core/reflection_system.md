@@ -31,7 +31,7 @@ flowchart LR
 
 !!! note "UHT 只解析头文件"
 
-    UHT 只扫描 **`.h` 头文件**，因此反射宏（`UCLASS`、`UPROPERTY`、`UFUNCTION` 等）必须写在头文件中，不能写在 `.cpp` 里。同时头文件**最后一行必须包含** `#include "YourClass.generated.h"`
+    UHT 只扫描 **`.h` 头文件**，因此反射宏（`UCLASS`、`UPROPERTY`、`UFUNCTION` 等）必须写在头文件中，不能写在 `.cpp` 里。同时头文件 **最后一行必须包含** `#include "YourClass.generated.h"`
 
 ## 1 核心类型
 
@@ -57,7 +57,7 @@ flowchart LR
 
 !!! info "UE 4.25 的架构变更"
 
-    在 4.25 之前，属性基类 `UProperty` 继承自 `UObject`；4.25 之后重构为 **`FField` 体系**（`FField → FProperty → FIntProperty` 等），属性**不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 `UFunction` 仍然继承自 `UObject`
+    在 4.25 之前，属性基类 `UProperty` 继承自 `UObject`；4.25 之后重构为 **`FField` 体系**（`FField → FProperty → FIntProperty` 等），属性 **不再是 UObject**。这样属性不再受 GC 管理、内存更紧凑、创建更轻量，大幅降低了内存占用和 GC 压力。函数 `UFunction` 仍然继承自 `UObject`
 
 常见的属性反射类型对应关系：
 

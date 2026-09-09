@@ -197,5 +197,3 @@ class AttributeAggregator {
 | 数值汇聚 | 可接 GAS：把装备属性转成 GameplayEffect 应用给 AbilitySystemComponent |
 | 表现换装 | `USkeletalMeshComponent` 按槽位挂载，监听装备事件 |
 | 事件通信 | 动态多播委托 / AbilityTask / 蓝图事件 |
-
-这些正是你笔记里 `UDataAsset`、反射/GC、`GameplayEffect`、组件通信知识的综合应用
