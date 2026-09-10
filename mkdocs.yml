@@ -371,6 +371,9 @@ nav:
           - 容器体系: application/unreal_engine/engine_core/container_system.md
         - 资产管理:
           - UDataAsset: application/unreal_engine/engine_core/UDataAsset.md
+      - 内容生产与视觉管线:
+        - 动态与特效:
+          - 动画系统: application/unreal_engine/content_production/animation_system.md
       - 游戏框架与交互逻辑:
         - 核心游戏框架:
           - GamePlay 框架: application/unreal_engine/game_framework/gameplay_framework.md
@@ -387,6 +390,8 @@ nav:
           - AI Perception: application/unreal_engine/game_framework/AI_Perception.md
           - 行为树: application/unreal_engine/game_framework/behavior_tree.md
           - 状态树: application/unreal_engine/game_framework/state_tree.md
+        - 用户界面与交互:
+          - AHUD: application/unreal_engine/game_framework/AHUD.md
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md

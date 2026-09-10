@@ -315,3 +315,298 @@ Health -= Damage;   // Health 是 Replicated
     2. 持续变化的状态用 **属性复制**，一次性事件用 **RPC**
     3. 根据重要性与变化频率合理设置 `NetUpdateFrequency` / `COND_*`，别把所有东西都无条件高频复制
     4. 高频率低重要性（位置）用 `Unreliable`，关键逻辑（伤害、拾取）用 `Reliable`
+
+## 7 底层实现
+
+!!! info "一句话总结"
+
+    UE 网络复制的底层是一条 **分层流水线**：`UDP Socket → UNetDriver → UNetConnection → UChannel（UActorChannel）→ FOutBunch/FInBunch → FRepLayout 属性序列化`；属性复制靠 **「预编译的复制布局 + 变化追踪 + 位流编码」**，可靠性靠 **「包序号 + ACK 位图 + 可靠 Bunch 重传」**
+
+### 7.1 整体分层
+
+```mermaid
+flowchart TD
+    A["UDP Socket<br/>ISocketSubsystem / FSocket"] --> B["UNetDriver<br/>UIpNetDriver：总调度"]
+    B --> C["UNetConnection<br/>一条客户端连接"]
+    C --> D["UChannel<br/>UActorChannel / UControlChannel"]
+    D --> E["FOutBunch / FInBunch<br/>数据块"]
+    E --> F["FRepLayout / FRepState<br/>属性复制布局与状态"]
+    F --> G["FProperty::NetSerializeItem<br/>位级序列化"]
+    C -.-> H["UPackageMapClient<br/>对象引用 → NetGUID"]
+```
+
+| 层 | 关键类 | 职责 |
+| --- | --- | --- |
+| **Socket** | `ISocketSubsystem` / `FSocket` | UDP 收发 |
+| **NetDriver** | `UNetDriver`（`UIpNetDriver`） | 连接管理、Tick 调度、复制总入口 |
+| **Connection** | `UNetConnection`（`UIpConnection`） | 单条连接的收发、ACK、可靠 Bunch 队列 |
+| **Channel** | `UChannel` / `UActorChannel` / `UControlChannel` | 逻辑通道（每个 Actor 一个 ActorChannel） |
+| **Bunch** | `FOutBunch` / `FInBunch` | 一次传输的数据块（可靠/不可靠） |
+| **复制布局** | `FRepLayout` / `FRepState` / `FObjectReplicator` | "这个类有哪些属性要复制、怎么比较变化" |
+| **序列化** | `FProperty::NetSerializeItem` / `FNetBitWriter` | 把属性值压成位流 |
+| **对象引用** | `UPackageMapClient` / `FNetGUIDCache` | `UObject*` → **NetGUID**（节省带宽） |
+
+### 7.2 数据流：一次属性复制是怎么走的
+
+```mermaid
+sequenceDiagram
+    participant S as 服务器 UNetDriver
+    participant SC as 服务器 UActorChannel
+    participant ST as FRepLayout/RepState
+    participant N as UDP
+    participant CC as 客户端 UActorChannel
+    participant C as 客户端对象
+
+    Note over S: TickFlush（默认 30Hz，NetServerMaxTickRate）
+    S->>S: ServerReplicateActors：挑出相关 Actor
+    S->>SC: 对每个 Actor 复制属性
+    SC->>ST: 比较上次复制后的变化（变化追踪）
+    ST-->>SC: 变化的属性列表
+    SC->>SC: 生成 FOutBunch（RepIndex + 值，位流）
+    SC->>N: 打包成包发送
+    N->>CC: 收到包 → 按 Channel 分发
+    CC->>C: 反序列化属性值
+    CC->>C: 调用 OnRep_XXX
+    CC->>N: 回 ACK（包序号位图）
+```
+
+### 7.3 关键子系统详解
+
+##### 7.3.1 UNetDriver：总调度
+
+- 服务器每帧调用 `TickFlush()`，其中执行 **`ServerReplicateActors()`**——网络复制的总入口
+- 按 `NetServerMaxTickRate`（默认 **30**）限制网络 Tick 频率
+- 管理所有 `UNetConnection`、GUID 缓存、时间同步、Game 模式相关的连接流程
+- 客户端侧驱动 `TickDispatch()` 处理收到的包
+
+##### 7.3.2 UNetConnection：一条连接
+
+| 职责 | 说明 |
+| --- | --- |
+| **包头/包序号** | 每包带序号，用于 ACK 与丢包检测 |
+| **ACK 处理** | 通过 `FNetPacketNotify` 维护"哪些包已确认"的位图 |
+| **可靠 Bunch 队列** | `OutRec` 链表保存未被 ACK 的可靠 Bunch，负责 **重传** |
+| **Channel 管理** | 创建/关闭 `UChannel`，按 Channel 索引分发 Bunch |
+| **握手与登录** | `NMT_Login` / `NMT_Welcome` 等控制消息（`ENetworkMessage`） |
+
+##### 7.3.3 UChannel / UActorChannel：逻辑通道
+
+- `UChannel` 是逻辑多路复用：不同"话题"走不同通道，互不阻塞
+- 常见通道类型：
+
+| 通道 | 用途 |
+| --- | --- |
+| **`UActorChannel`** | **每个复制的 Actor 一个**，负责该 Actor 的属性与 RPC |
+| `UControlChannel` | 连接级控制消息（登录、握手、断开、包映射） |
+| `UVoiceChannel` | 语音数据 |
+
+- `UActorChannel` 的关键工作：发送 Actor 生成/销毁信息、复制属性、投递 RPC、维护 `FObjectReplicator`
+
+!!! note "为何要 Channel 而不是直接发对象？"
+
+    通道提供了 **独立的状态与序号空间**：某个 Actor 的丢包不会影响其他 Actor；通道内可维护自己的可靠队列与属性历史。这是"大规模世界并发复制"的基础结构
+
+##### 7.3.4 FOutBunch / FInBunch：数据块
+
+- Bunch 是"一次复制内容"的单位（可能包含多个属性的更新）
+- 关键标志：**`bReliable`**（可靠 → 进重传队列）、`bPartial`（跨包分片）、`bOpen/bClose`（通道开关）
+- 一组 Bunch 会被装进 **Packet** 通过 UDP 发出
+
+##### 7.3.5 UPackageMapClient：对象引用压缩
+
+网络上不能发指针。UE 的做法：
+
+1. 首次出现一个 `UObject*` 时，分配一个 **NetGUID**，把"GUID → 对象"记入缓存，并把 GUID 定义发给对端
+2. 之后同一对象只用 **紧凑的 GUID 索引** 表示
+3. 对端用 `FNetGUIDCache` 把 GUID 还原成对象
+
+这就是为什么复制一个 `AActor*` 引用比复制一个字符串便宜得多。
+
+##### 7.3.6 FRepLayout：复制的预编译布局
+
+`FRepLayout` 是 UE 属性复制的核心优化：**类加载时**就把"这个类有哪些属性要复制、每个属性在内存里的偏移、用什么条件、OnRep 是哪个"编译成一张命令表（`FRepLayoutCmd`）。
+
+```text
+FRepLayout（编译期生成，每个类一份）
+├─ Cmd 0: Health      (FProperty*, 偏移, 条件 COND_None, OnRep 索引)
+├─ Cmd 1: Ammo        (FProperty*, 偏移, 条件 COND_OwnerOnly, OnRep 索引)
+└─ Cmd 2: Inventory   (FArrayProperty, 嵌套布局 …)
+```
+
+带来的好处：
+
+- 复制时 **不用做反射查找**（不像 RPC 要按名字找 `UFunction`）
+- 可以按 **属性索引（RepIndex）** 发位流，`RepIndex` 通常只占几个 bit
+- 支持嵌套结构（结构体、数组、映射都有自己的子布局）
+
+##### 7.3.7 FRepState / FObjectReplicator：每个对象的复制状态
+
+- `FObjectReplicator`：**每个被复制的对象** 一份，持有其 `FRepState`
+- `FRepState` 里保存上一次发送的属性值快照与 **变化位图**（`FRepChangedPropertyTracker`）
+- 每次复制时：**逐属性比较"上次发的值 vs 当前值"**，只把变化的属性写进 Bunch
+
+!!! info "这是复制的性能关键"
+
+    "只发变化"不是靠你手动判断，而是引擎用 **属性历史 + 内存比较** 自动完成。所以：
+
+    - 属性值不变 → 零字节（但仍受 `NetUpdateFrequency` 调度）
+    - 属性频繁变 → 每次都发（用 `COND_*` 与频率控制成本）
+
+### 7.4 属性复制的完整链路
+
+```mermaid
+flowchart TD
+    A["类加载：UHT 生成复制信息"] --> B["FRepLayout：属性命令表<br/>（偏移/条件/OnRep）"]
+    B --> C["运行时：FRepState 记录上次值"]
+    C --> D["比较当前值 → 变化位图"]
+    D --> E["按 RepIndex + 值写位流<br/>FProperty::NetSerializeItem"]
+    E --> F["FOutBunch → Packet → UDP"]
+    F --> G["客户端反序列化 → 写入对象内存"]
+    G --> H["触发 OnRep 回调"]
+```
+
+关键点：
+
+| 机制 | 说明 |
+| --- | --- |
+| **RepIndex** | 属性在布局中的序号，用少量 bit 表示"改的是哪个属性" |
+| **位级编码** | `bool` 占 1 bit、枚举按位宽、浮点可按精度截断 |
+| **Delta 语义** | 只发变化的属性，不发整个对象 |
+| **条件过滤** | `COND_*` 在 **布局层** 决定"这个属性发给谁" |
+| **OnRep 调用** | 客户端收到后按布局里的 OnRep 索引直接调用对应 `UFUNCTION` |
+
+自定义结构想参与复制，需要实现 `NetSerialize`：
+
+```cpp
+bool FMyNetStruct::NetSerialize(FArchive& Ar, UPackageMap* Map, bool& bOutSuccess)
+{
+    Ar << Value;                 // 走网络序列化
+    Map->SerializeObject(Ar, AActor::StaticClass(), ObjectRef);  // 对象引用走 PackageMap
+    bOutSuccess = true;
+    return true;
+}
+```
+
+### 7.5 RPC 的底层机制
+
+与属性复制不同，RPC 是 **函数调用**：
+
+1. 发送端调用 RPC 函数 → `UObject::ProcessEvent` 被网络标志拦截 → 交给 `UNetDriver`/`UNetConnection` 处理（`CallRemoteFunction`）
+2. 序列化内容：**目标对象（NetGUID）+ 函数标识 + 参数**
+
+    - 函数标识：`UFunction` 的 **名字**（首次需要注册到对端的函数表，之后可用紧凑引用）
+
+3. 接收端：从 Bunch 取出函数与参数 → 通过反射 `ProcessEvent` 调用本地函数实现
+4. 可靠性：`Reliable` 的 RPC 走 **Channel 的可靠 Bunch 队列**（未 ACK 会重传）；`Unreliable` 直接发
+
+```mermaid
+flowchart LR
+    A["客户端调用 ServerFire()"] --> B["序列化：对象GUID + 函数名 + 参数"]
+    B --> C["FOutBunch（bReliable）"]
+    C --> D["进入 OutRec 可靠队列"]
+    D --> E["发送 → 服务器"]
+    E --> F["反序列化 → ProcessEvent → 执行"]
+    F --> G["ACK 回执 → 出队"]
+    D -.超时未 ACK.-> H["重传"]
+```
+
+### 7.6 可靠性如何实现
+
+!!! info "两层配合"
+
+    1. **包层**：`FNetPacketNotify` 维护发送包序号与 **接收方 ACK 位图**，判定哪些包到了
+    2. **Bunch 层**：可靠 Bunch 保存在 `UNetConnection::OutRec` 链表中，直到其所在包被 ACK 才释放；未被确认则 **重传**
+
+| 机制 | 说明 |
+| --- | --- |
+| **包序号 + ACK 位图** | 一次回执可确认多个包（选择性确认） |
+| **快速重传 / 超时重传** | 检测到空洞或超时即重发 |
+| **通道内有序** | 同一通道的可靠数据按序投递 |
+| **超时断开** | 长期无法确认（网络彻底断开）则判定超时并关闭连接，而非无限重传 |
+
+### 7.7 带宽控制：五道闸门
+
+UE 不会把"所有对象的全部属性"发出去，而是层层过滤：
+
+```mermaid
+flowchart LR
+    A["① 相关性 Relevancy<br/>（Owned/AlwaysRelevant/距离）"] --> B["② 距离剔除<br/>NetCullDistanceSquared"]
+    B --> C["③ 更新频率<br/>NetUpdateFrequency"]
+    C --> D["④ 优先级排序<br/>NetPriority（带宽不够时先发谁）"]
+    D --> E["⑤ Delta 比较<br/>只发变化的属性"]
+    E --> F["附加：NetDormancy 休眠"]
+```
+
+| 闸门 | 控制手段 |
+| --- | --- |
+| **相关性** | `bAlwaysRelevant` / `bOnlyRelevantToOwner` / `RelevantToNetOwner`、`AActor::IsNetRelevantFor()` |
+| **距离** | `NetCullDistanceSquared` |
+| **频率** | `NetUpdateFrequency`（默认 100）、`MinNetUpdateFrequency` |
+| **优先级** | `NetPriority`（默认 1.0），服务器按优先级分配有限带宽 |
+| **Delta** | `FRepLayout` 变化比较 |
+| **休眠** | `NetDormancy`（`DORM_Initial`/`DORM_DormantAll`）——静止对象停止发送，需唤醒 |
+
+### 7.8 时间同步与 Ping
+
+| 机制 | 说明 |
+| --- | --- |
+| **服务器世界时间** | `AGameStateBase::ServerWorldTimeSeconds` / `ReplicatedWorldTimeSeconds` 复制给客户端 |
+| **客户端时差** | 客户端记录与服务器时间的偏移，用于预测与插值 |
+| **精度控制** | `ServerWorldTimeSecondsUpdateFrequency` 与插值平滑，避免抖动 |
+| **ExactPing** | `APlayerState::ExactPing`（基于时间戳的精确 RTT，取代旧的 Tick 采样） |
+
+### 7.9 连接建立与初始同步
+
+```mermaid
+sequenceDiagram
+    participant C as 客户端
+    participant S as 服务器
+    C->>S: 握手（NMT_Hello / Challenge）
+    C->>S: NMT_Login（携带登录信息）
+    S->>S: GameMode::Login / PreLogin / PostLogin
+    S->>C: NMT_Welcome（地图、GUID、初始状态）
+    S->>C: 生成并复制 PlayerController / PlayerState
+    S->>C: 相关 Actor 的初始属性快照
+    Note over C,S: 之后进入增量复制（只发变化）
+```
+
+要点：新客户端加入时，服务器会把 **它能看到的所有相关 Actor 的完整初值** 复制过去（初始快照），之后才转入增量复制
+
+### 7.10 UE5 的新复制架构：Iris
+
+UE5 引入 **Iris**（新的复制系统），目标是替换旧复制的核心：
+
+| 方面 | 传统复制 | Iris |
+| --- | --- | --- |
+| 架构 | `FRepLayout` + Channel/Actor 组合 | 数据驱动的统一复制管线 |
+| 过滤 | `IsNetRelevantFor` + 距离 | 可插拔的 **过滤/优先级** 策略（`UNetObjectFilter` / `UNetObjectPrioritizer`） |
+| 批量 | 逐对象处理 | 批处理、更好的缓存友好性 |
+| 支持 | 成熟稳定 | UE5 逐步成熟，可通过设置启用 |
+
+即使启用 Iris，**对使用者暴露的语义（`Replicated` 属性、RPC、`COND_*`）基本不变**——所以上层用法笔记仍然有效
+
+### 7.11 调试工具
+
+| 工具 | 用途 |
+| --- | --- |
+| `stat net` | 网络吞吐、包量、复制开销概览 |
+| `netprofile` | 网络性能剖析（谁在占带宽） |
+| `LogNet` / `LogNetTraffic` 等日志类别 | 协议级收发细节 |
+| **Gameplay Debugger** | 可视化 Actor 的复制相关性 |
+| `net.PackageMap` 等控制台变量 | 检查 NetGUID 分配情况 |
+| 网络模拟命令 | 模拟延迟/丢包（调试预测与插值） |
+
+### 7.12 关键类速查
+
+| 类 | 角色 |
+| --- | --- |
+| `UNetDriver` / `UIpNetDriver` | 网络总驱动、复制调度 |
+| `UNetConnection` | 单连接、ACK、可靠队列 |
+| `UChannel` / `UActorChannel` | 逻辑通道 / 单 Actor 通道 |
+| `FOutBunch` / `FInBunch` | 数据块（含 `bReliable`） |
+| `FRepLayout` | 类的复制布局（编译期） |
+| `FRepState` / `FObjectReplicator` | 对象复制状态（运行期） |
+| `UPackageMapClient` / `FNetGUIDCache` | 对象引用 ↔ NetGUID |
+| `FNetPacketNotify` | 包序号与 ACK 位图 |
+| `FNetBitWriter` / `FNetBitReader` | 位级序列化 |
+| `UNetObjectFilter` 等（Iris） | 可插拔过滤与优先级 |
