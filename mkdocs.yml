@@ -361,9 +361,14 @@ nav:
       - 引擎核心与底层框架:
         - 核心对象模型:
           - 反射系统: application/unreal_engine/engine_core/reflection_system.md
-          - 垃圾回收: application/unreal_engine/engine_core/garbage_collection.md
           - 蓝图系统: application/unreal_engine/engine_core/blueprint_system.md
+          - 垃圾回收: application/unreal_engine/engine_core/garbage_collection.md
+          - 序列化: application/unreal_engine/engine_core/serialization.md
           - 委托系统: application/unreal_engine/engine_core/delegate_system.md
+          - 智能指针: application/unreal_engine/engine_core/smart_pointer.md
+        - 核心数学与数据结构:
+          - 字符串体系: application/unreal_engine/engine_core/string_system.md
+          - 容器体系: application/unreal_engine/engine_core/container_system.md
         - 资产管理:
           - UDataAsset: application/unreal_engine/engine_core/UDataAsset.md
       - 游戏框架与交互逻辑:
@@ -377,6 +382,11 @@ nav:
           - GameplayCue: application/unreal_engine/game_framework/GameplayCue.md
         - 网络同步与多人系统:
           - 网络同步: application/unreal_engine/game_framework/network_synchronization.md
+        - 人工智能:
+          - UEnvQuery: application/unreal_engine/game_framework/UEnvQuery.md
+          - AI Perception: application/unreal_engine/game_framework/AI_Perception.md
+          - 行为树: application/unreal_engine/game_framework/behavior_tree.md
+          - 状态树: application/unreal_engine/game_framework/state_tree.md
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
@@ -499,6 +509,7 @@ nav:
       - 模块设计:
         - 网络同步: games/game_design/module_design/network_synchronization.md
         - 装备系统设计: games/game_design/module_design/equipment_system.md
+        - 物品系统设计: games/game_design/module_design/item_system.md
 
 # 主题设置
 theme:
