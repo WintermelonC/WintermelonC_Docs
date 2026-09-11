@@ -77,9 +77,9 @@ flowchart LR
 
     每个测试都要对 **所有候选点** 执行。生成器产出的点数 × 测试数是主要开销，因此要点：
 
-        - 便宜的测试（Distance）放前面，昂贵的（Trace、Pathfinding）放后面
-        - 控制网格密度与采样半径，别一上来生成几千个点
-        - 必须可达的需求用 **Pathing Grid** 生成器，比事后 Pathfinding 测试更省
+    - 便宜的测试（Distance）放前面，昂贵的（Trace、Pathfinding）放后面
+    - 控制网格密度与采样半径，别一上来生成几千个点
+    - 必须可达的需求用 **Pathing Grid** 生成器，比事后 Pathfinding 测试更省
 
 ### 1.4 上下文（Context）
 
