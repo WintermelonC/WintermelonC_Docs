@@ -576,7 +576,7 @@ markdown_extensions:
   - tables
   - toc:
       permalink: true
-      slugify: !!python/name:pymdownx.slugs.uslugify
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {}
       toc_depth: 4
   # Python Markdown Extensions
   - pymdownx.arithmatex:
