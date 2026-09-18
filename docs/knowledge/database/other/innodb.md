@@ -110,7 +110,7 @@ InnoDB 支持四种隔离级别：
 | **REPEATABLE READ（默认）** | ❌ | ❌ | ❌ | 事务级 ReadView + 间隙锁 |
 | SERIALIZABLE | ❌ | ❌ | ❌ | 全加锁 |
 
-> *InnoDB 在 RR 级别通过 **间隙锁（Gap Lock）** 基本解决了幻读
+> \*InnoDB 在 RR 级别通过 **间隙锁（Gap Lock）** 基本解决了幻读
 
 ## 5 MVCC（多版本并发控制）
 

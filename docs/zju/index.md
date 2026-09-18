@@ -110,6 +110,8 @@
 
 ### 专业选修课程
 
+[计算机图形学](./elective_courses/computer_graphics/index.md)
+
 ### 实践教学环节
 
 [课程综合实践Ⅰ](./practical_teaching/practical_course_1.md)

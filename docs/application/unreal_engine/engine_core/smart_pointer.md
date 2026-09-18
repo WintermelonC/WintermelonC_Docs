@@ -89,8 +89,8 @@ if (TSharedPtr<FMyData> Pinned = Weak.Pin())
 
 | 方式 | 说明 | 内存分配 |
 | --- | --- | --- |
-| `MakeShared<T>()` | **推荐**，对象与引用控制器**同一块内存** | 1 次分配 |
-| `MakeShareable(new T())` | 接管已有裸指针，支持**自定义删除器** | 2 次分配 |
+| `MakeShared<T>()` | **推荐**，对象与引用控制器 **同一块内存** | 1 次分配 |
+| `MakeShareable(new T())` | 接管已有裸指针，支持 **自定义删除器** | 2 次分配 |
 | `MakeUnique<T>()` | 创建独占指针 | 1 次分配 |
 
 ```cpp

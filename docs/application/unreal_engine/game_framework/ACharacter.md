@@ -204,7 +204,7 @@ GetCharacterMovement()->DisableMovement();              // 冻结角色
 
 !!! info "最佳实践"
 
-    1. 在**构造函数**里配好胶囊体尺寸、Mesh 对齐、移动参数默认值
+    1. 在 **构造函数** 里配好胶囊体尺寸、Mesh 对齐、移动参数默认值
     2. 需要"速度变化"（加速跑、减速 debuff）时 **乘系数作用于 `MaxWalkSpeed`**，而不是每秒传送
     3. 落地/起跳用 `Landed` / `OnJumped` 钩子做表现，逻辑与表现分离
     4. 击飞、爆炸推力统一走 `LaunchCharacter`（会正确处理网络与碰撞）

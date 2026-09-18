@@ -141,7 +141,7 @@ if (UAnimInstance* Anim = GetMesh()->GetAnimInstance())
 
 !!! tip "经典用法：技能 = 蒙太奇 + 通知"
 
-    技能动画播放期间，用 **AnimNotifyState** 打开武器碰撞体（伤害判定窗口），用 **AnimNotify** 在准确时刻播放特效/音效/屏幕震动。这样**表现与判定精确对齐**，且美术改动画不用改代码
+    技能动画播放期间，用 **AnimNotifyState** 打开武器碰撞体（伤害判定窗口），用 **AnimNotify** 在准确时刻播放特效/音效/屏幕震动。这样 **表现与判定精确对齐**，且美术改动画不用改代码
 
 ## 5 混合与分层
 
@@ -215,7 +215,7 @@ if (UAnimInstance* Anim = GetMesh()->GetAnimInstance())
 !!! info "最佳实践"
 
     1. **EventGraph 算数据、AnimGraph 摆姿态**，职责清晰
-    2. 状态机过渡条件**简单明确**，避免抖动
+    2. 状态机过渡条件 **简单明确**，避免抖动
     3. 技能演出统一走 **Montage + Notify**，让表现与判定对齐
     4. 上下身分层用 **Layered Blend Per Bone**，而不是做两套完整动画
     5. 每加一个复杂 AnimGraph 节点都问一句"这对性能值不值"

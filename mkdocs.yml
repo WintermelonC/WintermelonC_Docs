@@ -328,6 +328,10 @@ nav:
         - 7 AES: zju/module_courses/cryptography/doc7.md
         - 8 RSA: zju/module_courses/cryptography/doc8.md
         - 9 ECC: zju/module_courses/cryptography/doc9.md
+    - 专业选修课程:
+      - zju/elective_courses/index.md
+      - 计算机图形学:
+        - zju/elective_courses/computer_graphics/index.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
