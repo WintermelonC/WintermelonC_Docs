@@ -376,9 +376,9 @@ nav:
           - 容器体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/container.md
           - 数学体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/math.md
           - 其他基础类型: application/unreal_engine/core_and_framework/core_math_and_data_structure/other_basic_types.md
-      - 内容生产与视觉管线:
-      - 游戏框架与交互逻辑:
-      - 优化、工具链与发布:
+      # - 内容生产与视觉管线:
+      # - 游戏框架与交互逻辑:
+      # - 优化、工具链与发布:
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
