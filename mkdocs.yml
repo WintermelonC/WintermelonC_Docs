@@ -364,43 +364,21 @@ nav:
       - application/unreal_engine/index.md
       - 引擎核心与底层框架:
         - 核心对象模型:
-          - 反射系统: application/unreal_engine/engine_core/reflection_system.md
-          - 蓝图系统: application/unreal_engine/engine_core/blueprint_system.md
-          - 垃圾回收: application/unreal_engine/engine_core/garbage_collection.md
-          - 序列化: application/unreal_engine/engine_core/serialization.md
-          - 委托系统: application/unreal_engine/engine_core/delegate_system.md
-          - 智能指针: application/unreal_engine/engine_core/smart_pointer.md
+          - UE5 C++: application/unreal_engine/core_and_framework/core_object_model/cpp.md
+          - UObject 体系: application/unreal_engine/core_and_framework/core_object_model/uobject.md
+          - 反射系统与 UHT: application/unreal_engine/core_and_framework/core_object_model/reflection_and_uht.md
+          - 内存管理与垃圾回收: application/unreal_engine/core_and_framework/core_object_model/memory_management_and_gc.md
+          - 序列化: application/unreal_engine/core_and_framework/core_object_model/serialization.md
+          - 智能指针: application/unreal_engine/core_and_framework/core_object_model/smart_pointer.md
+          - 委托: application/unreal_engine/core_and_framework/core_object_model/delegate.md
         - 核心数学与数据结构:
-          - 字符串体系: application/unreal_engine/engine_core/string_system.md
-          - 容器体系: application/unreal_engine/engine_core/container_system.md
-        - 资产管理:
-          - UDataAsset: application/unreal_engine/engine_core/UDataAsset.md
+          - 字符串体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/string.md
+          - 容器体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/container.md
+          - 数学体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/math.md
+          - 其他基础类型: application/unreal_engine/core_and_framework/core_math_and_data_structure/other_basic_types.md
       - 内容生产与视觉管线:
-        - 动态与特效:
-          - 动画系统: application/unreal_engine/content_production/animation_system.md
       - 游戏框架与交互逻辑:
-        - 核心游戏框架:
-          - GamePlay 框架: application/unreal_engine/game_framework/gameplay_framework.md
-          - AActor: application/unreal_engine/game_framework/AActor.md
-          - APawn: application/unreal_engine/game_framework/APawn.md
-          - ACharacter: application/unreal_engine/game_framework/ACharacter.md
-          - APlayerController: application/unreal_engine/game_framework/APlayerController.md
-          - APlayerState: application/unreal_engine/game_framework/APlayerState.md
-        - 数据驱动配置:
-          - UDataTable: application/unreal_engine/game_framework/UDataTable.md
-          - FGameplayTag: application/unreal_engine/game_framework/FGameplayTag.md
-        - 实体组件与能力系统:
-          - GameplayAbilitySystem: application/unreal_engine/game_framework/GameplayAbilitySystem.md
-          - GameplayCue: application/unreal_engine/game_framework/GameplayCue.md
-        - 网络同步与多人系统:
-          - 网络同步: application/unreal_engine/game_framework/network_synchronization.md
-        - 人工智能:
-          - UEnvQuery: application/unreal_engine/game_framework/UEnvQuery.md
-          - AI Perception: application/unreal_engine/game_framework/AI_Perception.md
-          - 行为树: application/unreal_engine/game_framework/behavior_tree.md
-          - 状态树: application/unreal_engine/game_framework/state_tree.md
-        - 用户界面与交互:
-          - AHUD: application/unreal_engine/game_framework/AHUD.md
+      - 优化、工具链与发布:
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
         - 蓝图实战: application/unreal_engine/blueprint/blueprint_practice.md
@@ -410,24 +388,9 @@ nav:
         - 2 地形编辑: application/unreal_engine/cpp/ch2.md
         - 3 向量: application/unreal_engine/cpp/ch3.md
         - 4 C++: application/unreal_engine/cpp/ch4.md
-        - 5 打印调试信息: application/unreal_engine/cpp/ch5.md
-        - 6 Actor: application/unreal_engine/cpp/ch6.md
-        - 7 Pawn: application/unreal_engine/cpp/ch7.md
-        - 8 Character: application/unreal_engine/cpp/ch8.md
         - 9 Animation: application/unreal_engine/cpp/ch9.md
         - 10 Collision and Delegate: application/unreal_engine/cpp/ch10.md
-        - 11 Weapon and IK Retargeter: application/unreal_engine/cpp/ch11.md
-        - 12 Animation Montages and Meta Sounds: application/unreal_engine/cpp/ch12.md
         - 13 Collision Detection: application/unreal_engine/cpp/ch13.md
-        - 14 Destructible Actor: application/unreal_engine/cpp/ch14.md
-        - 15 Spawn Actor and Niagara: application/unreal_engine/cpp/ch15.md
-        - 16 User Widget: application/unreal_engine/cpp/ch16.md
-        - 17 Enemy: application/unreal_engine/cpp/ch17.md
-        - 18 Refactor: application/unreal_engine/cpp/ch18.md
-        - 19 Motion Warping: application/unreal_engine/cpp/ch19.md
-        - 20 HUD: application/unreal_engine/cpp/ch20.md
-        - 21 Pickup Items: application/unreal_engine/cpp/ch21.md
-        - 22 Animation Blueprint Templates: application/unreal_engine/cpp/ch22.md
   - 知识:
     - knowledge/index.md
     - 数据库: 
@@ -518,12 +481,6 @@ nav:
   - 游戏:
     - games/index.md
     - demo: games/demo.md
-    - 游戏设计与开发:
-      - games/game_design/index.md
-      - 模块设计:
-        - 网络同步: games/game_design/module_design/network_synchronization.md
-        - 装备系统设计: games/game_design/module_design/equipment_system.md
-        - 物品系统设计: games/game_design/module_design/item_system.md
 
 # 主题设置
 theme:

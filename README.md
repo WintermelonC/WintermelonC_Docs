@@ -49,9 +49,3 @@
    1. Github Pages
 3. MkDocs
    1. Material for MkDocs
-
-## 游戏
-
-你可以找到一些和游戏相关的东西
-
-1. 游戏设计与开发

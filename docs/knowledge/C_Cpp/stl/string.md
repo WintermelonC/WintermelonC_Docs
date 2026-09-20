@@ -205,11 +205,174 @@ void process(std::string_view sv) {
 }
 ```
 
-## 2 字符转换与分类库 `<cctype>`
+## 2 `std::string_view`
+
+`std::string_view`（C++17，定义于 `<string_view>`）是一个 **只读的字符串视图**——它不拥有数据，只是"借用"一段已存在的字符串，用两个成员记录这段字符串的 **指针** 和 **长度**。它的核心价值是 **零拷贝**：查看、截取、查找子串都不需要复制字符
+
+```cpp linenums="1"
+// 问题：这个函数只想"读"字符串，却不得不创建 std::string 拷贝
+void process(const std::string& s) {
+    // ...
+}
+
+process("hello");                    // ① 字符串字面量要先转成临时 std::string
+std::string s2 = s.substr(5, 10);    // ② substr 会拷贝出一段新字符串
+```
+
+`std::string` 是 **拥有** 字符数据的类，构造它需要分配内存并拷贝。而很多场景（解析、查找、传参）只需要"看一眼"字符串，根本不需要拥有它。`string_view` 就是为此设计：
+
+```cpp linenums="1"
+void process(std::string_view sv) {
+    // 不拷贝，只是"借"了一段字符串
+}
+
+process("hello");            // 字面量直接构造，零拷贝
+auto sub = sv.substr(5, 10); // substr 也只是"视图"上的切片，零拷贝
+```
+
+### 2.1 底层实现原理
+
+`string_view` 本质就是两个成员：**一个指针 + 一个长度**，它 **不拥有** 指向的内存，也不负责释放
+
+```text
+std::string_view 对象（通常 16 字节，64 位系统）：
+┌──────────────────────┐
+│ const char* data_    │ ──→ 指向字符串的某个位置（不拥有）
+├──────────────────────┤
+│ size_t size_         │     字符串长度
+└──────────────────────┘
+```
+
+```cpp linenums="1"
+std::string s = "hello world";
+std::string_view sv(s.data(), 5);   // 指向 s 的 "hello"
+
+std::cout << sizeof(sv);            // 16（指针 8 + 长度 8）
+```
+
+关键点：
+
+1. **不拥有数据**：`data_` 只是借用，析构时 **不会** `delete` 任何东西
+2. **不一定以 `'\0'` 结尾**：它靠 `size_` 定界，底层字符后面可能没有空字符
+3. **`substr` 是 $O(1)$**：只移动指针、缩小长度，完全不拷贝字符
+
+!!! question "`substr` 为什么是 $O(1)$"
+
+    普通 `std::string::substr` 会 `new` 一段内存并拷贝字符（$O(n)$）；`string_view::substr` 只是构造一个新的"指针 + 长度"对：
+
+    ```cpp linenums="1"
+    std::string_view sv = "hello world";
+    
+    // substr：不拷贝！只是 data_ 偏移、size_ 缩短
+    auto sub = sv.substr(6, 5);   // 指向原字符串第 6 个字符，长度 5
+    
+    // 等价于底层：
+    // sub.data_ = sv.data_ + 6;
+    // sub.size_ = 5;
+    ```
+    
+    ```text
+    原 string_view：  data_ ──→ h e l l o   w o r l d
+                              ↑           ↑
+                              size_=11
+    
+    substr(6,5) 后：        data_ ──────→ w o r l d
+                                         ↑
+                                         size_=5
+    ```
+
+!!! tip "`remove_prefix` / `remove_suffix`"
+
+    ```cpp linenums="1"
+    std::string_view sv = "hello world";
+    
+    sv.remove_prefix(6);   // 变成 "world"：data_ 后移 6，size_ -= 6
+    sv.remove_suffix(2);   // 变成 "wor"：size_ -= 2
+    ```
+
+    同样只是改指针和长度，零拷贝
+
+### 2.2 生命周期陷阱：不拥有数据
+
+这是 `string_view` 最大的坑——**它指向的数据必须比 string_view 本身活得久**：
+
+```cpp linenums="1"
+// ✗ 危险：悬垂的 string_view
+std::string_view make_view() {
+    std::string s = "hello";
+    return std::string_view(s);   // s 在函数返回时销毁，返回的 view 悬空！
+}
+
+// ✗ 危险：临时 string 被立刻销毁
+std::string_view sv = std::string("temp");   // 临时对象已死，sv 悬空
+// 正确：std::string s = "temp"; std::string_view sv = s;
+```
+
+```cpp linenums="1"
+// ✗ 危险：string 扩容后，原来的 view 失效
+std::string s = "hello";
+std::string_view sv = s;   // sv 指向 s 的内部缓冲区
+s += " world, a very long string...";   // s 可能重新分配内存
+std::cout << sv;           // ✗ 悬垂！sv 指向的旧缓冲区已释放
+```
+
+### 2.3 与其他字符串类型的关系
+
+| 类型 | 拥有数据吗 | 可修改吗 | 保证 `'\0'` 结尾 | 拷贝开销 |
+|---|---|---|---|---|
+| `const char*` | 否 | 否 | 通常（C 字符串） | 无 |
+| `std::string` | **是** | 是 | ✓ | 高 |
+| `std::string_view` | 否 | 否 | ✗ 不保证 | **无** |
+
+```cpp linenums="1"
+std::string s = "hello";
+std::string_view sv = s;        // ✓ 隐式转换（string → string_view，零开销）
+
+// std::string s2 = sv;          // ✗ 不能隐式转回（string_view 可能不以 \0 结尾）
+std::string s3 = std::string(sv);   // ✓ 必须显式，因为要拷贝字符
+```
+
+!!! question "什么时候用 / 不用"
+
+    **适合用 `string_view`**：
+
+    ```cpp linenums="1"
+    // ① 函数参数：只想读字符串，不想拷贝
+    void parse(std::string_view json);
+    
+    // ② 字符串解析：不断切分，零拷贝
+    std::string_view csv = "a,b,c";
+    while (!csv.empty()) {
+        auto comma = csv.find(',');
+        auto field = csv.substr(0, comma == csv.npos ? csv.size() : comma);
+        // 处理 field...
+        csv.remove_prefix(field.size() + (comma != csv.npos));
+    }
+    
+    // ③ 大量子串操作
+    auto key = path.substr(0, slash);   // O(1)
+    ```
+    
+    **不适合用 `string_view`**（必须拥有数据时）：
+
+    ```cpp linenums="1"
+    // ① 需要长期保存字符串 → 用 string
+    std::string cache = fetchFromNetwork();   // 拥有数据
+    
+    // ② 需要修改字符串 → 用 string
+    // string_view 是只读的
+    
+    // ③ 需要传递给要求 C 字符串（const char*）的 API
+    // string_view 不保证 \0 结尾，要先转 string 或用 c_str 语义
+    void legacy(const char* cstr);
+    // legacy(sv.data());  // ✗ 不安全！sv 可能不以 \0 结尾
+    ```
+
+## 3 字符转换与分类库 `<cctype>`
 
 `<cctype>` 是 C 语言 `<ctype.h>` 的 C++ 版本，提供 **字符分类**（判断字符类型）和 **字符转换**（大小写转换）两类函数。这些函数在默认 C locale 下只处理 **ASCII 字符**，不适用于 Unicode / 多字节字符
 
-### 2.1 字符分类函数
+### 3.1 字符分类函数
 
 所有分类函数：参数为 `int`（实际传字符），若满足条件返回 **非 0**（通常 1），否则返回 **0**
 
@@ -228,14 +391,14 @@ void process(std::string_view sv) {
 | `isxdigit(c)` | 十六进制数字 | `0-9`、`a-f`、`A-F` |
 | `iscntrl(c)` | 控制字符 | `0x00-0x1F`、`0x7F` |
 
-### 2.2 字符转换函数
+### 3.2 字符转换函数
 
 | 函数 | 作用 | 说明 |
 |---|---|---|
 | `toupper(c)` | 转大写 | 小写字母转大写，非小写字母原样返回 |
 | `tolower(c)` | 转小写 | 大写字母转小写，非大写字母原样返回 |
 
-### 2.3 重要注意事项
+### 3.3 重要注意事项
 
 1. 参数必须转成 `unsigned char`：`<cctype>` 函数的参数类型是 `int`，**要求传入的值是 `unsigned char` 可表示的范围或 `EOF`**。直接传 `char` 有隐患——当 `char` 是有符号类型且字符的 ASCII 值 ≥ 128（如中文等多字节字符的某个字节）时，会变成负数，导致 **未定义行为**
 2. 只处理 ASCII，不适用中文/Unicode：`isalpha('中')` 在默认 locale 下返回 0（不是字母）。判断中文字符、Unicode 字符应使用 `<locale>` 或 UTF-8 库（如 ICU）
