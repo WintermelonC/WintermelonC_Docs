@@ -369,6 +369,7 @@ nav:
           - 反射系统与 UHT: application/unreal_engine/core_and_framework/core_object_model/reflection_and_uht.md
           - 内存管理与垃圾回收: application/unreal_engine/core_and_framework/core_object_model/memory_management_and_gc.md
           - 序列化: application/unreal_engine/core_and_framework/core_object_model/serialization.md
+          - 网络同步: application/unreal_engine/core_and_framework/core_object_model/network_synchronization.md
           - 智能指针: application/unreal_engine/core_and_framework/core_object_model/smart_pointer.md
           - 委托: application/unreal_engine/core_and_framework/core_object_model/delegate.md
         - 核心数学与数据结构:
