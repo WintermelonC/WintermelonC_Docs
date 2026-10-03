@@ -363,6 +363,117 @@ void UNetDriver::ProcessRemoteFunction(UNetConnection* Connection, AActor* Targe
 }
 ```
 
+### 8.1 RPC 是如何传递的
+
+RPC 在网络上的本质是：**把「要调用哪个函数」与「参数」序列化进 Bunch，接收端按函数名反射查找 `UFunction` 再用 `ProcessEvent` 执行**
+
+发送端（以客户端调用 Server RPC 为例）：
+
+```text linenums="1"
+客户端调用 ServerFire(10)
+└── UHT 生成的包装：本地不是权威 → 走网络路径
+    └── UObject::CallRemoteFunction()
+        └── UNetDriver::ProcessRemoteFunction()      // 按 FUNC_Net* 决定目标连接
+            └── UNetConnection::SendRemoteFunction()
+                ├── 写入函数名（FName，如 "ServerFire"）
+                ├── 逐个序列化参数（按 FProperty，CPF_Parm 顺序）
+                └── 交给该 Actor 的 UActorChannel 排队发送
+```
+
+```cpp linenums="1"
+// Engine/Source/Runtime/Engine/Private/NetConnection.cpp（简化）
+void UNetConnection::SendRemoteFunction(uint32 InRecFnIdx, UFunction* InFunction,
+                                        void* InParms, AActor* InActor,
+                                        UActorChannel* InActorChannel, bool bReliable,
+                                        FOutBunch* InBunch)
+{
+    // 1. 写入函数名，接收端据此反射查找 UFunction
+    FName FunctionName = InFunction->GetFName();
+    *InBunch << FunctionName;
+
+    // 2. 按 FProperty 顺序序列化所有参数（CPF_Parm）
+    for (TFieldIterator<FProperty> It(InFunction); It && (It->PropertyFlags & CPF_Parm); ++It)
+    {
+        It->SerializeItem(*InBunch, (uint8*)InParms + It->GetOffset_ForUFunction(), nullptr);
+    }
+
+    // 3. 通过 Actor 的通道发出
+    InActorChannel->SendBunch(InBunch, bReliable);
+}
+```
+
+接收端（服务器）：
+
+```text linenums="1"
+UActorChannel::ReceivedBunch(Bunch)
+└── UActorChannel::ProcessBunch(Bunch)
+    ├── 判断 Bunch 类型：属性复制 还是 RPC
+    └── 若是 RPC：
+        ├── 读出函数名（FName）
+        ├── Object->FindFunction(FunctionName)     // 反射查找 UFunction
+        ├── 反序列化参数（按 FProperty 填充参数内存）
+        └── Object->ProcessEvent(Function, Parms)  // 执行 ServerFire_Implementation
+```
+
+!!! tip "服务器是如何知道客户端调用了什么"
+
+    服务器 **不需要** 预先知道——它收到的是「函数名 + 参数」的数据包。`UActorChannel` 与 Actor 一一对应，通道本身就告诉了服务器"是哪个 Actor"，包里的函数名再通过 `FindFunction` 反射解析出 `UFunction`，参数按 `FProperty` 反序列化后 `ProcessEvent` 执行。这也是为什么 RPC 参数必须支持反射（UHT 需要为它们生成 `FProperty`）
+
+### 8.2 三种 RPC 的传递路径
+
+| RPC 类型 | 调用位置 | 发送方向 | 本地是否执行 |
+| --- | --- | --- | --- |
+| Server | 客户端 | 客户端 → 服务器 | 客户端 **不** 执行，服务器执行 |
+| Client | 服务器 | 服务器 → 拥有者客户端 | 服务器 **不** 执行，客户端执行 |
+| NetMulticast | 服务器 | 服务器 → 所有相关客户端 | 服务器 **也** 执行一次 |
+
+**Server RPC**
+
+```text linenums="1"
+客户端调用 ServerFire()
+    → 打包「ServerFire + 参数」→ 发往服务器
+服务器收到 → 找到 Actor → FindFunction("ServerFire") → ProcessEvent
+    → 执行 ServerFire_Implementation()
+```
+
+- 目标连接固定：客户端只有一条到服务器的连接（`ServerConnection`）
+- 客户端本地 **不** 执行实现，所以不要写完 Server RPC 就指望本地立刻有反应
+- 在服务器上调用它则直接本地执行
+
+**Client RPC**
+
+```text linenums="1"
+服务器调用 ClientShowDamage()
+    → ProcessRemoteFunction 发现是 FUNC_NetClient
+    → 找到「拥有该 Actor 的连接」（Actor->GetNetConnection()）
+    → 打包「ClientShowDamage + 参数」→ 只发给该客户端
+客户端收到 → 执行 ClientShowDamage_Implementation()
+```
+
+- 只发给 **owner**，其他客户端收不到
+- 服务器本地 **不** 执行（若需服务器也执行，要显式再调用一次逻辑）
+- 在客户端调用它无效（会被忽略）
+
+**NetMulticast RPC**
+
+```text linenums="1"
+服务器调用 MulticastPlayEffect()
+    → ProcessRemoteFunction 发现是 FUNC_NetMulticast
+    → 服务器本地先执行一次
+    → 遍历所有 ClientConnections，各发一份
+所有客户端收到 → 各自执行 MulticastPlayEffect_Implementation()
+```
+
+- 服务器 **也** 执行一次（这点常被误解）
+- 广播受相关性（`IsNetRelevantFor`）影响，不相关客户端收不到
+- 在客户端调用它无效（会被忽略）
+
+!!! warning "RPC 绑定在通道上"
+
+    RPC 不是"发一个裸函数调用"，而是写在某个 Actor 的 `UActorChannel` 上。接收端先通过通道确定"作用于哪个 Actor / 子对象"，再执行函数。因此 RPC 只有在该 Actor 的通道建立之后才能送达对端
+
+### 8.3 可靠性
+
 可靠性由通道缓冲实现：
 
 - `Reliable`：写入可靠通道，带确认（ACK）与重传，保证按序到达

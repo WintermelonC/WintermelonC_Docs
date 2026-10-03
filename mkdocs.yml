@@ -377,8 +377,14 @@ nav:
           - 容器体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/container.md
           - 数学体系: application/unreal_engine/core_and_framework/core_math_and_data_structure/math.md
           - 其他基础类型: application/unreal_engine/core_and_framework/core_math_and_data_structure/other_basic_types.md
-      # - 内容生产与视觉管线:
-      # - 游戏框架与交互逻辑:
+      - 内容生产与视觉管线:
+        - 动态与特效:
+          - 动画系统: application/unreal_engine/content_production/dynamic_and_effect/animation_system.md
+      - 游戏框架与交互逻辑:
+        - 核心游戏框架:
+          - UCharacterMovementComponent: application/unreal_engine/game_framework/core_game_framework/character_movement_component.md
+        - 实体组件与能力系统:
+          - GAS: application/unreal_engine/game_framework/entity_component/gas.md
       # - 优化、工具链与发布:
       - UE5 蓝图入门:
         - 蓝图基础: application/unreal_engine/blueprint/blueprint_basic.md
