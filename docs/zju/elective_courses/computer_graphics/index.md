@@ -14,7 +14,7 @@ tm老师
 
 ### 考核方式
 
-1. QUiz + Questions：20%
+1. Quiz + Questions：20%
 2. Experiments：40%
 3. Final Project：40%
 

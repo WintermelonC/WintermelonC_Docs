@@ -332,6 +332,8 @@ nav:
       - zju/elective_courses/index.md
       - 计算机图形学:
         - zju/elective_courses/computer_graphics/index.md
+        - 1 Basics: zju/elective_courses/computer_graphics/ch1.md
+        - 2 Raster: zju/elective_courses/computer_graphics/ch2.md
     - 实践教学环节:
       - zju/practical_teaching/index.md
       - 课程综合实践Ⅰ: zju/practical_teaching/practical_course_1.md
@@ -445,7 +447,8 @@ nav:
         - 并发支持库: knowledge/C_Cpp/stl/concurrency_library.md
         - 函数对象库: knowledge/C_Cpp/stl/function_object.md
         - 字符串库: knowledge/C_Cpp/stl/string.md
-        - 流: knowledge/C_Cpp/stl/stream.md
+        - 输入输出库: knowledge/C_Cpp/stl/input_output.md
+        - 数值库: knowledge/C_Cpp/stl/numeric.md
         - 智能指针: knowledge/C_Cpp/stl/smart_pointer.md
     - Python:
       - knowledge/python/index.md
